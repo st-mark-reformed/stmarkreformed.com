@@ -2,8 +2,7 @@
 # Project
 #------------------------------------
 
-/public/uploads/**/*.*
-!/public/uploads/*/.gitkeep
+#...project custom ignores go here
 
 
 
@@ -13,15 +12,7 @@
 # System
 #------------------------------------
 
-.env
-.idea
-/vendor
 auth.json
-localStorage/*
-!localStorage/.gitkeep
-!localStorage/dbBackups
-localStorage/dbBackups/*
-!localStorage/dbBackups/.gitkeep
 
 
 
@@ -31,6 +22,8 @@ localStorage/dbBackups/*
 # Tools
 #------------------------------------
 
+.env
+.idea
 *.esproj
 *.komodoproject
 *.sublime-*
