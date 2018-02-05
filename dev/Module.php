@@ -27,7 +27,7 @@ class Module extends ModuleBase
      */
     public function init()
     {
-        Craft::setAlias('@modules', __DIR__);
+        Craft::setAlias('@dev', __DIR__);
         parent::init();
 
         // Custom initialization code goes here...
