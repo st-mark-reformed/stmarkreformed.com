@@ -7,42 +7,14 @@
  */
 
 return [
-    // Global settings
     '*' => [
-        // Default Week Start Day (0 = Sunday, 1 = Monday...)
-        'defaultWeekStartDay' => 0,
-
-        // Enable CSRF Protection (recommended, will be enabled by default in Craft 3)
-        'enableCsrfProtection' => true,
-
-        // Whether "index.php" should be visible in URLs
-        'omitScriptNameInUrls' => true,
-
-        // Control Panel trigger word
         'cpTrigger' => 'cms',
-
-        // The secure key Craft will use for hashing and encrypting data
+        'defaultWeekStartDay' => 0,
+        'devMode' => getenv('DEV_MODE') === 'true',
+        'enableCsrfProtection' => true,
+        'errorTemplatePrefix' => '_errors/',
+        'omitScriptNameInUrls' => true,
         'securityKey' => getenv('SECURITY_KEY'),
-    ],
-
-    // Dev environment settings
-    'dev' => [
-        // Base site URL
-        'siteUrl' => null,
-
-        // Dev Mode (see https://craftcms.com/support/dev-mode)
-        'devMode' => true,
-    ],
-
-    // Staging environment settings
-    'staging' => [
-        // Base site URL
-        'siteUrl' => null,
-    ],
-
-    // Production environment settings
-    'production' => [
-        // Base site URL
-        'siteUrl' => null,
+        'siteUrl' => getenv('SITE_URL'),
     ],
 ];
