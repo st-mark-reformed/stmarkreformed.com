@@ -20,5 +20,7 @@ return [
     'modules' => [
         'dev' => Module::class,
     ],
-    //'bootstrap' => ['dev'],
+    'bootstrap' => [
+        'dev'
+    ],
 ];

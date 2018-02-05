@@ -8,6 +8,7 @@
 
 return [
     '*' => [
+        'basePath' => $basePath = realpath(dirname(__DIR__, 1)) . '/public',
         'cpTrigger' => 'cms',
         'defaultWeekStartDay' => 0,
         'devMode' => getenv('DEV_MODE') === 'true',
@@ -20,5 +21,6 @@ return [
         'siteUrl' => getenv('SITE_URL'),
         'timezone' => 'America/Chicago',
         'useEmailAsUsername' => true,
+        'staticAssetCacheTime' => '',
     ],
 ];

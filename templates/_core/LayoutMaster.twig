@@ -1,0 +1,11 @@
+{% extends "_core/LayoutHtmlWrapper" %}
+
+{% block layoutContent %}
+    {% include '_partials/SiteHeader' %}
+
+    <main>
+        {{ block('content') }}
+    </main>
+
+    {% include '_partials/SiteFooter' %}
+{% endblock %}
