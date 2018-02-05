@@ -6,7 +6,7 @@ use Craft;
 use \craft\helpers\FileHelper;
 use \craft\utilities\ClearCaches;
 use yii\base\Module as ModuleBase;
-use dev\twigextensions\GetEnvTwigExtension;
+use dev\twigextensions\DevTwigExtensions;
 
 /**
  * Custom module class for this project.
@@ -34,7 +34,7 @@ class Module extends ModuleBase
         parent::init();
 
         Craft::$app->view->registerTwigExtension(
-            new GetEnvTwigExtension()
+            new DevTwigExtensions()
         );
 
         if (getenv('CLEAR_TEMPLATE_CACHE_ON_LOAD') === 'true') {
