@@ -8,7 +8,8 @@
         "php": ">=7.0.0",
         "craftcms/cms": "^3.0.0-RC1",
         "vlucas/phpdotenv": "^2.4.0",
-        "roave/security-advisories": "dev-master"
+        "roave/security-advisories": "dev-master",
+        "nystudio107/craft-minify": "^1.2"
     },
     "autoload": {
         "psr-4": {
