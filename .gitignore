@@ -2,7 +2,8 @@
 # Project
 #------------------------------------
 
-# ...custom project ignore
+/public/uploads/**/*.*
+!/public/uploads/*/.gitkeep
 
 
 
