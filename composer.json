@@ -1,0 +1,24 @@
+{
+    "name": "st-mark-reformed/stmarkreformed.com",
+    "description": "St. Mark Reformed Church Website",
+    "license": "proprietary",
+    "homepage": "http://stmarkreformed.com/",
+    "type": "project",
+    "require": {
+        "php": ">=7.0.0",
+        "craftcms/cms": "^3.0.0-RC1",
+        "vlucas/phpdotenv": "^2.4.0",
+        "roave/security-advisories": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "dev\\": "dev/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "platform": {
+            "php": "7.0"
+        }
+    }
+}
