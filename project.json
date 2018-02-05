@@ -1,0 +1,8 @@
+{
+    "proxy": "http://stmarkreformed.test",
+    "watch": [
+        "config/**",
+        "dev/**",
+        "templates/**"
+    ]
+}
