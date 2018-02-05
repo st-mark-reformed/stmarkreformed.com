@@ -13,8 +13,12 @@ return [
         'devMode' => getenv('DEV_MODE') === 'true',
         'enableCsrfProtection' => true,
         'errorTemplatePrefix' => '_errors/',
+        'isSystemOn' => true,
         'omitScriptNameInUrls' => true,
         'securityKey' => getenv('SECURITY_KEY'),
+        'siteName' => 'St. Mark Reformed Church',
         'siteUrl' => getenv('SITE_URL'),
+        'timezone' => 'America/Chicago',
+        'useEmailAsUsername' => true,
     ],
 ];
