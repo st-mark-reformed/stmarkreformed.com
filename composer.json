@@ -11,7 +11,7 @@
         "roave/security-advisories": "dev-master",
         "nystudio107/craft-minify": "^1.2",
         "buzzingpixel/craft-static": "^1.0.2",
-        "nystudio107/craft-typogrify": "^1.1"
+        "michelf/php-smartypants": "^1.8"
     },
     "autoload": {
         "psr-4": {
