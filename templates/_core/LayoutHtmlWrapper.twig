@@ -94,13 +94,79 @@
     {{ block('layoutContent') ?? '' }}
 
     {# Include jQuery #}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script async src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     {# Include minified JS #}
     <script async src="/assets/js/script.min{% if staticAssetCacheTime %}.{{ staticAssetCacheTime }}{% endif %}.js{% if not staticAssetCacheTime %}?v={{ fileTime('/assets/css/script.min.js') }}{% endif %}"></script>
 
     {# Get any queued up body items #}
     {{ block('endBody') ?? '' }}
+
+    {# Google Fonts #}
+    {% set deferredStyles = [
+        {
+            id: 'Crimson400',
+            link: 'https://fonts.googleapis.com/css?family=Crimson+Text:400',
+        },
+        {
+            id: 'Crimson400i',
+            link: 'https://fonts.googleapis.com/css?family=Crimson+Text:400i',
+        },
+        {
+            id: 'Crimson700',
+            link: 'https://fonts.googleapis.com/css?family=Crimson+Text:700',
+        },
+        {
+            id: 'Crimson700i',
+            link: 'https://fonts.googleapis.com/css?family=Crimson+Text:700i',
+        },
+        {
+            id: 'Montserrat400',
+            link: 'https://fonts.googleapis.com/css?family=Montserrat:400',
+        },
+        {
+            id: 'Montserrat400i',
+            link: 'https://fonts.googleapis.com/css?family=Montserrat:400i',
+        },
+        {
+            id: 'Montserrat700',
+            link: 'https://fonts.googleapis.com/css?family=Montserrat:700',
+        },
+        {
+            id: 'Montserrat700i',
+            link: 'https://fonts.googleapis.com/css?family=Montserrat:700i',
+        },
+    ] %}
+
+    {% for obj in deferredStyles %}
+        <noscript id="deferredStyles_{{ obj.id }}">
+            <link href="{{ obj.link }}" rel="stylesheet">
+        </noscript>
+    {% endfor %}
+    {% for obj in deferredStyles %}
+        <script>
+            (function () {
+                var loadDeferred = function() {
+                    var addStylesNodeGF = document.getElementById('deferredStyles_{{ obj.id }}');
+                    var replacementGF = document.createElement('div');
+                    replacementGF.innerHTML = addStylesNodeGF.textContent;
+                    document.body.appendChild(replacementGF);
+                    addStylesNodeGF.parentElement.removeChild(addStylesNodeGF);
+                };
+
+                var rafGF = requestAnimationFrame || mozRequestAnimationFrame ||
+                    webkitRequestAnimationFrame || msRequestAnimationFrame;
+
+                if (rafGF) {
+                    rafGF(function() {
+                        window.setTimeout(loadDeferred, 0);
+                    });
+                } else {
+                    window.addEventListener('load', loadDeferred);
+                }
+            })();
+        </script>
+    {% endfor %}
 
     {# Analytics TODO: set up tracking script for project #}
     {% if getenv('ENVIRONMENT') == 'prod' %}
