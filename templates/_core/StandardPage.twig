@@ -1,7 +1,30 @@
 {% extends "_core/LayoutMaster" %}
 
+{# Static caching #}
 {% set shouldCache = true %}
 
+{# No Indexing #}
+{% set noIndex = entry.searchEngineIndexing != 1 %}
+
+{# Meta Title #}
+{% if craft.app.request.getSegment(1) %}
+    {% set metaTitle = entry.seoTitle|default(entry.title) %}
+{% else %}
+    {% set metaTitle = entry.seoTitle %}
+{% endif %}
+
+{# Meta description #}
+{% set metaDescription = entry.seoDescription %}
+
+{# Custom share image #}
+{% set customShareImage = entry.customShareImage.one() %}
+{% if customShareImage %}
+    {% set shareImage = customShareImage.getUrl({
+        width: min(1000, customShareImage.width)
+    }) %}
+{% endif %}
+
+{# Primary content #}
 {% block content %}
     Hello World
 {% endblock %}
