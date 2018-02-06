@@ -4,6 +4,7 @@ namespace dev\twigextensions;
 
 use dev\services\ConfigService;
 use dev\services\FileOperationsService;
+use dev\services\NavService;
 
 /**
  * Class GetEnvTwigExtension
@@ -24,12 +25,16 @@ class DevTwigExtensions extends \Twig_Extension
             }),
             new \Twig_Function('fileTime', [
                 new FileOperationsService(),
-                'getFileTime'
+                'getFileTime',
             ]),
             new \Twig_Function('customConfig', [
                 new ConfigService(),
-                'getCustomConfig'
-            ])
+                'getCustomConfig',
+            ]),
+            new \Twig_Function('navArray', [
+                new NavService(),
+                'buildNavArray',
+            ]),
         ];
     }
 }
