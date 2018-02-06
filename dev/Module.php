@@ -3,9 +3,13 @@
 namespace dev;
 
 use Craft;
+use yii\base\Event;
+use craft\elements\Entry;
 use \craft\helpers\FileHelper;
 use \craft\utilities\ClearCaches;
 use yii\base\Module as ModuleBase;
+use dev\services\EntryRoutingService;
+use craft\events\SetElementRouteEvent;
 use dev\twigextensions\DevTwigExtensions;
 
 /**
@@ -40,6 +44,14 @@ class Module extends ModuleBase
         if (getenv('CLEAR_TEMPLATE_CACHE_ON_LOAD') === 'true') {
             $this->clearTemplateCache();
         }
+
+        Event::on(
+            Entry::class,
+            Entry::EVENT_SET_ROUTE,
+            function (SetElementRouteEvent $eventModel) {
+                (new EntryRoutingService())->pageEntryRouteHandler($eventModel);
+            }
+        );
     }
 
     /**
