@@ -1,3 +1,7 @@
+{% set heroImageAsset = heroImageAsset|default(general.defaultHeroImage.one()) %}
+{% set heroHeading = heroHeading|default(false) %}
+{% set heroSubheading = heroSubheading|default(false) %}
+
 <header class="SiteHeader">
     <nav class="SiteNav">
         <a href="/" class="SiteNav__Logo">
@@ -20,4 +24,26 @@
             </ul>
         </div>
     </nav>
+
+    {% if heroImageAsset %}
+        {# TODO: Set up the various sizes of hero image #}
+        <style type="text/css">
+            .Hero {
+                background-image: url("{{ heroImageAsset.getUrl({
+                    width: 1000
+                }) }}");
+            }
+        </style>
+    {% endif %}
+
+    <div class="Hero">
+        {% if heroHeading %}
+            <h1 class="Hero__Heading">
+                {{ heroHeading|typeset }}
+            </h1>
+            {% if heroSubheading %}
+                {{ heroSubheading|typeset }}
+            {% endif %}
+        {% endif %}
+    </div>
 </header>
