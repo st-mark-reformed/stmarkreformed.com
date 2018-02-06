@@ -97,7 +97,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     {# Include minified JS #}
-    <script async src="/assets/js/script.min{% if staticAssetCacheTime %}.{{ staticAssetCacheTime }}{% endif %}.js{if ! global:static_asset_cache_time}?v={% if not staticAssetCacheTime %}?v={{ fileTime('/assets/css/script.min.js') }}{% endif %}"></script>
+    <script async src="/assets/js/script.min{% if staticAssetCacheTime %}.{{ staticAssetCacheTime }}{% endif %}.js{% if not staticAssetCacheTime %}?v={{ fileTime('/assets/css/script.min.js') }}{% endif %}"></script>
 
     {# Get any queued up body items #}
     {{ block('endBody') ?? '' }}
