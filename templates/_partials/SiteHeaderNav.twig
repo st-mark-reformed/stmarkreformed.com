@@ -1,0 +1,27 @@
+{%  set liClass = liClass|default(false) %}
+{%  set linkClass = linkClass|default(false) %}
+
+<li{% if liClass %} class="{{ liClass }}"{% endif %}>
+    {% set link = model.url %}
+
+    {% if model.getType.handle == 'navLink' and model.urlField %}
+        {% set link = model.urlField %}
+    {% endif %}
+
+    <a
+        href="{{ link }}"
+        {% if linkClass %}class="{{ linkClass }}"{% endif %}
+    >
+        {{ model.navTitleOverride|default(model.title)|smartypants }}
+        {% if model.level < 2 and hasChildren %}
+            <ul class="SiteNav__SubList">
+                {% for nav in children %}
+                    {% include '_partials/SiteHeaderNav' with nav|merge({
+                        liClass: 'SiteNav__SubListItem',
+                        linkClass: 'SiteNav__SubLink',
+                    }) only %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </a>
+</li>
