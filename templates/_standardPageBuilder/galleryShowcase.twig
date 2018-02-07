@@ -15,15 +15,19 @@
 
                     {# TODO: optimize image sizes #}
                     {% if galleryAssets|length > 0 %}
-                        <div class="GalleryShowcase__GalleryBackground">
+                        <div class="GalleryShowcase__GalleryBackground JSGalleryShowcaseBackground">
                             {% for asset in galleryAssets %}
                                 {% set uniqueId = uniqueId() %}
-                                <style type="text/css">
-                                    .GalleryShowcase__GalleryBackgroundImage--{{ uniqueId }} {
-                                        background-image: url("{{ asset.getUrl() }}");
-                                    }
-                                </style>
-                                <div class="GalleryShowcase__GalleryBackgroundImage GalleryShowcase__GalleryBackgroundImage--{{ uniqueId }}{% if loop.first %} GalleryShowcase__GalleryBackgroundImage--IsActive{% endif %}"></div>
+                                <div
+                                    class="GalleryShowcase__GalleryBackgroundImage GalleryShowcase__GalleryBackgroundImage--{{ uniqueId }} JSGalleryShowcaseBackground__Image{% if loop.first %} GalleryShowcase__GalleryBackgroundImage--IsActive JSGalleryShowcaseBackground__Image--IsActive{% endif %}"
+                                    data-active-class="GalleryShowcase__GalleryBackgroundImage--IsActive"
+                                >
+                                    <style type="text/css">
+                                        .GalleryShowcase__GalleryBackgroundImage--{{ uniqueId }} {
+                                            background-image: url("{{ asset.getUrl() }}");
+                                        }
+                                    </style>
+                                </div>
                             {% endfor %}
                         </div>
                     {% endif %}

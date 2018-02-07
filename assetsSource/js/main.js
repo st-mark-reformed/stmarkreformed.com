@@ -14,6 +14,8 @@ function runMain(F) {
         return;
     }
 
+    var delay = 0;
+
     F.controller.construct('MobileMenu', {
         el: 'body'
     });
@@ -22,6 +24,19 @@ function runMain(F) {
         F.controller.construct('SubNav', {
             el: this
         });
+    });
+
+    $('.JSGalleryShowcaseBackground').each(function() {
+        var el = this;
+        var rand = Math.round(Math.random() * (3000 - 500)) + 500;
+
+        setTimeout(function() {
+            F.controller.construct('GalleryShowcaseBackground', {
+                el: el
+            });
+        }, delay);
+
+        delay += rand;
     });
 }
 
