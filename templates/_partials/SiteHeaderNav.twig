@@ -1,10 +1,11 @@
 {% set liClass = liClass|default(false) %}
 {% set liSubNavClass = liSubNavClass|default(false) %}
+{% set liNoSubNavClass = liNoSubNavClass|default(false) %}
 {% set liData = liData|default({}) %}
-{%  set linkClass = linkClass|default(false) %}
+{% set linkClass = linkClass|default(false) %}
 
 <li
-    class="{% if liClass %}{{ liClass }}{% endif %}{% if liSubNavClass and model.level < 2 and hasChildren %} {{ liSubNavClass }}{% endif %}"
+    class="{% if liClass %}{{ liClass }}{% endif %}{% if liSubNavClass and model.level < 2 and hasChildren %} {{ liSubNavClass }}{% elseif liNoSubNavClass %} {{ liNoSubNavClass }}{% endif %}"
     {% for dataName,data in liData %}
     data-{{ dataName }}="{{ data }}"
     {% endfor %}

@@ -6,6 +6,8 @@ function runSubNav(F, W) {
 
     var desktopBreakPoint = 1000;
     var menuAnimationTime = 150;
+    var SubNavModelConstructor;
+    var SubNavModel;
 
     if (! window.jQuery || ! F.controller) {
         setTimeout(function() {
@@ -13,6 +15,15 @@ function runSubNav(F, W) {
         }, 10);
         return;
     }
+
+    SubNavModelConstructor = F.model.make({
+        currentlyActiveGuid: 'string'
+    });
+    SubNavModel = new SubNavModelConstructor();
+
+    $('.JSSiteNav__HasNoSubMenu').on('mouseenter', function() {
+        SubNavModel.set('currentlyActiveGuid', '');
+    });
 
     F.controller.make('SubNav', {
         model: {
@@ -38,7 +49,6 @@ function runSubNav(F, W) {
             mouseleave: function() {
                 var self = this;
 
-                // Check if we're in mobile mode and stop if so
                 if (W.innerWidth < desktopBreakPoint) {
                     return;
                 }
@@ -54,6 +64,14 @@ function runSubNav(F, W) {
 
             self.model.onChange('subNavIsActive', function() {
                 self.openCloseLogic();
+            });
+
+            SubNavModel.onChange('currentlyActiveGuid', function(val) {
+                if (val === self.model.guid) {
+                    return;
+                }
+
+                self.model.set('subNavIsActive', false);
             });
         },
 
@@ -72,6 +90,8 @@ function runSubNav(F, W) {
 
         openMobileMenu: function() {
             var self = this;
+
+            SubNavModel.set('currentlyActiveGuid', self.model.guid);
 
             self.$el.addClass(self.$el.data('subNavOpenClass'));
             self.$el.find('.JSSiteNav__SubNavList').slideDown(menuAnimationTime);
