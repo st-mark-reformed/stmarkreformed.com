@@ -1,7 +1,14 @@
-{%  set liClass = liClass|default(false) %}
+{% set liClass = liClass|default(false) %}
+{% set liSubNavClass = liSubNavClass|default(false) %}
+{% set liData = liData|default({}) %}
 {%  set linkClass = linkClass|default(false) %}
 
-<li{% if liClass %} class="{{ liClass }}"{% endif %}>
+<li
+    class="{% if liClass %}{{ liClass }}{% endif %}{% if liSubNavClass and model.level < 2 and hasChildren %} {{ liSubNavClass }}{% endif %}"
+    {% for dataName,data in liData %}
+    data-{{ dataName }}="{{ data }}"
+    {% endfor %}
+>
     {% set link = model.url %}
 
     {% if model.getType.handle == 'navLink' and model.urlField %}
@@ -13,15 +20,15 @@
         {% if linkClass %}class="{{ linkClass }}"{% endif %}
     >
         {{ model.navTitleOverride|default(model.title)|smartypants }}
-        {% if model.level < 2 and hasChildren %}
-            <ul class="SiteNav__SubList">
-                {% for nav in children %}
-                    {% include '_partials/SiteHeaderNav' with nav|merge({
-                        liClass: 'SiteNav__SubListItem',
-                        linkClass: 'SiteNav__SubLink',
-                    }) only %}
-                {% endfor %}
-            </ul>
-        {% endif %}
     </a>
+    {% if model.level < 2 and hasChildren %}
+        <ul class="SiteNav__SubList JSSiteNav__SubNavList">
+            {% for nav in children %}
+                {% include '_partials/SiteHeaderNav' with nav|merge({
+                    liClass: 'SiteNav__SubListItem',
+                    linkClass: 'SiteNav__SubLink',
+                }) only %}
+            {% endfor %}
+        </ul>
+    {% endif %}
 </li>

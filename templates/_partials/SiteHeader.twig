@@ -21,6 +21,10 @@
                 {% endif %}
                 {% include '_partials/SiteHeaderNav' with nav|merge({
                     liClass: 'SiteNav__ListItem',
+                    liSubNavClass: 'JSSiteNav__HasSubMenu',
+                    liData: {
+                        'sub-nav-open-class': 'SiteNav__ListItem--SubNavIsActive',
+                    },
                     linkClass: linkClass,
                 }) only %}
             {% endfor %}
