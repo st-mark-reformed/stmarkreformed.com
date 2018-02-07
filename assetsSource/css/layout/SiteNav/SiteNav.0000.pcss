@@ -32,6 +32,7 @@
     height: 39px;
     margin-left: 15px;
     position: relative;
+    transition: all 0.3s;
     top: 6px;
     width: 140px;
 }
@@ -94,9 +95,10 @@
     background-color: var(--bronze);
     box-shadow: 0 6px 14px 2px rgba(0, 0, 0, 0.4);
     display: none;
-    left: 0;
     margin: 0;
     position: absolute;
+    right: 0;
+    text-align: left;
     top: 50px;
     width: 100%;
     z-index: 8;
@@ -111,12 +113,15 @@
 .SiteNav__Link:hover,
 .SiteNav__Link:active,
 .SiteNav__Link:focus {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
     color: var(--white);
+    text-decoration: none;
+}
+
+.SiteNav__Link {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     display: block;
     font-family: var(--HeadingFont);
     padding: 14px;
-    text-decoration: none;
 }
 
 .SiteNav__Link--IsActive,

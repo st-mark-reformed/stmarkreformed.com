@@ -15,9 +15,13 @@
         </a>
         <ul class="SiteNav__List JSNavList">
             {% for nav in navArray() %}
+                {% set linkClass = 'SiteNav__Link JSMobileMenuCloseAction' %}
+                {% if siteUrl ~ craft.app.request.getSegment(1) == nav.model.url %}
+                    {% set linkClass = linkClass ~ ' SiteNav__Link--IsActive' %}
+                {% endif %}
                 {% include '_partials/SiteHeaderNav' with nav|merge({
                     liClass: 'SiteNav__ListItem',
-                    linkClass: 'SiteNav__Link JSMobileMenuCloseAction',
+                    linkClass: linkClass,
                 }) only %}
             {% endfor %}
         </ul>

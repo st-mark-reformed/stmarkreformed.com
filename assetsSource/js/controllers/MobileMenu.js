@@ -4,7 +4,7 @@ window.FAB = window.FAB || {};
 function runMobileMenu(F, W) {
     'use strict';
 
-    var desktopBreakPoint = 900;
+    var desktopBreakPoint = 1000;
 
     if (! window.jQuery || ! F.controller) {
         setTimeout(function() {
