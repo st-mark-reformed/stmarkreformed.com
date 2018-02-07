@@ -2,22 +2,22 @@
 {% set heroHeading = heroHeading|default(false) %}
 {% set heroSubheading = heroSubheading|default(false) %}
 
-<header class="SiteHeader" data-mobile-menu-open-class="SiteNav--MobileMenuIsOpen">
+<header class="SiteHeader JSSiteHeader" data-mobile-menu-open-class="SiteNav--MobileMenuIsOpen">
     <nav class="SiteNav">
         <a href="/" class="SiteNav__Logo">
             <span class="SiteNav__LogoText">St. Mark Reformed Church</span>
         </a>
-        <a href="#" class="SiteNav__Hamburger" data-active-class="SiteNav__Hamburger--IsActive">
+        <a href="#" class="SiteNav__Hamburger JSMobileMenuActivator" data-active-class="SiteNav__Hamburger--IsActive">
             <span class="SiteNav__HamburgerInner"></span>
             <span class="SiteNav__HamburgerDescription">
                 Open Mobile Menu
             </span>
         </a>
-        <ul class="SiteNav__List">
+        <ul class="SiteNav__List JSNavList">
             {% for nav in navArray() %}
                 {% include '_partials/SiteHeaderNav' with nav|merge({
                     liClass: 'SiteNav__ListItem',
-                    linkClass: 'SiteNav__Link',
+                    linkClass: 'SiteNav__Link JSMobileMenuCloseAction',
                 }) only %}
             {% endfor %}
         </ul>
