@@ -1,0 +1,127 @@
+.SiteNav {
+    background-color: var(--bronze);
+    height: 50px;
+    position: relative;
+    z-index: 999999999;
+}
+
+.SiteNav__Logo {
+    background-color: var(--lightGray);
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    height: 60px;
+    margin-left: 8px;
+    position: relative;
+    transition: all 0.2s;
+    width: 170px;
+    vertical-align: top;
+    z-index: 9;
+}
+
+.SiteNav--MobileMenuIsOpen .SiteNav__Logo {
+    margin-top: -10px;
+}
+
+.SiteNav__Logo:before {
+    content: ' ';
+    display: block;
+    background-image: url("/assets/img/st-mark-logo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 39px;
+    margin-left: 15px;
+    position: relative;
+    top: 6px;
+    width: 140px;
+}
+
+.SiteNav__LogoText {
+    @mixin HideElement;
+}
+
+.SiteNav__Hamburger {
+    display: inline-block;
+    height: 50px;
+    margin-right: 30px;
+    padding-top: 14px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    vertical-align: middle;
+    width: 45px;
+}
+
+.SiteNav__Hamburger:before,
+.SiteNav__HamburgerInner,
+.SiteNav__Hamburger:after {
+    background-color: var(--white);
+    border-radius: 2px;
+    content: ' ';
+    display: block;
+    height: 4px;
+    margin-left: auto;
+    margin-right: 0;
+    position: relative;
+    transition: all .2s;
+    width: 34px;
+}
+
+.SiteNav__HamburgerInner {
+    margin-bottom: 4px;
+    margin-top: 4px;
+}
+
+.SiteNav__Hamburger--IsActive .SiteNav__HamburgerInner {
+    opacity: 0;
+}
+
+.SiteNav__Hamburger--IsActive:before {
+    top: 8px;
+    transform: rotate(-45deg);
+}
+
+.SiteNav__Hamburger--IsActive:after {
+    bottom: 8px;
+    transform: rotate(45deg);
+}
+
+.SiteNav__HamburgerDescription {
+    @mixin HideElement;
+}
+
+.SiteNav__List {
+    background-color: var(--bronze);
+    box-shadow: 0 6px 14px 2px rgba(0, 0, 0, 0.4);
+    display: none;
+    left: 0;
+    margin: 0;
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    z-index: 8;
+}
+
+.SiteNav__SubList {
+    display: none;
+}
+
+.SiteNav__Link,
+.SiteNav__Link--IsActive,
+.SiteNav__Link:hover,
+.SiteNav__Link:active,
+.SiteNav__Link:focus {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    display: block;
+    font-family: var(--HeadingFont);
+    padding: 14px;
+    text-decoration: none;
+}
+
+.SiteNav__Link--IsActive,
+.SiteNav__Link:hover,
+.SiteNav__Link:active,
+.SiteNav__Link:focus {
+    background-color: var(--crimson);
+}
