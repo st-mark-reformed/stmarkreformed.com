@@ -1,0 +1,7 @@
+{% set fieldArray = fieldArray|default([]) %}
+
+{% for field in fieldArray %}
+    {% include '_standardPageBuilder/' ~ field.type.handle with {
+        field: field,
+    } %}
+{% endfor %}

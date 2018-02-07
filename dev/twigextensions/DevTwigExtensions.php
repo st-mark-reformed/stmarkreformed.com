@@ -50,6 +50,9 @@ class DevTwigExtensions extends \Twig_Extension
                 new NavService(),
                 'buildNavArray',
             ]),
+            new \Twig_Function('uniqueId', function () {
+                return uniqid('', false);
+            }),
         ];
     }
 

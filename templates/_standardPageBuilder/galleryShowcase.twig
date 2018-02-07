@@ -1,0 +1,42 @@
+{% set field = field|default(null) %}
+
+<section class="GalleryShowcase">
+    <div class="GalleryShowcase__Inner">
+
+        {% set galleryEntries = craft.entries.section('galleries').limit(field.numberToShowcase).all() %}
+
+        <div class="GalleryShowcase__Galleries">
+
+            {% for entry in galleryEntries %}
+
+                {% set galleryAssets = entry.gallery.all() %}
+
+                <div class="GalleryShowcase__Gallery">
+
+                    {# TODO: optimize image sizes #}
+                    {% if galleryAssets|length > 0 %}
+                        <div class="GalleryShowcase__GalleryBackground">
+                            {% for asset in galleryAssets %}
+                                {% set uniqueId = uniqueId() %}
+                                <style type="text/css">
+                                    .GalleryShowcase__GalleryBackgroundImage--{{ uniqueId }} {
+                                        background-image: url("{{ asset.getUrl() }}");
+                                    }
+                                </style>
+                                <div class="GalleryShowcase__GalleryBackgroundImage GalleryShowcase__GalleryBackgroundImage--{{ uniqueId }}{% if loop.first %} GalleryShowcase__GalleryBackgroundImage--IsActive{% endif %}"></div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <div class="GalleryShowcase__GalleryInner">
+                        <h2 class="GalleryShowcase__GalleryTitle">{{ entry.title|typeset }}</h2>
+                        <a href="{{ entry.url }}" class="button">View&nbsp;Gallery</a>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
