@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "84390b894b7ab6c81eb2fa02cfa1be6e",
+    "content-hash": "1798e2f72823de73439f430e92e90f74",
     "packages": [
         {
             "name": "buzzingpixel/craft-static",
@@ -2806,6 +2806,54 @@
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
             "time": "2017-07-13T13:05:09+00:00"
+        },
+        {
+            "name": "tde/craftplugin-geoaddress",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tdeNL/craftplugin-geoaddress.git",
+                "reference": "564d64b69eb2ec045052f644f0ba7ccff8d1aa99"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tdeNL/craftplugin-geoaddress/zipball/564d64b69eb2ec045052f644f0ba7ccff8d1aa99",
+                "reference": "564d64b69eb2ec045052f644f0ba7ccff8d1aa99",
+                "shasum": ""
+            },
+            "require": {
+                "craftcms/cms": "^3.0.0-RC1"
+            },
+            "type": "craft-plugin",
+            "extra": {
+                "name": "TDE - Geo Address Fields",
+                "handle": "geoaddress",
+                "schemaVersion": "1.0.1",
+                "hasCpSettings": true,
+                "hasCpSection": false,
+                "changelogUrl": "https://raw.githubusercontent.com/tdeNL/craftplugin-geoaddress/master/CHANGELOG.md",
+                "components": {
+                    "geoAddressService": "TDE\\GeoAddress\\services\\GeoAddressService"
+                },
+                "class": "TDE\\GeoAddress\\GeoAddress"
+            },
+            "autoload": {
+                "psr-4": {
+                    "TDE\\GeoAddress\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "TDE",
+                    "homepage": "http://www.tde.nl"
+                }
+            ],
+            "description": "Geo Address fields for Craft Sections",
+            "time": "2018-01-19T14:20:11+00:00"
         },
         {
             "name": "tubalmartin/cssmin",

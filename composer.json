@@ -12,7 +12,8 @@
         "nystudio107/craft-minify": "^1.2",
         "buzzingpixel/craft-static": "^1.0.2",
         "michelf/php-smartypants": "^1.8",
-        "superbig/craft-entry-instructions": "^1.0"
+        "superbig/craft-entry-instructions": "^1.0",
+        "tde/craftplugin-geoaddress": "^1.0"
     },
     "autoload": {
         "psr-4": {
