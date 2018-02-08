@@ -88,7 +88,7 @@
 </head>
 <body
     data-vars='{
-        "googleApiKey": {{ customConfig('dev.googleApiKey') }}
+        "googleApiKey": {{ customConfig('dev.googleApiKey')|json_encode }}
     }'
 >
     {# Get any queued up body items #}
