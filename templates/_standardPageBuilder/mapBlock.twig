@@ -15,24 +15,35 @@
     <div class="MapBlock__Inner">
 
         <div class="MapBlock__Content">
+
             {% if field.heading %}
-                <div class="MapBlock__Heading">
+                <h1 class="MapBlock__Heading">
                     {{ field.heading|typeset }}
-                </div>
+                </h1>
             {% endif %}
+
             {% if field.subheading %}
-                <div class="MapBlock__SubHeading">
+                <h2 class="MapBlock__SubHeading">
                     {{ field.subheading|typeset }}
-                </div>
+                </h2>
             {% endif %}
+
             <div class="MapBlock__Address">
                 {{ address }}
             </div>
+
             {% if field.body %}
                 <div class="MapBlock__Body">
                     {{ field.body|typeset }}
                 </div>
             {% endif %}
+
+            <div class="MapBlock__DirectionsButtonWrapper">
+                <a href="https://www.google.com/maps/search/{{ addressOnly|url_encode }}" target="_blank" class="button button--colored">
+                    {% filter typeset %}Get Directions on Google Maps{% endfilter %}
+                </a>
+            </div>
+
         </div>
 
         <div class="MapBlock__Map">
@@ -44,12 +55,6 @@
                     "longitude": "{{ field.longitude }}"
                 }'
             ></div>
-        </div>
-
-        <div class="MapBlock__DirectionsButtonWrapper">
-            <a href="https://www.google.com/maps/search/{{ addressOnly|url_encode }}" target="_blank" class="button button--colored">
-                {% filter typeset %}Get Directions on Google Maps{% endfilter %}
-            </a>
         </div>
 
     </div>
