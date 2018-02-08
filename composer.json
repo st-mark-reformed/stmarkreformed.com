@@ -13,7 +13,8 @@
         "buzzingpixel/craft-static": "^1.0.2",
         "michelf/php-smartypants": "^1.8",
         "superbig/craft-entry-instructions": "^1.0",
-        "tde/craftplugin-geoaddress": "^1.0"
+        "tde/craftplugin-geoaddress": "^1.0",
+        "craftcms/ckeditor": "dev-master"
     },
     "autoload": {
         "psr-4": {
@@ -21,8 +22,15 @@
         }
     },
     "config": {
+        "optimize-autoloader": true,
         "platform": {
             "php": "7.0"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:craftcms/ckeditor.git"
+        }
+    ]
 }

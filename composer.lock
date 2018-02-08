@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1798e2f72823de73439f430e92e90f74",
+    "content-hash": "b6efa61f17e67285142290b387f652f5",
     "packages": [
         {
             "name": "buzzingpixel/craft-static",
@@ -405,6 +405,61 @@
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "homepage": "https://github.com/container-interop/container-interop",
             "time": "2017-02-14T19:40:03+00:00"
+        },
+        {
+            "name": "craftcms/ckeditor",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/craftcms/ckeditor.git",
+                "reference": "bcb854f2a4d40a8069194a7a9dd43e27533abff0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/craftcms/ckeditor/zipball/bcb854f2a4d40a8069194a7a9dd43e27533abff0",
+                "reference": "bcb854f2a4d40a8069194a7a9dd43e27533abff0",
+                "shasum": ""
+            },
+            "require": {
+                "craftcms/cms": "^3.0.0-RC1"
+            },
+            "type": "craft-plugin",
+            "extra": {
+                "name": "CKEditor",
+                "handle": "ckeditor",
+                "changelogUrl": "https://raw.githubusercontent.com/craftcms/ckeditor/master/CHANGELOG.md",
+                "downloadUrl": "https://github.com/craftcms/ckeditor/archive/master.zip"
+            },
+            "autoload": {
+                "psr-4": {
+                    "craft\\ckeditor\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pixel & Tonic",
+                    "homepage": "https://pixelandtonic.com/"
+                }
+            ],
+            "description": "Edit rich text content in Craft CMS using CKEditor.",
+            "keywords": [
+                "ckeditor",
+                "cms",
+                "craftcms",
+                "html",
+                "yii2"
+            ],
+            "support": {
+                "email": "support@craftcms.com",
+                "issues": "https://github.com/craftcms/ckeditor/issues?state=open",
+                "source": "https://github.com/craftcms/ckeditor",
+                "docs": "https://github.com/craftcms/ckeditor",
+                "rss": "https://github.com/craftcms/ckeditor/commits/master.atom"
+            },
+            "time": "2018-02-01 01:04:31"
         },
         {
             "name": "craftcms/cms",
@@ -3553,7 +3608,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "craftcms/cms": 5,
-        "roave/security-advisories": 20
+        "roave/security-advisories": 20,
+        "craftcms/ckeditor": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
