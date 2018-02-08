@@ -9,36 +9,70 @@
 {% for field in fieldArray %}
     {% if showSubnav %}
     <div class="PageWithSubNav">
-        <nav class="PageWithSubNav__Nav">
-            <span class="PageWithSubNav__MobileExpander">About St. Mark</span>
+        <nav
+            class="PageWithSubNav__Nav"
+            data-open-class="PageWithSubNav__Nav--IsOpen"
+        >
+            <span class="PageWithSubNav__MobileExpander">
+                <span class="PageWithSubNav__MobileExpanderText">
+                    About St. Mark
+                </span>
+                <span class="PageWithSubNav__MobileExpanderIcon">
+                    {% include '_svg/angle-down' %}
+                </span>
+            </span>
             <ul class="PageWithSubNav__NavList">
                 <li class="PageWithSubNav__NavListItem">
-                    <a href="#" class="PageWithSubNav__NavListLink PageWithSubNav__NavListLink--IsPrimary">
+                    <a
+                        href="#"
+                        class="PageWithSubNav__NavListLink PageWithSubNav__NavListLink--IsActive PageWithSubNav__NavListLink--IsPrimary"
+                        data-active-class="PageWithSubNav__NavListLink--IsActive"
+                    >
                         About St. Mark
                     </a>
                 </li>
                 <li class="PageWithSubNav__NavListItem">
-                    <a href="#" class="PageWithSubNav__NavListLink">
+                    <a
+                        href="#"
+                        class="PageWithSubNav__NavListLink"
+                        data-active-class="PageWithSubNav__NavListLink--IsActive"
+                    >
                         Mission Statement
                     </a>
                 </li>
                 <li class="PageWithSubNav__NavListItem">
-                    <a href="#" class="PageWithSubNav__NavListLink">
+                    <a
+                        href="#"
+                        class="PageWithSubNav__NavListLink"
+                        data-active-class="PageWithSubNav__NavListLink--IsActive"
+                    >
                         Liturgy and Sacraments
                     </a>
                 </li>
                 <li class="PageWithSubNav__NavListItem">
-                    <a href="#" class="PageWithSubNav__NavListLink">
+                    <a
+                        href="#"
+                        class="PageWithSubNav__NavListLink"
+                        data-active-class="PageWithSubNav__NavListLink--IsActive"
+                    >
                         Leadership
                     </a>
                 </li>
                 <li class="PageWithSubNav__NavListItem">
-                    <a href="#" class="PageWithSubNav__NavListLink">
+                    <a
+                        href="#"
+                        class="PageWithSubNav__NavListLink"
+                        data-active-class="PageWithSubNav__NavListLink--IsActive"
+                    >
                         Government
                     </a>
                 </li>
                 <li class="PageWithSubNav__NavListItem">
-                    <a href="#" class="PageWithSubNav__NavListLink">
+                    <a
+                        href="#"
+                        class="PageWithSubNav__NavListLink"
+                        data-active-class="PageWithSubNav__NavListLink--IsActive"
+                    >
                         Membership
                     </a>
                 </li>
