@@ -86,7 +86,11 @@
     {# Get any queued up scripts and styles for head #}
     {{ block('head') ?? '' }}
 </head>
-<body>
+<body
+    data-vars='{
+        "googleApiKey": {{ customConfig('dev.googleApiKey') }}
+    }'
+>
     {# Get any queued up body items #}
     {{ block('beginBody') ?? '' }}
 

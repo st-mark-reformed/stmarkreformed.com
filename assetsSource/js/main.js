@@ -14,6 +14,13 @@ function runMain(F) {
         return;
     }
 
+    var GlobalModelConstructor = F.model.make({
+        googleApiKey: 'string',
+        googleMapsApiLoaded: 'bool'
+    });
+
+    F.GlobalModel = new GlobalModelConstructor($('body').data('vars'));
+
     var delay = 0;
 
     F.controller.construct('MobileMenu', {
@@ -37,6 +44,12 @@ function runMain(F) {
         }, delay);
 
         delay += rand;
+    });
+
+    $('.JSGoogleMap').each(function() {
+        F.controller.construct('GoogleMap', {
+            el: this
+        });
     });
 }
 
