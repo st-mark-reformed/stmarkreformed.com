@@ -1,0 +1,94 @@
+{% set field = field|default(false) %}
+{% set uniqueId = uniqueId() %}
+{% set buttonClass = 'button' %}
+{% set backgroundAsset = field.blockBackgroundImage.one() %}
+
+{% for option in field.options if option.value == 'redBlockBackground' %}
+    {% set buttonClass = 'button button--colored' %}
+{% endfor %}
+
+{% if backgroundAsset %}
+    <style type="text/css">
+        .BasicBlock--{{ uniqueId }}:before {
+            background-image: url("{{ backgroundAsset.getUrl({
+                width: min(500, backgroundAsset.width)
+            }) }}");
+        }
+        @media (min-width: 500px) {
+            .BasicBlock--{{ uniqueId }}:before {
+                background-image: url("{{ backgroundAsset.getUrl({
+                    width: min(1200, backgroundAsset.width)
+                }) }}");
+            }
+        }
+        @media (min-width: 1200px) {
+            .BasicBlock--{{ uniqueId }}:before {
+                background-image: url("{{ backgroundAsset.getUrl({
+                    width: min(1920, backgroundAsset.width)
+                }) }}");
+            }
+        }
+        @media (-webkit-min-device-pixel-ratio: 1.3), (min-resolution: 200dpi), (min-resolution: 1.3dppx) {
+            .BasicBlock--{{ uniqueId }}:before {
+                background-image: url("{{ backgroundAsset.getUrl({
+                    width: min(1000, backgroundAsset.width)
+                }) }}");
+            }
+            @media (min-width: 500px) {
+                .BasicBlock--{{ uniqueId }}:before {
+                    background-image: url("{{ backgroundAsset.getUrl({
+                    width: min(2400, backgroundAsset.width)
+                }) }}");
+                }
+            }
+            @media (min-width: 1200px) {
+                .BasicBlock--{{ uniqueId }}:before {
+                    background-image: url("{{ backgroundAsset.getUrl({
+                        width: min(3840, backgroundAsset.width)
+                    }) }}");
+                }
+            }
+        }
+    </style>
+{% endif %}
+
+<section
+    class="BasicBlock BasicBlock--{{ uniqueId }}{% if backgroundAsset %} BasicBlock--HasBackgroundImage{% endif %}{% for option in field.options %} BasicBlock--HasOption-{{ option.value }}{% endfor %}"
+>
+    <div class="BasicBlock__Inner">
+        {% if field.heading or field.subheading %}
+            <div class="BasicBlock__Headings">
+                <div class="BasicBlock__HeadingsInner">
+                    {% if field.heading %}
+                        <h2 class="BasicBlock__Heading">
+                            {{ field.heading|typeset }}
+                        </h2>
+                    {% endif %}
+                    {% if field.subheading %}
+                        <h3 class="BasicBlock__SubHeading">
+                            {{ field.subheading|typeset }}
+                        </h3>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+        {% if field.body or field.callToAction|length > 0 %}
+            <div class="BasicBlock__Content">
+                {% if field.body %}
+                    <div class="BasicBlock__Body">
+                        {{ field.body|typeset }}
+                    </div>
+                {% endif %}
+                {% if field.callToAction|length %}
+                    <div class="BasicBlock__CTAS">
+                        {% for cta in field.callToAction %}
+                            <a href="{{ cta.link }}" class="BasicBlock__CTA {{ buttonClass }}">
+                                {{ cta.text|typeset }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</section>
