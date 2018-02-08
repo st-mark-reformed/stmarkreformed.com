@@ -37,5 +37,6 @@
 {% block content %}
     {% include '_standardPageBuilder/_include' with {
         fieldArray: entry.standardPageBuilder.all(),
+        pageOptions: entry.pageOptions,
     } %}
 {% endblock %}

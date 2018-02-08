@@ -1,7 +1,56 @@
 {% set fieldArray = fieldArray|default([]) %}
+{% set pageOptions = pageOptions|default([]) %}
+{% set showSubnav = false %}
+
+{% for option in pageOptions if option.value == 'showSubnav' %}
+    {% set showSubnav = true %}
+{% endfor %}
 
 {% for field in fieldArray %}
-    {% include '_standardPageBuilder/' ~ field.type.handle with {
-        field: field,
-    } %}
+    {% if showSubnav %}
+    <div class="PageWithSubNav">
+        <nav class="PageWithSubNav__Nav">
+            <span class="PageWithSubNav__MobileExpander">About St. Mark</span>
+            <ul class="PageWithSubNav__NavList">
+                <li class="PageWithSubNav__NavListItem">
+                    <a href="#" class="PageWithSubNav__NavListLink PageWithSubNav__NavListLink--IsPrimary">
+                        About St. Mark
+                    </a>
+                </li>
+                <li class="PageWithSubNav__NavListItem">
+                    <a href="#" class="PageWithSubNav__NavListLink">
+                        Mission Statement
+                    </a>
+                </li>
+                <li class="PageWithSubNav__NavListItem">
+                    <a href="#" class="PageWithSubNav__NavListLink">
+                        Liturgy and Sacraments
+                    </a>
+                </li>
+                <li class="PageWithSubNav__NavListItem">
+                    <a href="#" class="PageWithSubNav__NavListLink">
+                        Leadership
+                    </a>
+                </li>
+                <li class="PageWithSubNav__NavListItem">
+                    <a href="#" class="PageWithSubNav__NavListLink">
+                        Government
+                    </a>
+                </li>
+                <li class="PageWithSubNav__NavListItem">
+                    <a href="#" class="PageWithSubNav__NavListLink">
+                        Membership
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="PageWithSubNav__Content">
+    {% endif %}
+        {% include '_standardPageBuilder/' ~ field.type.handle with {
+            field: field,
+        } %}
+    {% if showSubnav %}
+        </div>
+    </div>
+    {% endif %}
 {% endfor %}
