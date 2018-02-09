@@ -3,6 +3,7 @@
 namespace dev\services;
 
 use craft\elements\Entry;
+use dev\services\StorageService;
 
 /**
  * Class NavService
@@ -19,12 +20,42 @@ class NavService
     private $output = [];
 
     /**
+     * Gets a page with subnav
+     * @param string $pageSlug
+     * @return array
+     * @throws \Exception
+     */
+    public function getPageWithSubNav(string $pageSlug) : array
+    {
+        $navArray = $this->buildNavArray();
+
+        $ourItem = [];
+
+        foreach ($navArray as $item) {
+            if ($item['model']->slug !== $pageSlug) {
+                continue;
+            }
+
+            $ourItem = $item;
+
+            break;
+        }
+
+        return $ourItem;
+    }
+
+    /**
      * Builds the nav array
      * @return array
      * @throws \Exception
      */
     public function buildNavArray() : array
     {
+        $check = StorageService::getInstance()->get('navArray');
+        if (\is_array($check)) {
+            return $check;
+        }
+
         $this->root = [];
         $this->entries = [];
         $this->output = [];
@@ -55,6 +86,8 @@ class NavService
         foreach ($this->root as $entry) {
             $this->output[] = $this->buildOutput($entry);
         }
+
+        StorageService::getInstance()->set($this->output, 'navArray');
 
         return $this->output;
     }

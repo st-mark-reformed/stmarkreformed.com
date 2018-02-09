@@ -6,6 +6,16 @@
     {% set showSubnav = true %}
 {% endfor %}
 
+{% set subNav = {} %}
+
+{% if showSubnav %}
+    {% set subNav = pageWithSubNav(craft.app.request.getSegment(1)) %}
+{% endif %}
+
+{% if not subNav %}
+    {% set showSubnav = false %}
+{% endif %}
+
 {% if showSubnav %}
 <div class="PageWithSubNav">
     <nav
@@ -14,7 +24,13 @@
     >
         <span class="PageWithSubNav__MobileExpander JSPageSubNav__MobileExpander">
             <span class="PageWithSubNav__MobileExpanderText JSPageSubNav__ActiveText">
-                About St. Mark
+                {% if not craft.app.request.getSegment(2) %}
+                    {{ subNav.model.subNavTitleOverride|default(subNav.model.title)|typeset }}
+                {% elseif subNav.hasChildren %}
+                    {% for child in subNav.children if craft.app.request.getSegment(2) == child.model.slug %}
+                        {{ child.model.subNavTitleOverride|default(child.model.title)|typeset }}
+                    {% endfor %}
+                {% endif %}
             </span>
             <span class="PageWithSubNav__MobileExpanderIcon">
                 {% include '_svg/angle-down' %}
@@ -23,58 +39,26 @@
         <ul class="PageWithSubNav__NavList JSPageSubNav__List">
             <li class="PageWithSubNav__NavListItem">
                 <a
-                    href="#"
-                    class="PageWithSubNav__NavListLink PageWithSubNav__NavListLink--IsActive PageWithSubNav__NavListLink--IsPrimary JSPageSubNav__Link"
+                    href="{{ subNav.model.url }}"
+                    class="PageWithSubNav__NavListLink{% if not craft.app.request.getSegment(2) %} PageWithSubNav__NavListLink--IsActive{% endif %} PageWithSubNav__NavListLink--IsPrimary JSPageSubNav__Link"
                     data-active-class="PageWithSubNav__NavListLink--IsActive"
                 >
-                    About St. Mark
+                    {{ subNav.model.subNavTitleOverride|default(subNav.model.title)|typeset }}
                 </a>
             </li>
-            <li class="PageWithSubNav__NavListItem">
-                <a
-                    href="#"
-                    class="PageWithSubNav__NavListLink JSPageSubNav__Link"
-                    data-active-class="PageWithSubNav__NavListLink--IsActive"
-                >
-                    Mission Statement
-                </a>
-            </li>
-            <li class="PageWithSubNav__NavListItem">
-                <a
-                    href="#"
-                    class="PageWithSubNav__NavListLink JSPageSubNav__Link"
-                    data-active-class="PageWithSubNav__NavListLink--IsActive"
-                >
-                    Liturgy and Sacraments
-                </a>
-            </li>
-            <li class="PageWithSubNav__NavListItem">
-                <a
-                    href="#"
-                    class="PageWithSubNav__NavListLink JSPageSubNav__Link"
-                    data-active-class="PageWithSubNav__NavListLink--IsActive"
-                >
-                    Leadership
-                </a>
-            </li>
-            <li class="PageWithSubNav__NavListItem">
-                <a
-                    href="#"
-                    class="PageWithSubNav__NavListLink JSPageSubNav__Link"
-                    data-active-class="PageWithSubNav__NavListLink--IsActive"
-                >
-                    Government
-                </a>
-            </li>
-            <li class="PageWithSubNav__NavListItem">
-                <a
-                    href="#"
-                    class="PageWithSubNav__NavListLink JSPageSubNav__Link"
-                    data-active-class="PageWithSubNav__NavListLink--IsActive"
-                >
-                    Membership
-                </a>
-            </li>
+            {% if subNav.hasChildren %}
+                {% for child in subNav.children %}
+                    <li class="PageWithSubNav__NavListItem">
+                        <a
+                            href="{{ child.model.url }}"
+                            class="PageWithSubNav__NavListLink{% if craft.app.request.getSegment(2) == child.model.slug %} PageWithSubNav__NavListLink--IsActive{% endif %} JSPageSubNav__Link"
+                            data-active-class="PageWithSubNav__NavListLink--IsActive"
+                        >
+                            {{ child.model.subNavTitleOverride|default(child.model.title)|typeset }}
+                        </a>
+                    </li>
+                {% endfor %}
+            {% endif %}
         </ul>
     </nav>
     <div class="PageWithSubNav__Content">
