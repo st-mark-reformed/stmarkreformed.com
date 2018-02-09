@@ -51,6 +51,12 @@ function runMain(F) {
             el: this
         });
     });
+
+    $('.JSPageSubNav').each(function() {
+        F.controller.construct('PageSubNavMobile', {
+            el: this
+        });
+    });
 }
 
 runMain(window.FAB);
