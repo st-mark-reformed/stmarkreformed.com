@@ -1,0 +1,34 @@
+.PageWithSubNav {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.PageWithSubNav__Nav {
+    width: 300px;
+}
+
+.PageWithSubNav__Content {
+    width: calc(100% - 300px);
+}
+
+.PageWithSubNav__MobileExpander {
+    display: none;
+}
+
+.PageWithSubNav__Nav {
+    text-align: left;
+}
+
+.PageWithSubNav__NavList {
+    display: block;
+    margin-bottom: 80px;
+    margin-top: 80px;
+}
+
+.PageWithSubNav__NavListItem:not(:last-child) .PageWithSubNav__NavListLink {
+    border-bottom: none;
+}
+
+.PageWithSubNav__Content {
+    margin-top: -86px;
+}

@@ -4,7 +4,7 @@ window.FAB = window.FAB || {};
 function runPageSubNavMobile(F, W) {
     'use strict';
 
-    var desktopBreakPoint = 900;
+    var desktopBreakPoint = 1200;
 
     if (! window.jQuery || ! F.controller) {
         setTimeout(function() {
