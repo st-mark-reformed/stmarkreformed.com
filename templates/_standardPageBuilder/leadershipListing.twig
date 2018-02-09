@@ -25,8 +25,14 @@
                 </h2>
                 {% for leader in leaders %}
                     <div class="LeadershipListing__Leader">
-                        {# TODO: get photo from model #}
-                        <div class="LeadershipListing__LeaderPhoto"></div>
+                        {% set photoAsset = leader.photo %}
+                        <div
+                            class="LeadershipListing__LeaderPhoto"
+                            {% if photoAsset %}
+                            style="background-image: url('{{ photoAsset.getUrl() }}')"
+                            {% endif %}
+                        >
+                        </div>
                         <div class="LeadershipListing__LeaderContent">
                             <div class="LeadershipListing__LeaderTitle">
                                 {% filter typeset %}{% if leader.titleOrHonorific %}{{ leader.titleOrHonorific }} {% endif %}{{ leader.fullName }}{% endfilter %}
