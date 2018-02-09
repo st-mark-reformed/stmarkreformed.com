@@ -2,6 +2,13 @@
 {% set uniqueId = uniqueId() %}
 {% set buttonClass = 'button' %}
 {% set backgroundAsset = field.blockBackgroundImage.one() %}
+{% set hasNoPaddingBottom = false %}
+
+{% if field.next and field.next.type.handle == 'basicBlock' %}
+    {% for option in field.next.options if option.value == 'noTopPadding' %}
+        {% set hasNoPaddingBottom = true %}
+    {% endfor %}
+{% endif %}
 
 {% for option in field.options if option.value == 'redBlockBackground' %}
     {% set buttonClass = 'button button--colored' %}
@@ -53,7 +60,7 @@
 {% endif %}
 
 <section
-    class="BasicBlock BasicBlock--{{ uniqueId }}{% if backgroundAsset %} BasicBlock--HasBackgroundImage{% endif %}{% for option in field.options %} BasicBlock--HasOption-{{ option.value }}{% endfor %}"
+    class="BasicBlock BasicBlock--{{ uniqueId }}{% if backgroundAsset %} BasicBlock--HasBackgroundImage{% endif %}{% for option in field.options %} BasicBlock--HasOption-{{ option.value }}{% endfor %}{% if hasNoPaddingBottom %} BasicBlock--HasOption-noPaddingBottom{% endif %}"
 >
     <div class="BasicBlock__Inner">
         {% if field.heading or field.subheading %}
