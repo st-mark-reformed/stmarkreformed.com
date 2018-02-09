@@ -14,6 +14,12 @@
     {% set buttonClass = 'button button--colored' %}
 {% endfor %}
 
+{% set hasCta = false %}
+
+{% for cta in field.callToAction if cta.link and cta.text %}
+    {% set hasCta = true %}
+{% endfor %}
+
 {% if backgroundAsset %}
     <style type="text/css">
         .BasicBlock--{{ uniqueId }}:before {
@@ -79,14 +85,14 @@
                 </div>
             </div>
         {% endif %}
-        {% if field.body or field.callToAction|length > 0 %}
+        {% if field.body or hasCta %}
             <div class="BasicBlock__Content">
                 {% if field.body %}
                     <div class="BasicBlock__Body">
                         {{ field.body|typeset }}
                     </div>
                 {% endif %}
-                {% if field.callToAction|length %}
+                {% if hasCta %}
                     <div class="BasicBlock__CTAS">
                         {% for cta in field.callToAction %}
                             <a href="{{ cta.link }}" class="BasicBlock__CTA {{ buttonClass }}">
