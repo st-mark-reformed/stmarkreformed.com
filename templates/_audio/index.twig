@@ -2,6 +2,7 @@
 
 {# Variables #}
 {% set speaker = speaker|default(null) %}
+{% set series = series|default(null) %}
 {% set backLink = false %}
 {% set backLinkText = 'back to all messages' %}
 
@@ -32,8 +33,9 @@
 {# Get the entries #}
 {% set entriesQuery = craft.entries.section('messages') %}
 
+{# Check if we are getting entries by a specific speaker #}
 {% if speaker %}
-    {% set speakerQuery = craft.users.slugField(speaker).first() %}
+    {% set speakerQuery = craft.users.slugField(speaker).one() %}
     {% if not speakerQuery %}{% exit 404 %}{% endif %}
     {% set entriesQuery = entriesQuery.relatedTo({
         targetElement: speakerQuery,
@@ -48,6 +50,24 @@
 
     {# Meta Title #}
     {% set metaTitle = 'Messages by ' ~ speakerName %}
+
+    {# Hero heading #}
+    {% set heroHeading = metaTitle %}
+
+    {% set backLink = '/media/messages' %}
+{% endif %}
+
+{# Check if we are getting entries in a series #}
+{% if series %}
+    {% set seriesQuery = craft.categories.group('messageSeries').slug(series).one() %}
+    {% if not seriesQuery %}{% exit 404 %}{% endif %}
+    {% set entriesQuery = entriesQuery.relatedTo({
+        targetElement: seriesQuery,
+        field: 'messageSeries'
+    }) %}
+
+    {# Meta Title #}
+    {% set metaTitle = 'Messages series: ' ~ seriesQuery.title %}
 
     {# Hero heading #}
     {% set heroHeading = metaTitle %}

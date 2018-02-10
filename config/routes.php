@@ -30,4 +30,8 @@ return [
     // Speakers
     'media/<section:messages>/by/<speaker:([^\/]+)>' => ['template' => '_audio/index'],
     'media/<section:messages>/by/<speaker:([^\/]+)>/page/<pageNum:\d>' => ['template' => '_audio/index'],
+
+    // Series
+    'media/<section:messages>/series/<series:([^\/]+)>' => ['template' => '_audio/index'],
+    'media/<section:messages>/series/<series:([^\/]+)>/page/<pageNum:\d>' => ['template' => '_audio/index'],
 ];
