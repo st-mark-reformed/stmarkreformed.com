@@ -4,14 +4,14 @@
     <div class="Message__Title">
         {{ entry.title|typeset }}
     </div>
-    <div class="Message__Date">
-        {{ entry.postDate|date('F j, Y') }}
+    <div class="Message__DateLink">
+        {{ entry.postDate|date('F j, Y') }} &bull; <a href="{{ entry.url }}" class="Message__Permalink">permalink</a>
     </div>
     {% set speaker = entry.speaker.all() %}
     <ul class="Message__Details">
         {% if speaker|length %}
             <li class="Message__DetailsItem">
-                {% for person in speaker %}
+                <span class="Message__DetailsLabel">message by:</span> {% for person in speaker %}
                     {% if loop.last and speaker|length > 1 %}and{% endif %}
                     {% filter typeset %}{% if person.titleOrHonorific %}{{ person.titleOrHonorific }} {% endif %}{{ person.fullName }}{% endfilter %}{% if speaker|length > 2 and not loop.last %}, {% endif %}
                 {% endfor %}
@@ -19,13 +19,13 @@
         {% endif %}
         {% if entry.messageText %}
             <li class="Message__DetailsItem">
-                {{ entry.messageText|typeset }}
+                <span class="Message__DetailsLabel">message text:</span> {{ entry.messageText|typeset }}
             </li>
         {% endif %}
         {% set series = entry.messageSeries.all() %}
         {% if series|length %}
             <li class="Message__DetailsItem">
-                {% for item in series %}
+                <span class="Message__DetailsLabel">series:</span> {% for item in series %}
                     {% if loop.last and series|length > 1 %}and{% endif %}
                     <a href="/media/messages/series/{{ item.slug }}" class="Message__DetailsItemLink">{{ item|typeset }}</a>{% if series|length > 2 and not loop.last %}, {% endif %}
                 {% endfor %}
@@ -34,7 +34,7 @@
     </ul>
     {% if entry.shortDescription %}
         <div class="Message__ShortDescription">
-            {{ entry.shortDescription|typeset }}
+            <p>{{ entry.shortDescription|typeset }}</p>
         </div>
     {% endif %}
     {% if audioAsset %}
