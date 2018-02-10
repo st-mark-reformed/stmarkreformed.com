@@ -5,6 +5,7 @@ namespace dev\twigextensions;
 use craft\helpers\Template;
 use dev\services\NavService;
 use dev\services\ConfigService;
+use dev\services\PaginationService;
 use dev\services\TypesetService;
 use dev\services\FileOperationsService;
 
@@ -56,6 +57,12 @@ class DevTwigExtensions extends \Twig_Extension
             ]),
             new \Twig_Function('uniqueId', function () {
                 return uniqid('', false);
+            }),
+            new \Twig_Function('getUriPathSansPagination', function (bool $omitLeadingSlash = false) {
+                return PaginationService::getUriPathSansPagination($omitLeadingSlash);
+            }),
+            new \Twig_Function('getPagination', function (array $options = []) {
+                return PaginationService::getPagination($options);
             }),
         ];
     }
