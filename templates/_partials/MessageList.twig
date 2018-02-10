@@ -3,6 +3,8 @@
 {% set entriesTotal = entriesTotal|default(1) %}
 {% set backLink = backLink|default(false) %}
 {% set backLinkText = backLinkText|default('back') %}
+{% set activeSpeaker = activeSpeaker|default(null) %}
+{% set activeSeries = activeSeries|default(null) %}
 
 {% set pagination = getPagination({
     currentPage: pageNum,
@@ -31,7 +33,7 @@
                     <li class="PageWithSubNav__NavListItem">
                         <a
                             href="/media/messages/by/{{ speaker.slugField }}"
-                            class="PageWithSubNav__NavListLink"
+                            class="PageWithSubNav__NavListLink{% if speaker.slugField == activeSpeaker %} PageWithSubNav__NavListLink--IsActive{% endif %}"
                         >
                             {% filter typeset %}{% if speaker.titleOrHonorific %}{{ speaker.titleOrHonorific }} {% endif %}{{ speaker.fullName }}{% endfilter %}
                         </a>
@@ -44,7 +46,7 @@
                     <li class="PageWithSubNav__NavListItem">
                         <a
                             href="/media/messages/series/{{ category.slug }}"
-                            class="PageWithSubNav__NavListLink"
+                            class="PageWithSubNav__NavListLink{% if category.slug == activeSeries %} PageWithSubNav__NavListLink--IsActive{% endif %}"
                         >
                             {{ category|typeset }}
                         </a>
