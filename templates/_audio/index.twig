@@ -49,64 +49,7 @@
 
 {# Primary content #}
 {% block content %}
-    <div class="PageWithSubNav">
-        <nav
-            class="PageWithSubNav__Nav JSPageSubNav"
-            data-open-class="PageWithSubNav__Nav--IsOpen"
-        >
-            <span class="PageWithSubNav__MobileExpander JSPageSubNav__MobileExpander">
-                <span class="PageWithSubNav__MobileExpanderText JSPageSubNav__ActiveText">
-                    Menu
-                </span>
-                <span class="PageWithSubNav__MobileExpanderIcon">
-                    {% include '_svg/angle-down' %}
-                </span>
-            </span>
-            <div class="PageWithSubNav__NavLists JSPageSubNav__List">
-                <div class="PageWithSubNav__NavListHeading">Messages by:</div>
-                <ul class="PageWithSubNav__NavList">
-                    {% for speaker in craft.users.group('speakers').orderBy('lastname asc').all() %}
-                        <li class="PageWithSubNav__NavListItem">
-                            <a
-                                href="/media/messages/by/{{ speaker.slugField }}"
-                                class="PageWithSubNav__NavListLink"
-                            >
-                                {% filter typeset %}{% if speaker.titleOrHonorific %}{{ speaker.titleOrHonorific }} {% endif %}{{ speaker.fullName }}{% endfilter %}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-                <div class="PageWithSubNav__NavListHeading">Messages Series</div>
-                <ul class="PageWithSubNav__NavList">
-                    {% for category in craft.categories.group('messageSeries').orderBy('title asc').all() %}
-                        <li class="PageWithSubNav__NavListItem">
-                            <a
-                                href="/media/messages/series/{{ category.slug }}"
-                                class="PageWithSubNav__NavListLink"
-                            >
-                                {{ category|typeset }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </nav>
-        <div class="PageWithSubNav__Content">
-            <div class="BasicBlock">
-                <div class="BasicBlock__Inner">
-                    <div class="MessageList">
-                        <div class="MessageList__Inner">
-                            {% for entry in entries %}
-                                <div class="MessageList__Item">
-                                    {% include '_partials/Message' with {
-                                        entry: entry
-                                    } only %}
-                                </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% include '_partials/MessageList' with {
+        entries: entries
+    } only %}
 {% endblock %}
