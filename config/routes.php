@@ -19,7 +19,15 @@
  */
 
 return [
-    // Sermons
+    /**
+     * Sermons
+     */
+
+    // Sermons index
     'media/<section:messages>' => ['template' => '_audio/index'],
     'media/<section:messages>/page/<pageNum:\d>' => ['template' => '_audio/index'],
+
+    // Speakers
+    'media/<section:messages>/by/<speaker:([^\/]+)>' => ['template' => '_audio/index'],
+    'media/<section:messages>/by/<speaker:([^\/]+)>/page/<pageNum:\d>' => ['template' => '_audio/index'],
 ];

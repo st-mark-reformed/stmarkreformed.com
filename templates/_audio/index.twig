@@ -1,5 +1,10 @@
 {% extends "_core/LayoutMaster" %}
 
+{# Variables #}
+{% set speaker = speaker|default(null) %}
+{% set backLink = false %}
+{% set backLinkText = 'back to all messages' %}
+
 {# Static caching #}
 {% set shouldCache = true %}
 
@@ -26,6 +31,29 @@
 
 {# Get the entries #}
 {% set entriesQuery = craft.entries.section('messages') %}
+
+{% if speaker %}
+    {% set speakerQuery = craft.users.slugField(speaker).first() %}
+    {% if not speakerQuery %}{% exit 404 %}{% endif %}
+    {% set entriesQuery = entriesQuery.relatedTo({
+        targetElement: speakerQuery,
+        field: 'speaker'
+    }) %}
+
+    {% if speakerQuery.titleOrHonorific %}
+        {% set speakerName = speakerQuery.titleOrHonorific ~ ' ' ~ speakerQuery.fullName %}
+    {% else %}
+        {% set speakerName = speakerQuery.fullName %}
+    {% endif %}
+
+    {# Meta Title #}
+    {% set metaTitle = 'Messages by ' ~ speakerName %}
+
+    {# Hero heading #}
+    {% set heroHeading = metaTitle %}
+
+    {% set backLink = '/media/messages' %}
+{% endif %}
 
 {# Get the entries count #}
 {% set entriesTotal = entriesQuery.count()|cast('int') %}
@@ -54,5 +82,7 @@
         pageNum: pageNum,
         limit: limit,
         entriesTotal: entriesTotal,
+        backLink: backLink,
+        backLinkText: backLinkText,
     } only %}
 {% endblock %}
