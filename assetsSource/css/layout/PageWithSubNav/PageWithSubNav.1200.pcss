@@ -19,10 +19,19 @@
     text-align: left;
 }
 
-.PageWithSubNav__NavList {
+.PageWithSubNav__NavList,
+.PageWithSubNav__NavLists {
     display: block;
     margin-bottom: 80px;
     margin-top: 80px;
+}
+
+.PageWithSubNav__NavLists .PageWithSubNav__NavList {
+    margin-top: 0;
+}
+
+.PageWithSubNav__NavLists .PageWithSubNav__NavList:last-child {
+    margin-bottom: 0;
 }
 
 .PageWithSubNav__NavListItem:not(:last-child) .PageWithSubNav__NavListLink {

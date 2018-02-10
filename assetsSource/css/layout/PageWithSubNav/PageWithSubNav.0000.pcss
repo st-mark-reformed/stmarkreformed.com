@@ -10,7 +10,8 @@
 }
 
 .PageWithSubNav__MobileExpander,
-.PageWithSubNav__NavListLink  {
+.PageWithSubNav__NavListLink ,
+.PageWithSubNav__NavListHeading {
     color: var(--white);
     cursor: pointer;
     display: block;
@@ -33,7 +34,8 @@
 }
 
 .PageWithSubNav__MobileExpander,
-.PageWithSubNav__NavListLink--IsPrimary {
+.PageWithSubNav__NavListLink--IsPrimary,
+.PageWithSubNav__NavListHeading {
     font-size: 24px;
     font-weight: var(--headingFontWeight);
 }
@@ -62,6 +64,18 @@
     margin: 0;
 }
 
+.PageWithSubNav__NavLists .PageWithSubNav__NavList {
+    display: block;
+}
+
+/*.PageWithSubNav__NavLists {
+    display: none;
+}*/
+
 .PageWithSubNav__NavListItem:not(:last-child) .PageWithSubNav__NavListLink {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.PageWithSubNav__NavLists .PageWithSubNav__NavList:not(:last-child) {
+    margin-bottom: 36px;
 }
