@@ -31,7 +31,7 @@
 {% set entriesTotal = entriesQuery.count()|cast('int') %}
 
 {# Set the limit #}
-{% set limit = 2 %}
+{% set limit = 10 %}
 
 {# Set the max number of pages #}
 {% set maxPages = ceil(entriesTotal / limit)|cast('int') %}

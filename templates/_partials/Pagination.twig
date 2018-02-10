@@ -3,7 +3,7 @@
 {% if pagination %}
     <ul class="Pagination">
         {% if pagination.firstPage %}
-            <li class="Pagination__Item">
+            <li class="Pagination__Item Pagination__Item--FirstPage">
                 <a href="{{ pagination.firstPage }}" class="Pagination__Link">
                     &laquo; First
                 </a>
@@ -11,7 +11,7 @@
         {% endif %}
 
         {% for page in pagination.pages %}
-            <li class="Pagination__Item">
+            <li class="Pagination__Item{% if loop.first %} Pagination__Item--FirstActual{% endif %}{% if loop.last %} Pagination__Item--LastActual{% endif %}">
                 {% if page.isActive %}
                     <span class="Pagination__Active">
                         {{ page.label }}
@@ -25,7 +25,7 @@
         {% endfor %}
 
         {% if pagination.lastPage %}
-            <li class="Pagination__Item">
+            <li class="Pagination__Item Pagination__Item--LastPage">
                 <a href="{{ pagination.lastPage }}" class="Pagination__Link">
                     Last &raquo;
                 </a>

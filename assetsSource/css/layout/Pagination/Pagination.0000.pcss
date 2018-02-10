@@ -1,0 +1,48 @@
+.Pagination {
+    list-style: none;
+    margin: 0;
+    text-align: center;
+    user-select: none;
+}
+
+.Pagination__Item {
+    display: inline-block;
+    margin: 4px;
+    vertical-align: middle;
+}
+
+.Pagination__Item--FirstActual,
+.Pagination__Item:first-child {
+    margin-left: 0;
+}
+
+.Pagination__Item--LastActual,
+.Pagination__Item:last-child {
+    margin-right: 0;
+}
+
+.Pagination__Item--FirstPage,
+.Pagination__Item--LastPage {
+    display: none;
+}
+
+.Pagination__Active,
+.Pagination__Link {
+    background-color: var(--lightGray);
+    color: var(--darkGray);
+    display: block;
+    font-family: var(--headingFont);
+    padding: 8px;
+    text-decoration: none;
+}
+
+.Pagination__Link {
+    background-color: var(--crimson);
+    color: var(--white);
+}
+
+.Pagination__Link:hover {
+    background-color: var(--goldenrod);
+    color: var(--white);
+    text-decoration: none;
+}
