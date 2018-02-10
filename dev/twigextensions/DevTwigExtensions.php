@@ -26,6 +26,7 @@ class DevTwigExtensions extends \Twig_Extension
             new \Twig_Filter('typeset', [$this, 'typesetFilter']),
             new \Twig_Filter('smartypants', [$this, 'smartypantsFilter']),
             new \Twig_Filter('widont', [$this, 'widontFilter']),
+            new \Twig_Filter('cast', [$this, 'cast']),
         ];
     }
 
@@ -92,5 +93,24 @@ class DevTwigExtensions extends \Twig_Extension
     public function widontFilter(string $str) : \Twig_Markup
     {
         return Template::raw((new TypesetService())->widont($str));
+    }
+
+    /**
+     * Casts the value
+     * @param mixed $val
+     * @param string $to
+     * @return mixed
+     */
+    public function cast($val, string $to = 'string')
+    {
+        if ($to === 'int') {
+            return (int) $val;
+        }
+
+        if ($to === 'float') {
+            return (float) $val;
+        }
+
+        return (string) $val;
     }
 }
