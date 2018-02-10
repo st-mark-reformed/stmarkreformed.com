@@ -24,6 +24,29 @@
 {# Now if there's no page number, it should be 1 #}
 {% set pageNum = pageNum|default(1) %}
 
+{# Get the entries #}
+{% set entriesQuery = craft.entries.section('messages') %}
+
+{# Get the entries count #}
+{% set entriesTotal = entriesQuery.count() %}
+
+{# Set the limit #}
+{% set limit = 10 %}
+
+{# Set the max number of pages #}
+{% set maxPages = ceil(entriesTotal / limit) %}
+
+{# If we have exceeded the max number of pages we should 404 #}
+{% if pageNum > maxPages %}
+    {% exit 404 %}
+{% endif %}
+
+{# Get the offset #}
+{% set offset = (limit * pageNum) - limit %}
+
+{# Get the entries #}
+{% set entries = entriesQuery.limit(limit).offset(offset).all() %}
+
 {# Primary content #}
 {% block content %}
     <div class="PageWithSubNav">
@@ -69,7 +92,21 @@
             </div>
         </nav>
         <div class="PageWithSubNav__Content">
-            content
+            <div class="BasicBlock">
+                <div class="BasicBlock__Inner">
+                    <div class="MessageList">
+                        <div class="MessageList__Inner">
+                            {% for entry in entries %}
+                                <div class="MessageList__Item">
+                                    {% include '_partials/Message' with {
+                                        entry: entry
+                                    } only %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

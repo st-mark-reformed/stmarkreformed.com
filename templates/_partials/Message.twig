@@ -1,0 +1,60 @@
+{% set audioAsset = entry.audio.one() %}
+
+<div class="Message">
+    <div class="Message__Title">
+        {{ entry.title|typeset }}
+    </div>
+    <div class="Message__Date">
+        {{ entry.postDate|date('F j, Y') }}
+    </div>
+    {% set speaker = entry.speaker.all() %}
+    <ul class="Message__Details">
+        {% if speaker|length %}
+            <li class="Message__DetailsItem">
+                {% for person in speaker %}
+                    {% if loop.last and speaker|length > 1 %}and{% endif %}
+                    {% filter typeset %}{% if person.titleOrHonorific %}{{ person.titleOrHonorific }} {% endif %}{{ person.fullName }}{% endfilter %}{% if speaker|length > 2 and not loop.last %}, {% endif %}
+                {% endfor %}
+            </li>
+        {% endif %}
+        {% if entry.messageText %}
+            <li class="Message__DetailsItem">
+                {{ entry.messageText|typeset }}
+            </li>
+        {% endif %}
+        {% set series = entry.messageSeries.all() %}
+        {% if series|length %}
+            <li class="Message__DetailsItem">
+                {% for item in series %}
+                    {% if loop.last and series|length > 1 %}and{% endif %}
+                    <a href="/media/messages/series/{{ item.slug }}" class="Message__DetailsItemLink">{{ item|typeset }}</a>{% if series|length > 2 and not loop.last %}, {% endif %}
+                {% endfor %}
+            </li>
+        {% endif %}
+    </ul>
+    {% if entry.shortDescription %}
+        <div class="Message__ShortDescription">
+            {{ entry.shortDescription|typeset }}
+        </div>
+    {% endif %}
+    {% if audioAsset %}
+        <div class="Message__Audio">
+            <audio
+                src="{{ audioAsset.getUrl() }}"
+                type="{% if audioAsset.getExtension() == 'mp3' %}audio/mp3{% else %}{{ audioAsset.getMimeType() }}{% endif %}"
+                controls="controls"
+                preload="none"
+                class="JSAudioPlayer"
+            ></audio>
+        </div>
+        <div class="Message__DownloadAction">
+            <a
+                href="{{ audioAsset.getUrl() }}"
+                class="button"
+                download
+            >
+                Download
+            </a>
+        </div>
+    {% endif %}
+</div>
