@@ -1,3 +1,14 @@
+{% set pageNum = pageNum|default(1) %}
+{% set limit = limit|default(1) %}
+{% set entriesTotal = entriesTotal|default(1) %}
+
+{% set pagination = getPagination({
+    currentPage: pageNum,
+    perPage: limit,
+    totalResults: entriesTotal,
+    base: getUriPathSansPagination(),
+}) %}
+
 <div class="PageWithSubNav">
     <nav
         class="PageWithSubNav__Nav JSPageSubNav"
@@ -52,6 +63,11 @@
                                 } only %}
                             </div>
                         {% endfor %}
+                        {% if pagination %}
+                            {% include '_partials/Pagination' with {
+                                pagination: pagination
+                            } %}
+                        {% endif %}
                     </div>
                 </div>
             </div>
