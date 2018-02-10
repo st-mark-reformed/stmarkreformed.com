@@ -1,11 +1,75 @@
+{% extends "_core/LayoutMaster" %}
+
+{# Static caching #}
+{% set shouldCache = true %}
+
+{# Meta Title #}
+{% set metaTitle = 'Messages' %}
+
+{# Hero heading #}
+{% set heroHeading = 'Messages from St. Mark' %}
+
+{# Get the section #}
 {% set section = section|default(null) %}
+
+{# Get the page number #}
 {% set pageNum = pageNum|default(null) %}
 
+{# If the page number is 1, it is not valid, there should be no /page/1 #}
+{# Or if there's not section #}
 {% if pageNum == 1 or not section %}
     {% exit 404 %}
 {% endif %}
 
+{# Now if there's no page number, it should be 1 #}
 {% set pageNum = pageNum|default(1) %}
 
-{{ dump(pageNum) }}
-{{ dump(section) }}
+{# Primary content #}
+{% block content %}
+    <div class="PageWithSubNav">
+        <nav
+            class="PageWithSubNav__Nav JSPageSubNav"
+            data-open-class="PageWithSubNav__Nav--IsOpen"
+        >
+            <span class="PageWithSubNav__MobileExpander JSPageSubNav__MobileExpander">
+                <span class="PageWithSubNav__MobileExpanderText JSPageSubNav__ActiveText">
+                    Menu
+                </span>
+                <span class="PageWithSubNav__MobileExpanderIcon">
+                    {% include '_svg/angle-down' %}
+                </span>
+            </span>
+            <div class="PageWithSubNav__NavLists JSPageSubNav__List">
+                <div class="PageWithSubNav__NavListHeading">Messages by:</div>
+                <ul class="PageWithSubNav__NavList">
+                    {% for speaker in craft.users.group('speakers').orderBy('lastname asc').all() %}
+                        <li class="PageWithSubNav__NavListItem">
+                            <a
+                                href="/media/messages/by/{{ speaker.slugField }}"
+                                class="PageWithSubNav__NavListLink"
+                            >
+                                {% filter typeset %}{% if speaker.titleOrHonorific %}{{ speaker.titleOrHonorific }} {% endif %}{{ speaker.fullName }}{% endfilter %}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <div class="PageWithSubNav__NavListHeading">Messages Series</div>
+                <ul class="PageWithSubNav__NavList">
+                    {% for category in craft.categories.group('messageSeries').orderBy('title asc').all() %}
+                        <li class="PageWithSubNav__NavListItem">
+                            <a
+                                href="/media/messages/series/{{ category.slug }}"
+                                class="PageWithSubNav__NavListLink"
+                            >
+                                {{ category|typeset }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </nav>
+        <div class="PageWithSubNav__Content">
+            content
+        </div>
+    </div>
+{% endblock %}
