@@ -1,6 +1,8 @@
 {% set pageNum = pageNum|default(1) %}
 {% set limit = limit|default(1) %}
 {% set entriesTotal = entriesTotal|default(1) %}
+{% set backLink = backLink|default(false) %}
+{% set backLinkText = backLinkText|default('back') %}
 
 {% set pagination = getPagination({
     currentPage: pageNum,
@@ -56,6 +58,12 @@
             <div class="BasicBlock__Inner">
                 <div class="MessageList">
                     <div class="MessageList__Inner">
+                        {% if backLink %}
+                            <a href="{{ backLink }}">
+                                &laquo; {{ backLinkText|typeset }}
+                            </a>
+                            <br><br><br>
+                        {% endif %}
                         {% for entry in entries %}
                             <div class="MessageList__Item">
                                 {% include '_partials/Message' with {
