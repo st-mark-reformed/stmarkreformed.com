@@ -1,0 +1,11 @@
+{% set section = section|default(null) %}
+{% set pageNum = pageNum|default(null) %}
+
+{% if pageNum == 1 or not section %}
+    {% exit 404 %}
+{% endif %}
+
+{% set pageNum = pageNum|default(1) %}
+
+{{ dump(pageNum) }}
+{{ dump(section) }}
