@@ -20,6 +20,6 @@
 
 return [
     // Sermons
-    'media/<section:sermons>' => ['template' => '_audio/index'],
-    'media/<section:sermons>/page/<pageNum:\d>' => ['template' => '_audio/index'],
+    'media/<section:messages>' => ['template' => '_audio/index'],
+    'media/<section:messages>/page/<pageNum:\d>' => ['template' => '_audio/index'],
 ];
