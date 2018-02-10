@@ -18,6 +18,16 @@
  * set to the value `2012`.
  */
 
+// Useful route regexes
+// $routeRegex = array(
+//     'any' => '([^\/]+)',
+//     'all' => '(.*)?',
+//     'num' => '(\d+)',
+//     'year' => '(\d{4})',
+//     'month' => '(\d{2})',
+//     'day' => '(\d{2})'
+// );
+
 return [
     /**
      * Sermons
@@ -25,13 +35,13 @@ return [
 
     // Sermons index
     'media/<section:messages>' => ['template' => '_audio/index'],
-    'media/<section:messages>/page/<pageNum:\d>' => ['template' => '_audio/index'],
+    'media/<section:messages>/page/<pageNum:\d+>' => ['template' => '_audio/index'],
 
     // Speakers
     'media/<section:messages>/by/<speaker:([^\/]+)>' => ['template' => '_audio/index'],
-    'media/<section:messages>/by/<speaker:([^\/]+)>/page/<pageNum:\d>' => ['template' => '_audio/index'],
+    'media/<section:messages>/by/<speaker:([^\/]+)>/page/<pageNum:\d+>' => ['template' => '_audio/index'],
 
     // Series
     'media/<section:messages>/series/<series:([^\/]+)>' => ['template' => '_audio/index'],
-    'media/<section:messages>/series/<series:([^\/]+)>/page/<pageNum:\d>' => ['template' => '_audio/index'],
+    'media/<section:messages>/series/<series:([^\/]+)>/page/<pageNum:\d+>' => ['template' => '_audio/index'],
 ];
