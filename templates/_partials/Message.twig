@@ -1,5 +1,7 @@
 {% set audioAsset = entry.audio.one() %}
 
+{% set includeAudioPlayer = includeAudioPlayer(true) %}
+
 <div class="Message">
     <div class="Message__Title">
         {{ entry.title|typeset }}

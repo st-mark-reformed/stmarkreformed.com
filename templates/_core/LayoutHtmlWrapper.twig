@@ -186,6 +186,12 @@
             })();
         </script>
     {% endif %}
+
+    {% if includeAudioPlayer() %}
+        <script type="text/template" id="JSTemplate__AudioPlayer">
+            {% include '_partials/AudioPlayer' %}
+        </script>
+    {% endif %}
 </body>
 </html>
 {% endminify %}

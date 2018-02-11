@@ -57,6 +57,12 @@ function runMain(F) {
             el: this
         });
     });
+
+    $('.JSAudioPlayer').each(function() {
+        F.controller.construct('AudioPlayer', {
+            el: this
+        });
+    });
 }
 
 runMain(window.FAB);

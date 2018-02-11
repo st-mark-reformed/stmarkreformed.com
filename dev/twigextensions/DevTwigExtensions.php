@@ -6,6 +6,7 @@ use craft\helpers\Template;
 use dev\services\NavService;
 use dev\services\ConfigService;
 use dev\services\PaginationService;
+use dev\services\StorageService;
 use dev\services\TypesetService;
 use dev\services\FileOperationsService;
 
@@ -64,6 +65,15 @@ class DevTwigExtensions extends \Twig_Extension
             }),
             new \Twig_Function('getPagination', function (array $options = []) {
                 return PaginationService::getPagination($options);
+            }),
+            new \Twig_Function('includeAudioPlayer', function ($opt = null) {
+                $storage = StorageService::getInstance();
+
+                if ($opt !== null) {
+                    $storage->set($opt === true, 'includeAudioPlayer');
+                }
+
+                return $storage->get('includeAudioPlayer');
             }),
         ];
     }
