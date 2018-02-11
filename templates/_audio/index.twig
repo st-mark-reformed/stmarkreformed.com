@@ -1,5 +1,8 @@
 {% extends "_core/LayoutMaster" %}
 
+{# Static caching #}
+{% set shouldCache = true %}
+
 {# Variables #}
 {% set speaker = speaker|default(null) %}
 {% set activeSpeaker = null %}
@@ -7,9 +10,6 @@
 {% set series = series|default(null) %}
 {% set backLink = false %}
 {% set backLinkText = 'back to all messages' %}
-
-{# Static caching #}
-{% set shouldCache = true %}
 
 {# Meta Title #}
 {% set metaTitle = 'Messages' %}

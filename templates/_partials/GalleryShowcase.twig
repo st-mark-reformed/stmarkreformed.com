@@ -1,0 +1,64 @@
+{% set galleryAssets = entry.gallery.all() %}
+
+<div class="GalleryShowcase__Gallery">
+
+    {% if galleryAssets|length > 0 %}
+        <div class="GalleryShowcase__GalleryBackground JSGalleryShowcaseBackground">
+            {% for asset in galleryAssets %}
+                {% set uniqueId = uniqueId() %}
+                <div
+                    class="GalleryShowcase__GalleryBackgroundImage GalleryShowcase__GalleryBackgroundImage--{{ uniqueId }} JSGalleryShowcaseBackground__Image{% if loop.first %} GalleryShowcase__GalleryBackgroundImage--IsActive JSGalleryShowcaseBackground__Image--IsActive{% endif %}"
+                    data-active-class="GalleryShowcase__GalleryBackgroundImage--IsActive"
+                >
+                    <style type="text/css">
+                        .GalleryShowcase__GalleryBackgroundImage--{{ uniqueId }} {
+                            background-image: url("{{ asset.getUrl({
+                                width: min(500, asset.width)
+                            }) }}");
+                        }
+                        @media (min-width: 500px) {
+                            .GalleryShowcase__GalleryBackgroundImage--{{ uniqueId }} {
+                                background-image: url("{{ asset.getUrl({
+                                    width: min(800, asset.width)
+                                }) }}");
+                            }
+                        }
+                        @media (min-width: 1600px) {
+                            .GalleryShowcase__GalleryBackgroundImage--{{ uniqueId }} {
+                                background-image: url("{{ asset.getUrl({
+                                    width: min(1920, asset.width)
+                                }) }}");
+                            }
+                        }
+                        @media (-webkit-min-device-pixel-ratio: 1.3), (min-resolution: 200dpi), (min-resolution: 1.3dppx) {
+                            .GalleryShowcase__GalleryBackgroundImage--{{ uniqueId }} {
+                                background-image: url("{{ asset.getUrl({
+                                    width: min(1000, asset.width)
+                                }) }}");
+                            }
+                            @media (min-width: 500px) {
+                                .GalleryShowcase__GalleryBackgroundImage--{{ uniqueId }} {
+                                    background-image: url("{{ asset.getUrl({
+                                    width: min(1600, asset.width)
+                                }) }}");
+                                }
+                            }
+                            @media (min-width: 1600px) {
+                                .GalleryShowcase__GalleryBackgroundImage--{{ uniqueId }} {
+                                    background-image: url("{{ asset.getUrl({
+                                    width: min(3840, asset.width)
+                                }) }}");
+                                }
+                            }
+                        }
+                    </style>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="GalleryShowcase__GalleryInner">
+        <h2 class="GalleryShowcase__GalleryTitle">{{ entry.title|typeset }}</h2>
+        <a href="{{ entry.url }}" class="button">View&nbsp;Gallery</a>
+    </div>
+</div>

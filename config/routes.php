@@ -47,5 +47,13 @@ return [
 
     // Sermons feed
     'media/<section:messages>/feed' => ['template' => '_audio/feed.xml'],
-    'sermons' => ['template' => '_audio/newFeedRedirect.xml']
+    'sermons' => ['template' => '_audio/newFeedRedirect.xml'],
+
+
+    /**
+     * Galleries
+     */
+
+    'media/galleries' => ['template' => '_galleries/index'],
+    'media/galleries/page/<pageNum:\d+>' => ['template' => '_galleries/index'],
 ];
