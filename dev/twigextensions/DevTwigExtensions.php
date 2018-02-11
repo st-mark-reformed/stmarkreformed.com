@@ -2,6 +2,7 @@
 
 namespace dev\twigextensions;
 
+use Craft;
 use craft\helpers\Template;
 use dev\services\NavService;
 use dev\services\ConfigService;
@@ -74,6 +75,9 @@ class DevTwigExtensions extends \Twig_Extension
                 }
 
                 return $storage->get('includeAudioPlayer');
+            }),
+            new \Twig_Function('checkOldPodcastQueryString', function () {
+                return isset(Craft::$app->getRequest()->getQueryParams()['podcast']);
             }),
         ];
     }

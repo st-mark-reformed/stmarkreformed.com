@@ -47,4 +47,5 @@ return [
 
     // Sermons feed
     'media/<section:messages>/feed' => ['template' => '_audio/feed.xml'],
+    'sermons' => ['template' => '_audio/newFeedRedirect.xml']
 ];

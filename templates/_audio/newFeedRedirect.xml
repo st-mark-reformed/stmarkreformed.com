@@ -1,0 +1,3 @@
+{% set isValidPodcastQueryString = checkOldPodcastQueryString() %}{% if not isValidPodcastQueryString %}{% exit 404 %}{% endif %}{% include '_audio/feed.xml' with {
+    newFeedUrl: true
+} %}

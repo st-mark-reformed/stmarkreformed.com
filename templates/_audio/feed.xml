@@ -4,6 +4,7 @@
 
 {% set selfUrl = siteUrl ~  craft.app.request.pathInfo %}
 {% set entries = craft.entries.section('messages').limit(100).all() %}
+{% set newFeedUrl = newFeedUrl|default(false) %}
 
 <!DOCTYPE rss [
     <!ENTITY ldquo "&#x201C;">{# double quotation mark, left #}
@@ -32,6 +33,9 @@
     version="2.0"
 >
     <channel>
+        {% if newFeedUrl %}
+        <itunes:new-feed-url>{{ siteUrl }}media/messages/feed</itunes:new-feed-url>
+        {% endif %}
         <atom:link rel="via" href="{{ selfUrl }}"/>
         <atom:link rel="self" href="{{ selfUrl }}"/>
         <title>Messages From St. Mark Reformed Church in Brentwood, TN</title>
