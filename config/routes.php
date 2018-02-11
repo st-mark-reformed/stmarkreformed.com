@@ -44,4 +44,7 @@ return [
     // Series
     'media/<section:messages>/series/<series:([^\/]+)>' => ['template' => '_audio/index'],
     'media/<section:messages>/series/<series:([^\/]+)>/page/<pageNum:\d+>' => ['template' => '_audio/index'],
+
+    // Sermons feed
+    'media/<section:messages>/feed' => ['template' => '_audio/feed.xml'],
 ];
