@@ -1,0 +1,86 @@
+{% extends "_core/LayoutMaster" %}
+
+{# Static caching #}
+{% set shouldCache = true %}
+
+{# No Indexing #}
+{% set noIndex = entry.searchEngineIndexing != 1 %}
+
+{# Meta Title #}
+{% if craft.app.request.getSegment(1) %}
+    {% set metaTitle = entry.seoTitle|default(entry.title) %}
+{% else %}
+    {% set metaTitle = entry.seoTitle %}
+{% endif %}
+
+{# Meta description #}
+{% set metaDescription = entry.seoDescription %}
+
+{# Custom share image #}
+{% set shareImageAsset = entry.customShareImage.one() %}
+{% if shareImageAsset %}
+    {% set shareImage = shareImageAsset.getUrl({
+        width: min(1000, shareImageAsset.width)
+    }) %}
+{% endif %}
+
+{# Hero heading #}
+{% set heroHeading = entry.title %}
+
+{# Get the photos assets #}
+{% set photoAssets = entry.gallery.all() %}
+
+{# Set the first photo #}
+{% set firstPhotoAsset = photoAssets|first %}
+
+{# Set the hero image #}
+{% set heroImageAsset = firstPhotoAsset %}
+
+{% if shareImage is not defined %}
+    {% set shareImage = heroImageAsset %}
+{% endif %}
+
+{% block content %}
+    <div class="Gallery JSGallery">
+        <div class="Gallery__Inner">
+            <ol class="Gallery__Items JSGallery__Items">
+                {% for photoAsset in photoAssets %}
+                    <li
+                        class="Gallery__Item JSGallery__Item"
+                        data-gallery-id="{{ photoAsset.uid }}"
+                    >
+                        <div class="Gallery__ItemPhoto">
+                            <picture>
+                                <img
+                                    src="{{ photoAsset.getUrl() }}"
+                                    alt="{{ photoAsset.title }}"
+                                    class="Gallery__ItemImg"
+                                >
+                            </picture>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ol>
+            <nav class="Gallery__Nav JSGallery__Nav">
+                <ol class="Gallery__NavItems JSGallery__NavItems">
+                    {% for photoAsset in photoAssets %}
+                        <li
+                            class="Gallery__NavItem JSGallery__NavItem"
+                            data-gallery-id="photoAsset.uid"
+                        >
+                            <picture>
+                                <img
+                                    src="{{ photoAsset.getUrl({
+                                        height: '100',
+                                        width: '150',
+                                    }) }}"
+                                    alt="{{ photoAsset.title }}"
+                                >
+                            </picture>
+                        </li>
+                    {% endfor %}
+                </ol>
+            </nav>
+       </div>
+    </div>
+{% endblock %}
