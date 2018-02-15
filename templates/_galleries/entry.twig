@@ -74,8 +74,52 @@
                         >
                             <div class="Gallery__ItemPhoto">
                                 <picture>
+                                    {% set standardAssetUrl = photoAsset.getUrl({
+                                        width: min(400, photoAsset.width),
+                                    }) %}
+                                    {% set retinaAssetUrl = photoAsset.getUrl({
+                                        width: min(400, photoAsset.width) * 2,
+                                    }) %}
+                                    <source
+                                        srcset="{{ standardAssetUrl }} 1x,
+                                                {{ retinaAssetUrl }} 2x"
+                                        media="(min-width: 1px) and (max-width: 499px)"
+                                    >
+
+                                    {% set standardAssetUrl = photoAsset.getUrl({
+                                        width: min(700, photoAsset.width),
+                                    }) %}
+                                    {% set retinaAssetUrl = photoAsset.getUrl({
+                                        width: min(700, photoAsset.width) * 2,
+                                    }) %}
+                                    <source
+                                        srcset="{{ standardAssetUrl }} 1x,
+                                                {{ retinaAssetUrl }} 2x"
+                                        media="(min-width: 500px) and (max-width: 799px)"
+                                    >
+
+                                    {% set standardAssetUrl = photoAsset.getUrl({
+                                        width: min(1400, photoAsset.width),
+                                    }) %}
+                                    {% set retinaAssetUrl = photoAsset.getUrl({
+                                        width: min(1400, photoAsset.width) * 2,
+                                    }) %}
+                                    <source
+                                        srcset="{{ standardAssetUrl }} 1x,
+                                                {{ retinaAssetUrl }} 2x"
+                                        media="(min-width: 800px) and (max-width: 1499px)"
+                                    >
+
+                                    {% set standardAssetUrl = photoAsset.getUrl({
+                                        width: min(1800, photoAsset.width),
+                                    }) %}
+                                    {% set retinaAssetUrl = photoAsset.getUrl({
+                                        width: min(1800, photoAsset.width) * 2,
+                                    }) %}
                                     <img
-                                        src="{{ photoAsset.getUrl() }}"
+                                        src="{{ standardAssetUrl }}"
+                                        srcset="{{ standardAssetUrl }} 1x,
+                                                {{ retinaAssetUrl }} 2x"
                                         alt="{{ photoAsset.title }}"
                                         class="Gallery__ItemImg"
                                     >
@@ -99,11 +143,18 @@
                                 data-active-class="Gallery__NavItem--IsActive"
                             >
                                 <picture>
+                                    {% set standardAssetUrl = photoAsset.getUrl({
+                                        height: '67',
+                                        width: '100',
+                                    }) %}
+                                    {% set retinaAssetUrl = photoAsset.getUrl({
+                                        height: '134',
+                                        width: '200',
+                                    }) %}
                                     <img
-                                        src="{{ photoAsset.getUrl({
-                                            height: '100',
-                                            width: '150',
-                                        }) }}"
+                                        src="{{ standardAssetUrl }}"
+                                        srcset="{{ standardAssetUrl }} 1x,
+                                                {{ retinaAssetUrl }} 2x"
                                         alt="{{ photoAsset.title }}"
                                         class="Gallery__NavItemImage"
                                     >
