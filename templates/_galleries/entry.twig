@@ -41,46 +41,72 @@
 {% endif %}
 
 {% block content %}
-    <div class="Gallery JSGallery">
+    <div
+        class="Gallery JSGallery"
+        data-full-screen-class="Gallery--IsFullScreen"
+    >
         <div class="Gallery__Inner">
-            <ol class="Gallery__Items JSGallery__Items">
-                {% for photoAsset in photoAssets %}
-                    <li
-                        class="Gallery__Item JSGallery__Item"
-                        data-gallery-id="{{ photoAsset.uid }}"
-                    >
-                        <div class="Gallery__ItemPhoto">
-                            <picture>
-                                <img
-                                    src="{{ photoAsset.getUrl() }}"
-                                    alt="{{ photoAsset.title }}"
-                                    class="Gallery__ItemImg"
-                                >
-                            </picture>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ol>
-            <nav class="Gallery__Nav JSGallery__Nav">
-                <ol class="Gallery__NavItems JSGallery__NavItems">
+            <div class="Gallery__ItemWrap">
+                <span class="Gallery__NavCloseFullScreen">
+                    {% include '_svg/close' only %}
+                </span>
+                <span class="Gallery__NavFullScreen">
+                    {% include '_svg/expand-arrows-alt' only %}
+                </span>
+                <span class="Gallery__NavBack">
+                    {% include '_svg/angle-left' only %}
+                </span>
+                <span class="Gallery__NavForward">
+                    {% include '_svg/angle-right' only %}
+                </span>
+                <ol class="Gallery__Items JSGallery__Items">
                     {% for photoAsset in photoAssets %}
                         <li
-                            class="Gallery__NavItem JSGallery__NavItem"
-                            data-gallery-id="photoAsset.uid"
+                            class="Gallery__Item{% if loop.first %} Gallery__Item--IsActive{% endif %} JSGallery__Item"
+                            data-gallery-id="{{ photoAsset.uid }}"
+                            data-active-class="Gallery__Item--IsActive"
                         >
-                            <picture>
-                                <img
-                                    src="{{ photoAsset.getUrl({
-                                        height: '100',
-                                        width: '150',
-                                    }) }}"
-                                    alt="{{ photoAsset.title }}"
-                                >
-                            </picture>
+                            <div class="Gallery__ItemPhoto">
+                                <picture>
+                                    <img
+                                        src="{{ photoAsset.getUrl() }}"
+                                        alt="{{ photoAsset.title }}"
+                                        class="Gallery__ItemImg"
+                                    >
+                                </picture>
+                            </div>
                         </li>
                     {% endfor %}
                 </ol>
-            </nav>
+            </div>
+            <div
+                class="Gallery__NavWrapper Gallery__NavWrapper--HasScrollRightIndicator"
+                data-has-left-scroll-class="Gallery__NavWrapper--HasScrollLeftIndicator"
+                data-has-right-scroll-class="Gallery__NavWrapper--HasScrollRightIndicator"
+            >
+                <nav class="Gallery__Nav JSGallery__Nav">
+                    <ol class="Gallery__NavItems JSGallery__NavItems">
+                        {% for photoAsset in photoAssets %}
+                            <li
+                                class="Gallery__NavItem{% if loop.first %} Gallery__NavItem--IsActive{% endif %} JSGallery__NavItem"
+                                data-gallery-id="{{ photoAsset.uid }}"
+                                data-active-class="Gallery__NavItem--IsActive"
+                            >
+                                <picture>
+                                    <img
+                                        src="{{ photoAsset.getUrl({
+                                            height: '100',
+                                            width: '150',
+                                        }) }}"
+                                        alt="{{ photoAsset.title }}"
+                                        class="Gallery__NavItemImage"
+                                    >
+                                </picture>
+                            </li>
+                        {% endfor %}
+                    </ol>
+                </nav>
+            </div>
        </div>
     </div>
 {% endblock %}
