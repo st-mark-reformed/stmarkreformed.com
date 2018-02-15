@@ -63,6 +63,12 @@ function runMain(F) {
             el: this
         });
     });
+
+    $('.JSGallery').each(function() {
+        F.controller.construct('Gallery', {
+            el: this
+        });
+    });
 }
 
 runMain(window.FAB);

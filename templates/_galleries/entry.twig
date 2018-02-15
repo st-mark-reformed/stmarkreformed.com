@@ -47,23 +47,29 @@
     >
         <div class="Gallery__Inner">
             <div class="Gallery__ItemWrap">
-                <span class="Gallery__NavCloseFullScreen">
+                <span class="Gallery__NavCloseFullScreen JSGallery__FullScreenToggle">
                     {% include '_svg/close' only %}
                 </span>
-                <span class="Gallery__NavFullScreen">
+                <span class="Gallery__NavFullScreen JSGallery__FullScreenToggle">
                     {% include '_svg/expand-arrows-alt' only %}
                 </span>
-                <span class="Gallery__NavBack">
+                <span
+                    class="Gallery__NavBack Gallery__NavBack--IsHidden JSGallery__NavBack"
+                    data-hidden-class="Gallery__NavBack--IsHidden"
+                >
                     {% include '_svg/angle-left' only %}
                 </span>
-                <span class="Gallery__NavForward">
+                <span
+                    class="Gallery__NavForward JSGallery__NavForward"
+                    data-hidden-class="Gallery__NavForward--IsHidden"
+                >
                     {% include '_svg/angle-right' only %}
                 </span>
                 <ol class="Gallery__Items JSGallery__Items">
                     {% for photoAsset in photoAssets %}
                         <li
                             class="Gallery__Item{% if loop.first %} Gallery__Item--IsActive{% endif %} JSGallery__Item"
-                            data-gallery-id="{{ photoAsset.uid }}"
+                            data-gallery-index="{{ loop.index0 }}"
                             data-active-class="Gallery__Item--IsActive"
                         >
                             <div class="Gallery__ItemPhoto">
@@ -80,7 +86,7 @@
                 </ol>
             </div>
             <div
-                class="Gallery__NavWrapper Gallery__NavWrapper--HasScrollRightIndicator"
+                class="Gallery__NavWrapper JSGallery__NavWrapper Gallery__NavWrapper--HasScrollRightIndicator Gallery__NavWrapper--HasScrollLeftIndicator"
                 data-has-left-scroll-class="Gallery__NavWrapper--HasScrollLeftIndicator"
                 data-has-right-scroll-class="Gallery__NavWrapper--HasScrollRightIndicator"
             >
@@ -89,7 +95,7 @@
                         {% for photoAsset in photoAssets %}
                             <li
                                 class="Gallery__NavItem{% if loop.first %} Gallery__NavItem--IsActive{% endif %} JSGallery__NavItem"
-                                data-gallery-id="{{ photoAsset.uid }}"
+                                data-gallery-index="{{ loop.index0 }}"
                                 data-active-class="Gallery__NavItem--IsActive"
                             >
                                 <picture>
