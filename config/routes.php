@@ -56,4 +56,12 @@ return [
 
     'media/galleries' => ['template' => '_galleries/index'],
     'media/galleries/page/<pageNum:\d+>' => ['template' => '_galleries/index'],
+
+
+    /**
+     * Events
+     */
+
+    'events' => ['template' => '_events/index'],
+    'events/page/<pageNum:\d+>' => ['template' => '_events/index'],
 ];
