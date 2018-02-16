@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "95f696ab67315a54b49966bb80b1829b",
+    "content-hash": "ed65b96bda1a598ded37a05873e1367f",
     "packages": [
         {
             "name": "buzzingpixel/craft-static",
@@ -2977,6 +2977,38 @@
             "time": "2018-01-19T14:20:11+00:00"
         },
         {
+            "name": "timostamm/text-truncation",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/timostamm/text-truncation.git",
+                "reference": "4eb77aaa04c16104196662c11aa4acb358397e8d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/timostamm/text-truncation/zipball/4eb77aaa04c16104196662c11aa4acb358397e8d",
+                "reference": "4eb77aaa04c16104196662c11aa4acb358397e8d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TS\\": "src/TS"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL-3.0"
+            ],
+            "time": "2017-10-03 16:11:05"
+        },
+        {
             "name": "tubalmartin/cssmin",
             "version": "v4.1.1",
             "source": {
@@ -3675,7 +3707,8 @@
     "stability-flags": {
         "craftcms/cms": 5,
         "roave/security-advisories": 20,
-        "craftcms/ckeditor": 20
+        "craftcms/ckeditor": 20,
+        "timostamm/text-truncation": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

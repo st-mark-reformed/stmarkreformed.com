@@ -15,7 +15,8 @@
         "superbig/craft-entry-instructions": "^1.0",
         "tde/craftplugin-geoaddress": "^1.0",
         "craftcms/ckeditor": "dev-master",
-        "cocur/slugify": "^3.1"
+        "cocur/slugify": "^3.1",
+        "timostamm/text-truncation": "dev-master"
     },
     "autoload": {
         "psr-4": {

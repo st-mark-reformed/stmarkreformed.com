@@ -3,12 +3,13 @@
 namespace dev\twigextensions;
 
 use Craft;
+use TS\Text\Truncation;
 use craft\helpers\Template;
 use dev\services\NavService;
 use dev\services\ConfigService;
-use dev\services\PaginationService;
 use dev\services\StorageService;
 use dev\services\TypesetService;
+use dev\services\PaginationService;
 use dev\services\FileOperationsService;
 
 /**
@@ -29,6 +30,7 @@ class DevTwigExtensions extends \Twig_Extension
             new \Twig_Filter('smartypants', [$this, 'smartypantsFilter']),
             new \Twig_Filter('widont', [$this, 'widontFilter']),
             new \Twig_Filter('cast', [$this, 'cast']),
+            new \Twig_Filter('truncate', [$this, 'truncate'])
         ];
     }
 
@@ -125,6 +127,34 @@ class DevTwigExtensions extends \Twig_Extension
             return (float) $val;
         }
 
-        return (string) $val;
+        return Template::raw((string) $val);
+    }
+
+    /**
+     * Truncates HTML/text
+     * @param string $val
+     * @param int $limit
+     * @param string $strategy Defaults to word
+     * @return mixed
+     * @throws \Exception
+     */
+    public function truncate(
+        string $val,
+        int $limit,
+        string $strategy = 'word'
+    ) {
+        $strategies = [
+            'char' => Truncation::STRATEGY_CHARACTER,
+            'line' => Truncation::STRATEGY_LINE,
+            'paragraph' => Truncation::STRATEGY_PARAGRAPH,
+            'sentence' => Truncation::STRATEGY_SENTENCE,
+            'word' => Truncation::STRATEGY_WORD,
+        ];
+
+        $strategy = $strategies[$strategy];
+
+        $truncation = new Truncation($limit, $strategy);
+
+        return Template::raw($truncation->truncate($val));
     }
 }
