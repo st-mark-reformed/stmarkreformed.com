@@ -3,8 +3,10 @@
 namespace dev;
 
 use Craft;
+use dev\services\EventSlugService;
 use yii\base\Event;
 use craft\elements\Entry;
+use craft\events\ModelEvent;
 use \craft\helpers\FileHelper;
 use \craft\utilities\ClearCaches;
 use yii\base\Module as ModuleBase;
@@ -50,6 +52,16 @@ class Module extends ModuleBase
             Entry::EVENT_SET_ROUTE,
             function (SetElementRouteEvent $eventModel) {
                 (new EntryRoutingService())->pageEntryRouteHandler($eventModel);
+            }
+        );
+
+        Event::on(
+            Entry::class,
+            Entry::EVENT_BEFORE_SAVE,
+            function (ModelEvent $eventModel) {
+                /** @var Entry $entry */
+                $entry = $eventModel->sender;
+                (new EventSlugService())->setEventEntrySlug($entry);
             }
         );
     }

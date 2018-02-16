@@ -14,7 +14,8 @@
         "michelf/php-smartypants": "^1.8",
         "superbig/craft-entry-instructions": "^1.0",
         "tde/craftplugin-geoaddress": "^1.0",
-        "craftcms/ckeditor": "dev-master"
+        "craftcms/ckeditor": "dev-master",
+        "cocur/slugify": "^3.1"
     },
     "autoload": {
         "psr-4": {
