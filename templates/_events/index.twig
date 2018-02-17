@@ -97,6 +97,13 @@
                     </div>
                 {% endfor %}
             </div>
+            {% if pagination %}
+                <div class="PaginationWrapper">
+                    {% include '_partials/Pagination' with {
+                        pagination: pagination
+                    } %}
+                </div>
+            {% endif %}
         </div>
     </section>
 {% endblock %}
