@@ -57,8 +57,16 @@
                             {% if primaryImageAsset %}
                                 <a href="{{ entry.url }}" class="EventListingItem__PrimaryImageWrapper">
                                     <picture>
+                                        {% set primaryImageStandard = primaryImageAsset.getUrl({
+                                            width: 120
+                                        }) %}
+                                        {% set primaryImageRetina = primaryImageAsset.getUrl({
+                                            width: 240
+                                        }) %}
                                         <img
-                                            src="{{ primaryImageAsset.getUrl() }}"
+                                            src="{{ primaryImageStandard }}"
+                                            srcset="{{ primaryImageStandard }} 1x,
+                                                    {{ primaryImageRetina }} 2x"
                                             alt="{{ entry.title|smartypants }}"
                                             class="EventListingItem__PrimaryImage"
                                         >
