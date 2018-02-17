@@ -45,10 +45,10 @@
                     <div class="BasicBlock__ImgFloat">
                         <picture>
                             {% set primaryImageStandard = primaryImageAsset.getUrl({
-                                width: 400
+                                width: 300
                             }) %}
                             {% set primaryImageRetina = primaryImageAsset.getUrl({
-                                width: 800
+                                width: 600
                             }) %}
                             <img
                                 src="{{ primaryImageStandard }}"
@@ -64,7 +64,7 @@
                     <h2 class="BasicBlock__Heading">
                         {{ entry.title|typeset }}
                     </h2>
-                    <h3 class="BasicBlock__SubHeading BasicBlock__SubHeading--Small">
+                    <h3 class="BasicBlock__SubHeading BasicBlock__SubHeading--IsSmall">
                         {% if entry.allDayEvent %}
                             {% set startDateString = entry.startDate|date('F j, Y') %}
                             {% set endDateString = entry.endDate|date('F j, Y') %}
