@@ -29,6 +29,15 @@ class EventSlugService
         $date = $startDate->format('Y-m-d');
         $title = $entry->title;
 
+        /** @var \DateTime $endDate */
+        $endDate = $entry->getFieldValue('endDate');
+
+        if (! $endDate ||
+            $endDate->getTimestamp() < $startDate->getTimestamp()
+        ) {
+            $entry->setFieldValue('endDate', $startDate);
+        }
+
         $entry->slug = (new Slugify())->slugify("{$date}-{$title}");
     }
 }
