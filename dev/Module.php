@@ -3,12 +3,11 @@
 namespace dev;
 
 use Craft;
-use dev\services\EventSlugService;
 use yii\base\Event;
 use craft\elements\Entry;
 use craft\events\ModelEvent;
-use \craft\helpers\FileHelper;
-use \craft\utilities\ClearCaches;
+use dev\services\CacheService;
+use dev\services\EventSlugService;
 use yii\base\Module as ModuleBase;
 use dev\services\EntryRoutingService;
 use craft\events\SetElementRouteEvent;
@@ -36,17 +35,35 @@ class Module extends ModuleBase
      */
     public function init()
     {
-        Craft::setAlias('@dev', __DIR__);
+        $this->setUp();
+        $this->setEvents();
+
         parent::init();
+    }
+
+    /**
+     * Sets up the module
+     * @throws \Exception
+     */
+    private function setUp()
+    {
+        Craft::setAlias('@dev', __DIR__);
 
         Craft::$app->view->registerTwigExtension(
             new DevTwigExtensions()
         );
 
         if (getenv('CLEAR_TEMPLATE_CACHE_ON_LOAD') === 'true') {
-            $this->clearTemplateCache();
+            (new CacheService())->clearTemplateCache();
         }
+    }
 
+    /**
+     * Sets events
+     * @throws \Exception
+     */
+    private function setEvents()
+    {
         Event::on(
             Entry::class,
             Entry::EVENT_SET_ROUTE,
@@ -64,38 +81,5 @@ class Module extends ModuleBase
                 (new EventSlugService())->setEventEntrySlug($entry);
             }
         );
-    }
-
-    /**
-     * Gets the template cache service
-     */
-    public function clearTemplateCache()
-    {
-        $actOn = [
-            'compiled-templates',
-            'template-caches'
-        ];
-
-        foreach (ClearCaches::cacheOptions() as $cacheOption) {
-            if (! isset($cacheOption['key'], $cacheOption['action']) ||
-                ! \in_array($cacheOption['key'], $actOn, true)
-            ) {
-                continue;
-            }
-
-            $action = $cacheOption['action'];
-
-            if (\is_string($action)) {
-                try {
-                    FileHelper::clearDirectory($action);
-                } catch (\Throwable $e) {
-                    Craft::warning("Could not clear the directory {$action}: ".$e->getMessage(), __METHOD__);
-                }
-            } elseif (isset($cacheOption['params'])) {
-                \call_user_func_array($action, $cacheOption['params']);
-            } else {
-                $action();
-            }
-        }
     }
 }
