@@ -51,44 +51,48 @@
             <div class="EventsListing__Listings">
                 {% for entry in entries %}
                     {% set primaryImageAsset = entry.primaryImage.one() %}
-
-                    <div class="EventListing">
-                        {% if primaryImageAsset %}
-                            <a href="{{ entry.url }}" class="EventListing__PrimaryImageWrapper">
-                                <picture>
-                                    <img
-                                        src="{{ primaryImageAsset.getUrl() }}"
-                                        alt="{{ entry.title|smartypants }}"
-                                        class="EventListing__PrimaryImage"
-                                    >
-                                </picture>
-                            </a>
-                        {% endif %}
-                        <div class="EventListing__Content">
-                            <div class="EventListing__Title">
-                                {{ entry.title|typeset }}
-                            </div>
-                            <div class="EventListing__Date">
-                                {% if entry.allDayEvent %}
-                                    {% set startDateString = entry.startDate|date('F j, Y') %}
-                                    {% set endDateString = entry.endDate|date('F j, Y') %}
-                                    {{ startDateString }}{% if startDateString != endDateString %} &mdash; {{ endDateString }}{% endif %}
-                                {% else %}
-                                    {% set startDateString = entry.startDate|date('F j, Y') %}
-                                    {% set startDateHM = entry.startDate|date('g:i a') %}
-                                    {% set endDateString = entry.endDate|date('F j, Y') %}
-                                    {% set endDateHM = entry.endDate|date('g:i a') %}
-                                    {{ startDateString }}, {{ startDateHM }}
-                                    {% if startDateString != endDateString or startDateHM != endDateHM %}
-                                        &mdash; {% if startDateString != endDateString %}{{ endDateString }}, {% endif %}{{ endDateHM }}
-                                    {% endif %}
+                    <div class="EventsListing__Listing">
+                        <div class="EventListingItem">
+                            {% if primaryImageAsset %}
+                                <a href="{{ entry.url }}" class="EventListingItem__PrimaryImageWrapper">
+                                    <picture>
+                                        <img
+                                            src="{{ primaryImageAsset.getUrl() }}"
+                                            alt="{{ entry.title|smartypants }}"
+                                            class="EventListingItem__PrimaryImage"
+                                        >
+                                    </picture>
+                                </a>
+                            {% endif %}
+                            <div class="EventListingItem__Content">
+                                <div class="EventListingItem__TitleArea">
+                                    <div class="EventListingItem__Title">
+                                        <a href="{{ entry.url }}">{{ entry.title|typeset }}</a>
+                                    </div>
+                                    <div class="EventListingItem__Date">
+                                        {% if entry.allDayEvent %}
+                                            {% set startDateString = entry.startDate|date('F j, Y') %}
+                                            {% set endDateString = entry.endDate|date('F j, Y') %}
+                                            {{ startDateString }}{% if startDateString != endDateString %} &mdash; {{ endDateString }}{% endif %}
+                                        {% else %}
+                                            {% set startDateString = entry.startDate|date('F j, Y') %}
+                                            {% set startDateHM = entry.startDate|date('g:i a') %}
+                                            {% set endDateString = entry.endDate|date('F j, Y') %}
+                                            {% set endDateHM = entry.endDate|date('g:i a') %}
+                                            {{ startDateString }}, {{ startDateHM }}
+                                            {% if startDateString != endDateString or startDateHM != endDateHM %}
+                                                &mdash; {% if startDateString != endDateString %}{{ endDateString }}, {% endif %}{{ endDateHM }}
+                                            {% endif %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% set theBody = entry.body|striptags|trim %}
+                                {% if theBody|length > 1 %}
+                                    <div class="EventListingItem__Body">
+                                        <p>{{ theBody|typeset|truncate(300) }}</p>
+                                    </div>
                                 {% endif %}
                             </div>
-                            {% if entry.body %}
-                                <div class="EventListing__Body">
-                                    {{ entry.body|typeset }}
-                                </div>
-                            {% endif %}
                         </div>
                     </div>
                 {% endfor %}

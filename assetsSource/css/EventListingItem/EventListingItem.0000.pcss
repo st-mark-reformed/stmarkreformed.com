@@ -1,0 +1,36 @@
+.EventListingItem:after {
+    content: ' ';
+    clear: both;
+    display: table;
+}
+
+.EventListingItem__PrimaryImageWrapper {
+    float: left;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    width: 120px;
+}
+
+.EventListingItem__Title,
+.EventListingItem__Title a {
+    text-decoration: none;
+    font-family: var(--headingFont);
+    font-weight: var(--headingFontWeight);
+    font-size: 22px;
+    line-height: var(--headingLineHeight);
+}
+
+.EventListingItem__Date {
+    color: var(--gray);
+    font-family: var(--headingFont);
+    font-size: 12px;
+    line-height: var(--headingLineHeight);
+}
+
+.EventListingItem__Body {
+    margin-top: 10px;
+}
+
+.EventListingItem__Body p:last-child {
+    margin-bottom: 0;
+}
