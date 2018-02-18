@@ -26,11 +26,11 @@
             #}
             <div class="ContactForm__InputWrapper ContactForm__Site">
                 <label for="site" class="label ContactForm__InputLabel">Site</label>
-                <input type="text" name="site" class="input ContactForm__Input" id="site" value="stmarkreformed.com" autocomplete="off" required>
+                <input type="text" name="site" class="input ContactForm__Input" id="site" value="stmarkreformed.com" tabindex="-1" autocomplete="off" required>
             </div>
             <div class="ContactForm__InputWrapper ContactForm__MailingAddress">
                 <label for="mailing_address" class="label ContactForm__InputLabel">Mailing Address</label>
-                <input type="text" name="mailing_address" class="input ContactForm__Input" autocomplete="off" id="mailing_address">
+                <input type="text" name="mailing_address" class="input ContactForm__Input" tabindex="-1" autocomplete="off" id="mailing_address">
             </div>
             <div class="ContactForm__InputWrapper ContactForm__InputWrapper--IsHalfWidth{% if contactInputErrors['name'] is defined %} ContactForm__InputWrapper--HasError{% endif %}">
                 <label for="name" class="label ContactForm__InputLabel">Your Name</label>
