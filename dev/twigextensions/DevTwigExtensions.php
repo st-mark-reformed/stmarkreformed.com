@@ -121,7 +121,7 @@ class DevTwigExtensions extends \Twig_Extension
      * Casts the value
      * @param mixed $val
      * @param string $to
-     * @return mixed
+     * @return \Twig_Markup|int|float
      */
     public function cast($val, string $to = 'string')
     {
@@ -141,14 +141,14 @@ class DevTwigExtensions extends \Twig_Extension
      * @param string $val
      * @param int $limit
      * @param string $strategy Defaults to word
-     * @return mixed
+     * @return  \Twig_Markup
      * @throws \Exception
      */
     public function truncate(
         string $val,
         int $limit,
         string $strategy = 'word'
-    ) {
+    ) : \Twig_Markup {
         $strategies = [
             'char' => Truncation::STRATEGY_CHARACTER,
             'line' => Truncation::STRATEGY_LINE,
