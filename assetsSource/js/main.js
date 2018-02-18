@@ -69,6 +69,12 @@ function runMain(F) {
             el: this
         });
     });
+
+    $('.JSContactForm').each(function() {
+        F.controller.construct('ContactForm', {
+            el: this
+        });
+    });
 }
 
 runMain(window.FAB);

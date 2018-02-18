@@ -3,6 +3,7 @@
 namespace dev\controllers;
 
 use Craft;
+use yii\web\Response;
 use craft\mail\Message;
 use dev\services\StorageService;
 
@@ -11,6 +12,9 @@ use dev\services\StorageService;
  */
 class ContactController extends BaseController
 {
+    /** @var bool $isAjax */
+    private $isAjax = false;
+
     /** @var StorageService $storage */
     private $storage;
 
@@ -34,6 +38,8 @@ class ContactController extends BaseController
 
         $request = Craft::$app->getRequest();
 
+        $this->isAjax = $request->isAjax;
+
         $this->redirectUri = $request->post('redirect');
 
         foreach ($this->inputValues as $key => &$val) {
@@ -43,6 +49,7 @@ class ContactController extends BaseController
 
     /**
      * Deals with contact form submission
+     * @return null|Response
      * @throws \Exception
      */
     public function actionFormSubmission()
@@ -51,15 +58,22 @@ class ContactController extends BaseController
 
         $this->storage->set($this->inputValues, 'ContactInputValues');
 
+        $message = 'We were unable to validate your form submission';
+
         if ($this->inputValues['site'] ||
             $this->inputValues['mailing_address']
         ) {
+            if ($this->isAjax) {
+                return $this->asJson([
+                    'success' => false,
+                    'message' => $message,
+                    'redirect' => $this->redirectUri,
+                    'inputErrors' => [],
+                ]);
+            }
             $this->storage->set(true, 'ContactHasErrors');
-            $this->storage->set(
-                'We were unable to validate your form submission',
-                'ContactErrorMessage'
-            );
-            return;
+            $this->storage->set($message, 'ContactErrorMessage');
+            return null;
         }
 
         $inputErrors = [];
@@ -88,11 +102,16 @@ class ContactController extends BaseController
         $this->storage->set($inputErrors, 'ContactInputErrors');
 
         if ($inputErrors) {
-            $this->storage->set(
-                'We were unable to validate your form submission',
-                'ContactErrorMessage'
-            );
-            return;
+            if ($this->isAjax) {
+                return $this->asJson([
+                    'success' => false,
+                    'message' => $message,
+                    'redirect' => $this->redirectUri,
+                    'inputErrors' => $inputErrors,
+                ]);
+            }
+            $this->storage->set($message, 'ContactErrorMessage');
+            return null;
         }
 
         $message = new Message();
@@ -130,6 +149,17 @@ class ContactController extends BaseController
 
         Craft::$app->getMailer()->send($message);
 
+        if ($this->isAjax) {
+            return $this->asJson([
+                'success' => true,
+                'message' => '',
+                'redirect' => $this->redirectUri,
+                'inputErrors' => [],
+            ]);
+        }
+
         $this->redirect($this->redirectUri);
+
+        return null;
     }
 }

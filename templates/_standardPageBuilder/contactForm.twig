@@ -6,12 +6,14 @@
 
 <section class="ContactForm">
     <div class="ContactForm__Inner">
-        {% if contactErrorMessage %}
-            <div class="ContactForm__ErrorMessage">
-                {{ contactErrorMessage|typeset }}
-            </div>
-        {% endif %}
-        <form method="post" class="ContactForm__Form" novalidate>
+        <div class="JSContactForm__ErrorMessage">
+            {% if contactErrorMessage %}
+                <div class="ContactForm__ErrorMessage">
+                    {{ contactErrorMessage|typeset }}
+                </div>
+            {% endif %}
+        </div>
+        <form method="post" class="ContactForm__Form JSContactForm">
             {{ csrfInput() }}
             <input type="hidden" name="action" value="dev/contact/form-submission">
             <input type="hidden" name="redirect" value="/contact/thanks">
@@ -26,13 +28,13 @@
             #}
             <div class="ContactForm__InputWrapper ContactForm__Site">
                 <label for="site" class="label ContactForm__InputLabel">Site</label>
-                <input type="text" name="site" class="input ContactForm__Input" id="site" value="stmarkreformed.com" tabindex="-1" autocomplete="off" required>
+                <input type="text" name="site" class="input ContactForm__Input" id="site" value="stmarkreformed.com" required>
             </div>
             <div class="ContactForm__InputWrapper ContactForm__MailingAddress">
                 <label for="mailing_address" class="label ContactForm__InputLabel">Mailing Address</label>
-                <input type="text" name="mailing_address" class="input ContactForm__Input" tabindex="-1" autocomplete="off" id="mailing_address">
+                <input type="text" name="mailing_address" class="input ContactForm__Input" id="mailing_address">
             </div>
-            <div class="ContactForm__InputWrapper ContactForm__InputWrapper--IsHalfWidth{% if contactInputErrors['name'] is defined %} ContactForm__InputWrapper--HasError{% endif %}">
+            <div class="ContactForm__InputWrapper ContactForm__InputWrapper--IsHalfWidth{% if contactInputErrors['name'] is defined %} ContactForm__InputWrapper--HasError{% endif %} JSContactForm__InputWrapper">
                 <label for="name" class="label ContactForm__InputLabel">Your Name</label>
                 <input type="text" name="name" class="input ContactForm__Input" id="name"{% if contactInputValues['name'] is defined %} value="{{ contactInputValues.name }}"{% endif %} required>
                 {% if contactInputErrors['name'] is defined %}
@@ -41,7 +43,7 @@
                     </div>
                 {% endif %}
             </div>
-            <div class="ContactForm__InputWrapper ContactForm__InputWrapper--IsHalfWidth{% if contactInputErrors['email'] is defined %} ContactForm__InputWrapper--HasError{% endif %}">
+            <div class="ContactForm__InputWrapper ContactForm__InputWrapper--IsHalfWidth{% if contactInputErrors['email'] is defined %} ContactForm__InputWrapper--HasError{% endif %} JSContactForm__InputWrapper">
                 <label for="email" class="label ContactForm__InputLabel">Your Email Address</label>
                 <input type="email" name="email" class="input ContactForm__Input" id="email"{% if contactInputValues['email'] is defined %} value="{{ contactInputValues.email }}"{% endif %} required>
                 {% if contactInputErrors['email'] is defined %}
@@ -50,7 +52,7 @@
                     </div>
                 {% endif %}
             </div>
-            <div class="ContactForm__InputWrapper{% if contactInputErrors['message'] is defined %} ContactForm__InputWrapper--HasError{% endif %}">
+            <div class="ContactForm__InputWrapper{% if contactInputErrors['message'] is defined %} ContactForm__InputWrapper--HasError{% endif %} JSContactForm__InputWrapper">
                 <label for="message" class="label ContactForm__InputLabel">Message</label>
                 <textarea name="message" id="message" class="textarea ContactForm__TextArea" required>{% if contactInputValues['message'] is defined %}{{ contactInputValues.message }}{% endif %}</textarea>
                 {% if contactInputErrors['message'] is defined %}
@@ -60,7 +62,14 @@
                 {% endif %}
             </div>
             <div class="ContactForm__InputWrapper ContactForm__InputWrapper--IsRightAligned">
-                <button type="submit" class="button">Submit</button>
+                <button
+                    type="submit"
+                    class="button JSContactForm__SubmitButton"
+                    data-value="Submit"
+                    data-working="Submitting..."
+                >
+                    Submit
+                </button>
             </div>
         </form>
     </div>
