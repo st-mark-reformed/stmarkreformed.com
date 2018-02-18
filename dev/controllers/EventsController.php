@@ -5,6 +5,7 @@ namespace dev\controllers;
 use yii\web\Response;
 use craft\elements\Entry;
 use yii\web\HttpException;
+use craft\helpers\Template;
 use craft\elements\db\AssetQuery;
 use dev\services\PaginationService;
 
@@ -26,6 +27,7 @@ class EventsController extends BaseController
         }
 
         $pageNum = $pageNum ?: 1;
+        $metaTitle = 'Events' . ($pageNum > 1 ? " | Page {$pageNum}" : '');
         $heroHeading = 'Events';
         $limit = 12;
         $dateType = 'event';
@@ -60,6 +62,7 @@ class EventsController extends BaseController
         ]);
 
         $response = $this->renderTemplate('_core/StandardListing', compact(
+            'metaTitle',
             'heroHeading',
             'entries',
             'pagination',
@@ -89,14 +92,51 @@ class EventsController extends BaseController
             ]);
         }
 
+        $dateString = '';
+
+        if ($entry->allDayEvent) {
+            $startDateString = $entry->startDate->format('F j, Y');
+            $endDateString = $entry->endDate->format('F j, Y');
+            $dateString = $startDateString;
+
+            if ($startDateString !== $endDateString) {
+                $dateString .= " &mdash; {$endDateString}";
+            }
+        }
+
+        if (! $dateString) {
+            $startDateString = $entry->startDate->format('F j, Y');
+            $startDateHM = $entry->startDate->format('g:i a');
+            $endDateString = $entry->endDate->format('F j, Y');
+            $endDateHM = $entry->endDate->format('g:i a');
+
+            $dateString = "{$startDateString}, {$startDateHM}";
+
+            if ($startDateString !== $endDateString ||
+                $startDateHM !== $endDateHM
+            ) {
+                $dateString .= ' &mdash; ';
+
+                if ($startDateString !== $endDateString) {
+                    $dateString .= "{$endDateString}, ";
+                }
+
+                $dateString .= $endDateHM;
+            }
+        }
+
+        $dateStringReplace = str_replace('&mdash;', '-', $dateString);
+
         return $this->renderTemplate('_events/entry', [
             'noIndex' => ! $entry->searchEngineIndexing,
-            'metaTitle' => $entry->seoTitle ?? $entry->title,
+            'metaTitle' => ($entry->seoTitle ?: $entry->title) .
+                " | {$dateStringReplace} | Events",
             'metaDescription' => $entry->seoDescription,
             'shareImage' => $shareImage,
             'heroHeading' => $entry->title,
             'heroImageAsset' => $entry->heroImage->one(),
             'entry' => $entry,
+            'dateString' => Template::raw($dateString),
         ]);
     }
 }

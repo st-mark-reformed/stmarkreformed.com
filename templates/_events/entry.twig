@@ -8,6 +8,7 @@
 {% set heroHeading = heroHeading|default(null) %}
 {% set heroImageAsset = activeSeries|default(null) %}
 {% set entry = entry|default(null) %}
+{% set dateString = dateString|default(null) %}
 
 {# Primary content #}
 {% block content %}
@@ -41,18 +42,22 @@
                         {{ entry.title|typeset }}
                     </h2>
                     <h3 class="BasicBlock__SubHeading BasicBlock__SubHeading--IsSmall">
-                        {% if entry.allDayEvent %}
-                            {% set startDateString = entry.startDate|date('F j, Y') %}
-                            {% set endDateString = entry.endDate|date('F j, Y') %}
-                            {{ startDateString }}{% if startDateString != endDateString %} &mdash; {{ endDateString }}{% endif %}
+                        {% if dateString %}
+                            {{ dateString|typeset }}
                         {% else %}
-                            {% set startDateString = entry.startDate|date('F j, Y') %}
-                            {% set startDateHM = entry.startDate|date('g:i a') %}
-                            {% set endDateString = entry.endDate|date('F j, Y') %}
-                            {% set endDateHM = entry.endDate|date('g:i a') %}
-                            {{ startDateString }}, {{ startDateHM }}
-                            {% if startDateString != endDateString or startDateHM != endDateHM %}
-                                &mdash; {% if startDateString != endDateString %}{{ endDateString }}, {% endif %}{{ endDateHM }}
+                            {% if entry.allDayEvent %}
+                                {% set startDateString = entry.startDate|date('F j, Y') %}
+                                {% set endDateString = entry.endDate|date('F j, Y') %}
+                                {{ startDateString }}{% if startDateString != endDateString %} &mdash; {{ endDateString }}{% endif %}
+                            {% else %}
+                                {% set startDateString = entry.startDate|date('F j, Y') %}
+                                {% set startDateHM = entry.startDate|date('g:i a') %}
+                                {% set endDateString = entry.endDate|date('F j, Y') %}
+                                {% set endDateHM = entry.endDate|date('g:i a') %}
+                                {{ startDateString }}, {{ startDateHM }}
+                                {% if startDateString != endDateString or startDateHM != endDateHM %}
+                                    &mdash; {% if startDateString != endDateString %}{{ endDateString }}, {% endif %}{{ endDateHM }}
+                                {% endif %}
                             {% endif %}
                         {% endif %}
                     </h3>
