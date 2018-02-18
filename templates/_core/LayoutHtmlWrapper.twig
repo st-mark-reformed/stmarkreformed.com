@@ -78,6 +78,8 @@
 
     {# Get any queued up scripts and styles for head #}
     {{ block('head') ?? '' }}
+
+    {{ head() }}
 </head>
 <body
     data-vars='{
@@ -85,6 +87,7 @@
     }'
 >
     {# Get any queued up body items #}
+    {{ beginBody() }}
     {{ block('beginBody') ?? '' }}
 
     {# Get the content #}
@@ -98,6 +101,7 @@
 
     {# Get any queued up body items #}
     {{ block('endBody') ?? '' }}
+    {{ endBody() }}
 
     {# Google Fonts #}
     {% set deferredStyles = [
