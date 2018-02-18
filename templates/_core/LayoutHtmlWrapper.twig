@@ -4,13 +4,6 @@
 {% set noIndex = noIndex|default(false) %}
 {% set ogType = ogType|default('website') %}
 {% set staticAssetCacheTime = craft.app.config.general.staticAssetCacheTime %}
-{% set shouldCache = shouldCache|default(false) %}
-{% if getenv('STATIC_CACHE_ENABLED') == 'false' %}
-    {% set shouldCache = false %}
-{% endif %}
-
-{% static cache shouldCache %}
-{% minify %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -194,5 +187,3 @@
     {% endif %}
 </body>
 </html>
-{% endminify %}
-{% endstatic %}

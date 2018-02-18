@@ -25,7 +25,6 @@ class GalleriesController extends BaseController
             throw new HttpException(404);
         }
 
-        $shouldCache = true;
         $pageNum = $pageNum ?: 1;
         $heroHeading = 'Galleries';
         $limit = 10;
@@ -50,9 +49,7 @@ class GalleriesController extends BaseController
             'base' => PaginationService::getUriPathSansPagination()
         ]);
 
-        // TODO: move caching here
         $response = $this->renderTemplate('_galleries/index', compact(
-            'shouldCache',
             'heroHeading',
             'entries',
             'pagination'
@@ -96,9 +93,7 @@ class GalleriesController extends BaseController
             }
         }
 
-        // TODO: move caching here
         return $this->renderTemplate('_galleries/entry', [
-            'shouldCache' => true,
             'noIndex' => ! $entry->searchEngineIndexing,
             'metaTitle' => $entry->seoTitle ?? $entry->title,
             'metaDescription' => $entry->seoDescription,

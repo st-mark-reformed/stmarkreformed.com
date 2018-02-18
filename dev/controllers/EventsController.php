@@ -25,7 +25,6 @@ class EventsController extends BaseController
             throw new HttpException(404);
         }
 
-        $shouldCache = false;
         $pageNum = $pageNum ?: 1;
         $heroHeading = 'Events';
         $limit = 12;
@@ -58,9 +57,7 @@ class EventsController extends BaseController
             'base' => PaginationService::getUriPathSansPagination()
         ]);
 
-        // TODO: move caching here
         $response = $this->renderTemplate('_events/index', compact(
-            'shouldCache',
             'heroHeading',
             'entries',
             'pagination'
@@ -88,9 +85,7 @@ class EventsController extends BaseController
             ]);
         }
 
-        // TODO: move caching here
         return $this->renderTemplate('_events/entry', [
-            'shouldCache' => true,
             'noIndex' => ! $entry->searchEngineIndexing,
             'metaTitle' => $entry->seoTitle ?? $entry->title,
             'metaDescription' => $entry->seoDescription,

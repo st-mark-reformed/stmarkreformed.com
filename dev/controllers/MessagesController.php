@@ -32,7 +32,6 @@ class MessagesController extends BaseController
             throw new HttpException(404);
         }
 
-        $shouldCache = true;
         $pageNum = $pageNum ?: 1;
         $backLink = null;
         $backLinkText = 'back to all messages';
@@ -106,9 +105,7 @@ class MessagesController extends BaseController
             'base' => PaginationService::getUriPathSansPagination()
         ]);
 
-        // TODO: move caching here
         $response = $this->renderTemplate('_audio/index', compact(
-            'shouldCache',
             'backLink',
             'backLinkText',
             'metaTitle',
@@ -141,9 +138,7 @@ class MessagesController extends BaseController
             ]);
         }
 
-        // TODO: move caching here
         return $this->renderTemplate('_audio/index', [
-            'shouldCache' => true,
             'noIndex' => ! $entry->searchEngineIndexing,
             'metaTitle' => $entry->seoTitle ?? $entry->title,
             'metaDescription' => $entry->seoDescription,

@@ -37,9 +37,7 @@ class PagesController extends BaseController
             $metaTitle = $entry->title;
         }
 
-        // TODO: move caching here
         return $this->renderTemplate('_core/StandardPage', [
-            'shouldCache' => true,
             'noIndex' => ! $entry->searchEngineIndexing,
             'metaTitle' => $metaTitle,
             'metaDescription' => $entry->seoDescription,
