@@ -87,6 +87,9 @@ class DevTwigExtensions extends \Twig_Extension
                 new RouteService(),
                 'controllerRoute'
             ]),
+            new \Twig_Function('getStorage', function ($key, $namespace = 'storage') {
+                return StorageService::getInstance()->get($key, $namespace);
+            }),
         ];
     }
 
