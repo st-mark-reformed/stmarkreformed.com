@@ -65,4 +65,11 @@ return [
 
     'GET events' => 'dev/events/index',
     'GET events/page/<pageNum:\d+>' => 'dev/events/index',
+
+
+    /**
+     * News
+     */
+    'GET news' => 'dev/news/index',
+    'GET news/page/<pageNum:\d+>' => 'dev/news/index',
 ];
