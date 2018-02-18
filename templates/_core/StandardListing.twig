@@ -63,7 +63,7 @@
                                 {% if bodyType == 'event' %}
                                     {% set theBody = entry.body|striptags|trim %}
                                 {% else %}
-                                    {% for field in entry.entryBuilder.all() if field.type.handle == 'basicBlock' %}
+                                    {% for field in entry.entryBuilder.all() if field.type.handle == 'basicEntryBlock' %}
                                         {% set theBody = theBody ~ field.body %}
                                     {% endfor %}
                                     {% set theBody = theBody|striptags|trim %}
