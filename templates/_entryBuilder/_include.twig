@@ -1,7 +1,8 @@
 {% set fieldArray = fieldArray|default([]) %}
 
 {% for field in fieldArray %}
-    <div class="StandardEntry__ContentItem">
+    {% set fieldTypeHandle = field.type.handle %}
+    <div class="StandardEntry__ContentItem{% if fieldTypeHandle != 'imageEntryBlock' %} StandardEntry__ContentItem--HasStandardPadding{% endif %}">
         <div class="StandardEntry__{{ field.type.handle|ucfirst  }}">
             {% include '_entryBuilder/' ~ field.type.handle with {
                 field: field,

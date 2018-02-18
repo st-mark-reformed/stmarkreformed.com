@@ -14,12 +14,13 @@
 {% block content %}
     <section class="StandardEntry">
         <div class="StandardEntry__Inner">
-            {% if backLink %}
-                <a href="{{ backLink }}">&laquo; {{ backLinkText|typeset }}</a>
-                <br><br><br>
-            {% endif %}
             <div class="StandardEntry__ContentWrapper">
-                <div class="StandardEntry__ContentItem">
+                {% if backLink %}
+                    <div class="StandardEntry__ContentItem StandardEntry__ContentItem--HasStandardPadding">
+                        <a href="{{ backLink }}">&laquo; {{ backLinkText|typeset }}</a>
+                    </div>
+                {% endif %}
+                <div class="StandardEntry__ContentItem StandardEntry__ContentItem--HasStandardPadding">
                     <div class="StandardEntry__Headings">
                         <h2 class="StandardEntry__Heading">
                             {{ entry.title|typeset }}
