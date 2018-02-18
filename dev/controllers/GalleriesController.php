@@ -26,6 +26,7 @@ class GalleriesController extends BaseController
         }
 
         $pageNum = $pageNum ?: 1;
+        $metaTitle = 'Galleries' . ($pageNum > 1 ? " | Page {$pageNum}" : '');
         $heroHeading = 'Galleries';
         $limit = 10;
 
@@ -50,6 +51,7 @@ class GalleriesController extends BaseController
         ]);
 
         $response = $this->renderTemplate('_galleries/index', compact(
+            'metaTitle',
             'heroHeading',
             'entries',
             'pagination'
@@ -95,7 +97,7 @@ class GalleriesController extends BaseController
 
         return $this->renderTemplate('_galleries/entry', [
             'noIndex' => ! $entry->searchEngineIndexing,
-            'metaTitle' => $entry->seoTitle ?? $entry->title,
+            'metaTitle' => ($entry->seoTitle ?: $entry->title) . ' | Galleries',
             'metaDescription' => $entry->seoDescription,
             'shareImage' => $shareImage,
             'heroHeading' => $entry->title,
