@@ -26,6 +26,7 @@ class NewsController extends BaseController
         }
 
         $pageNum = $pageNum ?: 1;
+        $metaTitle = 'News' . ($pageNum > 1 ? " | Page {$pageNum}" : '');
         $heroHeading = 'News';
         $limit = 12;
         $dateType = 'entry';
@@ -54,6 +55,7 @@ class NewsController extends BaseController
         ]);
 
         return $this->renderTemplate('_core/StandardListing', compact(
+            'metaTitle',
             'heroHeading',
             'entries',
             'pagination',
@@ -83,7 +85,7 @@ class NewsController extends BaseController
 
         return $this->renderTemplate('_core/StandardEntry', [
             'noIndex' => ! $entry->searchEngineIndexing,
-            'metaTitle' => $entry->seoTitle ?? $entry->title,
+            'metaTitle' => ($entry->seoTitle ?: $entry->title) . ' | News',
             'metaDescription' => $entry->seoDescription,
             'shareImage' => $shareImage,
             'heroHeading' => $entry->title,
