@@ -57,7 +57,7 @@ class EventsController extends BaseController
             'base' => PaginationService::getUriPathSansPagination()
         ]);
 
-        $response = $this->renderTemplate('_events/index', compact(
+        $response = $this->renderTemplate('_core/StandardListing', compact(
             'heroHeading',
             'entries',
             'pagination'

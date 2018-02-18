@@ -6,15 +6,15 @@
 {% set pagination = pagination|default(null) %}
 
 {% block content %}
-    <section class="EventsListing">
-        <div class="EventsListing__Inner">
-            <div class="EventsListing__Listings">
+    <section class="StandardListing">
+        <div class="StandardListing__Inner">
+            <div class="StandardListing__Listings">
                 {% for entry in entries %}
                     {% set primaryImageAsset = entry.primaryImage.one() %}
-                    <div class="EventsListing__Listing">
-                        <div class="EventListingItem">
+                    <div class="StandardListing__Listing">
+                        <div class="StandardListingItem">
                             {% if primaryImageAsset %}
-                                <a href="{{ entry.url }}" class="EventListingItem__PrimaryImageWrapper">
+                                <a href="{{ entry.url }}" class="StandardListingItem__PrimaryImageWrapper">
                                     <picture>
                                         {% set primaryImageStandard = primaryImageAsset.getUrl({
                                             width: 120
@@ -27,17 +27,17 @@
                                             srcset="{{ primaryImageStandard }} 1x,
                                                     {{ primaryImageRetina }} 2x"
                                             alt="{{ entry.title|smartypants }}"
-                                            class="EventListingItem__PrimaryImage"
+                                            class="StandardListingItem__PrimaryImage"
                                         >
                                     </picture>
                                 </a>
                             {% endif %}
-                            <div class="EventListingItem__Content">
-                                <div class="EventListingItem__TitleArea">
-                                    <div class="EventListingItem__Title">
+                            <div class="StandardListingItem__Content">
+                                <div class="StandardListingItem__TitleArea">
+                                    <div class="StandardListingItem__Title">
                                         <a href="{{ entry.url }}">{{ entry.title|typeset }}</a>
                                     </div>
-                                    <div class="EventListingItem__Date">
+                                    <div class="StandardListingItem__Date">
                                         {% if entry.allDayEvent %}
                                             {% set startDateString = entry.startDate|date('F j, Y') %}
                                             {% set endDateString = entry.endDate|date('F j, Y') %}
@@ -56,7 +56,7 @@
                                 </div>
                                 {% set theBody = entry.body|striptags|trim %}
                                 {% if theBody|length > 1 %}
-                                    <div class="EventListingItem__Body">
+                                    <div class="StandardListingItem__Body">
                                         <p>{{ theBody|typeset|truncate(300) }}</p>
                                     </div>
                                 {% endif %}
