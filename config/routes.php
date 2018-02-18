@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Site URL Rules
  *
@@ -34,16 +35,16 @@ return [
      */
 
     // Sermons index
-    'media/<section:messages>' => ['template' => '_audio/index'],
-    'media/<section:messages>/page/<pageNum:\d+>' => ['template' => '_audio/index'],
+    'GET media/messages' => 'dev/messages/index',
+    'GET media/messages/page/<pageNum:\d+>' => 'dev/messages/index',
 
     // Speakers
-    'media/<section:messages>/by/<speaker:([^\/]+)>' => ['template' => '_audio/index'],
-    'media/<section:messages>/by/<speaker:([^\/]+)>/page/<pageNum:\d+>' => ['template' => '_audio/index'],
+    'GET media/messages/by/<speaker:([^\/]+)>' => 'dev/messages/index',
+    'GET media/messages/by/<speaker:([^\/]+)>/page/<pageNum:\d+>' => 'dev/messages/index',
 
     // Series
-    'media/<section:messages>/series/<series:([^\/]+)>' => ['template' => '_audio/index'],
-    'media/<section:messages>/series/<series:([^\/]+)>/page/<pageNum:\d+>' => ['template' => '_audio/index'],
+    'GET media/messages/series/<series:([^\/]+)>' => 'dev/messages/index',
+    'GET media/messages/series/<series:([^\/]+)>/page/<pageNum:\d+>' => 'dev/messages/index',
 
     // Sermons feed
     'media/<section:messages>/feed' => ['template' => '_audio/feed.xml'],

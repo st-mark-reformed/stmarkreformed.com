@@ -1,116 +1,87 @@
 {% extends "_core/LayoutMaster" %}
 
-{# Static caching #}
-{% set shouldCache = true %}
-
 {# Variables #}
-{% set speaker = speaker|default(null) %}
-{% set activeSpeaker = null %}
-{% set activeSeries = null %}
-{% set series = series|default(null) %}
-{% set backLink = false %}
-{% set backLinkText = 'back to all messages' %}
-
-{# Meta Title #}
-{% set metaTitle = 'Messages' %}
-
-{# Hero heading #}
-{% set heroHeading = 'Messages from St. Mark' %}
-
-{# Get the section #}
-{% set section = section|default(null) %}
-
-{# Get the page number #}
-{% set pageNum = pageNum|default(null) %}
-
-{# If the page number is 1, it is not valid, there should be no /page/1 #}
-{# Or if there's not section #}
-{% if pageNum == 1 or not section %}
-    {% exit 404 %}
-{% endif %}
-
-{# Now if there's no page number, it should be 1 #}
-{% set pageNum = pageNum|default(1)|cast('int') %}
-
-{# Get the entries #}
-{% set entriesQuery = craft.entries.section('messages') %}
-
-{# Check if we are getting entries by a specific speaker #}
-{% if speaker %}
-    {% set speakerQuery = craft.users.slugField(speaker).one() %}
-    {% if not speakerQuery %}{% exit 404 %}{% endif %}
-    {% set entriesQuery = entriesQuery.relatedTo({
-        targetElement: speakerQuery,
-        field: 'speaker'
-    }) %}
-
-    {% if speakerQuery.titleOrHonorific %}
-        {% set speakerName = speakerQuery.titleOrHonorific ~ ' ' ~ speakerQuery.fullName %}
-    {% else %}
-        {% set speakerName = speakerQuery.fullName %}
-    {% endif %}
-
-    {# Meta Title #}
-    {% set metaTitle = 'Messages by ' ~ speakerName %}
-
-    {# Hero heading #}
-    {% set heroHeading = metaTitle %}
-
-    {% set activeSpeaker = speakerQuery.slugField %}
-
-    {% set backLink = '/media/messages' %}
-{% endif %}
-
-{# Check if we are getting entries in a series #}
-{% if series %}
-    {% set seriesQuery = craft.categories.group('messageSeries').slug(series).one() %}
-    {% if not seriesQuery %}{% exit 404 %}{% endif %}
-    {% set entriesQuery = entriesQuery.relatedTo({
-        targetElement: seriesQuery,
-        field: 'messageSeries'
-    }) %}
-
-    {# Meta Title #}
-    {% set metaTitle = 'Messages series: ' ~ seriesQuery.title %}
-
-    {# Hero heading #}
-    {% set heroHeading = metaTitle %}
-
-    {% set activeSeries = seriesQuery.slug %}
-
-    {% set backLink = '/media/messages' %}
-{% endif %}
-
-{# Get the entries count #}
-{% set entriesTotal = entriesQuery.count()|cast('int') %}
-
-{# Set the limit #}
-{% set limit = 10 %}
-
-{# Set the max number of pages #}
-{% set maxPages = ceil(entriesTotal / limit)|cast('int') %}
-
-{# If we have exceeded the max number of pages we should 404 #}
-{% if pageNum > maxPages %}
-    {% exit 404 %}
-{% endif %}
-
-{# Get the offset #}
-{% set offset = (limit * pageNum) - limit %}
-
-{# Get the entries #}
-{% set entries = entriesQuery.limit(limit).offset(offset).all() %}
+{% set shouldCache = shouldCache|default(true) %}
+{% set backLink = backLink|default(null) %}
+{% set backLinkText = backLinkText|default(null) %}
+{% set metaTitle = metaTitle|default(null) %}
+{% set heroHeading = heroHeading|default(null) %}
+{% set activeSpeaker = activeSpeaker|default(null) %}
+{% set activeSeries = activeSeries|default(null) %}
+{% set entries = entries|default({}) %}
+{% set pagination = pagination|default(null) %}
 
 {# Primary content #}
 {% block content %}
-    {% include '_partials/MessageList' with {
-        entries: entries,
-        pageNum: pageNum,
-        limit: limit,
-        entriesTotal: entriesTotal,
-        backLink: backLink,
-        backLinkText: backLinkText,
-        activeSpeaker: activeSpeaker,
-        activeSeries: activeSeries
-    } only %}
+    <div class="PageWithSubNav">
+        <nav
+            class="PageWithSubNav__Nav JSPageSubNav"
+            data-open-class="PageWithSubNav__Nav--IsOpen"
+        >
+            <span class="PageWithSubNav__MobileExpander JSPageSubNav__MobileExpander">
+                <span class="PageWithSubNav__MobileExpanderText JSPageSubNav__ActiveText">
+                    Menu
+                </span>
+                <span class="PageWithSubNav__MobileExpanderIcon">
+                    {% include '_svg/angle-down' %}
+                </span>
+            </span>
+            <div class="PageWithSubNav__NavLists JSPageSubNav__List">
+                <div class="PageWithSubNav__NavListHeading">Messages by:</div>
+                <ul class="PageWithSubNav__NavList">
+                    {% for speaker in craft.users.group('speakers').orderBy('lastname asc').all() %}
+                        <li class="PageWithSubNav__NavListItem">
+                            <a
+                                href="/media/messages/by/{{ speaker.slugField }}"
+                                class="PageWithSubNav__NavListLink{% if speaker.slugField == activeSpeaker %} PageWithSubNav__NavListLink--IsActive{% endif %}"
+                            >
+                                {% filter typeset %}{% if speaker.titleOrHonorific %}{{ speaker.titleOrHonorific }} {% endif %}{{ speaker.fullName }}{% endfilter %}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <div class="PageWithSubNav__NavListHeading">Messages Series</div>
+                <ul class="PageWithSubNav__NavList">
+                    {% for category in craft.categories.group('messageSeries').orderBy('title asc').all() %}
+                        <li class="PageWithSubNav__NavListItem">
+                            <a
+                                href="/media/messages/series/{{ category.slug }}"
+                                class="PageWithSubNav__NavListLink{% if category.slug == activeSeries %} PageWithSubNav__NavListLink--IsActive{% endif %}"
+                            >
+                                {{ category|typeset }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </nav>
+        <div class="PageWithSubNav__Content">
+            <div class="BasicBlock">
+                <div class="BasicBlock__Inner">
+                    <div class="MessageList">
+                        <div class="MessageList__Inner">
+                            {% if backLink %}
+                                <a href="{{ backLink }}">
+                                    &laquo; {{ backLinkText|typeset }}
+                                </a>
+                                <br><br><br>
+                            {% endif %}
+                            {% for entry in entries %}
+                                <div class="MessageList__Item">
+                                    {% include '_partials/Message' with {
+                                        entry: entry
+                                    } only %}
+                                </div>
+                            {% endfor %}
+                            {% if pagination %}
+                                {% include '_partials/Pagination' with {
+                                    pagination: pagination
+                                } %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
