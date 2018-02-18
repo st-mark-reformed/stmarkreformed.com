@@ -37,15 +37,19 @@ class PagesController extends BaseController
             $metaTitle = $entry->title;
         }
 
-        return $this->renderTemplate('_core/StandardPage', [
-            'noIndex' => ! $entry->searchEngineIndexing,
-            'metaTitle' => $metaTitle,
-            'metaDescription' => $entry->seoDescription,
-            'shareImage' => $shareImage,
-            'heroImageAsset' => $entry->heroImage->one(),
-            'heroHeading' => $entry->title,
-            'heroSubheading' => $entry->heroSubheading,
-            'entry' => $entry,
-        ]);
+        return $this->renderTemplate(
+            '_core/StandardPage',
+            [
+                'noIndex' => ! $entry->searchEngineIndexing,
+                'metaTitle' => $metaTitle,
+                'metaDescription' => $entry->seoDescription,
+                'shareImage' => $shareImage,
+                'heroImageAsset' => $entry->heroImage->one(),
+                'heroHeading' => $entry->title,
+                'heroSubheading' => $entry->heroSubheading,
+                'entry' => $entry,
+            ],
+            Craft::$app->getRequest()->getSegment(1) !== 'contact' // hack for now to not cache the contact page
+        );
     }
 }
