@@ -1,0 +1,42 @@
+{% set field = field|default(false) %}
+
+<section class="ContactForm">
+    <div class="ContactForm__Inner">
+        <form method="post" class="ContactForm__Form" novalidate>
+            <input type="hidden" name="action" value="dev/contact/formSubmission">
+            <input type="hidden" name="redirect" value="/contact/thanks">
+            {#
+                This is a honeypot, but we're trying not to give that away to spambots.
+                By making it required, and making it look like a normal input, AND pre-filling
+                it with content, we ensure users can't submit the form and get through unless they're
+                real people with JS enabled (JS will unrequire it and remove the content)
+
+                A second input will also act as a honey pot, but we're not touching that input with a pre-filled value or required.
+                No prefilled values and js, in case a spam bot is sneaky
+            #}
+            <div class="ContactForm__InputWrapper ContactForm__Site">
+                <label for="site" class="label ContactForm__InputLabel">Site</label>
+                <input type="text" name="site" class="input ContactForm__Input" id="site" value="stmarkreformed.com" autocomplete="off" required>
+            </div>
+            <div class="ContactForm__InputWrapper ContactForm__MailingAddress">
+                <label for="mailing_address" class="label ContactForm__InputLabel">Mailing Address</label>
+                <input type="text" name="mailing_address" class="input ContactForm__Input" autocomplete="off" id="mailing_address">
+            </div>
+            <div class="ContactForm__InputWrapper ContactForm__InputWrapper--IsHalfWidth">
+                <label for="name" class="label ContactForm__InputLabel">Your Name</label>
+                <input type="text" name="name" class="input ContactForm__Input" id="name" required>
+            </div>
+            <div class="ContactForm__InputWrapper ContactForm__InputWrapper--IsHalfWidth">
+                <label for="email" class="label ContactForm__InputLabel">Your Email Address</label>
+                <input type="email" name="email" class="input ContactForm__Input" id="email" required>
+            </div>
+            <div class="ContactForm__InputWrapper">
+                <label for="message" class="label ContactForm__InputLabel">Message</label>
+                <textarea name="message" id="message" class="textarea"></textarea>
+            </div>
+            <div class="ContactForm__InputWrapper ContactForm__InputWrapper--IsRightAligned">
+                <button type="submit" class="button">Submit</button>
+            </div>
+        </form>
+    </div>
+</section>
