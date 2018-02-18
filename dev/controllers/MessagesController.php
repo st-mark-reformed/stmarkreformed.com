@@ -105,6 +105,10 @@ class MessagesController extends BaseController
             'base' => PaginationService::getUriPathSansPagination()
         ]);
 
+        if ($pageNum > 1) {
+            $metaTitle .= " | Page{$pageNum}";
+        }
+
         $response = $this->renderTemplate('_audio/index', compact(
             'backLink',
             'backLinkText',
@@ -140,7 +144,7 @@ class MessagesController extends BaseController
 
         return $this->renderTemplate('_audio/index', [
             'noIndex' => ! $entry->searchEngineIndexing,
-            'metaTitle' => $entry->seoTitle ?? $entry->title,
+            'metaTitle' => ($entry->seoTitle ?: $entry->title) . ' | Messages',
             'metaDescription' => $entry->seoDescription,
             'shareImage' => $shareImage,
             'heroHeading' => $entry->title,
