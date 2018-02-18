@@ -3,7 +3,6 @@
 namespace dev\services;
 
 use craft\elements\Entry;
-use dev\services\StorageService;
 
 /**
  * Class NavService
