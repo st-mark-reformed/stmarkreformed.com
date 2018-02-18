@@ -63,6 +63,6 @@ return [
      * Events
      */
 
-    'events' => ['template' => '_events/index'],
-    'events/page/<pageNum:\d+>' => ['template' => '_events/index'],
+    'GET events' => 'dev/events/index',
+    'GET events/page/<pageNum:\d+>' => 'dev/events/index',
 ];
