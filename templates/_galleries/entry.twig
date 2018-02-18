@@ -1,44 +1,14 @@
 {% extends "_core/LayoutMaster" %}
 
-{# Static caching #}
-{% set shouldCache = true %}
-
-{# No Indexing #}
-{% set noIndex = entry.searchEngineIndexing != 1 %}
-
-{# Meta Title #}
-{% if craft.app.request.getSegment(1) %}
-    {% set metaTitle = entry.seoTitle|default(entry.title) %}
-{% else %}
-    {% set metaTitle = entry.seoTitle %}
-{% endif %}
-
-{# Meta description #}
-{% set metaDescription = entry.seoDescription %}
-
-{# Custom share image #}
-{% set shareImageAsset = entry.customShareImage.one() %}
-{% if shareImageAsset %}
-    {% set shareImage = shareImageAsset.getUrl({
-        width: min(1000, shareImageAsset.width)
-    }) %}
-{% endif %}
-
-{# Hero heading #}
-{% set heroHeading = entry.title %}
-
-{# Get the photos assets #}
-{% set photoAssets = entry.gallery.all() %}
-
-{# Set the first photo #}
-{% set firstPhotoAsset = photoAssets|first %}
-
-{# Set the hero image #}
-{% set heroImageAsset = firstPhotoAsset %}
-
-{% if shareImage is not defined %}
-    {% set shareImage = heroImageAsset %}
-{% endif %}
+{# Variables #}
+{% set shouldCache = shouldCache|default(true) %}
+{% set noIndex = noIndex|default(false) %}
+{% set metaTitle = metaTitle|default(null) %}
+{% set metaDescription = metaDescription|default(null) %}
+{% set shareImage = shareImage|default(null) %}
+{% set heroHeading = heroHeading|default(null) %}
+{% set photoAssets = photoAssets|default({}) %}
+{% set heroImageAsset = activeSeries|default(null) %}
 
 {% block content %}
     <div
