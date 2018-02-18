@@ -31,7 +31,8 @@ class DevTwigExtensions extends \Twig_Extension
             new \Twig_Filter('smartypants', [$this, 'smartypantsFilter']),
             new \Twig_Filter('widont', [$this, 'widontFilter']),
             new \Twig_Filter('cast', [$this, 'cast']),
-            new \Twig_Filter('truncate', [$this, 'truncate'])
+            new \Twig_Filter('truncate', [$this, 'truncate']),
+            new \Twig_Filter('ucfirst', [$this, 'ucfirst']),
         ];
     }
 
@@ -161,5 +162,15 @@ class DevTwigExtensions extends \Twig_Extension
         $truncation = new Truncation($limit, $strategy);
 
         return Template::raw($truncation->truncate($val));
+    }
+
+    /**
+     * Uppercases first letter
+     * @param string $val
+     * @return \Twig_Markup
+     */
+    public function ucfirst(string $val) : \Twig_Markup
+    {
+        return Template::raw(ucfirst($val));
     }
 }
