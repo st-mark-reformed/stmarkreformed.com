@@ -1,37 +1,15 @@
 {% extends "_core/LayoutMaster" %}
 
-{# Static caching #}
-{% set shouldCache = true %}
-
-{# No Indexing #}
-{% set noIndex = entry.searchEngineIndexing != 1 %}
-
-{# Meta Title #}
-{% if craft.app.request.getSegment(1) %}
-    {% set metaTitle = entry.seoTitle|default(entry.title) %}
-{% else %}
-    {% set metaTitle = entry.seoTitle %}
-{% endif %}
-
-{# Meta description #}
-{% set metaDescription = entry.seoDescription %}
-
-{# Custom share image #}
-{% set shareImageAsset = entry.customShareImage.one() %}
-{% if shareImageAsset %}
-    {% set shareImage = shareImageAsset.getUrl({
-        width: min(1000, shareImageAsset.width)
-    }) %}
-{% endif %}
-
-{# Hero Image #}
-{% set heroImageAsset = entry.heroImage.one() %}
-
-{# Hero heading #}
-{% set heroHeading = entry.heroHeading|default(entry.title) %}
-
-{# Hero subheading #}
-{% set heroSubheading = entry.heroSubheading %}
+{# Variables #}
+{% set shouldCache = shouldCache|default(true) %}
+{% set noIndex = noIndex|default(false) %}
+{% set metaTitle = metaTitle|default(null) %}
+{% set metaDescription = metaDescription|default(null) %}
+{% set shareImage = shareImage|default(null) %}
+{% set heroImageAsset = heroImageAsset|default(null) %}
+{% set heroHeading = heroHeading|default(null) %}
+{% set heroSubheading = heroSubheading|default(null) %}
+{% set entry = entry|default(null) %}
 
 {# Primary content #}
 {% block content %}

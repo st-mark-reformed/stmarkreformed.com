@@ -11,7 +11,7 @@ use craft\elements\db\AssetQuery;
 use dev\services\PaginationService;
 
 /**
- * Class SermonsController
+ * Class MessagesController
  */
 class MessagesController extends BaseController
 {
