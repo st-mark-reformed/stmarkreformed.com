@@ -1,52 +1,10 @@
 {% extends "_core/LayoutMaster" %}
 
-{# Static caching #}
-{% set shouldCache = true %}
-
-{# Hero heading #}
-{% set heroHeading = 'Galleries' %}
-
-{# Get the page number #}
-{% set pageNum = pageNum|default(null) %}
-
-{# If the page number is 1, it is not valid, there should be no /page/1 #}
-{# Or if there's not section #}
-{% if pageNum == 1 %}
-    {% exit 404 %}
-{% endif %}
-
-{# Now if there's no page number, it should be 1 #}
-{% set pageNum = pageNum|default(1)|cast('int') %}
-
-{# Get the entries #}
-{% set entriesQuery = craft.entries.section('galleries') %}
-
-{# Get the entries count #}
-{% set entriesTotal = entriesQuery.count()|cast('int') %}
-
-{# Set the limit #}
-{% set limit = 10 %}
-
-{# Set the max number of pages #}
-{% set maxPages = ceil(entriesTotal / limit)|cast('int') %}
-
-{# If we have exceeded the max number of pages we should 404 #}
-{% if pageNum > maxPages %}
-    {% exit 404 %}
-{% endif %}
-
-{# Get the offset #}
-{% set offset = (limit * pageNum) - limit %}
-
-{# Get the entries #}
-{% set entries = entriesQuery.limit(limit).offset(offset).all() %}
-
-{% set pagination = getPagination({
-    currentPage: pageNum,
-    perPage: limit,
-    totalResults: entriesTotal,
-    base: getUriPathSansPagination(),
-}) %}
+{# Variables #}
+{% set shouldCache = shouldCache|default(true) %}
+{% set heroHeading = heroHeading|default(null) %}
+{% set entries = entries|default({}) %}
+{% set pagination = pagination|default(null) %}
 
 {% block content %}
     <section class="GalleryShowcase">

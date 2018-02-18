@@ -47,16 +47,16 @@ return [
     'GET media/messages/series/<series:([^\/]+)>/page/<pageNum:\d+>' => 'dev/messages/index',
 
     // Sermons feed
-    'media/<section:messages>/feed' => ['template' => '_audio/feed.xml'],
-    'sermons' => ['template' => '_audio/newFeedRedirect.xml'],
+    'GET media/<section:messages>/feed' => ['template' => '_audio/feed.xml'],
+    'GET sermons' => ['template' => '_audio/newFeedRedirect.xml'],
 
 
     /**
      * Galleries
      */
 
-    'media/galleries' => ['template' => '_galleries/index'],
-    'media/galleries/page/<pageNum:\d+>' => ['template' => '_galleries/index'],
+    'GET media/galleries' => 'dev/galleries/index',
+    'GET media/galleries/page/<pageNum:\d+>' => 'dev/galleries/index',
 
 
     /**
