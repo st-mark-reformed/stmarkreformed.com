@@ -3,8 +3,41 @@
 
 <div class="StandardEntry__ImageEntryBlockInner">
     <picture>
+        {% set standardAssetUrl = imageAsset.getUrl({
+            width: min(400, imageAsset.width),
+        }) %}
+        {% set retinaAssetUrl = imageAsset.getUrl({
+            width: min(400, imageAsset.width) * 2,
+        }) %}
+        <source
+            srcset="{{ standardAssetUrl }} 1x,
+                    {{ retinaAssetUrl }} 2x"
+            media="(min-width: 1px) and (max-width: 499px)"
+        >
+
+        {% set standardAssetUrl = imageAsset.getUrl({
+            width: min(800, imageAsset.width),
+        }) %}
+        {% set retinaAssetUrl = imageAsset.getUrl({
+            width: min(800, imageAsset.width) * 2,
+        }) %}
+        <source
+            srcset="{{ standardAssetUrl }} 1x,
+                    {{ retinaAssetUrl }} 2x"
+            media="(min-width: 500px) and (max-width: 799px)"
+        >
+
+        {% set standardAssetUrl = imageAsset.getUrl({
+            width: min(1200, imageAsset.width),
+        }) %}
+        {% set retinaAssetUrl = imageAsset.getUrl({
+            width: min(1200, imageAsset.width) * 2,
+        }) %}
+
         <img
-            src="{{ imageAsset.getUrl() }}"
+            src="{{ standardAssetUrl }}"
+            srcset="{{ standardAssetUrl }} 1x,
+                    {{ retinaAssetUrl }} 2x"
             alt="{{ imageAsset.title }}"
             class="StandardEntry__ImageEntryBlockImage"
         >
