@@ -18,21 +18,21 @@
                 <a href="{{ backLink }}">&laquo; {{ backLinkText|typeset }}</a>
                 <br><br><br>
             {% endif %}
-        </div>
-        <div class="StandardEntry__ContentWrapper">
-            <div class="StandardEntry__ContentItem">
-                <div class="StandardEntry__Headings">
-                    <h2 class="StandardEntry__Heading">
-                        {{ entry.title|typeset }}
-                    </h2>
-                    <h3 class="StandardEntry__SubHeading">
-                        {{ entry.postDate|date('F j, Y') }}
-                    </h3>
+            <div class="StandardEntry__ContentWrapper">
+                <div class="StandardEntry__ContentItem">
+                    <div class="StandardEntry__Headings">
+                        <h2 class="StandardEntry__Heading">
+                            {{ entry.title|typeset }}
+                        </h2>
+                        <h3 class="StandardEntry__SubHeading">
+                            {{ entry.postDate|date('F j, Y') }}
+                        </h3>
+                    </div>
                 </div>
+                {% include '_entryBuilder/_include' with {
+                    fieldArray: entry.entryBuilder.all(),
+                } only %}
             </div>
-            {% include '_entryBuilder/_include' with {
-                fieldArray: entry.entryBuilder.all(),
-            } only %}
         </div>
     </section>
 {% endblock %}
