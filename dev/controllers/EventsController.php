@@ -28,6 +28,8 @@ class EventsController extends BaseController
         $pageNum = $pageNum ?: 1;
         $heroHeading = 'Events';
         $limit = 12;
+        $dateType = 'event';
+        $bodyType = 'event';
 
         $dayAfter = new \DateTime();
         $dayAfter->setTimestamp(strtotime('-1 day'));
@@ -60,7 +62,9 @@ class EventsController extends BaseController
         $response = $this->renderTemplate('_core/StandardListing', compact(
             'heroHeading',
             'entries',
-            'pagination'
+            'pagination',
+            'dateType',
+            'bodyType'
         ));
 
         return $response;
