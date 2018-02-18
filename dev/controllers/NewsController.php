@@ -15,12 +15,15 @@ class NewsController extends BaseController
 {
     /**
      * Renders a listing of news items
+     * @param string $section
      * @param int|null $pageNum
      * @return Response
      * @throws \Exception
      */
-    public function actionIndex(int $pageNum = null) : Response
-    {
+    public function actionIndex(
+        string $section = null,
+        int $pageNum = null
+    ) : Response {
         if ($pageNum === 1) {
             throw new HttpException(404);
         }
@@ -32,10 +35,19 @@ class NewsController extends BaseController
         $dateType = 'entry';
         $bodyType = 'entry';
 
-        $entriesQuery = Entry::find()->section('news');
+        $section = $section ?? 'news';
+
+        $entriesQuery = Entry::find()->section($section);
 
         $entriesTotal = (int) $entriesQuery->count();
         $maxPages = (int) ceil($entriesTotal / $limit);
+
+        if (! $entriesTotal) {
+            return $this->renderTemplate('_core/NoEntries', [
+                'metaTitle' => $metaTitle,
+                'heroHeading' => 'No Entries Found',
+            ]);
+        }
 
         if ($pageNum > $maxPages) {
             throw new HttpException(404);

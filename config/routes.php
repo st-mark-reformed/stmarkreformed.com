@@ -70,6 +70,13 @@ return [
     /**
      * News
      */
-    'GET news' => 'dev/news/index',
-    'GET news/page/<pageNum:\d+>' => 'dev/news/index',
+    'GET <section:news>' => 'dev/news/index',
+    'GET <section:news>/page/<pageNum:\d+>' => 'dev/news/index',
+
+
+    /**
+     * Pastor's Page
+     */
+    'GET <section:pastors-page>' => 'dev/news/index',
+    'GET <section:pastors-page>/page/<pageNum:\d+>' => 'dev/news/index',
 ];
