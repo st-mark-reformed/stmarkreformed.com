@@ -1,0 +1,12 @@
+{% set field = field|default(null) %}
+{% set imageAsset = field.image.one() %}
+
+<div class="StandardEntry__ImageEntryBlockInner">
+    <picture>
+        <img
+            src="{{ imageAsset.getUrl() }}"
+            alt="{{ imageAsset.title }}"
+            class="StandardEntry__ImageEntryBlockImage"
+        >
+    </picture>
+</div>

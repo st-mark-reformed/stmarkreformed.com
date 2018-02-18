@@ -1,0 +1,38 @@
+{% extends "_core/LayoutMaster" %}
+
+{# Variables #}
+{% set noIndex = noIndex|default(false) %}
+{% set metaTitle = metaTitle|default(null) %}
+{% set metaDescription = metaDescription|default(null) %}
+{% set shareImage = shareImage|default(null) %}
+{% set heroHeading = heroHeading|default(null) %}
+{% set heroImageAsset = activeSeries|default(null) %}
+{% set entry = entry|default(null) %}
+{% set backLink = backLink|default(null) %}
+{% set backLinkText = backLinkText|default('back') %}
+
+{% block content %}
+    <section class="StandardEntry">
+        <div class="StandardEntry__Inner">
+            {% if backLink %}
+                <a href="{{ backLink }}">&laquo; {{ backLinkText|typeset }}</a>
+                <br><br><br>
+            {% endif %}
+        </div>
+        <div class="StandardEntry__ContentWrapper">
+            <div class="StandardEntry__ContentItem">
+                <div class="StandardEntry__Headings">
+                    <h2 class="StandardEntry__Heading">
+                        {{ entry.title|typeset }}
+                    </h2>
+                    <h3 class="StandardEntry__SubHeading">
+                        {{ entry.postDate|date('F j, Y') }}
+                    </h3>
+                </div>
+            </div>
+            {% include '_entryBuilder/_include' with {
+                fieldArray: entry.entryBuilder.all(),
+            } only %}
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% set fieldArray = fieldArray|default([]) %}
+
+{% for field in fieldArray %}
+    <div class="StandardEntry__ContentItem">
+        <div class="StandardEntry__{{ field.type.handle|ucfirst  }}">
+            {% include '_entryBuilder/' ~ field.type.handle with {
+                field: field,
+            } %}
+        </div>
+    </div>
+{% endfor %}

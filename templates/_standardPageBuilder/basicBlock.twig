@@ -94,7 +94,7 @@
                 {% endif %}
                 {% if hasCta %}
                     <div class="BasicBlock__CTAS">
-                        {% for cta in field.callToAction %}
+                        {% for cta in field.callToAction if cta.link and cta.text %}
                             <a href="{{ cta.link }}" class="BasicBlock__CTA {{ buttonClass }}">
                                 {{ cta.text|typeset }}
                             </a>
