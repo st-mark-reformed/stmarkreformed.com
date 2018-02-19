@@ -12,25 +12,6 @@ use craft\models\Section_SiteSettings;
 class EntryRoutingService
 {
     /**
-     * Handles page entries
-     * @param SetElementRouteEvent $eventModel
-     * @throws \Exception
-     */
-    public function pageEntryRouteHandler(SetElementRouteEvent $eventModel)
-    {
-        /** @var Entry $entry */
-        $entry = $eventModel->sender;
-
-        if ($entry->getSection()->handle !== 'pages' ||
-            $entry->getType()->handle !== 'navLink'
-        ) {
-            return;
-        }
-
-        $eventModel->route = '';
-    }
-
-    /**
      * Handles entry controller routing
      * @param SetElementRouteEvent $eventModel
      * @throws \Exception
@@ -39,6 +20,11 @@ class EntryRoutingService
     {
         /** @var Entry $entry */
         $entry = $eventModel->sender;
+
+        if ($entry->getType()->handle === 'navLink') {
+            $eventModel->route = '';
+            return;
+        }
 
         /** @var Section_SiteSettings $sectionSiteSettingsModel */
         $sectionSiteSettingsModel = $entry->getSection()->getSiteSettings()[1];

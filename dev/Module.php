@@ -69,7 +69,6 @@ class Module extends ModuleBase
             Entry::EVENT_SET_ROUTE,
             function (SetElementRouteEvent $eventModel) {
                 $entryRoutingService = new EntryRoutingService();
-                $entryRoutingService->pageEntryRouteHandler($eventModel);
                 $entryRoutingService->entryControllerRouting($eventModel);
             }
         );
