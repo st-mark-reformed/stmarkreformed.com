@@ -6,7 +6,6 @@ use Craft;
 use TS\Text\Truncation;
 use craft\helpers\Template;
 use dev\services\NavService;
-use dev\services\RouteService;
 use dev\services\ConfigService;
 use dev\services\StorageService;
 use dev\services\TypesetService;
@@ -83,10 +82,6 @@ class DevTwigExtensions extends \Twig_Extension
             new \Twig_Function('checkOldPodcastQueryString', function () {
                 return isset(Craft::$app->getRequest()->getQueryParams()['podcast']);
             }),
-            new \Twig_Function('controllerRoute', [
-                new RouteService(),
-                'controllerRoute'
-            ]),
             new \Twig_Function('getStorage', function ($key, $namespace = 'storage') {
                 return StorageService::getInstance()->get($key, $namespace);
             }),
