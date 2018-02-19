@@ -12,6 +12,7 @@ use yii\base\Module as ModuleBase;
 use dev\services\EntryRoutingService;
 use craft\events\SetElementRouteEvent;
 use dev\twigextensions\DevTwigExtensions;
+use craft\console\Application as ConsoleApplication;
 
 /**
  * Custom module class for this project.
@@ -37,6 +38,11 @@ class Module extends ModuleBase
     {
         $this->setUp();
         $this->setEvents();
+
+        // Add in our console commands
+        if (Craft::$app instanceof ConsoleApplication) {
+            $this->controllerNamespace = 'dev\commands';
+        }
 
         parent::init();
     }

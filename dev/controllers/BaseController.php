@@ -2,11 +2,10 @@
 
 namespace dev\controllers;
 
-use buzzingpixel\craftstatic\Craftstatic;
-use buzzingpixel\craftstatic\services\StaticHandlerService;
 use yii\web\Response;
 use craft\web\Controller;
 use yii\base\InvalidParamException;
+use buzzingpixel\craftstatic\Craftstatic;
 
 /**
  * Class BaseController
