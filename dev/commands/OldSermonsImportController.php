@@ -2,9 +2,10 @@
 
 namespace dev\commands;
 
-use dev\services\SermonImporterService;
+use Craft;
 use yii\console\Controller;
 use yii\helpers\Console;
+use dev\services\SermonImporterService;
 
 /**
  * OldSermonsImport command
@@ -26,16 +27,22 @@ class OldSermonsImportController extends Controller
     /**
      * Imports sermons from the old feed
      * @throws \Exception
+     * @throws \Throwable
      */
     public function actionRunImport()
     {
+        Craft::setAlias('@webroot', \dirname(__DIR__, 2) . '/public');
+
         $firstPageOnly = $this->firstPageOnly === 'true';
+
+        $sermonImporterService = new SermonImporterService();
 
         $batchDirPath = \dirname(__DIR__) . '/sermonbatches';
 
         $batchDir = new \DirectoryIterator($batchDirPath);
 
         $hasBatchFiles = false;
+        $batchFiles = [];
 
         foreach ($batchDir as $fileInfo) {
             if ($fileInfo->getExtension() !== 'json') {
@@ -44,13 +51,66 @@ class OldSermonsImportController extends Controller
 
             $hasBatchFiles = true;
 
-            break;
+            $batchFiles[] = "{$batchDirPath}/{$fileInfo->getFilename()}";
         }
 
         if ($hasBatchFiles) {
-            // TODO: Process batch files
-            var_dump('TODO: Process batch files');
-            die;
+            $this->stdout(
+                'Processing sermon import batches...' . PHP_EOL,
+                Console::FG_YELLOW
+            );
+
+            $batchFiles = array_reverse($batchFiles);
+
+            $counter = 0;
+
+            foreach ($batchFiles as $batchFile) {
+                if ($counter >= 20) {
+                    break;
+                }
+
+                $counter++;
+
+                $this->stdout(
+                    "Processing {$batchFile}..." . PHP_EOL,
+                    Console::FG_YELLOW
+                );
+
+                $sermonImporterService->importSermonFromJsonFile(
+                    $batchFile
+                );
+
+                $this->stdout(
+                    "Finished processing {$batchFile}" . PHP_EOL,
+                    Console::FG_GREEN
+                );
+            }
+
+            $total = 0;
+
+            foreach ($batchDir as $fileInfo) {
+                if ($fileInfo->getExtension() !== 'json') {
+                    continue;
+                }
+
+                $total++;
+            }
+
+            if ($total === 0) {
+                $this->stdout(
+                    'Batch importing is finished' . PHP_EOL,
+                    Console::FG_GREEN
+                );
+                return;
+            }
+
+            $this->stdout(
+                "Finished processing {$counter} items. " .
+                "There are {$total} items left to process. " .
+                'Run the command again to continue processing.' . PHP_EOL,
+                Console::FG_GREEN
+            );
+            return;
         }
 
         $this->stdout(
@@ -58,7 +118,7 @@ class OldSermonsImportController extends Controller
             Console::FG_YELLOW
         );
 
-        (new SermonImporterService())->scrapeDomForSermons(
+        $sermonImporterService->scrapeDomForSermons(
             'http://stmarkreformed.com/sermons/',
             'http://stmarkreformed.com/sermons/',
             $batchDirPath,
