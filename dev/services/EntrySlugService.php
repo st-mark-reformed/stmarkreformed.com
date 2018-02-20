@@ -9,10 +9,10 @@ use Cocur\Slugify\Slugify;
 /**
  * Class EventSlugService
  */
-class EventSlugService
+class EntrySlugService
 {
     /**
-     * Get config
+     * Sets event entry slug
      * @param Entry $entry
      * @throws \Exception
      */
@@ -39,5 +39,26 @@ class EventSlugService
         }
 
         $entry->slug = (new Slugify())->slugify("{$date}-{$title}");
+    }
+
+    /**
+     * Sets message entry slug
+     * @param Entry $entry
+     * @throws \Exception
+     */
+    public function setMessageEntrySlug(Entry $entry)
+    {
+        if ($entry->getSection()->handle !== 'messages') {
+            return;
+        }
+
+        $postDate = $entry->postDate;
+
+        if (! $postDate) {
+            return;
+        }
+        $date = $postDate->format('Y-m-d');
+
+        $entry->slug = (new Slugify())->slugify("{$date}-{$entry->title}");
     }
 }

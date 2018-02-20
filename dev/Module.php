@@ -7,7 +7,7 @@ use yii\base\Event;
 use craft\elements\Entry;
 use craft\events\ModelEvent;
 use dev\services\CacheService;
-use dev\services\EventSlugService;
+use dev\services\EntrySlugService;
 use yii\base\Module as ModuleBase;
 use dev\services\EntryRoutingService;
 use craft\events\SetElementRouteEvent;
@@ -85,7 +85,8 @@ class Module extends ModuleBase
             function (ModelEvent $eventModel) {
                 /** @var Entry $entry */
                 $entry = $eventModel->sender;
-                (new EventSlugService())->setEventEntrySlug($entry);
+                (new EntrySlugService())->setEventEntrySlug($entry);
+                (new EntrySlugService())->setMessageEntrySlug($entry);
             }
         );
     }
