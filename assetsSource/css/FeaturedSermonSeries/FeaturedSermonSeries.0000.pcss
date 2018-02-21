@@ -1,0 +1,90 @@
+.FeaturedSermonSeries {
+    background-color: var(--gray);
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+}
+
+.FeaturedSermonSeries:before,
+.FeaturedSermonSeries:after {
+    content: ' ';
+    position: absolute;
+}
+
+.FeaturedSermonSeries:before {
+    background-image: url('/assets/img/bible-on-wood-table-500.jpg');
+    background-position: 50% 50%;
+    background-size: cover;
+    filter: blur(8px);
+    height: calc(100% + 12px);
+    left: -6px;
+    top: -6px;
+    width: calc(100% + 12px);
+    z-index: 1;
+}
+
+.FeaturedSermonSeries:after {
+    background-color: rgba(var(--lightGray), 0.6);
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+.FeaturedSermonSeries__Inner {
+    padding: 30px 14px;
+    position: relative;
+    z-index: 3;
+}
+
+.FeaturedSermonSeries__LatestSermonContainer {
+    opacity: 0.7;
+    text-align: left;
+}
+
+.FeaturedSermonSeries__Title,
+.FeaturedSermonSeries__SeriesTitle,
+.FeaturedSermonSeries__Body {
+    margin: 0 auto;
+    max-width: 500px;
+}
+
+.FeaturedSermonSeries__Title,
+.FeaturedSermonSeries__SeriesTitle {
+    color: var(--saddleBrown);
+}
+
+.FeaturedSermonSeries__Title {
+    font-family: var(--headingFont);
+    font-size: 26px;
+    font-weight: var(--headingFontWeight);
+    line-height: var(--headingLineHeight);
+    margin-bottom: 10px;
+}
+
+.FeaturedSermonSeries__SeriesTitle {
+    font-size: 22px;
+    font-style: italic;
+    font-weight: var(--BodyFontBoldWeight);
+    line-height: var(--paragraphLineHeight);
+    margin-bottom: 24px;
+}
+
+.FeaturedSermonSeries__Body {
+    line-height: var(--paragraphLineHeight);
+    margin-bottom: 24px;
+}
+
+.FeaturedSermonSeries__LatestSermonTitle {
+    color: var(--bronze);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.FeaturedSermonSeries__LatestSermonContainer {
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 700px;
+}
