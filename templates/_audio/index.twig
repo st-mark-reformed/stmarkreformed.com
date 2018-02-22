@@ -29,6 +29,35 @@
                 </span>
             </span>
             <div class="PageWithSubNav__NavLists JSPageSubNav__List">
+                <div class="PageWithSubNav__NavListHeading">Subscribe:</div>
+                <ul class="PageWithSubNav__NavList">
+                    {#<li class="PageWithSubNav__NavListItem">
+                        <a
+                            href="#"
+                            class="PageWithSubNav__NavListLink"
+                        >
+                            View in iTunes Podcast Directory
+                        </a>
+                    </li>#}
+                    <li class="PageWithSubNav__NavListItem">
+                        <a
+                            href="{{ siteUrl|replaceLinkProtocol('itpc://') }}media/messages/feed"
+                            class="PageWithSubNav__NavListLink"
+                        >
+                            Subscribe In iTunes
+                        </a>
+                    </li>
+                    <li class="PageWithSubNav__NavListItem">
+                        <a
+                            href="{{ siteUrl }}media/messages/feed"
+                            class="PageWithSubNav__NavListLink"
+                        >
+                            RSS Feed
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="PageWithSubNav__NavLists JSPageSubNav__List">
                 <div class="PageWithSubNav__NavListHeading">Messages by:</div>
                 <ul class="PageWithSubNav__NavList">
                     {% for speaker in craft.users.group('speakers').orderBy('lastname asc').all() %}

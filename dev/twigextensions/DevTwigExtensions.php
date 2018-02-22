@@ -32,6 +32,7 @@ class DevTwigExtensions extends \Twig_Extension
             new \Twig_Filter('cast', [$this, 'cast']),
             new \Twig_Filter('truncate', [$this, 'truncate']),
             new \Twig_Filter('ucfirst', [$this, 'ucfirst']),
+            new \Twig_Filter('replaceLinkProtocol', [$this, 'replaceLinkProtocol']),
         ];
     }
 
@@ -170,5 +171,17 @@ class DevTwigExtensions extends \Twig_Extension
     public function ucfirst(string $val) : \Twig_Markup
     {
         return Template::raw(ucfirst($val));
+    }
+
+    /**
+     * Replace link protocol
+     * @param string $val
+     * @return \Twig_Markup
+     */
+    public function replaceLinkProtocol(string $val, $protocol) : \Twig_Markup
+    {
+        return Template::raw(
+            str_replace(['http://', 'https://'], $protocol, $val)
+        );
     }
 }
