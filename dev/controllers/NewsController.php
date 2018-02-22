@@ -36,6 +36,7 @@ class NewsController extends BaseController
         $bodyType = 'entry';
 
         $section = $section ?? 'news';
+        $section = $section === 'pastors-page' ? 'pastorsPage' : $section;
 
         $entriesQuery = Entry::find()->section($section);
 
