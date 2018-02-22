@@ -137,7 +137,7 @@ class EventsController extends BaseController
                 " | {$dateStringReplace} | Events",
             'metaDescription' => $entry->seoDescription,
             'shareImage' => $shareImage,
-            'heroHeading' => $entry->title,
+            'heroHeading' => $entry->heroHeading ?: $entry->title,
             'heroImageAsset' => $entry->heroImage->one(),
             'entry' => $entry,
             'dateString' => Template::raw($dateString),

@@ -100,7 +100,7 @@ class NewsController extends BaseController
             'metaTitle' => ($entry->seoTitle ?: $entry->title) . ' | News',
             'metaDescription' => $entry->seoDescription,
             'shareImage' => $shareImage,
-            'heroHeading' => $entry->title,
+            'heroHeading' => $entry->heroHeading ?: $entry->title,
             'heroImageAsset' => $entry->heroImage->one(),
             'entry' => $entry,
             'backLink' => '/news',

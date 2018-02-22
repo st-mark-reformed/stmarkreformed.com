@@ -147,7 +147,7 @@ class MessagesController extends BaseController
             'metaTitle' => ($entry->seoTitle ?: $entry->title) . ' | Messages',
             'metaDescription' => $entry->seoDescription,
             'shareImage' => $shareImage,
-            'heroHeading' => $entry->title,
+            'heroHeading' => $entry->heroHeading ?: $entry->title,
             'entries' => [$entry],
             'backLink' => '/media/messages',
             'backLinkText' => 'back to all messages',

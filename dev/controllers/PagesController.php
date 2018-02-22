@@ -45,7 +45,7 @@ class PagesController extends BaseController
                 'metaDescription' => $entry->seoDescription,
                 'shareImage' => $shareImage,
                 'heroImageAsset' => $entry->heroImage->one(),
-                'heroHeading' => $entry->title,
+                'heroHeading' => $entry->heroHeading ?: $entry->title,
                 'heroSubheading' => $entry->heroSubheading,
                 'entry' => $entry,
             ],
