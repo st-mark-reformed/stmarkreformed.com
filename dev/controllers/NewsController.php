@@ -38,6 +38,11 @@ class NewsController extends BaseController
         $section = $section ?? 'news';
         $section = $section === 'pastors-page' ? 'pastorsPage' : $section;
 
+        if ($section === 'pastorsPage') {
+            $metaTitle = "Pastor's Page" . ($pageNum > 1 ? " | Page {$pageNum}" : '');
+            $heroHeading = "Pastor's Page";
+        }
+
         $entriesQuery = Entry::find()->section($section);
 
         $entriesTotal = (int) $entriesQuery->count();
