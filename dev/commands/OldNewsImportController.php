@@ -3,29 +3,17 @@
 namespace dev\commands;
 
 use Craft;
+use dev\services\NewsImporterService;
 use yii\helpers\Console;
 use yii\console\Controller;
-use dev\services\SermonImporterService;
 
 /**
- * OldSermonsImport command
+ * Class OldNewsImportController
  */
-class OldSermonsImportController extends Controller
+class OldNewsImportController extends Controller
 {
-    public $firstPageOnly = 'true';
-
     /**
-     * @inheritdoc
-     */
-    public function options($actionID) : array
-    {
-        $options = parent::options($actionID);
-        $options[] = 'firstPageOnly';
-        return $options;
-    }
-
-    /**
-     * Imports sermons from the old feed
+     * Imports news from the old site
      * @throws \Exception
      * @throws \Throwable
      */
@@ -33,11 +21,9 @@ class OldSermonsImportController extends Controller
     {
         Craft::setAlias('@webroot', \dirname(__DIR__, 2) . '/public');
 
-        $firstPageOnly = $this->firstPageOnly === 'true';
+        $importerService = new NewsImporterService();
 
-        $sermonImporterService = new SermonImporterService();
-
-        $batchDirPath = \dirname(__DIR__) . '/sermonbatches';
+        $batchDirPath = \dirname(__DIR__) . '/newsbatches';
 
         $batchDir = new \DirectoryIterator($batchDirPath);
 
@@ -56,7 +42,7 @@ class OldSermonsImportController extends Controller
 
         if ($hasBatchFiles) {
             $this->stdout(
-                'Processing sermon import batches...' . PHP_EOL,
+                'Processing news import batches...' . PHP_EOL,
                 Console::FG_YELLOW
             );
 
@@ -76,7 +62,7 @@ class OldSermonsImportController extends Controller
                     Console::FG_YELLOW
                 );
 
-                $sermonImporterService->importSermonFromJsonFile($batchFile);
+                $importerService->importFromJsonFile($batchFile);
 
                 $this->stdout(
                     "Finished processing {$batchFile}" . PHP_EOL,
@@ -112,15 +98,16 @@ class OldSermonsImportController extends Controller
         }
 
         $this->stdout(
-            'Scraping DOM for sermons. This may take a bit...' . PHP_EOL,
+            'Scraping DOM for news. This may take a bit...' . PHP_EOL,
             Console::FG_YELLOW
         );
 
-        $sermonImporterService->scrapeDomForSermons(
-            'http://stmarkreformed.com/sermons/',
-            'http://stmarkreformed.com/sermons/',
+        $importerService->scrapeDomForNews(
+            'http://stmarkreformed.com/category/news/',
+            'http://stmarkreformed.com/category/news/',
             $batchDirPath,
-            $firstPageOnly
+            1,
+            3
         );
 
         $this->stdout(
