@@ -104,7 +104,7 @@ class NewsImporterService
         // $body = new \DOMElement('div', $json->body);
         $body = new \DOMDocument();
 
-        $body->loadHTML("<div class=\"importWrapper\">{$json->body}</div>");
+        @$body->loadHTML("<div class=\"importWrapper\">{$json->body}</div>");
 
         $images = [];
 
@@ -150,6 +150,7 @@ class NewsImporterService
         $date->setTimestamp(strtotime("{$json->date} 11:00am"));
 
         $entry = new Entry();
+        $entry->authorId = 87;
         $entry->sectionId = $section->id;
         $entry->typeId = $section->getEntryTypes()[0]->id;
         $entry->slug = (new Slugify())->slugify($json->title);

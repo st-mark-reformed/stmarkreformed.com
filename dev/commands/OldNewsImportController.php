@@ -62,7 +62,7 @@ class OldNewsImportController extends Controller
                     Console::FG_YELLOW
                 );
 
-                $importerService->importFromJsonFile($batchFile);
+                $importerService->importFromJsonFile($batchFile, 'pastorsPage');
 
                 $this->stdout(
                     "Finished processing {$batchFile}" . PHP_EOL,
@@ -102,12 +102,20 @@ class OldNewsImportController extends Controller
             Console::FG_YELLOW
         );
 
+        // $importerService->scrapeDomForNews(
+        //     'http://stmarkreformed.com/category/news/',
+        //     'http://stmarkreformed.com/category/news/',
+        //     $batchDirPath,
+        //     1,
+        //     3
+        // );
+
         $importerService->scrapeDomForNews(
-            'http://stmarkreformed.com/category/news/',
-            'http://stmarkreformed.com/category/news/',
+            'http://stmarkreformed.com/category/pastors-page/',
+            'http://stmarkreformed.com/category/pastors-page/',
             $batchDirPath,
             1,
-            3
+            25
         );
 
         $this->stdout(
