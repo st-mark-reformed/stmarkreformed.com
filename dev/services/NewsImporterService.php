@@ -102,9 +102,9 @@ class NewsImporterService
         $json = json_decode(file_get_contents($filePath));
 
         // $body = new \DOMElement('div', $json->body);
-        $body = new \DOMDocument();
+        $body = new \DOMDocument('1.0', 'UTF-8');
 
-        @$body->loadHTML("<div class=\"importWrapper\">{$json->body}</div>");
+        @$body->loadHTML("<?xml encoding=\"utf-8\" ?><div class=\"importWrapper\">{$json->body}</div>");
 
         $images = [];
 
@@ -113,32 +113,32 @@ class NewsImporterService
             $images[] = $img->getAttribute('src');
         }
 
-        $guzzleClient = new GuzzleClient();
+        // $guzzleClient = new GuzzleClient();
 
-        $webroot = Craft::getAlias('@webroot');
+        // $webroot = Craft::getAlias('@webroot');
 
-        if ($images) {
-            foreach ($images as $url) {
-                $parsed = parse_url($url);
-                $path = ltrim($parsed['path'], '/');
-                $fullPath = "{$webroot}/{$path}";
-                $dirName = \dirname($fullPath);
-                exec("mkdir -p {$dirName}");
-                try {
-                    $guzzleClient->get($url, [
-                        'save_to' => $fullPath,
-                    ]);
-                } catch (\Exception $e) {
-                    try {
-                        $guzzleClient->get("http://stmarkreformed.com/{$url}", [
-                            'save_to' => $fullPath,
-                        ]);
-                    } catch (\Exception $e) {
-                        //
-                    }
-                }
-            }
-        }
+        // if ($images) {
+        //     foreach ($images as $url) {
+        //         $parsed = parse_url($url);
+        //         $path = ltrim($parsed['path'], '/');
+        //         $fullPath = "{$webroot}/{$path}";
+        //         $dirName = \dirname($fullPath);
+        //         exec("mkdir -p {$dirName}");
+        //         try {
+        //             $guzzleClient->get($url, [
+        //                 'save_to' => $fullPath,
+        //             ]);
+        //         } catch (\Exception $e) {
+        //             try {
+        //                 $guzzleClient->get("http://stmarkreformed.com/{$url}", [
+        //                     'save_to' => $fullPath,
+        //                 ]);
+        //             } catch (\Exception $e) {
+        //                 //
+        //             }
+        //         }
+        //     }
+        // }
 
         $section = Craft::$app->getSections()->getSectionByHandle($sectionHandle);
 

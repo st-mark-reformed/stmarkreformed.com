@@ -51,9 +51,9 @@ class OldNewsImportController extends Controller
             $counter = 0;
 
             foreach ($batchFiles as $batchFile) {
-                if ($counter >= 20) {
-                    break;
-                }
+                // if ($counter >= 20) {
+                //     break;
+                // }
 
                 $counter++;
 
@@ -62,6 +62,7 @@ class OldNewsImportController extends Controller
                     Console::FG_YELLOW
                 );
 
+                // $importerService->importFromJsonFile($batchFile, 'news');
                 $importerService->importFromJsonFile($batchFile, 'pastorsPage');
 
                 $this->stdout(
