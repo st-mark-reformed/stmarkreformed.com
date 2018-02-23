@@ -45,7 +45,7 @@ cp ${2}/public/assets/css/style.min.css ${2}/public/assets/css/style.min.${times
 cp ${2}/public/assets/js/script.min.js $2/public/assets/js/script.min.${timestamp}.js;
 sed -i -e "s/'staticAssetCacheTime' => ''/'staticAssetCacheTime' => $timestamp/g" ${2}/config/general.php;
 
-# Update file permissions for EE
+# Update file permissions
 chmod -R 0777 ${2}/public/cache;
 chmod -R 0777 ${2}/public/cpresources;
 
