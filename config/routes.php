@@ -60,10 +60,9 @@ return [
 
     /**
      * Messages feeds routes
-     * @see \dev\controllers\MessagesController::actionIndex()
      */
-    'GET media/<section:messages>/feed' => ['template' => '_audio/feed.xml'],
-    'GET sermons' => ['template' => '_audio/newFeedRedirect.xml'],
+    'GET media/<section:messages>/feed' => ['template' => '_core/MessagesFeed.xml'],
+    'GET sermons' => ['template' => '_audio/MessagesNewFeedRedirect.xml'],
 
     /**
      * Messages single entry pages set by Messages section in Craft

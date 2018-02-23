@@ -38,7 +38,7 @@ class PagesController extends BaseController
         }
 
         return $this->renderTemplate(
-            '_core/StandardPage',
+            '_core/PageStandard.twig',
             [
                 'noIndex' => ! $entry->searchEngineIndexing,
                 'metaTitle' => $metaTitle,

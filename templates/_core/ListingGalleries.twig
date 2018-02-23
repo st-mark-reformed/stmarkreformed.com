@@ -1,4 +1,4 @@
-{% extends "_core/LayoutMaster" %}
+{% extends "_core/LayoutMaster.twig" %}
 
 {# Variables #}
 {% set heroHeading = heroHeading|default(null) %}
@@ -10,7 +10,7 @@
         <div class="GalleryShowcase__Inner">
             <div class="GalleryShowcase__Galleries">
                 {% for entry in entries %}
-                    {% include '_partials/GalleryShowcase' with {
+                    {% include '_partials/GalleryShowcase.twig' with {
                         entry: entry
                     } only %}
                 {% endfor %}
@@ -19,7 +19,7 @@
     </section>
     {% if pagination %}
         <div class="PaginationWrapper">
-            {% include '_partials/Pagination' with {
+            {% include '_partials/Pagination.twig' with {
                 pagination: pagination
             } %}
         </div>

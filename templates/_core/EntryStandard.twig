@@ -1,4 +1,4 @@
-{% extends "_core/LayoutMaster" %}
+{% extends "_core/LayoutMaster.twig" %}
 
 {# Variables #}
 {% set noIndex = noIndex|default(false) %}
@@ -30,7 +30,7 @@
                         </h3>
                     </div>
                 </div>
-                {% include '_entryBuilder/_include' with {
+                {% include '_entryBuilder/_include.twig' with {
                     fieldArray: entry.entryBuilder.all(),
                 } only %}
             </div>

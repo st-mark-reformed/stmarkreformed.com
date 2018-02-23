@@ -1,11 +1,11 @@
-{% extends "_core/LayoutHtmlWrapper" %}
+{% extends "_core/LayoutHtmlWrapper.twig" %}
 
 {% block layoutContent %}
-    {% include '_partials/SiteHeader' %}
+    {% include '_partials/SiteHeader.twig' %}
 
     <main class="SiteMain">
         {{ block('content') }}
     </main>
 
-    {% include '_partials/SiteFooter' %}
+    {% include '_partials/SiteFooter.twig' %}
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends "_core/LayoutMaster" %}
+{% extends "_core/LayoutMaster.twig" %}
 
 {# Variables #}
 {% set noIndex = noIndex|default(false) %}
@@ -17,22 +17,22 @@
         <div class="Gallery__Inner">
             <div class="Gallery__ItemWrap">
                 <span class="Gallery__NavCloseFullScreen JSGallery__FullScreenToggle">
-                    {% include '_svg/close' only %}
+                    {% include '_svg/close.twig' only %}
                 </span>
                 <span class="Gallery__NavFullScreen JSGallery__FullScreenToggle">
-                    {% include '_svg/expand-arrows-alt' only %}
+                    {% include '_svg/expand-arrows-alt.twig' only %}
                 </span>
                 <span
                     class="Gallery__NavBack Gallery__NavBack--IsHidden JSGallery__NavBack"
                     data-hidden-class="Gallery__NavBack--IsHidden"
                 >
-                    {% include '_svg/angle-left' only %}
+                    {% include '_svg/angle-left.twig' only %}
                 </span>
                 <span
                     class="Gallery__NavForward JSGallery__NavForward"
                     data-hidden-class="Gallery__NavForward--IsHidden"
                 >
-                    {% include '_svg/angle-right' only %}
+                    {% include '_svg/angle-right.twig' only %}
                 </span>
                 <ol class="Gallery__Items JSGallery__Items">
                     {% for photoAsset in photoAssets %}

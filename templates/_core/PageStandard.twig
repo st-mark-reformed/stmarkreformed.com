@@ -1,4 +1,4 @@
-{% extends "_core/LayoutMaster" %}
+{% extends "_core/LayoutMaster.twig" %}
 
 {# Variables #}
 {% set noIndex = noIndex|default(false) %}
@@ -12,7 +12,7 @@
 
 {# Primary content #}
 {% block content %}
-    {% include '_standardPageBuilder/_include' with {
+    {% include '_standardPageBuilder/_include.twig' with {
         fieldArray: entry.standardPageBuilder.all(),
         pageOptions: entry.pageOptions,
     } %}

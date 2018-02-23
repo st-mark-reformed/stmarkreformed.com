@@ -5,7 +5,7 @@
         {% set galleryEntries = craft.entries.section('galleries').limit(field.numberToShowcase).all() %}
         <div class="GalleryShowcase__Galleries">
             {% for entry in galleryEntries %}
-                {% include '_partials/GalleryShowcase' with {
+                {% include '_partials/GalleryShowcase.twig' with {
                     entry: entry
                 } only %}
             {% endfor %}

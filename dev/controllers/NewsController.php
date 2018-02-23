@@ -49,7 +49,7 @@ class NewsController extends BaseController
         $maxPages = (int) ceil($entriesTotal / $limit);
 
         if (! $entriesTotal) {
-            return $this->renderTemplate('_core/NoEntries', [
+            return $this->renderTemplate('_core/NoEntries.twig', [
                 'metaTitle' => $metaTitle,
                 'heroHeading' => 'No Entries Found',
             ]);
@@ -72,7 +72,7 @@ class NewsController extends BaseController
             'base' => PaginationService::getUriPathSansPagination()
         ]);
 
-        return $this->renderTemplate('_core/StandardListing', compact(
+        return $this->renderTemplate('_core/ListingStandard.twig', compact(
             'metaTitle',
             'heroHeading',
             'entries',
@@ -101,7 +101,7 @@ class NewsController extends BaseController
             ]);
         }
 
-        return $this->renderTemplate('_core/StandardEntry', [
+        return $this->renderTemplate('_core/EntryStandard.twig', [
             'noIndex' => ! $entry->searchEngineIndexing,
             'metaTitle' => ($entry->seoTitle ?: $entry->title) . ' | News',
             'metaDescription' => $entry->seoDescription,

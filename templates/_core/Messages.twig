@@ -1,4 +1,7 @@
-{% extends "_core/LayoutMaster" %}
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{# @var entries \craft\elements\Entry[] #}
+
+{% extends "_core/LayoutMaster.twig" %}
 
 {# Variables #}
 {% set noIndex = noIndex|default(false) %}
@@ -11,6 +14,7 @@
 {% set activeSpeaker = activeSpeaker|default(null) %}
 {% set activeSeries = activeSeries|default(null) %}
 {% set entries = entries|default({}) %}
+{# @var pagination array #}
 {% set pagination = pagination|default(null) %}
 
 {# Primary content #}
@@ -25,7 +29,7 @@
                     Menu
                 </span>
                 <span class="PageWithSubNav__MobileExpanderIcon">
-                    {% include '_svg/angle-down' %}
+                    {% include '_svg/angle-down.twig' %}
                 </span>
             </span>
             <div class="PageWithSubNav__NavLists JSPageSubNav__List">
@@ -99,13 +103,13 @@
                             {% endif %}
                             {% for entry in entries %}
                                 <div class="MessageList__Item">
-                                    {% include '_partials/Message' with {
+                                    {% include '_partials/Message.twig' with {
                                         entry: entry
                                     } only %}
                                 </div>
                             {% endfor %}
                             {% if pagination %}
-                                {% include '_partials/Pagination' with {
+                                {% include '_partials/Pagination.twig' with {
                                     pagination: pagination
                                 } %}
                             {% endif %}

@@ -62,7 +62,7 @@ class EventsController extends BaseController
         ]);
 
         $response = $this->renderTemplate(
-            '_core/StandardListing',
+            '_core/ListingStandard.twig',
             compact(
                 'metaTitle',
                 'heroHeading',
@@ -131,7 +131,7 @@ class EventsController extends BaseController
 
         $dateStringReplace = str_replace('&mdash;', '-', $dateString);
 
-        return $this->renderTemplate('_events/entry', [
+        return $this->renderTemplate('_core/EntryEvent.twig', [
             'noIndex' => ! $entry->searchEngineIndexing,
             'metaTitle' => ($entry->seoTitle ?: $entry->title) .
                 " | {$dateStringReplace} | Events",

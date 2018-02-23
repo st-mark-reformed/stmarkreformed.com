@@ -109,7 +109,7 @@ class MessagesController extends BaseController
             $metaTitle .= " | Page{$pageNum}";
         }
 
-        $response = $this->renderTemplate('_audio/index', compact(
+        $response = $this->renderTemplate('_core/Messages.twig', compact(
             'backLink',
             'backLinkText',
             'metaTitle',
@@ -142,7 +142,7 @@ class MessagesController extends BaseController
             ]);
         }
 
-        return $this->renderTemplate('_audio/index', [
+        return $this->renderTemplate('_core/Messages.twig', [
             'noIndex' => ! $entry->searchEngineIndexing,
             'metaTitle' => ($entry->seoTitle ?: $entry->title) . ' | Messages',
             'metaDescription' => $entry->seoDescription,

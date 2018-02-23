@@ -50,7 +50,7 @@ class GalleriesController extends BaseController
             'base' => PaginationService::getUriPathSansPagination()
         ]);
 
-        $response = $this->renderTemplate('_galleries/index', compact(
+        $response = $this->renderTemplate('_core/ListingGalleries.twig', compact(
             'metaTitle',
             'heroHeading',
             'entries',
@@ -95,7 +95,7 @@ class GalleriesController extends BaseController
             }
         }
 
-        return $this->renderTemplate('_galleries/entry', [
+        return $this->renderTemplate('_core/EntryGalleries.twig', [
             'noIndex' => ! $entry->searchEngineIndexing,
             'metaTitle' => ($entry->seoTitle ?: $entry->title) . ' | Galleries',
             'metaDescription' => $entry->seoDescription,
