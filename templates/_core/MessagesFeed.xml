@@ -8,18 +8,18 @@
 
 <!DOCTYPE rss [
     <!ENTITY ldquo "&#x201C;">{# double quotation mark, left #}
-<!ENTITY rdquo "&#x201D;">{# double quotation mark, right #}
-<!ENTITY rsquo "&#x2019;">{# single quotation mark, right #}
-<!ENTITY lsquo "&#x2018;">{# single quotation mark, left #}
-<!ENTITY mdash "&#x2014;">{# em dash #}
-<!ENTITY ndash "&#x2013;">{# en dash #}
-<!ENTITY hellip "&#8230;">{# ellipsis #}
-<!ENTITY nbsp "&#160;">{# non-breaking space #}
-<!ENTITY eacute "&#233;">{# accented e #}
-<!ENTITY oacute "&#211;">{# accented o #}
-<!ENTITY prime "&#8242;">{# prime mark #}
-<!ENTITY Prime "&#8242;">{# prime mark #}
-<!ENTITY ouml "&#214;;">{# Capital O-umlaut #}
+    <!ENTITY rdquo "&#x201D;">{# double quotation mark, right #}
+    <!ENTITY rsquo "&#x2019;">{# single quotation mark, right #}
+    <!ENTITY lsquo "&#x2018;">{# single quotation mark, left #}
+    <!ENTITY mdash "&#x2014;">{# em dash #}
+    <!ENTITY ndash "&#x2013;">{# en dash #}
+    <!ENTITY hellip "&#8230;">{# ellipsis #}
+    <!ENTITY nbsp "&#160;">{# non-breaking space #}
+    <!ENTITY eacute "&#233;">{# accented e #}
+    <!ENTITY oacute "&#211;">{# accented o #}
+    <!ENTITY prime "&#8242;">{# prime mark #}
+    <!ENTITY Prime "&#8242;">{# prime mark #}
+    <!ENTITY ouml "&#214;;">{# Capital O-umlaut #}
 ]>
 
 <rss

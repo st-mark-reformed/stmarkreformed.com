@@ -1,0 +1,29 @@
+{% cache %}
+{% minify %}
+<?xml version="1.0" encoding="UTF-8"?>
+{% if siteMapUrlSet is defined and siteMapUrlSet|length %}
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+        {% for urlset in siteMapUrlSet %}
+            <url>
+                <loc>{{ urlset.loc }}</loc>
+                {% if urlset['lastmod'] is defined and urlset['lastmod'] %}
+                    <lastmod>{{ urlset.lastmod.format('Y-m-d') }}</lastmod>
+                {% endif %}
+                {% if urlset['changefreq'] is defined and urlset['changefreq'] %}
+                    <changefreq>{{ urlset.changefreq }}</changefreq>
+                {% endif %}
+            </url>
+        {% endfor %}
+    </urlset>
+{% endif %}
+{% if siteMapIndex is defined and siteMapIndex|length %}
+    <siteMapIndex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+        {% for index in siteMapIndex %}
+            <sitemap>
+                <loc>{{ index.loc }}</loc>
+            </sitemap>
+        {% endfor %}
+    </siteMapIndex>
+{% endif %}
+{% endminify %}
+{% endcache %}

@@ -159,4 +159,54 @@ return [
      */
     // 'pastors-page/{slug}' => 'dev/news/entry',
 
+
+
+
+
+    /**************************************************************************/
+    /* Site map routing */
+    /**************************************************************************/
+
+    /**
+     * Site map index
+     * @see \dev\controllers\SiteMapController::actionIndex()
+     */
+    'GET sitemap' => 'dev/site-map/index',
+
+    /**
+     * Site map pages
+     * @see \dev\controllers\SiteMapController::actionPages()
+     */
+    'GET sitemap/pages' => 'dev/site-map/pages',
+
+    /**
+     * Site map events
+     * @see \dev\controllers\SiteMapController::actionEvents()
+     */
+    'GET sitemap/events' => 'dev/site-map/events',
+
+    /**
+     * Site map galleries
+     * @see \dev\controllers\SiteMapController::actionGalleries()
+     */
+    'GET sitemap/galleries' => 'dev/site-map/galleries',
+
+    /**
+     * Site map messages
+     * @see \dev\controllers\SiteMapController::actionMessages()
+     */
+    'GET sitemap/messages' => 'dev/site-map/messages',
+
+    /**
+     * Site map news
+     * @see \dev\controllers\SiteMapController::actionNews()
+     */
+    'GET sitemap/news' => 'dev/site-map/news',
+
+    /**
+     * Site map news
+     * @see \dev\controllers\SiteMapController::actionPastorsPage()
+     */
+    'GET sitemap/pastors-page' => 'dev/site-map/pastors-page',
+
 ];
