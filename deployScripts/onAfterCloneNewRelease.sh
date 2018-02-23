@@ -1,8 +1,8 @@
 #!/bin/bash
 #
-# $1 = env
-# $2 = {{release}}
-# $3 = {{project}}
+# ${1} = env
+# ${2} = {{release}}
+# ${3} = {{project}}
 
 # Create upload storage directories as needed
 for d in ${2}/public/uploads/*/ ; do
@@ -10,9 +10,9 @@ for d in ${2}/public/uploads/*/ ; do
     DIRNAME=$(basename "$d" .deb);
 
     # Create the directory in the persistent storage location
-    mkdir -p $3/storage/public/uploads/${DIRNAME};
-    cp ${2}/public/uploads/${DIRNAME}/.gitignore $3/storage/public/uploads/${DIRNAME}/;
-    chmod -R 0777 $3/storage/public/uploads/${DIRNAME};
+    mkdir -p ${3}/storage/public/uploads/${DIRNAME};
+    cp ${2}/public/uploads/${DIRNAME}/.gitignore ${3}/storage/public/uploads/${DIRNAME}/;
+    chmod -R 0777 ${3}/storage/public/uploads/${DIRNAME};
 done
 
 # Symlink to persistent storage
@@ -22,7 +22,7 @@ done
 # Symlink everything in storage/public
 for f in ${3}/storage/public/*; do
     # Get the file name
-    FILENAME=$(basename "$d" .deb);
+    FILENAME=$(basename "$f" .deb);
 
     rm -rf ${2}/public/${FILENAME};
     ln -s ${3}/storage/public/${FILENAME} ${2}/public/${FILENAME};
@@ -45,7 +45,7 @@ ln -s ${3}/storage/.env ${2}/.env;
 # Update asset versioning
 timestamp=$(date +%s);
 cp ${2}/public/assets/css/style.min.css ${2}/public/assets/css/style.min.${timestamp}.css;
-cp ${2}/public/assets/js/script.min.js $2/public/assets/js/script.min.${timestamp}.js;
+cp ${2}/public/assets/js/script.min.js ${2}/public/assets/js/script.min.${timestamp}.js;
 sed -i -e "s/'staticAssetCacheTime' => ''/'staticAssetCacheTime' => $timestamp/g" ${2}/config/general.php;
 
 # Update file permissions
