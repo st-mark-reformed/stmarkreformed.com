@@ -21,8 +21,11 @@ done
 
 # Symlink everything in storage/public
 for f in ${3}/storage/public/*; do
-    rm -rf ${2}/public/${f};
-    ln -s ${3}/storage/public/${f} ${2}/public/${f};
+    # Get the file name
+    FILENAME=$(basename "$d" .deb);
+
+    rm -rf ${2}/public/${FILENAME};
+    ln -s ${3}/storage/public/${FILENAME} ${2}/public/${FILENAME};
 done;
 
 # Create other storage directories as needed
@@ -33,7 +36,7 @@ for i in "${dirs[@]}" ; do
     rm -rf ${2}/${i};
     mkdir -p ${3}/storage/${i};
     ln -sf ${3}/storage/${i} ${2}/${i};
-    chmod -R 0777 ${3}/storage/${i};
+    sudo chmod -R 0777 ${3}/storage/${i};
 done
 
 # Symlink Env-Specific Files
@@ -46,8 +49,8 @@ cp ${2}/public/assets/js/script.min.js $2/public/assets/js/script.min.${timestam
 sed -i -e "s/'staticAssetCacheTime' => ''/'staticAssetCacheTime' => $timestamp/g" ${2}/config/general.php;
 
 # Update file permissions
-chmod -R 0777 ${2}/public/cache;
-chmod -R 0777 ${2}/public/cpresources;
+sudo chmod -R 0777 ${2}/public/cache;
+sudo chmod -R 0777 ${2}/public/cpresources;
 
 # Fix a cache issue that prevents Envoyer from deleting old releases
 for f in ${3}/releases/*; do
