@@ -43,9 +43,6 @@ class DevTwigExtensions extends \Twig_Extension
     public function getFunctions() : array
     {
         return [
-            new \Twig_Function('getenv', function ($str) {
-                return getenv($str);
-            }),
             new \Twig_Function('fileTime', [
                 new FileOperationsService(),
                 'getFileTime',
