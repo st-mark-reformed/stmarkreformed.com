@@ -6,6 +6,7 @@ $protocol = $secure ? 'https://' : 'http://';
 
 return [
     '*' => [
+        'allowAdminChanges' => CRAFT_ENVIRONMENT === 'dev',
         'allowUpdates' => false,
         'appId' => 'stmarkreformed',
         'cacheDuration' => 0,
@@ -16,7 +17,7 @@ return [
         'enableCsrfProtection' => true,
         'errorTemplatePrefix' => '_errors/',
         'generateTransformsBeforePageLoad' => true,
-        'isSystemOn' => true,
+        'isSystemLive' => true,
         'maxUploadFileSize' => 512000000,
         'omitScriptNameInUrls' => true,
         'postCpLoginRedirect' => 'entries',
@@ -32,6 +33,7 @@ return [
         'suppressTemplateErrors' => getenv('DEV_MODE') !== 'true',
         'timezone' => 'America/Chicago',
         'useEmailAsUsername' => true,
+        'useProjectConfigFile' => true,
         'userSessionDuration' => false, // As long as browser stays open
         'staticAssetCacheTime' => '',
     ],
