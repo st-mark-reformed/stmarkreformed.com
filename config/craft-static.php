@@ -1,5 +1,6 @@
 <?php
+declare(strict_types=1);
 
 return [
-    'cachePath' => realpath(dirname(__DIR__)) . '/public/cache',
+    'cachePath' => CRAFT_BASE_PATH . '/public/cache',
 ];
