@@ -4,10 +4,8 @@
 # $3 = {{project}}
 
 # Run migrations
-php craft migrate/up --interactive=0;
+php ${2}/craft migrate/up --interactive=0
 
-# Clear Caches
-php craft cache/flush-all;
-
-# Clear static cache
-php craft craft-static/cache/purge;
+# Clear the cache
+php ${2}/craft cache/flush-all --interactive=0
+php ${2}/craft craft-static/cache/purge --interactive=0
