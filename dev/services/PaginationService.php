@@ -5,7 +5,7 @@ namespace dev\services;
 use Craft;
 
 /**
- * Class PaginationGenerator
+ * Class PaginationService
  */
 class PaginationService
 {

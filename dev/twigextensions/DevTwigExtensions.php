@@ -137,7 +137,7 @@ class DevTwigExtensions extends \Twig_Extension
      * @param string $val
      * @param int $limit
      * @param string $strategy Defaults to word
-     * @return  \Twig_Markup
+     * @return \Twig_Markup
      * @throws \Exception
      */
     public function truncate(
