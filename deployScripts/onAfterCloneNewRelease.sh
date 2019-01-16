@@ -56,6 +56,7 @@ sed -i -e "s/'staticAssetCacheTime' => ''/'staticAssetCacheTime' => $timestamp/g
 # Update file permissions
 sudo chmod -R 0777 ${2}/public/cache;
 sudo chmod -R 0777 ${2}/public/cpresources;
+sudo chmod -R 0777 ${2}/config;
 
 # Fix a cache issue that prevents Envoyer from deleting old releases
 for f in ${3}/releases/*; do

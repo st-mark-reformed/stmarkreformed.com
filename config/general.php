@@ -6,7 +6,6 @@ $protocol = $secure ? 'https://' : 'http://';
 
 return [
     '*' => [
-        'allowAdminChanges' => CRAFT_ENVIRONMENT === 'dev',
         'allowUpdates' => false,
         'appId' => 'stmarkreformed',
         'cacheDuration' => 0,
