@@ -1,12 +1,10 @@
 {
     "scripts": {
-        "fab": "node fab.js",
-        "fabCritical": "node fabCritical.js jsonUrl=http://fab-project.dev/jsonmap.json",
-        "fabCriticalFile": "node fabCritical.js file=public/index.html cssFile=public/assets/css/style.min.css"
+        "fab": "node fab.js"
     },
     "name": "stmarkreformed.com",
     "description": "St. Mark Reformed Church Website",
-    "license": "Apache-2.0",
+    "license": "UNLICENSED",
     "author": "BuzzingPixel, LLC",
     "contributors": [
         {
@@ -15,7 +13,7 @@
         }
     ],
     "dependencies": {
-        "fab-build-next": "^1.0.1",
+        "fab-build-next": "^1.5.1",
         "fab.assets": "^1.2.1",
         "fab.controller": "^1.2.1",
         "fab.model": "^1.2.1",

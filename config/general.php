@@ -1,34 +1,40 @@
 <?php
-/**
- * General Configuration
- *
- * All of your system's general configuration settings go in here. You can see a
- * list of the available settings in vendor/craftcms/cms/src/config/GeneralConfig.php.
- */
+declare(strict_types=1);
+
+$secure = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on';
+$protocol = $secure ? 'https://' : 'http://';
 
 return [
     '*' => [
+        'allowAdminChanges' => CRAFT_ENVIRONMENT === 'dev',
         'allowUpdates' => false,
-        'basePath' => $basePath = realpath(dirname(__DIR__, 1)) . '/public',
+        'appId' => 'stmarkreformed',
+        'cacheDuration' => 0,
+        'cacheMethod' => 'apc',
+        'basePath' => CRAFT_BASE_PATH,
         'cpTrigger' => 'cms',
-        'defaultWeekStartDay' => 0,
         'devMode' => getenv('DEV_MODE') === 'true',
         'enableCsrfProtection' => true,
         'errorTemplatePrefix' => '_errors/',
         'generateTransformsBeforePageLoad' => true,
-        'isSystemOn' => true,
+        'isSystemLive' => true,
         'maxUploadFileSize' => 512000000,
         'omitScriptNameInUrls' => true,
         'postCpLoginRedirect' => 'entries',
-        'rememberedUserSessionDuration' => 631139040, // 20 years
+        'projectPath' => CRAFT_BASE_PATH,
+        'rememberedUserSessionDuration' => 'P100Y', // 100 years
+        'runQueueAutomatically' => getenv('DISABLE_AUTOMATIC_QUEUE') !== 'true',
         'securityKey' => getenv('SECURITY_KEY'),
         'sendPoweredByHeader' => false,
         'siteName' => 'St. Mark Reformed Church',
-        'siteUrl' => getenv('SITE_URL'),
+        'siteUrl' => getenv('USE_HTTP_HOST_FOR_SITE_URL') === 'true' ?
+            $protocol . $_SERVER['HTTP_HOST'] :
+            getenv('SITE_URL'),
         'suppressTemplateErrors' => getenv('DEV_MODE') !== 'true',
         'timezone' => 'America/Chicago',
         'useEmailAsUsername' => true,
-        'userSessionDuration' => 0,
+        'useProjectConfigFile' => true,
+        'userSessionDuration' => false, // As long as browser stays open
         'staticAssetCacheTime' => '',
     ],
 ];

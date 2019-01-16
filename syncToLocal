@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [[ -z "${1}" ]]; then
+    ENV=staging;
+else
+    ENV="$(tr [A-Z] [a-z] <<< "${1}")";
+fi
+
+docker exec -it --user root db-stmarkreformed bash -c "chmod +x /app/scripts/syncToLocal.sh;./app/scripts/syncToLocal.sh ${ENV}"

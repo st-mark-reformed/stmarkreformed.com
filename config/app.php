@@ -1,20 +1,9 @@
 <?php
-
-/**
- * Yii Application Config
- *
- * Edit this file at your own risk!
- *
- * The array returned by this file will get merged with
- * vendor/craftcms/cms/src/config/app/main.php and [web|console].php, when
- * Craft's bootstrap script is defining the configuration for the entire
- * application.
- *
- * You can define custom modules and system components, and even override the
- * built-in system components.
- */
+declare(strict_types=1);
 
 use dev\Module;
+use craft\helpers\App;
+use craft\mail\transportadapters\Smtp;
 
 return [
     'modules' => [
@@ -22,5 +11,32 @@ return [
     ],
     'bootstrap' => [
         'dev'
+    ],
+    'components' => [
+        'mailer' => function () {
+            $settings = App::mailSettings();
+
+            $settings->fromEmail = 'info@stmarkreformed.com';
+
+            $settings->fromName = 'St. Mark Reformed Church';
+
+            $settings->template = '';
+
+            $settings->transportType = Smtp::class;
+
+            $settings->transportSettings = [
+                'encryptionMethod' => 'tls',
+                'host' => 'smtp.mandrillapp.com',
+                'port' => '587',
+                'timeout' => '30',
+                'useAuthentication' => '1',
+                'username' => 'info@buzzingpixel.com',
+                'password' => getenv('SMTP_PASSWORD'),
+            ];
+
+            $config = App::mailerConfig($settings);
+
+            return Craft::createObject($config);
+        },
     ],
 ];
