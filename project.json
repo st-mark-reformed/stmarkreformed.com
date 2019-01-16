@@ -4,5 +4,6 @@
         "config/**",
         "dev/**",
         "templates/**"
-    ]
+    ],
+    "watchUsesPolling": true
 }
