@@ -6,9 +6,8 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
-        "craftcms/cms": "^3.0.0-RC1",
+        "craftcms/cms": "^3.0.0",
         "vlucas/phpdotenv": "^2.4.0",
-        "roave/security-advisories": "dev-master",
         "nystudio107/craft-minify": "^1.2",
         "buzzingpixel/craft-static": "^1.0.2",
         "michelf/php-smartypants": "^1.8",
@@ -18,9 +17,20 @@
         "cocur/slugify": "^3.1",
         "timostamm/text-truncation": "dev-master"
     },
+    "require-dev": {
+        "roave/security-advisories": "dev-master",
+        "squizlabs/php_codesniffer": "^3.4",
+        "phpmd/phpmd": "^2.6"
+    },
     "autoload": {
         "psr-4": {
             "dev\\": "dev/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "platform": {
+            "php": "7.1"
         }
     },
     "repositories": [
