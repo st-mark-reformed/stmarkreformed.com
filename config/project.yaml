@@ -20,7 +20,7 @@ categoryGroups:
     structure:
       maxLevels: '1'
       uid: 7a3b6abf-4feb-45f5-8718-f36a645bb96f
-dateModified: 1547616039
+dateModified: 1549425417
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -2022,7 +2022,7 @@ system:
   edition: pro
   live: true
   name: 'St. Mark Reformed Church'
-  schemaVersion: 3.1.19
+  schemaVersion: 3.1.23
   timeZone: America/Chicago
 tagGroups:
   f655b28d-ccb7-4ef3-a5bd-631a5ebfde6e:
