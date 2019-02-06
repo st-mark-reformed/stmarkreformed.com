@@ -1,6 +1,24 @@
 version: '3'
 
 services:
+  utility:
+    image: buzzingpixel/utility:latest
+    container_name: utility-stmarkreformed
+    environment:
+      HOSTNAME: utility-stmarkreformed
+    volumes:
+      - .:/app:delegated
+      - ./dev/null:/app/.git:delegated
+      - ./dev/null:/app/.idea:delegated
+      - cache-data:/cache-volume
+      - vendor-data:/vendor-volume
+      - db-data:/db-volume
+      - public-cache:/public-cache-volume
+      - cpresources:/cpresources-volume
+      - imagecache:/imagecache-volume
+    command: bash -c "chmod +x /app/scripts/devUtilityScript.sh && /app/scripts/devUtilityScript.sh"
+    networks:
+      common:
   web:
     image: buzzingpixel/nginx:latest
     container_name: nginx-stmarkreformed
@@ -11,13 +29,16 @@ services:
     volumes:
       - ${DOCKER_RSA_FILE}:/tmp/.ssh/id_rsa:delegated
       - ${DOCKER_RSA_PUB_FILE}:/tmp/.ssh/id_rsa.pub:delegated
+      - ${DOCKER_NGINX_CONF_FILE}:/etc/nginx/conf.d/site.conf:delegated
       - .:/app:delegated
-      - vendor-data:/app/vendor
-      - cache-data:/app/storage
       - ./dev/null:/app/.git:delegated
       - ./dev/null:/app/.idea:delegated
       - ./dev/null:/app/node_modules:delegated
-      - ${DOCKER_NGINX_CONF_FILE}:/etc/nginx/conf.d/site.conf:delegated
+      - vendor-data:/app/vendor
+      - cache-data:/app/storage
+      - public-cache:/app/public/cache
+      - cpresources:/app/public/cpresources
+      - imagecache:/app/public/imagecache
     networks:
       common:
         aliases:
@@ -30,14 +51,17 @@ services:
     volumes:
       - ${DOCKER_RSA_FILE}:/tmp/.ssh/id_rsa:delegated
       - ${DOCKER_RSA_PUB_FILE}:/tmp/.ssh/id_rsa.pub:delegated
+      - ./serverConfig/php/php-custom-config.ini:/usr/local/etc/php/conf.d/php-custom-config.ini:delegated
+      - ${DOCKER_PHP_ENV_INI_FILE}:/usr/local/etc/php/conf.d/php-env-config.ini:delegated
       - .:/app:delegated
-      - vendor-data:/app/vendor
-      - cache-data:/app/storage
       - ./dev/null:/app/.git:delegated
       - ./dev/null:/app/.idea:delegated
       - ./dev/null:/app/node_modules:delegated
-      - ./serverConfig/php/php-custom-config.ini:/usr/local/etc/php/conf.d/php-custom-config.ini:delegated
-      - ${DOCKER_PHP_ENV_INI_FILE}:/usr/local/etc/php/conf.d/php-env-config.ini:delegated
+      - vendor-data:/app/vendor
+      - cache-data:/app/storage
+      - public-cache:/app/public/cache
+      - cpresources:/app/public/cpresources
+      - imagecache:/app/public/imagecache
     networks:
       common:
   db:
@@ -55,12 +79,15 @@ services:
       - ${DOCKER_RSA_FILE}:/tmp/.ssh/id_rsa:delegated
       - ${DOCKER_RSA_PUB_FILE}:/tmp/.ssh/id_rsa.pub:delegated
       - .:/app:delegated
-      - vendor-data:/app/vendor
-      - cache-data:/app/storage
       - ./dev/null:/app/.git:delegated
       - ./dev/null:/app/.idea:delegated
       - ./dev/null:/app/node_modules:delegated
       - db-data:/var/lib/mysql
+      - vendor-data:/app/vendor
+      - cache-data:/app/storage
+      - public-cache:/app/public/cache
+      - cpresources:/app/public/cpresources
+      - imagecache:/app/public/imagecache
     ports:
       - "${DOCKER_DB_PORT}:3306"
     networks:
@@ -77,26 +104,14 @@ services:
       - .:/app:delegated
       - ./dev/null:/app/.git:delegated
       - ./dev/null:/app/.idea:delegated
-      - cache-data:/app/storage
-      - vendor-data:/app/vendor
-      - db-data:/var/lib/mysql
       - node-data:/app/node_modules
-    command: bash -c "sleep infinity & wait"
-    networks:
-      common:
-  utility:
-    image: buzzingpixel/utility:latest
-    container_name: utility-stmarkreformed
-    environment:
-      HOSTNAME: utility-stmarkreformed
-    volumes:
-      - .:/app:delegated
-      - ./dev/null:/app/.git:delegated
-      - ./dev/null:/app/.idea:delegated
-      - cache-data:/app/storage
-      - vendor-data:/vendor-volume
       - db-data:/var/lib/mysql
-    command: bash -c "/app/scripts/devUtilityScript.sh"
+      - vendor-data:/app/vendor
+      - cache-data:/app/storage
+      - public-cache:/app/public/cache
+      - cpresources:/app/public/cpresources
+      - imagecache:/app/public/imagecache
+    command: bash -c "sleep infinity & wait"
     networks:
       common:
 
@@ -105,6 +120,9 @@ volumes:
   cache-data:
   db-data:
   node-data:
+  public-cache:
+  cpresources:
+  imagecache:
 
 networks:
   common:
