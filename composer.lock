@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f77955e1080b497a31c6d76c2bdd33c9",
+    "content-hash": "101c97ad4bbc52ac2cca843e9f541841",
     "packages": [
         {
             "name": "buzzingpixel/craft-static",
@@ -842,6 +842,41 @@
             "time": "2017-06-12T01:10:27+00:00"
         },
         {
+            "name": "digitalnature/php-ref",
+            "version": "v1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/digitalnature/php-ref.git",
+                "reference": "6aa68f42c548af3facdd5546233160e34c05c6eb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/digitalnature/php-ref/zipball/6aa68f42c548af3facdd5546233160e34c05c6eb",
+                "reference": "6aa68f42c548af3facdd5546233160e34c05c6eb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "ref.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A nicer print_r/var_dump alternative for PHP 5.3+",
+            "homepage": "https://github.com/digitalnature/php-ref",
+            "keywords": [
+                "debug",
+                "var_dump"
+            ],
+            "time": "2015-11-15T12:47:49+00:00"
+        },
+        {
             "name": "doctrine/lexer",
             "version": "v1.0.1",
             "source": {
@@ -1073,6 +1108,67 @@
                 "html"
             ],
             "time": "2018-02-23T01:58:20+00:00"
+        },
+        {
+            "name": "filp/whoops",
+            "version": "2.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/filp/whoops.git",
+                "reference": "bc0fd11bc455cc20ee4b5edabc63ebbf859324c7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/bc0fd11bc455cc20ee4b5edabc63ebbf859324c7",
+                "reference": "bc0fd11bc455cc20ee4b5edabc63ebbf859324c7",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5.9 || ^7.0",
+                "psr/log": "^1.0.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9 || ^1.0",
+                "phpunit/phpunit": "^4.8.35 || ^5.7",
+                "symfony/var-dumper": "^2.6 || ^3.0 || ^4.0"
+            },
+            "suggest": {
+                "symfony/var-dumper": "Pretty print complex values better with var-dumper available",
+                "whoops/soap": "Formats errors as SOAP responses"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Whoops\\": "src/Whoops/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Filipe Dobreira",
+                    "homepage": "https://github.com/filp",
+                    "role": "Developer"
+                }
+            ],
+            "description": "php error handling for cool kids",
+            "homepage": "https://filp.github.io/whoops/",
+            "keywords": [
+                "error",
+                "exception",
+                "handling",
+                "library",
+                "throwable",
+                "whoops"
+            ],
+            "time": "2018-10-23T09:00:00+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1526,6 +1622,47 @@
                 "single sign on"
             ],
             "time": "2018-11-22T18:33:57+00:00"
+        },
+        {
+            "name": "lucidtaz/yii2-whoops",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LucidTaZ/yii2-whoops.git",
+                "reference": "b95184f80800658f717b6a832a82564c47cb6abe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LucidTaZ/yii2-whoops/zipball/b95184f80800658f717b6a832a82564c47cb6abe",
+                "reference": "b95184f80800658f717b6a832a82564c47cb6abe",
+                "shasum": ""
+            },
+            "require": {
+                "filp/whoops": "^2.1",
+                "php": ">=5.6.0",
+                "yiisoft/yii2": "^2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "lucidtaz\\yii2whoops\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thijs Zumbrink",
+                    "email": "thijs@schalpoen.nl"
+                }
+            ],
+            "description": "Yii2 bindings for Whoops error handler",
+            "time": "2019-02-06T14:57:47+00:00"
         },
         {
             "name": "michelf/php-smartypants",
@@ -4405,6 +4542,7 @@
     "stability-flags": {
         "craftcms/ckeditor": 20,
         "timostamm/text-truncation": 20,
+        "lucidtaz/yii2-whoops": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": false,
