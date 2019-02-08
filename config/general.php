@@ -6,14 +6,15 @@ $protocol = $secure ? 'https://' : 'http://';
 
 return [
     '*' => [
+        // 'allowAdminChanges' => getenv('ALLOW_ADMIN_CHANGES') === 'true',
         'allowUpdates' => false,
         'appId' => 'stmarkreformed',
+        'backupOnUpdate' => getenv('BACKUP_DB_ON_UPDATE') !== 'false',
         'cacheDuration' => 0,
         'cacheMethod' => 'apc',
         'basePath' => CRAFT_BASE_PATH,
         'cpTrigger' => 'cms',
         'devMode' => getenv('DEV_MODE') === 'true',
-        'enableCsrfProtection' => true,
         'errorTemplatePrefix' => '_errors/',
         'generateTransformsBeforePageLoad' => true,
         'isSystemLive' => true,
@@ -32,7 +33,7 @@ return [
         'suppressTemplateErrors' => getenv('DEV_MODE') !== 'true',
         'timezone' => 'America/Chicago',
         'useEmailAsUsername' => true,
-        'useProjectConfigFile' => true,
+        // 'useProjectConfigFile' => true,
         'userSessionDuration' => false, // As long as browser stays open
         'staticAssetCacheTime' => '',
     ],
