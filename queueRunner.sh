@@ -28,6 +28,7 @@ BASEDIR=$(dirname "$0");
 # Run the queue every second infinitely
 while true; do
     sudo chmod -R 0777 ${BASEDIR}/storage/public/uploads;
+    sudo chmod -R 0777 ${BASEDIR}/storage/public/imagecache;
     sudo chmod -R 0777 ${BASEDIR}/storage/storage;
     sudo chmod -R 0777 ${BASEDIR}/current/public/cache;
     sudo chmod -R 0777 ${BASEDIR}/current/public/cpresources;
