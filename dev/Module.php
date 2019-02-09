@@ -4,6 +4,7 @@ namespace dev;
 
 use Craft;
 use yii\base\Event;
+use craft\elements\Asset;
 use craft\elements\Entry;
 use craft\events\ModelEvent;
 use dev\services\CacheService;
@@ -12,6 +13,7 @@ use yii\base\Module as ModuleBase;
 use dev\services\EntryRoutingService;
 use craft\events\SetElementRouteEvent;
 use dev\twigextensions\DevTwigExtensions;
+use dev\services\InitAssetTransformJobService;
 use craft\console\Application as ConsoleApplication;
 
 class Module extends ModuleBase
@@ -73,6 +75,22 @@ class Module extends ModuleBase
                 $entry = $eventModel->sender;
                 (new EntrySlugService())->setEventEntrySlug($entry);
                 (new EntrySlugService())->setMessageEntrySlug($entry);
+            }
+        );
+
+        Event::on(
+            Asset::class,
+            Asset::EVENT_AFTER_SAVE,
+            function (ModelEvent $eventModel) {
+                /** @var Asset $asset */
+                $asset = $eventModel->sender;
+
+                // If this is not an image we can stop here
+                if (! $asset->getHeight()) {
+                    return;
+                }
+
+                (new InitAssetTransformJobService())->init((int) $asset->id);
             }
         );
     }
