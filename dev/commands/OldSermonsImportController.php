@@ -7,16 +7,12 @@ use yii\helpers\Console;
 use yii\console\Controller;
 use dev\services\SermonImporterService;
 
-/**
- * OldSermonsImport command
- */
 class OldSermonsImportController extends Controller
 {
-    public $firstPageOnly = 'true';
+    public $firstPageOnly = 'false';
 
-    /**
-     * @inheritdoc
-     */
+    private $batchSize = 100;
+
     public function options($actionID) : array
     {
         $options = parent::options($actionID);
@@ -26,8 +22,8 @@ class OldSermonsImportController extends Controller
 
     /**
      * Imports sermons from the old feed
-     * @throws \Exception
      * @throws \Throwable
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function actionRunImport()
     {
@@ -65,7 +61,7 @@ class OldSermonsImportController extends Controller
             $counter = 0;
 
             foreach ($batchFiles as $batchFile) {
-                if ($counter >= 20) {
+                if ($counter >= $this->batchSize) {
                     break;
                 }
 

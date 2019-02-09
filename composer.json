@@ -18,7 +18,9 @@
         "timostamm/text-truncation": "dev-master",
         "lucidtaz/yii2-whoops": "dev-master",
         "digitalnature/php-ref": "^1.2",
-        "aelvan/imager": "^2.1"
+        "aelvan/imager": "^2.1",
+        "ext-json": "*",
+        "ext-dom": "*"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
