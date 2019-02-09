@@ -7,6 +7,8 @@ use craft\elements\Asset;
 
 class InitAllAssetsTransformsJob extends BaseJob
 {
+    public $description = 'Init all Assets transforms';
+
     public function execute($queue)
     {
         foreach (Asset::findAll() as $asset) {

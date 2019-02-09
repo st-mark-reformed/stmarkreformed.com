@@ -8,6 +8,8 @@ use aelvan\imager\Imager;
 
 class RunAssetTransformJob extends BaseJob
 {
+    public $description = 'Run Asset transform';
+
     public $assetId;
 
     /**
