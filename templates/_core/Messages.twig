@@ -35,6 +35,7 @@
             <div class="PageWithSubNav__NavLists JSPageSubNav__List">
                 <div class="PageWithSubNav__NavListHeading">Subscribe:</div>
                 <ul class="PageWithSubNav__NavList">
+                    {# TODO: Set iTunes Link when the podcaset is in iTunes #}
                     {#<li class="PageWithSubNav__NavListItem">
                         <a
                             href="#"
@@ -101,13 +102,51 @@
                                 </a>
                                 <br><br><br>
                             {% endif %}
-                            {% for entry in entries %}
-                                <div class="MessageList__Item">
-                                    {% include '_partials/Message.twig' with {
-                                        entry: entry
-                                    } only %}
-                                </div>
-                            {% endfor %}
+                            {% if not entries|length %}
+                                <section class="BasicBlock BasicBlock--HasOption-centerAlignBlock">
+                                    <div class="BasicBlock__Inner">
+                                        <div class="BasicBlock__Headings">
+                                            <div class="BasicBlock__HeadingsInner">
+                                                <h2 class="BasicBlock__Heading">
+                                                    No Messages
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <div class="BasicBlock__Content">
+                                            <div class="BasicBlock__Body">
+                                                <p>
+                                                    {% if activeSpeaker %}
+                                                        {% set speaker = craft.users.slugField(activeSpeaker).one() %}
+                                                        {% if speaker %}
+                                                            {% filter typeset %}{% if speaker.titleOrHonorific %}{{ speaker.titleOrHonorific }} {% endif %}{{ speaker.fullName }}{% endfilter %} currently has no messages.
+                                                        {% else %}
+                                                            There are currently no messages.
+                                                        {% endif %}
+                                                    {% elseif activeSeries %}
+                                                        {% set category = craft.categories.slug(activeSeries).one() %}
+                                                        {% if category %}
+                                                            {{ category.title|typeset }} currently has no messages.
+                                                        {% else %}
+                                                            There are currently no messages.
+                                                        {% endif %}
+                                                    {% else %}
+                                                        There are currently no messages.
+                                                    {% endif %}
+                                                    Please check back soon!
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            {% else %}
+                                {% for entry in entries %}
+                                    <div class="MessageList__Item">
+                                        {% include '_partials/Message.twig' with {
+                                            entry: entry
+                                        } only %}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
                             {% if pagination %}
                                 {% include '_partials/Pagination.twig' with {
                                     pagination: pagination
