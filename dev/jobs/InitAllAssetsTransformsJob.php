@@ -20,5 +20,7 @@ class InitAllAssetsTransformsJob extends BaseJob
                 'assetId' => (int) $asset->id,
             ]));
         }
+
+        sleep(1);
     }
 }
