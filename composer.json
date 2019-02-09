@@ -17,7 +17,8 @@
         "cocur/slugify": "^3.1",
         "timostamm/text-truncation": "dev-master",
         "lucidtaz/yii2-whoops": "dev-master",
-        "digitalnature/php-ref": "^1.2"
+        "digitalnature/php-ref": "^1.2",
+        "aelvan/imager": "^2.1"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
