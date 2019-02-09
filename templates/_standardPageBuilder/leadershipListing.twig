@@ -29,7 +29,10 @@
                         <div
                             class="LeadershipListing__LeaderPhoto"
                             {% if photoAsset %}
-                            style="background-image: url('{{ photoAsset.getUrl() }}');"
+                            {% set imager = craft.imager.transformImage(photoAsset, {
+                                width: 300,
+                            }) %}
+                            style="background-image: url('{{ imager.url }}');"
                             {% endif %}
                         >
                         </div>

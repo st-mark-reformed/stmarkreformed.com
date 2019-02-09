@@ -21,16 +21,16 @@
                 {% if primaryImageAsset %}
                     <div class="BasicBlock__ImgFloat">
                         <picture>
-                            {% set primaryImageStandard = primaryImageAsset.getUrl({
-                                width: 300
+                            {% set primaryImageStandard = craft.imager.transformImage(primaryImageAsset, {
+                                width: 300,
                             }) %}
-                            {% set primaryImageRetina = primaryImageAsset.getUrl({
-                                width: 600
+                            {% set primaryImageRetina = craft.imager.transformImage(primaryImageAsset, {
+                                width: 600,
                             }) %}
                             <img
-                                src="{{ primaryImageStandard }}"
-                                srcset="{{ primaryImageStandard }} 1x,
-                                        {{ primaryImageRetina }} 2x"
+                                src="{{ primaryImageStandard.url }}"
+                                srcset="{{ primaryImageStandard.url }} 1x,
+                                        {{ primaryImageRetina.url }} 2x"
                                 alt="{{ entry.title|smartypants }}"
                                 class="BasicBlock__ImgFloatImage"
                             >

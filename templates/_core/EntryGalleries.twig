@@ -43,52 +43,53 @@
                         >
                             <div class="Gallery__ItemPhoto">
                                 <picture>
-                                    {% set standardAssetUrl = photoAsset.getUrl({
-                                        width: min(400, photoAsset.width),
+                                    {% set standardAsset400 = craft.imager.transformImage(photoAsset, {
+                                        allowUpscale: false,
+                                        width: 400,
                                     }) %}
-                                    {% set retinaAssetUrl = photoAsset.getUrl({
-                                        width: min(400, photoAsset.width) * 2,
+                                    {% set standardAsset700 = craft.imager.transformImage(photoAsset, {
+                                        allowUpscale: false,
+                                        width: 700,
+                                    }) %}
+                                    {% set standardAsset800 = craft.imager.transformImage(photoAsset, {
+                                        allowUpscale: false,
+                                        width: 800,
+                                    }) %}
+                                    {% set standardAsset1400 = craft.imager.transformImage(photoAsset, {
+                                        allowUpscale: false,
+                                        width: 1400,
+                                    }) %}
+                                    {% set standardAsset1800 = craft.imager.transformImage(photoAsset, {
+                                        allowUpscale: false,
+                                        width: 1800,
+                                    }) %}
+                                    {% set standardAsset2800 = craft.imager.transformImage(photoAsset, {
+                                        allowUpscale: false,
+                                        width: 2800,
+                                    }) %}
+                                    {% set standardAsset3600 = craft.imager.transformImage(photoAsset, {
+                                        allowUpscale: false,
+                                        width: 3600,
                                     }) %}
                                     <source
-                                        srcset="{{ standardAssetUrl }} 1x,
-                                                {{ retinaAssetUrl }} 2x"
+                                        srcset="{{ standardAsset400.url }} 1x,
+                                                {{ standardAsset800.url }} 2x"
                                         media="(min-width: 1px) and (max-width: 499px)"
                                     >
-
-                                    {% set standardAssetUrl = photoAsset.getUrl({
-                                        width: min(700, photoAsset.width),
-                                    }) %}
-                                    {% set retinaAssetUrl = photoAsset.getUrl({
-                                        width: min(700, photoAsset.width) * 2,
-                                    }) %}
                                     <source
-                                        srcset="{{ standardAssetUrl }} 1x,
-                                                {{ retinaAssetUrl }} 2x"
+                                        srcset="{{ standardAsset700.url }} 1x,
+                                                {{ standardAsset1400.url }} 2x"
                                         media="(min-width: 500px) and (max-width: 799px)"
                                     >
-
-                                    {% set standardAssetUrl = photoAsset.getUrl({
-                                        width: min(1400, photoAsset.width),
-                                    }) %}
-                                    {% set retinaAssetUrl = photoAsset.getUrl({
-                                        width: min(1400, photoAsset.width) * 2,
-                                    }) %}
                                     <source
-                                        srcset="{{ standardAssetUrl }} 1x,
-                                                {{ retinaAssetUrl }} 2x"
+                                        srcset="{{ standardAsset1400.url }} 1x,
+                                                {{ standardAsset2800.url }} 2x"
                                         media="(min-width: 800px) and (max-width: 1499px)"
                                     >
-
-                                    {% set standardAssetUrl = photoAsset.getUrl({
-                                        width: min(1800, photoAsset.width),
-                                    }) %}
-                                    {% set retinaAssetUrl = photoAsset.getUrl({
-                                        width: min(1800, photoAsset.width) * 2,
-                                    }) %}
                                     <img
-                                        src="{{ standardAssetUrl }}"
-                                        srcset="{{ standardAssetUrl }} 1x,
-                                                {{ retinaAssetUrl }} 2x"
+                                        src="{{ standardAsset1800.url }}"
+                                        srcset="{{ standardAsset1800.url }} 1x,
+                                                {{ standardAsset3600.url }} 2x"
                                         alt="{{ photoAsset.title }}"
                                         class="Gallery__ItemImg"
                                     >
@@ -112,18 +113,20 @@
                                 data-active-class="Gallery__NavItem--IsActive"
                             >
                                 <picture>
-                                    {% set standardAssetUrl = photoAsset.getUrl({
-                                        height: '67',
-                                        width: '100',
+                                    {% set standardAsset = craft.imager.transformImage(photoAsset, {
+                                        height: 67,
+                                        width: 100,
+                                        position: photoAsset.getFocalPoint(),
                                     }) %}
-                                    {% set retinaAssetUrl = photoAsset.getUrl({
-                                        height: '134',
-                                        width: '200',
+                                    {% set retinaAsset = craft.imager.transformImage(photoAsset, {
+                                        height: 134,
+                                        width: 200,
+                                        position: photoAsset.getFocalPoint(),
                                     }) %}
                                     <img
-                                        src="{{ standardAssetUrl }}"
-                                        srcset="{{ standardAssetUrl }} 1x,
-                                                {{ retinaAssetUrl }} 2x"
+                                        src="{{ standardAsset.url }}"
+                                        srcset="{{ standardAsset.url }} 1x,
+                                                {{ retinaAsset.url }} 2x"
                                         alt="{{ photoAsset.title }}"
                                         class="Gallery__NavItemImage"
                                     >
