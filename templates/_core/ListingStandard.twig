@@ -17,16 +17,16 @@
                             {% if primaryImageAsset %}
                                 <a href="{{ entry.url }}" class="StandardListingItem__PrimaryImageWrapper">
                                     <picture>
-                                        {% set primaryImageStandard = primaryImageAsset.getUrl({
-                                            width: 120
+                                        {% set primaryImageStandard = craft.imager.transformImage(primaryImageAsset, {
+                                            width: 120,
                                         }) %}
-                                        {% set primaryImageRetina = primaryImageAsset.getUrl({
-                                            width: 240
+                                        {% set primaryImageRetina = craft.imager.transformImage(primaryImageAsset, {
+                                            width: 240,
                                         }) %}
                                         <img
-                                            src="{{ primaryImageStandard }}"
-                                            srcset="{{ primaryImageStandard }} 1x,
-                                                    {{ primaryImageRetina }} 2x"
+                                            src="{{ primaryImageStandard.url }}"
+                                            srcset="{{ primaryImageStandard.url }} 1x,
+                                                    {{ primaryImageRetina.url }} 2x"
                                             alt="{{ entry.title|smartypants }}"
                                             class="StandardListingItem__PrimaryImage"
                                         >

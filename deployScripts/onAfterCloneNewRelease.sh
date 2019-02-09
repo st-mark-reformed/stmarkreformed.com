@@ -7,6 +7,7 @@
 # Symlink to persistent storage
 dirs=(
     "storage"
+    "public/imagecache"
     "public/uploads"
 );
 

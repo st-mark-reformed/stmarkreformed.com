@@ -22,43 +22,55 @@
 
 {% if backgroundAsset %}
     <style type="text/css">
+        {% set imager500 = craft.imager.transformImage(backgroundAsset, {
+            allowUpscale: false,
+            width: 500,
+        }) %}
         .BasicBlock--{{ uniqueId }}:before {
-            background-image: url("{{ backgroundAsset.getUrl({
-                width: min(500, backgroundAsset.width)
-            }) }}");
+            background-image: url("{{ imager500.url }}");
         }
+        {% set imager1200 = craft.imager.transformImage(backgroundAsset, {
+            allowUpscale: false,
+            width: 1200,
+        }) %}
         @media (min-width: 500px) {
             .BasicBlock--{{ uniqueId }}:before {
-                background-image: url("{{ backgroundAsset.getUrl({
-                    width: min(1200, backgroundAsset.width)
-                }) }}");
+                background-image: url("{{ imager1200.url }}");
             }
         }
+        {% set imager1920 = craft.imager.transformImage(backgroundAsset, {
+            allowUpscale: false,
+            width: 1920,
+        }) %}
         @media (min-width: 1200px) {
             .BasicBlock--{{ uniqueId }}:before {
-                background-image: url("{{ backgroundAsset.getUrl({
-                    width: min(1920, backgroundAsset.width)
-                }) }}");
+                background-image: url("{{ imager1920.url }}");
             }
         }
         @media (-webkit-min-device-pixel-ratio: 1.3), (min-resolution: 200dpi), (min-resolution: 1.3dppx) {
+            {% set imager1000 = craft.imager.transformImage(backgroundAsset, {
+                allowUpscale: false,
+                width: 1000,
+            }) %}
             .BasicBlock--{{ uniqueId }}:before {
-                background-image: url("{{ backgroundAsset.getUrl({
-                    width: min(1000, backgroundAsset.width)
-                }) }}");
+                background-image: url("{{ imager1000.url }}");
             }
+            {% set imager2400 = craft.imager.transformImage(backgroundAsset, {
+                allowUpscale: false,
+                width: 2400,
+            }) %}
             @media (min-width: 500px) {
                 .BasicBlock--{{ uniqueId }}:before {
-                    background-image: url("{{ backgroundAsset.getUrl({
-                    width: min(2400, backgroundAsset.width)
-                }) }}");
+                    background-image: url("{{ imager2400.url }}");
                 }
             }
+            {% set imager3840 = craft.imager.transformImage(backgroundAsset, {
+                allowUpscale: false,
+                width: 3840,
+            }) %}
             @media (min-width: 1200px) {
                 .BasicBlock--{{ uniqueId }}:before {
-                    background-image: url("{{ backgroundAsset.getUrl({
-                        width: min(3840, backgroundAsset.width)
-                    }) }}");
+                    background-image: url("{{ imager3840.url }}");
                 }
             }
         }

@@ -3,9 +3,10 @@ declare(strict_types=1);
 
 use dev\Module;
 use craft\helpers\App;
+use dev\CustomErrorHandler;
 use craft\mail\transportadapters\Smtp;
 
-return [
+$config = [
     'modules' => [
         'dev' => Module::class,
     ],
@@ -40,3 +41,11 @@ return [
         },
     ],
 ];
+
+if (getenv('DEV_MODE') === 'true') {
+    $config['components']['errorHandler'] = [
+        'class' => CustomErrorHandler::class,
+    ];
+}
+
+return $config;

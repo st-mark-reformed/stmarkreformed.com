@@ -3,41 +3,40 @@
 
 <div class="StandardEntry__ImageEntryBlockInner">
     <picture>
-        {% set standardAssetUrl = imageAsset.getUrl({
-            width: min(400, imageAsset.width),
+        {% set imager400 = craft.imager.transformImage(imageAsset, {
+            allowUpscale: false,
+            width: 400,
         }) %}
-        {% set retinaAssetUrl = imageAsset.getUrl({
-            width: min(400, imageAsset.width) * 2,
+        {% set imager800 = craft.imager.transformImage(imageAsset, {
+            allowUpscale: false,
+            width: 800,
+        }) %}
+        {% set imager1200 = craft.imager.transformImage(imageAsset, {
+            allowUpscale: false,
+            width: 1200,
+        }) %}
+        {% set imager1600 = craft.imager.transformImage(imageAsset, {
+            allowUpscale: false,
+            width: 1600,
+        }) %}
+        {% set imager2400 = craft.imager.transformImage(imageAsset, {
+            allowUpscale: false,
+            width: 2400,
         }) %}
         <source
-            srcset="{{ standardAssetUrl }} 1x,
-                    {{ retinaAssetUrl }} 2x"
+            srcset="{{ imager400.url }} 1x,
+                    {{ imager800.url }} 2x"
             media="(min-width: 1px) and (max-width: 499px)"
         >
-
-        {% set standardAssetUrl = imageAsset.getUrl({
-            width: min(800, imageAsset.width),
-        }) %}
-        {% set retinaAssetUrl = imageAsset.getUrl({
-            width: min(800, imageAsset.width) * 2,
-        }) %}
         <source
-            srcset="{{ standardAssetUrl }} 1x,
-                    {{ retinaAssetUrl }} 2x"
+            srcset="{{ imager800.url }} 1x,
+                    {{ imager1600.url }} 2x"
             media="(min-width: 500px) and (max-width: 799px)"
         >
-
-        {% set standardAssetUrl = imageAsset.getUrl({
-            width: min(1200, imageAsset.width),
-        }) %}
-        {% set retinaAssetUrl = imageAsset.getUrl({
-            width: min(1200, imageAsset.width) * 2,
-        }) %}
-
         <img
-            src="{{ standardAssetUrl }}"
-            srcset="{{ standardAssetUrl }} 1x,
-                    {{ retinaAssetUrl }} 2x"
+            src="{{ imager1200.url }}"
+            srcset="{{ imager1200.url }} 1x,
+                    {{ imager2400.url }} 2x"
             alt="{{ imageAsset.title }}"
             class="StandardEntry__ImageEntryBlockImage"
         >
