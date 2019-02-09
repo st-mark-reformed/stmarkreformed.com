@@ -7,12 +7,15 @@ use yii\base\Event;
 use craft\elements\Asset;
 use craft\elements\Entry;
 use craft\events\ModelEvent;
+use craft\services\Utilities;
 use dev\services\CacheService;
-use dev\services\EntrySlugService;
 use yii\base\Module as ModuleBase;
+use dev\services\EntrySlugService;
 use dev\services\EntryRoutingService;
 use craft\events\SetElementRouteEvent;
 use dev\twigextensions\DevTwigExtensions;
+use dev\utilities\ImageTransformsUtility;
+use craft\events\RegisterComponentTypesEvent;
 use dev\services\InitAssetTransformJobService;
 use craft\console\Application as ConsoleApplication;
 
@@ -25,7 +28,10 @@ class Module extends ModuleBase
     public function init()
     {
         $this->setUp();
+
         $this->setEvents();
+
+        $this->registerUtilityTypes();
 
         // Add in our console commands
         if (Craft::$app instanceof ConsoleApplication) {
@@ -91,6 +97,17 @@ class Module extends ModuleBase
                 }
 
                 (new InitAssetTransformJobService())->init((int) $asset->id);
+            }
+        );
+    }
+
+    private function registerUtilityTypes()
+    {
+        Event::on(
+            Utilities::class,
+            Utilities::EVENT_REGISTER_UTILITY_TYPES,
+            function (RegisterComponentTypesEvent $event) {
+                $event->types[] = ImageTransformsUtility::class;
             }
         );
     }
