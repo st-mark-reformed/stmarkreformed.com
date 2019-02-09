@@ -53,6 +53,7 @@ services:
       - ${DOCKER_RSA_PUB_FILE}:/tmp/.ssh/id_rsa.pub:delegated
       - ./serverConfig/php/php-custom-config.ini:/usr/local/etc/php/conf.d/php-custom-config.ini:delegated
       - ${DOCKER_PHP_ENV_INI_FILE}:/usr/local/etc/php/conf.d/php-env-config.ini:delegated
+      - ./serverConfig/php/fpm-www.conf:/usr/local/etc/php-fpm.d/www.conf
       - .:/app:delegated
       - ./dev/null:/app/.git:delegated
       - ./dev/null:/app/.idea:delegated
