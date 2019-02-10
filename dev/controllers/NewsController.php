@@ -101,6 +101,14 @@ class NewsController extends BaseController
             ]);
         }
 
+        $backLink = $entry->section->handle === 'pastorsPage' ?
+            '/pastors-page' :
+            '/news';
+
+        $backLinkText = $entry->section->handle === 'pastorsPage' ?
+            "back to all pastor's page entries" :
+            'back to all news';
+
         return $this->renderTemplate('_core/EntryStandard.twig', [
             'noIndex' => ! $entry->searchEngineIndexing,
             'metaTitle' => ($entry->seoTitle ?: $entry->title) . ' | News',
@@ -110,8 +118,8 @@ class NewsController extends BaseController
             'heroImageAsset' => $entry->heroImage->one(),
             'primaryImageAsset' =>  $entry->primaryImage->one(),
             'entry' => $entry,
-            'backLink' => '/news',
-            'backLinkText' => 'back to all news'
+            'backLink' => $backLink,
+            'backLinkText' => $backLinkText,
         ]);
     }
 }
