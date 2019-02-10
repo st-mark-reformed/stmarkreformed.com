@@ -90,7 +90,7 @@ class MessagesController extends BaseController
         $entriesTotal = (int) $entriesQuery->count();
         $maxPages = (int) ceil($entriesTotal / $limit);
 
-        if ($pageNum > $maxPages) {
+        if ($pageNum > 1 && $pageNum > $maxPages) {
             throw new HttpException(404);
         }
 

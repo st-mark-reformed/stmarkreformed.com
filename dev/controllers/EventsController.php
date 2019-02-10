@@ -9,9 +9,6 @@ use craft\helpers\Template;
 use craft\elements\db\AssetQuery;
 use dev\services\PaginationService;
 
-/**
- * Class GalleriesController
- */
 class EventsController extends BaseController
 {
     /**
@@ -43,7 +40,7 @@ class EventsController extends BaseController
         $entriesTotal = (int) $entriesQuery->count();
         $maxPages = (int) ceil($entriesTotal / $limit);
 
-        if ($pageNum > $maxPages) {
+        if ($pageNum > 1 && $pageNum > $maxPages) {
             throw new HttpException(404);
         }
 

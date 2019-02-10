@@ -4,19 +4,17 @@ namespace dev\commands;
 
 use Craft;
 use yii\helpers\Console;
+use craft\elements\Entry;
 use yii\console\Controller;
+use craft\elements\Category;
 use dev\services\SermonImporterService;
 
-/**
- * OldSermonsImport command
- */
 class OldSermonsImportController extends Controller
 {
-    public $firstPageOnly = 'true';
+    public $firstPageOnly = 'false';
 
-    /**
-     * @inheritdoc
-     */
+    private $batchSize = 100;
+
     public function options($actionID) : array
     {
         $options = parent::options($actionID);
@@ -24,10 +22,83 @@ class OldSermonsImportController extends Controller
         return $options;
     }
 
+    public function actionRemoveAllSermons()
+    {
+        $entries = Entry::find();
+        $entries->section = 'messages';
+        $entries->limit(100);
+
+        $counter = 0;
+
+        foreach ($entries->all() as $entry) {
+            $counter++;
+
+            $this->stdout(
+                "Deleting entry {$entry->title}..." . PHP_EOL,
+                Console::FG_YELLOW
+            );
+
+            if ($audioAsset = $entry->audio->one()) {
+                Craft::$app->getElements()->deleteElement($audioAsset);
+            }
+
+            Craft::$app->getElements()->deleteElement($entry);
+
+            $this->stdout(
+                "Deleted entry {$entry->title}..." . PHP_EOL,
+                Console::FG_GREEN
+            );
+        }
+
+        if ($counter) {
+            $this->stdout(
+                "Finished deleting {$counter} entries. Run command again to continue" . PHP_EOL,
+                Console::FG_GREEN
+            );
+
+            return;
+        }
+
+        $categories = Category::find();
+        $categories->group = 'messageSeries';
+
+        $counter = 0;
+
+        foreach ($categories->all() as $category) {
+            $counter++;
+
+            $this->stdout(
+                "Deleting category {$category->title}..." . PHP_EOL,
+                Console::FG_YELLOW
+            );
+
+            Craft::$app->getElements()->deleteElement($category);
+
+            $this->stdout(
+                "Deleted category {$category->title}..." . PHP_EOL,
+                Console::FG_GREEN
+            );
+        }
+
+        if ($counter) {
+            $this->stdout(
+                "Finished deleting {$counter} categories. Run command again to continue" . PHP_EOL,
+                Console::FG_GREEN
+            );
+
+            return;
+        }
+
+        $this->stdout(
+            'Nothing to do!' . PHP_EOL,
+            Console::FG_GREEN
+        );
+    }
+
     /**
      * Imports sermons from the old feed
-     * @throws \Exception
      * @throws \Throwable
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function actionRunImport()
     {
@@ -54,6 +125,8 @@ class OldSermonsImportController extends Controller
             $batchFiles[] = "{$batchDirPath}/{$fileInfo->getFilename()}";
         }
 
+        asort($batchFiles);
+
         if ($hasBatchFiles) {
             $this->stdout(
                 'Processing sermon import batches...' . PHP_EOL,
@@ -65,7 +138,7 @@ class OldSermonsImportController extends Controller
             $counter = 0;
 
             foreach ($batchFiles as $batchFile) {
-                if ($counter >= 20) {
+                if ($counter >= $this->batchSize) {
                     break;
                 }
 

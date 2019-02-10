@@ -12,23 +12,12 @@ use Cocur\Slugify\Slugify;
 use craft\elements\Category;
 use GuzzleHttp\Client as GuzzleClient;
 
-/**
- * Class SermonImporterService
- */
 class SermonImporterService
 {
-    /** @var string $trackingFilePath */
     private $trackingFilePath;
-
-    /** @var array $importedAudio */
     private $importedAudio;
-
-    /** @var string $audioDownloadPath */
     private $audioDownloadPath;
 
-    /**
-     * SermonImporterService constructor
-     */
     public function __construct()
     {
         $this->trackingFilePath = \dirname(__DIR__) .
@@ -51,7 +40,8 @@ class SermonImporterService
      * @param string $baseUrl
      * @param string $batchDirPath
      * @param bool $firstPageOnly
-     * @throws \Exception
+     * @throws \Throwable
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function scrapeDomForSermons(
         string $url,

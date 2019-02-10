@@ -6,6 +6,9 @@
 
 # Symlink to persistent storage
 dirs=(
+    "dev/sermonaudiodownload"
+    "dev/sermonbatches"
+    "dev/sermonbatchtracking"
     "storage"
     "public/imagecache"
     "public/uploads"

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5718a2970e6d9ec921785c62d83f0a8d",
+    "content-hash": "4fc2c704175b47a2b202df146b522969",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -5731,7 +5731,9 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.0.0"
+        "php": ">=7.0.0",
+        "ext-json": "*",
+        "ext-dom": "*"
     },
     "platform-dev": [],
     "platform-overrides": {
