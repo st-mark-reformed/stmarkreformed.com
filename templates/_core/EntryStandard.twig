@@ -6,7 +6,8 @@
 {% set metaDescription = metaDescription|default(null) %}
 {% set shareImage = shareImage|default(null) %}
 {% set heroHeading = heroHeading|default(null) %}
-{% set heroImageAsset = activeSeries|default(null) %}
+{% set heroImageAsset = heroImageAsset|default(null) %}
+{% set primaryImageAsset = primaryImageAsset|default(null) %}
 {% set entry = entry|default(null) %}
 {% set backLink = backLink|default(null) %}
 {% set backLinkText = backLinkText|default('back') %}
@@ -30,6 +31,24 @@
                         </h3>
                     </div>
                 </div>
+                {% if primaryImageAsset %}
+                    <div class="StandardEntry__PrimaryImage">
+                        {% set width = min(900, primaryImageAsset.width) %}
+                        {% set standardAsset900 = craft.imager.transformImage(primaryImageAsset, {
+                            width: width,
+                        }) %}
+                        {% set standardAsset1800 = craft.imager.transformImage(primaryImageAsset, {
+                            width: width * 2,
+                        }) %}
+                        <img
+                            src="{{ standardAsset900.url }}"
+                            srcset="{{ standardAsset900.url }} 1x,
+                                    {{ standardAsset1800.url }} 2x"
+                            alt="{{ entry.title }}"
+                            class="StandardEntry__PrimaryImageTag"
+                        >
+                    </div>
+                {% endif %}
                 {% include '_entryBuilder/_include.twig' with {
                     fieldArray: entry.entryBuilder.all(),
                 } only %}

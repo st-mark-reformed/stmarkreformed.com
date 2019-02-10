@@ -79,6 +79,14 @@ class RunAssetTransformJob extends BaseJob
         ]);
 
         $imager->transformImage($asset, [
+            'width' => min(900, (int) $asset->width),
+        ]);
+
+        $imager->transformImage($asset, [
+            'width' => min(900, (int) $asset->width) * 2,
+        ]);
+
+        $imager->transformImage($asset, [
             'allowUpscale' => false,
             'width' => 1000,
         ]);

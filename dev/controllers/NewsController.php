@@ -108,6 +108,7 @@ class NewsController extends BaseController
             'shareImage' => $shareImage,
             'heroHeading' => $entry->heroHeading ?: $entry->title,
             'heroImageAsset' => $entry->heroImage->one(),
+            'primaryImageAsset' =>  $entry->primaryImage->one(),
             'entry' => $entry,
             'backLink' => '/news',
             'backLinkText' => 'back to all news'
