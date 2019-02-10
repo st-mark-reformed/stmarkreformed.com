@@ -20,7 +20,8 @@
         "digitalnature/php-ref": "^1.2",
         "aelvan/imager": "^2.1",
         "ext-json": "*",
-        "ext-dom": "*"
+        "ext-dom": "*",
+        "craftcms/redactor": "^2.3"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
