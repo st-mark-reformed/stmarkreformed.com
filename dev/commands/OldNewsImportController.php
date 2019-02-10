@@ -3,27 +3,85 @@
 namespace dev\commands;
 
 use Craft;
-use dev\services\NewsImporterService;
 use yii\helpers\Console;
+use craft\elements\Entry;
 use yii\console\Controller;
+use dev\services\NewsImporterService;
 
-/**
- * Class OldNewsImportController
- */
 class OldNewsImportController extends Controller
 {
+    public function actionRemoveAllNews()
+    {
+        $entries = Entry::find();
+        $entries->section = ['news', 'pastorsPage'];
+        $entries->limit(100);
+
+        $counter = 0;
+
+        foreach ($entries->all() as $entry) {
+            $counter++;
+
+            $this->stdout(
+                "Deleting entry {$entry->title}..." . PHP_EOL,
+                Console::FG_YELLOW
+            );
+
+            Craft::$app->getElements()->deleteElement($entry);
+
+            $this->stdout(
+                "Deleted entry {$entry->title}..." . PHP_EOL,
+                Console::FG_GREEN
+            );
+        }
+
+        if ($counter) {
+            $this->stdout(
+                "Finished deleting {$counter} entries. Run command again to continue" . PHP_EOL,
+                Console::FG_GREEN
+            );
+
+            return;
+        }
+
+        $this->stdout(
+            'Nothing to do!' . PHP_EOL,
+            Console::FG_GREEN
+        );
+    }
+
     /**
-     * Imports news from the old site
-     * @throws \Exception
      * @throws \Throwable
      */
-    public function actionRunImport()
+    public function actionImportNews()
     {
+        $this->runImport('news');
+    }
+
+    /**
+     * @throws \Throwable
+     */
+    public function actionImportPastorsPage()
+    {
+        $this->runImport('pastorsPage');
+    }
+
+    /**
+     * @throws \Throwable
+     */
+    private function runImport(string $section)
+    {
+        if ($section !== 'news' && $section !== 'pastorsPage') {
+            throw new \Exception('Unrecognized section');
+        }
+
         Craft::setAlias('@webroot', \dirname(__DIR__, 2) . '/public');
 
         $importerService = new NewsImporterService();
 
-        $batchDirPath = \dirname(__DIR__) . '/newsbatches';
+        $batchDirPath =  $section === 'news' ?
+            '/newsbatches' :
+            '/pastorspagebatches';
+        $batchDirPath = \dirname(__DIR__) . $batchDirPath;
 
         $batchDir = new \DirectoryIterator($batchDirPath);
 
@@ -51,9 +109,9 @@ class OldNewsImportController extends Controller
             $counter = 0;
 
             foreach ($batchFiles as $batchFile) {
-                // if ($counter >= 20) {
-                //     break;
-                // }
+                if ($counter >= 100) {
+                    break;
+                }
 
                 $counter++;
 
@@ -62,8 +120,7 @@ class OldNewsImportController extends Controller
                     Console::FG_YELLOW
                 );
 
-                // $importerService->importFromJsonFile($batchFile, 'news');
-                $importerService->importFromJsonFile($batchFile, 'pastorsPage');
+                $importerService->importFromJsonFile($batchFile, $section);
 
                 $this->stdout(
                     "Finished processing {$batchFile}" . PHP_EOL,
@@ -95,6 +152,7 @@ class OldNewsImportController extends Controller
                 'Run the command again to continue processing.' . PHP_EOL,
                 Console::FG_GREEN
             );
+
             return;
         }
 
@@ -103,20 +161,20 @@ class OldNewsImportController extends Controller
             Console::FG_YELLOW
         );
 
-        // $importerService->scrapeDomForNews(
-        //     'http://stmarkreformed.com/category/news/',
-        //     'http://stmarkreformed.com/category/news/',
-        //     $batchDirPath,
-        //     1,
-        //     3
-        // );
+        $url = $section === 'news' ?
+            'http://stmarkreformed.com/category/news/' :
+            'http://stmarkreformed.com/category/pastors-page/';
+
+        $totalPages = $section === 'news' ?
+            3 :
+            25;
 
         $importerService->scrapeDomForNews(
-            'http://stmarkreformed.com/category/pastors-page/',
-            'http://stmarkreformed.com/category/pastors-page/',
+            $url,
+            $url,
             $batchDirPath,
             1,
-            25
+            $totalPages
         );
 
         $this->stdout(

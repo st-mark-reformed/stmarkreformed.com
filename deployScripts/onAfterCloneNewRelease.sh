@@ -6,6 +6,8 @@
 
 # Symlink to persistent storage
 dirs=(
+    "dev/newsbatches"
+    "dev/pastorspagebatches"
     "dev/sermonaudiodownload"
     "dev/sermonbatches"
     "dev/sermonbatchtracking"
