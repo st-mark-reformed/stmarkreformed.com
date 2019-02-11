@@ -13,7 +13,7 @@ class InitAllAssetsTransformsJob extends BaseJob
     {
         foreach (Asset::findAll() as $asset) {
             if (! $asset->getHeight()) {
-                return;
+                continue;
             }
 
             $queue->push(new RunAssetTransformJob([
