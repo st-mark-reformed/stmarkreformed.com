@@ -3,40 +3,44 @@
 
 <div class="StandardEntry__ImageEntryBlockInner">
     <picture>
+        {% set image400Width = min(400, imageAsset.width) %}
         {% set imager400 = craft.imager.transformImage(imageAsset, {
-            allowUpscale: false,
-            width: 400,
+            width: image400Width,
         }) %}
+        {% set imager400Retina = craft.imager.transformImage(imageAsset, {
+            width: image400Width * 2,
+        }) %}
+
+        {% set image800Width = min(800, imageAsset.width) %}
         {% set imager800 = craft.imager.transformImage(imageAsset, {
-            allowUpscale: false,
-            width: 800,
+            width: image800Width,
         }) %}
+        {% set imager800Retina = craft.imager.transformImage(imageAsset, {
+            width: image800Width * 2,
+        }) %}
+
+        {% set image1200Width = min(1200, imageAsset.width) %}
         {% set imager1200 = craft.imager.transformImage(imageAsset, {
-            allowUpscale: false,
-            width: 1200,
+            width: image1200Width,
         }) %}
-        {% set imager1600 = craft.imager.transformImage(imageAsset, {
-            allowUpscale: false,
-            width: 1600,
+        {% set imager1200Retina = craft.imager.transformImage(imageAsset, {
+            width: image1200Width * 2,
         }) %}
-        {% set imager2400 = craft.imager.transformImage(imageAsset, {
-            allowUpscale: false,
-            width: 2400,
-        }) %}
+
         <source
             srcset="{{ imager400.url }} 1x,
-                    {{ imager800.url }} 2x"
+                    {{ imager400Retina.url }} 2x"
             media="(min-width: 1px) and (max-width: 499px)"
         >
         <source
             srcset="{{ imager800.url }} 1x,
-                    {{ imager1600.url }} 2x"
+                    {{ imager800Retina.url }} 2x"
             media="(min-width: 500px) and (max-width: 799px)"
         >
         <img
             src="{{ imager1200.url }}"
             srcset="{{ imager1200.url }} 1x,
-                    {{ imager2400.url }} 2x"
+                    {{ imager1200Retina.url }} 2x"
             alt="{{ imageAsset.title }}"
             class="StandardEntry__ImageEntryBlockImage"
         >

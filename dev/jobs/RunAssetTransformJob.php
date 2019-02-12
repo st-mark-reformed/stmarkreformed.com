@@ -54,6 +54,14 @@ class RunAssetTransformJob extends BaseJob
             'width' => 300,
         ]);
 
+        $image400Width = min(400, (int) $asset->width);
+        $imager->transformImage($asset, [
+            'width' => $image400Width,
+        ]);
+        $imager->transformImage($asset, [
+            'width' => $image400Width * 2,
+        ]);
+
         $imager->transformImage($asset, [
             'allowUpscale' => false,
             'width' => 400,
@@ -73,6 +81,14 @@ class RunAssetTransformJob extends BaseJob
             'width' => 700,
         ]);
 
+        $image800Width = min(800, (int) $asset->width);
+        $imager->transformImage($asset, [
+            'width' => $image800Width,
+        ]);
+        $imager->transformImage($asset, [
+            'width' => $image800Width * 2,
+        ]);
+
         $imager->transformImage($asset, [
             'allowUpscale' => false,
             'width' => 800,
@@ -89,6 +105,14 @@ class RunAssetTransformJob extends BaseJob
         $imager->transformImage($asset, [
             'allowUpscale' => false,
             'width' => 1000,
+        ]);
+
+        $image1200Width = min(1200, (int) $asset->width);
+        $imager->transformImage($asset, [
+            'width' => $image1200Width,
+        ]);
+        $imager->transformImage($asset, [
+            'width' => $image1200Width * 2,
         ]);
 
         $imager->transformImage($asset, [
