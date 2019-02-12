@@ -41,28 +41,28 @@ return [
      * Messages listing routes
      * @see \dev\controllers\MessagesController::actionIndex()
      */
-    'GET media/messages' => 'dev/messages/index',
-    'GET media/messages/page/<pageNum:\d+>' => 'dev/messages/index',
+    'media/messages' => 'dev/messages/index',
+    'media/messages/page/<pageNum:\d+>' => 'dev/messages/index',
 
     /**
      * Messages speakers listing routes
      * @see \dev\controllers\MessagesController::actionIndex()
      */
-    'GET media/messages/by/<speaker:([^\/]+)>' => 'dev/messages/index',
-    'GET media/messages/by/<speaker:([^\/]+)>/page/<pageNum:\d+>' => 'dev/messages/index',
+    'media/messages/by/<speaker:([^\/]+)>' => 'dev/messages/index',
+    'media/messages/by/<speaker:([^\/]+)>/page/<pageNum:\d+>' => 'dev/messages/index',
 
     /**
      * Messages series listing routes
      * @see \dev\controllers\MessagesController::actionIndex()
      */
-    'GET media/messages/series/<series:([^\/]+)>' => 'dev/messages/index',
-    'GET media/messages/series/<series:([^\/]+)>/page/<pageNum:\d+>' => 'dev/messages/index',
+    'media/messages/series/<series:([^\/]+)>' => 'dev/messages/index',
+    'media/messages/series/<series:([^\/]+)>/page/<pageNum:\d+>' => 'dev/messages/index',
 
     /**
      * Messages feeds routes
      */
-    'GET media/<section:messages>/feed' => ['template' => '_core/MessagesFeed.xml'],
-    'GET sermons' => ['template' => '_audio/MessagesNewFeedRedirect.xml'],
+    'media/<section:messages>/feed' => ['template' => '_core/MessagesFeed.xml'],
+    'sermons' => ['template' => '_audio/MessagesNewFeedRedirect.xml'],
 
     /**
      * Messages single entry pages set by Messages section in Craft
@@ -83,8 +83,8 @@ return [
      * Galleries listing routes
      * @see \dev\controllers\GalleriesController::actionIndex()
      */
-    'GET media/galleries' => 'dev/galleries/index',
-    'GET media/galleries/page/<pageNum:\d+>' => 'dev/galleries/index',
+    'media/galleries' => 'dev/galleries/index',
+    'media/galleries/page/<pageNum:\d+>' => 'dev/galleries/index',
 
     /**
      * Galleries single entry pages set by Galleries section in Craft
@@ -105,8 +105,8 @@ return [
      * Events listing routes
      * @see \dev\controllers\EventsController::actionIndex()
      */
-    'GET events' => 'dev/events/index',
-    'GET events/page/<pageNum:\d+>' => 'dev/events/index',
+    'events' => 'dev/events/index',
+    'events/page/<pageNum:\d+>' => 'dev/events/index',
 
     /**
      * Events single entry pages set by Events section in Craft
@@ -127,8 +127,8 @@ return [
      * News listing routes
      * @see \dev\controllers\NewsController::actionIndex()
      */
-    'GET <section:news>' => 'dev/news/index',
-    'GET <section:news>/page/<pageNum:\d+>' => 'dev/news/index',
+    '<section:news>' => 'dev/news/index',
+    '<section:news>/page/<pageNum:\d+>' => 'dev/news/index',
 
     /**
      * News single entry pages set by News section in Craft
@@ -149,8 +149,8 @@ return [
      * Pastor's Page listing routes
      * @see \dev\controllers\NewsController::actionIndex()
      */
-    'GET <section:pastors-page>' => 'dev/news/index',
-    'GET <section:pastors-page>/page/<pageNum:\d+>' => 'dev/news/index',
+    '<section:pastors-page>' => 'dev/news/index',
+    '<section:pastors-page>/page/<pageNum:\d+>' => 'dev/news/index',
 
     /**
      * Pastor's Page single entry pages set by Pastor's Page section in Craft
@@ -171,42 +171,42 @@ return [
      * Site map index
      * @see \dev\controllers\SiteMapController::actionIndex()
      */
-    'GET sitemap' => 'dev/site-map/index',
+    'sitemap' => 'dev/site-map/index',
 
     /**
      * Site map pages
      * @see \dev\controllers\SiteMapController::actionPages()
      */
-    'GET sitemap/pages' => 'dev/site-map/pages',
+    'sitemap/pages' => 'dev/site-map/pages',
 
     /**
      * Site map events
      * @see \dev\controllers\SiteMapController::actionEvents()
      */
-    'GET sitemap/events' => 'dev/site-map/events',
+    'sitemap/events' => 'dev/site-map/events',
 
     /**
      * Site map galleries
      * @see \dev\controllers\SiteMapController::actionGalleries()
      */
-    'GET sitemap/galleries' => 'dev/site-map/galleries',
+    'sitemap/galleries' => 'dev/site-map/galleries',
 
     /**
      * Site map messages
      * @see \dev\controllers\SiteMapController::actionMessages()
      */
-    'GET sitemap/messages' => 'dev/site-map/messages',
+    'sitemap/messages' => 'dev/site-map/messages',
 
     /**
      * Site map news
      * @see \dev\controllers\SiteMapController::actionNews()
      */
-    'GET sitemap/news' => 'dev/site-map/news',
+    'sitemap/news' => 'dev/site-map/news',
 
     /**
      * Site map news
      * @see \dev\controllers\SiteMapController::actionPastorsPage()
      */
-    'GET sitemap/pastors-page' => 'dev/site-map/pastors-page',
+    'sitemap/pastors-page' => 'dev/site-map/pastors-page',
 
 ];
