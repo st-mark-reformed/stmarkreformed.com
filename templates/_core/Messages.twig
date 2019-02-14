@@ -17,6 +17,9 @@
 {# @var pagination array #}
 {% set pagination = pagination|default(null) %}
 
+{% set speakers = craft.users.group('speakers').orderBy('lastname asc').all() %}
+{% set seriesList = craft.categories.group('messageSeries').orderBy('title asc').all() %}
+
 {# Primary content #}
 {% block content %}
     <div class="PageWithSubNav">
@@ -65,7 +68,7 @@
             <div class="PageWithSubNav__NavLists JSPageSubNav__List">
                 <div class="PageWithSubNav__NavListHeading">Messages by:</div>
                 <ul class="PageWithSubNav__NavList">
-                    {% for speaker in craft.users.group('speakers').orderBy('lastname asc').all() %}
+                    {% for speaker in speakers %}
                         <li class="PageWithSubNav__NavListItem">
                             <a
                                 href="/media/messages/by/{{ speaker.slugField }}"
@@ -78,13 +81,13 @@
                 </ul>
                 <div class="PageWithSubNav__NavListHeading">Messages Series</div>
                 <ul class="PageWithSubNav__NavList">
-                    {% for category in craft.categories.group('messageSeries').orderBy('title asc').all() %}
+                    {% for series in seriesList %}
                         <li class="PageWithSubNav__NavListItem">
                             <a
-                                href="/media/messages/series/{{ category.slug }}"
-                                class="PageWithSubNav__NavListLink{% if category.slug == activeSeries %} PageWithSubNav__NavListLink--IsActive{% endif %}"
+                                href="/media/messages/series/{{ series.slug }}"
+                                class="PageWithSubNav__NavListLink{% if series.slug == activeSeries %} PageWithSubNav__NavListLink--IsActive{% endif %}"
                             >
-                                {{ category|typeset }}
+                                {{ series.title|smartypants }}
                             </a>
                         </li>
                     {% endfor %}
@@ -94,6 +97,76 @@
         <div class="PageWithSubNav__Content">
             <div class="BasicBlock">
                 <div class="BasicBlock__Inner">
+                    <form action="/media/messages/filter" class="Filters">
+                        <div class="Filters__Inner">
+                            <ul class="Filters__FilterList">
+                                <li class="Filters__FilterItem">
+                                    {% set messagesByValues = filterValues['messages_by'] ?? [] %}
+                                    <label class="label Filters__FilterLabel">
+                                        <span class="Filters__FilterLabelInner">By:</span>
+                                        <select name="messages_by[]" class="select Filters__FilterSelect" multiple>
+                                            {% for speaker in speakers %}
+                                                <option
+                                                    value="{{ speaker.slugField }}"
+                                                    {% if speaker.slugField in messagesByValues %}
+                                                    selected
+                                                    {% endif %}
+                                                >
+                                                    {% filter smartypants %}{% if speaker.titleOrHonorific %}{{ speaker.titleOrHonorific }} {% endif %}{{ speaker.fullName }}{% endfilter %}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                    </label>
+                                </li>
+                                <li class="Filters__FilterItem">
+                                    {% set seriesValues = filterValues['messages_in_series'] ?? [] %}
+                                    <label class="label Filters__FilterLabel">
+                                        <span class="Filters__FilterLabelInner">In series:</span>
+                                        <select name="messages_in_series[]" class="select Filters__FilterSelect" multiple>
+                                            {% for series in seriesList %}
+                                                <option
+                                                    value="{{ series.slug }}"
+                                                    {% if series.slug in seriesValues %}
+                                                    selected
+                                                    {% endif %}
+                                                >
+                                                    {{ series.title|smartypants }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                    </label>
+                                </li>
+                                <li class="Filters__FilterItem">
+                                    {% set scriptureReferenceValue = filterValues['messages_scripture_reference'] ?? '' %}
+                                    <label class="label Filters__FilterLabel">
+                                        <span class="Filters__FilterLabelInner">Scripture reference:</span>
+                                        <input
+                                            type="text"
+                                            name="messages_scripture_reference"
+                                            class="input Filters__FilterInput"
+                                            value="{{ scriptureReferenceValue }}"
+                                        >
+                                    </label>
+                                </li>
+                                <li class="Filters__FilterItem">
+                                    {% set titleValue = filterValues['messages_title'] ?? '' %}
+                                    <label class="label Filters__FilterLabel">
+                                        <span class="Filters__FilterLabelInner">Title:</span>
+                                        <input
+                                            type="text"
+                                            name="messages_title"
+                                            class="input Filters__FilterInput"
+                                            value="{{ titleValue }}"
+                                        >
+                                    </label>
+                                </li>
+                                <li class="Filters__FilterItem Filters__FilterItem--IsActions">
+                                    <button class="button Filters__FilterActionButton">Filter</button>
+                                    <a href="/media/messages" class="button Filters__FilterActionButton">Reset</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
                     <div class="MessageList">
                         <div class="MessageList__Inner">
                             {% if backLink %}
