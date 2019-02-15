@@ -97,8 +97,11 @@
         <div class="PageWithSubNav__Content">
             <div class="BasicBlock">
                 <div class="BasicBlock__Inner">
-                    <form action="/media/messages/filter" class="Filters">
+                    <form action="/media/messages/filter" class="Filters JS-RequireAnInput">
                         <div class="Filters__Inner">
+                            <div class="Filters__RequireAnInput JS-RequireAnInput__Msg">
+                                You must specify at least one filter&nbsp;input
+                            </div>
                             <ul class="Filters__FilterList">
                                 <li class="Filters__FilterItem">
                                     {% set messagesByValues = filterValues['messages_by'] ?? [] %}
@@ -106,7 +109,7 @@
                                         <span class="Filters__FilterLabelInner">By:</span>
                                         <select
                                             name="messages_by[]"
-                                            class="select Filters__FilterSelect JS-Select"
+                                            class="select Filters__FilterSelect JS-Select JS-RequireAnInput__Input"
                                             data-choices-classes="choices--filter-item"
                                             multiple
                                         >
@@ -129,7 +132,7 @@
                                         <span class="Filters__FilterLabelInner">In series:</span>
                                         <select
                                             name="messages_in_series[]"
-                                            class="select Filters__FilterSelect JS-Select"
+                                            class="select Filters__FilterSelect JS-Select JS-RequireAnInput__Input"
                                             data-choices-classes="choices--filter-item"
                                             multiple
                                         >
@@ -153,7 +156,7 @@
                                         <input
                                             type="text"
                                             name="messages_scripture_reference"
-                                            class="input Filters__FilterInput"
+                                            class="input Filters__FilterInput JS-RequireAnInput__Input"
                                             value="{{ scriptureReferenceValue }}"
                                         >
                                     </label>
@@ -165,7 +168,7 @@
                                         <input
                                             type="text"
                                             name="messages_title"
-                                            class="input Filters__FilterInput"
+                                            class="input Filters__FilterInput JS-RequireAnInput__Input"
                                             value="{{ titleValue }}"
                                         >
                                     </label>
@@ -177,7 +180,7 @@
                                         <input
                                             type="text"
                                             name="messages_date_range_start"
-                                            class="input Filters__FilterInput JS-FlatPicker JS-ClearInput__Input"
+                                            class="input Filters__FilterInput JS-FlatPicker JS-ClearInput__Input JS-RequireAnInput__Input"
                                             value="{{ dateRangeStartValue }}"
                                         >
                                     </label>
@@ -192,7 +195,7 @@
                                         <input
                                             type="text"
                                             name="messages_date_range_end"
-                                            class="input Filters__FilterInput JS-FlatPicker JS-ClearInput__Input"
+                                            class="input Filters__FilterInput JS-FlatPicker JS-ClearInput__Input JS-RequireAnInput__Input"
                                             value="{{ dateRangeEndValue }}"
                                         >
                                     </label>

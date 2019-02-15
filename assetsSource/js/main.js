@@ -97,6 +97,12 @@ function runMain(F) {
             el: this
         });
     });
+
+    $('.JS-RequireAnInput').each(function() {
+        F.controller.construct('RequireAnInput', {
+            el: this
+        });
+    });
 }
 
 runMain(window.FAB);
