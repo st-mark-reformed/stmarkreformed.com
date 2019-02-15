@@ -13,6 +13,7 @@
         }
     ],
     "dependencies": {
+        "choices.js": "^6.0.0",
         "fab-build-next": "^1.5.1",
         "fab.assets": "^1.2.1",
         "fab.controller": "^1.2.1",

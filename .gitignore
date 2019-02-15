@@ -36,7 +36,7 @@ auth.json
 .settings
 .tern-project
 .tmproj
-node_modules
+/node_modules
 out
 vendor
 

@@ -104,7 +104,12 @@
                                     {% set messagesByValues = filterValues['messages_by'] ?? [] %}
                                     <label class="label Filters__FilterLabel">
                                         <span class="Filters__FilterLabelInner">By:</span>
-                                        <select name="messages_by[]" class="select Filters__FilterSelect" multiple>
+                                        <select
+                                            name="messages_by[]"
+                                            class="select Filters__FilterSelect JS-Select"
+                                            data-choices-classes="choices--filter-item"
+                                            multiple
+                                        >
                                             {% for speaker in speakers %}
                                                 <option
                                                     value="{{ speaker.slugField }}"
@@ -122,7 +127,12 @@
                                     {% set seriesValues = filterValues['messages_in_series'] ?? [] %}
                                     <label class="label Filters__FilterLabel">
                                         <span class="Filters__FilterLabelInner">In series:</span>
-                                        <select name="messages_in_series[]" class="select Filters__FilterSelect" multiple>
+                                        <select
+                                            name="messages_in_series[]"
+                                            class="select Filters__FilterSelect JS-Select"
+                                            data-choices-classes="choices--filter-item"
+                                            multiple
+                                        >
                                             {% for series in seriesList %}
                                                 <option
                                                     value="{{ series.slug }}"

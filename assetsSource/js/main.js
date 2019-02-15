@@ -16,7 +16,9 @@ function runMain(F) {
 
     var GlobalModelConstructor = F.model.make({
         googleApiKey: 'string',
-        googleMapsApiLoaded: 'bool'
+        googleMapsApiLoaded: 'bool',
+        selectIsLoading: 'bool',
+        selectHasLoaded: 'bool'
     });
 
     F.GlobalModel = new GlobalModelConstructor($('body').data('vars'));
@@ -72,6 +74,12 @@ function runMain(F) {
 
     $('.JSContactForm').each(function() {
         F.controller.construct('ContactForm', {
+            el: this
+        });
+    });
+
+    $('.JS-Select').each(function() {
+        F.controller.construct('Select', {
             el: this
         });
     });

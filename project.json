@@ -5,5 +5,11 @@
         "dev/**",
         "templates/**"
     ],
-    "watchUsesPolling": true
+    "watchUsesPolling": true,
+    "libSync": [
+        "assetsSource/fonts",
+        "assetsSource/img",
+        "assetsSource/lib",
+        "node_modules/choices.js/public/assets"
+    ]
 }
