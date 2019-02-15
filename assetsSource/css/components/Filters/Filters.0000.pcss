@@ -11,6 +11,7 @@
     list-style: none;
     margin: 0;
 }
+}
 
 .Filters__FilterLabelInner {
     display: block;
@@ -26,6 +27,25 @@
 .Filters__FilterItem {
     display: block;
     margin-bottom: 20px;
+    position: relative;
+}
+
+.Filters__ClearInput {
+    background-color: var(--lightGray);
+    bottom: 2px;
+    color: var(--gray);
+    display: none;
+    height: 37px;
+    padding: 8px 10px 10px 10px;
+    position: absolute;
+    right: 1px;
+    width: 38px;
+    z-index: 9;
+}
+
+.Filters__ClearInput:hover {
+    background-color: var(--gray);
+    color: var(--darkGray);
 }
 
 .Filters__FilterItem--IsActions {

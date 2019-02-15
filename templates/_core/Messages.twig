@@ -170,29 +170,35 @@
                                         >
                                     </label>
                                 </li>
-                                <li class="Filters__FilterItem">
+                                <li class="Filters__FilterItem JS-ClearInput">
                                     {% set dateRangeStartValue = filterValues['messages_date_range_start'] ?? '' %}
                                     <label class="label Filters__FilterLabel">
                                         <span class="Filters__FilterLabelInner">Date Range Start:</span>
                                         <input
                                             type="text"
                                             name="messages_date_range_start"
-                                            class="input Filters__FilterInput JS-FlatPicker"
+                                            class="input Filters__FilterInput JS-FlatPicker JS-ClearInput__Input"
                                             value="{{ dateRangeStartValue }}"
                                         >
                                     </label>
+                                    <span class="Filters__ClearInput JS-ClearInput__Button">
+                                        {% include '_svg/icon-close.svg' only %}
+                                    </span>
                                 </li>
-                                <li class="Filters__FilterItem">
+                                <li class="Filters__FilterItem JS-ClearInput">
                                     {% set dateRangeEndValue = filterValues['messages_date_range_end'] ?? '' %}
                                     <label class="label Filters__FilterLabel">
                                         <span class="Filters__FilterLabelInner">Date Range End:</span>
                                         <input
                                             type="text"
                                             name="messages_date_range_end"
-                                            class="input Filters__FilterInput JS-FlatPicker"
+                                            class="input Filters__FilterInput JS-FlatPicker JS-ClearInput__Input"
                                             value="{{ dateRangeEndValue }}"
                                         >
                                     </label>
+                                    <span class="Filters__ClearInput JS-ClearInput__Button">
+                                        {% include '_svg/icon-close.svg' only %}
+                                    </span>
                                 </li>
                                 <li class="Filters__FilterItem Filters__FilterItem--IsActions">
                                     <a href="/media/messages" class="button button--outlined Filters__FilterActionButton">Reset Filter</a>

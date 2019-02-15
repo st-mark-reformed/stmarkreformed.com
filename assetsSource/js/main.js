@@ -91,6 +91,12 @@ function runMain(F) {
             el: this
         });
     });
+
+    $('.JS-ClearInput').each(function() {
+        F.controller.construct('ClearInput', {
+            el: this
+        });
+    });
 }
 
 runMain(window.FAB);
