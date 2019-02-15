@@ -43,8 +43,8 @@ return [
      */
     'media/messages' => 'dev/messages/index',
     'media/messages/page/<pageNum:\d+>' => 'dev/messages/index',
-    // 'media/messages/<filter>' => 'dev/messages/index',
-    // 'media/messages/<filter>/page/<pageNum:\d+>' => 'dev/messages/index',
+    'media/messages/<filter>' => 'dev/messages/index',
+    'media/messages/<filter>/page/<pageNum:\d+>' => 'dev/messages/index',
 
     /**
      * Messages speakers listing routes

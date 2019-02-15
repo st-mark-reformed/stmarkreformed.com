@@ -2,11 +2,13 @@
 
 namespace dev\controllers;
 
+use Craft;
 use yii\web\Response;
 use craft\elements\User;
 use craft\elements\Entry;
 use yii\web\HttpException;
 use craft\elements\Category;
+use craft\elements\db\EntryQuery;
 use craft\elements\db\AssetQuery;
 use dev\services\PaginationService;
 
@@ -26,7 +28,8 @@ class MessagesController extends BaseController
     public function actionIndex(
         int $pageNum = null,
         string $speaker = null,
-        string $series = null
+        string $series = null,
+        string $filter = null
     ) : Response {
         if ($pageNum === 1) {
             throw new HttpException(404);
@@ -42,6 +45,10 @@ class MessagesController extends BaseController
         $limit = 10;
 
         $entriesQuery = Entry::find()->section('messages');
+
+        if ($filter === 'filter') {
+            $this->filterEntryQuery($entriesQuery);
+        }
 
         if ($speaker) {
             $speakerQuery = User::find()->slugField($speaker)->one();
@@ -109,16 +116,32 @@ class MessagesController extends BaseController
             $metaTitle .= " | Page{$pageNum}";
         }
 
-        $response = $this->renderTemplate('_core/Messages.twig', compact(
-            'backLink',
-            'backLinkText',
-            'metaTitle',
-            'heroHeading',
-            'activeSpeaker',
-            'activeSeries',
-            'entries',
-            'pagination'
-        ));
+        $request = Craft::$app->getRequest();
+
+        $filterValues = [
+            'messages_by' => $request->get('messages_by'),
+            'messages_in_series' => $request->get('messages_in_series'),
+            'messages_scripture_reference' => $request->get('messages_scripture_reference'),
+            'messages_title' => $request->get('messages_title'),
+            'messages_date_range_start' => $request->get('messages_date_range_start'),
+            'messages_date_range_end' => $request->get('messages_date_range_end'),
+        ];
+
+        $response = $this->renderTemplate(
+            '_core/Messages.twig',
+            compact(
+                'backLink',
+                'backLinkText',
+                'metaTitle',
+                'heroHeading',
+                'activeSpeaker',
+                'activeSeries',
+                'entries',
+                'pagination',
+                'filterValues'
+            ),
+            $filter !== 'filter'
+        );
 
         return $response;
     }
@@ -152,5 +175,77 @@ class MessagesController extends BaseController
             'backLink' => '/media/messages',
             'backLinkText' => 'back to all messages',
         ]);
+    }
+
+    private function filterEntryQuery(EntryQuery $query)
+    {
+        $request = Craft::$app->getRequest();
+
+        $by = $request->get('messages_by');
+        $series = $request->get('messages_in_series');
+        $ref = $request->get('messages_scripture_reference');
+        $title = $request->get('messages_title');
+        $start = $request->get('messages_date_range_start');
+        $end = $request->get('messages_date_range_end');
+
+        if (! $by && ! $series && ! $ref && ! $title && ! $start && ! $end) {
+            throw new HttpException(404);
+        }
+
+        $relatedTo = [];
+
+        if ($by) {
+            $by = is_array($by) ? $by : [$by];
+            $relatedTo = array_merge(
+                $relatedTo,
+                User::find()->slugField($by)->ids()
+            );
+        }
+
+        if ($series) {
+            $series = is_array($series) ? $series : [$series];
+            $relatedTo = array_merge(
+                $relatedTo,
+                Category::find()->slug($series)->ids()
+            );
+        }
+
+        if ($relatedTo) {
+            $query->relatedTo($relatedTo);
+        }
+
+        $searchStr = '';
+
+        if ($ref) {
+            $searchStr .= ' messageText:"*' . $ref . '*"';
+        }
+
+        if ($title) {
+            $searchStr .= ' title:"*' . $title . '*"';
+        }
+
+        if ($searchStr) {
+            $query->search(trim($searchStr));
+        }
+
+        // Hack because apparently Craft end date with <= doesn't effing work
+        if ($end) {
+            $end = date_create($end);
+            $end->setTimestamp($end->getTimestamp() + 86400);
+            $end = $end->format('Y-m-d');
+        }
+
+        if ($start && $end) {
+            $query->postDate(['and', '>= ' . $start, '< ' . $end]);
+            return;
+        }
+
+        if ($start) {
+            $query->postDate('>= '. $start);
+        }
+
+        if ($end) {
+            $query->postDate('<= ' . $end);
+        }
     }
 }
