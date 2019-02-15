@@ -18,7 +18,9 @@ function runMain(F) {
         googleApiKey: 'string',
         googleMapsApiLoaded: 'bool',
         selectIsLoading: 'bool',
-        selectHasLoaded: 'bool'
+        selectHasLoaded: 'bool',
+        flatPickerIsLoading: 'bool',
+        flackPickerHasLoaded: 'bool'
     });
 
     F.GlobalModel = new GlobalModelConstructor($('body').data('vars'));
@@ -80,6 +82,12 @@ function runMain(F) {
 
     $('.JS-Select').each(function() {
         F.controller.construct('Select', {
+            el: this
+        });
+    });
+
+    $('.JS-FlatPicker').each(function() {
+        F.controller.construct('FlatPicker', {
             el: this
         });
     });
