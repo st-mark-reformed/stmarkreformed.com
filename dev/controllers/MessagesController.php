@@ -22,6 +22,7 @@ class MessagesController extends BaseController
      * @param int $pageNum
      * @param string $speaker
      * @param string $series
+     * @param string $filter
      * @return Response
      * @throws \Exception
      */
@@ -35,9 +36,9 @@ class MessagesController extends BaseController
             throw new HttpException(404);
         }
 
+        $breadCrumbs = [];
+
         $pageNum = $pageNum ?: 1;
-        $backLink = null;
-        $backLinkText = 'back to all messages';
         $metaTitle = 'Messages';
         $heroHeading = 'Messages from St. Mark';
         $activeSpeaker = null;
@@ -48,6 +49,21 @@ class MessagesController extends BaseController
 
         if ($filter === 'filter') {
             $this->filterEntryQuery($entriesQuery);
+
+            $breadCrumbs = [
+                [
+                    'href' => '/',
+                    'content' => 'Home',
+                ],
+                [
+                    'href' => '/media/messages',
+                    'content' => 'Messages',
+                ],
+                [
+                    'href' => '/media/messages/filter?' . Craft::$app->getRequest()->getQueryString(),
+                    'content' => 'Filtered',
+                ],
+            ];
         }
 
         if ($speaker) {
@@ -70,7 +86,20 @@ class MessagesController extends BaseController
 
             $activeSpeaker = $speakerQuery->slugField;
 
-            $backLink = '/media/messages';
+            $breadCrumbs = [
+                [
+                    'href' => '/',
+                    'content' => 'Home',
+                ],
+                [
+                    'href' => '/media/messages',
+                    'content' => 'Messages',
+                ],
+                [
+                    'href' => '/media/messages/by/' . $activeSpeaker,
+                    'content' => 'By ' . $speakerName,
+                ],
+            ];
         }
 
         if ($series) {
@@ -91,7 +120,20 @@ class MessagesController extends BaseController
 
             $activeSeries = $seriesQuery->slug;
 
-            $backLink = '/media/messages';
+            $breadCrumbs = [
+                [
+                    'href' => '/',
+                    'content' => 'Home',
+                ],
+                [
+                    'href' => '/media/messages',
+                    'content' => 'Messages',
+                ],
+                [
+                    'href' => '/media/messages/series/' . $activeSeries,
+                    'content' => 'Series: ' . $seriesQuery->title,
+                ],
+            ];
         }
 
         $entriesTotal = (int) $entriesQuery->count();
@@ -113,7 +155,24 @@ class MessagesController extends BaseController
         ]);
 
         if ($pageNum > 1) {
-            $metaTitle .= " | Page{$pageNum}";
+            $metaTitle .= " | Page {$pageNum}";
+
+            if (! $breadCrumbs) {
+                $breadCrumbs = [
+                    [
+                        'href' => '/',
+                        'content' => 'Home',
+                    ],
+                    [
+                        'href' => '/media/messages',
+                        'content' => 'Messages',
+                    ],
+                ];
+            }
+
+            $breadCrumbs[] = [
+                'content' => 'Page ' . $pageNum,
+            ];
         }
 
         $request = Craft::$app->getRequest();
@@ -130,8 +189,7 @@ class MessagesController extends BaseController
         $response = $this->renderTemplate(
             '_core/Messages.twig',
             compact(
-                'backLink',
-                'backLinkText',
+                'breadCrumbs',
                 'metaTitle',
                 'heroHeading',
                 'activeSpeaker',
@@ -172,8 +230,20 @@ class MessagesController extends BaseController
             'shareImage' => $shareImage,
             'heroHeading' => $entry->heroHeading ?: $entry->title,
             'entries' => [$entry],
-            'backLink' => '/media/messages',
-            'backLinkText' => 'back to all messages',
+            'showFilters' => false,
+            'breadCrumbs' => [
+                [
+                    'href' => '/',
+                    'content' => 'Home',
+                ],
+                [
+                    'href' => '/media/messages',
+                    'content' => 'Messages',
+                ],
+                [
+                    'content' => 'Viewing Message',
+                ],
+            ],
         ]);
     }
 

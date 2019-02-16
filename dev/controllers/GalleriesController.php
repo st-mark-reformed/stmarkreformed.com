@@ -103,6 +103,19 @@ class GalleriesController extends BaseController
             'heroHeading' => $entry->title,
             'photoAssets' => $photoAssets,
             'heroImageAsset' => $heroImageAsset,
+            'breadCrumbs' => [
+                [
+                    'href' => '/',
+                    'content' => 'Home',
+                ],
+                [
+                    'href' => '/media/galleries',
+                    'content' => 'Galleries',
+                ],
+                [
+                    'content' => 'Viewing Gallery',
+                ],
+            ],
         ]);
     }
 }

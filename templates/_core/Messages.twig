@@ -5,8 +5,6 @@
 
 {# Variables #}
 {% set noIndex = noIndex|default(false) %}
-{% set backLink = backLink|default(null) %}
-{% set backLinkText = backLinkText|default(null) %}
 {% set metaTitle = metaTitle|default(null) %}
 {% set metaDescription = metaDescription|default(null) %}
 {% set shareImage = shareImage|default(null) %}
@@ -16,6 +14,7 @@
 {% set entries = entries|default({}) %}
 {# @var pagination array #}
 {% set pagination = pagination|default(null) %}
+{% set showFilters = showFilters ?? true %}
 
 {% set speakers = craft.users.group('speakers').orderBy('lastname asc').all() %}
 {% set seriesList = craft.categories.group('messageSeries').orderBy('title asc').all() %}
@@ -97,127 +96,123 @@
         <div class="PageWithSubNav__Content">
             <div class="BasicBlock">
                 <div class="BasicBlock__Inner">
-                    <form action="/media/messages/filter" class="Filters JS-RequireAnInput">
-                        <div class="Filters__Inner">
-                            <div class="Filters__RequireAnInput JS-RequireAnInput__Msg">
-                                You must specify at least one filter&nbsp;input
+                    {% if showFilters %}
+                        <form action="/media/messages/filter" class="Filters JS-RequireAnInput">
+                            <div class="Filters__Inner">
+                                <div class="Filters__RequireAnInput JS-RequireAnInput__Msg">
+                                    You must specify at least one filter&nbsp;input
+                                </div>
+                                <ul class="Filters__FilterList">
+                                    <li class="Filters__FilterItem">
+                                        {% set messagesByValues = filterValues['messages_by'] ?? [] %}
+                                        <label class="label Filters__FilterLabel">
+                                            <span class="Filters__FilterLabelInner">By:</span>
+                                            <select
+                                                name="messages_by[]"
+                                                class="select Filters__FilterSelect JS-Select JS-RequireAnInput__Input"
+                                                data-choices-classes="choices--filter-item"
+                                                multiple
+                                            >
+                                                {% for speaker in speakers %}
+                                                    <option
+                                                        value="{{ speaker.slugField }}"
+                                                        {% if speaker.slugField in messagesByValues %}
+                                                        selected
+                                                        {% endif %}
+                                                    >
+                                                        {% filter smartypants %}{% if speaker.titleOrHonorific %}{{ speaker.titleOrHonorific }} {% endif %}{{ speaker.fullName }}{% endfilter %}
+                                                    </option>
+                                                {% endfor %}
+                                            </select>
+                                        </label>
+                                    </li>
+                                    <li class="Filters__FilterItem">
+                                        {% set seriesValues = filterValues['messages_in_series'] ?? [] %}
+                                        <label class="label Filters__FilterLabel">
+                                            <span class="Filters__FilterLabelInner">In series:</span>
+                                            <select
+                                                name="messages_in_series[]"
+                                                class="select Filters__FilterSelect JS-Select JS-RequireAnInput__Input"
+                                                data-choices-classes="choices--filter-item"
+                                                multiple
+                                            >
+                                                {% for series in seriesList %}
+                                                    <option
+                                                        value="{{ series.slug }}"
+                                                        {% if series.slug in seriesValues %}
+                                                        selected
+                                                        {% endif %}
+                                                    >
+                                                        {{ series.title|smartypants }}
+                                                    </option>
+                                                {% endfor %}
+                                            </select>
+                                        </label>
+                                    </li>
+                                    <li class="Filters__FilterItem">
+                                        {% set scriptureReferenceValue = filterValues['messages_scripture_reference'] ?? '' %}
+                                        <label class="label Filters__FilterLabel">
+                                            <span class="Filters__FilterLabelInner">Scripture reference:</span>
+                                            <input
+                                                type="text"
+                                                name="messages_scripture_reference"
+                                                class="input Filters__FilterInput JS-RequireAnInput__Input"
+                                                value="{{ scriptureReferenceValue }}"
+                                            >
+                                        </label>
+                                    </li>
+                                    <li class="Filters__FilterItem">
+                                        {% set titleValue = filterValues['messages_title'] ?? '' %}
+                                        <label class="label Filters__FilterLabel">
+                                            <span class="Filters__FilterLabelInner">Title:</span>
+                                            <input
+                                                type="text"
+                                                name="messages_title"
+                                                class="input Filters__FilterInput JS-RequireAnInput__Input"
+                                                value="{{ titleValue }}"
+                                            >
+                                        </label>
+                                    </li>
+                                    <li class="Filters__FilterItem JS-ClearInput">
+                                        {% set dateRangeStartValue = filterValues['messages_date_range_start'] ?? '' %}
+                                        <label class="label Filters__FilterLabel">
+                                            <span class="Filters__FilterLabelInner">Date Range Start:</span>
+                                            <input
+                                                type="text"
+                                                name="messages_date_range_start"
+                                                class="input Filters__FilterInput JS-FlatPicker JS-ClearInput__Input JS-RequireAnInput__Input"
+                                                value="{{ dateRangeStartValue }}"
+                                            >
+                                        </label>
+                                        <span class="Filters__ClearInput JS-ClearInput__Button">
+                                            {% include '_svg/icon-close.svg' only %}
+                                        </span>
+                                    </li>
+                                    <li class="Filters__FilterItem JS-ClearInput">
+                                        {% set dateRangeEndValue = filterValues['messages_date_range_end'] ?? '' %}
+                                        <label class="label Filters__FilterLabel">
+                                            <span class="Filters__FilterLabelInner">Date Range End:</span>
+                                            <input
+                                                type="text"
+                                                name="messages_date_range_end"
+                                                class="input Filters__FilterInput JS-FlatPicker JS-ClearInput__Input JS-RequireAnInput__Input"
+                                                value="{{ dateRangeEndValue }}"
+                                            >
+                                        </label>
+                                        <span class="Filters__ClearInput JS-ClearInput__Button">
+                                            {% include '_svg/icon-close.svg' only %}
+                                        </span>
+                                    </li>
+                                    <li class="Filters__FilterItem Filters__FilterItem--IsActions">
+                                        <a href="/media/messages" class="button button--outlined Filters__FilterActionButton">Reset Filter</a>
+                                        <button class="button Filters__FilterActionButton">Filter Results</button>
+                                    </li>
+                                </ul>
                             </div>
-                            <ul class="Filters__FilterList">
-                                <li class="Filters__FilterItem">
-                                    {% set messagesByValues = filterValues['messages_by'] ?? [] %}
-                                    <label class="label Filters__FilterLabel">
-                                        <span class="Filters__FilterLabelInner">By:</span>
-                                        <select
-                                            name="messages_by[]"
-                                            class="select Filters__FilterSelect JS-Select JS-RequireAnInput__Input"
-                                            data-choices-classes="choices--filter-item"
-                                            multiple
-                                        >
-                                            {% for speaker in speakers %}
-                                                <option
-                                                    value="{{ speaker.slugField }}"
-                                                    {% if speaker.slugField in messagesByValues %}
-                                                    selected
-                                                    {% endif %}
-                                                >
-                                                    {% filter smartypants %}{% if speaker.titleOrHonorific %}{{ speaker.titleOrHonorific }} {% endif %}{{ speaker.fullName }}{% endfilter %}
-                                                </option>
-                                            {% endfor %}
-                                        </select>
-                                    </label>
-                                </li>
-                                <li class="Filters__FilterItem">
-                                    {% set seriesValues = filterValues['messages_in_series'] ?? [] %}
-                                    <label class="label Filters__FilterLabel">
-                                        <span class="Filters__FilterLabelInner">In series:</span>
-                                        <select
-                                            name="messages_in_series[]"
-                                            class="select Filters__FilterSelect JS-Select JS-RequireAnInput__Input"
-                                            data-choices-classes="choices--filter-item"
-                                            multiple
-                                        >
-                                            {% for series in seriesList %}
-                                                <option
-                                                    value="{{ series.slug }}"
-                                                    {% if series.slug in seriesValues %}
-                                                    selected
-                                                    {% endif %}
-                                                >
-                                                    {{ series.title|smartypants }}
-                                                </option>
-                                            {% endfor %}
-                                        </select>
-                                    </label>
-                                </li>
-                                <li class="Filters__FilterItem">
-                                    {% set scriptureReferenceValue = filterValues['messages_scripture_reference'] ?? '' %}
-                                    <label class="label Filters__FilterLabel">
-                                        <span class="Filters__FilterLabelInner">Scripture reference:</span>
-                                        <input
-                                            type="text"
-                                            name="messages_scripture_reference"
-                                            class="input Filters__FilterInput JS-RequireAnInput__Input"
-                                            value="{{ scriptureReferenceValue }}"
-                                        >
-                                    </label>
-                                </li>
-                                <li class="Filters__FilterItem">
-                                    {% set titleValue = filterValues['messages_title'] ?? '' %}
-                                    <label class="label Filters__FilterLabel">
-                                        <span class="Filters__FilterLabelInner">Title:</span>
-                                        <input
-                                            type="text"
-                                            name="messages_title"
-                                            class="input Filters__FilterInput JS-RequireAnInput__Input"
-                                            value="{{ titleValue }}"
-                                        >
-                                    </label>
-                                </li>
-                                <li class="Filters__FilterItem JS-ClearInput">
-                                    {% set dateRangeStartValue = filterValues['messages_date_range_start'] ?? '' %}
-                                    <label class="label Filters__FilterLabel">
-                                        <span class="Filters__FilterLabelInner">Date Range Start:</span>
-                                        <input
-                                            type="text"
-                                            name="messages_date_range_start"
-                                            class="input Filters__FilterInput JS-FlatPicker JS-ClearInput__Input JS-RequireAnInput__Input"
-                                            value="{{ dateRangeStartValue }}"
-                                        >
-                                    </label>
-                                    <span class="Filters__ClearInput JS-ClearInput__Button">
-                                        {% include '_svg/icon-close.svg' only %}
-                                    </span>
-                                </li>
-                                <li class="Filters__FilterItem JS-ClearInput">
-                                    {% set dateRangeEndValue = filterValues['messages_date_range_end'] ?? '' %}
-                                    <label class="label Filters__FilterLabel">
-                                        <span class="Filters__FilterLabelInner">Date Range End:</span>
-                                        <input
-                                            type="text"
-                                            name="messages_date_range_end"
-                                            class="input Filters__FilterInput JS-FlatPicker JS-ClearInput__Input JS-RequireAnInput__Input"
-                                            value="{{ dateRangeEndValue }}"
-                                        >
-                                    </label>
-                                    <span class="Filters__ClearInput JS-ClearInput__Button">
-                                        {% include '_svg/icon-close.svg' only %}
-                                    </span>
-                                </li>
-                                <li class="Filters__FilterItem Filters__FilterItem--IsActions">
-                                    <a href="/media/messages" class="button button--outlined Filters__FilterActionButton">Reset Filter</a>
-                                    <button class="button Filters__FilterActionButton">Filter Results</button>
-                                </li>
-                            </ul>
-                        </div>
-                    </form>
+                        </form>
+                    {% endif %}
                     <div class="MessageList">
                         <div class="MessageList__Inner">
-                            {% if backLink %}
-                                <a href="{{ backLink }}">
-                                    &laquo; {{ backLinkText|typeset }}
-                                </a>
-                                <br><br><br>
-                            {% endif %}
                             {% if not entries|length %}
                                 <section class="BasicBlock BasicBlock--HasOption-centerAlignBlock">
                                     <div class="BasicBlock__Inner">

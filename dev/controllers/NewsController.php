@@ -106,8 +106,8 @@ class NewsController extends BaseController
             '/news';
 
         $backLinkText = $entry->section->handle === 'pastorsPage' ?
-            "back to all pastor's page entries" :
-            'back to all news';
+            "Pastor's Page" :
+            'News';
 
         return $this->renderTemplate('_core/EntryStandard.twig', [
             'noIndex' => ! $entry->searchEngineIndexing,
@@ -118,8 +118,19 @@ class NewsController extends BaseController
             'heroImageAsset' => $entry->heroImage->one(),
             'primaryImageAsset' =>  $entry->primaryImage->one(),
             'entry' => $entry,
-            'backLink' => $backLink,
-            'backLinkText' => $backLinkText,
+            'breadCrumbs' => [
+                [
+                    'href' => '/',
+                    'content' => 'Home',
+                ],
+                [
+                    'href' => $backLink,
+                    'content' => $backLinkText,
+                ],
+                [
+                    'content' => 'Viewing Entry',
+                ],
+            ],
         ]);
     }
 }

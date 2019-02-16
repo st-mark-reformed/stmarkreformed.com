@@ -9,18 +9,11 @@
 {% set heroImageAsset = heroImageAsset|default(null) %}
 {% set primaryImageAsset = primaryImageAsset|default(null) %}
 {% set entry = entry|default(null) %}
-{% set backLink = backLink|default(null) %}
-{% set backLinkText = backLinkText|default('back') %}
 
 {% block content %}
     <section class="StandardEntry">
         <div class="StandardEntry__Inner">
             <div class="StandardEntry__ContentWrapper">
-                {% if backLink %}
-                    <div class="StandardEntry__ContentItem StandardEntry__ContentItem--HasStandardPadding">
-                        <a href="{{ backLink }}">&laquo; {{ backLinkText|typeset }}</a>
-                    </div>
-                {% endif %}
                 <div class="StandardEntry__ContentItem StandardEntry__ContentItem--HasStandardPadding">
                     <div class="StandardEntry__Headings">
                         <h2 class="StandardEntry__Heading">
