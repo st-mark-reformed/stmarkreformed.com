@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b35d32c321dd400b583c6fb28a43f987",
+    "content-hash": "8ef1042526e2f1b39f32823f3066f262",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -1124,6 +1124,57 @@
                 "parser"
             ],
             "time": "2014-09-09T13:34:57+00:00"
+        },
+        {
+            "name": "doublesecretagency/craft-inventory",
+            "version": "2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doublesecretagency/craft-inventory.git",
+                "reference": "0dd1b3a62e4bece3832fa127c1c9d178ed49d742"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doublesecretagency/craft-inventory/zipball/0dd1b3a62e4bece3832fa127c1c9d178ed49d742",
+                "reference": "0dd1b3a62e4bece3832fa127c1c9d178ed49d742",
+                "shasum": ""
+            },
+            "require": {
+                "craftcms/cms": "^3.0"
+            },
+            "type": "craft-plugin",
+            "extra": {
+                "name": "Inventory",
+                "handle": "inventory",
+                "schemaVersion": "2.0.0",
+                "changelogUrl": "https://raw.githubusercontent.com/doublesecretagency/craft-inventory/v2/CHANGELOG.md",
+                "class": "doublesecretagency\\inventory\\Inventory"
+            },
+            "autoload": {
+                "psr-4": {
+                    "doublesecretagency\\inventory\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Double Secret Agency",
+                    "homepage": "https://www.doublesecretagency.com/plugins"
+                }
+            ],
+            "description": "Take stock of your field usage.",
+            "keywords": [
+                "Craft",
+                "cms",
+                "craft-plugin",
+                "craftcms",
+                "fields",
+                "inventory"
+            ],
+            "time": "2018-07-17T04:50:36+00:00"
         },
         {
             "name": "egulias/email-validator",
