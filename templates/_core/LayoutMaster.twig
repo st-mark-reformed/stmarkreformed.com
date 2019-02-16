@@ -4,6 +4,7 @@
     {% include '_partials/SiteHeader.twig' %}
 
     <main class="SiteMain">
+        {% include '_partials/BreadCrumbs.twig' %}
         {{ block('content') }}
     </main>
 
