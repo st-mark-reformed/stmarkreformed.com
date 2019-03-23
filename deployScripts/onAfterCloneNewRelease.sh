@@ -23,10 +23,17 @@ for i in "${dirs[@]}" ; do
     sudo chmod -R 0777 ${3}/storage/${i};
 done;
 
-files=(
-    ".env"
-    "config/license.key"
-);
+
+if [[ ${1} = "prod" ]]; then
+    files=(
+        "config/license.key"
+    );
+else
+    files=(
+        ".env"
+        "config/license.key"
+    );
+fi
 
 for i in "${files[@]}" ; do
     rm -rf ${2}/${i};
