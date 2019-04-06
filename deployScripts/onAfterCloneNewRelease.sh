@@ -24,16 +24,10 @@ for i in "${dirs[@]}" ; do
 done;
 
 
-if [[ ${1} = "prod" ]]; then
-    files=(
-        "config/license.key"
-    );
-else
-    files=(
-        ".env"
-        "config/license.key"
-    );
-fi
+files=(
+    ".env"
+    "config/license.key"
+);
 
 for i in "${files[@]}" ; do
     rm -rf ${2}/${i};
