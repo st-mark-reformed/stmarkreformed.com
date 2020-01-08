@@ -38,6 +38,12 @@ return [
     /**************************************************************************/
 
     /**
+     * Messages feeds routes
+     */
+    'media/<section:messages>/feed' => ['template' => '_core/MessagesFeed.xml'],
+    'sermons' => ['template' => '_core/MessagesNewFeedRedirect.xml'],
+
+    /**
      * Messages listing routes
      * @see \dev\controllers\MessagesController::actionIndex()
      */
@@ -59,12 +65,6 @@ return [
      */
     'media/messages/series/<series:([^\/]+)>' => 'dev/messages/index',
     'media/messages/series/<series:([^\/]+)>/page/<pageNum:\d+>' => 'dev/messages/index',
-
-    /**
-     * Messages feeds routes
-     */
-    'media/<section:messages>/feed' => ['template' => '_core/MessagesFeed.xml'],
-    'sermons' => ['template' => '_audio/MessagesNewFeedRedirect.xml'],
 
     /**
      * Messages single entry pages set by Messages section in Craft
