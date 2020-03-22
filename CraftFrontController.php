@@ -66,7 +66,7 @@ if (getenv('DEV_MODE') === 'true') {
 
     function dd()
     {
-        ob_clean();
+        @ob_clean();
         call_user_func_array('r', func_get_args());
         die;
     }

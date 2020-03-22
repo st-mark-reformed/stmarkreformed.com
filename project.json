@@ -1,5 +1,5 @@
 {
-    "proxy": "http://stmarkreformed.test",
+    "proxy": "https://stmark.localtest.me:44232",
     "watch": [
         "config/**",
         "dev/**",
