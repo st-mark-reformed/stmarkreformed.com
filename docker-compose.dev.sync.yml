@@ -1,0 +1,43 @@
+version: '3.7'
+
+services:
+  web:
+    depends_on:
+      - bg-sync-storage
+      - bg-sync-vendor
+    volumes:
+      - storage-volume:/opt/project/storage
+      - vendor-volume:/opt/project/vendor
+
+  php:
+    depends_on:
+      - bg-sync-storage
+      - bg-sync-vendor
+    volumes:
+      - ./docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+      - storage-volume:/opt/project/storage
+      - vendor-volume:/opt/project/vendor
+
+  bg-sync-storage:
+    image: cweagans/bg-sync
+    volumes:
+      - storage-volume:/source
+      - ./storage:/destination:delegated
+    environment:
+      - SYNC_MAX_INOTIFY_WATCHES=40000
+      - SYNC_VERBOSE=1
+    privileged: true
+
+  bg-sync-vendor:
+    image: cweagans/bg-sync
+    volumes:
+      - vendor-volume:/source
+      - ./vendor:/destination:delegated
+    environment:
+      - SYNC_MAX_INOTIFY_WATCHES=40000
+      - SYNC_VERBOSE=1
+    privileged: true
+
+volumes:
+  storage-volume:
+  vendor-volume:
