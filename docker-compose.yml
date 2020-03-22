@@ -1,0 +1,53 @@
+version: '3.7'
+
+services:
+  web:
+    env_file: .env
+    build:
+      context: ./docker/web
+    container_name: stmark-web
+    environment:
+      HOSTNAME: stmark-web
+    volumes:
+      - .:/opt/project:delegated
+      - ./docker/web/nginx.conf:/etc/nginx/conf.d/nginx.conf
+    networks:
+      stmark:
+
+  php:
+    env_file: .env
+    build:
+      context: ./docker/php
+    container_name: stmark-php
+    environment:
+      HOSTNAME: stmark-php
+      COMPOSER_HOME: /composer-home-volume
+    volumes:
+      - .:/opt/project:delegated
+      - composer-home-volume:/composer-home-volume
+    networks:
+      stmark:
+
+  db:
+    env_file: .env
+    build:
+      context: ./
+      dockerfile: ./docker/db/Dockerfile
+    container_name: stmark-db
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+      HOSTNAME: stmark-db
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - .:/opt/project:delegated
+      - db-volume:/var/lib/mysql
+    networks:
+      stmark:
+
+volumes:
+  composer-home-volume:
+  db-volume:
+  yarn-cache-volume:
+
+networks:
+  stmark:

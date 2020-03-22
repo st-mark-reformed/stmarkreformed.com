@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  web:
+    ports:
+      - 44231:80
+      - 44232:443
+
+  php:
+    volumes:
+      - ./docker/php/xdebug-linux.ini:/usr/local/etc/php/conf.d/xdebug.ini
+
+  db:
+    env_file: .env
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - 44230:3306
