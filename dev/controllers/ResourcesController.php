@@ -19,10 +19,52 @@ class ResourcesController extends BaseController
      * @throws Exception
      */
     public function actionIndex(
-        string $section = null,
         int $pageNum = null
     ) : Response {
-        dd('TODO: Index');
+        if ($pageNum === 1) {
+            throw new HttpException(404);
+        }
+
+        $pageNum = $pageNum ?: 1;
+        $metaTitle = 'Resources' . ($pageNum > 1 ? " | Page {$pageNum}" : '');
+        $heroHeading = 'Resources';
+        $limit = 12;
+
+        $entriesQuery = Entry::find()->section('resources');
+
+        $entriesTotal = (int) $entriesQuery->count();
+        $maxPages = (int) ceil($entriesTotal / $limit);
+
+        if (! $entriesTotal) {
+            return $this->renderTemplate('_core/NoEntries.twig', [
+                'metaTitle' => $metaTitle,
+                'heroHeading' => 'No Entries Found',
+            ]);
+        }
+
+        if ($pageNum > $maxPages) {
+            throw new HttpException(404);
+        }
+
+        $offset = ($limit * $pageNum) - $limit;
+
+        $entries = $entriesQuery->limit($limit)
+            ->offset($offset)
+            ->all();
+
+        $pagination = PaginationService::getPagination([
+            'currentPage' => $pageNum,
+            'perPage' => $limit,
+            'totalResults' => $entriesTotal,
+            'base' => PaginationService::getUriPathSansPagination()
+        ]);
+
+        return $this->renderTemplate('_core/ResourcesListingStandard.twig', compact(
+            'metaTitle',
+            'heroHeading',
+            'entries',
+            'pagination'
+        ));
     }
 
     /**

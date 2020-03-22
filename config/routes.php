@@ -144,6 +144,28 @@ return [
 
 
     /**************************************************************************/
+    /* Resources routing */
+    /**************************************************************************/
+
+    /**
+     * News listing routes
+     * @see \dev\controllers\ResourcesController::actionIndex()
+     */
+    'resources' => 'dev/resources/index',
+    'resources/page/<pageNum:\d+>' => 'dev/resources/index',
+
+    /**
+     * News single entry pages set by News section in Craft
+     * @see \dev\services\EntryRoutingService
+     * @see \dev\controllers\ResourcesController::actionEntry()
+     */
+    // 'resources/{slug}' => 'dev/resources/entry',
+
+
+
+
+
+    /**************************************************************************/
     /* Pastor's Page routing */
     /**************************************************************************/
 
