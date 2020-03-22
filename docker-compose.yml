@@ -24,6 +24,7 @@ services:
       COMPOSER_HOME: /composer-home-volume
     volumes:
       - .:/opt/project:delegated
+      - ./docker/php/max-execution-time.ini:/usr/local/etc/php/conf.d/max-execution-time.ini
       - composer-home-volume:/composer-home-volume
     networks:
       stmark:
