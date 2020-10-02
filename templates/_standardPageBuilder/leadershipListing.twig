@@ -9,11 +9,14 @@
 {% endfor %}
 
 {% for user in craft.users.group('leadership').orderBy('lastname asc').all() %}
-    {% set item = leadership[user.leadershipPosition.label] %}
-    {% set item = item|merge([user]) %}
-    {% set leadership = leadership|merge({
-        (user.leadershipPosition.label): item
-    }) %}
+    {% set label = user.leadershipPosition.label %}
+    {% if label %}
+        {% set item = leadership[label] %}
+        {% set item = item|merge([user]) %}
+        {% set leadership = leadership|merge({
+            (user.leadershipPosition.label): item
+        }) %}
+    {% endif %}
 {% endfor %}
 
 <section class="LeadershipListing">
