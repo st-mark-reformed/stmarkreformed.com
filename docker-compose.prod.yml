@@ -8,6 +8,7 @@ services:
     container_name: stmark-utility
     volumes:
       - .:/opt/project
+      - cp-resources-volume:/cp-resources-volume
       - image-cache-volume:/image-cache-volume
       - files-volume:/files-volume
       - log-volume:/log-volume
@@ -21,6 +22,7 @@ services:
       target: prod
     restart: always
     volumes:
+      - cp-resources-volume:/opt/project/public/cpresources
       - image-cache-volume:/opt/project/public/imagecache
       - files-volume:/opt/project/public/files
       - log-volume:/var/log
@@ -34,6 +36,8 @@ services:
       target: prod
     restart: always
     volumes:
+      - cp-resources-volume:/opt/project/public/cpresources
+      - cp-resources-volume:/opt/project/public/cpresources
       - image-cache-volume:/opt/project/public/imagecache
       - files-volume:/opt/project/public/files
       - log-volume:/var/log
@@ -52,6 +56,7 @@ services:
     environment:
       HOSTNAME: stmark-php-queue-runner-1
     volumes:
+      - cp-resources-volume:/opt/project/public/cpresources
       - image-cache-volume:/opt/project/public/imagecache
       - files-volume:/opt/project/public/files
       - log-volume:/var/log
@@ -75,6 +80,7 @@ services:
     environment:
       HOSTNAME: stmark-php-queue-runner-2
     volumes:
+      - cp-resources-volume:/opt/project/public/cpresources
       - image-cache-volume:/opt/project/public/imagecache
       - files-volume:/opt/project/public/files
       - log-volume:/var/log
@@ -98,6 +104,7 @@ services:
     environment:
       HOSTNAME: stmark-php-queue-runner-3
     volumes:
+      - cp-resources-volume:/opt/project/public/cpresources
       - image-cache-volume:/opt/project/public/imagecache
       - files-volume:/opt/project/public/files
       - log-volume:/var/log
@@ -116,6 +123,7 @@ services:
       - log-volume:/var/log
 
 volumes:
+  cp-resources-volume:
   image-cache-volume:
   files-volume:
   log-volume:

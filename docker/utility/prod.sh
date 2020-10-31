@@ -9,6 +9,7 @@ touch /log-volume/nginx/error.log;
 chmod -R 0777 /log-volume;
 
 while true; do
+    chmod -R 0777 /cp-resources-volume;
     chmod -R 0777 /image-cache-volume;
     chmod -R 0777 /files-volume;
     chmod -R 0777 /public-cache-volume;
