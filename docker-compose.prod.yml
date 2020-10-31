@@ -9,6 +9,7 @@ services:
     volumes:
       - .:/opt/project
       - image-cache-volume:/image-cache-volume
+      - files-volume:/files-volume
       - log-volume:/log-volume
       - storage-volume:/storage-volume
       - uploads-volume:/uploads-volume
@@ -21,6 +22,7 @@ services:
     volumes:
       - log-volume:/var/log
       - image-cache-volume:/opt/project/public/imagecache
+      - files-volume:/opt/project/public/files
       - storage-volume:/opt/project/storage
       - uploads-volume:/opt/project/public/uploads
       - nginx-master_certbot-conf-volume:/etc/letsencrypt
@@ -32,6 +34,7 @@ services:
     volumes:
       - log-volume:/var/log
       - image-cache-volume:/public/imagecache
+      - files-volume:/opt/project/public/files
       - storage-volume:/opt/project/storage
       - uploads-volume:/opt/project/public/uploads
 
@@ -42,6 +45,7 @@ services:
 
 volumes:
   image-cache-volume:
+  files-volume:
   log-volume:
   storage-volume:
   uploads-volume:
