@@ -11,6 +11,7 @@ services:
       - image-cache-volume:/image-cache-volume
       - files-volume:/files-volume
       - log-volume:/log-volume
+      - public-cache-volume:/public-cache-volume
       - storage-volume:/storage-volume
       - uploads-volume:/uploads-volume
     command: bash -c "chmod +x /opt/project/docker/utility/prod.sh && /opt/project/docker/utility/prod.sh"
@@ -20,9 +21,10 @@ services:
       target: prod
     restart: always
     volumes:
-      - log-volume:/var/log
       - image-cache-volume:/opt/project/public/imagecache
       - files-volume:/opt/project/public/files
+      - log-volume:/var/log
+      - public-cache-volume:/opt/project/public/cache
       - storage-volume:/opt/project/storage
       - uploads-volume:/opt/project/public/uploads
       - nginx-master_certbot-conf-volume:/etc/letsencrypt
@@ -32,9 +34,10 @@ services:
       target: prod
     restart: always
     volumes:
-      - log-volume:/var/log
       - image-cache-volume:/opt/project/public/imagecache
       - files-volume:/opt/project/public/files
+      - log-volume:/var/log
+      - public-cache-volume:/opt/project/public/cache
       - storage-volume:/opt/project/storage
       - uploads-volume:/opt/project/public/uploads
 
@@ -49,9 +52,10 @@ services:
     environment:
       HOSTNAME: stmark-php-queue-runner-1
     volumes:
-      - log-volume:/var/log
       - image-cache-volume:/opt/project/public/imagecache
       - files-volume:/opt/project/public/files
+      - log-volume:/var/log
+      - public-cache-volume:/opt/project/public/cache
       - storage-volume:/opt/project/storage
       - uploads-volume:/opt/project/public/uploads
     command: bash -c "chmod +x /opt/project/queueRunner.sh && /opt/project/queueRunner.sh"
@@ -71,9 +75,10 @@ services:
     environment:
       HOSTNAME: stmark-php-queue-runner-2
     volumes:
-      - log-volume:/var/log
       - image-cache-volume:/opt/project/public/imagecache
       - files-volume:/opt/project/public/files
+      - log-volume:/var/log
+      - public-cache-volume:/opt/project/public/cache
       - storage-volume:/opt/project/storage
       - uploads-volume:/opt/project/public/uploads
     command: bash -c "chmod +x /opt/project/queueRunner.sh && /opt/project/queueRunner.sh"
@@ -93,9 +98,10 @@ services:
     environment:
       HOSTNAME: stmark-php-queue-runner-3
     volumes:
-      - log-volume:/var/log
       - image-cache-volume:/opt/project/public/imagecache
       - files-volume:/opt/project/public/files
+      - log-volume:/var/log
+      - public-cache-volume:/opt/project/public/cache
       - storage-volume:/opt/project/storage
       - uploads-volume:/opt/project/public/uploads
     command: bash -c "chmod +x /opt/project/queueRunner.sh && /opt/project/queueRunner.sh"
@@ -113,6 +119,7 @@ volumes:
   image-cache-volume:
   files-volume:
   log-volume:
+  public-cache-volume:
   storage-volume:
   uploads-volume:
   nginx-master_certbot-conf-volume:
