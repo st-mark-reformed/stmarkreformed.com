@@ -38,6 +38,72 @@ services:
       - storage-volume:/opt/project/storage
       - uploads-volume:/opt/project/public/uploads
 
+  php-queue-runner-1:
+    env_file: .env
+    build:
+      target: prod
+      context: ./
+      dockerfile: ./docker/php/Dockerfile
+    restart: always
+    container_name: stmark-php-queue-runner-1
+    environment:
+      HOSTNAME: stmark-php-queue-runner-1
+    volumes:
+      - log-volume:/var/log
+      - image-cache-volume:/public/imagecache
+      - files-volume:/opt/project/public/files
+      - storage-volume:/opt/project/storage
+      - uploads-volume:/opt/project/public/uploads
+    command: bash -c "chmod +x /opt/project/queueRunner.sh && /opt/project/queueRunner.sh"
+    networks:
+      default:
+        aliases:
+          - stmark-php-queue-runner-1
+
+  php-queue-runner-2:
+    env_file: .env
+    build:
+      target: prod
+      context: ./
+      dockerfile: ./docker/php/Dockerfile
+    restart: always
+    container_name: stmark-php-queue-runner-2
+    environment:
+      HOSTNAME: stmark-php-queue-runner-2
+    volumes:
+      - log-volume:/var/log
+      - image-cache-volume:/public/imagecache
+      - files-volume:/opt/project/public/files
+      - storage-volume:/opt/project/storage
+      - uploads-volume:/opt/project/public/uploads
+    command: bash -c "chmod +x /opt/project/queueRunner.sh && /opt/project/queueRunner.sh"
+    networks:
+      default:
+        aliases:
+          - stmark-php-queue-runner-2
+
+  php-queue-runner-3:
+    env_file: .env
+    build:
+      target: prod
+      context: ./
+      dockerfile: ./docker/php/Dockerfile
+    restart: always
+    container_name: stmark-php-queue-runner-3
+    environment:
+      HOSTNAME: stmark-php-queue-runner-3
+    volumes:
+      - log-volume:/var/log
+      - image-cache-volume:/public/imagecache
+      - files-volume:/opt/project/public/files
+      - storage-volume:/opt/project/storage
+      - uploads-volume:/opt/project/public/uploads
+    command: bash -c "chmod +x /opt/project/queueRunner.sh && /opt/project/queueRunner.sh"
+    networks:
+      default:
+        aliases:
+          - stmark-php-queue-runner-3
+
   db:
     restart: always
     volumes:
