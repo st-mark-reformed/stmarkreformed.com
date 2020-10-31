@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-use dev\Module;
+use src\Module;
 use craft\helpers\App;
-use dev\CustomErrorHandler;
+use src\CustomErrorHandler;
 use craft\mail\transportadapters\Smtp;
 
 $config = [

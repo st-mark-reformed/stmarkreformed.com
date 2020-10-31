@@ -24,8 +24,9 @@ return [
 
     /**
      * Pages routing set by Pages section in Craft
-     * @see \dev\services\EntryRoutingService
-     * @see \dev\controllers\PagesController::actionPage()
+     *
+     * @see \src\services\EntryRoutingService
+     * @see \src\controllers\PagesController::actionPage()
      */
     // '{parent.uri}/{slug}' => 'dev/pages/page',
 
@@ -45,7 +46,8 @@ return [
 
     /**
      * Messages listing routes
-     * @see \dev\controllers\MessagesController::actionIndex()
+     *
+     * @see \src\controllers\MessagesController::actionIndex()
      */
     'media/messages' => 'dev/messages/index',
     'media/messages/page/<pageNum:\d+>' => 'dev/messages/index',
@@ -54,22 +56,25 @@ return [
 
     /**
      * Messages speakers listing routes
-     * @see \dev\controllers\MessagesController::actionIndex()
+     *
+     * @see \src\controllers\MessagesController::actionIndex()
      */
     'media/messages/by/<speaker:([^\/]+)>' => 'dev/messages/index',
     'media/messages/by/<speaker:([^\/]+)>/page/<pageNum:\d+>' => 'dev/messages/index',
 
     /**
      * Messages series listing routes
-     * @see \dev\controllers\MessagesController::actionIndex()
+     *
+     * @see \src\controllers\MessagesController::actionIndex()
      */
     'media/messages/series/<series:([^\/]+)>' => 'dev/messages/index',
     'media/messages/series/<series:([^\/]+)>/page/<pageNum:\d+>' => 'dev/messages/index',
 
     /**
      * Messages single entry pages set by Messages section in Craft
-     * @see \dev\services\EntryRoutingService
-     * @see \dev\controllers\MessagesController::actionEntry()
+     *
+     * @see \src\services\EntryRoutingService
+     * @see \src\controllers\MessagesController::actionEntry()
      */
     // 'media/messages/{slug}' => 'dev/messages/entry',
 
@@ -83,15 +88,17 @@ return [
 
     /**
      * Galleries listing routes
-     * @see \dev\controllers\GalleriesController::actionIndex()
+     *
+     * @see \src\controllers\GalleriesController::actionIndex()
      */
     'media/galleries' => 'dev/galleries/index',
     'media/galleries/page/<pageNum:\d+>' => 'dev/galleries/index',
 
     /**
      * Galleries single entry pages set by Galleries section in Craft
-     * @see \dev\services\EntryRoutingService
-     * @see \dev\controllers\GalleriesController::actionEntry()
+     *
+     * @see \src\services\EntryRoutingService
+     * @see \src\controllers\GalleriesController::actionEntry()
      */
     // 'galleries/{slug}' => 'dev/galleries/entry',
 
@@ -105,15 +112,16 @@ return [
 
     /**
      * Events listing routes
-     * @see \dev\controllers\EventsController::actionIndex()
+     * @see \src\controllers\EventsController::actionIndex()
      */
     'events' => 'dev/events/index',
     'events/page/<pageNum:\d+>' => 'dev/events/index',
 
     /**
      * Events single entry pages set by Events section in Craft
-     * @see \dev\services\EntryRoutingService
-     * @see \dev\controllers\EventsController::actionEntry()
+     *
+     * @see \src\services\EntryRoutingService
+     * @see \src\controllers\EventsController::actionEntry()
      */
     // 'events/{slug}' => 'dev/events/entry',
 
@@ -127,15 +135,16 @@ return [
 
     /**
      * News listing routes
-     * @see \dev\controllers\NewsController::actionIndex()
+     * @see \src\controllers\NewsController::actionIndex()
      */
     '<section:news>' => 'dev/news/index',
     '<section:news>/page/<pageNum:\d+>' => 'dev/news/index',
 
     /**
      * News single entry pages set by News section in Craft
-     * @see \dev\services\EntryRoutingService
-     * @see \dev\controllers\NewsController::actionEntry()
+     *
+     * @see \src\services\EntryRoutingService
+     * @see \src\controllers\NewsController::actionEntry()
      */
     // 'news/{slug}' => 'dev/news/entry',
 
@@ -149,15 +158,16 @@ return [
 
     /**
      * News listing routes
-     * @see \dev\controllers\ResourcesController::actionIndex()
+     * @see \src\controllers\ResourcesController::actionIndex()
      */
     'resources' => 'dev/resources/index',
     'resources/page/<pageNum:\d+>' => 'dev/resources/index',
 
     /**
      * News single entry pages set by News section in Craft
-     * @see \dev\services\EntryRoutingService
-     * @see \dev\controllers\ResourcesController::actionEntry()
+     *
+     * @see \src\services\EntryRoutingService
+     * @see \src\controllers\ResourcesController::actionEntry()
      */
     // 'resources/{slug}' => 'dev/resources/entry',
 
@@ -171,15 +181,16 @@ return [
 
     /**
      * Pastor's Page listing routes
-     * @see \dev\controllers\NewsController::actionIndex()
+     * @see \src\controllers\NewsController::actionIndex()
      */
     '<section:pastors-page>' => 'dev/news/index',
     '<section:pastors-page>/page/<pageNum:\d+>' => 'dev/news/index',
 
     /**
      * Pastor's Page single entry pages set by Pastor's Page section in Craft
-     * @see \dev\services\EntryRoutingService
-     * @see \dev\controllers\NewsController::actionEntry()
+     *
+     * @see \src\services\EntryRoutingService
+     * @see \src\controllers\NewsController::actionEntry()
      */
     // 'pastors-page/{slug}' => 'dev/news/entry',
 
@@ -193,43 +204,43 @@ return [
 
     /**
      * Site map index
-     * @see \dev\controllers\SiteMapController::actionIndex()
+     * @see \src\controllers\SiteMapController::actionIndex()
      */
     'sitemap' => 'dev/site-map/index',
 
     /**
      * Site map pages
-     * @see \dev\controllers\SiteMapController::actionPages()
+     * @see \src\controllers\SiteMapController::actionPages()
      */
     'sitemap/pages' => 'dev/site-map/pages',
 
     /**
      * Site map events
-     * @see \dev\controllers\SiteMapController::actionEvents()
+     * @see \src\controllers\SiteMapController::actionEvents()
      */
     'sitemap/events' => 'dev/site-map/events',
 
     /**
      * Site map galleries
-     * @see \dev\controllers\SiteMapController::actionGalleries()
+     * @see \src\controllers\SiteMapController::actionGalleries()
      */
     'sitemap/galleries' => 'dev/site-map/galleries',
 
     /**
      * Site map messages
-     * @see \dev\controllers\SiteMapController::actionMessages()
+     * @see \src\controllers\SiteMapController::actionMessages()
      */
     'sitemap/messages' => 'dev/site-map/messages',
 
     /**
      * Site map news
-     * @see \dev\controllers\SiteMapController::actionNews()
+     * @see \src\controllers\SiteMapController::actionNews()
      */
     'sitemap/news' => 'dev/site-map/news',
 
     /**
      * Site map news
-     * @see \dev\controllers\SiteMapController::actionPastorsPage()
+     * @see \src\controllers\SiteMapController::actionPastorsPage()
      */
     'sitemap/pastors-page' => 'dev/site-map/pastors-page',
 

@@ -25,6 +25,7 @@ auth.json
 .php_cs.cache
 .phpunit.result.cache
 /.env
+/docker-compose.env.yml
 /*-workspace
 /node_modules
 /*.sublime-*
@@ -60,6 +61,8 @@ auth.json
 *.vi
 error_log
 Thumbs.db
+Homestead.yaml
+*.vagrant
 
 
 

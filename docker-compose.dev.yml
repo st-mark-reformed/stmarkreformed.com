@@ -2,19 +2,24 @@ version: '3.7'
 
 services:
   web:
-    ports:
-      - 44231:80
-      - 44232:443
+    build:
+      target: dev
+    volumes:
+      - .:/opt/project:delegated
+      - ./docker/web/nginx.conf:/etc/nginx/conf.d/nginx.conf:delegated
+      - ./docker/web/stmark.localtest.me.cert:/etc/letsencrypt/live/www.stmarkreformed.com/fullchain.pem:delegated
+      - ./docker/web/stmark.localtest.me.key:/etc/letsencrypt/live/www.stmarkreformed.com/privkey.pem:delegated
 
   php:
+    build:
+      target: dev
     volumes:
-      - ./docker/php/xdebug-linux.ini:/usr/local/etc/php/conf.d/xdebug.ini
+      - .:/opt/project:delegated
 
   db:
-    env_file: .env
     environment:
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
-    ports:
-      - 44230:3306
+    volumes:
+      - .:/opt/project:delegated

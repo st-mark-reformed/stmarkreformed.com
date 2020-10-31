@@ -1,0 +1,49 @@
+version: '3.7'
+
+services:
+  utility:
+    env_file: .env
+    image: ubuntu:18.04
+    restart: always
+    container_name: stmark-utility
+    volumes:
+      - .:/opt/project
+      - image-cache-volume:/image-cache-volume
+      - log-volume:/log-volume
+      - storage-volume:/storage-volume
+      - uploads-volume:/uploads-volume
+    command: bash -c "chmod +x /opt/project/docker/utility/prod.sh && /opt/project/docker/utility/prod.sh"
+
+  web:
+    build:
+      target: prod
+    restart: always
+    volumes:
+      - log-volume:/var/log
+      - image-cache-volume:/opt/project/public/imagecache
+      - storage-volume:/opt/project/storage
+      - uploads-volume:/opt/project/public/uploads
+      - nginx-master_certbot-conf-volume:/etc/letsencrypt
+
+  php:
+    build:
+      target: prod
+    restart: always
+    volumes:
+      - log-volume:/var/log
+      - image-cache-volume:/public/imagecache
+      - storage-volume:/opt/project/storage
+      - uploads-volume:/opt/project/public/uploads
+
+  db:
+    restart: always
+    volumes:
+      - log-volume:/var/log
+
+volumes:
+  image-cache-volume:
+  log-volume:
+  storage-volume:
+  uploads-volume:
+  nginx-master_certbot-conf-volume:
+    external: true

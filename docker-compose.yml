@@ -4,30 +4,33 @@ services:
   web:
     env_file: .env
     build:
-      context: ./docker/web
+      context: ./
+      dockerfile: ./docker/web/Dockerfile
     container_name: stmark-web
+    ports:
+      - 44232:44232
     environment:
       HOSTNAME: stmark-web
-    volumes:
-      - .:/opt/project:delegated
-      - ./docker/web/nginx.conf:/etc/nginx/conf.d/nginx.conf
     networks:
-      stmark:
+      default:
+        aliases:
+          - stmarkreformed.com
+          - www.stmarkreformed.com
+          - staging.stmarkreformed.com
+          - stmarkreformed.localtest.me
 
   php:
     env_file: .env
     build:
-      context: ./docker/php
+      context: ./
+      dockerfile: ./docker/php/Dockerfile
     container_name: stmark-php
     environment:
       HOSTNAME: stmark-php
-      COMPOSER_HOME: /composer-home-volume
-    volumes:
-      - .:/opt/project:delegated
-      - ./docker/php/max-execution-time.ini:/usr/local/etc/php/conf.d/max-execution-time.ini
-      - composer-home-volume:/composer-home-volume
     networks:
-      stmark:
+      default:
+        aliases:
+          - stmark-php
 
   db:
     env_file: .env
@@ -36,19 +39,22 @@ services:
       dockerfile: ./docker/db/Dockerfile
     container_name: stmark-db
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
       HOSTNAME: stmark-db
+      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     volumes:
-      - .:/opt/project:delegated
       - db-volume:/var/lib/mysql
+    ports:
+      - 44230:3306
     networks:
-      stmark:
+      default:
+        aliases:
+          - stmark-db
 
 volumes:
-  composer-home-volume:
   db-volume:
-  yarn-cache-volume:
 
 networks:
-  stmark:
+  default:
+    external:
+      name: proxy
