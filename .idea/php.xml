@@ -38,7 +38,6 @@
       <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
       <path value="$PROJECT_DIR$/vendor/michelf/php-smartypants" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
-      <path value="$PROJECT_DIR$/vendor/vlucas/phpdotenv" />
       <path value="$PROJECT_DIR$/vendor/tinify/tinify" />
       <path value="$PROJECT_DIR$/vendor/elvanto/litemoji" />
       <path value="$PROJECT_DIR$/vendor/egulias/email-validator" />
@@ -95,7 +94,6 @@
       <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
       <path value="$PROJECT_DIR$/vendor/mikehaertl/php-shellcommand" />
       <path value="$PROJECT_DIR$/vendor/timostamm/text-truncation" />
-      <path value="$PROJECT_DIR$/vendor/squizlabs/php_codesniffer" />
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
       <path value="$PROJECT_DIR$/vendor/mtdowling/jmespath.php" />

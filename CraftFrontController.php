@@ -10,10 +10,6 @@ define('CRAFT_VENDOR_PATH', CRAFT_BASE_PATH . '/vendor');
 
 require_once CRAFT_VENDOR_PATH . '/autoload.php';
 
-if (file_exists(CRAFT_BASE_PATH . '/.env')) {
-    (new Dotenv\Dotenv(CRAFT_BASE_PATH))->overload();
-}
-
 if (! file_exists(CRAFT_BASE_PATH . '/config/license.key')) {
     /** @noinspection PhpUnhandledExceptionInspection */
     throw new \Exception(

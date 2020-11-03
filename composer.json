@@ -19,7 +19,6 @@
     "require": {
         "php": ">=7.0.0",
         "craftcms/cms": "^3.0.0",
-        "vlucas/phpdotenv": "^2.4.0",
         "nystudio107/craft-minify": "^1.2",
         "buzzingpixel/craft-static": "^1.0.2",
         "michelf/php-smartypants": "^1.8",
