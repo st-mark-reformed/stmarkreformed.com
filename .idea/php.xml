@@ -30,17 +30,14 @@
       <path value="$PROJECT_DIR$/vendor/yiisoft/yii2-swiftmailer" />
       <path value="$PROJECT_DIR$/vendor/yiisoft/yii2" />
       <path value="$PROJECT_DIR$/vendor/symfony/process" />
-      <path value="$PROJECT_DIR$/vendor/symfony/dependency-injection" />
       <path value="$PROJECT_DIR$/vendor/symfony/console" />
       <path value="$PROJECT_DIR$/vendor/symfony/debug" />
       <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
-      <path value="$PROJECT_DIR$/vendor/symfony/config" />
       <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
       <path value="$PROJECT_DIR$/vendor/symfony/finder" />
       <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
       <path value="$PROJECT_DIR$/vendor/michelf/php-smartypants" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
-      <path value="$PROJECT_DIR$/vendor/pdepend/pdepend" />
       <path value="$PROJECT_DIR$/vendor/vlucas/phpdotenv" />
       <path value="$PROJECT_DIR$/vendor/tinify/tinify" />
       <path value="$PROJECT_DIR$/vendor/elvanto/litemoji" />
@@ -58,7 +55,6 @@
       <path value="$PROJECT_DIR$/vendor/google/cloud" />
       <path value="$PROJECT_DIR$/vendor/google/grpc-gcp" />
       <path value="$PROJECT_DIR$/vendor/aelvan/imager" />
-      <path value="$PROJECT_DIR$/vendor/phpmd/phpmd" />
       <path value="$PROJECT_DIR$/vendor/google/common-protos" />
       <path value="$PROJECT_DIR$/vendor/ezyang/htmlpurifier" />
       <path value="$PROJECT_DIR$/vendor/twig/twig" />

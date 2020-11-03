@@ -55,8 +55,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/mtdowling/jmespath.php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nystudio107/craft-minify" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/pdepend/pdepend" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/phpmd/phpmd" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/pimple/pimple" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/pixelandtonic/imagine" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/cache" />
@@ -74,10 +72,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/ssnepenthe/color-utils" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/superbig/craft-entry-instructions" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/swiftmailer/swiftmailer" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/config" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/console" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/debug" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/dependency-injection" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/filesystem" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/finder" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-ctype" />

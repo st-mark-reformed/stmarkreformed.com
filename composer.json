@@ -3,7 +3,19 @@
     "description": "St. Mark Reformed Church Website",
     "license": "proprietary",
     "homepage": "http://stmarkreformed.com/",
-    "type": "project",
+    "authors": [
+        {
+            "name": "TJ Draper",
+            "email": "tj@buzzingpixel.com",
+            "homepage": "https://buzzingpixel.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:craftcms/ckeditor.git"
+        }
+    ],
     "require": {
         "php": ">=7.0.0",
         "craftcms/cms": "^3.0.0",
@@ -25,9 +37,7 @@
         "doublesecretagency/craft-inventory": "^2.0"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-master",
-        "squizlabs/php_codesniffer": "^3.4",
-        "phpmd/phpmd": "^2.6"
+        "roave/security-advisories": "dev-master"
     },
     "autoload": {
         "psr-4": {
@@ -35,15 +45,7 @@
         }
     },
     "config": {
-        "optimize-autoloader": true,
-        "platform": {
-            "php": "7.1"
-        }
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@github.com:craftcms/ckeditor.git"
-        }
-    ]
+        "bin-compat": "full",
+        "sort-packages": true
+    }
 }
