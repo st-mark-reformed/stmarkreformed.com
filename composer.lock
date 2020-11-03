@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "989bb0c7c1eb4c1e7fd24d9bfa960b5c",
+    "content-hash": "3f970a76be9a589e3afed0c17c33933e",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -4398,16 +4398,16 @@
         },
         {
             "name": "tde/craftplugin-geoaddress",
-            "version": "v1.0.10",
+            "version": "v1.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tdeNL/craftplugin-geoaddress.git",
-                "reference": "e71bec631cada523563598c59926b0b925575b1d"
+                "reference": "57b5ca6ca1900a23e38889db0c0ce89d00036935"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tdeNL/craftplugin-geoaddress/zipball/e71bec631cada523563598c59926b0b925575b1d",
-                "reference": "e71bec631cada523563598c59926b0b925575b1d",
+                "url": "https://api.github.com/repos/tdeNL/craftplugin-geoaddress/zipball/57b5ca6ca1900a23e38889db0c0ce89d00036935",
+                "reference": "57b5ca6ca1900a23e38889db0c0ce89d00036935",
                 "shasum": ""
             },
             "require": {
@@ -4442,7 +4442,7 @@
                 }
             ],
             "description": "Geo Address fields for Craft Sections",
-            "time": "2018-08-02T07:20:31+00:00"
+            "time": "2020-03-06T09:09:18+00:00"
         },
         {
             "name": "timostamm/text-truncation",
@@ -5511,16 +5511,16 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "craftcms/ckeditor": 20,
-        "timostamm/text-truncation": 20,
         "lucidtaz/yii2-whoops": 20,
+        "timostamm/text-truncation": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": ">=7.0.0",
-        "ext-json": "*",
-        "ext-dom": "*"
+        "ext-dom": "*",
+        "ext-json": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "1.1.0"
