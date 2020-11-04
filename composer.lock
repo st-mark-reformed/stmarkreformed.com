@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "141116d2747293e17df87d6cfee130ba",
+    "content-hash": "214edd2a4286e38a352c8fc22d77248f",
     "packages": [
         {
             "name": "aelvan/imager",
