@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2bcc5cc1e30e45b4659dcab954255fd4",
+    "content-hash": "141116d2747293e17df87d6cfee130ba",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -1020,16 +1020,16 @@
         },
         {
             "name": "digitalnature/php-ref",
-            "version": "v1.2",
+            "version": "v1.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/digitalnature/php-ref.git",
-                "reference": "6aa68f42c548af3facdd5546233160e34c05c6eb"
+                "url": "git@github.com:digitalnature/php-ref.git",
+                "reference": "2381f04d7ebcbce1072e86b98a0ccbad191f3290"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/digitalnature/php-ref/zipball/6aa68f42c548af3facdd5546233160e34c05c6eb",
-                "reference": "6aa68f42c548af3facdd5546233160e34c05c6eb",
+                "url": "https://api.github.com/repos/digitalnature/php-ref/zipball/2381f04d7ebcbce1072e86b98a0ccbad191f3290",
+                "reference": "2381f04d7ebcbce1072e86b98a0ccbad191f3290",
                 "shasum": ""
             },
             "require": {
@@ -1051,7 +1051,7 @@
                 "debug",
                 "var_dump"
             ],
-            "time": "2015-11-15T12:47:49+00:00"
+            "time": "2020-01-28T21:41:16+00:00"
         },
         {
             "name": "doctrine/lexer",
