@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bedfa17927ceb37765edcb1d39fc9952",
+    "content-hash": "ae40009b8fde998244361faf939a867f",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -3584,22 +3584,23 @@
         },
         {
             "name": "sabberworm/php-css-parser",
-            "version": "8.2.0",
+            "version": "8.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sabberworm/PHP-CSS-Parser.git",
-                "reference": "8be357d90c29c2f6dd426be4cb60bf09ef6d0120"
+                "reference": "d217848e1396ef962fb1997cf3e2421acba7f796"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sabberworm/PHP-CSS-Parser/zipball/8be357d90c29c2f6dd426be4cb60bf09ef6d0120",
-                "reference": "8be357d90c29c2f6dd426be4cb60bf09ef6d0120",
+                "url": "https://api.github.com/repos/sabberworm/PHP-CSS-Parser/zipball/d217848e1396ef962fb1997cf3e2421acba7f796",
+                "reference": "d217848e1396ef962fb1997cf3e2421acba7f796",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2"
             },
             "require-dev": {
+                "codacy/coverage": "^1.4",
                 "phpunit/phpunit": "~4.8"
             },
             "type": "library",
@@ -3624,7 +3625,7 @@
                 "parser",
                 "stylesheet"
             ],
-            "time": "2018-07-13T13:23:56+00:00"
+            "time": "2020-06-01T09:10:00+00:00"
         },
         {
             "name": "seld/cli-prompt",
@@ -3837,16 +3838,16 @@
         },
         {
             "name": "superbig/craft-entry-instructions",
-            "version": "1.0.4",
+            "version": "1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sjelfull/craft-entry-instructions.git",
-                "reference": "3c867368951eeaa726fcfcd522d6b6fd265a3d99"
+                "reference": "37991daa02f041f3f23d25a177fe26eab2aad5ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sjelfull/craft-entry-instructions/zipball/3c867368951eeaa726fcfcd522d6b6fd265a3d99",
-                "reference": "3c867368951eeaa726fcfcd522d6b6fd265a3d99",
+                "url": "https://api.github.com/repos/sjelfull/craft-entry-instructions/zipball/37991daa02f041f3f23d25a177fe26eab2aad5ef",
+                "reference": "37991daa02f041f3f23d25a177fe26eab2aad5ef",
                 "shasum": ""
             },
             "require": {
@@ -3887,7 +3888,7 @@
                 "entry instructions",
                 "fieldtype"
             ],
-            "time": "2018-10-10T12:19:12+00:00"
+            "time": "2020-01-17T08:42:50+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
