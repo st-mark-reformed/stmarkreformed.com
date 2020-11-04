@@ -42,7 +42,7 @@ $config = [
     ],
 ];
 
-if (getenv('DEV_MODE') === 'true') {
+if (getenv('DEV_MODE') === 'true' && strtolower(PHP_SAPI) !== 'cli') {
     $config['components']['errorHandler'] = [
         'class' => CustomErrorHandler::class,
     ];
