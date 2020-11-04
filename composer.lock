@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "03da6c91eeeb7ebd1842b069a490509c",
+    "content-hash": "3e089d517dc5dc97a8b4b460ffdb7edb",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -1025,20 +1025,20 @@
         },
         {
             "name": "craftcms/redactor",
-            "version": "2.3.3.2",
+            "version": "2.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/craftcms/redactor.git",
-                "reference": "55ee76494f6332ba5709003d2082e51d56ae8b1a"
+                "reference": "92e2aa88ae1aa60fee0fc83b2dede4806395979c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/craftcms/redactor/zipball/55ee76494f6332ba5709003d2082e51d56ae8b1a",
-                "reference": "55ee76494f6332ba5709003d2082e51d56ae8b1a",
+                "url": "https://api.github.com/repos/craftcms/redactor/zipball/92e2aa88ae1aa60fee0fc83b2dede4806395979c",
+                "reference": "92e2aa88ae1aa60fee0fc83b2dede4806395979c",
                 "shasum": ""
             },
             "require": {
-                "craftcms/cms": "^3.1.0"
+                "craftcms/cms": "^3.5.0"
             },
             "type": "craft-plugin",
             "extra": {
@@ -1069,7 +1069,7 @@
                 "html",
                 "yii2"
             ],
-            "time": "2019-04-29T21:39:05+00:00"
+            "time": "2020-10-19T13:52:37+00:00"
         },
         {
             "name": "craftcms/server-check",
@@ -1321,20 +1321,20 @@
         },
         {
             "name": "doublesecretagency/craft-inventory",
-            "version": "2.0.3",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doublesecretagency/craft-inventory.git",
-                "reference": "4dcc19e8b1e9527f3b32877cae2e31b55619d85a"
+                "reference": "37de17aea82150a6aa114f3ae0c90179684f6a7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doublesecretagency/craft-inventory/zipball/4dcc19e8b1e9527f3b32877cae2e31b55619d85a",
-                "reference": "4dcc19e8b1e9527f3b32877cae2e31b55619d85a",
+                "url": "https://api.github.com/repos/doublesecretagency/craft-inventory/zipball/37de17aea82150a6aa114f3ae0c90179684f6a7d",
+                "reference": "37de17aea82150a6aa114f3ae0c90179684f6a7d",
                 "shasum": ""
             },
             "require": {
-                "craftcms/cms": "^3.0"
+                "craftcms/cms": "^3.4"
             },
             "type": "craft-plugin",
             "extra": {
@@ -1368,7 +1368,7 @@
                 "fields",
                 "inventory"
             ],
-            "time": "2019-06-07T22:25:35+00:00"
+            "time": "2020-08-22T05:05:07+00:00"
         },
         {
             "name": "egulias/email-validator",

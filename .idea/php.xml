@@ -21,7 +21,6 @@
       <path value="$PROJECT_DIR$/vendor/craftcms/cms" />
       <path value="$PROJECT_DIR$/vendor/craftcms/oauth2-craftid" />
       <path value="$PROJECT_DIR$/vendor/craftcms/plugin-installer" />
-      <path value="$PROJECT_DIR$/vendor/craftcms/redactor" />
       <path value="$PROJECT_DIR$/vendor/yiisoft/yii2-composer" />
       <path value="$PROJECT_DIR$/vendor/yiisoft/yii2-queue" />
       <path value="$PROJECT_DIR$/vendor/yiisoft/yii2-debug" />
@@ -72,7 +71,6 @@
       <path value="$PROJECT_DIR$/vendor/psr/container" />
       <path value="$PROJECT_DIR$/vendor/aws/aws-sdk-php" />
       <path value="$PROJECT_DIR$/vendor/composer" />
-      <path value="$PROJECT_DIR$/vendor/doublesecretagency/craft-inventory" />
       <path value="$PROJECT_DIR$/vendor/pixelandtonic/imagine" />
       <path value="$PROJECT_DIR$/vendor/justinrainbow/json-schema" />
       <path value="$PROJECT_DIR$/vendor/intervention/httpauth" />
@@ -131,6 +129,8 @@
       <path value="$PROJECT_DIR$/vendor/voku/urlify" />
       <path value="$PROJECT_DIR$/vendor/voku/stringy" />
       <path value="$PROJECT_DIR$/vendor/voku/arrayy" />
+      <path value="$PROJECT_DIR$/vendor/craftcms/redactor" />
+      <path value="$PROJECT_DIR$/vendor/doublesecretagency/craft-inventory" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7" />
