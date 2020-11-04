@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8656b5dc4afd24cf730ad81306985d28",
+    "content-hash": "bedfa17927ceb37765edcb1d39fc9952",
     "packages": [
         {
             "name": "aelvan/imager",
-            "version": "v2.1.4",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aelvan/Imager-Craft.git",
-                "reference": "910217bbe7bbf2cd6c6409f15091148e9d84896b"
+                "reference": "c3d8c8944dcc5492c727bdd96b52a5806312c9b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aelvan/Imager-Craft/zipball/910217bbe7bbf2cd6c6409f15091148e9d84896b",
-                "reference": "910217bbe7bbf2cd6c6409f15091148e9d84896b",
+                "url": "https://api.github.com/repos/aelvan/Imager-Craft/zipball/c3d8c8944dcc5492c727bdd96b52a5806312c9b9",
+                "reference": "c3d8c8944dcc5492c727bdd96b52a5806312c9b9",
                 "shasum": ""
             },
             "require": {
@@ -71,7 +71,7 @@
                 "transform"
             ],
             "abandoned": "spacecatninja/imager-x",
-            "time": "2019-01-08T10:53:14+00:00"
+            "time": "2020-02-11T19:28:27+00:00"
         },
         {
             "name": "aws/aws-sdk-php",
