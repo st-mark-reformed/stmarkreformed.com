@@ -1,12 +1,13 @@
-dateModified: 1604458091
+dateModified: 1604462784
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
-  template: null
+  replyToEmail: null
+  template: ''
   transportSettings:
     encryptionMethod: tls
     host: smtp.mandrillapp.com
-    password: zvjqrwDYBGaotpAhN1bVKQ
+    password: $SMTP_PASSWORD
     port: '587'
     timeout: '30'
     useAuthentication: '1'
