@@ -22,7 +22,7 @@
         "ext-json": "*",
         "aelvan/imager": "2.4.0",
         "buzzingpixel/craft-static": "2.0.1",
-        "cocur/slugify": "^3.1",
+        "cocur/slugify": "3.2",
         "craftcms/ckeditor": "dev-master",
         "craftcms/cms": "^3.0.0",
         "craftcms/redactor": "2.3.3.2",
