@@ -25,7 +25,7 @@
         "cocur/slugify": "^3.1",
         "craftcms/ckeditor": "dev-master",
         "craftcms/cms": "^3.0.0",
-        "craftcms/redactor": "^2.3",
+        "craftcms/redactor": "2.3.3.2",
         "digitalnature/php-ref": "^1.2",
         "doublesecretagency/craft-inventory": "^2.0",
         "lucidtaz/yii2-whoops": "dev-master",
