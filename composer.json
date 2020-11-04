@@ -21,7 +21,7 @@
         "ext-dom": "*",
         "ext-json": "*",
         "aelvan/imager": "2.4.0",
-        "buzzingpixel/craft-static": "^1.0.2",
+        "buzzingpixel/craft-static": "2.0.1",
         "cocur/slugify": "^3.1",
         "craftcms/ckeditor": "dev-master",
         "craftcms/cms": "^3.0.0",

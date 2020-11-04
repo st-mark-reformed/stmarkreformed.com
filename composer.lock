@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ae40009b8fde998244361faf939a867f",
+    "content-hash": "8956d26d1c0f38dc3d914cb6eec52d79",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -157,24 +157,35 @@
         },
         {
             "name": "buzzingpixel/craft-static",
-            "version": "1.0.4",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/buzzingpixel/craft-static.git",
-                "reference": "e7ff52c1e1144a1c3bfb0da75899b9f4f1e2364b"
+                "reference": "18bd917f6bf61e7379b8d95d61e908fa7781e858"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/buzzingpixel/craft-static/zipball/e7ff52c1e1144a1c3bfb0da75899b9f4f1e2364b",
-                "reference": "e7ff52c1e1144a1c3bfb0da75899b9f4f1e2364b",
+                "url": "https://api.github.com/repos/buzzingpixel/craft-static/zipball/18bd917f6bf61e7379b8d95d61e908fa7781e858",
+                "reference": "18bd917f6bf61e7379b8d95d61e908fa7781e858",
                 "shasum": ""
             },
             "require": {
-                "craftcms/cms": "^3.0.0",
-                "php": ">=7.0.0"
+                "craftcms/cms": "^3.1.0",
+                "php": ">=7.2"
             },
             "require-dev": {
-                "roave/security-advisories": "dev-master"
+                "codedungeon/phpunit-result-printer": "^0.26.2",
+                "doctrine/coding-standard": "^6.0",
+                "filp/whoops": "^2.4",
+                "friendsofphp/php-cs-fixer": "^2.15",
+                "lucidtaz/yii2-whoops": "dev-master",
+                "phpmd/phpmd": "^2.6",
+                "phpstan/phpstan": "^0.11.12",
+                "phpstan/phpstan-deprecation-rules": "^0.11.2",
+                "phpunit/phpunit": "^8.2",
+                "roave/security-advisories": "dev-master",
+                "squizlabs/php_codesniffer": "^3.4",
+                "symfony/var-dumper": "^4.3"
             },
             "type": "craft-plugin",
             "extra": {
@@ -182,7 +193,7 @@
                 "handle": "craft-static",
                 "developer": "TJ Draper",
                 "developerUrl": "https://buzzingpixel.com",
-                "schemaVersion": "1.0.0",
+                "schemaVersion": "2.0.0",
                 "hasCpSettings": false,
                 "hasCpSection": false,
                 "class": "buzzingpixel\\craftstatic\\Craftstatic"
@@ -211,7 +222,7 @@
                 "craft-static",
                 "craftcms"
             ],
-            "time": "2018-07-24T15:39:28+00:00"
+            "time": "2019-07-22T17:36:26+00:00"
         },
         {
             "name": "cebe/markdown",
