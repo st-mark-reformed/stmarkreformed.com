@@ -45,6 +45,8 @@ class ContactController extends BaseController
         foreach ($this->inputValues as $key => &$val) {
             $val = $request->post($key);
         }
+
+        parent::init();
     }
 
     /**
