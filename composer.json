@@ -27,7 +27,7 @@
         "craftcms/cms": "^3.0.0",
         "craftcms/redactor": "2.3.3.2",
         "digitalnature/php-ref": "^1.2",
-        "doublesecretagency/craft-inventory": "^2.0",
+        "doublesecretagency/craft-inventory": "2.0.3",
         "lucidtaz/yii2-whoops": "dev-master",
         "michelf/php-smartypants": "^1.8",
         "nystudio107/craft-minify": "1.2.10",

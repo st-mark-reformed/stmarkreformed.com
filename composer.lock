@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bbb7a635b62268e2ccfeb1a929b04a3e",
+    "content-hash": "8656b5dc4afd24cf730ad81306985d28",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -1098,16 +1098,16 @@
         },
         {
             "name": "doublesecretagency/craft-inventory",
-            "version": "2.0.2",
+            "version": "2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doublesecretagency/craft-inventory.git",
-                "reference": "0dd1b3a62e4bece3832fa127c1c9d178ed49d742"
+                "reference": "4dcc19e8b1e9527f3b32877cae2e31b55619d85a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doublesecretagency/craft-inventory/zipball/0dd1b3a62e4bece3832fa127c1c9d178ed49d742",
-                "reference": "0dd1b3a62e4bece3832fa127c1c9d178ed49d742",
+                "url": "https://api.github.com/repos/doublesecretagency/craft-inventory/zipball/4dcc19e8b1e9527f3b32877cae2e31b55619d85a",
+                "reference": "4dcc19e8b1e9527f3b32877cae2e31b55619d85a",
                 "shasum": ""
             },
             "require": {
@@ -1145,7 +1145,7 @@
                 "fields",
                 "inventory"
             ],
-            "time": "2018-07-17T04:50:36+00:00"
+            "time": "2019-06-07T22:25:35+00:00"
         },
         {
             "name": "egulias/email-validator",
