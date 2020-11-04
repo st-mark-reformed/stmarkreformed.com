@@ -1,7 +1,7 @@
 ############
 # Build base
 ############
-FROM php:7.1.3-fpm as base
+FROM php:7.2.33-fpm as base
 
 # Update bash profile
 COPY ./docker/.profile /root/.profile
@@ -24,7 +24,7 @@ RUN apt-get update && apt-get install -my --no-install-recommends \
     unzip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
-    && docker-php-ext-configure gd --with-jpeg --with-freetype --with-xpm --with-webp \
+    && docker-php-ext-configure gd --with-freetype-dir=/usr/ --with-png-dir=/usr/ --with-jpeg-dir=/usr/ --with-webp-dir=/usr --with-gd \
     && docker-php-ext-install gd \
     && docker-php-ext-install bcmath \
     && docker-php-ext-install bz2 \

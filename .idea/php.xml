@@ -74,7 +74,6 @@
       <path value="$PROJECT_DIR$/vendor/psr/container" />
       <path value="$PROJECT_DIR$/vendor/aws/aws-sdk-php" />
       <path value="$PROJECT_DIR$/vendor/composer" />
-      <path value="$PROJECT_DIR$/vendor/container-interop/container-interop" />
       <path value="$PROJECT_DIR$/vendor/zendframework/zend-escaper" />
       <path value="$PROJECT_DIR$/vendor/doublesecretagency/craft-inventory" />
       <path value="$PROJECT_DIR$/vendor/pixelandtonic/imagine" />
@@ -104,6 +103,7 @@
       <path value="$PROJECT_DIR$/vendor/yii2tech/ar-softdelete" />
       <path value="$PROJECT_DIR$/vendor/kraken-io/kraken-php" />
       <path value="$PROJECT_DIR$/vendor/enshrined/svg-sanitize" />
+      <path value="$PROJECT_DIR$/vendor/marcusschwarz/lesserphp" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7" />
