@@ -49,6 +49,8 @@ class Module extends ModuleBase
     {
         Craft::setAlias('@dev', __DIR__);
 
+        Craft::setAlias('@src', __DIR__);
+
         Craft::$app->view->registerTwigExtension(
             new DevTwigExtensions()
         );
