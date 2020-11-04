@@ -1,0 +1,25 @@
+fieldLayouts:
+  017a644a-1ea2-45be-ae8a-f055747164f2:
+    tabs:
+      -
+        elements:
+          -
+            instructions: null
+            label: Title
+            type: craft\fieldlayoutelements\EntryTitleField
+          -
+            fieldUid: 18290e78-8e88-4e1e-a79b-df42cc32eff0
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+          -
+            fieldUid: b4204049-2a69-459e-b105-94be12ec6081
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+        name: Publish
+        sortOrder: '1'
+handle: navLink
+hasTitleField: '1'
+name: 'Nav Link'
+section: 261a469a-71d2-46af-8ca5-7b25e2a168f1
+sortOrder: '2'
+titleFormat: null

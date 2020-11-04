@@ -1,0 +1,8 @@
+handle: audio
+hasUrls: '1'
+name: Audio
+settings:
+  path: '@webroot/uploads/audio'
+sortOrder: '3'
+type: craft\volumes\Local
+url: /uploads/audio

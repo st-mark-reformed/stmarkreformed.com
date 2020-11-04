@@ -1,0 +1,18 @@
+contentColumnType: string
+fieldGroup: c66e62d9-2ca8-4489-8c97-3f4dca8ccb60
+handle: newsCategories
+instructions: ''
+name: 'News Categories'
+searchable: true
+settings:
+  branchLimit: ''
+  limit: null
+  localizeRelations: false
+  selectionLabel: ''
+  source: 'group:0a59f674-1687-4158-897b-c69d0ed334ce'
+  sources: '*'
+  targetSiteId: null
+  viewMode: null
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Categories

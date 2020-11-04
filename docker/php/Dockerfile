@@ -8,6 +8,7 @@ COPY ./docker/.profile /root/.profile
 COPY ./docker/.profile /root/.bashrc
 
 RUN apt-get update && apt-get install -my --no-install-recommends \
+    git \
     libmagick++-dev \
     libmagickwand-dev \
     libpq-dev \

@@ -1,0 +1,18 @@
+contentColumnType: string
+fieldGroup: a3adb82d-453d-4ae5-89d5-0f9b818b8d60
+handle: messageSeries
+instructions: ''
+name: 'Message Series'
+searchable: '1'
+settings:
+  branchLimit: ''
+  limit: null
+  localizeRelations: false
+  selectionLabel: 'Add a series'
+  source: 'group:3997eb97-922e-4368-8704-2c22cb7dcb1e'
+  sources: '*'
+  targetSiteId: null
+  viewMode: null
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Categories

@@ -1,0 +1,216 @@
+field: c9504fe8-d2fb-458b-a2e9-f8872585919a
+fieldLayouts:
+  36d1a1a4-81bf-496d-bbd4-22cef03272c3:
+    tabs:
+      -
+        fields:
+          0d9de0c2-3e02-4799-905a-dc37c9ab8299:
+            required: false
+            sortOrder: 3
+          1619a0e9-2a7f-4450-ad7b-9eb6f10a435d:
+            required: false
+            sortOrder: 5
+          65d4cdb4-f28e-469a-a25f-420675afd673:
+            required: false
+            sortOrder: 2
+          9541534e-7593-41ec-b0c8-5b12cecf235c:
+            required: false
+            sortOrder: 4
+          e355e9ca-6733-4125-823c-1111afcb79eb:
+            required: false
+            sortOrder: 1
+          fb27befa-4657-425c-b961-eeace2f94dc4:
+            required: false
+            sortOrder: 6
+        name: Content
+        sortOrder: 1
+fields:
+  0d9de0c2-3e02-4799-905a-dc37c9ab8299:
+    contentColumnType: string
+    fieldGroup: null
+    handle: subheading
+    instructions: ''
+    name: Subheading
+    searchable: true
+    settings:
+      charLimit: '50'
+      code: ''
+      columnType: string
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  1619a0e9-2a7f-4450-ad7b-9eb6f10a435d:
+    contentColumnType: text
+    fieldGroup: null
+    handle: callToAction
+    instructions: ''
+    name: 'Call To Action'
+    searchable: true
+    settings:
+      addRowLabel: 'Add a row'
+      columnType: text
+      columns:
+        __assoc__:
+          -
+            - col1
+            -
+              __assoc__:
+                -
+                  - heading
+                  - Text
+                -
+                  - handle
+                  - text
+                -
+                  - width
+                  - 50%
+                -
+                  - type
+                  - singleline
+          -
+            - col2
+            -
+              __assoc__:
+                -
+                  - heading
+                  - Link
+                -
+                  - handle
+                  - link
+                -
+                  - width
+                  - 50%
+                -
+                  - type
+                  - singleline
+      maxRows: ''
+      minRows: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Table
+  65d4cdb4-f28e-469a-a25f-420675afd673:
+    contentColumnType: string
+    fieldGroup: null
+    handle: heading
+    instructions: ''
+    name: Heading
+    searchable: true
+    settings:
+      charLimit: '50'
+      code: ''
+      columnType: string
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  9541534e-7593-41ec-b0c8-5b12cecf235c:
+    contentColumnType: text
+    fieldGroup: null
+    handle: body
+    instructions: ''
+    name: Body
+    searchable: true
+    settings:
+      availableTransforms: '*'
+      availableVolumes:
+        - fe2952ce-382a-4470-8f04-a7bdd1b48f66
+      columnType: text
+      purifierConfig: ''
+      purifyHtml: '1'
+      redactorConfig: Standard.json
+      removeEmptyTags: '1'
+      removeInlineStyles: '1'
+      removeNbsp: '1'
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\redactor\Field
+  e355e9ca-6733-4125-823c-1111afcb79eb:
+    contentColumnType: string
+    fieldGroup: null
+    handle: options
+    instructions: ''
+    name: Options
+    searchable: true
+    settings:
+      options:
+        -
+          __assoc__:
+            -
+              - label
+              - 'Align Headings on Left'
+            -
+              - value
+              - alignHeadingsOnLeft
+            -
+              - default
+              - ''
+        -
+          __assoc__:
+            -
+              - label
+              - 'Center Align Block'
+            -
+              - value
+              - centerAlignBlock
+            -
+              - default
+              - ''
+        -
+          __assoc__:
+            -
+              - label
+              - 'Red Block Background'
+            -
+              - value
+              - redBlockBackground
+            -
+              - default
+              - ''
+        -
+          __assoc__:
+            -
+              - label
+              - 'No Top Padding'
+            -
+              - value
+              - noTopPadding
+            -
+              - default
+              - ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Checkboxes
+  fb27befa-4657-425c-b961-eeace2f94dc4:
+    contentColumnType: string
+    fieldGroup: null
+    handle: blockBackgroundImage
+    instructions: ''
+    name: 'Block Background Image'
+    searchable: true
+    settings:
+      allowedKinds:
+        - image
+      defaultUploadLocationSource: 'volume:fe2952ce-382a-4470-8f04-a7bdd1b48f66'
+      defaultUploadLocationSubpath: ''
+      limit: '1'
+      localizeRelations: false
+      restrictFiles: '1'
+      selectionLabel: 'Add an Image'
+      singleUploadLocationSource: 'volume:fe2952ce-382a-4470-8f04-a7bdd1b48f66'
+      singleUploadLocationSubpath: ''
+      source: null
+      sources: '*'
+      targetSiteId: null
+      useSingleFolder: '1'
+      viewMode: large
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Assets
+handle: basicBlock
+name: 'Basic Block'
+sortOrder: 1

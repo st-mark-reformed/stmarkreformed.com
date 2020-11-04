@@ -1,0 +1,15 @@
+enableVersioning: true
+handle: galleries
+name: Galleries
+previewTargets:
+  -
+    label: 'Primary entry page'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  94e92402-bc7d-4413-bc65-a236d81d53aa:
+    enabledByDefault: true
+    hasUrls: true
+    template: _controllerRoute/dev/galleries/entry
+    uriFormat: 'media/galleries/{slug}'
+type: channel

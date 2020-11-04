@@ -1,0 +1,8 @@
+baseUrl: 'http://stmarkreformed.test/'
+handle: default
+hasUrls: '1'
+language: en-US
+name: 'St. Mark Reformed Church'
+primary: '1'
+siteGroup: 29f855c0-8761-4086-ae93-dcda8685d73c
+sortOrder: '1'

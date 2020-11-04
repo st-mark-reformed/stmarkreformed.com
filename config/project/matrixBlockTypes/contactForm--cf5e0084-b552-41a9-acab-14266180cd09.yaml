@@ -1,0 +1,27 @@
+field: c9504fe8-d2fb-458b-a2e9-f8872585919a
+fieldLayouts:
+  b7924ff9-7056-4ce3-892c-cbf035702abc:
+    tabs:
+      -
+        fields:
+          d9d26b1f-c9ea-4482-8649-b8f387765fc8:
+            required: false
+            sortOrder: 1
+        name: Content
+        sortOrder: 1
+fields:
+  d9d26b1f-c9ea-4482-8649-b8f387765fc8:
+    contentColumnType: string
+    fieldGroup: null
+    handle: contactFormDetails
+    instructions: 'This block will list the contact form'
+    name: 'Contact Form Details'
+    searchable: true
+    settings:
+      fieldCustomCss: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: superbig\entryinstructions\fields\EntryInstructionsField
+handle: contactForm
+name: 'Contact Form'
+sortOrder: 6

@@ -1,0 +1,63 @@
+dateModified: 1604458091
+email:
+  fromEmail: info@stmarkreformed.com
+  fromName: 'St. Mark Reformed Church'
+  template: null
+  transportSettings:
+    encryptionMethod: tls
+    host: smtp.mandrillapp.com
+    password: zvjqrwDYBGaotpAhN1bVKQ
+    port: '587'
+    timeout: '30'
+    useAuthentication: '1'
+    username: info@buzzingpixel.com
+  transportType: craft\mail\transportadapters\Smtp
+graphql:
+  publicToken:
+    enabled: false
+    expiryDate: null
+plugins:
+  ckeditor:
+    enabled: '1'
+    licenseKey: null
+    schemaVersion: 1.0.0
+    settings: null
+  craft-static:
+    enabled: '1'
+    licenseKey: null
+    schemaVersion: 2.0.0
+    settings: null
+  entry-instructions:
+    enabled: '1'
+    licenseKey: null
+    schemaVersion: 1.0.0
+    settings: null
+  geoaddress:
+    enabled: '1'
+    licenseKey: null
+    schemaVersion: 1.0.1
+    settings:
+      googleApiKey: AIzaSyDgRVyQkQ0T6k5dPlXCO_SLZOK4EGaBig0
+  imager:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.0.0
+  inventory:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.0.0
+  minify:
+    enabled: '1'
+    licenseKey: null
+    schemaVersion: 1.0.0
+    settings: null
+  redactor:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.3.0
+system:
+  edition: pro
+  live: true
+  name: 'St. Mark Reformed Church'
+  schemaVersion: 3.5.13
+  timeZone: America/Chicago

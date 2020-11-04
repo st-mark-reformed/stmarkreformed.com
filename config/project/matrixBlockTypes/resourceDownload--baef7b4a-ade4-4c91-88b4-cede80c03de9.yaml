@@ -1,0 +1,40 @@
+field: 1849a26d-8a77-45c2-a9d4-9dd57e96be94
+fieldLayouts:
+  a40887c0-c4d2-44a5-b397-88a565d1543a:
+    tabs:
+      -
+        fields:
+          b4cecc4f-47f7-4027-8377-5ec6e66d7fbb:
+            required: false
+            sortOrder: 1
+        name: Content
+        sortOrder: 1
+fields:
+  b4cecc4f-47f7-4027-8377-5ec6e66d7fbb:
+    contentColumnType: string
+    fieldGroup: null
+    handle: file
+    instructions: ''
+    name: File
+    searchable: true
+    settings:
+      allowedKinds: null
+      defaultUploadLocationSource: 'volume:fe2952ce-382a-4470-8f04-a7bdd1b48f66'
+      defaultUploadLocationSubpath: ''
+      limit: '1'
+      localizeRelations: false
+      restrictFiles: ''
+      selectionLabel: 'Add a file'
+      singleUploadLocationSource: 'volume:fe2952ce-382a-4470-8f04-a7bdd1b48f66'
+      singleUploadLocationSubpath: 'resources/{owner.slug}'
+      source: null
+      sources: '*'
+      targetSiteId: null
+      useSingleFolder: '1'
+      viewMode: list
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Assets
+handle: resourceDownload
+name: 'Resource Download'
+sortOrder: 1

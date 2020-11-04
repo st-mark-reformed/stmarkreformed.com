@@ -1,0 +1,45 @@
+fieldLayouts:
+  61d5937a-9b60-43dc-b2da-f9c34cebe2f2:
+    tabs:
+      -
+        elements:
+          -
+            instructions: null
+            label: Title
+            type: craft\fieldlayoutelements\EntryTitleField
+          -
+            fieldUid: efe1648a-3d7f-4a16-a249-8e6870078081
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+          -
+            fieldUid: 1849a26d-8a77-45c2-a9d4-9dd57e96be94
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+        name: Publish
+        sortOrder: 1
+      -
+        elements:
+          -
+            fieldUid: 0bb8ab16-3c86-4ffb-86da-18c4e22a554e
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+          -
+            fieldUid: a5663b9c-311e-405f-a780-b856c4cd8464
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+          -
+            fieldUid: b153d5f7-fd35-4731-9437-eb1333cdc3e2
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+          -
+            fieldUid: 98eceee6-f51c-4e12-b27e-8af4e80fb147
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+        name: SEO
+        sortOrder: 2
+handle: resources
+hasTitleField: true
+name: Resources
+section: 9c3eb649-30d1-4de9-8679-4495fe2a2923
+sortOrder: 1
+titleFormat: ''

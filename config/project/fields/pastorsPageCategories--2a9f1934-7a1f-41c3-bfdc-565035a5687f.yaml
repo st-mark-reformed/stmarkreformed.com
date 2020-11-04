@@ -1,0 +1,18 @@
+contentColumnType: string
+fieldGroup: c66e62d9-2ca8-4489-8c97-3f4dca8ccb60
+handle: pastorsPageCategories
+instructions: ''
+name: 'Pastor''s Page Categories'
+searchable: true
+settings:
+  branchLimit: ''
+  limit: null
+  localizeRelations: false
+  selectionLabel: ''
+  source: 'group:058c9a87-ef94-4f63-bab6-4bca4d0296fb'
+  sources: '*'
+  targetSiteId: null
+  viewMode: null
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Categories

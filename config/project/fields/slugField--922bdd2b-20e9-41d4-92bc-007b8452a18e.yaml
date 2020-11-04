@@ -1,0 +1,15 @@
+contentColumnType: string
+fieldGroup: c67a7c62-3fbd-43ac-86c6-32c299b87bfe
+handle: slugField
+instructions: ''
+name: Slug
+searchable: '1'
+settings:
+  charLimit: ''
+  columnType: string
+  initialRows: '4'
+  multiline: ''
+  placeholder: ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

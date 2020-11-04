@@ -1,0 +1,34 @@
+field: c9504fe8-d2fb-458b-a2e9-f8872585919a
+fieldLayouts:
+  baa56e61-ae3b-4f99-b7ee-a452a0f59d5c:
+    tabs:
+      -
+        fields:
+          0363b404-b48e-4cdb-8a99-253db50b2d17:
+            required: false
+            sortOrder: 1
+        name: Content
+        sortOrder: 1
+fields:
+  0363b404-b48e-4cdb-8a99-253db50b2d17:
+    contentColumnType: string
+    fieldGroup: null
+    handle: seriesToDisplay
+    instructions: 'If no series is chosen, the series from the most recent sermon will be used.'
+    name: 'Select a series to display'
+    searchable: true
+    settings:
+      branchLimit: '1'
+      limit: null
+      localizeRelations: false
+      selectionLabel: 'Add a series'
+      source: 'group:3997eb97-922e-4368-8704-2c22cb7dcb1e'
+      sources: '*'
+      targetSiteId: null
+      viewMode: null
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Categories
+handle: featuredSermonSeries
+name: 'Featured Sermon Series'
+sortOrder: 7

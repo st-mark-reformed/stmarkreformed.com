@@ -1,0 +1,15 @@
+contentColumnType: string
+fieldGroup: e91f5555-0d06-411a-a55c-c24f14632bf4
+handle: navTitleOverride
+instructions: ''
+name: 'Nav Title Override'
+searchable: '1'
+settings:
+  charLimit: ''
+  columnType: string
+  initialRows: '4'
+  multiline: ''
+  placeholder: ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

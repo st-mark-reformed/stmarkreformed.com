@@ -1,0 +1,49 @@
+field: c9504fe8-d2fb-458b-a2e9-f8872585919a
+fieldLayouts:
+  92072b29-a87d-41b8-b59d-c48e019930e9:
+    tabs:
+      -
+        fields:
+          07efee91-98b9-462b-824d-885cbf31780d:
+            required: false
+            sortOrder: 1
+        name: Content
+        sortOrder: 1
+fields:
+  07efee91-98b9-462b-824d-885cbf31780d:
+    contentColumnType: string
+    fieldGroup: null
+    handle: latestTypes
+    instructions: ''
+    name: 'Latest Types'
+    searchable: true
+    settings:
+      options:
+        -
+          __assoc__:
+            -
+              - label
+              - News
+            -
+              - value
+              - news
+            -
+              - default
+              - ''
+        -
+          __assoc__:
+            -
+              - label
+              - 'Pastor''s Page'
+            -
+              - value
+              - pastorsPage
+            -
+              - default
+              - ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Checkboxes
+handle: featuredItem
+name: 'Feature Latest'
+sortOrder: 8

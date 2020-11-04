@@ -1,0 +1,15 @@
+contentColumnType: text
+fieldGroup: c66e62d9-2ca8-4489-8c97-3f4dca8ccb60
+handle: urlField
+instructions: ''
+name: URL
+searchable: '1'
+settings:
+  charLimit: ''
+  columnType: text
+  initialRows: '4'
+  multiline: ''
+  placeholder: 'https://site.com or /local/url'
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

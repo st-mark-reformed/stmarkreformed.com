@@ -1,0 +1,8 @@
+handle: general
+hasUrls: '1'
+name: General
+settings:
+  path: '@webroot/uploads/general'
+sortOrder: '1'
+type: craft\volumes\Local
+url: /uploads/general

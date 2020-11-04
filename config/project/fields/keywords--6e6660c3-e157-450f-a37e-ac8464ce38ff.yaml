@@ -1,0 +1,17 @@
+contentColumnType: string
+fieldGroup: a3adb82d-453d-4ae5-89d5-0f9b818b8d60
+handle: keywords
+instructions: ''
+name: Tags
+searchable: '1'
+settings:
+  limit: null
+  localizeRelations: false
+  selectionLabel: 'Add a tag'
+  source: 'taggroup:f655b28d-ccb7-4ef3-a5bd-631a5ebfde6e'
+  sources: '*'
+  targetSiteId: null
+  viewMode: null
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Tags

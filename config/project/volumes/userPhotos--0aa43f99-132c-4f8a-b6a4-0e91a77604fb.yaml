@@ -1,0 +1,8 @@
+handle: userPhotos
+hasUrls: '1'
+name: 'User Photos'
+settings:
+  path: '@webroot/uploads/user-photos'
+sortOrder: '2'
+type: craft\volumes\Local
+url: /uploads/user-photos

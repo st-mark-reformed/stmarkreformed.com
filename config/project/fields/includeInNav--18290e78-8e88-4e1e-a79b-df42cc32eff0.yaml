@@ -1,0 +1,11 @@
+contentColumnType: boolean
+fieldGroup: e91f5555-0d06-411a-a55c-c24f14632bf4
+handle: includeInNav
+instructions: ''
+name: 'Include in Nav?'
+searchable: '1'
+settings:
+  default: '1'
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Lightswitch

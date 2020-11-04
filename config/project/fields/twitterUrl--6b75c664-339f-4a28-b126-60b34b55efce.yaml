@@ -1,0 +1,9 @@
+contentColumnType: string
+fieldGroup: 0e14aaf7-e012-407f-a946-4531b9b59d3b
+handle: twitterUrl
+instructions: ''
+name: 'Twitter URL'
+searchable: '1'
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Url

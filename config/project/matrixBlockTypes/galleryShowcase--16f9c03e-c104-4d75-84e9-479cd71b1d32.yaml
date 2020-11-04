@@ -1,0 +1,46 @@
+field: c9504fe8-d2fb-458b-a2e9-f8872585919a
+fieldLayouts:
+  f479280a-7468-461f-81d0-2eb7f5b83774:
+    tabs:
+      -
+        fields:
+          e2a3e24e-58ee-4326-8fc2-163003e8205b:
+            required: false
+            sortOrder: 1
+          e2b3f41d-b5fb-443c-988f-96c387bfa764:
+            required: true
+            sortOrder: 2
+        name: Content
+        sortOrder: 1
+fields:
+  e2a3e24e-58ee-4326-8fc2-163003e8205b:
+    contentColumnType: string
+    fieldGroup: null
+    handle: galleryShowcaseNotes
+    instructions: 'This Block will display the most recent galleries on the page'
+    name: 'Gallery Showcase Notes'
+    searchable: true
+    settings:
+      fieldCustomCss: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: superbig\entryinstructions\fields\EntryInstructionsField
+  e2b3f41d-b5fb-443c-988f-96c387bfa764:
+    contentColumnType: integer(10)
+    fieldGroup: null
+    handle: numberToShowcase
+    instructions: 'Set the number of recent galleries to showcase. Even numbers will look better since the gallery is displayed in a grid of two wide.'
+    name: 'Number to Showcase'
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '1'
+      size: null
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+handle: galleryShowcase
+name: 'Gallery Showcase'
+sortOrder: 4

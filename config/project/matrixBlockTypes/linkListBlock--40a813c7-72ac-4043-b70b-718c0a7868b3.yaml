@@ -1,0 +1,116 @@
+field: c9504fe8-d2fb-458b-a2e9-f8872585919a
+fieldLayouts:
+  f160cabb-ff49-4ee2-8bb2-49e06d800438:
+    tabs:
+      -
+        fields:
+          1a0827bd-1b3c-4260-9328-30c8c7307478:
+            required: false
+            sortOrder: 2
+          96489851-57e6-4cdd-9f3c-d2e785615f32:
+            required: false
+            sortOrder: 1
+          fb809945-7807-4e81-9c34-4ff030f0888a:
+            required: true
+            sortOrder: 3
+        name: Content
+        sortOrder: 1
+fields:
+  1a0827bd-1b3c-4260-9328-30c8c7307478:
+    contentColumnType: string
+    fieldGroup: null
+    handle: subheading
+    instructions: ''
+    name: Subheading
+    searchable: true
+    settings:
+      charLimit: '50'
+      code: ''
+      columnType: string
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  96489851-57e6-4cdd-9f3c-d2e785615f32:
+    contentColumnType: string
+    fieldGroup: null
+    handle: heading
+    instructions: ''
+    name: Heading
+    searchable: true
+    settings:
+      charLimit: '50'
+      code: ''
+      columnType: string
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  fb809945-7807-4e81-9c34-4ff030f0888a:
+    contentColumnType: text
+    fieldGroup: null
+    handle: links
+    instructions: ''
+    name: Links
+    searchable: true
+    settings:
+      addRowLabel: 'Add a row'
+      columnType: text
+      columns:
+        __assoc__:
+          -
+            - col1
+            -
+              __assoc__:
+                -
+                  - heading
+                  - Text
+                -
+                  - handle
+                  - text
+                -
+                  - width
+                  - 50%
+                -
+                  - type
+                  - singleline
+          -
+            - col2
+            -
+              __assoc__:
+                -
+                  - heading
+                  - Link
+                -
+                  - handle
+                  - link
+                -
+                  - width
+                  - 50%
+                -
+                  - type
+                  - singleline
+      defaults:
+        __assoc__:
+          -
+            - row1
+            -
+              __assoc__:
+                -
+                  - col1
+                  - ''
+                -
+                  - col2
+                  - ''
+      maxRows: ''
+      minRows: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Table
+handle: linkListBlock
+name: 'Link List Block'
+sortOrder: 2

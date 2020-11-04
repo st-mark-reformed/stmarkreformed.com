@@ -1,0 +1,15 @@
+enableVersioning: '1'
+handle: pastorsPage
+name: 'Pastor''s Page'
+previewTargets:
+  -
+    label: 'Primary entry page'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  94e92402-bc7d-4413-bc65-a236d81d53aa:
+    enabledByDefault: '1'
+    hasUrls: '1'
+    template: _controllerRoute/dev/news/entry
+    uriFormat: 'pastors-page/{slug}'
+type: channel

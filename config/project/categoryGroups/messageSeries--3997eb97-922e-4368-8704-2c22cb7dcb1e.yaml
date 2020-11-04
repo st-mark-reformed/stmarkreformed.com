@@ -1,0 +1,20 @@
+fieldLayouts:
+  07ab0ac0-b528-4a5f-aa80-e8e4da7bbaa3:
+    tabs:
+      -
+        fields:
+          3925f2c2-f707-4557-ae5e-1b4e36801755:
+            required: '0'
+            sortOrder: '1'
+        name: Details
+        sortOrder: '1'
+handle: messageSeries
+name: 'Message Series'
+siteSettings:
+  94e92402-bc7d-4413-bc65-a236d81d53aa:
+    hasUrls: '0'
+    template: null
+    uriFormat: null
+structure:
+  maxLevels: '1'
+  uid: 7a3b6abf-4feb-45f5-8718-f36a645bb96f

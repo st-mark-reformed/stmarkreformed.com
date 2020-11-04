@@ -1,0 +1,11 @@
+contentColumnType: boolean
+fieldGroup: 27b7be51-9d75-42da-9b5f-b2e1fb678ed6
+handle: searchEngineIndexing
+instructions: ''
+name: 'Search Engine Indexing'
+searchable: '1'
+settings:
+  default: '1'
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Lightswitch

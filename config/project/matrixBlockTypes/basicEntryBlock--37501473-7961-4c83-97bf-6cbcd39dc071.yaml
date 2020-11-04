@@ -1,0 +1,128 @@
+field: 83ae5632-273d-44d5-b592-476a39460f51
+fieldLayouts:
+  5fe7c754-5312-487d-937e-c8a7f80c510a:
+    tabs:
+      -
+        fields:
+          47faf7d5-0d87-4f48-b74a-b29466680c7e:
+            required: false
+            sortOrder: 3
+          8b3933b1-6d68-4112-9acf-259e8ce097a5:
+            required: false
+            sortOrder: 2
+          b5707d15-00c5-4c98-a9f5-99a37ea9b269:
+            required: false
+            sortOrder: 1
+          b621b810-c5fd-4e13-8128-148cce3f35d0:
+            required: false
+            sortOrder: 4
+        name: Content
+        sortOrder: 1
+fields:
+  47faf7d5-0d87-4f48-b74a-b29466680c7e:
+    contentColumnType: text
+    fieldGroup: null
+    handle: body
+    instructions: ''
+    name: Body
+    searchable: true
+    settings:
+      availableTransforms: '*'
+      availableVolumes:
+        - fe2952ce-382a-4470-8f04-a7bdd1b48f66
+      columnType: text
+      purifierConfig: ''
+      purifyHtml: ''
+      redactorConfig: Standard.json
+      removeEmptyTags: '1'
+      removeInlineStyles: '1'
+      removeNbsp: '1'
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\redactor\Field
+  8b3933b1-6d68-4112-9acf-259e8ce097a5:
+    contentColumnType: string
+    fieldGroup: null
+    handle: subheading
+    instructions: ''
+    name: Subheading
+    searchable: true
+    settings:
+      charLimit: '50'
+      code: ''
+      columnType: string
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  b5707d15-00c5-4c98-a9f5-99a37ea9b269:
+    contentColumnType: string
+    fieldGroup: null
+    handle: heading
+    instructions: ''
+    name: Heading
+    searchable: true
+    settings:
+      charLimit: '50'
+      code: ''
+      columnType: string
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  b621b810-c5fd-4e13-8128-148cce3f35d0:
+    contentColumnType: text
+    fieldGroup: null
+    handle: callToAction
+    instructions: ''
+    name: 'Call To Action'
+    searchable: true
+    settings:
+      addRowLabel: 'Add a row'
+      columnType: text
+      columns:
+        __assoc__:
+          -
+            - col1
+            -
+              __assoc__:
+                -
+                  - heading
+                  - Text
+                -
+                  - handle
+                  - text
+                -
+                  - width
+                  - 50%
+                -
+                  - type
+                  - singleline
+          -
+            - col2
+            -
+              __assoc__:
+                -
+                  - heading
+                  - Link
+                -
+                  - handle
+                  - link
+                -
+                  - width
+                  - 50%
+                -
+                  - type
+                  - singleline
+      maxRows: ''
+      minRows: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Table
+handle: basicEntryBlock
+name: 'Basic Block'
+sortOrder: 1

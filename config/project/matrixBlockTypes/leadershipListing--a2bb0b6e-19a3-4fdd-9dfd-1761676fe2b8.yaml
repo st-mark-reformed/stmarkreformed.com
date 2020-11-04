@@ -1,0 +1,27 @@
+field: c9504fe8-d2fb-458b-a2e9-f8872585919a
+fieldLayouts:
+  bef4d4d8-3bfe-45ab-b6a1-33c8a57d3519:
+    tabs:
+      -
+        fields:
+          ba477ad1-a81e-4f6c-9976-f0f2af90b390:
+            required: false
+            sortOrder: 1
+        name: Content
+        sortOrder: 1
+fields:
+  ba477ad1-a81e-4f6c-9976-f0f2af90b390:
+    contentColumnType: string
+    fieldGroup: null
+    handle: leadershipListingDetails
+    instructions: 'This block will list the leadership of the church'
+    name: 'Leadership Listing Details'
+    searchable: true
+    settings:
+      fieldCustomCss: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: superbig\entryinstructions\fields\EntryInstructionsField
+handle: leadershipListing
+name: 'Leadership Listing'
+sortOrder: 5

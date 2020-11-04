@@ -1,0 +1,66 @@
+contentColumnType: string
+fieldGroup: c67a7c62-3fbd-43ac-86c6-32c299b87bfe
+handle: leadershipPosition
+instructions: ''
+name: 'Leadership Position'
+searchable: '1'
+settings:
+  options:
+    -
+      __assoc__:
+        -
+          - default
+          - '1'
+        -
+          - label
+          - None
+        -
+          - value
+          - ''
+    -
+      __assoc__:
+        -
+          - default
+          - ''
+        -
+          - label
+          - Pastor
+        -
+          - value
+          - pastor
+    -
+      __assoc__:
+        -
+          - default
+          - ''
+        -
+          - label
+          - Elder
+        -
+          - value
+          - elder
+    -
+      __assoc__:
+        -
+          - default
+          - ''
+        -
+          - label
+          - 'Ruling Elder'
+        -
+          - value
+          - rulingElder
+    -
+      __assoc__:
+        -
+          - default
+          - ''
+        -
+          - label
+          - Deacon
+        -
+          - value
+          - deacon
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\RadioButtons

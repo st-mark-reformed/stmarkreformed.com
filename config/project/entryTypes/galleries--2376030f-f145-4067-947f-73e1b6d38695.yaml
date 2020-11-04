@@ -1,0 +1,41 @@
+fieldLayouts:
+  fbab047c-94a1-4d4e-966d-59278de91398:
+    tabs:
+      -
+        elements:
+          -
+            instructions: null
+            label: Title
+            type: craft\fieldlayoutelements\EntryTitleField
+          -
+            fieldUid: 8f73d9f8-3435-4396-bb8f-e729910f2665
+            required: true
+            type: craft\fieldlayoutelements\CustomField
+        name: Publish
+        sortOrder: '1'
+      -
+        elements:
+          -
+            fieldUid: 0bb8ab16-3c86-4ffb-86da-18c4e22a554e
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+          -
+            fieldUid: a5663b9c-311e-405f-a780-b856c4cd8464
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+          -
+            fieldUid: b153d5f7-fd35-4731-9437-eb1333cdc3e2
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+          -
+            fieldUid: 98eceee6-f51c-4e12-b27e-8af4e80fb147
+            required: false
+            type: craft\fieldlayoutelements\CustomField
+        name: SEO
+        sortOrder: '2'
+handle: galleries
+hasTitleField: '1'
+name: Galleries
+section: 65087f98-610e-4026-a91b-70bdef20426f
+sortOrder: '1'
+titleFormat: null

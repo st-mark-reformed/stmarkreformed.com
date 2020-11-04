@@ -1,0 +1,15 @@
+contentColumnType: text
+fieldGroup: a3adb82d-453d-4ae5-89d5-0f9b818b8d60
+handle: messageText
+instructions: ''
+name: 'Message Text'
+searchable: '1'
+settings:
+  charLimit: ''
+  columnType: text
+  initialRows: '4'
+  multiline: ''
+  placeholder: ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

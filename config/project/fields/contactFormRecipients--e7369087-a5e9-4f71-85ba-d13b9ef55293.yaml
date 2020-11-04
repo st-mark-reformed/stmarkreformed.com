@@ -1,0 +1,29 @@
+contentColumnType: text
+fieldGroup: c66e62d9-2ca8-4489-8c97-3f4dca8ccb60
+handle: contactFormRecipients
+instructions: ''
+name: 'Contact Form Recipients'
+searchable: '1'
+settings:
+  columnType: text
+  columns:
+    __assoc__:
+      -
+        - col1
+        -
+          __assoc__:
+            -
+              - handle
+              - emailAddress
+            -
+              - heading
+              - 'Email Address'
+            -
+              - type
+              - singleline
+            -
+              - width
+              - ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Table

@@ -1,0 +1,15 @@
+contentColumnType: string
+fieldGroup: c67a7c62-3fbd-43ac-86c6-32c299b87bfe
+handle: titleOrHonorific
+instructions: ''
+name: 'Title or Honorific'
+searchable: '1'
+settings:
+  charLimit: '255'
+  columnType: string
+  initialRows: '4'
+  multiline: ''
+  placeholder: ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText
