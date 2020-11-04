@@ -37,4 +37,19 @@ class ImageTransformsUtility implements UtilityInterface
             )
         );
     }
+
+    public static function isSelectable(): bool
+    {
+        return false;
+    }
+
+    public static function toolbarHtml(): string
+    {
+        return '';
+    }
+
+    public static function footerHtml(): string
+    {
+        return '';
+    }
 }
