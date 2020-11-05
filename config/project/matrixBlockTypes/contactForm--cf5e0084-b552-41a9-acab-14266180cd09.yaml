@@ -3,10 +3,16 @@ fieldLayouts:
   b7924ff9-7056-4ce3-892c-cbf035702abc:
     tabs:
       -
-        fields:
-          d9d26b1f-c9ea-4482-8649-b8f387765fc8:
+        elements:
+          -
+            fieldUid: d9d26b1f-c9ea-4482-8649-b8f387765fc8
+            instructions: null
+            label: null
             required: false
-            sortOrder: 1
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Content
         sortOrder: 1
 fields:

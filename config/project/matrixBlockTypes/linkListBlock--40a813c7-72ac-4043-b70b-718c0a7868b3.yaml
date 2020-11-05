@@ -3,16 +3,34 @@ fieldLayouts:
   f160cabb-ff49-4ee2-8bb2-49e06d800438:
     tabs:
       -
-        fields:
-          1a0827bd-1b3c-4260-9328-30c8c7307478:
+        elements:
+          -
+            fieldUid: 96489851-57e6-4cdd-9f3c-d2e785615f32
+            instructions: null
+            label: null
             required: false
-            sortOrder: 2
-          96489851-57e6-4cdd-9f3c-d2e785615f32:
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 1a0827bd-1b3c-4260-9328-30c8c7307478
+            instructions: null
+            label: null
             required: false
-            sortOrder: 1
-          fb809945-7807-4e81-9c34-4ff030f0888a:
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: fb809945-7807-4e81-9c34-4ff030f0888a
+            instructions: null
+            label: null
             required: true
-            sortOrder: 3
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Content
         sortOrder: 1
 fields:
@@ -24,12 +42,14 @@ fields:
     name: Subheading
     searchable: true
     settings:
-      charLimit: '50'
+      byteLimit: null
+      charLimit: 50
       code: ''
       columnType: string
       initialRows: '4'
       multiline: ''
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
@@ -41,12 +61,14 @@ fields:
     name: Heading
     searchable: true
     settings:
-      charLimit: '50'
+      byteLimit: null
+      charLimit: 50
       code: ''
       columnType: string
       initialRows: '4'
       multiline: ''
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
@@ -95,17 +117,14 @@ fields:
                   - type
                   - singleline
       defaults:
-        __assoc__:
-          -
-            - row1
+        -
+          __assoc__:
             -
-              __assoc__:
-                -
-                  - col1
-                  - ''
-                -
-                  - col2
-                  - ''
+              - col1
+              - ''
+            -
+              - col2
+              - ''
       maxRows: ''
       minRows: ''
     translationKeyFormat: null

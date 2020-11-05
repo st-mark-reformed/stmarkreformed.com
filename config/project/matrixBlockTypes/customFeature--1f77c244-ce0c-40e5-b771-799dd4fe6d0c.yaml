@@ -3,22 +3,52 @@ fieldLayouts:
   c1fd6fbc-52cc-4544-a457-369bb5d34a09:
     tabs:
       -
-        fields:
-          06ab3828-e4b9-4411-b012-c79e8d0dcd93:
-            required: false
-            sortOrder: 3
-          1df46fad-0886-4911-9132-137b6262c9ff:
+        elements:
+          -
+            fieldUid: 1df46fad-0886-4911-9132-137b6262c9ff
+            instructions: null
+            label: null
             required: true
-            sortOrder: 1
-          302084e5-cc85-4e20-914e-49dd78f5e9a4:
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: b660e427-16f8-4219-ab16-4d955f0176b4
+            instructions: null
+            label: null
             required: false
-            sortOrder: 4
-          67830663-1954-426b-8d89-89bcb764a68b:
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 06ab3828-e4b9-4411-b012-c79e8d0dcd93
+            instructions: null
+            label: null
             required: false
-            sortOrder: 5
-          b660e427-16f8-4219-ab16-4d955f0176b4:
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 302084e5-cc85-4e20-914e-49dd78f5e9a4
+            instructions: null
+            label: null
             required: false
-            sortOrder: 2
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 67830663-1954-426b-8d89-89bcb764a68b
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Content
         sortOrder: 1
 fields:
@@ -30,29 +60,33 @@ fields:
     name: Excerpt
     searchable: true
     settings:
-      charLimit: ''
+      byteLimit: null
+      charLimit: null
       code: ''
       columnType: text
       initialRows: '4'
       multiline: '1'
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
   1df46fad-0886-4911-9132-137b6262c9ff:
-    contentColumnType: string
+    contentColumnType: text
     fieldGroup: null
     handle: heading
     instructions: ''
     name: Heading
     searchable: true
     settings:
-      charLimit: '255'
+      byteLimit: null
+      charLimit: 255
       code: ''
-      columnType: string
+      columnType: text
       initialRows: '4'
       multiline: ''
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
@@ -113,38 +147,47 @@ fields:
     name: 'Background Image'
     searchable: true
     settings:
+      allowSelfRelations: false
+      allowUploads: true
       allowedKinds:
         - image
       defaultUploadLocationSource: 'volume:fe2952ce-382a-4470-8f04-a7bdd1b48f66'
       defaultUploadLocationSubpath: ''
       limit: '1'
       localizeRelations: false
+      previewMode: full
       restrictFiles: '1'
       selectionLabel: 'Add an image'
+      showSiteMenu: true
+      showUnpermittedFiles: false
+      showUnpermittedVolumes: true
       singleUploadLocationSource: 'volume:fe2952ce-382a-4470-8f04-a7bdd1b48f66'
       singleUploadLocationSubpath: ''
       source: null
       sources: '*'
       targetSiteId: null
-      useSingleFolder: '1'
+      useSingleFolder: true
+      validateRelatedElements: false
       viewMode: large
     translationKeyFormat: null
     translationMethod: site
     type: craft\fields\Assets
   b660e427-16f8-4219-ab16-4d955f0176b4:
-    contentColumnType: string
+    contentColumnType: text
     fieldGroup: null
     handle: smallHeading
     instructions: ''
     name: 'Small Heading'
     searchable: true
     settings:
-      charLimit: '255'
+      byteLimit: null
+      charLimit: 255
       code: ''
-      columnType: string
+      columnType: text
       initialRows: '4'
       multiline: ''
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText

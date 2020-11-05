@@ -6,9 +6,9 @@ name: 'Standard Page Builder'
 searchable: true
 settings:
   contentTable: '{{%matrixcontent_standardpagebuilder}}'
-  localizeBlocks: false
   maxBlocks: ''
   minBlocks: ''
+  propagationMethod: all
 translationKeyFormat: null
 translationMethod: site
 type: craft\fields\Matrix
