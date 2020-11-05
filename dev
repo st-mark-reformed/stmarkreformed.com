@@ -41,6 +41,7 @@ fi
 
 isMacOs=false;
 composeFiles="-f docker-compose.yml -f docker-compose.dev.yml -f docker-compose.env.yml";
+nodeDockerImage="node:13.8.0";
 
 if [[ "$(uname)" = "Darwin" ]] || [[ "$(uname)" = "darwin" ]]; then
     isMacOs=true;
