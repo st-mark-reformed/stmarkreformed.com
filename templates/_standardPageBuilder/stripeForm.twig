@@ -1,3 +1,7 @@
 {% for form in field.stripePaymentForm.all() %}
-    {{ form.paymentForm() }}
+    <div class="enupal-stripe-form-wrapper">
+        <div class="enupal-stripe-form-wrapper__inner">
+            {{ form.paymentForm() }}
+        </div>
+    </div>
 {% endfor %}
