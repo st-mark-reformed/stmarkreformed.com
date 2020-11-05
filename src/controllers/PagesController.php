@@ -37,6 +37,20 @@ class PagesController extends BaseController
             $metaTitle = $entry->title;
         }
 
+        // Hack for now to not cache the contact page
+        $cache = Craft::$app->getRequest()->getSegment(1) !== 'contact';
+
+        // More hacking not to cache any pages with a stripe form
+        if ($cache) {
+            foreach ($entry->standardPageBuilder->all() as $pageBlock) {
+                if ($pageBlock->getType()->handle === 'stripeForm') {
+                    $cache = false;
+
+                    break;
+                }
+            }
+        }
+
         return $this->renderTemplate(
             '_core/PageStandard.twig',
             [
@@ -50,7 +64,7 @@ class PagesController extends BaseController
                 'heroSubheading' => $entry->heroSubheading,
                 'entry' => $entry,
             ],
-            Craft::$app->getRequest()->getSegment(1) !== 'contact' // hack for now to not cache the contact page
+            $cache
         );
     }
 }
