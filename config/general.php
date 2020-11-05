@@ -36,5 +36,13 @@ return [
         // 'useProjectConfigFile' => true,
         'userSessionDuration' => false, // As long as browser stays open
         'staticAssetCacheTime' => '',
+
+        'stripePayments' => [
+            'livePublishableKey' => getenv('STRIPE_PUBLISHABLE_KEY'),
+            'liveSecretKey' => getenv('STRIPE_SECRET_KEY'),
+            'testPublishableKey' => getenv('STRIPE_PUBLISHABLE_KEY'),
+            'testSecretKey' =>  getenv('STRIPE_SECRET_KEY'),
+            'testMode' => getenv('STRIPE_TEST_MODE') === 'true' ? 1 : 0,
+        ],
     ],
 ];

@@ -1,4 +1,4 @@
-dateModified: 1604462784
+dateModified: 1604544638
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -33,6 +33,72 @@ plugins:
     licenseKey: null
     schemaVersion: 1.0.0
     settings: null
+  enupal-stripe:
+    edition: standard
+    enabled: true
+    schemaVersion: 3.0.0
+    settings:
+      adminNotificationRecipients: tj@buzzingpixel.com
+      adminNotificationReplyToEmail: info@stmarkreformed.com
+      adminNotificationSenderEmail: info@stmarkreformed.com
+      adminNotificationSenderName: 'St. Mark Reformed'
+      adminNotificationSubject: 'Payment Received: {{ order.number }} - {{ order.getPaymentForm().name }}'
+      adminNotificationTemplate: null
+      adminTemplateOverride: ''
+      cancelAtPeriodEnd: false
+      capture: '1'
+      chargeDescription: 'Order from {email}'
+      chargeType: null
+      currentUserEmail: 0
+      customerNotificationReplyToEmail: ''
+      customerNotificationSenderEmail: ''
+      customerNotificationSenderName: ''
+      customerNotificationSubject: ''
+      customerNotificationTemplate: null
+      customerTemplateOverride: ''
+      defaultCurrency: USD
+      displayTaxLabel: 0
+      enableAdminNotification: '1'
+      enableConnect: 0
+      enableCustomerNotification: ''
+      enableTaxes: 0
+      enableVendorNotification: 0
+      globalRate: 1
+      liveClientId: null
+      livePublishableKey: pk_test_51HjwSALCx654CZv1v8jVd72URBVSD7GkWowq0exDynZYlHfALylXCvhYdBv8kdFg9EYsN7LHVwEfv8j8V9asZtez003vH79xs8
+      liveSecretKey: sk_test_51HjwSALCx654CZv1jewCZ1dkkyhoIDZocaelWxEm6FTVzfm61qn8DhK1erpc2DiwLLxgHrpv9ks3i4wu2h8sTWwd000ZPgjQ3U
+      loadCss: 1
+      loadJquery: 1
+      oneTimeSetupFeeLabel: 'One time set-up fee'
+      plansWithNickname: 0
+      returnUrl: null
+      syncDefaultFormId: null
+      syncDefaultStatusId: null
+      syncEnabledDateRange: false
+      syncEndDate: null
+      syncIfUserExists: false
+      syncLimit: 500
+      syncStartDate: null
+      syncType: 1
+      tax: null
+      taxType: 0
+      testClientId: null
+      testMode: 1
+      testPublishableKey: pk_test_51HjwSALCx654CZv1v8jVd72URBVSD7GkWowq0exDynZYlHfALylXCvhYdBv8kdFg9EYsN7LHVwEfv8j8V9asZtez003vH79xs8
+      testSecretKey: sk_test_51HjwSALCx654CZv1jewCZ1dkkyhoIDZocaelWxEm6FTVzfm61qn8DhK1erpc2DiwLLxgHrpv9ks3i4wu2h8sTWwd000ZPgjQ3U
+      updateCustomerEmailOnStripe: 0
+      useSca: '1'
+      vendorNameFormat: null
+      vendorNotificationReplyToEmail: null
+      vendorNotificationSenderEmail: null
+      vendorNotificationSenderName: null
+      vendorNotificationSubject: null
+      vendorNotificationTemplate: null
+      vendorPaymentType: manually
+      vendorSkipAdminReview: 0
+      vendorTemplateOverride: null
+      vendorUserFieldId: null
+      vendorUserGroupId: null
   geoaddress:
     enabled: '1'
     licenseKey: null
