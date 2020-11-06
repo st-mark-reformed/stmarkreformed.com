@@ -14,7 +14,7 @@ services:
     image: cweagans/bg-sync
     volumes:
       - node-modules-volume:/source
-      - ./node_modules:/destination:delegated
+      - ./node_modules:/destination
     environment:
       - SYNC_MAX_INOTIFY_WATCHES=40000
       - SYNC_VERBOSE=1

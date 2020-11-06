@@ -231,6 +231,17 @@ fields:
             -
               - default
               - ''
+        -
+          __assoc__:
+            -
+              - label
+              - 'No Bottom Padding'
+            -
+              - value
+              - noBottomPadding
+            -
+              - default
+              - ''
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Checkboxes
