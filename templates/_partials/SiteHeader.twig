@@ -37,26 +37,38 @@
         {% set imager500 = craft.imager.transformImage(heroImageAsset, {
             allowUpscale: false,
             width: 500,
+            height: useShortHeader ? 116 : 248,
+            position: heroImageAsset.getFocalPoint(),
         }) %}
         {% set imager1000 = craft.imager.transformImage(heroImageAsset, {
             allowUpscale: false,
             width: 1000,
+            height: useShortHeader ? 232 : 496,
+            position: heroImageAsset.getFocalPoint(),
         }) %}
         {% set imager1200 = craft.imager.transformImage(heroImageAsset, {
             allowUpscale: false,
             width: 1200,
+            height: useShortHeader ? 208 : 496,
+            position: heroImageAsset.getFocalPoint(),
         }) %}
         {% set imager1920 = craft.imager.transformImage(heroImageAsset, {
             allowUpscale: false,
             width: 1920,
+            height: useShortHeader ? 260 : 580,
+            position: heroImageAsset.getFocalPoint(),
         }) %}
         {% set imager2400 = craft.imager.transformImage(heroImageAsset, {
             allowUpscale: false,
             width: 2400,
+            height: useShortHeader ? 416 : 992,
+            position: heroImageAsset.getFocalPoint(),
         }) %}
         {% set imager3840 = craft.imager.transformImage(heroImageAsset, {
             allowUpscale: false,
             width: 3840,
+            height: useShortHeader ? 520 : 1160,
+            position: heroImageAsset.getFocalPoint(),
         }) %}
         <style type="text/css">
             .Hero {
