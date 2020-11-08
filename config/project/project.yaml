@@ -1,4 +1,4 @@
-dateModified: 1604801548
+dateModified: 1604806670
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -45,11 +45,11 @@ plugins:
       adminNotificationSubject: 'Payment Received: {{ order.number }} - {{ order.getPaymentForm().name }}'
       adminNotificationTemplate: null
       adminTemplateOverride: ''
-      cancelAtPeriodEnd: false
+      cancelAtPeriodEnd: ''
       capture: '1'
       chargeDescription: 'Order from {email}'
       chargeType: null
-      currentUserEmail: 0
+      currentUserEmail: ''
       customerNotificationReplyToEmail: ''
       customerNotificationSenderEmail: ''
       customerNotificationSenderName: ''
@@ -67,11 +67,11 @@ plugins:
       liveClientId: null
       livePublishableKey: pk_test_51HjwSALCx654CZv1v8jVd72URBVSD7GkWowq0exDynZYlHfALylXCvhYdBv8kdFg9EYsN7LHVwEfv8j8V9asZtez003vH79xs8
       liveSecretKey: sk_test_51HjwSALCx654CZv1jewCZ1dkkyhoIDZocaelWxEm6FTVzfm61qn8DhK1erpc2DiwLLxgHrpv9ks3i4wu2h8sTWwd000ZPgjQ3U
-      loadCss: 1
-      loadJquery: 1
+      loadCss: '1'
+      loadJquery: '1'
       oneTimeSetupFeeLabel: 'One time set-up fee'
-      plansWithNickname: 0
-      returnUrl: null
+      plansWithNickname: ''
+      returnUrl: /building-fund/thank-you
       syncDefaultFormId: null
       syncDefaultStatusId: null
       syncEnabledDateRange: false
@@ -86,7 +86,7 @@ plugins:
       testMode: 1
       testPublishableKey: pk_test_51HjwSALCx654CZv1v8jVd72URBVSD7GkWowq0exDynZYlHfALylXCvhYdBv8kdFg9EYsN7LHVwEfv8j8V9asZtez003vH79xs8
       testSecretKey: sk_test_51HjwSALCx654CZv1jewCZ1dkkyhoIDZocaelWxEm6FTVzfm61qn8DhK1erpc2DiwLLxgHrpv9ks3i4wu2h8sTWwd000ZPgjQ3U
-      updateCustomerEmailOnStripe: 0
+      updateCustomerEmailOnStripe: ''
       useSca: '1'
       vendorNameFormat: null
       vendorNotificationReplyToEmail: null
