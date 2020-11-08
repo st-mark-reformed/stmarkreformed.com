@@ -220,12 +220,27 @@ fields:
     name: Body
     searchable: true
     settings:
+      availableTransforms: '*'
+      availableVolumes:
+        - fe2952ce-382a-4470-8f04-a7bdd1b48f66
+      cleanupHtml: true
       columnType: text
+      configSelectionMode: choose
+      defaultTransform: ''
+      manualConfig: ''
       purifierConfig: ''
       purifyHtml: '1'
+      redactorConfig: Standard.json
+      removeEmptyTags: '1'
+      removeInlineStyles: '1'
+      removeNbsp: '1'
+      showHtmlButtonForNonAdmins: ''
+      showUnpermittedFiles: false
+      showUnpermittedVolumes: false
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: none
-    type: craft\ckeditor\Field
+    type: craft\redactor\Field
   a9201e3f-ed7d-463f-b19f-20f487917a4a:
     contentColumnType: 'decimal(40,30)'
     fieldGroup: null
