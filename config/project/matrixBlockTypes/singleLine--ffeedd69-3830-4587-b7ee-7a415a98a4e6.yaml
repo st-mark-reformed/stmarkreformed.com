@@ -1,0 +1,119 @@
+field: 47434acf-158e-4fd3-8220-8a5283b1e31d
+fieldLayouts:
+  6b7f84b6-c52e-485d-8dfd-16d0c8ef40b1:
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: 89a29f85-1326-47e5-8d02-c86e76650ea3
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 3ade4da6-c3e5-4901-a9ab-3f2495f52ea1
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: ec67c932-86b7-4c4a-a76a-eace878c02d4
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 0ce1d9d2-12de-400c-823e-e288b111797a
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Content
+        sortOrder: 1
+fields:
+  0ce1d9d2-12de-400c-823e-e288b111797a:
+    contentColumnType: boolean
+    fieldGroup: null
+    handle: required
+    instructions: 'This field is required?'
+    name: Required
+    searchable: true
+    settings:
+      default: false
+      offLabel: null
+      onLabel: null
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Lightswitch
+  3ade4da6-c3e5-4901-a9ab-3f2495f52ea1:
+    contentColumnType: text
+    fieldGroup: null
+    handle: fieldHandle
+    instructions: ''
+    name: Handle
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: text
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\PlainText
+  89a29f85-1326-47e5-8d02-c86e76650ea3:
+    contentColumnType: text
+    fieldGroup: null
+    handle: label
+    instructions: ''
+    name: Label
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: text
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\PlainText
+  ec67c932-86b7-4c4a-a76a-eace878c02d4:
+    contentColumnType: text
+    fieldGroup: null
+    handle: placeholder
+    instructions: ''
+    name: Placeholder
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: text
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\PlainText
+handle: singleLine
+name: 'Single Line'
+sortOrder: 1

@@ -3,37 +3,97 @@ fieldLayouts:
   8a28bc4d-8d07-44df-a5db-0d0e38db368c:
     tabs:
       -
-        fields:
-          16af453e-7756-4645-b749-cdee119c0d14:
-            required: true
-            sortOrder: 3
-          1f642a1f-8157-48c8-b796-705f62303756:
-            required: true
-            sortOrder: 8
-          505b895d-c9b1-4296-99ae-d2bef20459c3:
-            required: true
-            sortOrder: 7
-          51c9e48c-507e-4e3d-8152-0dba14ef55c3:
+        elements:
+          -
+            fieldUid: df286b48-0507-4f99-9892-1f542903143c
+            instructions: null
+            label: null
             required: false
-            sortOrder: 4
-          5df4f883-59cf-4b67-b323-6330a84cd1cd:
-            required: true
-            sortOrder: 5
-          7e651c1f-ddb7-4bd0-9842-d0d8b71f4671:
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 7e651c1f-ddb7-4bd0-9842-d0d8b71f4671
+            instructions: null
+            label: null
             required: false
-            sortOrder: 2
-          8f9ce4e3-aa79-49a5-9857-a5a0eb2396c6:
-            required: false
-            sortOrder: 10
-          a9201e3f-ed7d-463f-b19f-20f487917a4a:
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 16af453e-7756-4645-b749-cdee119c0d14
+            instructions: null
+            label: null
             required: true
-            sortOrder: 9
-          df286b48-0507-4f99-9892-1f542903143c:
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 51c9e48c-507e-4e3d-8152-0dba14ef55c3
+            instructions: null
+            label: null
             required: false
-            sortOrder: 1
-          ff6f181e-01c5-4ca2-815d-5b737efab5d6:
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 5df4f883-59cf-4b67-b323-6330a84cd1cd
+            instructions: null
+            label: null
             required: true
-            sortOrder: 6
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: ff6f181e-01c5-4ca2-815d-5b737efab5d6
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 505b895d-c9b1-4296-99ae-d2bef20459c3
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 1f642a1f-8157-48c8-b796-705f62303756
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: a9201e3f-ed7d-463f-b19f-20f487917a4a
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 8f9ce4e3-aa79-49a5-9857-a5a0eb2396c6
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Content
         sortOrder: 1
 fields:
@@ -45,12 +105,14 @@ fields:
     name: Address
     searchable: true
     settings:
-      charLimit: ''
+      byteLimit: null
+      charLimit: null
       code: ''
       columnType: text
       initialRows: '4'
       multiline: ''
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
@@ -66,7 +128,11 @@ fields:
       defaultValue: null
       max: null
       min: null
+      prefix: ''
+      previewCurrency: ''
+      previewFormat: decimal
       size: null
+      suffix: ''
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
@@ -78,12 +144,14 @@ fields:
     name: Zip
     searchable: true
     settings:
-      charLimit: ''
+      byteLimit: null
+      charLimit: null
       code: ''
       columnType: string
       initialRows: '4'
       multiline: ''
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
@@ -95,12 +163,14 @@ fields:
     name: 'Address Line 2'
     searchable: true
     settings:
-      charLimit: ''
+      byteLimit: null
+      charLimit: null
       code: ''
       columnType: text
       initialRows: '4'
       multiline: ''
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
@@ -112,12 +182,14 @@ fields:
     name: City
     searchable: true
     settings:
-      charLimit: ''
+      byteLimit: null
+      charLimit: null
       code: ''
       columnType: string
       initialRows: '4'
       multiline: ''
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
@@ -129,12 +201,14 @@ fields:
     name: Subheading
     searchable: true
     settings:
-      charLimit: '30'
+      byteLimit: null
+      charLimit: 30
       code: ''
       columnType: string
       initialRows: '4'
       multiline: ''
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
@@ -179,7 +253,11 @@ fields:
       defaultValue: null
       max: null
       min: null
+      prefix: ''
+      previewCurrency: ''
+      previewFormat: decimal
       size: null
+      suffix: ''
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
@@ -191,12 +269,14 @@ fields:
     name: Heading
     searchable: true
     settings:
-      charLimit: '30'
+      byteLimit: null
+      charLimit: 30
       code: ''
       columnType: string
       initialRows: '4'
       multiline: ''
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
@@ -208,12 +288,14 @@ fields:
     name: State
     searchable: true
     settings:
-      charLimit: '2'
+      byteLimit: null
+      charLimit: 2
       code: ''
       columnType: string
       initialRows: '4'
       multiline: ''
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText

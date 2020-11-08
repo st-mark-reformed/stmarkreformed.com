@@ -3,10 +3,16 @@ fieldLayouts:
   92072b29-a87d-41b8-b59d-c48e019930e9:
     tabs:
       -
-        fields:
-          07efee91-98b9-462b-824d-885cbf31780d:
+        elements:
+          -
+            fieldUid: 07efee91-98b9-462b-824d-885cbf31780d
+            instructions: null
+            label: null
             required: false
-            sortOrder: 1
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Content
         sortOrder: 1
 fields:
@@ -18,6 +24,7 @@ fields:
     name: 'Latest Types'
     searchable: true
     settings:
+      multi: true
       options:
         -
           __assoc__:

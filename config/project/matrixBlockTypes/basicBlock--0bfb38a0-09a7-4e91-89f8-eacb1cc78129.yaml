@@ -3,25 +3,61 @@ fieldLayouts:
   36d1a1a4-81bf-496d-bbd4-22cef03272c3:
     tabs:
       -
-        fields:
-          0d9de0c2-3e02-4799-905a-dc37c9ab8299:
+        elements:
+          -
+            fieldUid: e355e9ca-6733-4125-823c-1111afcb79eb
+            instructions: null
+            label: null
             required: false
-            sortOrder: 3
-          1619a0e9-2a7f-4450-ad7b-9eb6f10a435d:
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 65d4cdb4-f28e-469a-a25f-420675afd673
+            instructions: null
+            label: null
             required: false
-            sortOrder: 5
-          65d4cdb4-f28e-469a-a25f-420675afd673:
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 0d9de0c2-3e02-4799-905a-dc37c9ab8299
+            instructions: null
+            label: null
             required: false
-            sortOrder: 2
-          9541534e-7593-41ec-b0c8-5b12cecf235c:
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 9541534e-7593-41ec-b0c8-5b12cecf235c
+            instructions: null
+            label: null
             required: false
-            sortOrder: 4
-          e355e9ca-6733-4125-823c-1111afcb79eb:
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 1619a0e9-2a7f-4450-ad7b-9eb6f10a435d
+            instructions: null
+            label: null
             required: false
-            sortOrder: 1
-          fb27befa-4657-425c-b961-eeace2f94dc4:
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: fb27befa-4657-425c-b961-eeace2f94dc4
+            instructions: null
+            label: null
             required: false
-            sortOrder: 6
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Content
         sortOrder: 1
 fields:
@@ -33,12 +69,14 @@ fields:
     name: Subheading
     searchable: true
     settings:
-      charLimit: '50'
+      byteLimit: null
+      charLimit: 50
       code: ''
       columnType: string
       initialRows: '4'
       multiline: ''
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
@@ -99,12 +137,14 @@ fields:
     name: Heading
     searchable: true
     settings:
-      charLimit: '50'
+      byteLimit: null
+      charLimit: 50
       code: ''
       columnType: string
       initialRows: '4'
       multiline: ''
       placeholder: ''
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
@@ -119,7 +159,11 @@ fields:
       availableTransforms: '*'
       availableVolumes:
         - fe2952ce-382a-4470-8f04-a7bdd1b48f66
+      cleanupHtml: true
       columnType: text
+      configSelectionMode: choose
+      defaultTransform: ''
+      manualConfig: ''
       purifierConfig: ''
       purifyHtml: '1'
       redactorConfig: Standard.json
@@ -141,6 +185,7 @@ fields:
     name: Options
     searchable: true
     settings:
+      multi: true
       options:
         -
           __assoc__:
@@ -186,6 +231,17 @@ fields:
             -
               - default
               - ''
+        -
+          __assoc__:
+            -
+              - label
+              - 'No Bottom Padding'
+            -
+              - value
+              - noBottomPadding
+            -
+              - default
+              - ''
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Checkboxes
@@ -197,20 +253,27 @@ fields:
     name: 'Block Background Image'
     searchable: true
     settings:
+      allowSelfRelations: false
+      allowUploads: true
       allowedKinds:
         - image
       defaultUploadLocationSource: 'volume:fe2952ce-382a-4470-8f04-a7bdd1b48f66'
       defaultUploadLocationSubpath: ''
       limit: '1'
       localizeRelations: false
+      previewMode: full
       restrictFiles: '1'
       selectionLabel: 'Add an Image'
+      showSiteMenu: true
+      showUnpermittedFiles: false
+      showUnpermittedVolumes: true
       singleUploadLocationSource: 'volume:fe2952ce-382a-4470-8f04-a7bdd1b48f66'
       singleUploadLocationSubpath: ''
       source: null
       sources: '*'
       targetSiteId: null
-      useSingleFolder: '1'
+      useSingleFolder: true
+      validateRelatedElements: false
       viewMode: large
     translationKeyFormat: null
     translationMethod: site

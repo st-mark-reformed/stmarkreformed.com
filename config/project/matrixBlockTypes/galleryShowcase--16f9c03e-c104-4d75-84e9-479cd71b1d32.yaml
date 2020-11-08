@@ -3,13 +3,25 @@ fieldLayouts:
   f479280a-7468-461f-81d0-2eb7f5b83774:
     tabs:
       -
-        fields:
-          e2a3e24e-58ee-4326-8fc2-163003e8205b:
+        elements:
+          -
+            fieldUid: e2a3e24e-58ee-4326-8fc2-163003e8205b
+            instructions: null
+            label: null
             required: false
-            sortOrder: 1
-          e2b3f41d-b5fb-443c-988f-96c387bfa764:
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: e2b3f41d-b5fb-443c-988f-96c387bfa764
+            instructions: null
+            label: null
             required: true
-            sortOrder: 2
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Content
         sortOrder: 1
 fields:
@@ -37,7 +49,11 @@ fields:
       defaultValue: null
       max: null
       min: '1'
+      prefix: ''
+      previewCurrency: ''
+      previewFormat: decimal
       size: null
+      suffix: ''
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number

@@ -1,11 +1,11 @@
 field: c9504fe8-d2fb-458b-a2e9-f8872585919a
 fieldLayouts:
-  baa56e61-ae3b-4f99-b7ee-a452a0f59d5c:
+  92176789-8ea5-4539-8964-c5fefa2c99a4:
     tabs:
       -
         elements:
           -
-            fieldUid: 0363b404-b48e-4cdb-8a99-253db50b2d17
+            fieldUid: 076138c8-eca9-475a-a69b-b912c2dae610
             instructions: null
             label: null
             required: false
@@ -16,30 +16,28 @@ fieldLayouts:
         name: Content
         sortOrder: 1
 fields:
-  0363b404-b48e-4cdb-8a99-253db50b2d17:
+  076138c8-eca9-475a-a69b-b912c2dae610:
     contentColumnType: string
     fieldGroup: null
-    handle: seriesToDisplay
-    instructions: 'If no series is chosen, the series from the most recent sermon will be used.'
-    name: 'Select a series to display'
-    searchable: true
+    handle: stripePaymentForm
+    instructions: ''
+    name: 'Stripe Payment Form'
+    searchable: false
     settings:
-      allowLimit: false
       allowMultipleSources: false
       allowSelfRelations: false
-      branchLimit: '1'
-      limit: null
+      limit: ''
       localizeRelations: false
-      selectionLabel: 'Add a series'
+      selectionLabel: ''
       showSiteMenu: true
-      source: 'group:3997eb97-922e-4368-8704-2c22cb7dcb1e'
+      source: '*'
       sources: '*'
       targetSiteId: null
       validateRelatedElements: false
       viewMode: null
     translationKeyFormat: null
     translationMethod: site
-    type: craft\fields\Categories
-handle: featuredSermonSeries
-name: 'Featured Sermon Series'
-sortOrder: 7
+    type: enupal\stripe\fields\StripePaymentForms
+handle: stripeForm
+name: 'Stripe Form'
+sortOrder: 10
