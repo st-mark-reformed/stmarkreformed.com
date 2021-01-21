@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4e14831bf12eb3272b10c836ad207c2e",
+    "content-hash": "4936bd4377621ab36abd338b8c8e7798",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -1318,6 +1318,70 @@
                 }
             ],
             "time": "2020-05-25T17:44:05+00:00"
+        },
+        {
+            "name": "dolphiq/redirect",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Dolphiq/craft3-plugin-redirect.git",
+                "reference": "17e9e378c4e06e7bfd072c9c9e92df8d10458bc7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Dolphiq/craft3-plugin-redirect/zipball/17e9e378c4e06e7bfd072c9c9e92df8d10458bc7",
+                "reference": "17e9e378c4e06e7bfd072c9c9e92df8d10458bc7",
+                "shasum": ""
+            },
+            "require": {
+                "craftcms/cms": "^3.0.14"
+            },
+            "type": "craft-plugin",
+            "extra": {
+                "name": "Redirect Manager",
+                "handle": "redirect",
+                "schemaVersion": "1.0.5",
+                "developer": "Dolphiq",
+                "developerUrl": "https://dolphiq.nl/",
+                "description": "Craft redirect plugin provides an easy way to enter and maintain 301 and 302 redirects and 404 error pages.",
+                "hasCpSettings": true,
+                "hasCpSection": true,
+                "documentationUrl": "https://github.com/Dolphiq/craft3-plugin-redirect/blob/master/README.md",
+                "changelogUrl": "https://raw.githubusercontent.com/Dolphiq/craft3-plugin-redirect/master/CHANGELOG.md",
+                "class": "dolphiq\\redirect\\RedirectPlugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "dolphiq\\redirect\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dolphiq",
+                    "email": "info@dolphiq.nl",
+                    "homepage": "https://dolphiq.nl/"
+                },
+                {
+                    "name": "RJ Hallsted",
+                    "email": "rjhallsted@gmail.com",
+                    "homepage": "https://github.com/rjhallsted/"
+                }
+            ],
+            "description": "Craft redirect plugin provides an easy way to enter and maintain 301 and 302 redirects and 404 error pages.",
+            "keywords": [
+                "Craft",
+                "cms",
+                "craft-plugin",
+                "craft3",
+                "craftcms",
+                "redirect",
+                "seo"
+            ],
+            "time": "2020-08-06T07:32:37+00:00"
         },
         {
             "name": "doublesecretagency/craft-inventory",
