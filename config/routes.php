@@ -244,4 +244,8 @@ return [
      */
     'sitemap/pastors-page' => 'dev/site-map/pastors-page',
 
+    /**
+     * Members area
+     */
+    'members/log-in' => 'dev/members-log-in/log-in',
 ];
