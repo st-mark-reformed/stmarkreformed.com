@@ -247,5 +247,7 @@ return [
     /**
      * Members area
      */
+    'members' => 'dev/members/index',
     'members/log-in' => 'dev/members-log-in/log-in',
+
 ];
