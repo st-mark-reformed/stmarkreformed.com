@@ -1,0 +1,74 @@
+fieldLayouts:
+  03c12f14-54ae-4e1c-bc2b-3431565e6a10:
+    tabs:
+      -
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            disabled: false
+            id: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\EntryTitleField
+            warning: null
+            width: 100
+          -
+            fieldUid: 0214b210-9d5a-47f7-8e2c-1dc100c5a952
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: ef3c7cfd-b16f-4a9a-b7f8-cad052fdbbef
+            instructions: ''
+            label: ''
+            required: '1'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 63998a0f-586b-4b03-ba27-74b694bf10dd
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: f993b580-0e43-468a-9eab-ed72eef94d7a
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Content
+        sortOrder: 1
+handle: hymnsOfTheMonth
+hasTitleField: false
+name: 'Hymns of the Month'
+section: b4830095-9974-475a-9af6-aac12c7e626d
+sortOrder: 1
+titleFormat: '{date|date(''F, Y'')}'
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

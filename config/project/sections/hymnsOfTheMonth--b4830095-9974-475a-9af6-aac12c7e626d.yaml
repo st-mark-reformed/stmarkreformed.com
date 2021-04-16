@@ -1,0 +1,23 @@
+enableVersioning: true
+handle: hymnsOfTheMonth
+name: 'Hymns of the Month'
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - 'Primary entry page'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  94e92402-bc7d-4413-bc65-a236d81d53aa:
+    enabledByDefault: true
+    hasUrls: true
+    template: _controllerRoute/dev/members-hymns-of-the-month/entry
+    uriFormat: 'members/hymns-of-the-month/{slug}'
+type: channel

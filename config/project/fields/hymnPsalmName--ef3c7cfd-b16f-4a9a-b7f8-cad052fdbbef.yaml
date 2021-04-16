@@ -1,0 +1,18 @@
+contentColumnType: text
+fieldGroup: c66e62d9-2ca8-4489-8c97-3f4dca8ccb60
+handle: hymnPsalmName
+instructions: ''
+name: 'Hymn/Psalm Name'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: ''
+  columnType: null
+  initialRows: '4'
+  multiline: ''
+  placeholder: ''
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

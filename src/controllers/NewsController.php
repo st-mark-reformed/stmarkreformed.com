@@ -2,6 +2,7 @@
 
 namespace src\controllers;
 
+use Exception;
 use yii\web\Response;
 use craft\elements\Entry;
 use yii\web\HttpException;
@@ -18,7 +19,7 @@ class NewsController extends BaseController
      * @param string $section
      * @param int|null $pageNum
      * @return Response
-     * @throws \Exception
+     * @throws Exception
      */
     public function actionIndex(
         string $section = null,
@@ -86,7 +87,7 @@ class NewsController extends BaseController
      * Renders a news item single entry page
      * @param Entry $entry
      * @return Response
-     * @throws \Exception
+     * @throws Exception
      */
     public function actionEntry(Entry $entry) : Response
     {

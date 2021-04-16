@@ -1,0 +1,32 @@
+contentColumnType: string
+fieldGroup: c66e62d9-2ca8-4489-8c97-3f4dca8ccb60
+handle: hymnOfTheMonthMusic
+instructions: ''
+name: 'Hymn of the Month Music'
+searchable: true
+settings:
+  allowSelfRelations: false
+  allowUploads: true
+  allowedKinds: null
+  defaultUploadLocationSource: 'volume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c'
+  defaultUploadLocationSubpath: ''
+  limit: ''
+  localizeRelations: false
+  previewMode: full
+  restrictFiles: ''
+  selectionLabel: 'Add music'
+  showSiteMenu: true
+  showUnpermittedFiles: false
+  showUnpermittedVolumes: false
+  singleUploadLocationSource: 'volume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c'
+  singleUploadLocationSubpath: '{slug}/music'
+  source: null
+  sources:
+    - 'volume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c'
+  targetSiteId: null
+  useSingleFolder: true
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Assets
