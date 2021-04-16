@@ -132,6 +132,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/yiisoft/yii2-debug" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/yiisoft/yii2-queue" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/yiisoft/yii2-swiftmailer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/dolphiq/redirect" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/var-dumper" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/buzzingpixel/twig-dumper" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -2,7 +2,9 @@
 
 namespace src;
 
+use BuzzingPixel\TwigDumper\TwigDumper;
 use Craft;
+use Exception;
 use yii\base\Event;
 use craft\elements\Asset;
 use craft\elements\Entry;
@@ -23,7 +25,7 @@ class Module extends ModuleBase
 {
     /**
      * Initializes the module.
-     * @throws \Exception
+     * @throws Exception
      */
     public function init()
     {
@@ -43,7 +45,7 @@ class Module extends ModuleBase
 
     /**
      * Sets up the module
-     * @throws \Exception
+     * @throws Exception
      */
     private function setUp()
     {
@@ -58,11 +60,17 @@ class Module extends ModuleBase
         if (getenv('CLEAR_TEMPLATE_CACHE_ON_LOAD') === 'true') {
             (new CacheService())->clearTemplateCache();
         }
+
+        if (! class_exists(TwigDumper::class)) {
+            return;
+        }
+
+        Craft::$app->view->registerTwigExtension(new TwigDumper());
     }
 
     /**
      * Sets events
-     * @throws \Exception
+     * @throws Exception
      */
     private function setEvents()
     {
