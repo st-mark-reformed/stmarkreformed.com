@@ -144,6 +144,7 @@
       <path value="$PROJECT_DIR$/vendor/dolphiq/redirect" />
       <path value="$PROJECT_DIR$/vendor/symfony/var-dumper" />
       <path value="$PROJECT_DIR$/vendor/buzzingpixel/twig-dumper" />
+      <path value="$PROJECT_DIR$/vendor/daverandom/resume" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7" />

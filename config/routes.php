@@ -262,6 +262,9 @@ return [
      * @see \src\services\EntryRoutingService
      * @see \src\controllers\MembersHymnsOfTheMonthController::actionEntry
      */
-    // 'members/hymns-of-the-month/{slug}' => 'dev/members-hymn-of-the-month/entry',
+    // 'members/hymns-of-the-month/{slug}' => 'dev/members-hymns-of-the-month/entry',
+
+    /** @see \src\controllers\MembersHymnsOfTheMonthController::actionDownloadFile */
+    'members/hymns-of-the-month/<slug:([^\/]+)>/<folder:([^\/]+)>/<fileName:([^\/]+)>' => 'dev/members-hymns-of-the-month/download-file',
 
 ];
