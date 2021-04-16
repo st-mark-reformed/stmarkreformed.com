@@ -49,6 +49,8 @@ class Module extends ModuleBase
      */
     private function setUp()
     {
+        Craft::setAlias('@root', dirname(__DIR__));
+
         Craft::setAlias('@dev', __DIR__);
 
         Craft::setAlias('@src', __DIR__);

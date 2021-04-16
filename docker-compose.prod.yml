@@ -11,6 +11,7 @@ services:
       - cp-resources-volume:/cp-resources-volume
       - image-cache-volume:/image-cache-volume
       - files-volume:/files-volume
+      - files-above-webroot-volume:/files-above-webroot-volume
       - log-volume:/log-volume
       - public-cache-volume:/public-cache-volume
       - storage-volume:/storage-volume
@@ -25,6 +26,7 @@ services:
       - cp-resources-volume:/opt/project/public/cpresources
       - image-cache-volume:/opt/project/public/imagecache
       - files-volume:/opt/project/public/files
+      - files-above-webroot-volume:/opt/project/filesAboveWebroot
       - log-volume:/var/log
       - public-cache-volume:/opt/project/public/cache
       - storage-volume:/opt/project/storage
@@ -40,6 +42,7 @@ services:
       - cp-resources-volume:/opt/project/public/cpresources
       - image-cache-volume:/opt/project/public/imagecache
       - files-volume:/opt/project/public/files
+      - files-above-webroot-volume:/opt/project/filesAboveWebroot
       - log-volume:/var/log
       - public-cache-volume:/opt/project/public/cache
       - storage-volume:/opt/project/storage
@@ -59,6 +62,7 @@ services:
       - cp-resources-volume:/opt/project/public/cpresources
       - image-cache-volume:/opt/project/public/imagecache
       - files-volume:/opt/project/public/files
+      - files-above-webroot-volume:/opt/project/filesAboveWebroot
       - log-volume:/var/log
       - public-cache-volume:/opt/project/public/cache
       - storage-volume:/opt/project/storage
@@ -83,6 +87,7 @@ services:
       - cp-resources-volume:/opt/project/public/cpresources
       - image-cache-volume:/opt/project/public/imagecache
       - files-volume:/opt/project/public/files
+      - files-above-webroot-volume:/opt/project/filesAboveWebroot
       - log-volume:/var/log
       - public-cache-volume:/opt/project/public/cache
       - storage-volume:/opt/project/storage
@@ -107,6 +112,7 @@ services:
       - cp-resources-volume:/opt/project/public/cpresources
       - image-cache-volume:/opt/project/public/imagecache
       - files-volume:/opt/project/public/files
+      - files-above-webroot-volume:/opt/project/filesAboveWebroot
       - log-volume:/var/log
       - public-cache-volume:/opt/project/public/cache
       - storage-volume:/opt/project/storage
@@ -126,6 +132,7 @@ volumes:
   cp-resources-volume:
   image-cache-volume:
   files-volume:
+  files-above-webroot-volume:
   log-volume:
   public-cache-volume:
   storage-volume:
