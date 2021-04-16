@@ -247,7 +247,21 @@ return [
     /**
      * Members area
      */
+
+    /** @see \src\controllers\MembersController::actionIndex */
     'members' => 'dev/members/index',
+
+    /** @see \src\controllers\MembersLogInController::actionLogIn */
     'members/log-in' => 'dev/members-log-in/log-in',
+
+    /** @see \src\controllers\MembersHymnsOfTheMonthController */
+    'members/hymns-of-the-month' => 'dev/members-hymns-of-the-month/index',
+    'members/hymns-of-the-month/page/<pageNum:\d+>' => 'dev/members-hymns-of-the-month/index',
+
+    /**
+     * @see \src\services\EntryRoutingService
+     * @see \src\controllers\MembersHymnsOfTheMonthController::actionEntry
+     */
+    // 'members/hymns-of-the-month/{slug}' => 'dev/members-hymn-of-the-month/entry',
 
 ];

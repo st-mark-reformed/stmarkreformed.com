@@ -29,7 +29,7 @@
             {% else %}
                 <div class="StandardListing__Listings">
                     {% for entry in entries %}
-                        {% set primaryImageAsset = entry.primaryImage.one() %}
+                        {% set primaryImageAsset = entry.primaryImage.one() ?? null %}
                         <div class="StandardListing__Listing">
                             <div class="StandardListingItem">
                                 {% if primaryImageAsset %}
@@ -72,6 +72,8 @@
                                                         &mdash; {% if startDateString != endDateString %}{{ endDateString }}, {% endif %}{{ endDateHM }}
                                                     {% endif %}
                                                 {% endif %}
+                                            {% elseif dateType == 'hymnOfTheMonth' %}
+                                                {{ entry.date|date('F, Y') }}
                                             {% else %}
                                                 {{ entry.postDate|date('F j, Y') }}
                                             {% endif %}
@@ -80,10 +82,16 @@
                                     {% set theBody = '' %}
                                     {% if bodyType == 'event' %}
                                         {% set theBody = entry.body|striptags|trim %}
+                                    {% elseif bodyType == 'hymnOfTheMonth' %}
+                                        <div class="StandardListingItem__Body">
+                                            <p>Resources and tools for learning the hymn of the month: <em>{{ entry.hymnPsalmName|typeset }}</em></p>
+                                        </div>
                                     {% else %}
-                                        {% for field in entry.entryBuilder.all() if field.type.handle == 'basicEntryBlock' %}
-                                            {% set theBody = theBody ~ field.body %}
-                                        {% endfor %}
+                                        {% if entry.entryBuilder %}
+                                            {% for field in entry.entryBuilder.all() if field.type.handle == 'basicEntryBlock' %}
+                                                {% set theBody = theBody ~ field.body %}
+                                            {% endfor %}
+                                        {% endif %}
                                         {% set theBody = theBody|striptags|trim %}
                                     {% endif %}
                                     {% if theBody|length > 1 %}
