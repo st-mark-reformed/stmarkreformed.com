@@ -53,7 +53,8 @@ class MembersHymnsOfTheMonthController extends MembersBaseController
                 [
                     'metaTitle' => $metaTitle,
                     'heroHeading' => 'No Entries Found',
-                ]
+                ],
+                false
             );
         }
 
