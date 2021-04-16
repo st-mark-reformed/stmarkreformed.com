@@ -2,6 +2,7 @@
 
 namespace src\controllers;
 
+use craft\elements\Asset;
 use craft\elements\Entry;
 use src\services\PaginationService;
 use yii\web\HttpException;
@@ -9,8 +10,17 @@ use yii\web\Response;
 
 class MembersHymnsOfTheMonthController extends MembersBaseController
 {
+    /**
+     * @param int|null $pageNum
+     * @return Response
+     * @throws HttpException
+     */
     public function actionIndex(int $pageNum = null) : Response
     {
+        if (! $this->isLoggedIn) {
+            return $this->response;
+        }
+
         if ($pageNum === 1) {
             throw new HttpException(404);
         }
@@ -56,6 +66,20 @@ class MembersHymnsOfTheMonthController extends MembersBaseController
             'base' => PaginationService::getUriPathSansPagination()
         ]);
 
+        $breadCrumbs = [
+            [
+                'href' => '/',
+                'content' => 'Home',
+            ],
+            [
+                'href' => '/members',
+                'content' => 'Members',
+            ],
+            [
+                'content' => 'Hymns of the Month',
+            ],
+        ];
+
         return $this->renderTemplate(
             '_core/ListingStandard.twig',
                 compact(
@@ -64,13 +88,62 @@ class MembersHymnsOfTheMonthController extends MembersBaseController
                 'entries',
                 'pagination',
                 'dateType',
-                'bodyType'
+                'bodyType',
+                'breadCrumbs'
             )
         );
     }
 
     public function actionEntry(Entry $entry) : Response
     {
-        dd($entry);
+        if (! $this->isLoggedIn) {
+            return $this->response;
+        }
+
+        $musicDownload = '';
+
+        $musicAsset = $entry->hymnOfTheMonthMusic->one();
+
+        if ($musicAsset !== null) {
+            $musicDownload = '/members/hymns-of-the-month/' . $musicAsset->getPath();
+        }
+
+        $practiceTracks = array_map(
+            function (Asset  $asset) {
+                return [
+                    'href' => '/members/hymns-of-the-month/' . $asset->getPath(),
+                    'content' => $asset->title,
+                ];
+            },
+            $entry->hymnOfTheMonthPracticeTracks->all(),
+        );
+
+        return $this->renderTemplate(
+            '_core/MembersHymnOfTheMonth.twig',
+            [
+                'heroHeading' => 'Hymn of the Month for ' .
+                    $entry->date->format('F, Y'),
+                'heroSubheading' => $entry->hymnPsalmName,
+                'musicDownload' => $musicDownload,
+                'practiceTracks' => $practiceTracks,
+                'breadCrumbs' => [
+                    [
+                        'href' => '/',
+                        'content' => 'Home',
+                    ],
+                    [
+                        'href' => '/members',
+                        'content' => 'Members',
+                    ],
+                    [
+                        'href' => '/members/hymns-of-the-month',
+                        'content' => 'Hymns of the Month',
+                    ],
+                    [
+                        'content' => 'Viewing Entry',
+                    ],
+                ],
+            ]
+        );
     }
 }

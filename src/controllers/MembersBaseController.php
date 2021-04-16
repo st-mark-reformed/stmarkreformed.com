@@ -8,6 +8,8 @@ use craft\helpers\UrlHelper;
 
 class MembersBaseController extends BaseController
 {
+    protected $isLoggedIn = false;
+
     public function init()
     {
         parent::init();
@@ -15,6 +17,8 @@ class MembersBaseController extends BaseController
         $userSession = Craft::$app->getUser();
 
         if (! $userSession->getIsGuest()) {
+            $this->isLoggedIn = true;
+
             return;
         }
 
