@@ -98,7 +98,8 @@ class MembersHymnsOfTheMonthController extends MembersBaseController
                 'dateType',
                 'bodyType',
                 'breadCrumbs'
-            )
+            ),
+            false
         );
     }
 
@@ -151,7 +152,8 @@ class MembersHymnsOfTheMonthController extends MembersBaseController
                         'content' => 'Viewing Entry',
                     ],
                 ],
-            ]
+            ],
+            false
         );
     }
 

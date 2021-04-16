@@ -24,7 +24,8 @@ class MembersController extends MembersBaseController
                         'body' => 'Find resources for the St. Mark Hymns of the Month',
                     ]
                 ],
-            ]
+            ],
+            false
         );
     }
 }

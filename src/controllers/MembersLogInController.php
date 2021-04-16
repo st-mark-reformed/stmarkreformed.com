@@ -12,7 +12,6 @@ use craft\services\Users;
 use craft\web\User as WebUser;
 use Exception;
 use src\services\StorageService;
-use yii\web\BadRequestHttpException;
 use yii\web\Response;
 
 class MembersLogInController extends BaseController
@@ -74,7 +73,8 @@ class MembersLogInController extends BaseController
                     'return',
                     '/members'
                 ),
-            ]
+            ],
+            false
         );
     }
 
