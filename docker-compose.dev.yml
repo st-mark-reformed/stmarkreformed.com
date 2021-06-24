@@ -2,6 +2,7 @@ version: '3.7'
 
 services:
   web:
+    platform: linux/amd64
     build:
       target: dev
     volumes:
@@ -11,12 +12,14 @@ services:
       - ./docker/web/stmark.localtest.me.key:/etc/letsencrypt/live/www.stmarkreformed.com/privkey.pem:delegated
 
   php:
+    platform: linux/amd64
     build:
       target: dev
     volumes:
       - .:/opt/project:delegated
 
   db:
+    platform: linux/amd64
     environment:
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_USER: ${DB_USER}
