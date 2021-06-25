@@ -1,0 +1,32 @@
+contentColumnType: string
+fieldGroup: a3adb82d-453d-4ae5-89d5-0f9b818b8d60
+handle: internalAudio
+instructions: ''
+name: 'Internal Audio'
+searchable: true
+settings:
+  allowSelfRelations: false
+  allowUploads: true
+  allowedKinds:
+    - audio
+  defaultUploadLocationSource: 'volume:fe2952ce-382a-4470-8f04-a7bdd1b48f66'
+  defaultUploadLocationSubpath: ''
+  limit: '1'
+  localizeRelations: false
+  previewMode: full
+  restrictFiles: '1'
+  selectionLabel: 'Add an audio file'
+  showSiteMenu: true
+  showUnpermittedFiles: false
+  showUnpermittedVolumes: false
+  singleUploadLocationSource: 'volume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c'
+  singleUploadLocationSubpath: 'internal-audio/{slug}'
+  source: null
+  sources: '*'
+  targetSiteId: null
+  useSingleFolder: true
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Assets

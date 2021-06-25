@@ -1,0 +1,23 @@
+contentColumnType: string
+fieldGroup: a3adb82d-453d-4ae5-89d5-0f9b818b8d60
+handle: internalMessageSeries
+instructions: ''
+name: 'Internal Message Series'
+searchable: true
+settings:
+  allowLimit: false
+  allowMultipleSources: false
+  allowSelfRelations: false
+  branchLimit: ''
+  limit: null
+  localizeRelations: false
+  selectionLabel: ''
+  showSiteMenu: true
+  source: 'group:8944d860-7b65-43bb-b62e-9750d6416ebc'
+  sources: '*'
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: null
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Categories

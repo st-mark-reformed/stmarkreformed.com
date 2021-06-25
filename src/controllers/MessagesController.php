@@ -3,6 +3,7 @@
 namespace src\controllers;
 
 use Craft;
+use Exception;
 use yii\web\Response;
 use craft\elements\User;
 use craft\elements\Entry;
@@ -24,7 +25,7 @@ class MessagesController extends BaseController
      * @param string $series
      * @param string $filter
      * @return Response
-     * @throws \Exception
+     * @throws Exception
      */
     public function actionIndex(
         int $pageNum = null,
@@ -186,7 +187,7 @@ class MessagesController extends BaseController
             'messages_date_range_end' => $request->get('messages_date_range_end'),
         ];
 
-        $response = $this->renderTemplate(
+        return $this->renderTemplate(
             '_core/Messages.twig',
             compact(
                 'breadCrumbs',
@@ -200,15 +201,13 @@ class MessagesController extends BaseController
             ),
             $filter !== 'filter'
         );
-
-        return $response;
     }
 
     /**
      * Renders the message single entry page
      * @param Entry $entry
      * @return Response
-     * @throws \Exception
+     * @throws Exception
      */
     public function actionEntry(Entry $entry) : Response
     {

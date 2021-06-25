@@ -22,7 +22,12 @@ class MembersController extends MembersBaseController
                         'href' => '/members/hymns-of-the-month',
                         'title' => 'Hymns of the Month &rarr;',
                         'body' => 'Find resources for the St. Mark Hymns of the Month',
-                    ]
+                    ],
+                    [
+                        'href' => '/members/internal-messages',
+                        'title' => 'Internal Messages &rarr;',
+                        'body' => 'Find internal messages posted for friends and members',
+                    ],
                 ],
             ],
             false

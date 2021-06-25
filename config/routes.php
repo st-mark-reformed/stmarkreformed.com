@@ -244,15 +244,24 @@ return [
      */
     'sitemap/pastors-page' => 'dev/site-map/pastors-page',
 
-    /**
-     * Members area
-     */
+
+
+
+
+    /**************************************************************************/
+    /* Members Area */
+    /**************************************************************************/
 
     /** @see \src\controllers\MembersController::actionIndex */
     'members' => 'dev/members/index',
 
     /** @see \src\controllers\MembersLogInController::actionLogIn */
     'members/log-in' => 'dev/members-log-in/log-in',
+
+
+    /**
+     * Hymns of the month
+     */
 
     /** @see \src\controllers\MembersHymnsOfTheMonthController */
     'members/hymns-of-the-month' => 'dev/members-hymns-of-the-month/index',
@@ -266,5 +275,17 @@ return [
 
     /** @see \src\controllers\MembersHymnsOfTheMonthController::actionDownloadFile */
     'members/hymns-of-the-month/<slug:([^\/]+)>/<folder:([^\/]+)>/<fileName:([^\/]+)>' => 'dev/members-hymns-of-the-month/download-file',
+
+
+    /**
+     * Internal messages
+     */
+
+    /** @see \src\controllers\InternalMessagesController::actionIndex() */
+    'members/internal-messages' => 'dev/internal-messages/index',
+    'members/internal-messages/page/<pageNum:\d+>' => 'dev/internal-messages/index',
+
+    /** @see \src\controllers\InternalMessagesController::actionDownloadFile() */
+    'members/internal-messages/audio/<slug:([^\/]+)>' => 'dev/internal-messages/download-file'
 
 ];

@@ -3,7 +3,6 @@
 namespace src\controllers;
 
 use Craft;
-use craft\elements\User;
 use craft\helpers\UrlHelper;
 
 class MembersBaseController extends BaseController
