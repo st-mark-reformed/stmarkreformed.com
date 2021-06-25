@@ -39,7 +39,6 @@ services:
     restart: always
     volumes:
       - cp-resources-volume:/opt/project/public/cpresources
-      - cp-resources-volume:/opt/project/public/cpresources
       - image-cache-volume:/opt/project/public/imagecache
       - files-volume:/opt/project/public/files
       - files-above-webroot-volume:/opt/project/filesAboveWebroot
