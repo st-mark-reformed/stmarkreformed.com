@@ -48,7 +48,14 @@ class EntrySlugService
      */
     public function setMessageEntrySlug(Entry $entry)
     {
-        if ($entry->getSection()->handle !== 'messages') {
+        if (! in_array(
+            $entry->getSection()->handle,
+            [
+                'messages',
+                'internalMessages',
+            ],
+            true
+        )) {
             return;
         }
 
@@ -57,6 +64,7 @@ class EntrySlugService
         if (! $postDate) {
             return;
         }
+
         $date = $postDate->format('Y-m-d');
 
         $entry->slug = (new Slugify())->slugify("{$date}-{$entry->title}");
