@@ -24,7 +24,7 @@
         "buzzingpixel/craft-static": "2.0.1",
         "cocur/slugify": "3.2",
         "craftcms/ckeditor": "dev-master",
-        "craftcms/cms": "3.5.15",
+        "craftcms/cms": "3.6.7",
         "craftcms/redactor": "2.8.3",
         "daverandom/resume": "^0.0.3",
         "dolphiq/redirect": "1.1.1",
