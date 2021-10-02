@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0b7c3e2d4b7fb7e60b2c8c35d7f4ac40",
+    "content-hash": "769d8c9d4399d2bfccba800c984fd23b",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -7251,16 +7251,16 @@
         },
         {
             "name": "tde/craftplugin-geoaddress",
-            "version": "v1.0.12",
+            "version": "v1.0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tdeNL/craftplugin-geoaddress.git",
-                "reference": "57b5ca6ca1900a23e38889db0c0ce89d00036935"
+                "reference": "e095359b55aa28ef73dd53ecfa0993ca26a1c43b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tdeNL/craftplugin-geoaddress/zipball/57b5ca6ca1900a23e38889db0c0ce89d00036935",
-                "reference": "57b5ca6ca1900a23e38889db0c0ce89d00036935",
+                "url": "https://api.github.com/repos/tdeNL/craftplugin-geoaddress/zipball/e095359b55aa28ef73dd53ecfa0993ca26a1c43b",
+                "reference": "e095359b55aa28ef73dd53ecfa0993ca26a1c43b",
                 "shasum": ""
             },
             "require": {
@@ -7295,7 +7295,12 @@
                 }
             ],
             "description": "Geo Address fields for Craft Sections",
-            "time": "2020-03-06T09:09:18+00:00"
+            "support": {
+                "docs": "https://github.com/tdeNL/craftplugin-geoaddress/blob/master/README.md",
+                "issues": "https://github.com/tdeNL/craftplugin-geoaddress/issues",
+                "source": "https://github.com/tdeNL/craftplugin-geoaddress/tree/v1.0.13"
+            },
+            "time": "2021-09-29T11:49:26+00:00"
         },
         {
             "name": "timostamm/text-truncation",

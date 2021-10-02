@@ -34,7 +34,7 @@
         "michelf/php-smartypants": "1.8.1",
         "nystudio107/craft-minify": "1.2.10",
         "superbig/craft-entry-instructions": "1.0.7",
-        "tde/craftplugin-geoaddress": "1.0.12",
+        "tde/craftplugin-geoaddress": "1.0.13",
         "timostamm/text-truncation": "dev-master"
     },
     "require-dev": {
