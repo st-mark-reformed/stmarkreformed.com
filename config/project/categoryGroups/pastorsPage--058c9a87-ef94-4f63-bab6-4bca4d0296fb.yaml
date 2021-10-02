@@ -1,7 +1,7 @@
 handle: pastorsPage
 name: 'Pastor''s Page'
 siteSettings:
-  94e92402-bc7d-4413-bc65-a236d81d53aa:
+  94e92402-bc7d-4413-bc65-a236d81d53aa: # St. Mark Reformed Church
     hasUrls: true
     template: ''
     uriFormat: 'pastors-page/category/{slug}'

@@ -15,7 +15,7 @@ previewTargets:
         - '1'
 propagationMethod: all
 siteSettings:
-  94e92402-bc7d-4413-bc65-a236d81d53aa:
+  94e92402-bc7d-4413-bc65-a236d81d53aa: # St. Mark Reformed Church
     enabledByDefault: true
     hasUrls: true
     template: _controllerRoute/dev/internal-messages/entry

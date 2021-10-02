@@ -11,7 +11,7 @@ fieldLayouts:
 handle: messageSeries
 name: 'Message Series'
 siteSettings:
-  94e92402-bc7d-4413-bc65-a236d81d53aa:
+  94e92402-bc7d-4413-bc65-a236d81d53aa: # St. Mark Reformed Church
     hasUrls: '0'
     template: null
     uriFormat: null
