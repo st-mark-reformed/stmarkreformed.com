@@ -1,4 +1,4 @@
-dateModified: 1633204529
+dateModified: 1633205161
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -41,7 +41,7 @@ plugins:
     edition: standard
     enabled: true
     licenseKey: FHWLA05QE7U9BTOH89XB1QZX
-    schemaVersion: 3.0.0
+    schemaVersion: 3.2.1
     settings:
       adminNotificationRecipients: tj@buzzingpixel.com
       adminNotificationReplyToEmail: info@stmarkreformed.com

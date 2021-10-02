@@ -29,7 +29,7 @@
         "daverandom/resume": "^0.0.3",
         "dolphiq/redirect": "1.1.1",
         "doublesecretagency/craft-inventory": "2.1.1",
-        "enupal/stripe": "3.1.5",
+        "enupal/stripe": "3.3.6",
         "lucidtaz/yii2-whoops": "dev-master",
         "michelf/php-smartypants": "1.8.1",
         "nystudio107/craft-minify": "1.2.10",
