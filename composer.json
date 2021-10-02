@@ -25,7 +25,7 @@
         "cocur/slugify": "3.2",
         "craftcms/ckeditor": "dev-master",
         "craftcms/cms": "3.7.14",
-        "craftcms/redactor": "2.8.3",
+        "craftcms/redactor": "2.8.8",
         "daverandom/resume": "^0.0.3",
         "dolphiq/redirect": "1.1.1",
         "doublesecretagency/craft-inventory": "2.1.1",
