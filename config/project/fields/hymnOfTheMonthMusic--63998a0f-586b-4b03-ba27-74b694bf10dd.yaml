@@ -8,7 +8,7 @@ settings:
   allowSelfRelations: false
   allowUploads: true
   allowedKinds: null
-  defaultUploadLocationSource: 'volume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c'
+  defaultUploadLocationSource: 'volume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
   defaultUploadLocationSubpath: ''
   limit: ''
   localizeRelations: false
@@ -18,11 +18,11 @@ settings:
   showSiteMenu: true
   showUnpermittedFiles: false
   showUnpermittedVolumes: false
-  singleUploadLocationSource: 'volume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c'
+  singleUploadLocationSource: 'volume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
   singleUploadLocationSubpath: '{slug}/music'
   source: null
   sources:
-    - 'volume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c'
+    - 'volume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
   targetSiteId: null
   useSingleFolder: true
   validateRelatedElements: false

@@ -63,20 +63,6 @@ fields:
     translationKeyFormat: null
     translationMethod: site
     type: craft\fields\Number
-  c54141c8-92cc-4250-a5e3-70db6b427688:
-    contentColumnType: boolean
-    fieldGroup: null
-    handle: default
-    instructions: 'Please make sure that just one default is enabled'
-    name: Default
-    searchable: true
-    settings:
-      default: false
-      offLabel: null
-      onLabel: null
-    translationKeyFormat: null
-    translationMethod: site
-    type: craft\fields\Lightswitch
   c7c38565-3807-43c4-92b9-a2dbc9e3d37d:
     contentColumnType: string
     fieldGroup: null
@@ -120,6 +106,20 @@ fields:
     translationKeyFormat: null
     translationMethod: site
     type: craft\fields\PlainText
+  c54141c8-92cc-4250-a5e3-70db6b427688:
+    contentColumnType: boolean
+    fieldGroup: null
+    handle: default
+    instructions: 'Please make sure that just one default is enabled'
+    name: Default
+    searchable: true
+    settings:
+      default: false
+      offLabel: null
+      onLabel: null
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Lightswitch
 handle: subscriptionPlan
 name: 'Subscription Plan'
 sortOrder: 1

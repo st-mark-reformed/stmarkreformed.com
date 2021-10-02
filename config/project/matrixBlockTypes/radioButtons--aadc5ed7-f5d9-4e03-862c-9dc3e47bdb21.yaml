@@ -101,12 +101,12 @@ fields:
     translationKeyFormat: null
     translationMethod: site
     type: craft\fields\Table
-  741a1945-c59e-470f-b3c0-6085cac26e8d:
+  8f962794-72ef-40ea-bc52-296b667a17f9:
     contentColumnType: text
     fieldGroup: null
-    handle: label
+    handle: fieldHandle
     instructions: ''
-    name: Label
+    name: Handle
     searchable: true
     settings:
       byteLimit: null
@@ -120,12 +120,12 @@ fields:
     translationKeyFormat: null
     translationMethod: site
     type: craft\fields\PlainText
-  8f962794-72ef-40ea-bc52-296b667a17f9:
+  741a1945-c59e-470f-b3c0-6085cac26e8d:
     contentColumnType: text
     fieldGroup: null
-    handle: fieldHandle
+    handle: label
     instructions: ''
-    name: Handle
+    name: Label
     searchable: true
     settings:
       byteLimit: null

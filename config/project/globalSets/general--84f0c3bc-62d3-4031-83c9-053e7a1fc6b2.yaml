@@ -33,3 +33,4 @@ fieldLayouts:
         sortOrder: '3'
 handle: general
 name: General
+sortOrder: 1

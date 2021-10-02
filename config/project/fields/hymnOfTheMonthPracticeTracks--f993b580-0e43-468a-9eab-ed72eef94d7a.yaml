@@ -19,7 +19,7 @@ settings:
   showSiteMenu: true
   showUnpermittedFiles: false
   showUnpermittedVolumes: false
-  singleUploadLocationSource: 'volume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c'
+  singleUploadLocationSource: 'volume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
   singleUploadLocationSubpath: '{slug}/audio'
   source: null
   sources: '*'

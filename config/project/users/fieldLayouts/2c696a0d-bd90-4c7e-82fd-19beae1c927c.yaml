@@ -4,12 +4,12 @@ tabs:
       2a87f914-8ca0-4ff5-816f-eeed96eae0ab:
         required: false
         sortOrder: 3
-      32d76b8c-d3f3-45cf-8b3d-55991f485a16:
-        required: false
-        sortOrder: 5
       8e41a4a3-46e9-41d1-bb64-46f3cd0979c0:
         required: false
         sortOrder: 1
+      32d76b8c-d3f3-45cf-8b3d-55991f485a16:
+        required: false
+        sortOrder: 5
       922bdd2b-20e9-41d4-92bc-007b8452a18e:
         required: true
         sortOrder: 2

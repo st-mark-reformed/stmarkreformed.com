@@ -52,25 +52,6 @@ fieldLayouts:
         name: Content
         sortOrder: 1
 fields:
-  06ab3828-e4b9-4411-b012-c79e8d0dcd93:
-    contentColumnType: text
-    fieldGroup: null
-    handle: excerpt
-    instructions: ''
-    name: Excerpt
-    searchable: true
-    settings:
-      byteLimit: null
-      charLimit: null
-      code: ''
-      columnType: text
-      initialRows: '4'
-      multiline: '1'
-      placeholder: ''
-      uiMode: normal
-    translationKeyFormat: null
-    translationMethod: none
-    type: craft\fields\PlainText
   1df46fad-0886-4911-9132-137b6262c9ff:
     contentColumnType: text
     fieldGroup: null
@@ -85,6 +66,25 @@ fields:
       columnType: text
       initialRows: '4'
       multiline: ''
+      placeholder: ''
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  06ab3828-e4b9-4411-b012-c79e8d0dcd93:
+    contentColumnType: text
+    fieldGroup: null
+    handle: excerpt
+    instructions: ''
+    name: Excerpt
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: text
+      initialRows: '4'
+      multiline: '1'
       placeholder: ''
       uiMode: normal
     translationKeyFormat: null

@@ -80,6 +80,25 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
+  65d4cdb4-f28e-469a-a25f-420675afd673:
+    contentColumnType: string
+    fieldGroup: null
+    handle: heading
+    instructions: ''
+    name: Heading
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: 50
+      code: ''
+      columnType: string
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   1619a0e9-2a7f-4450-ad7b-9eb6f10a435d:
     contentColumnType: text
     fieldGroup: null
@@ -129,25 +148,6 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Table
-  65d4cdb4-f28e-469a-a25f-420675afd673:
-    contentColumnType: string
-    fieldGroup: null
-    handle: heading
-    instructions: ''
-    name: Heading
-    searchable: true
-    settings:
-      byteLimit: null
-      charLimit: 50
-      code: ''
-      columnType: string
-      initialRows: '4'
-      multiline: ''
-      placeholder: ''
-      uiMode: normal
-    translationKeyFormat: null
-    translationMethod: none
-    type: craft\fields\PlainText
   9541534e-7593-41ec-b0c8-5b12cecf235c:
     contentColumnType: text
     fieldGroup: null

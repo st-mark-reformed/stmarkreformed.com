@@ -97,25 +97,6 @@ fieldLayouts:
         name: Content
         sortOrder: 1
 fields:
-  16af453e-7756-4645-b749-cdee119c0d14:
-    contentColumnType: text
-    fieldGroup: null
-    handle: address
-    instructions: ''
-    name: Address
-    searchable: true
-    settings:
-      byteLimit: null
-      charLimit: null
-      code: ''
-      columnType: text
-      initialRows: '4'
-      multiline: ''
-      placeholder: ''
-      uiMode: normal
-    translationKeyFormat: null
-    translationMethod: none
-    type: craft\fields\PlainText
   1f642a1f-8157-48c8-b796-705f62303756:
     contentColumnType: 'decimal(40,30)'
     fieldGroup: null
@@ -136,44 +117,6 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
-  505b895d-c9b1-4296-99ae-d2bef20459c3:
-    contentColumnType: string
-    fieldGroup: null
-    handle: zip
-    instructions: ''
-    name: Zip
-    searchable: true
-    settings:
-      byteLimit: null
-      charLimit: null
-      code: ''
-      columnType: string
-      initialRows: '4'
-      multiline: ''
-      placeholder: ''
-      uiMode: normal
-    translationKeyFormat: null
-    translationMethod: none
-    type: craft\fields\PlainText
-  51c9e48c-507e-4e3d-8152-0dba14ef55c3:
-    contentColumnType: text
-    fieldGroup: null
-    handle: addressLine2
-    instructions: ''
-    name: 'Address Line 2'
-    searchable: true
-    settings:
-      byteLimit: null
-      charLimit: null
-      code: ''
-      columnType: text
-      initialRows: '4'
-      multiline: ''
-      placeholder: ''
-      uiMode: normal
-    translationKeyFormat: null
-    translationMethod: none
-    type: craft\fields\PlainText
   5df4f883-59cf-4b67-b323-6330a84cd1cd:
     contentColumnType: string
     fieldGroup: null
@@ -241,6 +184,63 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\redactor\Field
+  16af453e-7756-4645-b749-cdee119c0d14:
+    contentColumnType: text
+    fieldGroup: null
+    handle: address
+    instructions: ''
+    name: Address
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: text
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  51c9e48c-507e-4e3d-8152-0dba14ef55c3:
+    contentColumnType: text
+    fieldGroup: null
+    handle: addressLine2
+    instructions: ''
+    name: 'Address Line 2'
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: text
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  505b895d-c9b1-4296-99ae-d2bef20459c3:
+    contentColumnType: string
+    fieldGroup: null
+    handle: zip
+    instructions: ''
+    name: Zip
+    searchable: true
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: string
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   a9201e3f-ed7d-463f-b19f-20f487917a4a:
     contentColumnType: 'decimal(40,30)'
     fieldGroup: null
