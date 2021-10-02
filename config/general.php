@@ -26,7 +26,6 @@ return [
         'runQueueAutomatically' => getenv('DISABLE_AUTOMATIC_QUEUE') !== 'true',
         'securityKey' => getenv('SECURITY_KEY'),
         'sendPoweredByHeader' => false,
-        'siteName' => 'St. Mark Reformed Church',
         'siteUrl' => getenv('USE_HTTP_HOST_FOR_SITE_URL') === 'true' ?
             $protocol . $_SERVER['HTTP_HOST'] :
             getenv('SITE_URL'),
