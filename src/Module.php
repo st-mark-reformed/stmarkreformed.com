@@ -58,12 +58,20 @@ class Module extends ModuleBase
         $secure = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on';
         $protocol = $secure ? 'https://' : 'http://';
 
-        Craft::setAlias(
-            '@siteUrl',
-            getenv('USE_HTTP_HOST_FOR_SITE_URL') === 'true' ?
-                $protocol . $_SERVER['HTTP_HOST'] :
+        // Add in our console commands
+        if (Craft::$app instanceof ConsoleApplication) {
+            Craft::setAlias(
+                '@siteUrl',
                 getenv('SITE_URL'),
-        );
+            );
+        } else {
+            Craft::setAlias(
+                '@siteUrl',
+                getenv('USE_HTTP_HOST_FOR_SITE_URL') === 'true' ?
+                    $protocol . $_SERVER['HTTP_HOST'] :
+                    getenv('SITE_URL'),
+            );
+        }
 
         Craft::$app->view->registerTwigExtension(
             new DevTwigExtensions()
