@@ -7,6 +7,34 @@
     <list default="true" id="aa73db92-7a0a-4b0e-9a61-f697cc862111" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Module.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Module.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commands/ImageTransformsController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commands/OldNewsImportController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commands/OldSermonsImportController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/BaseController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/ContactController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/EventsController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/GalleriesController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/ImageTransformsController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/InternalMessagesController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/MembersBaseController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/MembersController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/MembersHymnsOfTheMonthController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/MembersLogInController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/MessagesController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/NewsController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/PagesController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/ResourcesController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/SiteMapController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/TestController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jobs/InitAllAssetsTransformsJob.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jobs/RunAssetTransformJob.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/CacheService.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/EntryRoutingService.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/EntrySlugService.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/InitAssetTransformJobService.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/twigextensions/DevTwigExtensions.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utilities/ImageTransformsUtility.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
