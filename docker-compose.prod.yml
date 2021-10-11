@@ -2,7 +2,9 @@ version: '3.7'
 
 services:
   utility:
-    env_file: .env
+    env_file:
+      - .env
+      - .env.local
     image: ubuntu:18.04
     restart: always
     container_name: stmark-utility
@@ -18,9 +20,7 @@ services:
       - uploads-volume:/uploads-volume
     command: bash -c "chmod +x /opt/project/docker/utility/prod.sh && /opt/project/docker/utility/prod.sh"
 
-  web:
-    build:
-      target: prod
+  app:
     restart: always
     volumes:
       - cp-resources-volume:/opt/project/public/cpresources
@@ -32,95 +32,11 @@ services:
       - storage-volume:/opt/project/storage
       - uploads-volume:/opt/project/public/uploads
       - nginx-master_certbot-conf-volume:/etc/letsencrypt
-
-  php:
-    build:
-      target: prod
-    restart: always
-    volumes:
-      - cp-resources-volume:/opt/project/public/cpresources
-      - image-cache-volume:/opt/project/public/imagecache
-      - files-volume:/opt/project/public/files
-      - files-above-webroot-volume:/opt/project/filesAboveWebroot
-      - log-volume:/var/log
-      - public-cache-volume:/opt/project/public/cache
-      - storage-volume:/opt/project/storage
-      - uploads-volume:/opt/project/public/uploads
-
-  php-queue-runner-1:
-    env_file: .env
-    build:
-      target: prod
-      context: ./
-      dockerfile: ./docker/php/Dockerfile
-    restart: always
-    container_name: stmark-php-queue-runner-1
-    environment:
-      HOSTNAME: stmark-php-queue-runner-1
-    volumes:
-      - cp-resources-volume:/opt/project/public/cpresources
-      - image-cache-volume:/opt/project/public/imagecache
-      - files-volume:/opt/project/public/files
-      - files-above-webroot-volume:/opt/project/filesAboveWebroot
-      - log-volume:/var/log
-      - public-cache-volume:/opt/project/public/cache
-      - storage-volume:/opt/project/storage
-      - uploads-volume:/opt/project/public/uploads
-    command: bash -c "chmod +x /opt/project/queueRunner.sh && /opt/project/queueRunner.sh"
     networks:
       default:
         aliases:
-          - stmark-php-queue-runner-1
-
-  php-queue-runner-2:
-    env_file: .env
-    build:
-      target: prod
-      context: ./
-      dockerfile: ./docker/php/Dockerfile
-    restart: always
-    container_name: stmark-php-queue-runner-2
-    environment:
-      HOSTNAME: stmark-php-queue-runner-2
-    volumes:
-      - cp-resources-volume:/opt/project/public/cpresources
-      - image-cache-volume:/opt/project/public/imagecache
-      - files-volume:/opt/project/public/files
-      - files-above-webroot-volume:/opt/project/filesAboveWebroot
-      - log-volume:/var/log
-      - public-cache-volume:/opt/project/public/cache
-      - storage-volume:/opt/project/storage
-      - uploads-volume:/opt/project/public/uploads
-    command: bash -c "chmod +x /opt/project/queueRunner.sh && /opt/project/queueRunner.sh"
-    networks:
-      default:
-        aliases:
-          - stmark-php-queue-runner-2
-
-  php-queue-runner-3:
-    env_file: .env
-    build:
-      target: prod
-      context: ./
-      dockerfile: ./docker/php/Dockerfile
-    restart: always
-    container_name: stmark-php-queue-runner-3
-    environment:
-      HOSTNAME: stmark-php-queue-runner-3
-    volumes:
-      - cp-resources-volume:/opt/project/public/cpresources
-      - image-cache-volume:/opt/project/public/imagecache
-      - files-volume:/opt/project/public/files
-      - files-above-webroot-volume:/opt/project/filesAboveWebroot
-      - log-volume:/var/log
-      - public-cache-volume:/opt/project/public/cache
-      - storage-volume:/opt/project/storage
-      - uploads-volume:/opt/project/public/uploads
-    command: bash -c "chmod +x /opt/project/queueRunner.sh && /opt/project/queueRunner.sh"
-    networks:
-      default:
-        aliases:
-          - stmark-php-queue-runner-3
+          - stmarkreformed.com
+          - www.stmarkreformed.com
 
   db:
     restart: always
@@ -132,9 +48,5 @@ volumes:
   image-cache-volume:
   files-volume:
   files-above-webroot-volume:
-  log-volume:
   public-cache-volume:
-  storage-volume:
   uploads-volume:
-  nginx-master_certbot-conf-volume:
-    external: true

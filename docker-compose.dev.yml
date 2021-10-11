@@ -1,28 +1,42 @@
 version: '3.7'
 
 services:
-  web:
-    platform: linux/amd64
-    build:
-      target: dev
+  app:
     volumes:
       - .:/opt/project:delegated
-      - ./docker/web/nginx.conf:/etc/nginx/conf.d/nginx.conf:delegated
-      - ./docker/web/stmark.localtest.me.cert:/etc/letsencrypt/live/www.stmarkreformed.com/fullchain.pem:delegated
-      - ./docker/web/stmark.localtest.me.key:/etc/letsencrypt/live/www.stmarkreformed.com/privkey.pem:delegated
+    networks:
+      web:
+      default:
+        aliases:
+            - stmark.localtest.me
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-dev_default
 
-  php:
-    platform: linux/amd64
-    build:
-      target: dev
-    volumes:
-      - .:/opt/project:delegated
+      # Non-SSL Local
+      - traefik.http.routers.stmark-local.entrypoints=web
+      - traefik.http.routers.stmark-local.rule=Host(`stmark.localtest.me`)
+      - traefik.http.routers.stmark-local.middlewares=https-redirect
+
+      # Non-SSL Ngrok
+      - traefik.http.routers.stmark-ngrok.entrypoints=web
+      - traefik.http.routers.stmark-ngrok.rule=Host(`stmark.ngrok.io`)
+      - traefik.http.routers.stmark-ngrok.middlewares=https-redirect
+
+      # SSL Local
+      - traefik.http.routers.stmark-secure-local.entrypoints=websecure
+      - traefik.http.routers.stmark-secure-local.tls=true
+      - traefik.http.routers.stmark-secure-local.rule=Host(`stmark.localtest.me`)
+
+      # SSL Ngrok
+      - traefik.http.routers.stmark-secure-ngrok.entrypoints=websecure
+      - traefik.http.routers.stmark-secure-ngrok.tls=true
+      - traefik.http.routers.stmark-secure-ngrok.rule=Host(`stmark.ngrok.io`)
 
   db:
-    platform: linux/amd64
-    environment:
-      MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
       - .:/opt/project:delegated
+
+networks:
+  web:
+    name: traefik-dev_default

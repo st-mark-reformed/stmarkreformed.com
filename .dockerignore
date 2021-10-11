@@ -1,0 +1,13 @@
+config/license.key
+docker/localStorage/*
+fabCache/*
+filesAboveWebroot/*
+node_modules/*
+public/assets/*
+public/cache/*
+public/cpresources/*
+public/files/*
+public/imagecache/*
+public/uploads/*
+storage/*
+vendor/*

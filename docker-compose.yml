@@ -1,51 +1,36 @@
 version: '3.7'
 
 services:
-  web:
-    env_file: .env
-    build:
-      context: ./
-      dockerfile: ./docker/web/Dockerfile
-    container_name: stmark-web
+  app:
+    env_file:
+      - .env
+      - .env.local
+    container_name: stmark-app
+    image: registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app
+    environment:
+      HOSTNAME: stmark-app
+    expose:
+      - 80
     ports:
-      - 44232:44232
-    environment:
-      HOSTNAME: stmark-web
-    networks:
-      default:
-        aliases:
-          - stmarkreformed.com
-          - www.stmarkreformed.com
-          - staging.stmarkreformed.com
-          - stmarkreformed.localtest.me
-
-  php:
-    env_file: .env
-    build:
-      context: ./
-      dockerfile: ./docker/php/Dockerfile
-    container_name: stmark-php
-    environment:
-      HOSTNAME: stmark-php
-    networks:
-      default:
-        aliases:
-          - stmark-php
+      - "44232:80"
 
   db:
-    env_file: .env
-    build:
-      context: ./
-      dockerfile: ./docker/db/Dockerfile
+    env_file:
+      - .env
+      - .env.local
     container_name: stmark-db
+    image: registry.digitalocean.com/buzzingpixel/stmarkreformed.com-db
     environment:
       HOSTNAME: stmark-db
       MYSQL_ALLOW_EMPTY_PASSWORD: "no"
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
       - db-volume:/var/lib/mysql
     ports:
-      - 44230:3306
+      - "44230:3306"
     networks:
       default:
         aliases:
@@ -53,8 +38,5 @@ services:
 
 volumes:
   db-volume:
-
-networks:
-  default:
-    external:
-      name: proxy
+  log-volume:
+  storage-volume:
