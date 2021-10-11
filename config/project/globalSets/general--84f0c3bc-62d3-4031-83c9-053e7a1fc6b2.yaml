@@ -3,30 +3,30 @@ fieldLayouts:
     tabs:
       -
         fields:
-          abf9672d-3bab-4e78-a495-5f5b79756405:
+          abf9672d-3bab-4e78-a495-5f5b79756405: # Default Hero Image
             required: '0'
             sortOrder: '1'
         name: Defaults
         sortOrder: '1'
       -
         fields:
-          6b75c664-339f-4a28-b126-60b34b55efce:
+          6b75c664-339f-4a28-b126-60b34b55efce: # Twitter URL
             required: '0'
             sortOrder: '3'
-          6bc8ff92-bd06-4bc8-aa10-5eb44afa22cf:
+          6bc8ff92-bd06-4bc8-aa10-5eb44afa22cf: # Instagram URL
             required: '0'
             sortOrder: '4'
-          8166c5cb-d63f-45c7-ae99-c33961a4cf3d:
+          8166c5cb-d63f-45c7-ae99-c33961a4cf3d: # Facebook URL
             required: '0'
             sortOrder: '1'
-          b5819ef5-9761-4d28-b9c2-d7c2a3b41532:
+          b5819ef5-9761-4d28-b9c2-d7c2a3b41532: # Twitter Handle
             required: '0'
             sortOrder: '2'
         name: 'Social Media Links'
         sortOrder: '2'
       -
         fields:
-          e7369087-a5e9-4f71-85ba-d13b9ef55293:
+          e7369087-a5e9-4f71-85ba-d13b9ef55293: # Contact Form Recipients
             required: '1'
             sortOrder: '1'
         name: 'Contact Form'

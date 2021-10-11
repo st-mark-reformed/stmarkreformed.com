@@ -1,4 +1,4 @@
-dateModified: 1633205790
+dateModified: 1633219157
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -19,9 +19,61 @@ graphql:
     expiryDate: null
 meta:
   __names__:
+    0bb8ab16-3c86-4ffb-86da-18c4e22a554e: 'Search Engine Indexing' # Search Engine Indexing
+    0e14aaf7-e012-407f-a946-4531b9b59d3b: Globals # Globals
+    1fd7bdfe-3297-4602-90a4-7bbb4671eac3: 'Message Text' # Message Text
+    2a9f1934-7a1f-41c3-bfdc-565035a5687f: 'Pastor''s Page Categories' # Pastor's Page Categories
+    2a87f914-8ca0-4ff5-816f-eeed96eae0ab: 'Title or Honorific' # Title or Honorific
+    4dd0c44b-b829-489c-b62e-bf2f968677b0: 'Nav Title Override' # Nav Title Override
+    5e1b8bc2-ba40-47cd-a9c4-438c1a793250: 'Internal Audio' # Internal Audio
+    6b75c664-339f-4a28-b126-60b34b55efce: 'Twitter URL' # Twitter URL
     6baa0e06-2c61-4aa9-bb22-249b9b32da5c: 'Files Above Webroot' # Files Above Webroot
+    6bc8ff92-bd06-4bc8-aa10-5eb44afa22cf: 'Instagram URL' # Instagram URL
+    6e6660c3-e157-450f-a37e-ac8464ce38ff: Tags # Tags
+    7bfbcf22-c7b9-42b2-87d8-836e113d1c05: 'Sub Nav Title Override' # Sub Nav Title Override
+    8e41a4a3-46e9-41d1-bb64-46f3cd0979c0: 'Import Search String' # Import Search String
+    8f73d9f8-3435-4396-bb8f-e729910f2665: Gallery # Gallery
+    9f4b0515-9cf4-48e6-8a4d-0893819a0635: 'Page Options' # Page Options
+    27b7be51-9d75-42da-9b5f-b2e1fb678ed6: SEO # SEO
+    29f855c0-8761-4086-ae93-dcda8685d73c: 'St. Mark Reformed Church' # St. Mark Reformed Church
+    32d76b8c-d3f3-45cf-8b3d-55991f485a16: Bio # Bio
+    46e9048c-cfef-4f69-acd7-cd03439b3867: 'Use Short Header?' # Use Short Header?
+    83ae5632-273d-44d5-b592-476a39460f51: 'Entry Builder' # Entry Builder
     84f0c3bc-62d3-4031-83c9-053e7a1fc6b2: General # General
     94e92402-bc7d-4413-bc65-a236d81d53aa: 'St. Mark Reformed Church' # St. Mark Reformed Church
+    98eceee6-f51c-4e12-b27e-8af4e80fb147: 'Custom Share Image' # Custom Share Image
+    0214b210-9d5a-47f7-8e2c-1dc100c5a952: Date # Date
+    714e71ca-d308-4ed3-8a66-351e750b7b70: Speaker # Speaker
+    922bdd2b-20e9-41d4-92bc-007b8452a18e: Slug # Slug
+    926ff203-b918-45b0-b2a6-bfa4604b465f: 'Internal Message Series' # Internal Message Series
+    1849a26d-8a77-45c2-a9d4-9dd57e96be94: 'Resource Downloads' # Resource Downloads
+    3925f2c2-f707-4557-ae5e-1b4e36801755: 'Short Description' # Short Description
+    8166c5cb-d63f-45c7-ae99-c33961a4cf3d: 'Facebook URL' # Facebook URL
+    18290e78-8e88-4e1e-a79b-df42cc32eff0: 'Include in Nav?' # Include in Nav?
+    51614c49-f9f5-4660-abc0-d551062072b8: 'Message Series' # Message Series
+    63998a0f-586b-4b03-ba27-74b694bf10dd: 'Hymn of the Month Music' # Hymn of the Month Music
+    93012d1f-1633-417a-81d5-8f4b4e0ea023: Galleries # Galleries
+    145582f2-5bbe-48b1-9f7b-9058b3759d1a: Audio # Audio
+    799005b5-502a-4951-bb7e-ae247d00979c: 'Hero Image' # Hero Image
+    a3adb82d-453d-4ae5-89d5-0f9b818b8d60: Messages # Messages
+    a5663b9c-311e-405f-a780-b856c4cd8464: 'SEO Title' # SEO Title
+    abf9672d-3bab-4e78-a495-5f5b79756405: 'Default Hero Image' # Default Hero Image
+    b149c792-7a23-44b8-b08b-12fd4059475d: 'Primary Image' # Primary Image
+    b153d5f7-fd35-4731-9437-eb1333cdc3e2: 'SEO Description' # SEO Description
+    b5819ef5-9761-4d28-b9c2-d7c2a3b41532: 'Twitter Handle' # Twitter Handle
+    b4204049-2a69-459e-b105-94be12ec6081: URL # URL
+    c66e62d9-2ca8-4489-8c97-3f4dca8ccb60: Common # Common
+    c67a7c62-3fbd-43ac-86c6-32c299b87bfe: Users # Users
+    c9504fe8-d2fb-458b-a2e9-f8872585919a: 'Standard Page Builder' # Standard Page Builder
+    de88a8f8-2563-459e-8a52-b3ad2f0ec006: 'News Categories' # News Categories
+    e91f5555-0d06-411a-a55c-c24f14632bf4: Pages # Pages
+    e13796c0-a36c-490c-bf23-eb7f25d5465f: 'Hero Subheading' # Hero Subheading
+    e7369087-a5e9-4f71-85ba-d13b9ef55293: 'Contact Form Recipients' # Contact Form Recipients
+    ec8b995b-78c1-4e7e-a2ba-cab6d24be004: 'Leadership Position' # Leadership Position
+    ee082c58-0248-40c1-be7f-ecbbd205f56e: 'Hero Heading' # Hero Heading
+    ef3c7cfd-b16f-4a9a-b7f8-cad052fdbbef: 'Hymn/Psalm Name' # Hymn/Psalm Name
+    efe1648a-3d7f-4a16-a249-8e6870078081: Body # Body
+    f993b580-0e43-468a-9eab-ed72eef94d7a: 'Hymn of the Month Practice Tracks' # Hymn of the Month Practice Tracks
 plugins:
   ckeditor:
     enabled: '1'

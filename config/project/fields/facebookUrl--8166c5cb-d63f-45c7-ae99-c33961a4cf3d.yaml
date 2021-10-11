@@ -1,5 +1,5 @@
 contentColumnType: string
-fieldGroup: 0e14aaf7-e012-407f-a946-4531b9b59d3b
+fieldGroup: 0e14aaf7-e012-407f-a946-4531b9b59d3b # Globals
 handle: facebookUrl
 instructions: ''
 name: 'Facebook URL'

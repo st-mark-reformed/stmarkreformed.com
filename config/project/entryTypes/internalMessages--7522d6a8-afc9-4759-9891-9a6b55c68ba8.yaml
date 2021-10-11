@@ -27,7 +27,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: 5e1b8bc2-ba40-47cd-a9c4-438c1a793250
+            fieldUid: 5e1b8bc2-ba40-47cd-a9c4-438c1a793250 # Internal Audio
             instructions: null
             label: null
             required: false
@@ -36,7 +36,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: 714e71ca-d308-4ed3-8a66-351e750b7b70
+            fieldUid: 714e71ca-d308-4ed3-8a66-351e750b7b70 # Speaker
             instructions: null
             label: null
             required: false
@@ -45,7 +45,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: 1fd7bdfe-3297-4602-90a4-7bbb4671eac3
+            fieldUid: 1fd7bdfe-3297-4602-90a4-7bbb4671eac3 # Message Text
             instructions: null
             label: null
             required: false
@@ -54,7 +54,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: 926ff203-b918-45b0-b2a6-bfa4604b465f
+            fieldUid: 926ff203-b918-45b0-b2a6-bfa4604b465f # Internal Message Series
             instructions: null
             label: null
             required: false
@@ -63,7 +63,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: 3925f2c2-f707-4557-ae5e-1b4e36801755
+            fieldUid: 3925f2c2-f707-4557-ae5e-1b4e36801755 # Short Description
             instructions: null
             label: null
             required: false
@@ -72,7 +72,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: 6e6660c3-e157-450f-a37e-ac8464ce38ff
+            fieldUid: 6e6660c3-e157-450f-a37e-ac8464ce38ff # Tags
             instructions: null
             label: null
             required: false

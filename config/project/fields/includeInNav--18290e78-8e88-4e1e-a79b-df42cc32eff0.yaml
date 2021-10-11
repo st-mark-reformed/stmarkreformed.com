@@ -1,5 +1,5 @@
 contentColumnType: boolean
-fieldGroup: e91f5555-0d06-411a-a55c-c24f14632bf4
+fieldGroup: e91f5555-0d06-411a-a55c-c24f14632bf4 # Pages
 handle: includeInNav
 instructions: ''
 name: 'Include in Nav?'
