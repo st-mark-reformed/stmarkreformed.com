@@ -5,54 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa73db92-7a0a-4b0e-9a61-f697cc862111" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev" beforeDir="false" afterPath="$PROJECT_DIR$/dev" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev_scripts/bash/backup-local-db.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev_scripts/bash/backup-local-restore.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev_scripts/bash/build.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev_scripts/bash/cli.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev_scripts/bash/composer.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev_scripts/bash/down.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev_scripts/bash/login.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev_scripts/bash/node-bash.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev_scripts/bash/sync.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev_scripts/bash/up.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev_scripts/bash/yarn.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev_scripts/docker/ensure-ssh-keys-working.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev_scripts/docker/sync-from-prod-01-ssh.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev_scripts/docker/sync-from-prod-02-db.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev_scripts/docker/sync-from-prod-03-rsync.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.dev.sync.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.prod.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.prod.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.sync.to.local.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.sync.to.local.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/db/.profile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/db/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/docker/db/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/php/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/php/fpm-www.conf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/php/php-config-dev.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/php/php-config-prod.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/php/php-custom-config.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/php/xdebug-linux.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/php/xdebug.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/web/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/web/dhparam.pem" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/web/nginx.conf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/web/stmark.localtest.me.cert" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/web/stmark.localtest.me.key" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/css/style.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/fonts/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/img/bible-on-wood-table-1000.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/img/bible-on-wood-table-1800.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/img/bible-on-wood-table-500.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/img/bible-on-wood-table-original.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/img/st-mark-logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/js/script.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/js/script.min.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/lib/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/queueRunner.sh" beforeDir="false" afterPath="$PROJECT_DIR$/queueRunner.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Module.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Module.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
