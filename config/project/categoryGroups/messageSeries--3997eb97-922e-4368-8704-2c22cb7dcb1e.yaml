@@ -3,7 +3,7 @@ fieldLayouts:
     tabs:
       -
         fields:
-          3925f2c2-f707-4557-ae5e-1b4e36801755:
+          3925f2c2-f707-4557-ae5e-1b4e36801755: # Short Description
             required: '0'
             sortOrder: '1'
         name: Details

@@ -8,27 +8,27 @@ fieldLayouts:
             label: Title
             type: craft\fieldlayoutelements\EntryTitleField
           -
-            fieldUid: 799005b5-502a-4951-bb7e-ae247d00979c
+            fieldUid: 799005b5-502a-4951-bb7e-ae247d00979c # Hero Image
             required: false
             type: craft\fieldlayoutelements\CustomField
           -
-            fieldUid: ee082c58-0248-40c1-be7f-ecbbd205f56e
+            fieldUid: ee082c58-0248-40c1-be7f-ecbbd205f56e # Hero Heading
             required: false
             type: craft\fieldlayoutelements\CustomField
           -
-            fieldUid: e13796c0-a36c-490c-bf23-eb7f25d5465f
+            fieldUid: e13796c0-a36c-490c-bf23-eb7f25d5465f # Hero Subheading
             required: false
             type: craft\fieldlayoutelements\CustomField
           -
-            fieldUid: b149c792-7a23-44b8-b08b-12fd4059475d
+            fieldUid: b149c792-7a23-44b8-b08b-12fd4059475d # Primary Image
             required: false
             type: craft\fieldlayoutelements\CustomField
           -
-            fieldUid: 2a9f1934-7a1f-41c3-bfdc-565035a5687f
+            fieldUid: 2a9f1934-7a1f-41c3-bfdc-565035a5687f # Pastor's Page Categories
             required: false
             type: craft\fieldlayoutelements\CustomField
           -
-            fieldUid: 83ae5632-273d-44d5-b592-476a39460f51
+            fieldUid: 83ae5632-273d-44d5-b592-476a39460f51 # Entry Builder
             required: false
             type: craft\fieldlayoutelements\CustomField
         name: Publish
@@ -36,19 +36,19 @@ fieldLayouts:
       -
         elements:
           -
-            fieldUid: 0bb8ab16-3c86-4ffb-86da-18c4e22a554e
+            fieldUid: 0bb8ab16-3c86-4ffb-86da-18c4e22a554e # Search Engine Indexing
             required: false
             type: craft\fieldlayoutelements\CustomField
           -
-            fieldUid: a5663b9c-311e-405f-a780-b856c4cd8464
+            fieldUid: a5663b9c-311e-405f-a780-b856c4cd8464 # SEO Title
             required: false
             type: craft\fieldlayoutelements\CustomField
           -
-            fieldUid: b153d5f7-fd35-4731-9437-eb1333cdc3e2
+            fieldUid: b153d5f7-fd35-4731-9437-eb1333cdc3e2 # SEO Description
             required: false
             type: craft\fieldlayoutelements\CustomField
           -
-            fieldUid: 98eceee6-f51c-4e12-b27e-8af4e80fb147
+            fieldUid: 98eceee6-f51c-4e12-b27e-8af4e80fb147 # Custom Share Image
             required: false
             type: craft\fieldlayoutelements\CustomField
         name: SEO

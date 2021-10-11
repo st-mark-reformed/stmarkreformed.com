@@ -1,19 +1,19 @@
 tabs:
   -
     fields:
-      2a87f914-8ca0-4ff5-816f-eeed96eae0ab:
+      2a87f914-8ca0-4ff5-816f-eeed96eae0ab: # Title or Honorific
         required: false
         sortOrder: 3
-      8e41a4a3-46e9-41d1-bb64-46f3cd0979c0:
+      8e41a4a3-46e9-41d1-bb64-46f3cd0979c0: # Import Search String
         required: false
         sortOrder: 1
-      32d76b8c-d3f3-45cf-8b3d-55991f485a16:
+      32d76b8c-d3f3-45cf-8b3d-55991f485a16: # Bio
         required: false
         sortOrder: 5
-      922bdd2b-20e9-41d4-92bc-007b8452a18e:
+      922bdd2b-20e9-41d4-92bc-007b8452a18e: # Slug
         required: true
         sortOrder: 2
-      ec8b995b-78c1-4e7e-a2ba-cab6d24be004:
+      ec8b995b-78c1-4e7e-a2ba-cab6d24be004: # Leadership Position
         required: false
         sortOrder: 4
     name: Details

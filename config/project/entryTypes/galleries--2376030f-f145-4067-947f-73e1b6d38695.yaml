@@ -8,7 +8,7 @@ fieldLayouts:
             label: Title
             type: craft\fieldlayoutelements\EntryTitleField
           -
-            fieldUid: 8f73d9f8-3435-4396-bb8f-e729910f2665
+            fieldUid: 8f73d9f8-3435-4396-bb8f-e729910f2665 # Gallery
             required: true
             type: craft\fieldlayoutelements\CustomField
         name: Publish
@@ -16,19 +16,19 @@ fieldLayouts:
       -
         elements:
           -
-            fieldUid: 0bb8ab16-3c86-4ffb-86da-18c4e22a554e
+            fieldUid: 0bb8ab16-3c86-4ffb-86da-18c4e22a554e # Search Engine Indexing
             required: false
             type: craft\fieldlayoutelements\CustomField
           -
-            fieldUid: a5663b9c-311e-405f-a780-b856c4cd8464
+            fieldUid: a5663b9c-311e-405f-a780-b856c4cd8464 # SEO Title
             required: false
             type: craft\fieldlayoutelements\CustomField
           -
-            fieldUid: b153d5f7-fd35-4731-9437-eb1333cdc3e2
+            fieldUid: b153d5f7-fd35-4731-9437-eb1333cdc3e2 # SEO Description
             required: false
             type: craft\fieldlayoutelements\CustomField
           -
-            fieldUid: 98eceee6-f51c-4e12-b27e-8af4e80fb147
+            fieldUid: 98eceee6-f51c-4e12-b27e-8af4e80fb147 # Custom Share Image
             required: false
             type: craft\fieldlayoutelements\CustomField
         name: SEO

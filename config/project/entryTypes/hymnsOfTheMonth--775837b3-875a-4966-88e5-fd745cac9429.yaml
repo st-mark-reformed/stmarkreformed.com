@@ -27,7 +27,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: 0214b210-9d5a-47f7-8e2c-1dc100c5a952
+            fieldUid: 0214b210-9d5a-47f7-8e2c-1dc100c5a952 # Date
             instructions: null
             label: null
             required: false
@@ -36,7 +36,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: ef3c7cfd-b16f-4a9a-b7f8-cad052fdbbef
+            fieldUid: ef3c7cfd-b16f-4a9a-b7f8-cad052fdbbef # Hymn/Psalm Name
             instructions: ''
             label: ''
             required: '1'
@@ -45,7 +45,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: 63998a0f-586b-4b03-ba27-74b694bf10dd
+            fieldUid: 63998a0f-586b-4b03-ba27-74b694bf10dd # Hymn of the Month Music
             instructions: null
             label: null
             required: false
@@ -54,7 +54,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: f993b580-0e43-468a-9eab-ed72eef94d7a
+            fieldUid: f993b580-0e43-468a-9eab-ed72eef94d7a # Hymn of the Month Practice Tracks
             instructions: null
             label: null
             required: false

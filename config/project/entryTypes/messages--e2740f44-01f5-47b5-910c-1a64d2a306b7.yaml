@@ -8,27 +8,27 @@ fieldLayouts:
             label: Title
             type: craft\fieldlayoutelements\EntryTitleField
           -
-            fieldUid: 145582f2-5bbe-48b1-9f7b-9058b3759d1a
+            fieldUid: 145582f2-5bbe-48b1-9f7b-9058b3759d1a # Audio
             required: false
             type: craft\fieldlayoutelements\CustomField
           -
-            fieldUid: 714e71ca-d308-4ed3-8a66-351e750b7b70
+            fieldUid: 714e71ca-d308-4ed3-8a66-351e750b7b70 # Speaker
             required: false
             type: craft\fieldlayoutelements\CustomField
           -
-            fieldUid: 1fd7bdfe-3297-4602-90a4-7bbb4671eac3
+            fieldUid: 1fd7bdfe-3297-4602-90a4-7bbb4671eac3 # Message Text
             required: false
             type: craft\fieldlayoutelements\CustomField
           -
-            fieldUid: 51614c49-f9f5-4660-abc0-d551062072b8
+            fieldUid: 51614c49-f9f5-4660-abc0-d551062072b8 # Message Series
             required: false
             type: craft\fieldlayoutelements\CustomField
           -
-            fieldUid: 3925f2c2-f707-4557-ae5e-1b4e36801755
+            fieldUid: 3925f2c2-f707-4557-ae5e-1b4e36801755 # Short Description
             required: false
             type: craft\fieldlayoutelements\CustomField
           -
-            fieldUid: 6e6660c3-e157-450f-a37e-ac8464ce38ff
+            fieldUid: 6e6660c3-e157-450f-a37e-ac8464ce38ff # Tags
             required: false
             type: craft\fieldlayoutelements\CustomField
         name: Publish
@@ -36,19 +36,19 @@ fieldLayouts:
       -
         elements:
           -
-            fieldUid: 0bb8ab16-3c86-4ffb-86da-18c4e22a554e
+            fieldUid: 0bb8ab16-3c86-4ffb-86da-18c4e22a554e # Search Engine Indexing
             required: false
             type: craft\fieldlayoutelements\CustomField
           -
-            fieldUid: a5663b9c-311e-405f-a780-b856c4cd8464
+            fieldUid: a5663b9c-311e-405f-a780-b856c4cd8464 # SEO Title
             required: false
             type: craft\fieldlayoutelements\CustomField
           -
-            fieldUid: b153d5f7-fd35-4731-9437-eb1333cdc3e2
+            fieldUid: b153d5f7-fd35-4731-9437-eb1333cdc3e2 # SEO Description
             required: false
             type: craft\fieldlayoutelements\CustomField
           -
-            fieldUid: 98eceee6-f51c-4e12-b27e-8af4e80fb147
+            fieldUid: 98eceee6-f51c-4e12-b27e-8af4e80fb147 # Custom Share Image
             required: false
             type: craft\fieldlayoutelements\CustomField
         name: SEO
