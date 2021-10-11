@@ -25,7 +25,6 @@ auth.json
 
 .php_cs.cache
 .phpunit.result.cache
-/.env
 /docker-compose.env.yml
 /*-workspace
 /node_modules

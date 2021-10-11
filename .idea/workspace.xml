@@ -5,22 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa73db92-7a0a-4b0e-9a61-f697cc862111" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/public/assets/css/style.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/fonts/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/img/bible-on-wood-table-1000.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/img/bible-on-wood-table-1800.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/img/bible-on-wood-table-500.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/img/bible-on-wood-table-original.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/img/st-mark-logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/js/script.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/js/script.min.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/lib/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/node_modules/choices.js/public/assets/scripts/choices.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/node_modules/choices.js/public/assets/scripts/choices.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/node_modules/choices.js/public/assets/styles/base.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/node_modules/choices.js/public/assets/styles/base.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/node_modules/choices.js/public/assets/styles/choices.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/node_modules/choices.js/public/assets/styles/choices.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
