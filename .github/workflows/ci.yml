@@ -14,7 +14,7 @@ jobs:
   trigger-deploy:
     needs: code-quality
     runs-on: self-hosted
-    if: contains(github.ref, "update-docker-config")
+    if: contains(github.ref, 'update-docker-config')
     steps:
       - name: Trigger deploy script
         run: ./Volumes/Matrix/github-actions-runners/stmarkreformed.com-actions-runner/trigger-prod-deployment.sh
