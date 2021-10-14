@@ -13,4 +13,7 @@ then
     mv ${PHP_INI_DIR}/disabled/xdebug.ini ${PHP_INI_DIR}/conf.d/
 fi
 
-exec php-fpm -F
+if [ "$DISABLE_PHP_FPM" != "1" ]
+then
+    exec php-fpm -F
+fi
