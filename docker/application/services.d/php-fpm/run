@@ -10,7 +10,7 @@ ENABLE_XDEBUG="${ENABLE_XDEBUG:-0}"
 
 if [ "$ENABLE_XDEBUG" = "1" ]
 then
-    mv ${PHP_INI_DIR}/disabled/xdebug.ini ${PHP_INI_DIR}/conf.d/
+    cp ${PHP_INI_DIR}/disabled/xdebug.ini ${PHP_INI_DIR}/conf.d/
 fi
 
 if [ "$DISABLE_PHP_FPM" != "1" ]
