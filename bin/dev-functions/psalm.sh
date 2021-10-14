@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-function docker-composer-install() {
+function docker-psalm() {
     if [ -t 0 ]; then
         interactiveArgs='-it';
     else
@@ -8,16 +8,22 @@ function docker-composer-install() {
     fi
 
     docker run ${interactiveArgs} \
-        --name stmark-dev-composer-install \
+        --name stmark-psalm \
         -v ${PWD}:/opt/project \
         -w /opt/project \
         --env ENABLE_PHP_DEV_CONFIG=1 \
         --env ENABLE_XDEBUG=1 \
         --env DISABLE_PHP_FPM=1 \
         --env DISABLE_NGINX=1 \
-        registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app bash -c "composer install";
+        registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app bash -c "XDEBUG_MODE=off  php -d memory_limit=4G ./vendor/bin/psalm";
 
-    docker rm stmark-dev-composer-install >/dev/null 2>&1;
+    docker rm stmark-psalm >/dev/null 2>&1;
+
+    return 0;
+}
+
+function dev-psalm() {
+    XDEBUG_MODE=off /usr/local/bin/php80 -d memory_limit=4G ./vendor/bin/psalm
 
     return 0;
 }

@@ -17,7 +17,7 @@ class Module extends ModuleBase
      * Initializes the module.
      * @throws Exception
      */
-    public function init()
+    public function init(): void
     {
         $this->setUp();
 
@@ -35,8 +35,9 @@ class Module extends ModuleBase
     /**
      * Sets up the module
      * @throws Exception
+     * @psalm-suppress UndefinedClass
      */
-    private function setUp()
+    private function setUp(): void
     {
         Craft::setAlias('@root', dirname(__DIR__));
 
@@ -47,7 +48,6 @@ class Module extends ModuleBase
         $secure = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on';
         $protocol = $secure ? 'https://' : 'http://';
 
-        // Add in our console commands
         if (Craft::$app instanceof ConsoleApplication) {
             Craft::setAlias(
                 '@siteUrl',
@@ -73,7 +73,7 @@ class Module extends ModuleBase
      * Sets events
      * @throws Exception
      */
-    private function setEvents()
+    private function setEvents(): void
     {
         // TODO: Replace this
         // Event::on(

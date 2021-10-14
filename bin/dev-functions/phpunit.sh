@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-function container-node-help() {
-    printf "[some_command] (Execute command in \`node\` image. Empty argument starts a bash session)";
-}
-
 function docker-phpunit() {
     if [ -t 0 ]; then
         interactiveArgs='-it';

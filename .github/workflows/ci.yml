@@ -4,7 +4,6 @@ jobs:
   code-quality:
     runs-on: self-hosted
     steps:
-      # TODO: add code quality tools
       - name: Checkout repo
         uses: actions/checkout@v2
       - name: Build Docker image
@@ -15,6 +14,8 @@ jobs:
         run: docker exec stmark-code-quality bash -c "composer install --no-interaction --no-progress"
       - name: Run PHPUnit
         run: docker exec stmark-code-quality bash -c "XDEBUG_MODE=coverage ./vendor/bin/phpunit"
+      - name: Run Psalm
+        run: docker exec stmark-code-quality bash -c "XDEBUG_MODE=off php -d memory_limit=4G ./vendor/bin/psalm"
       - name: Stop and remove the code quality docker container
         run: docker stop stmark-code-quality && docker rm stmark-code-quality
   trigger-deploy:

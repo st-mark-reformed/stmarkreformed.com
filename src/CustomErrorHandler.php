@@ -12,6 +12,7 @@ class CustomErrorHandler extends ErrorHandler
 {
     /**
      * If this isn't here, Yii gets cranky
+     * @psalm-suppress MissingPropertyType
      */
     public $errorAction;
 }
