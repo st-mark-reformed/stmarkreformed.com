@@ -1,12 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App;
 
 use BuzzingPixel\TwigDumper\TwigDumper;
 use Craft;
+use craft\console\Application as ConsoleApplication;
 use Exception;
 use yii\base\Module as ModuleBase;
-use craft\console\Application as ConsoleApplication;
+
+use function class_exists;
+use function dirname;
+use function getenv;
 
 /**
  * @codeCoverageIgnore
@@ -15,6 +21,7 @@ class Module extends ModuleBase
 {
     /**
      * Initializes the module.
+     *
      * @throws Exception
      */
     public function init(): void
@@ -34,7 +41,9 @@ class Module extends ModuleBase
 
     /**
      * Sets up the module
+     *
      * @throws Exception
+     *
      * @psalm-suppress UndefinedClass
      */
     private function setUp(): void
@@ -51,9 +60,8 @@ class Module extends ModuleBase
         /** @phpstan-ignore-next-line */
         Craft::setAlias('@src', __DIR__);
 
-        $secure = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on';
+        $secure   = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on';
         $protocol = $secure ? 'https://' : 'http://';
-
 
         /** @phpstan-ignore-next-line */
         if (Craft::$app instanceof ConsoleApplication) {
@@ -82,6 +90,7 @@ class Module extends ModuleBase
 
     /**
      * Sets events
+     *
      * @throws Exception
      */
     private function setEvents(): void

@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
+use App\CustomErrorHandler;
 use App\Module;
 use craft\helpers\App;
-use App\CustomErrorHandler;
 use craft\mail\transportadapters\Smtp;
 
 /**
@@ -16,11 +17,9 @@ $config = [
     'modules' => [
         'dev' => Module::class,
     ],
-    'bootstrap' => [
-        'dev'
-    ],
+    'bootstrap' => ['dev'],
     'components' => [
-        'mailer' => function (): object {
+        'mailer' => static function (): object {
             $settings = App::mailSettings();
 
             $settings->fromEmail = 'info@stmarkreformed.com';

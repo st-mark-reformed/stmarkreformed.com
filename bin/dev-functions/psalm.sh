@@ -15,7 +15,7 @@ function docker-psalm() {
         --env ENABLE_XDEBUG=1 \
         --env DISABLE_PHP_FPM=1 \
         --env DISABLE_NGINX=1 \
-        registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app bash -c "XDEBUG_MODE=off  php -d memory_limit=4G ./vendor/bin/psalm --no-cache";
+        registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app bash -c "XDEBUG_MODE=off php -d memory_limit=4G ./vendor/bin/psalm --no-cache";
 
     docker rm stmark-psalm >/dev/null 2>&1;
 

@@ -58,7 +58,7 @@ VarDumper::setHandler(static function ($var) use ($cloner, $dumper, $twigDumper,
         echo '<div style="background-color: #fff; display: inline-block; margin: 10px; padding: 25px;">';
         echo '<pre style="font-size: 14px; margin-bottom: -10px; margin-left: 6px; background-color: #fff;">';
         if (is_object($var)) {
-            echo get_class($var);
+            echo $var::class;
         } else {
             echo gettype($var);
         }
@@ -85,7 +85,7 @@ VarDumper::setHandler(static function ($var) use ($cloner, $dumper, $twigDumper,
     }
 
     if (is_object($var)) {
-        echo get_class($var) . ' ';
+        echo $var::class . ' ';
     } else {
         echo gettype($var) . ' ';
     }

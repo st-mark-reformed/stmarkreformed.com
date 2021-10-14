@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -11,7 +12,7 @@ use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 use yii\base\Application;
 
-const CRAFT_BASE_PATH = __DIR__;
+const CRAFT_BASE_PATH   = __DIR__;
 const CRAFT_VENDOR_PATH = CRAFT_BASE_PATH . '/vendor';
 
 /** @psalm-suppress UnresolvableInclude */
@@ -39,7 +40,7 @@ if (class_exists(VarDumper::class)) {
 
 if (PHP_SAPI === 'cli') {
     // Register handler to catch errors that come up before Yii registers a handler
-    $whoops = new Run;
+    $whoops = new Run();
     $whoops->pushHandler(new PlainTextHandler());
     $whoops->register();
 
@@ -52,7 +53,7 @@ if (PHP_SAPI === 'cli') {
 
 if (getenv('DEV_MODE') === 'true') {
     // Register handler to catch errors that come up before Yii registers a handler
-    $whoops = new Run;
+    $whoops = new Run();
     $whoops->pushHandler(new PrettyPageHandler());
     $whoops->register();
 }
