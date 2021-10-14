@@ -23,7 +23,7 @@ function docker-psalm() {
 }
 
 function dev-psalm() {
-    XDEBUG_MODE=off /usr/local/bin/php80 -d memory_limit=4G ./vendor/bin/psalm --no-cache
+    XDEBUG_MODE=off /usr/local/bin/php80 -d memory_limit=4G ./vendor/bin/psalm --no-cache;
 
     return 0;
 }

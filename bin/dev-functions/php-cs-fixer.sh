@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-function docker-phpcs() {
+function docker-php-cs-fixer-check() {
     if [ -t 0 ]; then
         interactiveArgs='-it';
     else
@@ -15,20 +15,20 @@ function docker-phpcs() {
         --env ENABLE_XDEBUG=1 \
         --env DISABLE_PHP_FPM=1 \
         --env DISABLE_NGINX=1 \
-        registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app bash -c "php -d memory_limit=4G ./vendor/bin/phpcs";
+        registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app bash -c "XDEBUG_MODE=off ./vendor/bin/php-cs-fixer fix -v --dry-run --stop-on-violation --using-cache=no";
 
     docker rm stmark-psalm >/dev/null 2>&1;
 
     return 0;
 }
 
-function dev-phpcs() {
-    /usr/local/bin/php80 -d memory_limit=4G ./vendor/bin/phpcs
+function dev-php-cs-fixer-check() {
+    XDEBUG_MODE=off ./vendor/bin/php-cs-fixer fix -v --dry-run --stop-on-violation --using-cache=no;
 
     return 0;
 }
 
-function docker-phpcbf() {
+function docker-php-cs-fixer-fix() {
     if [ -t 0 ]; then
         interactiveArgs='-it';
     else
@@ -43,15 +43,15 @@ function docker-phpcbf() {
         --env ENABLE_XDEBUG=1 \
         --env DISABLE_PHP_FPM=1 \
         --env DISABLE_NGINX=1 \
-        registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app bash -c "php -d memory_limit=4G ./vendor/bin/phpcbf";
+        registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app bash -c "XDEBUG_MODE=off ./vendor/bin/php-cs-fixer fix -v --using-cache=no";
 
     docker rm stmark-psalm >/dev/null 2>&1;
 
     return 0;
 }
 
-function dev-phpcbf() {
-    /usr/local/bin/php80 -d memory_limit=4G ./vendor/bin/phpcbf;
+function dev-php-cs-fixer-fix() {
+    XDEBUG_MODE=off ./vendor/bin/php-cs-fixer fix -v --using-cache=no;
 
     return 0;
 }

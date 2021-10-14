@@ -23,7 +23,7 @@ function docker-phpstan() {
 }
 
 function dev-phpstan() {
-    XDEBUG_MODE=off /usr/local/bin/php80 -d memory_limit=4G ./vendor/bin/phpstan analyse CraftFrontController.php public/index.php config src
+    XDEBUG_MODE=off /usr/local/bin/php80 -d memory_limit=4G ./vendor/bin/phpstan analyse CraftFrontController.php public/index.php config src;
 
     return 0;
 }

@@ -23,7 +23,7 @@ function docker-phpunit() {
 }
 
 function dev-phpunit() {
-    XDEBUG_MODE=coverage /usr/local/bin/php80 ./vendor/bin/phpunit
+    XDEBUG_MODE=coverage /usr/local/bin/php80 ./vendor/bin/phpunit;
 
     return 0;
 }
