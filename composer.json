@@ -21,6 +21,7 @@
         "ext-dom": "*",
         "ext-json": "*",
         "buzzingpixel/craft-scheduler": "^1.0",
+        "buzzingpixel/craft-slim-bridge": "^1.1",
         "cocur/slugify": "3.2",
         "craftcms/ckeditor": "1.1.2",
         "craftcms/cms": "3.7.14",
@@ -31,6 +32,7 @@
         "enupal/stripe": "3.3.6",
         "lucidtaz/yii2-whoops": "dev-master",
         "michelf/php-smartypants": "1.8.1",
+        "php-di/php-di": "^6.3",
         "tde/craftplugin-geoaddress": "1.0.13",
         "timostamm/text-truncation": "dev-master"
     },

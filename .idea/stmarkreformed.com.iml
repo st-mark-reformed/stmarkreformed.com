@@ -160,6 +160,17 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/webmozart/path-util" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/netresearch/jsonmapper" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/vimeo/psalm" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/buzzingpixel/craft-scheduler" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/buzzingpixel/craft-slim-bridge" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/fig/http-message-util" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/slim/psr7" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/slim/slim" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/http-server-handler" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/http-server-middleware" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/nikic/fast-route" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/php-di/phpdoc-reader" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/php-di/invoker" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/php-di/php-di" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

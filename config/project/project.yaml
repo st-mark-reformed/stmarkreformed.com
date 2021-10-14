@@ -1,4 +1,4 @@
-dateModified: 1634222842
+dateModified: 1634223006
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -169,6 +169,10 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 1.0.5
+  slim-bridge:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
 system:
   edition: pro
   live: true
