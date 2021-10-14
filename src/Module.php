@@ -1,6 +1,6 @@
 <?php
 
-namespace src;
+namespace App;
 
 use BuzzingPixel\TwigDumper\TwigDumper;
 use Craft;
@@ -8,6 +8,9 @@ use Exception;
 use yii\base\Module as ModuleBase;
 use craft\console\Application as ConsoleApplication;
 
+/**
+ * @codeCoverageIgnore
+ */
 class Module extends ModuleBase
 {
     /**

@@ -4,6 +4,7 @@
 
 #...project custom ignores go here
 .env.local
+.phpunit.cache
 
 
 

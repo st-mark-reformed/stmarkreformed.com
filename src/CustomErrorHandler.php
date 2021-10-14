@@ -1,10 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace src;
+namespace App;
 
 use lucidtaz\yii2whoops\ErrorHandler;
 
+/**
+ * @codeCoverageIgnore
+ */
 class CustomErrorHandler extends ErrorHandler
 {
     /**
