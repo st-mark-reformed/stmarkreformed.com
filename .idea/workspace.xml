@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa73db92-7a0a-4b0e-9a61-f697cc862111" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/ci.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/dev-functions/composer-install.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/container-functions/container-node.sh" beforeDir="false" afterPath="$PROJECT_DIR$/bin/container-functions/container-node.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/application/cont-init.d/00-php-config" beforeDir="false" afterPath="$PROJECT_DIR$/docker/application/cont-init.d/00-php-config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/application/services.d/nginx/finish" beforeDir="false" afterPath="$PROJECT_DIR$/docker/application/services.d/nginx/finish" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/application/services.d/nginx/run" beforeDir="false" afterPath="$PROJECT_DIR$/docker/application/services.d/nginx/run" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/application/services.d/php-fpm/run" beforeDir="false" afterPath="$PROJECT_DIR$/docker/application/services.d/php-fpm/run" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/application/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/docker/application/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,41 +154,6 @@
       <path value="$PROJECT_DIR$/vendor/daverandom/resume" />
       <path value="$PROJECT_DIR$/vendor/react/promise" />
       <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
-      <path value="$PROJECT_DIR$/vendor/firebase/php-jwt" />
-      <path value="$PROJECT_DIR$/vendor/superbig/craft-entry-instructions" />
-      <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
-      <path value="$PROJECT_DIR$/vendor/tinify/tinify" />
-      <path value="$PROJECT_DIR$/vendor/mrclay/jsmin-php" />
-      <path value="$PROJECT_DIR$/vendor/mrclay/props-dic" />
-      <path value="$PROJECT_DIR$/vendor/ramsey/uuid" />
-      <path value="$PROJECT_DIR$/vendor/pimple/pimple" />
-      <path value="$PROJECT_DIR$/vendor/google/protobuf" />
-      <path value="$PROJECT_DIR$/vendor/mrclay/minify" />
-      <path value="$PROJECT_DIR$/vendor/google/gax" />
-      <path value="$PROJECT_DIR$/vendor/google/auth" />
-      <path value="$PROJECT_DIR$/vendor/google/cloud" />
-      <path value="$PROJECT_DIR$/vendor/google/grpc-gcp" />
-      <path value="$PROJECT_DIR$/vendor/aelvan/imager" />
-      <path value="$PROJECT_DIR$/vendor/google/common-protos" />
-      <path value="$PROJECT_DIR$/vendor/imgix/imgix-php" />
-      <path value="$PROJECT_DIR$/vendor/rize/uri-template" />
-      <path value="$PROJECT_DIR$/vendor/grpc/grpc" />
-      <path value="$PROJECT_DIR$/vendor/psr/cache" />
-      <path value="$PROJECT_DIR$/vendor/aws/aws-sdk-php" />
-      <path value="$PROJECT_DIR$/vendor/intervention/httpauth" />
-      <path value="$PROJECT_DIR$/vendor/buzzingpixel/craft-static" />
-      <path value="$PROJECT_DIR$/vendor/nystudio107/craft-minify" />
-      <path value="$PROJECT_DIR$/vendor/ssnepenthe/color-utils" />
-      <path value="$PROJECT_DIR$/vendor/tubalmartin/cssmin" />
-      <path value="$PROJECT_DIR$/vendor/imageoptim/imageoptim" />
-      <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
-      <path value="$PROJECT_DIR$/vendor/mtdowling/jmespath.php" />
-      <path value="$PROJECT_DIR$/vendor/ksubileau/color-thief-php" />
-      <path value="$PROJECT_DIR$/vendor/kraken-io/kraken-php" />
-      <path value="$PROJECT_DIR$/vendor/marcusschwarz/lesserphp" />
-      <path value="$PROJECT_DIR$/vendor/brick/math" />
-      <path value="$PROJECT_DIR$/vendor/ramsey/collection" />
-      <path value="$PROJECT_DIR$/vendor/google/crc32" />
     </include_path>
   </component>
   <component name="ProjectId" id="1ZUhLyK376kpOjbnkvTinAcXKF6" />
