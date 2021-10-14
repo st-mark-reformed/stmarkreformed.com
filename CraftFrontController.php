@@ -51,7 +51,7 @@ if (PHP_SAPI === 'cli') {
     exit($exitCode);
 }
 
-if (getenv('DEV_MODE') === 'true') {
+if ((bool) getenv('DEV_MODE')) {
     // Register handler to catch errors that come up before Yii registers a handler
     $whoops = new Run();
     $whoops->pushHandler(new PrettyPageHandler());

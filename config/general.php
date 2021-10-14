@@ -8,17 +8,19 @@ declare(strict_types=1);
  */
 $craftBasePath = (string) CRAFT_BASE_PATH;
 
+$devMode = (bool) getenv('DEV_MODE');
+
 return [
     '*' => [
-        // 'allowAdminChanges' => getenv('ALLOW_ADMIN_CHANGES') === 'true',
+        'allowAdminChanges' => (bool) getenv('ALLOW_ADMIN_CHANGES'),
         'allowUpdates' => false,
         'appId' => 'stmarkreformed',
-        'backupOnUpdate' => getenv('BACKUP_DB_ON_UPDATE') !== 'false',
+        'backupOnUpdate' => (bool) getenv('BACKUP_DB_ON_UPDATE'),
         'cacheDuration' => 0,
         'cacheMethod' => 'apc',
         'basePath' => $craftBasePath,
         'cpTrigger' => 'cms',
-        'devMode' => getenv('DEV_MODE') === 'true',
+        'devMode' => $devMode,
         'errorTemplatePrefix' => '_errors/',
         'generateTransformsBeforePageLoad' => true,
         'isSystemLive' => true,
@@ -27,13 +29,13 @@ return [
         'postCpLoginRedirect' => 'entries',
         'projectPath' => $craftBasePath,
         'rememberedUserSessionDuration' => 'P100Y', // 100 years
-        'runQueueAutomatically' => getenv('DISABLE_AUTOMATIC_QUEUE') !== 'true',
+        'runQueueAutomatically' => (bool) getenv('DISABLE_AUTOMATIC_QUEUE'),
         'securityKey' => getenv('SECURITY_KEY'),
         'sendPoweredByHeader' => false,
-        'suppressTemplateErrors' => getenv('DEV_MODE') !== 'true',
+        'suppressTemplateErrors' => $devMode,
         'timezone' => 'America/Chicago',
         'useEmailAsUsername' => true,
-        // 'useProjectConfigFile' => true,
+        'useProjectConfigFile' => true,
         'userSessionDuration' => false, // As long as browser stays open
         'staticAssetCacheTime' => '',
 
@@ -42,7 +44,7 @@ return [
             'liveSecretKey' => getenv('STRIPE_SECRET_KEY'),
             'testPublishableKey' => getenv('STRIPE_PUBLISHABLE_KEY'),
             'testSecretKey' =>  getenv('STRIPE_SECRET_KEY'),
-            'testMode' => getenv('STRIPE_TEST_MODE') === 'true' ? 1 : 0,
+            'testMode' => (bool) getenv('STRIPE_TEST_MODE') ? 1 : 0,
         ],
     ],
 ];
