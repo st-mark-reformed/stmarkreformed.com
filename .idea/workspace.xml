@@ -6,13 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="aa73db92-7a0a-4b0e-9a61-f697cc862111" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.github/workflows/ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/ci.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/dumper.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/dumper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/general.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/general.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CustomErrorHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/CustomErrorHandler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Module.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Module.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/dev-functions/phpstan.sh" beforeDir="false" afterPath="$PROJECT_DIR$/bin/dev-functions/phpstan.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
