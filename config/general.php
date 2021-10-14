@@ -1,7 +1,10 @@
 <?php
 declare(strict_types=1);
 
-/** @psalm-suppress UndefinedConstant */
+/**
+ * @psalm-suppress UndefinedConstant
+ * @phpstan-ignore-next-line
+ */
 $craftBasePath = (string) CRAFT_BASE_PATH;
 
 return [

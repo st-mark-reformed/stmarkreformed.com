@@ -43,6 +43,7 @@ $config = [
 
             $config = App::mailerConfig($settings);
 
+            /** @phpstan-ignore-next-line */
             return Craft::createObject($config);
         },
     ],

@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
+// use Symfony\Component\VarDumper\Dumper\ContextProvider\CliContextProvider;
+// use Symfony\Component\VarDumper\Dumper\ContextProvider\SourceContextProvider;
+
 use Symfony\Component\VarDumper\Cloner\VarCloner;
 use Symfony\Component\VarDumper\Dumper\CliDumper;
-use Symfony\Component\VarDumper\Dumper\ContextProvider\CliContextProvider;
-use Symfony\Component\VarDumper\Dumper\ContextProvider\SourceContextProvider;
 use Symfony\Component\VarDumper\Dumper\HtmlDumper;
 use Symfony\Component\VarDumper\Dumper\ServerDumper;
 use Symfony\Component\VarDumper\VarDumper;
@@ -16,7 +17,7 @@ $htmlDumper = new HtmlDumper();
 
 $htmlDumper->setTheme('light');
 
-$fallbackDumper = in_array(PHP_SAPI, ['cli', 'phpdbg']) ? new CliDumper() : $htmlDumper;
+$fallbackDumper = in_array(PHP_SAPI, ['cli', 'phpdbg'], true) ? new CliDumper() : $htmlDumper;
 
 // $dumper = new ServerDumper('tcp://127.0.0.1:9912', $fallbackDumper, [
 //     'cli' => new CliContextProvider(),
@@ -30,7 +31,10 @@ $varStore->hasDumped = false;
 
 /** @psalm-suppress MissingClosureParamType */
 VarDumper::setHandler(static function ($var) use ($cloner, $dumper, $twigDumper, $varStore): void {
-    /** @psalm-suppress RedundantCondition */
+    /**
+     * @psalm-suppress RedundantCondition
+     * @phpstan-ignore-next-line
+     */
     if (PHP_SAPI !== 'cli' && $varStore->hasDumped === false) {
         echo '<head><title>Symfony Dumper</title></head><body>';
         $varStore->hasDumped = true;

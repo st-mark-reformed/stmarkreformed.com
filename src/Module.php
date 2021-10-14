@@ -39,23 +39,31 @@ class Module extends ModuleBase
      */
     private function setUp(): void
     {
+        /** @phpstan-ignore-next-line */
         Craft::setAlias('@root', dirname(__DIR__));
 
+        /** @phpstan-ignore-next-line */
         Craft::setAlias('@App', __DIR__);
 
+        /** @phpstan-ignore-next-line */
         Craft::setAlias('@dev', __DIR__);
 
+        /** @phpstan-ignore-next-line */
         Craft::setAlias('@src', __DIR__);
 
         $secure = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on';
         $protocol = $secure ? 'https://' : 'http://';
 
+
+        /** @phpstan-ignore-next-line */
         if (Craft::$app instanceof ConsoleApplication) {
+            /** @phpstan-ignore-next-line */
             Craft::setAlias(
                 '@siteUrl',
                 getenv('SITE_URL'),
             );
         } else {
+            /** @phpstan-ignore-next-line */
             Craft::setAlias(
                 '@siteUrl',
                 getenv('USE_HTTP_HOST_FOR_SITE_URL') === 'true' ?
@@ -68,6 +76,7 @@ class Module extends ModuleBase
             return;
         }
 
+        /** @phpstan-ignore-next-line */
         Craft::$app->view->registerTwigExtension(new TwigDumper());
     }
 
