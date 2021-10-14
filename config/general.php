@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
 
-$secure = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on';
-$protocol = $secure ? 'https://' : 'http://';
+/** @psalm-suppress UndefinedConstant */
+$craftBasePath = (string) CRAFT_BASE_PATH;
 
 return [
     '*' => [
@@ -12,7 +12,7 @@ return [
         'backupOnUpdate' => getenv('BACKUP_DB_ON_UPDATE') !== 'false',
         'cacheDuration' => 0,
         'cacheMethod' => 'apc',
-        'basePath' => CRAFT_BASE_PATH,
+        'basePath' => $craftBasePath,
         'cpTrigger' => 'cms',
         'devMode' => getenv('DEV_MODE') === 'true',
         'errorTemplatePrefix' => '_errors/',
@@ -21,7 +21,7 @@ return [
         'maxUploadFileSize' => 512000000,
         'omitScriptNameInUrls' => true,
         'postCpLoginRedirect' => 'entries',
-        'projectPath' => CRAFT_BASE_PATH,
+        'projectPath' => $craftBasePath,
         'rememberedUserSessionDuration' => 'P100Y', // 100 years
         'runQueueAutomatically' => getenv('DISABLE_AUTOMATIC_QUEUE') !== 'true',
         'securityKey' => getenv('SECURITY_KEY'),

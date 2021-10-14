@@ -18,10 +18,10 @@ $htmlDumper->setTheme('light');
 
 $fallbackDumper = in_array(PHP_SAPI, ['cli', 'phpdbg']) ? new CliDumper() : $htmlDumper;
 
-$dumper = new ServerDumper('tcp://127.0.0.1:9912', $fallbackDumper, [
-    'cli' => new CliContextProvider(),
-    'source' => new SourceContextProvider(),
-]);
+// $dumper = new ServerDumper('tcp://127.0.0.1:9912', $fallbackDumper, [
+//     'cli' => new CliContextProvider(),
+//     'source' => new SourceContextProvider(),
+// ]);
 
 $twigDumper = $dumper = new ServerDumper('tcp://127.0.0.1:9912', $fallbackDumper);
 

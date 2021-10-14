@@ -6,6 +6,9 @@
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
 >
     <projectFiles>
+        <file name="CraftFrontController.php"/>
+        <file name="public/index.php"/>
+        <directory name="config"/>
         <directory name="src"/>
         <ignoreFiles>
             <directory name="vendor"/>

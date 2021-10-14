@@ -1,11 +1,17 @@
 <?php
 declare(strict_types=1);
 
-use src\Module;
+use App\Module;
 use craft\helpers\App;
-use src\CustomErrorHandler;
+use App\CustomErrorHandler;
 use craft\mail\transportadapters\Smtp;
 
+/**
+ * @psalm-suppress UnusedVariable
+ * @psalm-suppress UndefinedClass
+ * @psalm-suppress MixedReturnStatement
+ * @psalm-suppress MixedInferredReturnType
+ */
 $config = [
     'modules' => [
         'dev' => Module::class,
@@ -14,7 +20,7 @@ $config = [
         'dev'
     ],
     'components' => [
-        'mailer' => function () {
+        'mailer' => function (): object {
             $settings = App::mailSettings();
 
             $settings->fromEmail = 'info@stmarkreformed.com';
