@@ -11,7 +11,6 @@ use Exception;
 use yii\base\Module as ModuleBase;
 
 use function class_exists;
-use function dirname;
 use function getenv;
 
 /**
@@ -30,11 +29,7 @@ class Module extends ModuleBase
 
         $this->setEvents();
 
-        // Add in our console commands
-        // TODO: Refactor this
-        // if (Craft::$app instanceof ConsoleApplication) {
-        //     $this->controllerNamespace = 'src\commands';
-        // }
+        $this->mapControllers();
 
         parent::init();
     }
@@ -48,9 +43,6 @@ class Module extends ModuleBase
      */
     private function setUp(): void
     {
-        /** @phpstan-ignore-next-line */
-        Craft::setAlias('@root', dirname(__DIR__));
-
         /** @phpstan-ignore-next-line */
         Craft::setAlias('@App', __DIR__);
 
@@ -98,16 +90,6 @@ class Module extends ModuleBase
         // TODO: Replace this
         // Event::on(
         //     Entry::class,
-        //     Entry::EVENT_SET_ROUTE,
-        //     function (SetElementRouteEvent $eventModel) {
-        //         $entryRoutingService = new EntryRoutingService();
-        //         $entryRoutingService->entryControllerRouting($eventModel);
-        //     }
-        // );
-
-        // TODO: Replace this
-        // Event::on(
-        //     Entry::class,
         //     Entry::EVENT_BEFORE_SAVE,
         //     function (ModelEvent $eventModel) {
         //         /** @var Entry $entry */
@@ -116,5 +98,30 @@ class Module extends ModuleBase
         //         (new EntrySlugService())->setMessageEntrySlug($entry);
         //     }
         // );
+    }
+
+    /**
+     * @psalm-suppress UndefinedClass
+     */
+    private function mapControllers(): void
+    {
+        /** @phpstan-ignore-next-line */
+        if (Craft::$app instanceof ConsoleApplication) {
+            $this->mapConsoleControllers();
+
+            return;
+        }
+
+        $this->mapWebControllers();
+    }
+
+    private function mapConsoleControllers(): void
+    {
+        $this->controllerMap = [];
+    }
+
+    private function mapWebControllers(): void
+    {
+        $this->controllerMap = [];
     }
 }
