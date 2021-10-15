@@ -3,6 +3,10 @@
 COMPOSE_DOCKER_CLI_BUILD=1
 DOCKER_BUILDKIT=1
 
+#########################
+# Handy Color Variables #
+#########################
+
 # Reset
 Reset="\033[0m"; # Text Reset
 
@@ -26,44 +30,43 @@ BPurple="\033[1;35m"; # Purple
 BCyan="\033[1;36m"; # Cyan
 BWhite="\033[1;37m"; # White
 
+# Arguments
 cmd=${1};
 allArgs=${@};
 allArgsExceptFirst=${@:2};
 secondArg=${2};
 
+# Variables
+composeFiles="-f docker-compose.yml -f docker-compose.dev.yml -f docker-compose.env.yml";
+nodeDockerImage="node:16.10.0";
+
 if [[ ! -f "docker-compose.env.yml" ]]; then
     cp docker-compose.env.yml.example docker-compose.env.yml;
 fi
 
-if [[ ! -f ".env" ]]; then
-    cp .env.example .env;
+# Ensure .env.local exists
+if [[ ! -f ".env.local" ]]; then
+    touch .env.local;
 fi
 
-isMacOs=false;
-composeFiles="-f docker-compose.yml -f docker-compose.dev.yml -f docker-compose.env.yml";
-nodeDockerImage="node:13.8.0";
-
-if [[ "$(uname)" = "Darwin" ]] || [[ "$(uname)" = "darwin" ]]; then
-    isMacOs=true;
-    composeFiles="-f docker-compose.yml -f docker-compose.dev.yml -f docker-compose.dev.sync.yml -f docker-compose.env.yml";
-fi
-
-for f in dev_scripts/bash/*; do
+# Source all of our executable files — these should contain functions that can be run
+for f in $(find bin -name '*.sh'); do
     chmod +x ${f};
     source ${f};
 done
 
-if [[ -z "${cmd}" ]]; then
-    printf "${Green}The following commands are available:\n${Yellow}";
-
-    IFS=$'\n'
-    for f in $(declare -F); do
-       printf "  ./dev ${f:11}\n";
-    done
-
-    printf "${Reset}";
-
+# If no command/function name to run was provided, list out the functions available
+if [[ -z "${cmd}" || ${secondArg} == "help" ]]; then
+    source bin/.help;
     exit 0;
 fi
 
-${cmd} ${allArgsExceptFirst};
+# If the specified command is provided by our scripts, then run it
+if _function_exists "${cmd}"; then
+    # Run the specified function (${cmd}) and pass it any arguments specified (${allArgsExceptFirst})
+    ${cmd} "${allArgsExceptFirst}";
+    exit;
+fi
+
+# If the specified command doesn't exist, we did an oops
+printf "${Red}The specified command does not exist\n${Reset}";

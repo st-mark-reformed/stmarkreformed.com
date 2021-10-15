@@ -1,12 +1,14 @@
 version: '3.7'
 
 services:
-  web:
-    env_file: .env
+  ssh:
+    env_file:
+      - .env
+      - .env.local
     image: panubo/sshd:1.2.0
     container_name: stmark-ssh
     tty: true
     volumes:
       - .:/opt/project
-      - ${DOCKER_RSA_FILE}:/tmp/.ssh/id_rsa
-      - ${DOCKER_RSA_PUB_FILE}:/tmp/.ssh/id_rsa.pub
+      - /Users/tj/.ssh/id_rsa:/tmp/.ssh/id_rsa
+      - /Users/tj/.ssh/id_rsa.pub:/tmp/.ssh/id_rsa.pub

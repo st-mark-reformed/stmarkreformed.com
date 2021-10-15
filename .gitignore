@@ -3,6 +3,7 @@
 #------------------------------------
 
 #...project custom ignores go here
+.env.local
 
 
 
@@ -24,21 +25,11 @@ auth.json
 
 .php_cs.cache
 .phpunit.result.cache
-/.env
 /docker-compose.env.yml
 /*-workspace
 /node_modules
 /*.sublime-*
 /vendor/*
-
-# As recommended by JetBrains for committing project-level configuration
-# https://intellij-support.jetbrains.com/hc/en-us/articles/206544839-How-to-manage-projects-under-Version-Control-Systems
-
-/.idea/workspace.xml
-/.idea/tasks.xml
-/.idea/usage.statistics.xml
-/.idea/dictionaries
-/.idea/shelf*
 
 
 

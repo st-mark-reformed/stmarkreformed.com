@@ -1,5 +1,5 @@
 contentColumnType: boolean
-fieldGroup: 27b7be51-9d75-42da-9b5f-b2e1fb678ed6
+fieldGroup: 27b7be51-9d75-42da-9b5f-b2e1fb678ed6 # SEO
 handle: searchEngineIndexing
 instructions: ''
 name: 'Search Engine Indexing'
