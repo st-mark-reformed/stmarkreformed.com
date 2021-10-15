@@ -4,12 +4,20 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Craft\SetMessageEntrySlug\SetMessageEntrySlugFactory;
+use BuzzingPixel\SlimBridge\RetrieveContainer;
 use BuzzingPixel\TwigDumper\TwigDumper;
 use Craft;
+use craft\base\Element;
 use craft\console\Application as ConsoleApplication;
+use craft\events\ModelEvent;
 use Exception;
+use Psr\Container\ContainerInterface;
+use Yii;
+use yii\base\Event;
 use yii\base\Module as ModuleBase;
 
+use function assert;
 use function class_exists;
 use function getenv;
 
@@ -18,6 +26,22 @@ use function getenv;
  */
 class Module extends ModuleBase
 {
+    /**
+     * @noinspection PhpUnhandledExceptionInspection
+     * @psalm-suppress UndefinedClass
+     * @psalm-suppress MixedInferredReturnType
+     */
+    public static function getContainer(): ContainerInterface
+    {
+        $retrieveContainer = Yii::$container->get(
+            RetrieveContainer::class,
+        );
+
+        assert($retrieveContainer instanceof RetrieveContainer);
+
+        return $retrieveContainer->retrieve();
+    }
+
     /**
      * Initializes the module.
      *
@@ -87,17 +111,21 @@ class Module extends ModuleBase
      */
     private function setEvents(): void
     {
-        // TODO: Replace this
-        // Event::on(
-        //     Entry::class,
-        //     Entry::EVENT_BEFORE_SAVE,
-        //     function (ModelEvent $eventModel) {
-        //         /** @var Entry $entry */
-        //         $entry = $eventModel->sender;
-        //         (new EntrySlugService())->setEventEntrySlug($entry);
-        //         (new EntrySlugService())->setMessageEntrySlug($entry);
-        //     }
-        // );
+        Event::on(
+            Element::class,
+            Element::EVENT_BEFORE_SAVE,
+            static function (ModelEvent $eventModel): void {
+                $factory = self::getContainer()->get(
+                    SetMessageEntrySlugFactory::class
+                );
+
+                assert(
+                    $factory instanceof SetMessageEntrySlugFactory
+                );
+
+                $factory->make(eventModel: $eventModel)->set();
+            }
+        );
     }
 
     /**
