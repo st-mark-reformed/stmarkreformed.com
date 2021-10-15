@@ -4,9 +4,15 @@ declare(strict_types=1);
 $secure = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on';
 $protocol = $secure ? 'https://' : 'http://';
 
+$baseUrl = getenv('USE_HTTP_HOST_FOR_SITE_URL') === 'true' ?
+    $protocol . $_SERVER['HTTP_HOST'] :
+    getenv('SITE_URL');
+
 return [
     '*' => [
         // 'allowAdminChanges' => getenv('ALLOW_ADMIN_CHANGES') === 'true',
+        'resourceBaseUrl' => $baseUrl,
+        'baseCpUrl' => $baseUrl,
         'allowUpdates' => false,
         'appId' => 'stmarkreformed',
         'backupOnUpdate' => getenv('BACKUP_DB_ON_UPDATE') !== 'false',
