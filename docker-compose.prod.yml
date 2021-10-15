@@ -31,7 +31,7 @@ services:
       - public-cache-volume:/opt/project/public/cache
       - storage-volume:/opt/project/storage
       - uploads-volume:/opt/project/public/uploads
-      - nginx-master_certbot-conf-volume:/etc/letsencrypt
+      - ./license.key:/opt/project/config/license.key
     networks:
       default:
         aliases:
@@ -50,3 +50,8 @@ volumes:
   files-above-webroot-volume:
   public-cache-volume:
   uploads-volume:
+
+networks:
+  default:
+    external:
+      name: proxy

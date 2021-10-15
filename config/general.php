@@ -10,9 +10,15 @@ $craftBasePath = (string) CRAFT_BASE_PATH;
 
 $devMode = (bool) getenv('DEV_MODE');
 
+$baseUrl = getenv('USE_HTTP_HOST_FOR_SITE_URL') === 'true' ?
+    $protocol . $_SERVER['HTTP_HOST'] :
+    getenv('SITE_URL');
+
 return [
     '*' => [
         'allowAdminChanges' => (bool) getenv('ALLOW_ADMIN_CHANGES'),
+        'resourceBaseUrl' => $baseUrl,
+        'baseCpUrl' => $baseUrl,
         'allowUpdates' => false,
         'appId' => 'stmarkreformed',
         'backupOnUpdate' => (bool) getenv('BACKUP_DB_ON_UPDATE'),
