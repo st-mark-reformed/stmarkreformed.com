@@ -8,6 +8,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Build Docker image
         run: ./dev docker-build
+      - name: Make sure stmark-code-quality container is not running
+        run: (docker stop stmark-code-quality && docker rm stmark-code-quality) >/dev/null 2>&1;
       - name: Create code quality docker container
         run: docker run -d --name stmark-code-quality -w /opt/project --env ENABLE_PHP_DEV_CONFIG=1 --env ENABLE_XDEBUG=1 --env DISABLE_PHP_FPM=1 --env DISABLE_NGINX=1 registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app
       - name: Install All Composer Dependencies
