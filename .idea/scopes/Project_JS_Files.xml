@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Project JS Files" pattern="file[stmarkreformed.com]:assets/js//*" />
+</component>

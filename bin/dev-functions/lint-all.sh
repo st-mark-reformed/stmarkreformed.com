@@ -8,6 +8,8 @@ function docker-lint-all() {
     docker-phpstan;
     docker-phpcs;
     docker-php-cs-fixer-check;
+    docker-eslint;
+    docker-stylelint;
 
     return 0;
 }
@@ -20,6 +22,8 @@ function dev-lint-all() {
     dev-phpstan;
     dev-phpcs;
     dev-php-cs-fixer-check;
+    dev-eslint;
+    dev-stylelint;
 
     return 0;
 }

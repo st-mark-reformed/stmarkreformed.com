@@ -1,9 +1,15 @@
 {
     "scripts": {
         "browsersync": "node assets/bin/browsersync.mjs",
+        "build": "node assets/bin/build.mjs",
+        "build-prod": "node assets/bin/build-prod.mjs",
+        "watch": "node assets/bin/watch.mjs",
         "watch-css": "node assets/bin/watch-css.mjs",
+        "watch-js": "node assets/bin/watch-js.mjs",
         "css": "node assets/bin/css.mjs",
-        "css-prod": "node assets/bin/css-prod.mjs"
+        "css-prod": "node assets/bin/css-prod.mjs",
+        "javascript": "node assets/bin/javascript.mjs",
+        "javascript-prod": "node assets/bin/javascript-prod.mjs"
     },
     "name": "stmark-website",
     "version": "1.0.0",

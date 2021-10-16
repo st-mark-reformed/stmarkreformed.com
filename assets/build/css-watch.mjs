@@ -1,8 +1,8 @@
 import out from 'cli-output';
 import watch from 'watch';
-import css from './css.mjs';
 import path from 'path';
 import fs from 'fs-extra';
+import css from './css.mjs';
 
 const appDir = process.cwd();
 const tailwindConfig = `${appDir}/tailwind.config.js`;

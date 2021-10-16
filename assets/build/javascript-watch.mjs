@@ -1,17 +1,14 @@
 import out from 'cli-output';
 import watch from 'watch';
 import path from 'path';
-import stylelint from './stylelint.mjs';
+import * as javascript from './javascript.mjs';
 
 const appDir = process.cwd();
-const cssLocation = `${appDir}/assets/css`;
+const jsLocation = `${appDir}/assets/js`;
 
 const extensions = [
-    '.css',
-    '.pcss',
+    '.js',
 ];
-
-let timer = setTimeout(() => {});
 
 const responder = (file) => {
     if (typeof file === 'object') {
@@ -24,20 +21,18 @@ const responder = (file) => {
 
     out.info(`File changed: ${file}`);
 
-    clearTimeout(timer);
+    javascript.processSourceFile(file);
 
-    timer = setTimeout(() => {
-        stylelint();
-    }, 50);
+    out.success('JS file compiled');
 };
 
 export default () => {
-    stylelint();
+    out.info('Watching JS for compilation changes...');
 
-    out.info('Watching CSS for stylelint changes...');
+    javascript.default();
 
     watch.watchTree(
-        cssLocation,
+        jsLocation,
         {
             interval: 0.5,
         },
