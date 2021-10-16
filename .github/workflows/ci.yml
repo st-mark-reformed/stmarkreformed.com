@@ -43,6 +43,9 @@ jobs:
       - name: Run eslint
         run: docker run --name stmark-node-code-quality -v ${PWD}:/app -w /app node:16.10.0 bash -c "yarn eslint --ext .js --ext .ts --ext .jsx --ext .tsx --ext .html --ext .vue --ext .mjs --ext .twig --no-error-on-unmatched-pattern assets src" && docker rm -f stmark-node-code-quality &>/dev/null
 
+      - name: Run stylelint
+        run: docker run --name stmark-node-code-quality -v ${PWD}:/app -w /app node:16.10.0 bash -c "yarn stylelint --allow-empty-input "assets/**/*.{css,pcss,html,twig}" "src/**/*.{css,pcss,html,twig}" && docker rm -f stmark-node-code-quality &>/dev/null
+
       - name: Stop and remove the code quality docker container
         if: always()
         run: docker rm -f stmark-code-quality &>/dev/null
