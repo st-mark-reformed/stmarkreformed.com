@@ -1,5 +1,6 @@
 {
     "scripts": {
+        "browsersync": "node assets/bin/browsersync.mjs"
     },
     "name": "stmark-website",
     "version": "1.0.0",
