@@ -1,22 +1,22 @@
 ##################
 # frontend-builder
 ##################
-# FROM --platform=$BUILDPLATFORM node:16.10.0 AS frontend-builder
-# ARG TARGETPLATFORM
-# ARG BUILDPLATFORM
-# RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM"
+FROM --platform=$BUILDPLATFORM node:16.10.0 AS frontend-builder
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
+RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM"
 
 # Set our workdir
-# WORKDIR /opt/project
+WORKDIR /opt/project
 
 # Copy the application into the container
-# COPY . /opt/project
+COPY . /opt/project
 
 # Install dependencies
-# RUN yarn
+RUN yarn
 
 # Run the frontend build
-# RUN yarn fab --build
+RUN yarn build-prod
 
 
 ###############
@@ -165,6 +165,6 @@ COPY ./docker/.profile /root/.profile
 COPY ./docker/.profile /root/.bashrc
 
 # Copy the front-end build
-# COPY --from=frontend-builder /opt/project/public/assets public/assets
+COPY --from=frontend-builder /opt/project/public/assets public/assets
 
 ENTRYPOINT ["/init"]
