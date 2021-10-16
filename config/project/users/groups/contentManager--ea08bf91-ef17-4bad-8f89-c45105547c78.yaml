@@ -62,16 +62,16 @@ permissions:
   - 'deletepeerentrydrafts:51c0f62a-b5a5-4135-bc90-471528d63f56'
   - 'editpeerentrydrafts:51c0f62a-b5a5-4135-bc90-471528d63f56'
   - 'editentries:51c0f62a-b5a5-4135-bc90-471528d63f56'
-  - 'createentries:261a469a-71d2-46af-8ca5-7b25e2a168f1'
-  - 'publishentries:261a469a-71d2-46af-8ca5-7b25e2a168f1'
-  - 'deleteentries:261a469a-71d2-46af-8ca5-7b25e2a168f1'
-  - 'publishpeerentries:261a469a-71d2-46af-8ca5-7b25e2a168f1'
-  - 'deletepeerentries:261a469a-71d2-46af-8ca5-7b25e2a168f1'
-  - 'editpeerentries:261a469a-71d2-46af-8ca5-7b25e2a168f1'
-  - 'publishpeerentrydrafts:261a469a-71d2-46af-8ca5-7b25e2a168f1'
-  - 'deletepeerentrydrafts:261a469a-71d2-46af-8ca5-7b25e2a168f1'
-  - 'editpeerentrydrafts:261a469a-71d2-46af-8ca5-7b25e2a168f1'
-  - 'editentries:261a469a-71d2-46af-8ca5-7b25e2a168f1'
+  - 'createentries:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
+  - 'publishentries:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
+  - 'deleteentries:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
+  - 'publishpeerentries:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
+  - 'deletepeerentries:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
+  - 'editpeerentries:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
+  - 'publishpeerentrydrafts:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
+  - 'deletepeerentrydrafts:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
+  - 'editpeerentrydrafts:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
+  - 'editentries:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
   - 'createentries:9c3eb649-30d1-4de9-8679-4495fe2a2923'
   - 'publishentries:9c3eb649-30d1-4de9-8679-4495fe2a2923'
   - 'deleteentries:9c3eb649-30d1-4de9-8679-4495fe2a2923'

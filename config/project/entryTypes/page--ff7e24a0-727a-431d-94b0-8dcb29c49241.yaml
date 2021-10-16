@@ -72,6 +72,6 @@ fieldLayouts:
 handle: page
 hasTitleField: true
 name: Page
-section: 261a469a-71d2-46af-8ca5-7b25e2a168f1
+section: 261a469a-71d2-46af-8ca5-7b25e2a168f1 # Pages
 sortOrder: 1
 titleFormat: ''
