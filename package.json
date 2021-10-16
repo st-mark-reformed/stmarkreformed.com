@@ -1,6 +1,9 @@
 {
     "scripts": {
-        "browsersync": "node assets/bin/browsersync.mjs"
+        "browsersync": "node assets/bin/browsersync.mjs",
+        "watch-css": "node assets/bin/watch-css.mjs",
+        "css": "node assets/bin/css.mjs",
+        "css-prod": "node assets/bin/css-prod.mjs"
     },
     "name": "stmark-website",
     "version": "1.0.0",
