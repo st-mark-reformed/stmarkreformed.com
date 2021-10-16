@@ -41,12 +41,13 @@ return [
         'runQueueAutomatically' => (bool) getenv('DISABLE_AUTOMATIC_QUEUE'),
         'securityKey' => getenv('SECURITY_KEY'),
         'sendPoweredByHeader' => false,
-        'suppressTemplateErrors' => $devMode,
         'timezone' => 'America/Chicago',
         'useEmailAsUsername' => true,
         'useProjectConfigFile' => true,
         'userSessionDuration' => false, // As long as browser stays open
         'staticAssetCacheTime' => '',
+        'enableTemplateCaching' => ! $devMode,
+        'addTrailingSlashesToUrls' => false,
 
         'stripePayments' => [
             'livePublishableKey' => getenv('STRIPE_PUBLISHABLE_KEY'),
