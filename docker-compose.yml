@@ -36,7 +36,18 @@ services:
         aliases:
           - stmark-db
 
+  redis:
+    container_name: stmark-redis
+    image: redis:alpine3.14
+    volumes:
+      - redis-volume:/data
+    networks:
+      default:
+        aliases:
+          - stmark-redis
+
 volumes:
   db-volume:
   log-volume:
+  redis-volume:
   storage-volume:
