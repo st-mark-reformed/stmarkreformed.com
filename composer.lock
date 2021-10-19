@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8cc2d887758c17c38e379f53f483444b",
+    "content-hash": "402644770e0ac1da7c1b875b9ff59764",
     "packages": [
         {
             "name": "buzzingpixel/craft-scheduler",
@@ -133,6 +133,62 @@
                 "source": "https://github.com/buzzingpixel/craft-slim-bridge/tree/1.1.2"
             },
             "time": "2021-10-16T20:56:35+00:00"
+        },
+        {
+            "name": "buzzingpixel/static-cache-middleware",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/buzzingpixel/static-cache-middleware.git",
+                "reference": "ba0ebeb3a1bea4a985509b94a5087263d7b1e80f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/buzzingpixel/static-cache-middleware/zipball/ba0ebeb3a1bea4a985509b94a5087263d7b1e80f",
+                "reference": "ba0ebeb3a1bea4a985509b94a5087263d7b1e80f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0",
+                "psr/http-factory": "^1.0",
+                "psr/http-server-middleware": "^1.0"
+            },
+            "require-dev": {
+                "codedungeon/phpunit-result-printer": "^0.31.0",
+                "doctrine/coding-standard": "^9",
+                "friendsofphp/php-cs-fixer": "^2.18",
+                "league/flysystem": "^1.0.0",
+                "php-di/php-di": "^6.3",
+                "phpstan/phpstan": "^0.12.69",
+                "phpstan/phpstan-deprecation-rules": "^0.12.6",
+                "phpstan/phpstan-strict-rules": "^0.12.9",
+                "phpunit/phpunit": "^9.5",
+                "squizlabs/php_codesniffer": "^3.5",
+                "symfony/var-dumper": "^5.3",
+                "vimeo/psalm": "^4.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "BuzzingPixel\\StaticCache\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "TJ Draper",
+                    "email": "tj@buzzingpixel.com",
+                    "homepage": "https://buzzingpixel.com"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/buzzingpixel/static-cache-middleware/issues",
+                "source": "https://github.com/buzzingpixel/static-cache-middleware/tree/1.0.0"
+            },
+            "time": "2021-10-19T14:36:32+00:00"
         },
         {
             "name": "cebe/markdown",
@@ -11047,6 +11103,7 @@
                     "type": "github"
                 }
             ],
+            "abandoned": true,
             "time": "2020-09-28T06:45:17+00:00"
         },
         {

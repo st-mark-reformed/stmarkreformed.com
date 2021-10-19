@@ -172,6 +172,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-di/invoker" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-di/php-di" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/yiisoft/yii2-redis" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/buzzingpixel/static-cache-middleware" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
