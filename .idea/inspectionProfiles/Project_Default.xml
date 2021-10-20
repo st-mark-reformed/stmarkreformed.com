@@ -36,6 +36,7 @@
       <option name="EXTENSIONS" value="php" />
     </inspection_tool>
     <inspection_tool class="PhpNoReturnAttributeCanBeAddedInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PhpPluralMixedCanBeReplacedWithArrayInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
     <inspection_tool class="PhpStanGlobal" enabled="true" level="WEAK WARNING" enabled_by_default="false">
       <scope name="StMark Files" level="WEAK WARNING" enabled="true">
         <option name="memoryLimit" value="4G" />

@@ -56,6 +56,9 @@ class Module extends ModuleBase
         $di = Container::get();
 
         /** @phpstan-ignore-next-line */
+        Craft::setAlias('@basePath', CRAFT_BASE_PATH);
+
+        /** @phpstan-ignore-next-line */
         Craft::setAlias('@App', __DIR__);
 
         /** @phpstan-ignore-next-line */

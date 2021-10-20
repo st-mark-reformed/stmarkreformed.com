@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Config;
 
+use App\Templating\TwigExtensions\ReadJson;
 use BuzzingPixel\TwigMarkdown\MarkdownTwigExtension;
 use buzzingpixel\twigsmartypants\SmartypantsTwigExtension;
 use buzzingpixel\twigwidont\WidontTwigExtension;
@@ -18,6 +19,7 @@ class Twig
 
     public const EXTENSIONS = [
         MarkdownTwigExtension::class,
+        ReadJson::class,
         SmartypantsTwigExtension::class,
         WidontTwigExtension::class,
     ];

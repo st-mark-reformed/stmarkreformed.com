@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Response\Pages;
 
+use App\Http\Entities\Meta;
 use BuzzingPixel\SlimBridge\ElementSetRoute\RouteParams;
 use craft\elements\Entry;
 use Psr\Http\Message\ResponseFactoryInterface;
@@ -41,7 +42,9 @@ class PageAction
 
         $response->getBody()->write($this->twig->render(
             '@app/Http/Response/Pages/Page.twig',
-            [],
+            [
+                'meta' => new Meta(),
+            ],
         ));
 
         return $response;

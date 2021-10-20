@@ -1,0 +1,58 @@
+{# @var \App\Http\Entities\Meta meta #}
+
+{% set cssManifestJson = readJson(alias('@basePath/public/assets/css/manifest.json')) %}
+{% set jsManifestJson = readJson(alias('@basePath/public/assets/js/manifest.json')) %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    {# Reporting for duty #}
+    <title>{% if meta.metaTitle %}{{ meta.metaTitle }} | {% endif %}{{ meta.siteName }}</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {# Icons #}
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta property="og:image" content="/share.png" itemprop="image">
+
+    {# CSS #}
+    {% for stylesheet in meta.stylesheets %}
+    <link rel="stylesheet" href="{{ stylesheet }}">
+    {% endfor %}
+    <link
+        rel="stylesheet"
+        href="/assets/css/{{ cssManifestJson['style.min.css'] }}"
+    >
+</head>
+<body>
+    <main>
+        {{ block('skeletonContent') }}
+    </main>
+
+    {% for jsFile in meta.jsFiles %}
+        {% if jsFile is iterable %}
+            <script
+                src="{{ jsFile.src }}"
+                {% if jsFile['type'] is defined %}
+                    type="{{ jsFile.type }}"
+                {% endif %}
+            ></script>
+        {% else %}
+            <script src="{{ jsFile }}"></script>
+        {% endif %}
+    {% endfor %}
+    <script
+        src="/assets/js/{{ jsManifestJson['main.js'] }}"
+        type="module"
+    ></script>
+</body>
