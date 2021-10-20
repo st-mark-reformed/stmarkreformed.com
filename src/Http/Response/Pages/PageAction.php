@@ -8,6 +8,11 @@ use BuzzingPixel\SlimBridge\ElementSetRoute\RouteParams;
 use craft\elements\Entry;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Twig\Environment as TwigEnvironment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 use function assert;
 
@@ -16,20 +21,28 @@ class PageAction
     public function __construct(
         private RouteParams $routeParams,
         private ResponseFactoryInterface $responseFactory,
+        private TwigEnvironment $twig,
     ) {
     }
 
-    public function __invoke(): ResponseInterface
+    /**
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function __invoke(ServerRequestInterface $request): ResponseInterface
     {
-        // TODO: Implement this page action
-
         $entry = $this->routeParams->getParam('element');
 
         assert($entry instanceof Entry);
 
-        $response = $this->responseFactory->createResponse();
+        $response = $this->responseFactory->createResponse()
+            ->withHeader('EnableStaticCache', 'true');
 
-        $response->getBody()->write('title: ' . (string) $entry->title);
+        $response->getBody()->write($this->twig->render(
+            '@app/Http/Response/Pages/Page.twig',
+            [],
+        ));
 
         return $response;
     }
