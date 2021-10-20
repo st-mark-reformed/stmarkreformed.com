@@ -11,4 +11,5 @@ return array_merge(
     require __DIR__ . '/configs/cache.php',
     require __DIR__ . '/configs/psr.php',
     require __DIR__ . '/configs/static-cache-middleware.php',
+    require __DIR__ . '/configs/twig.php',
 );

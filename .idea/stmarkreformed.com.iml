@@ -2,6 +2,7 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/config" isTestSource="false" packagePrefix="Config\" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="App\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/cebe/markdown" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/cocur/slugify" />
@@ -183,6 +184,11 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/mrclay/minify" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mrclay/props-dic" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/tubalmartin/cssmin" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/buzzingpixel/twig-widont" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/buzzingpixel/twig-markdown" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/buzzingpixel/corbomite-di" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/buzzingpixel/corbomite-config-collector" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/buzzingpixel/twig-smartypants" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

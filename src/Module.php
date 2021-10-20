@@ -5,43 +5,29 @@ declare(strict_types=1);
 namespace App;
 
 use App\Craft\SetMessageEntrySlug\SetMessageEntrySlugFactory;
-use BuzzingPixel\SlimBridge\RetrieveContainer;
 use BuzzingPixel\TwigDumper\TwigDumper;
+use Config\di\Container;
+use Config\Twig;
 use Craft;
 use craft\base\Element;
 use craft\console\Application as ConsoleApplication;
 use craft\events\ModelEvent;
 use Exception;
-use Psr\Container\ContainerInterface;
-use Yii;
+use Twig\Extension\ExtensionInterface;
+use Twig\Loader\FilesystemLoader;
 use yii\base\Event;
 use yii\base\Module as ModuleBase;
 
 use function assert;
 use function class_exists;
 use function getenv;
+use function method_exists;
 
 /**
  * @codeCoverageIgnore
  */
 class Module extends ModuleBase
 {
-    /**
-     * @noinspection PhpUnhandledExceptionInspection
-     * @psalm-suppress UndefinedClass
-     * @psalm-suppress MixedInferredReturnType
-     */
-    public static function getContainer(): ContainerInterface
-    {
-        $retrieveContainer = Yii::$container->get(
-            RetrieveContainer::class,
-        );
-
-        assert($retrieveContainer instanceof RetrieveContainer);
-
-        return $retrieveContainer->retrieve();
-    }
-
     /**
      * Initializes the module.
      *
@@ -67,6 +53,8 @@ class Module extends ModuleBase
      */
     private function setUp(): void
     {
+        $di = Container::get();
+
         /** @phpstan-ignore-next-line */
         Craft::setAlias('@App', __DIR__);
 
@@ -96,12 +84,43 @@ class Module extends ModuleBase
             );
         }
 
+        /** @phpstan-ignore-next-line */
+        if (! Craft::$app->getRequest()->getIsCpRequest()) {
+            /** @phpstan-ignore-next-line */
+            Craft::$app->getView()->getTwig()->setLoader(
+                $di->get(FilesystemLoader::class),
+            );
+        }
+
+        foreach (Twig::EXTENSIONS as $extClassString) {
+            /** @psalm-suppress UndefinedMethod */
+            if (
+                method_exists(
+                    $extClassString,
+                    'shouldAddExtension'
+                ) &&
+                ! $extClassString::shouldAddExtension()
+            ) {
+                continue;
+            }
+
+            /** @psalm-suppress MixedAssignment */
+            $ext = $di->get($extClassString);
+
+            assert($ext instanceof ExtensionInterface);
+
+            /** @phpstan-ignore-next-line */
+            Craft::$app->getView()->registerTwigExtension($ext);
+        }
+
         if (! class_exists(TwigDumper::class)) {
             return;
         }
 
         /** @phpstan-ignore-next-line */
-        Craft::$app->view->registerTwigExtension(new TwigDumper());
+        Craft::$app->getView()->registerTwigExtension(
+            new TwigDumper(),
+        );
     }
 
     /**
@@ -115,7 +134,7 @@ class Module extends ModuleBase
             Element::class,
             Element::EVENT_BEFORE_SAVE,
             static function (ModelEvent $eventModel): void {
-                $factory = self::getContainer()->get(
+                $factory = Container::get()->get(
                     SetMessageEntrySlugFactory::class
                 );
 

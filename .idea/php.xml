@@ -197,6 +197,11 @@
       <path value="$PROJECT_DIR$/vendor/mrclay/minify" />
       <path value="$PROJECT_DIR$/vendor/mrclay/props-dic" />
       <path value="$PROJECT_DIR$/vendor/tubalmartin/cssmin" />
+      <path value="$PROJECT_DIR$/vendor/buzzingpixel/twig-widont" />
+      <path value="$PROJECT_DIR$/vendor/buzzingpixel/twig-markdown" />
+      <path value="$PROJECT_DIR$/vendor/buzzingpixel/corbomite-di" />
+      <path value="$PROJECT_DIR$/vendor/buzzingpixel/corbomite-config-collector" />
+      <path value="$PROJECT_DIR$/vendor/buzzingpixel/twig-smartypants" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />

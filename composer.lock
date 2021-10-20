@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a2da19a35f2d9cacbea203e67ce640b1",
+    "content-hash": "eed4f86a681494fa7b88bf7cbcc7d480",
     "packages": [
         {
             "name": "buzzingpixel/bp-cache",
@@ -59,6 +59,104 @@
                 "source": "https://github.com/buzzingpixel/bp-cache/tree/1.0.0"
             },
             "time": "2021-10-20T04:26:02+00:00"
+        },
+        {
+            "name": "buzzingpixel/corbomite-config-collector",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/buzzingpixel/corbomite-config-collector.git",
+                "reference": "b2991644c3ba29769af8265f60cce8159c490e1d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/buzzingpixel/corbomite-config-collector/zipball/b2991644c3ba29769af8265f60cce8159c490e1d",
+                "reference": "b2991644c3ba29769af8265f60cce8159c490e1d",
+                "shasum": ""
+            },
+            "require": {
+                "buzzingpixel/corbomite-di": "^1.2",
+                "ext-json": "*",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "codedungeon/phpunit-result-printer": "^0.26.1",
+                "doctrine/coding-standard": "^6.0",
+                "friendsofphp/php-cs-fixer": "^2.14",
+                "phpmd/phpmd": "^2.6",
+                "phpunit/phpunit": "^8.0",
+                "roave/security-advisories": "dev-master",
+                "squizlabs/php_codesniffer": "^3.4"
+            },
+            "type": "library",
+            "extra": {
+                "diConfigFilePath": "src/diConfig.php"
+            },
+            "autoload": {
+                "psr-4": {
+                    "corbomite\\configcollector\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "TJ Draper",
+                    "email": "tj@buzzingpixel.com",
+                    "homepage": "https://buzzingpixel.com"
+                }
+            ],
+            "description": "Corbomite Config Collector",
+            "support": {
+                "issues": "https://github.com/buzzingpixel/corbomite-config-collector/issues",
+                "source": "https://github.com/buzzingpixel/corbomite-config-collector/tree/1.1.2"
+            },
+            "time": "2019-03-31T21:30:52+00:00"
+        },
+        {
+            "name": "buzzingpixel/corbomite-di",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/buzzingpixel/corbomite-di.git",
+                "reference": "e8ef39e88bf5d2ff4893f14c0ba42e192c90fd78"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/buzzingpixel/corbomite-di/zipball/e8ef39e88bf5d2ff4893f14c0ba42e192c90fd78",
+                "reference": "e8ef39e88bf5d2ff4893f14c0ba42e192c90fd78",
+                "shasum": ""
+            },
+            "require": {
+                "buzzingpixel/corbomite-config-collector": "^1.1",
+                "ext-json": "*",
+                "php": ">=7.2",
+                "php-di/php-di": "^6.0"
+            },
+            "require-dev": {
+                "phpmd/phpmd": "^2.6",
+                "roave/security-advisories": "dev-master",
+                "squizlabs/php_codesniffer": "^3.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "corbomite\\di\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Corbomite DI",
+            "homepage": "https://buzzingpixel.com/",
+            "support": {
+                "issues": "https://github.com/buzzingpixel/corbomite-di/issues",
+                "source": "https://github.com/buzzingpixel/corbomite-di/tree/1.2.0"
+            },
+            "time": "2019-03-30T20:16:02+00:00"
         },
         {
             "name": "buzzingpixel/craft-scheduler",
@@ -301,6 +399,166 @@
                 "source": "https://github.com/buzzingpixel/static-cache-middleware/tree/1.0.0"
             },
             "time": "2021-10-19T14:36:32+00:00"
+        },
+        {
+            "name": "buzzingpixel/twig-markdown",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/buzzingpixel/twig-markdown.git",
+                "reference": "93243f883665b473b5350ce6134955e77da76ace"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/buzzingpixel/twig-markdown/zipball/93243f883665b473b5350ce6134955e77da76ace",
+                "reference": "93243f883665b473b5350ce6134955e77da76ace",
+                "shasum": ""
+            },
+            "require": {
+                "buzzingpixel/corbomite-di": "^1.2",
+                "cebe/markdown": "^1.2",
+                "php": ">=7.2",
+                "twig/twig": "^2.10|^3.0"
+            },
+            "require-dev": {
+                "codedungeon/phpunit-result-printer": "^0.26.2",
+                "doctrine/coding-standard": "^6.0",
+                "friendsofphp/php-cs-fixer": "^2.14",
+                "phpmd/phpmd": "^2.6",
+                "phpstan/phpstan": "^0.11.5",
+                "phpstan/phpstan-deprecation-rules": "^0.11.0",
+                "phpunit/phpunit": "^8.1",
+                "roave/security-advisories": "dev-master",
+                "squizlabs/php_codesniffer": "^3.4",
+                "symfony/var-dumper": "^4.2"
+            },
+            "type": "library",
+            "extra": {
+                "diConfigFilePath": "src/diConfig.php",
+                "twigExtensions": [
+                    "BuzzingPixel\\TwigMarkdown\\MarkdownTwigExtension"
+                ]
+            },
+            "autoload": {
+                "psr-4": {
+                    "BuzzingPixel\\TwigMarkdown\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "TJ Draper",
+                    "email": "tj@buzzingpixel.com",
+                    "homepage": "https://buzzingpixel.com"
+                }
+            ],
+            "description": "A Twig Markdown filter",
+            "support": {
+                "issues": "https://github.com/buzzingpixel/twig-markdown/issues",
+                "source": "https://github.com/buzzingpixel/twig-markdown/tree/1.0.1"
+            },
+            "time": "2020-06-20T23:19:57+00:00"
+        },
+        {
+            "name": "buzzingpixel/twig-smartypants",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/buzzingpixel/twig-smartypants.git",
+                "reference": "2d9fb631249ca37bc72b7e3837ec599d47ba5e87"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/buzzingpixel/twig-smartypants/zipball/2d9fb631249ca37bc72b7e3837ec599d47ba5e87",
+                "reference": "2d9fb631249ca37bc72b7e3837ec599d47ba5e87",
+                "shasum": ""
+            },
+            "require": {
+                "buzzingpixel/corbomite-di": "^1.0",
+                "michelf/php-smartypants": "^1.8",
+                "php": ">=7.1",
+                "twig/twig": "^2.5|^3.0"
+            },
+            "require-dev": {
+                "phpmd/phpmd": "^2.6",
+                "roave/security-advisories": "dev-master",
+                "squizlabs/php_codesniffer": "^3.4"
+            },
+            "type": "library",
+            "extra": {
+                "diConfigFilePath": "src/diConfig.php",
+                "twigExtensions": [
+                    "buzzingpixel\\twigsmartypants\\SmartypantsTwigExtension"
+                ]
+            },
+            "autoload": {
+                "psr-4": {
+                    "buzzingpixel\\twigsmartypants\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "TJ Draper",
+                    "email": "tj@buzzingpixel.com",
+                    "homepage": "https://buzzingpixel.com"
+                }
+            ],
+            "description": "A Twig Smartypants filter",
+            "support": {
+                "issues": "https://github.com/buzzingpixel/twig-smartypants/issues",
+                "source": "https://github.com/buzzingpixel/twig-smartypants/tree/master"
+            },
+            "time": "2020-05-02T20:18:47+00:00"
+        },
+        {
+            "name": "buzzingpixel/twig-widont",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/buzzingpixel/twig-widont.git",
+                "reference": "a43687f2f33cb627a97ecdab15044455960f9af5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/buzzingpixel/twig-widont/zipball/a43687f2f33cb627a97ecdab15044455960f9af5",
+                "reference": "a43687f2f33cb627a97ecdab15044455960f9af5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1",
+                "twig/twig": "^2.5|^3.0"
+            },
+            "require-dev": {
+                "phpmd/phpmd": "^2.6",
+                "roave/security-advisories": "dev-master",
+                "squizlabs/php_codesniffer": "^3.4"
+            },
+            "type": "library",
+            "extra": {
+                "twigExtensions": [
+                    "buzzingpixel\\twigwidont\\WidontTwigExtension"
+                ]
+            },
+            "autoload": {
+                "psr-4": {
+                    "buzzingpixel\\twigwidont\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "TJ Draper",
+                    "email": "tj@buzzingpixel.com",
+                    "homepage": "https://buzzingpixel.com"
+                }
+            ],
+            "description": "A Twig widont filter",
+            "support": {
+                "issues": "https://github.com/buzzingpixel/twig-widont/issues",
+                "source": "https://github.com/buzzingpixel/twig-widont/tree/master"
+            },
+            "time": "2020-05-02T20:23:47+00:00"
         },
         {
             "name": "cebe/markdown",

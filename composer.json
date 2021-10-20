@@ -28,6 +28,9 @@
         "buzzingpixel/craft-slim-bridge": "^1.1.2",
         "buzzingpixel/minify-middleware": "^1.0",
         "buzzingpixel/static-cache-middleware": "^1.0",
+        "buzzingpixel/twig-markdown": "^1.0",
+        "buzzingpixel/twig-smartypants": "^1.0",
+        "buzzingpixel/twig-widont": "^1.0",
         "cocur/slugify": "3.2",
         "craftcms/ckeditor": "1.1.2",
         "craftcms/cms": "3.7.14",
@@ -59,7 +62,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src"
+            "App\\": "src",
+            "Config\\": "config"
         }
     },
     "config": {
