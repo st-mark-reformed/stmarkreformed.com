@@ -26,6 +26,7 @@
         "buzzingpixel/bp-cache": "^1.0",
         "buzzingpixel/craft-scheduler": "^1.0",
         "buzzingpixel/craft-slim-bridge": "^1.1.2",
+        "buzzingpixel/minify-middleware": "^1.0",
         "buzzingpixel/static-cache-middleware": "^1.0",
         "cocur/slugify": "3.2",
         "craftcms/ckeditor": "1.1.2",
