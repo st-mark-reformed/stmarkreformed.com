@@ -187,6 +187,7 @@
       <path value="$PROJECT_DIR$/vendor/php-di/php-di" />
       <path value="$PROJECT_DIR$/vendor/yiisoft/yii2-redis" />
       <path value="$PROJECT_DIR$/vendor/buzzingpixel/static-cache-middleware" />
+      <path value="$PROJECT_DIR$/vendor/buzzingpixel/bp-cache" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />

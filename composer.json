@@ -23,6 +23,7 @@
         "ext-dom": "*",
         "ext-json": "*",
         "ext-redis": "*",
+        "buzzingpixel/bp-cache": "^1.0",
         "buzzingpixel/craft-scheduler": "^1.0",
         "buzzingpixel/craft-slim-bridge": "^1.1.2",
         "buzzingpixel/static-cache-middleware": "^1.0",
