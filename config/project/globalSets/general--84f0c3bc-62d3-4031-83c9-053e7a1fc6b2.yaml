@@ -2,35 +2,71 @@ fieldLayouts:
   12aefcbc-b264-4900-91c0-7d711c653067:
     tabs:
       -
-        fields:
-          abf9672d-3bab-4e78-a495-5f5b79756405: # Default Hero Image
-            required: '0'
-            sortOrder: '1'
-        name: Defaults
-        sortOrder: '1'
-      -
-        fields:
-          6b75c664-339f-4a28-b126-60b34b55efce: # Twitter URL
-            required: '0'
-            sortOrder: '3'
-          6bc8ff92-bd06-4bc8-aa10-5eb44afa22cf: # Instagram URL
-            required: '0'
-            sortOrder: '4'
-          8166c5cb-d63f-45c7-ae99-c33961a4cf3d: # Facebook URL
-            required: '0'
-            sortOrder: '1'
-          b5819ef5-9761-4d28-b9c2-d7c2a3b41532: # Twitter Handle
-            required: '0'
-            sortOrder: '2'
-        name: 'Social Media Links'
-        sortOrder: '2'
-      -
-        fields:
-          e7369087-a5e9-4f71-85ba-d13b9ef55293: # Contact Form Recipients
+        elements:
+          -
+            fieldUid: abf9672d-3bab-4e78-a495-5f5b79756405 # Default Hero Image
+            instructions: ''
+            label: ''
             required: '1'
-            sortOrder: '1'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Defaults
+        sortOrder: 1
+      -
+        elements:
+          -
+            fieldUid: 8166c5cb-d63f-45c7-ae99-c33961a4cf3d # Facebook URL
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: b5819ef5-9761-4d28-b9c2-d7c2a3b41532 # Twitter Handle
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 6b75c664-339f-4a28-b126-60b34b55efce # Twitter URL
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 6bc8ff92-bd06-4bc8-aa10-5eb44afa22cf # Instagram URL
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: 'Social Media Links'
+        sortOrder: 2
+      -
+        elements:
+          -
+            fieldUid: e7369087-a5e9-4f71-85ba-d13b9ef55293 # Contact Form Recipients
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: 'Contact Form'
-        sortOrder: '3'
+        sortOrder: 3
 handle: general
 name: General
 sortOrder: 1
