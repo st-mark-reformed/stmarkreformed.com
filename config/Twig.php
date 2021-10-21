@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Config;
 
-use App\Templating\TwigExtensions\GetDefaultHeroImageUrl;
-use App\Templating\TwigExtensions\ReadJson;
+use App\Templating\TwigExtensions\HeroImageUrl\GetDefaultHeroImageUrl;
+use App\Templating\TwigExtensions\ReadJson\ReadJson;
 use BuzzingPixel\TwigMarkdown\MarkdownTwigExtension;
 use buzzingpixel\twigsmartypants\SmartypantsTwigExtension;
 use buzzingpixel\twigwidont\WidontTwigExtension;

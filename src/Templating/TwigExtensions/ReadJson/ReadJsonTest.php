@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Templating\TwigExtensions;
+namespace App\Templating\TwigExtensions\ReadJson;
 
 use PHPUnit\Framework\TestCase;
 
