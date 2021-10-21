@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Config;
 
+use App\Templating\TwigExtensions\GetDefaultHeroImageUrl;
 use App\Templating\TwigExtensions\ReadJson;
 use BuzzingPixel\TwigMarkdown\MarkdownTwigExtension;
 use buzzingpixel\twigsmartypants\SmartypantsTwigExtension;
@@ -18,6 +19,7 @@ class Twig
     ];
 
     public const EXTENSIONS = [
+        GetDefaultHeroImageUrl::class,
         MarkdownTwigExtension::class,
         ReadJson::class,
         SmartypantsTwigExtension::class,
