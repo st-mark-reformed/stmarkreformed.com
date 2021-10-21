@@ -34,6 +34,6 @@ class Meta
      */
     public function jsFiles(): array
     {
-        return [];
+        return ['https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js'];
     }
 }
