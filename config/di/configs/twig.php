@@ -16,7 +16,6 @@ return [
     FilesystemLoader::class => static function (): FilesystemLoader {
         $loader = new FilesystemLoader(
             [],
-            /** @phpstan-ignore-next-line */
             CRAFT_BASE_PATH,
         );
 

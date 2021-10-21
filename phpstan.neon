@@ -3,7 +3,6 @@ parameters:
     treatPhpDocTypesAsCertain: false
     ignoreErrors:
         - '#Method .* has parameter .* with no value type specified in iterable type craft\\elements\\Entry\.#'
-        - '#Access to static property \$container on an unknown class Yii\.#'
         - '#Property .* type has no value type specified in iterable type craft\\elements\\Entry\.#'
     excludes_analyse:
 
