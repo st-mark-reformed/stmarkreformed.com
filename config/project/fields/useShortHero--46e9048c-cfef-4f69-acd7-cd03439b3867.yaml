@@ -1,11 +1,14 @@
+columnSuffix: null
 contentColumnType: boolean
 fieldGroup: c66e62d9-2ca8-4489-8c97-3f4dca8ccb60 # Common
-handle: useShortHeader
+handle: useShortHero
 instructions: ''
-name: 'Use Short Header?'
+name: 'Use Short Hero?'
 searchable: false
 settings:
-  default: '1'
+  default: true
+  offLabel: null
+  onLabel: null
 translationKeyFormat: null
 translationMethod: none
 type: craft\fields\Lightswitch

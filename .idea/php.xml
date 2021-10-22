@@ -202,6 +202,7 @@
       <path value="$PROJECT_DIR$/vendor/buzzingpixel/corbomite-di" />
       <path value="$PROJECT_DIR$/vendor/buzzingpixel/corbomite-config-collector" />
       <path value="$PROJECT_DIR$/vendor/buzzingpixel/twig-smartypants" />
+      <path value="$PROJECT_DIR$/vendor/sebastianlenz/linkfield" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />

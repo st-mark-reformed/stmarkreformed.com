@@ -4,74 +4,138 @@ fieldLayouts:
       -
         elements:
           -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            disabled: false
+            id: null
             instructions: null
             label: Title
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
             type: craft\fieldlayoutelements\EntryTitleField
+            warning: null
+            width: 100
           -
-            fieldUid: 9f4b0515-9cf4-48e6-8a4d-0893819a0635 # Page Options
+            fieldUid: 46e9048c-cfef-4f69-acd7-cd03439b3867 # Use Short Hero?
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
-          -
-            fieldUid: 7bfbcf22-c7b9-42b2-87d8-836e113d1c05 # Sub Nav Title Override
-            required: false
-            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: 799005b5-502a-4951-bb7e-ae247d00979c # Hero Image
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
-            fieldUid: 46e9048c-cfef-4f69-acd7-cd03439b3867 # Use Short Header?
+            fieldUid: 7aa1e2e9-fcc5-4e79-b8ea-322145910185 # Hero Upper CTA
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: ee082c58-0248-40c1-be7f-ecbbd205f56e # Hero Heading
-            required: false
+            instructions: ''
+            label: ''
+            required: '1'
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: e13796c0-a36c-490c-bf23-eb7f25d5465f # Hero Subheading
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 7e5beee3-8da3-428c-9d03-dfe089f86b20 # Hero Paragraph
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: c9504fe8-d2fb-458b-a2e9-f8872585919a # Standard Page Builder
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Publish
         sortOrder: 1
       -
         elements:
           -
-            fieldUid: 18290e78-8e88-4e1e-a79b-df42cc32eff0 # Include in Nav?
-            required: false
-            type: craft\fieldlayoutelements\CustomField
-          -
-            fieldUid: 4dd0c44b-b829-489c-b62e-bf2f968677b0 # Nav Title Override
-            required: false
-            type: craft\fieldlayoutelements\CustomField
-        name: 'Page Controls'
-        sortOrder: 2
-      -
-        elements:
-          -
             fieldUid: 0bb8ab16-3c86-4ffb-86da-18c4e22a554e # Search Engine Indexing
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: a5663b9c-311e-405f-a780-b856c4cd8464 # SEO Title
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: b153d5f7-fd35-4731-9437-eb1333cdc3e2 # SEO Description
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: 98eceee6-f51c-4e12-b27e-8af4e80fb147 # Custom Share Image
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: SEO
-        sortOrder: 3
+        sortOrder: 2
 handle: page
 hasTitleField: true
 name: Page
 section: 261a469a-71d2-46af-8ca5-7b25e2a168f1 # Pages
 sortOrder: 1
-titleFormat: ''
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: ''

@@ -1,4 +1,4 @@
-dateModified: 1634779871
+dateModified: 1634863203
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -24,20 +24,19 @@ meta:
     1fd7bdfe-3297-4602-90a4-7bbb4671eac3: 'Message Text' # Message Text
     2a9f1934-7a1f-41c3-bfdc-565035a5687f: 'Pastor''s Page Categories' # Pastor's Page Categories
     2a87f914-8ca0-4ff5-816f-eeed96eae0ab: 'Title or Honorific' # Title or Honorific
-    4dd0c44b-b829-489c-b62e-bf2f968677b0: 'Nav Title Override' # Nav Title Override
     5e1b8bc2-ba40-47cd-a9c4-438c1a793250: 'Internal Audio' # Internal Audio
     6b75c664-339f-4a28-b126-60b34b55efce: 'Twitter URL' # Twitter URL
     6baa0e06-2c61-4aa9-bb22-249b9b32da5c: 'Files Above Webroot' # Files Above Webroot
     6bc8ff92-bd06-4bc8-aa10-5eb44afa22cf: 'Instagram URL' # Instagram URL
     6e6660c3-e157-450f-a37e-ac8464ce38ff: Tags # Tags
-    7bfbcf22-c7b9-42b2-87d8-836e113d1c05: 'Sub Nav Title Override' # Sub Nav Title Override
+    7aa1e2e9-fcc5-4e79-b8ea-322145910185: 'Hero Upper CTA' # Hero Upper CTA
+    7e5beee3-8da3-428c-9d03-dfe089f86b20: 'Hero Paragraph' # Hero Paragraph
     8e41a4a3-46e9-41d1-bb64-46f3cd0979c0: 'Import Search String' # Import Search String
     8f73d9f8-3435-4396-bb8f-e729910f2665: Gallery # Gallery
-    9f4b0515-9cf4-48e6-8a4d-0893819a0635: 'Page Options' # Page Options
     27b7be51-9d75-42da-9b5f-b2e1fb678ed6: SEO # SEO
     29f855c0-8761-4086-ae93-dcda8685d73c: 'St. Mark Reformed Church' # St. Mark Reformed Church
     32d76b8c-d3f3-45cf-8b3d-55991f485a16: Bio # Bio
-    46e9048c-cfef-4f69-acd7-cd03439b3867: 'Use Short Header?' # Use Short Header?
+    46e9048c-cfef-4f69-acd7-cd03439b3867: 'Use Short Hero?' # Use Short Hero?
     83ae5632-273d-44d5-b592-476a39460f51: 'Entry Builder' # Entry Builder
     84f0c3bc-62d3-4031-83c9-053e7a1fc6b2: General # General
     94e92402-bc7d-4413-bc65-a236d81d53aa: 'St. Mark Reformed Church' # St. Mark Reformed Church
@@ -50,7 +49,6 @@ meta:
     1849a26d-8a77-45c2-a9d4-9dd57e96be94: 'Resource Downloads' # Resource Downloads
     3925f2c2-f707-4557-ae5e-1b4e36801755: 'Short Description' # Short Description
     8166c5cb-d63f-45c7-ae99-c33961a4cf3d: 'Facebook URL' # Facebook URL
-    18290e78-8e88-4e1e-a79b-df42cc32eff0: 'Include in Nav?' # Include in Nav?
     51614c49-f9f5-4660-abc0-d551062072b8: 'Message Series' # Message Series
     63998a0f-586b-4b03-ba27-74b694bf10dd: 'Hymn of the Month Music' # Hymn of the Month Music
     93012d1f-1633-417a-81d5-8f4b4e0ea023: Galleries # Galleries
@@ -75,6 +73,7 @@ meta:
     ef3c7cfd-b16f-4a9a-b7f8-cad052fdbbef: 'Hymn/Psalm Name' # Hymn/Psalm Name
     efe1648a-3d7f-4a16-a249-8e6870078081: Body # Body
     f993b580-0e43-468a-9eab-ed72eef94d7a: 'Hymn of the Month Practice Tracks' # Hymn of the Month Practice Tracks
+    ff7e24a0-727a-431d-94b0-8dcb29c49241: Page # Page
 plugins:
   ckeditor:
     enabled: '1'
@@ -171,6 +170,10 @@ plugins:
     enabled: true
     schemaVersion: 1.0.5
   slim-bridge:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  typedlinkfield:
     edition: standard
     enabled: true
     schemaVersion: 1.0.0
