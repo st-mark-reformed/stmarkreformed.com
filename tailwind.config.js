@@ -7,6 +7,16 @@ module.exports = {
     theme: {
         extend: {
             colors: {
+                gold: '#f3c213',
+                crimson: '#c31132',
+                crimsonDark: '#a41130',
+                goldenrod: '#df9c17',
+                'saddle-brown-lightened-2': '#9b7e15',
+                'saddle-brown-lightened-1': '#8b6e15',
+                'saddle-brown': '#7b6014',
+                'bronze-lightened-2': '#594b08',
+                'bronze-lightened-1': '#493a08',
+                bronze: '#392c08',
             },
             fontFamily: {},
             typography: () => ({
