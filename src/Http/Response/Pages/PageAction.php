@@ -6,8 +6,11 @@ namespace App\Http\Response\Pages;
 
 use App\Http\Components\Hero\HeroFactory;
 use App\Http\Entities\Meta;
+use App\Http\PageBuilder\PageBuilderResponseCompiler;
 use BuzzingPixel\SlimBridge\ElementSetRoute\RouteParams;
+use craft\elements\db\MatrixBlockQuery;
 use craft\elements\Entry;
+use craft\elements\MatrixBlock;
 use craft\errors\InvalidFieldException;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -27,6 +30,7 @@ class PageAction
         private RouteParams $routeParams,
         private HeroFactory $heroFactory,
         private ResponseFactoryInterface $responseFactory,
+        private PageBuilderResponseCompiler $pageBuilderResponseCompiler,
     ) {
     }
 
@@ -43,6 +47,13 @@ class PageAction
 
         assert($entry instanceof Entry);
 
+        $pageBuilderQuery = $entry->getFieldValue('pageBuilder');
+
+        assert($pageBuilderQuery instanceof MatrixBlockQuery);
+
+        /** @var MatrixBlock[] $pageBuilderBlocks */
+        $pageBuilderBlocks = $pageBuilderQuery->all();
+
         $response = $this->responseFactory->createResponse()
             ->withHeader('EnableStaticCache', 'true');
 
@@ -51,6 +62,9 @@ class PageAction
             [
                 'meta' => new Meta(),
                 'hero' => $this->heroFactory->createFromEntry(entry: $entry),
+                'content' => $this->pageBuilderResponseCompiler->compile(
+                    pageBuilderBlocks: $pageBuilderBlocks,
+                ),
             ],
         ));
 
