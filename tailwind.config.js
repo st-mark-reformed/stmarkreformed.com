@@ -9,7 +9,7 @@ module.exports = {
             colors: {
                 gold: '#f3c213',
                 crimson: '#c31132',
-                crimsonDark: '#a41130',
+                'crimson-dark': '#a41130',
                 goldenrod: '#df9c17',
                 'saddle-brown-lightened-2': '#9b7e15',
                 'saddle-brown-lightened-1': '#8b6e15',
@@ -19,7 +19,7 @@ module.exports = {
                 bronze: '#392c08',
             },
             fontFamily: {},
-            typography: () => ({
+            typography: (theme) => ({
                 DEFAULT: {
                     css: {
                         'ul>li>:first-child': {
@@ -29,6 +29,17 @@ module.exports = {
                         'ul>li>:last-child': {
                             marginTop: 0,
                             marginBottom: 0,
+                        },
+                    },
+                },
+                'over-dark': {
+                    css: {
+                        a: {
+                            color: '#fff',
+                            'text-decoration': 'underline',
+                            '&:hover': {
+                                color: theme('colors.gray.300'),
+                            },
                         },
                     },
                 },
