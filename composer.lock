@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1955c7a92a13ea3babeecef159844cd0",
+    "content-hash": "9f5a0d5d08479b1e6fba4fe47cbb0467",
     "packages": [
         {
             "name": "buzzingpixel/bp-cache",
@@ -4020,6 +4020,63 @@
                 "source": "https://github.com/paragonie/random_compat"
             },
             "time": "2020-10-15T08:29:30+00:00"
+        },
+        {
+            "name": "percipioglobal/craft-colour-swatches",
+            "version": "1.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/percipioglobal/craft-colour-swatches.git",
+                "reference": "2072124925445e55aa02d3acd2d1f075242706e5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/percipioglobal/craft-colour-swatches/zipball/2072124925445e55aa02d3acd2d1f075242706e5",
+                "reference": "2072124925445e55aa02d3acd2d1f075242706e5",
+                "shasum": ""
+            },
+            "require": {
+                "craftcms/cms": "^3.0.0"
+            },
+            "type": "craft-plugin",
+            "extra": {
+                "name": "Colour Swatches",
+                "handle": "colour-swatches",
+                "schemaVersion": "1.4.2",
+                "hasCpSettings": false,
+                "hasCpSection": false,
+                "changelogUrl": "https://raw.githubusercontent.com/percipioglobal/craft-colour-swatches/master/CHANGELOG.md",
+                "class": "percipioglobal\\colourswatches\\ColourSwatches"
+            },
+            "autoload": {
+                "psr-4": {
+                    "percipioglobal\\colourswatches\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Percipio Global",
+                    "homepage": "https://percipio.london"
+                }
+            ],
+            "description": "Let clients choose from a predefined set of colours.",
+            "keywords": [
+                "Craft",
+                "cms",
+                "colour-swatches",
+                "craft-plugin",
+                "craftcms"
+            ],
+            "support": {
+                "docs": "https://github.com/percipioglobal/craft-colour-swatches/blob/master/README.md",
+                "issues": "https://github.com/percipioglobal/craft-colour-swatches/issues",
+                "source": "https://github.com/percipioglobal/craft-colour-swatches/tree/1.4.2"
+            },
+            "time": "2021-08-31T08:32:03+00:00"
         },
         {
             "name": "php-di/invoker",

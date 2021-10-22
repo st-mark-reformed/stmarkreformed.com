@@ -41,6 +41,7 @@
         "enupal/stripe": "3.3.6",
         "lucidtaz/yii2-whoops": "dev-master",
         "michelf/php-smartypants": "1.8.1",
+        "percipioglobal/craft-colour-swatches": "^1.4",
         "php-di/php-di": "^6.3",
         "sebastianlenz/linkfield": "^1.0",
         "tde/craftplugin-geoaddress": "1.0.13",

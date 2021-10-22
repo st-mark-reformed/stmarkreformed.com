@@ -1,4 +1,4 @@
-dateModified: 1634871970
+dateModified: 1634918147
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -38,6 +38,7 @@ meta:
     6bc8ff92-bd06-4bc8-aa10-5eb44afa22cf: 'Instagram URL' # Instagram URL
     6e55c0af-73fd-4439-b563-1ace6387eda8: 'Stripe Form' # Stripe Form
     6e6660c3-e157-450f-a37e-ac8464ce38ff: Tags # Tags
+    6f396dab-91de-4f1d-8d0a-23fc18ae1ba4: CTA # CTA
     7aa1e2e9-fcc5-4e79-b8ea-322145910185: 'Hero Upper CTA' # Hero Upper CTA
     7e5beee3-8da3-428c-9d03-dfe089f86b20: 'Hero Paragraph' # Hero Paragraph
     7e651c1f-ddb7-4bd0-9842-d0d8b71f4671: Subheading # Subheading
@@ -53,15 +54,19 @@ meta:
     40a813c7-72ac-4043-b70b-718c0a7868b3: 'Link List Block' # Link List Block
     46e9048c-cfef-4f69-acd7-cd03439b3867: 'Use Short Hero?' # Use Short Hero?
     51c9e48c-507e-4e3d-8152-0dba14ef55c3: 'Address Line 2' # Address Line 2
+    62f59ace-8a18-4494-8018-6176e8798a8a: Image/Content/Cta # Image/Content/Cta
     65d4cdb4-f28e-469a-a25f-420675afd673: Heading # Heading
     83ae5632-273d-44d5-b592-476a39460f51: 'Entry Builder' # Entry Builder
     84f0c3bc-62d3-4031-83c9-053e7a1fc6b2: General # General
+    86d6041c-07e9-4e14-9e05-e68dafc0ecae: Image # Image
+    91bf91c7-572a-4deb-b5dc-7d055d4c0ba9: Headline # Headline
     94e92402-bc7d-4413-bc65-a236d81d53aa: 'St. Mark Reformed Church' # St. Mark Reformed Church
     98eceee6-f51c-4e12-b27e-8af4e80fb147: 'Custom Share Image' # Custom Share Image
     0214b210-9d5a-47f7-8e2c-1dc100c5a952: Date # Date
     261a469a-71d2-46af-8ca5-7b25e2a168f1: Pages # Pages
     292cba0e-342e-4846-9263-6b573384de88: 'Feature Latest' # Feature Latest
     0363b404-b48e-4cdb-8a99-253db50b2d17: 'Select a series to display' # Select a series to display
+    466eae26-271a-4bd0-af4c-355f3ed1d39a: Content # Content
     505b895d-c9b1-4296-99ae-d2bef20459c3: Zip # Zip
     714e71ca-d308-4ed3-8a66-351e750b7b70: Speaker # Speaker
     922bdd2b-20e9-41d4-92bc-007b8452a18e: Slug # Slug
@@ -73,6 +78,7 @@ meta:
     51614c49-f9f5-4660-abc0-d551062072b8: 'Message Series' # Message Series
     63998a0f-586b-4b03-ba27-74b694bf10dd: 'Hymn of the Month Music' # Hymn of the Month Music
     076138c8-eca9-475a-a69b-b912c2dae610: 'Stripe Payment Form' # Stripe Payment Form
+    076403e9-0a6b-468a-8c8a-0274f6c28bdc: 'Show Teal Overlay On Image' # Show Teal Overlay On Image
     93012d1f-1633-417a-81d5-8f4b4e0ea023: Galleries # Galleries
     145582f2-5bbe-48b1-9f7b-9058b3759d1a: Audio # Audio
     302084e5-cc85-4e20-914e-49dd78f5e9a4: 'Call To Action' # Call To Action
@@ -82,9 +88,11 @@ meta:
     96489851-57e6-4cdd-9f3c-d2e785615f32: Heading # Heading
     a2bb0b6e-19a3-4fdd-9dfd-1761676fe2b8: 'Leadership Listing' # Leadership Listing
     a3adb82d-453d-4ae5-89d5-0f9b818b8d60: Messages # Messages
+    a9f088b8-989e-4f2b-81d0-3724c44b9447: Pre-Headline # Pre-Headline
     a5663b9c-311e-405f-a780-b856c4cd8464: 'SEO Title' # SEO Title
     a9201e3f-ed7d-463f-b19f-20f487917a4a: Longitude # Longitude
     a71416ac-225c-4d76-acab-67dc94ad8809: 'Featured Sermon Series' # Featured Sermon Series
+    a7845568-a0c6-44e5-8b75-3ef735f6ef8d: 'Page Builder' # Page Builder
     abf9672d-3bab-4e78-a495-5f5b79756405: 'Default Hero Image' # Default Hero Image
     b149c792-7a23-44b8-b08b-12fd4059475d: 'Primary Image' # Primary Image
     b153d5f7-fd35-4731-9437-eb1333cdc3e2: 'SEO Description' # SEO Description
@@ -98,6 +106,7 @@ meta:
     cf5e0084-b552-41a9-acab-14266180cd09: 'Contact Form' # Contact Form
     d9d26b1f-c9ea-4482-8649-b8f387765fc8: 'Contact Form Details' # Contact Form Details
     d41c8997-be52-49d3-8b4b-a09ee99a12cd: 'Map Block' # Map Block
+    dd0ea504-a9fc-46ce-82d3-77a382c44954: 'Background Color' # Background Color
     de88a8f8-2563-459e-8a52-b3ad2f0ec006: 'News Categories' # News Categories
     df286b48-0507-4f99-9892-1f542903143c: Heading # Heading
     e2a3e24e-58ee-4326-8fc2-163003e8205b: 'Gallery Showcase Notes' # Gallery Showcase Notes
@@ -121,6 +130,10 @@ plugins:
     licenseKey: null
     schemaVersion: 1.0.0
     settings: null
+  colour-swatches:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.4.2
   craft-scheduler:
     edition: standard
     enabled: true
