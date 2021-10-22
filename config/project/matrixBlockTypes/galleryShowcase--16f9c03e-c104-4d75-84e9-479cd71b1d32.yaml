@@ -1,11 +1,11 @@
-field: c9504fe8-d2fb-458b-a2e9-f8872585919a # Standard Page Builder
+field: c9504fe8-d2fb-458b-a2e9-f8872585919a # Old Page Builder
 fieldLayouts:
   f479280a-7468-461f-81d0-2eb7f5b83774:
     tabs:
       -
         elements:
           -
-            fieldUid: e2a3e24e-58ee-4326-8fc2-163003e8205b
+            fieldUid: e2a3e24e-58ee-4326-8fc2-163003e8205b # Gallery Showcase Notes
             instructions: null
             label: null
             required: false
@@ -14,7 +14,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: e2b3f41d-b5fb-443c-988f-96c387bfa764
+            fieldUid: e2b3f41d-b5fb-443c-988f-96c387bfa764 # Number to Showcase
             instructions: null
             label: null
             required: true
@@ -25,19 +25,28 @@ fieldLayouts:
         name: Content
         sortOrder: 1
 fields:
-  e2a3e24e-58ee-4326-8fc2-163003e8205b:
-    contentColumnType: string
+  e2a3e24e-58ee-4326-8fc2-163003e8205b: # Gallery Showcase Notes
+    columnSuffix: null
+    contentColumnType: text
     fieldGroup: null
     handle: galleryShowcaseNotes
     instructions: 'This Block will display the most recent galleries on the page'
     name: 'Gallery Showcase Notes'
     searchable: true
     settings:
-      fieldCustomCss: ''
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: null
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: none
-    type: superbig\entryinstructions\fields\EntryInstructionsField
-  e2b3f41d-b5fb-443c-988f-96c387bfa764:
+    type: craft\fields\PlainText
+  e2b3f41d-b5fb-443c-988f-96c387bfa764: # Number to Showcase
+    columnSuffix: null
     contentColumnType: integer(10)
     fieldGroup: null
     handle: numberToShowcase
@@ -49,11 +58,11 @@ fields:
       defaultValue: null
       max: null
       min: '1'
-      prefix: ''
+      prefix: null
       previewCurrency: ''
       previewFormat: decimal
       size: null
-      suffix: ''
+      suffix: null
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number

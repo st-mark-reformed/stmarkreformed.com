@@ -101,7 +101,7 @@ settings:
           __assoc__:
             -
               - disableValidation
-              - ''
+              - '1'
             -
               - allowAliases
               - ''

@@ -1,11 +1,11 @@
-field: c9504fe8-d2fb-458b-a2e9-f8872585919a # Standard Page Builder
+field: c9504fe8-d2fb-458b-a2e9-f8872585919a # Old Page Builder
 fieldLayouts:
   f160cabb-ff49-4ee2-8bb2-49e06d800438:
     tabs:
       -
         elements:
           -
-            fieldUid: 96489851-57e6-4cdd-9f3c-d2e785615f32
+            fieldUid: 96489851-57e6-4cdd-9f3c-d2e785615f32 # Heading
             instructions: null
             label: null
             required: false
@@ -14,7 +14,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: 1a0827bd-1b3c-4260-9328-30c8c7307478
+            fieldUid: 1a0827bd-1b3c-4260-9328-30c8c7307478 # Subheading
             instructions: null
             label: null
             required: false
@@ -23,7 +23,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: fb809945-7807-4e81-9c34-4ff030f0888a
+            fieldUid: fb809945-7807-4e81-9c34-4ff030f0888a # Links
             instructions: null
             label: null
             required: true
@@ -34,7 +34,8 @@ fieldLayouts:
         name: Content
         sortOrder: 1
 fields:
-  1a0827bd-1b3c-4260-9328-30c8c7307478:
+  1a0827bd-1b3c-4260-9328-30c8c7307478: # Subheading
+    columnSuffix: null
     contentColumnType: string
     fieldGroup: null
     handle: subheading
@@ -48,12 +49,13 @@ fields:
       columnType: string
       initialRows: '4'
       multiline: ''
-      placeholder: ''
+      placeholder: null
       uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
-  96489851-57e6-4cdd-9f3c-d2e785615f32:
+  96489851-57e6-4cdd-9f3c-d2e785615f32: # Heading
+    columnSuffix: null
     contentColumnType: string
     fieldGroup: null
     handle: heading
@@ -67,12 +69,13 @@ fields:
       columnType: string
       initialRows: '4'
       multiline: ''
-      placeholder: ''
+      placeholder: null
       uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
-  fb809945-7807-4e81-9c34-4ff030f0888a:
+  fb809945-7807-4e81-9c34-4ff030f0888a: # Links
+    columnSuffix: null
     contentColumnType: text
     fieldGroup: null
     handle: links

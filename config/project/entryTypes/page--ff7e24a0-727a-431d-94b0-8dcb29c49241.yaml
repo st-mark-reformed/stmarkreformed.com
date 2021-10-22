@@ -81,7 +81,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: c9504fe8-d2fb-458b-a2e9-f8872585919a # Standard Page Builder
+            fieldUid: a7845568-a0c6-44e5-8b75-3ef735f6ef8d
             instructions: null
             label: null
             required: false
@@ -131,6 +131,19 @@ fieldLayouts:
             width: 100
         name: SEO
         sortOrder: 2
+      -
+        elements:
+          -
+            fieldUid: c9504fe8-d2fb-458b-a2e9-f8872585919a # Old Page Builder
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Deprecated
+        sortOrder: 3
 handle: page
 hasTitleField: true
 name: Page

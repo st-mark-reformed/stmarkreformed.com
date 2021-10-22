@@ -1,11 +1,11 @@
-field: c9504fe8-d2fb-458b-a2e9-f8872585919a # Standard Page Builder
+field: c9504fe8-d2fb-458b-a2e9-f8872585919a # Old Page Builder
 fieldLayouts:
   8a28bc4d-8d07-44df-a5db-0d0e38db368c:
     tabs:
       -
         elements:
           -
-            fieldUid: df286b48-0507-4f99-9892-1f542903143c
+            fieldUid: df286b48-0507-4f99-9892-1f542903143c # Heading
             instructions: null
             label: null
             required: false
@@ -14,7 +14,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: 7e651c1f-ddb7-4bd0-9842-d0d8b71f4671
+            fieldUid: 7e651c1f-ddb7-4bd0-9842-d0d8b71f4671 # Subheading
             instructions: null
             label: null
             required: false
@@ -23,7 +23,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: 16af453e-7756-4645-b749-cdee119c0d14
+            fieldUid: 16af453e-7756-4645-b749-cdee119c0d14 # Address
             instructions: null
             label: null
             required: true
@@ -32,7 +32,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: 51c9e48c-507e-4e3d-8152-0dba14ef55c3
+            fieldUid: 51c9e48c-507e-4e3d-8152-0dba14ef55c3 # Address Line 2
             instructions: null
             label: null
             required: false
@@ -41,7 +41,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: 5df4f883-59cf-4b67-b323-6330a84cd1cd
+            fieldUid: 5df4f883-59cf-4b67-b323-6330a84cd1cd # City
             instructions: null
             label: null
             required: true
@@ -50,7 +50,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: ff6f181e-01c5-4ca2-815d-5b737efab5d6
+            fieldUid: ff6f181e-01c5-4ca2-815d-5b737efab5d6 # State
             instructions: null
             label: null
             required: true
@@ -59,7 +59,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: 505b895d-c9b1-4296-99ae-d2bef20459c3
+            fieldUid: 505b895d-c9b1-4296-99ae-d2bef20459c3 # Zip
             instructions: null
             label: null
             required: true
@@ -68,7 +68,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: 1f642a1f-8157-48c8-b796-705f62303756
+            fieldUid: 1f642a1f-8157-48c8-b796-705f62303756 # Latitude
             instructions: null
             label: null
             required: true
@@ -77,7 +77,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: a9201e3f-ed7d-463f-b19f-20f487917a4a
+            fieldUid: a9201e3f-ed7d-463f-b19f-20f487917a4a # Longitude
             instructions: null
             label: null
             required: true
@@ -86,7 +86,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: 8f9ce4e3-aa79-49a5-9857-a5a0eb2396c6
+            fieldUid: 8f9ce4e3-aa79-49a5-9857-a5a0eb2396c6 # Body
             instructions: null
             label: null
             required: false
@@ -97,7 +97,8 @@ fieldLayouts:
         name: Content
         sortOrder: 1
 fields:
-  1f642a1f-8157-48c8-b796-705f62303756:
+  1f642a1f-8157-48c8-b796-705f62303756: # Latitude
+    columnSuffix: null
     contentColumnType: 'decimal(40,30)'
     fieldGroup: null
     handle: latitude
@@ -109,15 +110,16 @@ fields:
       defaultValue: null
       max: null
       min: null
-      prefix: ''
+      prefix: null
       previewCurrency: ''
       previewFormat: decimal
       size: null
-      suffix: ''
+      suffix: null
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
-  5df4f883-59cf-4b67-b323-6330a84cd1cd:
+  5df4f883-59cf-4b67-b323-6330a84cd1cd: # City
+    columnSuffix: null
     contentColumnType: string
     fieldGroup: null
     handle: city
@@ -131,12 +133,13 @@ fields:
       columnType: string
       initialRows: '4'
       multiline: ''
-      placeholder: ''
+      placeholder: null
       uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
-  7e651c1f-ddb7-4bd0-9842-d0d8b71f4671:
+  7e651c1f-ddb7-4bd0-9842-d0d8b71f4671: # Subheading
+    columnSuffix: null
     contentColumnType: string
     fieldGroup: null
     handle: subheading
@@ -150,12 +153,13 @@ fields:
       columnType: string
       initialRows: '4'
       multiline: ''
-      placeholder: ''
+      placeholder: null
       uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
-  8f9ce4e3-aa79-49a5-9857-a5a0eb2396c6:
+  8f9ce4e3-aa79-49a5-9857-a5a0eb2396c6: # Body
+    columnSuffix: null
     contentColumnType: text
     fieldGroup: null
     handle: body
@@ -184,7 +188,8 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\redactor\Field
-  16af453e-7756-4645-b749-cdee119c0d14:
+  16af453e-7756-4645-b749-cdee119c0d14: # Address
+    columnSuffix: null
     contentColumnType: text
     fieldGroup: null
     handle: address
@@ -198,12 +203,13 @@ fields:
       columnType: text
       initialRows: '4'
       multiline: ''
-      placeholder: ''
+      placeholder: null
       uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
-  51c9e48c-507e-4e3d-8152-0dba14ef55c3:
+  51c9e48c-507e-4e3d-8152-0dba14ef55c3: # Address Line 2
+    columnSuffix: null
     contentColumnType: text
     fieldGroup: null
     handle: addressLine2
@@ -217,12 +223,13 @@ fields:
       columnType: text
       initialRows: '4'
       multiline: ''
-      placeholder: ''
+      placeholder: null
       uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
-  505b895d-c9b1-4296-99ae-d2bef20459c3:
+  505b895d-c9b1-4296-99ae-d2bef20459c3: # Zip
+    columnSuffix: null
     contentColumnType: string
     fieldGroup: null
     handle: zip
@@ -236,12 +243,13 @@ fields:
       columnType: string
       initialRows: '4'
       multiline: ''
-      placeholder: ''
+      placeholder: null
       uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
-  a9201e3f-ed7d-463f-b19f-20f487917a4a:
+  a9201e3f-ed7d-463f-b19f-20f487917a4a: # Longitude
+    columnSuffix: null
     contentColumnType: 'decimal(40,30)'
     fieldGroup: null
     handle: longitude
@@ -253,15 +261,16 @@ fields:
       defaultValue: null
       max: null
       min: null
-      prefix: ''
+      prefix: null
       previewCurrency: ''
       previewFormat: decimal
       size: null
-      suffix: ''
+      suffix: null
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Number
-  df286b48-0507-4f99-9892-1f542903143c:
+  df286b48-0507-4f99-9892-1f542903143c: # Heading
+    columnSuffix: null
     contentColumnType: string
     fieldGroup: null
     handle: heading
@@ -275,12 +284,13 @@ fields:
       columnType: string
       initialRows: '4'
       multiline: ''
-      placeholder: ''
+      placeholder: null
       uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
-  ff6f181e-01c5-4ca2-815d-5b737efab5d6:
+  ff6f181e-01c5-4ca2-815d-5b737efab5d6: # State
+    columnSuffix: null
     contentColumnType: string
     fieldGroup: null
     handle: state
@@ -294,7 +304,7 @@ fields:
       columnType: string
       initialRows: '4'
       multiline: ''
-      placeholder: ''
+      placeholder: null
       uiMode: normal
     translationKeyFormat: null
     translationMethod: none

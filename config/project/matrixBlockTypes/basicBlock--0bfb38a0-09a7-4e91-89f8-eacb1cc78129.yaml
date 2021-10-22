@@ -1,11 +1,11 @@
-field: c9504fe8-d2fb-458b-a2e9-f8872585919a # Standard Page Builder
+field: c9504fe8-d2fb-458b-a2e9-f8872585919a # Old Page Builder
 fieldLayouts:
   36d1a1a4-81bf-496d-bbd4-22cef03272c3:
     tabs:
       -
         elements:
           -
-            fieldUid: e355e9ca-6733-4125-823c-1111afcb79eb
+            fieldUid: e355e9ca-6733-4125-823c-1111afcb79eb # Options
             instructions: null
             label: null
             required: false
@@ -14,7 +14,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: 65d4cdb4-f28e-469a-a25f-420675afd673
+            fieldUid: 65d4cdb4-f28e-469a-a25f-420675afd673 # Heading
             instructions: null
             label: null
             required: false
@@ -23,7 +23,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: 0d9de0c2-3e02-4799-905a-dc37c9ab8299
+            fieldUid: 0d9de0c2-3e02-4799-905a-dc37c9ab8299 # Subheading
             instructions: null
             label: null
             required: false
@@ -32,7 +32,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: 9541534e-7593-41ec-b0c8-5b12cecf235c
+            fieldUid: 9541534e-7593-41ec-b0c8-5b12cecf235c # Body
             instructions: null
             label: null
             required: false
@@ -41,7 +41,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: 1619a0e9-2a7f-4450-ad7b-9eb6f10a435d
+            fieldUid: 1619a0e9-2a7f-4450-ad7b-9eb6f10a435d # Call To Action
             instructions: null
             label: null
             required: false
@@ -50,7 +50,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: fb27befa-4657-425c-b961-eeace2f94dc4
+            fieldUid: fb27befa-4657-425c-b961-eeace2f94dc4 # Block Background Image
             instructions: null
             label: null
             required: false
@@ -61,7 +61,8 @@ fieldLayouts:
         name: Content
         sortOrder: 1
 fields:
-  0d9de0c2-3e02-4799-905a-dc37c9ab8299:
+  0d9de0c2-3e02-4799-905a-dc37c9ab8299: # Subheading
+    columnSuffix: null
     contentColumnType: string
     fieldGroup: null
     handle: subheading
@@ -75,12 +76,13 @@ fields:
       columnType: string
       initialRows: '4'
       multiline: ''
-      placeholder: ''
+      placeholder: null
       uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
-  65d4cdb4-f28e-469a-a25f-420675afd673:
+  65d4cdb4-f28e-469a-a25f-420675afd673: # Heading
+    columnSuffix: null
     contentColumnType: string
     fieldGroup: null
     handle: heading
@@ -94,12 +96,13 @@ fields:
       columnType: string
       initialRows: '4'
       multiline: ''
-      placeholder: ''
+      placeholder: null
       uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
-  1619a0e9-2a7f-4450-ad7b-9eb6f10a435d:
+  1619a0e9-2a7f-4450-ad7b-9eb6f10a435d: # Call To Action
+    columnSuffix: null
     contentColumnType: text
     fieldGroup: null
     handle: callToAction
@@ -148,7 +151,8 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Table
-  9541534e-7593-41ec-b0c8-5b12cecf235c:
+  9541534e-7593-41ec-b0c8-5b12cecf235c: # Body
+    columnSuffix: null
     contentColumnType: text
     fieldGroup: null
     handle: body
@@ -177,7 +181,8 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\redactor\Field
-  e355e9ca-6733-4125-823c-1111afcb79eb:
+  e355e9ca-6733-4125-823c-1111afcb79eb: # Options
+    columnSuffix: null
     contentColumnType: string
     fieldGroup: null
     handle: options
@@ -245,7 +250,8 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Checkboxes
-  fb27befa-4657-425c-b961-eeace2f94dc4:
+  fb27befa-4657-425c-b961-eeace2f94dc4: # Block Background Image
+    columnSuffix: null
     contentColumnType: string
     fieldGroup: null
     handle: blockBackgroundImage
