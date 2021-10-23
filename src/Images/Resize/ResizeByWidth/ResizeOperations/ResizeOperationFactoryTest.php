@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Images\Resize\ResizeByHeight\ResizeOperations;
+namespace App\Images\Resize\ResizeByWidth\ResizeOperations;
 
 use App\Images\ImageCacheFileSystem;
 use App\Images\Resize\ImageResizeFactory;
