@@ -12,6 +12,7 @@ use Spatie\ImageOptimizer\OptimizerChainFactory;
 
 use function DI\autowire;
 
+/** @psalm-suppress UndefinedConstant */
 return [
     ImageCacheFileSystem::class => static function (): ImageCacheFileSystem {
         return new ImageCacheFileSystem(

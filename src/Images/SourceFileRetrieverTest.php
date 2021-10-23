@@ -66,6 +66,7 @@ class SourceFileRetrieverTest extends TestCase
             GuzzleClient::class,
         );
 
+        /** @psalm-suppress DeprecatedMethod */
         $guzzleClientStub->method('get')->willReturnCallback(
             function (string $uri) use (
                 $guzzleResponse,
