@@ -39,11 +39,13 @@
         "dolphiq/redirect": "1.1.1",
         "doublesecretagency/craft-inventory": "2.1.1",
         "enupal/stripe": "3.3.6",
+        "gumlet/php-image-resize": "^2.0",
         "lucidtaz/yii2-whoops": "dev-master",
         "michelf/php-smartypants": "1.8.1",
         "percipioglobal/craft-colour-swatches": "^1.4",
         "php-di/php-di": "^6.3",
         "sebastianlenz/linkfield": "^1.0",
+        "spatie/image-optimizer": "^1.5",
         "tde/craftplugin-geoaddress": "1.0.13",
         "timostamm/text-truncation": "dev-master",
         "yiisoft/yii2-redis": "^2.0"

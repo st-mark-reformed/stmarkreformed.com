@@ -191,6 +191,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/buzzingpixel/twig-smartypants" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastianlenz/linkfield" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/percipioglobal/craft-colour-swatches" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/image-optimizer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/gumlet/php-image-resize" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
