@@ -168,3 +168,12 @@ COPY ./docker/.profile /root/.bashrc
 COPY --from=frontend-builder /opt/project/public/assets public/assets
 
 ENTRYPOINT ["/init"]
+
+RUN apt-get update && apt-get install -my --force-yes --no-install-recommends \
+    jpegoptim \
+    optipng \
+    pngquant \
+    gifsicle \
+    webp \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
