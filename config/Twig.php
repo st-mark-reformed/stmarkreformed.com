@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Config;
 
+use App\Images\ImageHandler;
 use App\Templating\TwigExtensions\HeroImageUrl\GetDefaultHeroImageUrl;
 use App\Templating\TwigExtensions\Menu\MenuTwigExtension;
 use App\Templating\TwigExtensions\ReadJson\ReadJson;
 use BuzzingPixel\TwigMarkdown\MarkdownTwigExtension;
 use buzzingpixel\twigsmartypants\SmartypantsTwigExtension;
 use buzzingpixel\twigwidont\WidontTwigExtension;
+use Psr\Container\ContainerInterface;
 use Twig\Loader\FilesystemLoader;
 
 class Twig
@@ -34,6 +36,7 @@ class Twig
     public static function globals(ContainerInterface $di): array
     {
         return [
+            'ImageHandler' => $di->get(ImageHandler::class),
         ];
     }
 }
