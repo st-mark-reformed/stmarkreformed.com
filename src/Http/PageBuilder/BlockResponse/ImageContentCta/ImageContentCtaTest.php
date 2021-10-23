@@ -162,6 +162,8 @@ class ImageContentCtaTest extends TestCase
     {
         $image = $this->createMock(Asset::class);
 
+        $image->title = 'testImageTitle';
+
         $image->method('getUrl')->willReturn('testImageUrl');
 
         $imageQuery = $this->createMock(AssetQuery::class);
@@ -225,6 +227,11 @@ class ImageContentCtaTest extends TestCase
         self::assertSame(
             'testImageUrl',
             $contentModel->imageUrl(),
+        );
+
+        self::assertSame(
+            'testImageTitle',
+            $contentModel->imageAltText(),
         );
 
         self::assertTrue($contentModel->showTealOverlayOnImage());

@@ -12,6 +12,7 @@ class ImageContentCtaContentModel
     public function __construct(
         private string $tailwindBackgroundColor,
         private string $imageUrl,
+        private string $imageAltText,
         private bool $showTealOverlayOnImage,
         private string $preHeadline,
         private string $headline,
@@ -28,6 +29,11 @@ class ImageContentCtaContentModel
     public function imageUrl(): string
     {
         return $this->imageUrl;
+    }
+
+    public function imageAltText(): string
+    {
+        return $this->imageAltText;
     }
 
     public function showTealOverlayOnImage(): bool
