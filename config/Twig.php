@@ -27,4 +27,13 @@ class Twig
         SmartypantsTwigExtension::class,
         WidontTwigExtension::class,
     ];
+
+    /**
+     * @return mixed[]
+     */
+    public static function globals(ContainerInterface $di): array
+    {
+        return [
+        ];
+    }
 }

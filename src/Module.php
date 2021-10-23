@@ -95,6 +95,14 @@ class Module extends ModuleBase
             );
         }
 
+        foreach (Twig::globals(di: $di) as $name => $val) {
+            /** @phpstan-ignore-next-line */
+            Craft::$app->getView()->getTwig()->addGlobal(
+                $name,
+                $val,
+            );
+        }
+
         foreach (Twig::EXTENSIONS as $extClassString) {
             /** @psalm-suppress UndefinedMethod */
             if (
