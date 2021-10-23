@@ -1,14 +1,36 @@
+{# @var \App\Images\ImageHandler ImageHandler #}
 {# @var \App\Http\Components\Hero\Hero hero #}
 
 {% extends 'Http/_Infrastructure/_Skeleton.twig' %}
 
+{% set backgroundImage1x = ImageHandler.resizeToHeightByQueue(
+    hero.heroImageUrl,
+    1920,
+    true,
+) %}
+
+{% set backgroundImage2x = ImageHandler.resizeToHeightByQueue(
+    hero.heroImageUrl,
+    3840,
+    true,
+) %}
+
 {% block skeletonContent %}
+    <style>
+        .hero-background-image {
+            background-image: url('{{ backgroundImage1x }}');
+        }
+
+        @media (min-resolution: 1.3dppx) {
+            .hero-background-image {
+                background-image: url('{{ backgroundImage2x }}');
+            }
+        }
+    </style>
     <div class="bg-white">
         <div class="relative overflow-hidden">
             <div
-                class="bg-bronze bg-cover bg-no-repeat bg-center bg-fixed"
-                {# TODO: Impelment image resizing #}
-                style="background-image: url('{{ hero.heroImageUrl }}');"
+                class="hero-background-image bg-bronze bg-cover bg-no-repeat bg-center bg-fixed"
             >
                 <header
                     class="relative"

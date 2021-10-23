@@ -1,12 +1,25 @@
+{# @var \App\Images\ImageHandler ImageHandler #}
 {# @var \App\Http\PageBuilder\BlockResponse\ImageContentCta\ImageContentCtaContentModel contentModel #}
+
+{% set image1x = ImageHandler.resizeToHeightByQueue(
+    contentModel.imageUrl,
+    720,
+    true,
+) %}
+
+{% set image2x = ImageHandler.resizeToHeightByQueue(
+    contentModel.imageUrl,
+    1440,
+) %}
 
 <div class="relative bg-{{ contentModel.tailwindBackgroundColor }}">
     <div class="relative h-56 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
         <img
             class="w-full h-full object-cover"
-            {# TODO: Impelment image resizing #}
-            src="{{ contentModel.imageUrl }}"
-            alt=""
+            src="{{ image1x }}"
+            {% if image2x %}
+            srcset="{{ image1x }} 1x, {{ image2x }} 2x"
+            {% endif %}
             alt="{{ contentModel.imageAltText }}"
         >
         {% if contentModel.showTealOverlayOnImage %}
