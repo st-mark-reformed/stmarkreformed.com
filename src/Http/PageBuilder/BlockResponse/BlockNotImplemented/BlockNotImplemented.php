@@ -10,6 +10,7 @@ use Twig\Environment as TwigEnvironment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
+use yii\base\InvalidConfigException;
 
 class BlockNotImplemented implements BlockResponseBuilderContract
 {
@@ -21,13 +22,15 @@ class BlockNotImplemented implements BlockResponseBuilderContract
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
+     * @throws InvalidConfigException
      *
      * @phpstan-ignore-next-line
      */
     public function buildResponse(MatrixBlock $matrixBlock): string
     {
         return $this->twig->render(
-            '@app/Http/PageBuilder/BlockResponse/BlockNotImplemented/BlockNotImplemented.twig'
+            '@app/Http/PageBuilder/BlockResponse/BlockNotImplemented/BlockNotImplemented.twig',
+            ['blockType' => $matrixBlock->getType()->handle],
         );
     }
 }
