@@ -21,12 +21,25 @@
         {% endif %}
         <div class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
             {% for galleryItem in contentModel.galleryItems %}
+                {% set image1x = ImageHandler.resizeToHeightByQueue(
+                    galleryItem.keyImageUrl,
+                    512,
+                    true,
+                ) %}
+
+                {% set image2x = ImageHandler.resizeToHeightByQueue(
+                    galleryItem.keyImageUrl,
+                    1024,
+                ) %}
                 <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
                     <div class="flex-shrink-0">
                         <a href="{{ galleryItem.url }}">
                             <img
                                 class="h-64 w-full object-cover"
-                                src="{{ galleryItem.keyImageUrl }}"
+                                src="{{ image1x }}"
+                                {% if image2x %}
+                                srcset="{{ image1x }} 1x, {{ image2x }} 2x"
+                                {% endif %}
                                 alt=""
                             >
                         </a>
