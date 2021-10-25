@@ -1,4 +1,4 @@
-dateModified: 1634918147
+dateModified: 1635108499
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -30,6 +30,7 @@ meta:
     1fd7bdfe-3297-4602-90a4-7bbb4671eac3: 'Message Text' # Message Text
     2a9f1934-7a1f-41c3-bfdc-565035a5687f: 'Pastor''s Page Categories' # Pastor's Page Categories
     2a87f914-8ca0-4ff5-816f-eeed96eae0ab: 'Title or Honorific' # Title or Honorific
+    5c25b52f-157e-404f-9578-025b3181bcc8: 'Latest Galleries' # Latest Galleries
     5df4f883-59cf-4b67-b323-6330a84cd1cd: City # City
     5e1b8bc2-ba40-47cd-a9c4-438c1a793250: 'Internal Audio' # Internal Audio
     06ab3828-e4b9-4411-b012-c79e8d0dcd93: Excerpt # Excerpt
@@ -104,6 +105,7 @@ meta:
     c67a7c62-3fbd-43ac-86c6-32c299b87bfe: Users # Users
     c9504fe8-d2fb-458b-a2e9-f8872585919a: 'Old Page Builder' # Old Page Builder
     cf5e0084-b552-41a9-acab-14266180cd09: 'Contact Form' # Contact Form
+    d4e3e352-d099-4aab-9f65-175196a92487: Heading # Heading
     d9d26b1f-c9ea-4482-8649-b8f387765fc8: 'Contact Form Details' # Contact Form Details
     d41c8997-be52-49d3-8b4b-a09ee99a12cd: 'Map Block' # Map Block
     dd0ea504-a9fc-46ce-82d3-77a382c44954: 'Background Color' # Background Color
@@ -120,6 +122,7 @@ meta:
     ef3c7cfd-b16f-4a9a-b7f8-cad052fdbbef: 'Hymn/Psalm Name' # Hymn/Psalm Name
     efe1648a-3d7f-4a16-a249-8e6870078081: Body # Body
     f993b580-0e43-468a-9eab-ed72eef94d7a: 'Hymn of the Month Practice Tracks' # Hymn of the Month Practice Tracks
+    fab4b26c-20f2-4f6b-a4f9-93c660dfcd40: 'Sub Heading' # Sub Heading
     fb27befa-4657-425c-b961-eeace2f94dc4: 'Block Background Image' # Block Background Image
     fb809945-7807-4e81-9c34-4ff030f0888a: Links # Links
     ff6f181e-01c5-4ca2-815d-5b737efab5d6: State # State

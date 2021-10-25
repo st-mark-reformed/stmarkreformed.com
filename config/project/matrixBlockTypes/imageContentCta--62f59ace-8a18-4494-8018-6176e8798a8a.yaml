@@ -287,7 +287,7 @@ fields:
     translationMethod: none
     type: craft\fields\PlainText
   dd0ea504-a9fc-46ce-82d3-77a382c44954: # Background Color
-    columnSuffix: vldpiits
+    columnSuffix: null
     contentColumnType: text
     fieldGroup: null
     handle: backgroundColor
@@ -295,7 +295,6 @@ fields:
     name: 'Background Color'
     searchable: false
     settings:
-      options: ''
       palette: 'Image/Content/Cta Background Options'
       useConfigFile: '1'
     translationKeyFormat: null
