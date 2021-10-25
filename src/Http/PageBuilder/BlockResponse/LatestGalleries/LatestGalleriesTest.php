@@ -22,6 +22,8 @@ use function assert;
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @psalm-suppress MixedArrayAccess
+ * @psalm-suppress MixedArgument
+ * @psalm-suppress MixedAssignment
  */
 class LatestGalleriesTest extends TestCase
 {
