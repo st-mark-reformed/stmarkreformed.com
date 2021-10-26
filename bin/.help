@@ -25,7 +25,7 @@ fi
 
 printf "${Green}The following commands are available:\n${Reset}";
 
-IFS=$'\n'
+IFS=$'\n';
 for f in $(declare -F); do
     func=${f:11};
 
