@@ -21,22 +21,22 @@ return [
                     ],
                 ],
             ],
-            'types' => [
-                // 'imageContentCta' => [
-                //     'tabs' => [
-                //         [
-                //             'label' => 'Test 1',
-                //             'fields' => ['preHeadline', 'Headline'],
-                //         ],
-                //         [
-                //             'label' => 'Test 2',
-                //             'fields' => ['contentField'],
-                //         ],
-                //     ],
-                //     'hiddenFields' => ['backgroundColor'],
-                // ],
-                // 'news' => ['maxLimit' => 1],
-            ],
+            // 'types' => [
+            //     'imageContentCta' => [
+            //         'tabs' => [
+            //             [
+            //                 'label' => 'Test 1',
+            //                 'fields' => ['preHeadline', 'Headline'],
+            //             ],
+            //             [
+            //                 'label' => 'Test 2',
+            //                 'fields' => ['contentField'],
+            //             ],
+            //         ],
+            //         'hiddenFields' => ['backgroundColor'],
+            //     ],
+            //     'news' => ['maxLimit' => 1],
+            // ],
         ],
     ],
 ];
