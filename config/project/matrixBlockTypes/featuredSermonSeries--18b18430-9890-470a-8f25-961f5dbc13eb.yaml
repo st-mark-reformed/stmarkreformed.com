@@ -1,46 +1,4 @@
 field: a7845568-a0c6-44e5-8b75-3ef735f6ef8d # Page Builder
-fieldLayouts:
-  6df44efc-9e06-46d8-89d8-c70588d44732:
-    tabs:
-      -
-        elements:
-          -
-            fieldUid: e7ecd57e-c79d-4e1d-9c73-e34d3f1fb67b # Sermon Series
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            warning: null
-            width: 100
-        name: Content
-        sortOrder: 1
-fields:
-  e7ecd57e-c79d-4e1d-9c73-e34d3f1fb67b: # Sermon Series
-    columnSuffix: null
-    contentColumnType: string
-    fieldGroup: null
-    handle: sermonSeries
-    instructions: 'If no series is chosen, the series from the most recent sermon will be used.'
-    name: 'Sermon Series'
-    searchable: false
-    settings:
-      allowLimit: false
-      allowMultipleSources: false
-      allowSelfRelations: false
-      branchLimit: '1'
-      limit: null
-      localizeRelations: false
-      selectionLabel: 'Select a series'
-      showSiteMenu: false
-      source: 'group:3997eb97-922e-4368-8704-2c22cb7dcb1e'
-      sources: '*'
-      targetSiteId: null
-      validateRelatedElements: false
-      viewMode: null
-    translationKeyFormat: null
-    translationMethod: site
-    type: craft\fields\Categories
 handle: featuredSermonSeries
 name: 'Featured Sermon Series'
-sortOrder: 3
+sortOrder: 4

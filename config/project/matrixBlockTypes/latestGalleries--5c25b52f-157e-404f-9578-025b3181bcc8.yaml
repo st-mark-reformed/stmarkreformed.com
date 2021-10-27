@@ -67,4 +67,4 @@ fields:
     type: craft\fields\PlainText
 handle: latestGalleries
 name: 'Latest Galleries'
-sortOrder: 2
+sortOrder: 3

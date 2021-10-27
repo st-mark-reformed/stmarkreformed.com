@@ -1,0 +1,131 @@
+field: a7845568-a0c6-44e5-8b75-3ef735f6ef8d # Page Builder
+fieldLayouts:
+  245d6f6a-42a8-4dca-b9eb-c3c338e928bd:
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: a3358e0d-ff29-44f7-be26-bfe1bad34889 # Background Color
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 87c0adb7-92a2-47e7-ae13-83a48347bbfd # Heading
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: eb2968df-4b48-4a76-b129-3a2011ed1b82 # Content
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: aadb813b-3e01-45db-85cb-3ef90a02a7b9 # CTAs
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Content
+        sortOrder: 1
+fields:
+  87c0adb7-92a2-47e7-ae13-83a48347bbfd: # Heading
+    columnSuffix: null
+    contentColumnType: text
+    fieldGroup: null
+    handle: heading
+    instructions: ''
+    name: Heading
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: null
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  a3358e0d-ff29-44f7-be26-bfe1bad34889: # Background Color
+    columnSuffix: null
+    contentColumnType: text
+    fieldGroup: null
+    handle: backgroundColor
+    instructions: ''
+    name: 'Background Color'
+    searchable: false
+    settings:
+      palette: 'Simple Cta Background Options'
+      useConfigFile: '1'
+    translationKeyFormat: null
+    translationMethod: none
+    type: percipioglobal\colourswatches\fields\ColourSwatches
+  aadb813b-3e01-45db-85cb-3ef90a02a7b9: # CTAs
+    columnSuffix: null
+    contentColumnType: string
+    fieldGroup: null
+    handle: ctas
+    instructions: ''
+    name: CTAs
+    searchable: false
+    settings:
+      columns:
+        __assoc__:
+          -
+            - da36af03-83a6-417a-a103-f6a96f2c5b66 # URL
+            -
+              __assoc__:
+                -
+                  - width
+                  - ''
+      contentTable: '{{%stc_25_ctas}}'
+      fieldLayout: row
+      maxRows: ''
+      minRows: ''
+      placeholderKey: null
+      propagationMethod: all
+      selectionLabel: ''
+      staticField: ''
+    translationKeyFormat: null
+    translationMethod: site
+    type: verbb\supertable\fields\SuperTableField
+  eb2968df-4b48-4a76-b129-3a2011ed1b82: # Content
+    columnSuffix: null
+    contentColumnType: text
+    fieldGroup: null
+    handle: contentField
+    instructions: ''
+    name: Content
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: '1'
+      placeholder: null
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+handle: simpleCta
+name: 'Simple Cta'
+sortOrder: 1

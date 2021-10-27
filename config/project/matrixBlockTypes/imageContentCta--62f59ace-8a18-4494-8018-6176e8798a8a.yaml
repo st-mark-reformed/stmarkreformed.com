@@ -302,4 +302,4 @@ fields:
     type: percipioglobal\colourswatches\fields\ColourSwatches
 handle: imageContentCta
 name: Image/Content/Cta
-sortOrder: 1
+sortOrder: 2
