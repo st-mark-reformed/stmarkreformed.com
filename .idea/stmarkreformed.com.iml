@@ -193,6 +193,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/percipioglobal/craft-colour-swatches" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/image-optimizer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/gumlet/php-image-resize" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/verbb/super-table" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/verbb/base" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/vaersaagod/matrixmate" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

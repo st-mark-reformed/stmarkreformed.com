@@ -48,6 +48,8 @@
         "spatie/image-optimizer": "^1.5",
         "tde/craftplugin-geoaddress": "1.0.13",
         "timostamm/text-truncation": "dev-master",
+        "vaersaagod/matrixmate": "^1.2",
+        "verbb/super-table": "^2.6",
         "yiisoft/yii2-redis": "^2.0"
     },
     "require-dev": {
