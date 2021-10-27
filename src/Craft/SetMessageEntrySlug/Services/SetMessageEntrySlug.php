@@ -25,7 +25,7 @@ class SetMessageEntrySlug implements SetMessageEntrySlugContract
         $date = $postDate->format('Y-m-d');
 
         $this->entry->slug = (new Slugify())->slugify(
-            $date . '-' . (string) $this->entry->title,
+            $date . '-' . ((string) $this->entry->title),
         );
     }
 }

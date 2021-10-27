@@ -1,4 +1,4 @@
-dateModified: 1635108499
+dateModified: 1635134687
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -49,6 +49,7 @@ meta:
     8f73d9f8-3435-4396-bb8f-e729910f2665: Gallery # Gallery
     16af453e-7756-4645-b749-cdee119c0d14: Address # Address
     16f9c03e-c104-4d75-84e9-479cd71b1d32: 'Gallery Showcase' # Gallery Showcase
+    18b18430-9890-470a-8f25-961f5dbc13eb: 'Featured Sermon Series' # Featured Sermon Series
     27b7be51-9d75-42da-9b5f-b2e1fb678ed6: SEO # SEO
     29f855c0-8761-4086-ae93-dcda8685d73c: 'St. Mark Reformed Church' # St. Mark Reformed Church
     32d76b8c-d3f3-45cf-8b3d-55991f485a16: Bio # Bio
@@ -113,6 +114,7 @@ meta:
     df286b48-0507-4f99-9892-1f542903143c: Heading # Heading
     e2a3e24e-58ee-4326-8fc2-163003e8205b: 'Gallery Showcase Notes' # Gallery Showcase Notes
     e2b3f41d-b5fb-443c-988f-96c387bfa764: 'Number to Showcase' # Number to Showcase
+    e7ecd57e-c79d-4e1d-9c73-e34d3f1fb67b: 'Sermon Series' # Sermon Series
     e91f5555-0d06-411a-a55c-c24f14632bf4: Pages # Pages
     e355e9ca-6733-4125-823c-1111afcb79eb: Options # Options
     e13796c0-a36c-490c-bf23-eb7f25d5465f: 'Hero Subheading' # Hero Subheading
