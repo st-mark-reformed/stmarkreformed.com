@@ -3,13 +3,13 @@
 
 {% extends 'Http/_Infrastructure/_Skeleton.twig' %}
 
-{% set backgroundImage1x = ImageHandler.resizeToHeightByQueue(
+{% set backgroundImage1x = ImageHandler.resizeToWidthByQueue(
     hero.heroImageUrl,
     1920,
     true,
 ) %}
 
-{% set backgroundImage2x = ImageHandler.resizeToHeightByQueue(
+{% set backgroundImage2x = ImageHandler.resizeToWidthByQueue(
     hero.heroImageUrl,
     3840,
     true,
