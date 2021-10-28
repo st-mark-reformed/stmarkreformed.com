@@ -6,15 +6,16 @@ namespace App\Http\PageBuilder\BlockResponse\ImageContentCta;
 
 use App\Http\Components\Link\Link;
 use App\Http\Components\Link\LinkFactory;
+use App\Shared\FieldHandlers\Assets\AssetsFieldHandler;
+use App\Shared\FieldHandlers\ColourSwatches\ColorOptionFromElementField;
+use App\Shared\FieldHandlers\Generic\GenericHandler;
+use App\Shared\FieldHandlers\LinkField\LinkFieldHandler;
+use craft\base\Element;
 use craft\elements\Asset;
-use craft\elements\db\AssetQuery;
 use craft\elements\MatrixBlock;
 use craft\errors\InvalidFieldException;
-use Exception;
-use percipioglobal\colourswatches\models\ColourSwatches;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use stdClass;
 use Twig\Environment as TwigEnvironment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -28,54 +29,73 @@ use function assert;
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  * @psalm-suppress MixedArrayAccess
+ * @psalm-suppress MixedAssignment
+ * @psalm-suppress MixedArgument
+ * @psalm-suppress MixedMethodCall
  */
 class ImageContentCtaTest extends TestCase
 {
-    private Link $linkStub;
-    /** @var MockObject&TwigEnvironment */
-    private mixed $twigStub;
-    /** @var LinkFactory&MockObject */
-    private mixed $linkFactoryStub;
-    /** @var MockObject&Markup */
-    private mixed $contentTwigMarkupStub;
-    /**
-     * @var MockObject&LinkFieldModel
-     * @phpstan-ignore-next-line
-     */
-    private mixed $ctaLinkFieldModelStub;
+    private ImageContentCta $service;
+
     /**
      * @var MatrixBlock&MockObject
      * @phpstan-ignore-next-line
      */
-    private mixed $matrixBlockStub;
+    private mixed $matrixBlock;
 
     /** @var mixed[] */
     private array $twigCalls = [];
+
     /** @var mixed[] */
     private array $linkFactoryCalls = [];
+
+    /** @var mixed[] */
+    private array $genericHandlerCalls = [];
+
+    /** @var mixed[] */
+    private array $linkFieldHandlerCalls = [];
+
+    /** @var mixed[] */
+    private array $assetsFieldHandlerCalls = [];
+
+    /** @var mixed[] */
+    private array $colorOptionFromElementFieldCalls = [];
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->twigCalls        = [];
-        $this->linkFactoryCalls = [];
+        $this->mockMatrixBlock();
 
-        $this->linkStub = new Link(isEmpty: true);
-
-        $this->contentTwigMarkupStub = $this->createMock(
-            Markup::class,
+        $this->service = new ImageContentCta(
+            twig: $this->mockTwig(),
+            linkFactory: $this->mockLinkFactory(),
+            genericHandler: $this->mockGenericHandler(),
+            linkFieldHandler: $this->mockLinkFieldHandler(),
+            assetsFieldHandler: $this->mockAssetsFieldHandler(),
+            colorOptionFromElementField: $this->mockColorOptionFromElementField(),
         );
+    }
 
-        $this->ctaLinkFieldModelStub = $this->createMock(
-            LinkFieldModel::class,
+    private function mockMatrixBlock(): void
+    {
+        $this->matrixBlock = $this->createMock(
+            MatrixBlock::class,
         );
+    }
 
-        $this->twigStub = $this->createMock(
+    /**
+     * @return MockObject&TwigEnvironment
+     */
+    private function mockTwig(): mixed
+    {
+        $this->twigCalls = [];
+
+        $twig = $this->createMock(
             TwigEnvironment::class,
         );
 
-        $this->twigStub->method('render')->willReturnCallback(
+        $twig->method('render')->willReturnCallback(
             function (string $name, array $context): string {
                 $this->twigCalls[] = [
                     'method' => 'render',
@@ -83,94 +103,198 @@ class ImageContentCtaTest extends TestCase
                     'context' => $context,
                 ];
 
-                return 'fooBarTwigRender';
+                return 'twigRenderReturn';
             }
         );
 
-        $this->linkFactoryStub = $this->createMock(
+        return $twig;
+    }
+
+    /**
+     * @return MockObject&LinkFactory
+     */
+    private function mockLinkFactory(): mixed
+    {
+        $this->linkFactoryCalls = [];
+
+        $linkFactory = $this->createMock(
             LinkFactory::class,
         );
 
-        $this->linkFactoryStub->method('fromLinkFieldModel')
+        $linkFactory->method('fromLinkFieldModel')
             ->willReturnCallback(
                 function (LinkFieldModel $linkFieldModel): Link {
                     $this->linkFactoryCalls[] = [
-                        'method' => 'fromLinkFieldModel',
+                        'method' => 'render',
                         'linkFieldModel' => $linkFieldModel,
                     ];
 
-                    return $this->linkStub;
+                    return new Link(
+                        isEmpty: false,
+                        content: 'testContent',
+                    );
                 }
             );
 
-        $this->matrixBlockStub = $this->createMock(
-            MatrixBlock::class,
-        );
-
-        $this->matrixBlockStub->method('getFieldValue')
-            ->willReturnCallback([
-                $this,
-                'buildMatrixBlockFiledValueCallback',
-            ]);
+        return $linkFactory;
     }
 
     /**
-     * @throws Exception
+     * @return MockObject&GenericHandler
      */
-    public function buildMatrixBlockFiledValueCallback(
-        string $fieldHandle,
-    ): mixed {
-        return match ($fieldHandle) {
-            'backgroundColor' => $this->mockBackgroundColor(),
-            'image' => $this->mockImageQuery(),
-            'contentField' => $this->contentTwigMarkupStub,
-            'cta' => $this->ctaLinkFieldModelStub,
-            'showTealOverlayOnImage' => true,
-            'preHeadline' => 'testPreHeadline',
-            'headline' => 'testHeadline',
-            // @codeCoverageIgnoreStart
-            default => throw new Exception(
-                'FieldHandleNotImplemented',
-            ),
-            // @codeCoverageIgnoreEnd
-        };
-    }
-
-    private function mockBackgroundColor(): ColourSwatches
+    private function mockGenericHandler(): mixed
     {
-        $backgroundColorOption = new stdClass();
+        $this->genericHandlerCalls = [];
 
-        $backgroundColorOption->tailwindColor = 'testTailwindColor';
-
-        $backgroundColors = [$backgroundColorOption];
-
-        $backgroundColorModel = $this->createMock(
-            ColourSwatches::class
+        $genericHandler = $this->createMock(
+            GenericHandler::class,
         );
 
-        $backgroundColorModel->method('colors')->willReturn(
-            $backgroundColors
+        $genericHandler->method('getBoolean')->willReturnCallback(
+            function (Element $element, string $field): bool {
+                $this->genericHandlerCalls[] = [
+                    'method' => 'getBoolean',
+                    'element' => $element,
+                    'field' => $field,
+                ];
+
+                return true;
+            }
         );
 
-        return $backgroundColorModel;
+        $genericHandler->method('getString')->willReturnCallback(
+            function (Element $element, string $field): string {
+                $this->genericHandlerCalls[] = [
+                    'method' => 'getString',
+                    'element' => $element,
+                    'field' => $field,
+                ];
+
+                return 'testString';
+            }
+        );
+
+        $genericHandler->method('getTwigMarkup')->willReturnCallback(
+            function (Element $element, string $field): Markup {
+                $this->genericHandlerCalls[] = [
+                    'method' => 'getTwigMarkup',
+                    'element' => $element,
+                    'field' => $field,
+                ];
+
+                return new Markup(
+                    'testMarkupString',
+                    'UTF-8',
+                );
+            }
+        );
+
+        return $genericHandler;
     }
 
     /**
-     * @phpstan-ignore-next-line
+     * @return MockObject&LinkFieldHandler
      */
-    private function mockImageQuery(): AssetQuery
+    private function mockLinkFieldHandler(): mixed
     {
-        $image = $this->createMock(Asset::class);
+        $this->linkFieldHandlerCalls = [];
 
-        $image->title = 'testImageTitle';
+        $linkFieldHandler = $this->createMock(
+            LinkFieldHandler::class,
+        );
 
-        $image->method('getUrl')->willReturn('testImageUrl');
+        $linkFieldHandler->method('getModel')->willReturnCallback(
+            function (
+                Element $element,
+                string $field,
+            ): LinkFieldModel {
+                $this->linkFieldHandlerCalls[] = [
+                    'method' => 'getModel',
+                    'element' => $element,
+                    'field' => $field,
+                ];
 
-        $imageQuery = $this->createMock(AssetQuery::class);
+                $linkFieldModel = $this->createMock(
+                    LinkFieldModel::class,
+                );
 
-        $imageQuery->method('one')->willReturn($image);
+                $linkFieldModel->method('getLink')->willReturn(
+                    'testLink',
+                );
 
-        return $imageQuery;
+                return $linkFieldModel;
+            }
+        );
+
+        return $linkFieldHandler;
+    }
+
+    /**
+     * @return MockObject&AssetsFieldHandler
+     */
+    private function mockAssetsFieldHandler(): mixed
+    {
+        $this->assetsFieldHandlerCalls = [];
+
+        $assetsFieldHandler = $this->createMock(
+            AssetsFieldHandler::class,
+        );
+
+        $assetsFieldHandler->method('getOne')->willReturnCallback(
+            function (
+                Element $element,
+                string $field,
+            ): Asset {
+                $this->assetsFieldHandlerCalls[] = [
+                    'method' => 'getOne',
+                    'element' => $element,
+                    'field' => $field,
+                ];
+
+                $asset = $this->createMock(Asset::class);
+
+                $asset->title = 'test asset title';
+
+                $asset->method('getUrl')
+                    ->willReturn('testAssetUrl');
+
+                return $asset;
+            }
+        );
+
+        return $assetsFieldHandler;
+    }
+
+    /**
+     * @return MockObject&ColorOptionFromElementField
+     */
+    private function mockColorOptionFromElementField(): mixed
+    {
+        $this->colorOptionFromElementFieldCalls = [];
+
+        $colorOptionFromElementField = $this->createMock(
+            ColorOptionFromElementField::class,
+        );
+
+        $colorOptionFromElementField->method('getStringValue')
+            ->willReturnCallback(
+                function (
+                    Element $element,
+                    string $fieldName,
+                    string $option,
+                ): string {
+                    $this->colorOptionFromElementFieldCalls[] = [
+                        'method' => 'getStringValue',
+                        'element' => $element,
+                        'fieldName' => $fieldName,
+                        'option' => $option,
+                    ];
+
+                    return 'testColor';
+                }
+            );
+
+        return $colorOptionFromElementField;
     }
 
     /**
@@ -182,37 +306,30 @@ class ImageContentCtaTest extends TestCase
      */
     public function testBuildResponse(): void
     {
-        $imageContentCta = new ImageContentCta(
-            twig: $this->twigStub,
-            linkFactory: $this->linkFactoryStub,
-        );
-
         self::assertSame(
-            'fooBarTwigRender',
-            $imageContentCta->buildResponse(
-                matrixBlock: $this->matrixBlockStub,
+            'twigRenderReturn',
+            $this->service->buildResponse(
+                matrixBlock: $this->matrixBlock,
             ),
         );
 
-        self::assertCount(1, $this->twigCalls);
-
-        /** @psalm-suppress MixedArgument */
-        self::assertCount(3, $this->twigCalls[0]);
+        self::assertCount(
+            1,
+            $this->twigCalls,
+        );
 
         self::assertSame(
             'render',
-            $this->twigCalls[0]['method']
+            $this->twigCalls[0]['method'],
         );
 
         self::assertSame(
             '@app/Http/PageBuilder/BlockResponse/ImageContentCta/ImageContentCta.twig',
-            $this->twigCalls[0]['name']
+            $this->twigCalls[0]['name'],
         );
 
-        /** @psalm-suppress MixedAssignment */
         $context = $this->twigCalls[0]['context'];
 
-        /** @psalm-suppress MixedArgument */
         self::assertCount(1, $context);
 
         $contentModel = $context['contentModel'];
@@ -220,58 +337,112 @@ class ImageContentCtaTest extends TestCase
         assert($contentModel instanceof ImageContentCtaContentModel);
 
         self::assertSame(
-            'testTailwindColor',
+            'testColor',
             $contentModel->tailwindBackgroundColor(),
         );
 
         self::assertSame(
-            'testImageUrl',
+            'testAssetUrl',
             $contentModel->imageUrl(),
         );
 
         self::assertSame(
-            'testImageTitle',
+            'test asset title',
             $contentModel->imageAltText(),
         );
 
         self::assertTrue($contentModel->showTealOverlayOnImage());
 
         self::assertSame(
-            'testPreHeadline',
+            'testString',
             $contentModel->preHeadline(),
         );
 
         self::assertSame(
-            'testHeadline',
+            'testString',
             $contentModel->headline(),
         );
 
         self::assertSame(
-            $this->contentTwigMarkupStub,
-            $contentModel->content(),
-        );
-
-        self::assertTrue($contentModel->cta()->isEmpty());
-
-        self::assertCount(
-            1,
-            $this->linkFactoryCalls,
-        );
-
-        /** @psalm-suppress MixedArgument */
-        self::assertCount(
-            2,
-            $this->linkFactoryCalls[0],
+            'testMarkupString',
+            (string) $contentModel->content(),
         );
 
         self::assertSame(
-            'fromLinkFieldModel',
+            'testContent',
+            $contentModel->cta()->content(),
+        );
+
+        self::assertCount(1, $this->linkFactoryCalls);
+
+        self::assertSame(
+            'render',
             $this->linkFactoryCalls[0]['method'],
         );
 
         self::assertSame(
-            $this->ctaLinkFieldModelStub,
-            $this->linkFactoryCalls[0]['linkFieldModel'],
+            'testLink',
+            $this->linkFactoryCalls[0]['linkFieldModel']->getLink(),
+        );
+
+        self::assertSame(
+            [
+                [
+                    'method' => 'getBoolean',
+                    'element' => $this->matrixBlock,
+                    'field' => 'showTealOverlayOnImage',
+                ],
+                [
+                    'method' => 'getString',
+                    'element' => $this->matrixBlock,
+                    'field' => 'preHeadline',
+                ],
+                [
+                    'method' => 'getString',
+                    'element' => $this->matrixBlock,
+                    'field' => 'headline',
+                ],
+                [
+                    'method' => 'getTwigMarkup',
+                    'element' => $this->matrixBlock,
+                    'field' => 'contentField',
+                ],
+            ],
+            $this->genericHandlerCalls,
+        );
+
+        self::assertSame(
+            [
+                [
+                    'method' => 'getModel',
+                    'element' => $this->matrixBlock,
+                    'field' => 'cta',
+                ],
+            ],
+            $this->linkFieldHandlerCalls,
+        );
+
+        self::assertSame(
+            [
+                [
+                    'method' => 'getOne',
+                    'element' => $this->matrixBlock,
+                    'field' => 'image',
+                ],
+            ],
+            $this->assetsFieldHandlerCalls,
+        );
+
+        self::assertSame(
+            [
+                [
+                    'method' => 'getStringValue',
+                    'element' => $this->matrixBlock,
+                    'fieldName' => 'backgroundColor',
+                    'option' => 'tailwindColor',
+                ],
+            ],
+            $this->colorOptionFromElementFieldCalls,
         );
     }
 }

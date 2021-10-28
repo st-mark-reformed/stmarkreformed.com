@@ -6,29 +6,27 @@ namespace App\Http\PageBuilder\BlockResponse\ImageContentCta;
 
 use App\Http\Components\Link\LinkFactory;
 use App\Http\PageBuilder\BlockResponse\BlockResponseBuilderContract;
-use craft\elements\Asset;
-use craft\elements\db\AssetQuery;
+use App\Shared\FieldHandlers\Assets\AssetsFieldHandler;
+use App\Shared\FieldHandlers\ColourSwatches\ColorOptionFromElementField;
+use App\Shared\FieldHandlers\Generic\GenericHandler;
+use App\Shared\FieldHandlers\LinkField\LinkFieldHandler;
 use craft\elements\MatrixBlock;
 use craft\errors\InvalidFieldException;
-use percipioglobal\colourswatches\models\ColourSwatches;
-use stdClass;
 use Twig\Environment as TwigEnvironment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
-use Twig\Markup;
-use typedlinkfield\models\Link as LinkFieldModel;
 use yii\base\InvalidConfigException;
-
-use function assert;
-use function is_array;
-use function property_exists;
 
 class ImageContentCta implements BlockResponseBuilderContract
 {
     public function __construct(
         private TwigEnvironment $twig,
         private LinkFactory $linkFactory,
+        private GenericHandler $genericHandler,
+        private LinkFieldHandler $linkFieldHandler,
+        private AssetsFieldHandler $assetsFieldHandler,
+        private ColorOptionFromElementField $colorOptionFromElementField,
     ) {
     }
 
@@ -43,44 +41,16 @@ class ImageContentCta implements BlockResponseBuilderContract
      */
     public function buildResponse(MatrixBlock $matrixBlock): string
     {
-        $backgroundColorModel = $matrixBlock->getFieldValue(
-            'backgroundColor'
+        $backgroundColor = $this->colorOptionFromElementField->getStringValue(
+            element: $matrixBlock,
+            fieldName: 'backgroundColor',
+            option: 'tailwindColor',
         );
 
-        assert($backgroundColorModel instanceof ColourSwatches);
-
-        $backgroundColors = $backgroundColorModel->colors();
-
-        assert(is_array($backgroundColors));
-
-        $backgroundColorOption = $backgroundColors[0];
-
-        assert($backgroundColorOption instanceof stdClass);
-
-        assert(property_exists(
-            $backgroundColorOption,
-            'tailwindColor'
-        ));
-
-        $backgroundColor = (string) $backgroundColorOption->tailwindColor;
-
-        $imageQuery = $matrixBlock->getFieldValue('image');
-
-        assert($imageQuery instanceof AssetQuery);
-
-        $image = $imageQuery->one();
-
-        assert($image instanceof Asset);
-
-        $contentTwigMarkup = $matrixBlock->getFieldValue(
-            'contentField'
+        $image = $this->assetsFieldHandler->getOne(
+            element: $matrixBlock,
+            field: 'image',
         );
-
-        assert($contentTwigMarkup instanceof Markup);
-
-        $ctaLinkFieldModel = $matrixBlock->getFieldValue('cta');
-
-        assert($ctaLinkFieldModel instanceof LinkFieldModel);
 
         return $this->twig->render(
             '@app/Http/PageBuilder/BlockResponse/ImageContentCta/ImageContentCta.twig',
@@ -89,18 +59,27 @@ class ImageContentCta implements BlockResponseBuilderContract
                     tailwindBackgroundColor: $backgroundColor,
                     imageUrl: (string) $image->getUrl(),
                     imageAltText:(string) $image->title,
-                    showTealOverlayOnImage: (bool) $matrixBlock->getFieldValue(
-                        'showTealOverlayOnImage',
+                    showTealOverlayOnImage: $this->genericHandler->getBoolean(
+                        element: $matrixBlock,
+                        field: 'showTealOverlayOnImage',
                     ),
-                    preHeadline: (string) $matrixBlock->getFieldValue(
-                        'preHeadline',
+                    preHeadline: $this->genericHandler->getString(
+                        element: $matrixBlock,
+                        field: 'preHeadline',
                     ),
-                    headline: (string) $matrixBlock->getFieldValue(
-                        'headline'
+                    headline: $this->genericHandler->getString(
+                        element: $matrixBlock,
+                        field: 'headline',
                     ),
-                    content: $contentTwigMarkup,
+                    content: $this->genericHandler->getTwigMarkup(
+                        element: $matrixBlock,
+                        field: 'contentField',
+                    ),
                     cta: $this->linkFactory->fromLinkFieldModel(
-                        linkFieldModel: $ctaLinkFieldModel
+                        linkFieldModel: $this->linkFieldHandler->getModel(
+                            element: $matrixBlock,
+                            field: 'cta',
+                        ),
                     ),
                 ),
             ],

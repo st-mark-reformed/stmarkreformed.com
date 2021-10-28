@@ -58,6 +58,7 @@
       <option name="INSTALLED_PATHS" value="$PROJECT_DIR$/vendor/doctrine/coding-standard/lib/Doctrine" />
       <option name="EXTENSIONS" value="php" />
     </inspection_tool>
+    <inspection_tool class="PhpDocSignatureInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
     <inspection_tool class="PhpDocSignatureIsNotCompleteInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
     <inspection_tool class="PhpNamedArgumentsWithChangedOrderInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
     <inspection_tool class="PhpNoReturnAttributeCanBeAddedInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
