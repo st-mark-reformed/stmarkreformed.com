@@ -14,7 +14,16 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: 87c0adb7-92a2-47e7-ae13-83a48347bbfd # Heading
+            fieldUid: d84e3ace-3a36-46b0-bf4d-a2dc40d9e932 # Pre-Headline
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 87c0adb7-92a2-47e7-ae13-83a48347bbfd # Headline
             instructions: null
             label: null
             required: false
@@ -26,7 +35,7 @@ fieldLayouts:
             fieldUid: eb2968df-4b48-4a76-b129-3a2011ed1b82 # Content
             instructions: null
             label: null
-            required: false
+            required: true
             tip: null
             type: craft\fieldlayoutelements\CustomField
             warning: null
@@ -43,13 +52,13 @@ fieldLayouts:
         name: Content
         sortOrder: 1
 fields:
-  87c0adb7-92a2-47e7-ae13-83a48347bbfd: # Heading
+  87c0adb7-92a2-47e7-ae13-83a48347bbfd: # Headline
     columnSuffix: null
     contentColumnType: text
     fieldGroup: null
-    handle: heading
+    handle: headline
     instructions: ''
-    name: Heading
+    name: Headline
     searchable: false
     settings:
       byteLimit: null
@@ -106,6 +115,26 @@ fields:
     translationKeyFormat: null
     translationMethod: site
     type: verbb\supertable\fields\SuperTableField
+  d84e3ace-3a36-46b0-bf4d-a2dc40d9e932: # Pre-Headline
+    columnSuffix: xktzlozi
+    contentColumnType: text
+    fieldGroup: null
+    handle: preHeadline
+    instructions: ''
+    name: Pre-Headline
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: null
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   eb2968df-4b48-4a76-b129-3a2011ed1b82: # Content
     columnSuffix: null
     contentColumnType: text

@@ -7,6 +7,7 @@ namespace App\Http\PageBuilder\BlockResponse;
 use App\Http\PageBuilder\BlockResponse\FeaturedSermonSeries\FeaturedSermonSeries;
 use App\Http\PageBuilder\BlockResponse\ImageContentCta\ImageContentCta;
 use App\Http\PageBuilder\BlockResponse\LatestGalleries\LatestGalleries;
+use App\Http\PageBuilder\BlockResponse\SimpleCta\SimpleCta;
 use craft\elements\MatrixBlock;
 
 interface BlockResponseBuilderContract
@@ -15,6 +16,7 @@ interface BlockResponseBuilderContract
         'imageContentCta' => ImageContentCta::class,
         'latestGalleries' => LatestGalleries::class,
         'featuredSermonSeries' => FeaturedSermonSeries::class,
+        'simpleCta' => SimpleCta::class,
     ];
 
     /**
