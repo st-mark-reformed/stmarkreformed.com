@@ -103,20 +103,20 @@ class MenuTwigExtensionTest extends TestCase
             $mainMenu[1]->href(),
         );
         self::assertCount(
-            5,
+            6,
             $mainMenu[1]->submenu(),
         );
         self::assertTrue($mainMenu[1]->hasSubMenu());
 
         $aboutSubMenu = $mainMenu[1]->submenu();
 
-        // /about/mission-statement
+        // /about/about
         self::assertSame(
-            'Mission Statement',
+            'About',
             $aboutSubMenu[0]->content(),
         );
         self::assertSame(
-            '/about/mission-statement',
+            '/about',
             $aboutSubMenu[0]->href(),
         );
         self::assertCount(
@@ -125,13 +125,13 @@ class MenuTwigExtensionTest extends TestCase
         );
         self::assertFalse($aboutSubMenu[0]->hasSubMenu());
 
-        // /about/liturgy-and-sacraments
+        // /about/mission-statement
         self::assertSame(
-            'Liturgy and Sacraments',
+            'Mission Statement',
             $aboutSubMenu[1]->content(),
         );
         self::assertSame(
-            '/about/liturgy-and-sacraments',
+            '/about/mission-statement',
             $aboutSubMenu[1]->href(),
         );
         self::assertCount(
@@ -140,13 +140,13 @@ class MenuTwigExtensionTest extends TestCase
         );
         self::assertFalse($aboutSubMenu[1]->hasSubMenu());
 
-        // /about/leadership
+        // /about/liturgy-and-sacraments
         self::assertSame(
-            'Leadership',
+            'Liturgy and Sacraments',
             $aboutSubMenu[2]->content(),
         );
         self::assertSame(
-            '/about/leadership',
+            '/about/liturgy-and-sacraments',
             $aboutSubMenu[2]->href(),
         );
         self::assertCount(
@@ -155,13 +155,13 @@ class MenuTwigExtensionTest extends TestCase
         );
         self::assertFalse($aboutSubMenu[2]->hasSubMenu());
 
-        // /about/church-government
+        // /about/leadership
         self::assertSame(
-            'Church Government',
+            'Leadership',
             $aboutSubMenu[3]->content(),
         );
         self::assertSame(
-            '/about/church-government',
+            '/about/leadership',
             $aboutSubMenu[3]->href(),
         );
         self::assertCount(
@@ -170,13 +170,13 @@ class MenuTwigExtensionTest extends TestCase
         );
         self::assertFalse($aboutSubMenu[3]->hasSubMenu());
 
-        // /about/membership
+        // /about/church-government
         self::assertSame(
-            'Membership',
+            'Church Government',
             $aboutSubMenu[4]->content(),
         );
         self::assertSame(
-            '/about/membership',
+            '/about/church-government',
             $aboutSubMenu[4]->href(),
         );
         self::assertCount(
@@ -184,6 +184,21 @@ class MenuTwigExtensionTest extends TestCase
             $aboutSubMenu[4]->submenu(),
         );
         self::assertFalse($aboutSubMenu[4]->hasSubMenu());
+
+        // /about/membership
+        self::assertSame(
+            'Membership',
+            $aboutSubMenu[5]->content(),
+        );
+        self::assertSame(
+            '/about/membership',
+            $aboutSubMenu[5]->href(),
+        );
+        self::assertCount(
+            0,
+            $aboutSubMenu[5]->submenu(),
+        );
+        self::assertFalse($aboutSubMenu[5]->hasSubMenu());
 
         /**
          * Media

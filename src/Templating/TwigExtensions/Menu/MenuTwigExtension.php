@@ -41,6 +41,10 @@ class MenuTwigExtension extends AbstractExtension
                 href: '/about',
                 submenu: [
                     new MenuItem(
+                        content: 'About',
+                        href: '/about',
+                    ),
+                    new MenuItem(
                         content: 'Mission Statement',
                         href: '/about/mission-statement',
                     ),
