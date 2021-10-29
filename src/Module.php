@@ -6,6 +6,7 @@ namespace App;
 
 use App\Craft\ElementSaveClearStaticCache;
 use App\Craft\SetMessageEntrySlug\SetMessageEntrySlugFactory;
+use App\Http\Utility\ClearStaticCache;
 use BuzzingPixel\TwigDumper\TwigDumper;
 use Config\di\Container;
 use Config\Twig;
@@ -13,6 +14,8 @@ use Craft;
 use craft\base\Element;
 use craft\console\Application as ConsoleApplication;
 use craft\events\ModelEvent;
+use craft\events\RegisterCacheOptionsEvent;
+use craft\utilities\ClearCaches;
 use Exception;
 use Twig\Extension\ExtensionInterface;
 use Twig\Loader\FilesystemLoader;
@@ -146,7 +149,9 @@ class Module extends ModuleBase
 
         $clearStaticCache = $di->get(ElementSaveClearStaticCache::class);
 
-        assert($clearStaticCache instanceof ElementSaveClearStaticCache);
+        assert(
+            $clearStaticCache instanceof ElementSaveClearStaticCache
+        );
 
         Event::on(
             Element::class,
@@ -174,6 +179,24 @@ class Module extends ModuleBase
             Element::class,
             Element::EVENT_AFTER_DELETE,
             [$clearStaticCache, 'clear'],
+        );
+
+        Event::on(
+            ClearCaches::class,
+            ClearCaches::EVENT_REGISTER_CACHE_OPTIONS,
+            static function (RegisterCacheOptionsEvent $event): void {
+                $di = Container::get();
+
+                $clearStaticCache = $di->get(ClearStaticCache::class);
+
+                assert($clearStaticCache instanceof ClearStaticCache);
+
+                $event->options[] = [
+                    'key' => 'static-caches',
+                    'label' => 'Static Caches',
+                    'action' => [$clearStaticCache, 'clear'],
+                ];
+            }
         );
     }
 
