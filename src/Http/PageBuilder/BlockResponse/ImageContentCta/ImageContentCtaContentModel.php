@@ -11,6 +11,7 @@ class ImageContentCtaContentModel
 {
     public function __construct(
         private string $tailwindBackgroundColor,
+        private string $contentDisposition,
         private string $imageUrl,
         private string $imageAltText,
         private bool $showTealOverlayOnImage,
@@ -24,6 +25,11 @@ class ImageContentCtaContentModel
     public function tailwindBackgroundColor(): string
     {
         return $this->tailwindBackgroundColor;
+    }
+
+    public function contentDisposition(): string
+    {
+        return $this->contentDisposition;
     }
 
     public function imageUrl(): string

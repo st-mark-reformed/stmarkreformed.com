@@ -57,6 +57,10 @@ class ImageContentCta implements BlockResponseBuilderContract
             [
                 'contentModel' => new ImageContentCtaContentModel(
                     tailwindBackgroundColor: $backgroundColor,
+                    contentDisposition: $this->genericHandler->getString(
+                        element: $matrixBlock,
+                        field: 'contentDisposition',
+                    ),
                     imageUrl: (string) $image->getUrl(),
                     imageAltText:(string) $image->title,
                     showTealOverlayOnImage: $this->genericHandler->getBoolean(

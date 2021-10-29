@@ -342,6 +342,11 @@ class ImageContentCtaTest extends TestCase
         );
 
         self::assertSame(
+            'testString',
+            $contentModel->contentDisposition(),
+        );
+
+        self::assertSame(
             'testAssetUrl',
             $contentModel->imageUrl(),
         );
@@ -387,6 +392,11 @@ class ImageContentCtaTest extends TestCase
 
         self::assertSame(
             [
+                [
+                    'method' => 'getString',
+                    'element' => $this->matrixBlock,
+                    'field' => 'contentDisposition',
+                ],
                 [
                     'method' => 'getBoolean',
                     'element' => $this->matrixBlock,
