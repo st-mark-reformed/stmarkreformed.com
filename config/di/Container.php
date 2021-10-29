@@ -32,7 +32,7 @@ class Container
             );
 
         if ((bool) getenv('ENABLE_DI_COMPILATION')) {
-            $diCacheDir = dirname(__DIR__) . '/storage/di-cache';
+            $diCacheDir = dirname(__DIR__, 2) . '/storage/di-cache';
 
             if (! is_dir($diCacheDir)) {
                 mkdir(
