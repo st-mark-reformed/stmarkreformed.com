@@ -27,6 +27,15 @@ fieldLayouts:
             warning: null
             width: 100
           -
+            fieldUid: c665efa6-4acd-4798-ab92-b0f46bf5fd05 # Show Sub-Page Sidebar
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
             fieldUid: 46e9048c-cfef-4f69-acd7-cd03439b3867 # Use Short Hero?
             instructions: null
             label: null
