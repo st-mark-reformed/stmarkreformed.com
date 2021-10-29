@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\FieldHandlers\SuperTable;
+namespace App\Shared\FieldHandlers\Matrix;
 
 use craft\base\Element;
+use craft\elements\db\MatrixBlockQuery;
+use craft\elements\MatrixBlock;
 use craft\errors\InvalidFieldException;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use verbb\supertable\elements\db\SuperTableBlockQuery;
-use verbb\supertable\elements\SuperTableBlockElement;
 
 use function assert;
 
@@ -17,9 +17,9 @@ use function assert;
  * @psalm-suppress PropertyNotSetInConstructor
  * @psalm-suppress MixedArrayAccess
  */
-class SuperTableFieldHandlerTest extends TestCase
+class MatrixFieldHandlerTest extends TestCase
 {
-    private SuperTableFieldHandler $handler;
+    private MatrixFieldHandler $handler;
 
     /**
      * @var Element&MockObject
@@ -41,23 +41,23 @@ class SuperTableFieldHandlerTest extends TestCase
         $this->queryOneReturnsElement = true;
 
         $blockElement1        = $this->createMock(
-            SuperTableBlockElement::class,
+            MatrixBlock::class
         );
         $blockElement1->title = 'Element Stub 1';
 
         $blockElement2        = $this->createMock(
-            SuperTableBlockElement::class,
+            MatrixBlock::class
         );
         $blockElement2->title = 'Element Stub 2';
 
         $query = $this->createMock(
-            SuperTableBlockQuery::class,
+            MatrixBlockQuery::class,
         );
 
         $query->method('one')->willReturnCallback(
             function () use (
                 $blockElement1,
-            ): ?SuperTableBlockElement {
+            ): ?MatrixBlock {
                 if ($this->queryOneReturnsElement) {
                     return $blockElement1;
                 }
@@ -76,7 +76,7 @@ class SuperTableFieldHandlerTest extends TestCase
         $this->element->method('getFieldValue')->willReturnCallback(
             function (string $fieldHandle) use (
                 $query,
-            ): SuperTableBlockQuery {
+            ): MatrixBlockQuery {
                 $this->elementCalls[] = [
                     'method' => 'getFieldValue',
                     'fieldHandle' => $fieldHandle,
@@ -86,7 +86,7 @@ class SuperTableFieldHandlerTest extends TestCase
             }
         );
 
-        $this->handler = new SuperTableFieldHandler();
+        $this->handler = new MatrixFieldHandler();
     }
 
     /**
@@ -136,7 +136,7 @@ class SuperTableFieldHandlerTest extends TestCase
             field: 'testField',
         );
 
-        assert($result instanceof SuperTableBlockElement);
+        assert($result instanceof MatrixBlock);
 
         self::assertSame(
             'Element Stub 1',
