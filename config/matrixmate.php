@@ -7,6 +7,10 @@ return [
         'pageBuilder' => [
             'groups' => [
                 [
+                    'label' => 'Content',
+                    'types' => ['basicBlock'],
+                ],
+                [
                     'label' => 'CTAs',
                     'types' => [
                         'simpleCta',

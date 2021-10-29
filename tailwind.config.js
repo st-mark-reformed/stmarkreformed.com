@@ -30,6 +30,13 @@ module.exports = {
                             marginTop: 0,
                             marginBottom: 0,
                         },
+                        a: {
+                            color: theme('colors.crimson'),
+                            'text-decoration': 'underline',
+                            '&:hover': {
+                                color: theme('colors.crimson-dark'),
+                            },
+                        },
                     },
                 },
                 'over-dark': {

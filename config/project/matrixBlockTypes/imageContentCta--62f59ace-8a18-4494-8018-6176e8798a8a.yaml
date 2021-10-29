@@ -82,6 +82,7 @@ fields:
       allowCustomText: '1'
       allowTarget: '1'
       allowedLinkNames:
+        1: asset
         3: entry
         9: url
       autoNoReferrer: ''
@@ -97,7 +98,8 @@ fields:
               __assoc__:
                 -
                   - sources
-                  - '*'
+                  -
+                    - 'folder:b886a851-ce2f-4594-a30d-955fa9112b15'
                 -
                   - allowCustomQuery
                   - ''

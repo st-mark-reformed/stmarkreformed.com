@@ -1,4 +1,4 @@
-dateModified: 1635355871
+dateModified: 1635469768
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -31,6 +31,7 @@ meta:
     1fddf7ac-c47a-491d-961f-bf23c0cc3e91: 'Simple Cta' # Simple Cta
     2a9f1934-7a1f-41c3-bfdc-565035a5687f: 'Pastor''s Page Categories' # Pastor's Page Categories
     2a87f914-8ca0-4ff5-816f-eeed96eae0ab: 'Title or Honorific' # Title or Honorific
+    3dc4707f-a219-4bde-9559-201300acd001: URL # URL
     5c25b52f-157e-404f-9578-025b3181bcc8: 'Latest Galleries' # Latest Galleries
     5df4f883-59cf-4b67-b323-6330a84cd1cd: City # City
     5e1b8bc2-ba40-47cd-a9c4-438c1a793250: 'Internal Audio' # Internal Audio
@@ -59,14 +60,18 @@ meta:
     51c9e48c-507e-4e3d-8152-0dba14ef55c3: 'Address Line 2' # Address Line 2
     62f59ace-8a18-4494-8018-6176e8798a8a: Image/Content/Cta # Image/Content/Cta
     65d4cdb4-f28e-469a-a25f-420675afd673: Heading # Heading
+    068d01a2-6a79-498a-a08a-ef779b9e6b59: Headline # Headline
     83ae5632-273d-44d5-b592-476a39460f51: 'Entry Builder' # Entry Builder
     84f0c3bc-62d3-4031-83c9-053e7a1fc6b2: General # General
     86d6041c-07e9-4e14-9e05-e68dafc0ecae: Image # Image
     87c0adb7-92a2-47e7-ae13-83a48347bbfd: Headline # Headline
+    90be6229-e9e1-49fc-a6a3-58f9f26a8627: 'Background Color' # Background Color
     91bf91c7-572a-4deb-b5dc-7d055d4c0ba9: Headline # Headline
     94e92402-bc7d-4413-bc65-a236d81d53aa: 'St. Mark Reformed Church' # St. Mark Reformed Church
     98eceee6-f51c-4e12-b27e-8af4e80fb147: 'Custom Share Image' # Custom Share Image
+    185c9077-feec-4a7f-b489-78fc453368b1: Content # Content
     0214b210-9d5a-47f7-8e2c-1dc100c5a952: Date # Date
+    237c1074-3fbf-4e4e-a85b-b9c6af4a9732: CTAs # CTAs
     261a469a-71d2-46af-8ca5-7b25e2a168f1: Pages # Pages
     292cba0e-342e-4846-9263-6b573384de88: 'Feature Latest' # Feature Latest
     0363b404-b48e-4cdb-8a99-253db50b2d17: 'Select a series to display' # Select a series to display
@@ -102,7 +107,9 @@ meta:
     abf9672d-3bab-4e78-a495-5f5b79756405: 'Default Hero Image' # Default Hero Image
     b149c792-7a23-44b8-b08b-12fd4059475d: 'Primary Image' # Primary Image
     b153d5f7-fd35-4731-9437-eb1333cdc3e2: 'SEO Description' # SEO Description
+    b347cbd4-6649-4d68-9a40-b7d125c99e96: Alignment # Alignment
     b660e427-16f8-4219-ab16-4d955f0176b4: 'Small Heading' # Small Heading
+    b1284b82-f1a8-41b1-8480-11c6366bb213: Pre-Headline # Pre-Headline
     b5819ef5-9761-4d28-b9c2-d7c2a3b41532: 'Twitter Handle' # Twitter Handle
     b4204049-2a69-459e-b105-94be12ec6081: URL # URL
     ba477ad1-a81e-4f6c-9976-f0f2af90b390: 'Leadership Listing Details' # Leadership Listing Details
@@ -112,6 +119,7 @@ meta:
     cf5e0084-b552-41a9-acab-14266180cd09: 'Contact Form' # Contact Form
     d4e3e352-d099-4aab-9f65-175196a92487: Heading # Heading
     d9d26b1f-c9ea-4482-8649-b8f387765fc8: 'Contact Form Details' # Contact Form Details
+    d26ccd2c-292c-4d69-a877-5926e0091e99: 'Basic Block' # Basic Block
     d41c8997-be52-49d3-8b4b-a09ee99a12cd: 'Map Block' # Map Block
     d84e3ace-3a36-46b0-bf4d-a2dc40d9e932: Pre-Headline # Pre-Headline
     da36af03-83a6-417a-a103-f6a96f2c5b66: URL # URL
@@ -137,6 +145,10 @@ meta:
     ff6f181e-01c5-4ca2-815d-5b737efab5d6: State # State
     ff7e24a0-727a-431d-94b0-8dcb29c49241: Page # Page
 plugins:
+  buttonbox:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
   ckeditor:
     enabled: '1'
     licenseKey: null

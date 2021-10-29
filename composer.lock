@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "708e11986dbf3985d7434c922217f94b",
+    "content-hash": "6fb86e62b59593d28798fc56d63eaf3b",
     "packages": [
         {
             "name": "buzzingpixel/bp-cache",
@@ -5772,6 +5772,63 @@
                 "source": "https://github.com/stripe/stripe-php/tree/v7.97.0"
             },
             "time": "2021-09-16T21:28:33+00:00"
+        },
+        {
+            "name": "supercool/buttonbox",
+            "version": "2.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/supercool/buttonbox.git",
+                "reference": "9123c54dfb5d8e536fafb47211ef4fdcfbd155f1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/supercool/buttonbox/zipball/9123c54dfb5d8e536fafb47211ef4fdcfbd155f1",
+                "reference": "9123c54dfb5d8e536fafb47211ef4fdcfbd155f1",
+                "shasum": ""
+            },
+            "require": {
+                "craftcms/cms": "^3.0.0-RC1"
+            },
+            "type": "craft-plugin",
+            "extra": {
+                "name": "Button Box",
+                "handle": "buttonbox",
+                "schemaVersion": "1.0.0",
+                "hasCpSettings": false,
+                "hasCpSection": false,
+                "changelogUrl": "https://raw.githubusercontent.com/supercool/buttonbox/master/CHANGELOG.md",
+                "class": "supercool\\buttonbox\\ButtonBox"
+            },
+            "autoload": {
+                "psr-4": {
+                    "supercool\\buttonbox\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Supercool",
+                    "homepage": "http://supercooldesign.co.uk"
+                }
+            ],
+            "description": "A collection of utility field types for Craft",
+            "keywords": [
+                "Craft",
+                "buttonbox",
+                "cms",
+                "craft-plugin",
+                "craftcms"
+            ],
+            "support": {
+                "docs": "https://github.com/supercool/buttonbox/blob/master/README.md",
+                "issues": "https://github.com/supercool/buttonbox/issues",
+                "source": "https://github.com/supercool/buttonbox/tree/2.0.4"
+            },
+            "time": "2019-06-19T23:54:29+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

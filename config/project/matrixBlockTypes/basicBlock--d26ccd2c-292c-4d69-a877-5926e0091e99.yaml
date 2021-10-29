@@ -1,0 +1,245 @@
+field: a7845568-a0c6-44e5-8b75-3ef735f6ef8d # Page Builder
+fieldLayouts:
+  a6686d0d-b57e-4002-beed-5835d780cd74:
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: 90be6229-e9e1-49fc-a6a3-58f9f26a8627 # Background Color
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: b347cbd4-6649-4d68-9a40-b7d125c99e96 # Alignment
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: b1284b82-f1a8-41b1-8480-11c6366bb213 # Pre-Headline
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 068d01a2-6a79-498a-a08a-ef779b9e6b59 # Headline
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 185c9077-feec-4a7f-b489-78fc453368b1 # Content
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 237c1074-3fbf-4e4e-a85b-b9c6af4a9732 # CTAs
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Content
+        sortOrder: 1
+fields:
+  068d01a2-6a79-498a-a08a-ef779b9e6b59: # Headline
+    columnSuffix: null
+    contentColumnType: text
+    fieldGroup: null
+    handle: headline
+    instructions: ''
+    name: Headline
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: null
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  90be6229-e9e1-49fc-a6a3-58f9f26a8627: # Background Color
+    columnSuffix: null
+    contentColumnType: text
+    fieldGroup: null
+    handle: backgroundColor
+    instructions: ''
+    name: 'Background Color'
+    searchable: false
+    settings:
+      palette: 'Basic Block Background Options'
+      useConfigFile: '1'
+    translationKeyFormat: null
+    translationMethod: none
+    type: percipioglobal\colourswatches\fields\ColourSwatches
+  185c9077-feec-4a7f-b489-78fc453368b1: # Content
+    columnSuffix: null
+    contentColumnType: text
+    fieldGroup: null
+    handle: contentField
+    instructions: ''
+    name: Content
+    searchable: false
+    settings:
+      availableTransforms: '*'
+      availableVolumes:
+        - fe2952ce-382a-4470-8f04-a7bdd1b48f66
+      cleanupHtml: true
+      columnType: text
+      configSelectionMode: choose
+      defaultTransform: ''
+      manualConfig: ''
+      purifierConfig: ''
+      purifyHtml: '1'
+      redactorConfig: Standard.json
+      removeEmptyTags: '1'
+      removeInlineStyles: '1'
+      removeNbsp: '1'
+      showHtmlButtonForNonAdmins: ''
+      showUnpermittedFiles: false
+      showUnpermittedVolumes: false
+      uiMode: enlarged
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\redactor\Field
+  237c1074-3fbf-4e4e-a85b-b9c6af4a9732: # CTAs
+    columnSuffix: null
+    contentColumnType: string
+    fieldGroup: null
+    handle: ctas
+    instructions: ''
+    name: CTAs
+    searchable: false
+    settings:
+      columns:
+        __assoc__:
+          -
+            - 3dc4707f-a219-4bde-9559-201300acd001 # URL
+            -
+              __assoc__:
+                -
+                  - width
+                  - ''
+      contentTable: '{{%stc_26_ctas}}'
+      fieldLayout: row
+      maxRows: ''
+      minRows: ''
+      placeholderKey: null
+      propagationMethod: all
+      selectionLabel: 'Add CTA'
+      staticField: ''
+    translationKeyFormat: null
+    translationMethod: site
+    type: verbb\supertable\fields\SuperTableField
+  b347cbd4-6649-4d68-9a40-b7d125c99e96: # Alignment
+    columnSuffix: null
+    contentColumnType: text
+    fieldGroup: null
+    handle: alignment
+    instructions: ''
+    name: Alignment
+    searchable: false
+    settings:
+      displayAsGraphic: ''
+      displayFullwidth: ''
+      options:
+        -
+          __assoc__:
+            -
+              - label
+              - Left
+            -
+              - showLabel
+              - ''
+            -
+              - value
+              - left
+            -
+              - imageUrl
+              - /assets/img/icons/left-align-h20.svg
+            -
+              - default
+              - '1'
+        -
+          __assoc__:
+            -
+              - label
+              - Center
+            -
+              - showLabel
+              - ''
+            -
+              - value
+              - center
+            -
+              - imageUrl
+              - /assets/img/icons/center-align-h20.svg
+            -
+              - default
+              - ''
+        -
+          __assoc__:
+            -
+              - label
+              - Right
+            -
+              - showLabel
+              - ''
+            -
+              - value
+              - right
+            -
+              - imageUrl
+              - /assets/img/icons/right-align-h20.svg
+            -
+              - default
+              - ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: supercool\buttonbox\fields\Buttons
+  b1284b82-f1a8-41b1-8480-11c6366bb213: # Pre-Headline
+    columnSuffix: null
+    contentColumnType: text
+    fieldGroup: null
+    handle: preHeadline
+    instructions: ''
+    name: Pre-Headline
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: null
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+handle: basicBlock
+name: 'Basic Block'
+sortOrder: 5

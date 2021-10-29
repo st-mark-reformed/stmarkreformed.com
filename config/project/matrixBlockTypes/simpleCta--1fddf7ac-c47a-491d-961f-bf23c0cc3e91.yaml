@@ -110,13 +110,13 @@ fields:
       minRows: ''
       placeholderKey: null
       propagationMethod: all
-      selectionLabel: ''
+      selectionLabel: 'Add CTA'
       staticField: ''
     translationKeyFormat: null
     translationMethod: site
     type: verbb\supertable\fields\SuperTableField
   d84e3ace-3a36-46b0-bf4d-a2dc40d9e932: # Pre-Headline
-    columnSuffix: xktzlozi
+    columnSuffix: null
     contentColumnType: text
     fieldGroup: null
     handle: preHeadline
