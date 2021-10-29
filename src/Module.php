@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Craft\ElementSaveClearStaticCache;
 use App\Craft\SetMessageEntrySlug\SetMessageEntrySlugFactory;
 use BuzzingPixel\TwigDumper\TwigDumper;
 use Config\di\Container;
@@ -141,6 +142,12 @@ class Module extends ModuleBase
      */
     private function setEvents(): void
     {
+        $di = Container::get();
+
+        $clearStaticCache = $di->get(ElementSaveClearStaticCache::class);
+
+        assert($clearStaticCache instanceof ElementSaveClearStaticCache);
+
         Event::on(
             Element::class,
             Element::EVENT_BEFORE_SAVE,
@@ -155,6 +162,18 @@ class Module extends ModuleBase
 
                 $factory->make(eventModel: $eventModel)->set();
             }
+        );
+
+        Event::on(
+            Element::class,
+            Element::EVENT_AFTER_SAVE,
+            [$clearStaticCache, 'clear'],
+        );
+
+        Event::on(
+            Element::class,
+            Element::EVENT_AFTER_DELETE,
+            [$clearStaticCache, 'clear'],
         );
     }
 

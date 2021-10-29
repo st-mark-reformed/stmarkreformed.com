@@ -346,16 +346,16 @@
         },
         {
             "name": "buzzingpixel/static-cache-middleware",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/buzzingpixel/static-cache-middleware.git",
-                "reference": "ba0ebeb3a1bea4a985509b94a5087263d7b1e80f"
+                "reference": "226ceed5dd32ef7367c3412376a26cf672effa19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/buzzingpixel/static-cache-middleware/zipball/ba0ebeb3a1bea4a985509b94a5087263d7b1e80f",
-                "reference": "ba0ebeb3a1bea4a985509b94a5087263d7b1e80f",
+                "url": "https://api.github.com/repos/buzzingpixel/static-cache-middleware/zipball/226ceed5dd32ef7367c3412376a26cf672effa19",
+                "reference": "226ceed5dd32ef7367c3412376a26cf672effa19",
                 "shasum": ""
             },
             "require": {
@@ -396,9 +396,9 @@
             ],
             "support": {
                 "issues": "https://github.com/buzzingpixel/static-cache-middleware/issues",
-                "source": "https://github.com/buzzingpixel/static-cache-middleware/tree/1.0.0"
+                "source": "https://github.com/buzzingpixel/static-cache-middleware/tree/1.0.1"
             },
-            "time": "2021-10-19T14:36:32+00:00"
+            "time": "2021-10-29T18:43:00+00:00"
         },
         {
             "name": "buzzingpixel/twig-markdown",
