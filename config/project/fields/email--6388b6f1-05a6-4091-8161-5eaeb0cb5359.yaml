@@ -1,0 +1,12 @@
+columnSuffix: guzchyyp
+contentColumnType: string
+fieldGroup: c67a7c62-3fbd-43ac-86c6-32c299b87bfe # Users
+handle: email
+instructions: ''
+name: Email
+searchable: false
+settings:
+  placeholder: ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Email

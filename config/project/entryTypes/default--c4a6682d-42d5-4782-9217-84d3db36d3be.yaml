@@ -1,0 +1,110 @@
+fieldLayouts:
+  4d296125-6be2-416f-98bf-790107fc9ed2:
+    tabs:
+      -
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            disabled: false
+            id: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\EntryTitleField
+            warning: null
+            width: 100
+          -
+            fieldUid: 58ef7773-046d-4cbb-b5e9-84ed62735bd3 # Profile Photo
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 819a94af-ec06-4468-87c9-d689e0010136 # First Name
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 50
+          -
+            fieldUid: 42896f14-4d1e-4a82-8219-53d7de7d33ce # Last Name
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 50
+          -
+            fieldUid: 2a87f914-8ca0-4ff5-816f-eeed96eae0ab # Title or Honorific
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 50
+          -
+            fieldUid: 6388b6f1-05a6-4091-8161-5eaeb0cb5359 # Email
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 50
+          -
+            fieldUid: ec8b995b-78c1-4e7e-a2ba-cab6d24be004 # Leadership Position
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 32d76b8c-d3f3-45cf-8b3d-55991f485a16 # Bio
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: dd1bb219-b7c4-4a1d-97e5-80801d58ca98
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Content
+        sortOrder: 1
+handle: default
+hasTitleField: false
+name: Default
+section: 234d8474-d5c9-4357-90de-18d4526c68a3 # Profiles
+sortOrder: 1
+titleFormat: '{firstName} {lastName}'
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

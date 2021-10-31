@@ -1,0 +1,19 @@
+columnSuffix: jzxynhdp
+contentColumnType: text
+fieldGroup: c67a7c62-3fbd-43ac-86c6-32c299b87bfe # Users
+handle: lastName
+instructions: ''
+name: 'Last Name'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: ''
+  columnType: null
+  initialRows: '4'
+  multiline: ''
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText
