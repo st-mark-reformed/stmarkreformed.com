@@ -162,6 +162,18 @@ class BasicBlockTest extends TestCase
             }
         );
 
+        $genericHandler->method('getBoolean')->willReturnCallback(
+            function (Element $element, string $field): bool {
+                $this->genericHandlerCalls[] = [
+                    'method' => 'getBoolean',
+                    'element' => $element,
+                    'field' => $field,
+                ];
+
+                return true;
+            }
+        );
+
         $genericHandler->method('getTwigMarkup')->willReturnCallback(
             function (Element $element, string $field): Markup {
                 $this->genericHandlerCalls[] = [
@@ -341,6 +353,8 @@ class BasicBlockTest extends TestCase
             $contentModel->tailwindBackgroundColor(),
         );
 
+        self::assertTrue($contentModel->noTopSpace());
+
         self::assertSame(
             'testString',
             $contentModel->alignment(),
@@ -398,6 +412,11 @@ class BasicBlockTest extends TestCase
 
         self::assertSame(
             [
+                [
+                    'method' => 'getBoolean',
+                    'element' => $this->matrixBlock,
+                    'field' => 'noTopSpace',
+                ],
                 [
                     'method' => 'getString',
                     'element' => $this->matrixBlock,

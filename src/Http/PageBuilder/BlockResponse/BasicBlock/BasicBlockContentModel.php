@@ -20,6 +20,7 @@ class BasicBlockContentModel
      */
     public function __construct(
         private string $tailwindBackgroundColor,
+        private bool $noTopSpace,
         private string $alignment,
         private string $preHeadline,
         private string $headline,
@@ -40,6 +41,11 @@ class BasicBlockContentModel
     public function tailwindBackgroundColor(): string
     {
         return $this->tailwindBackgroundColor;
+    }
+
+    public function noTopSpace(): bool
+    {
+        return $this->noTopSpace;
     }
 
     public function alignment(): string

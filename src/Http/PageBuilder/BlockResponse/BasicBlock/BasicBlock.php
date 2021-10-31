@@ -49,6 +49,11 @@ class BasicBlock implements BlockResponseBuilderContract
             option: 'tailwindColor',
         );
 
+        $noTopSpace = $this->genericHandler->getBoolean(
+            element: $matrixBlock,
+            field: 'noTopSpace',
+        );
+
         $alignment = $this->genericHandler->getString(
             element: $matrixBlock,
             field: 'alignment',
@@ -94,6 +99,7 @@ class BasicBlock implements BlockResponseBuilderContract
             [
                 'contentModel' => new BasicBlockContentModel(
                     tailwindBackgroundColor: $backgroundColor,
+                    noTopSpace: $noTopSpace,
                     alignment: $alignment,
                     preHeadline: $preHeadline,
                     headline: $headline,
