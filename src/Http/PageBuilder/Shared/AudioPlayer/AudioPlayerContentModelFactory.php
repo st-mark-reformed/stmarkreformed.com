@@ -8,9 +8,8 @@ use craft\elements\Asset;
 use craft\elements\Category;
 use craft\elements\db\AssetQuery;
 use craft\elements\db\CategoryQuery;
-use craft\elements\db\UserQuery;
+use craft\elements\db\EntryQuery;
 use craft\elements\Entry;
-use craft\elements\User;
 use craft\errors\InvalidFieldException;
 use DateTimeInterface;
 use yii\base\InvalidConfigException;
@@ -48,19 +47,17 @@ class AudioPlayerContentModelFactory
             $mimeType = 'audio/mp3';
         }
 
-        $speakerQuery = $sermon->getFieldValue('speaker');
+        $speakerQuery = $sermon->getFieldValue('profile');
 
-        assert($speakerQuery instanceof UserQuery);
+        assert($speakerQuery instanceof EntryQuery);
 
         $keyValItems = [];
 
         foreach ($speakerQuery->all() as $speaker) {
             /** @phpstan-ignore-next-line */
-            assert($speaker instanceof User);
+            assert($speaker instanceof Entry);
 
-            $slug = (string) $speaker->getFieldValue(
-                'slugField'
-            );
+            $slug = (string) $speaker->slug;
 
             $keyValItems[] = new AudioPlayerKeyValItem(
                 key: 'by',
@@ -68,7 +65,7 @@ class AudioPlayerContentModelFactory
                     (string) $speaker->getFieldValue(
                         'titleOrHonorific',
                     ),
-                    (string) $speaker->getFullName(),
+                    (string) $speaker->title,
                 ])),
                 href: '/media/messages/by/' . $slug,
             );

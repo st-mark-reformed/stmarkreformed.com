@@ -8,9 +8,8 @@ use craft\elements\Asset;
 use craft\elements\Category;
 use craft\elements\db\AssetQuery;
 use craft\elements\db\CategoryQuery;
-use craft\elements\db\UserQuery;
+use craft\elements\db\EntryQuery;
 use craft\elements\Entry;
-use craft\elements\User;
 use craft\errors\InvalidFieldException;
 use DateTime;
 use DateTimeInterface;
@@ -30,40 +29,38 @@ class AudioPlayerContentModelFactoryTest extends TestCase
      */
     public function testMakeFromSermonEntry(): void
     {
-        $speaker1 = $this->createMock(User::class);
+        $speaker1 = $this->createMock(Entry::class);
+
+        $speaker1->slug = 'test-slug-1';
+
+        $speaker1->title = 'Test Full Name 1';
 
         $speaker1->method('getFieldValue')->willReturnCallback(
             static function (string $fieldHandle): string {
                 return match ($fieldHandle) {
                     'titleOrHonorific' => 'Test Title 1',
-                    'slugField' => 'test-slug-1',
                     default => throw new Exception(),
                 };
             }
         );
 
-        $speaker1->method('getFullName')->willReturn(
-            'Test Full Name 1',
-        );
+        $speaker2 = $this->createMock(Entry::class);
 
-        $speaker2 = $this->createMock(User::class);
+        $speaker2->slug = 'test-slug-2';
+
+        $speaker2->title = 'Test Full Name 2';
 
         $speaker2->method('getFieldValue')->willReturnCallback(
             static function (string $fieldHandle): string {
                 return match ($fieldHandle) {
                     'titleOrHonorific' => '',
-                    'slugField' => 'test-slug-2',
                     default => throw new Exception(),
                 };
             }
         );
 
-        $speaker2->method('getFullName')->willReturn(
-            'Test Full Name 2',
-        );
-
         $speakerQuery = $this->createMock(
-            UserQuery::class,
+            EntryQuery::class,
         );
 
         $speakerQuery->method('all')->willReturn([
@@ -129,7 +126,7 @@ class AudioPlayerContentModelFactoryTest extends TestCase
                 $seriesQuery,
             ): mixed {
                 return match ($fieldHandle) {
-                    'speaker' => $speakerQuery,
+                    'profile' => $speakerQuery,
                     'audio' => $sermonAudioAssetQuery,
                     'messageText' => 'Test Message Text',
                     'messageSeries' => $seriesQuery,
