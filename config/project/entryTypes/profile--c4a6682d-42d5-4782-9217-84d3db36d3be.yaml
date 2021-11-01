@@ -90,7 +90,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: dd1bb219-b7c4-4a1d-97e5-80801d58ca98
+            fieldUid: dd1bb219-b7c4-4a1d-97e5-80801d58ca98 # Associated User Account
             instructions: null
             label: null
             required: false
@@ -100,9 +100,9 @@ fieldLayouts:
             width: 100
         name: Content
         sortOrder: 1
-handle: default
+handle: profile
 hasTitleField: false
-name: Default
+name: Profile
 section: 234d8474-d5c9-4357-90de-18d4526c68a3 # Profiles
 sortOrder: 1
 titleFormat: '{firstName} {lastName}'

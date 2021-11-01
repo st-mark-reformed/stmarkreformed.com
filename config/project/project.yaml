@@ -1,4 +1,4 @@
-dateModified: 1635644887
+dateModified: 1635787786
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -80,7 +80,7 @@ meta:
     0363b404-b48e-4cdb-8a99-253db50b2d17: 'Select a series to display' # Select a series to display
     466eae26-271a-4bd0-af4c-355f3ed1d39a: Content # Content
     505b895d-c9b1-4296-99ae-d2bef20459c3: Zip # Zip
-    714e71ca-d308-4ed3-8a66-351e750b7b70: Speaker # Speaker
+    714e71ca-d308-4ed3-8a66-351e750b7b70: 'Speaker (old, based on User)' # Speaker (old, based on User)
     819a94af-ec06-4468-87c9-d689e0010136: 'First Name' # First Name
     922bdd2b-20e9-41d4-92bc-007b8452a18e: Slug # Slug
     926ff203-b918-45b0-b2a6-bfa4604b465f: 'Internal Message Series' # Internal Message Series
@@ -88,6 +88,7 @@ meta:
     1849a26d-8a77-45c2-a9d4-9dd57e96be94: 'Resource Downloads' # Resource Downloads
     3925f2c2-f707-4557-ae5e-1b4e36801755: 'Short Description' # Short Description
     6388b6f1-05a6-4091-8161-5eaeb0cb5359: Email # Email
+    7522d6a8-afc9-4759-9891-9a6b55c68ba8: 'Internal Messages' # Internal Messages
     8166c5cb-d63f-45c7-ae99-c33961a4cf3d: 'Facebook URL' # Facebook URL
     42896f14-4d1e-4a82-8219-53d7de7d33ce: 'Last Name' # Last Name
     51614c49-f9f5-4660-abc0-d551062072b8: 'Message Series' # Message Series
@@ -120,7 +121,7 @@ meta:
     b5819ef5-9761-4d28-b9c2-d7c2a3b41532: 'Twitter Handle' # Twitter Handle
     b4204049-2a69-459e-b105-94be12ec6081: URL # URL
     ba477ad1-a81e-4f6c-9976-f0f2af90b390: 'Leadership Listing Details' # Leadership Listing Details
-    c4a6682d-42d5-4782-9217-84d3db36d3be: Default # Default
+    c4a6682d-42d5-4782-9217-84d3db36d3be: Profile # Profile
     c66e62d9-2ca8-4489-8c97-3f4dca8ccb60: Common # Common
     c67a7c62-3fbd-43ac-86c6-32c299b87bfe: Users # Users
     c665efa6-4acd-4798-ab92-b0f46bf5fd05: 'Show Sub-Page Sidebar' # Show Sub-Page Sidebar
@@ -133,6 +134,7 @@ meta:
     d84e3ace-3a36-46b0-bf4d-a2dc40d9e932: Pre-Headline # Pre-Headline
     da36af03-83a6-417a-a103-f6a96f2c5b66: URL # URL
     dd0ea504-a9fc-46ce-82d3-77a382c44954: 'Background Color' # Background Color
+    dd1bb219-b7c4-4a1d-97e5-80801d58ca98: 'Associated User Account' # Associated User Account
     de88a8f8-2563-459e-8a52-b3ad2f0ec006: 'News Categories' # News Categories
     df286b48-0507-4f99-9892-1f542903143c: Heading # Heading
     e2a3e24e-58ee-4326-8fc2-163003e8205b: 'Gallery Showcase Notes' # Gallery Showcase Notes
@@ -140,6 +142,7 @@ meta:
     e7ecd57e-c79d-4e1d-9c73-e34d3f1fb67b: 'Sermon Series' # Sermon Series
     e91f5555-0d06-411a-a55c-c24f14632bf4: Pages # Pages
     e355e9ca-6733-4125-823c-1111afcb79eb: Options # Options
+    e2740f44-01f5-47b5-910c-1a64d2a306b7: Messages # Messages
     e13796c0-a36c-490c-bf23-eb7f25d5465f: 'Hero Subheading' # Hero Subheading
     e7369087-a5e9-4f71-85ba-d13b9ef55293: 'Contact Form Recipients' # Contact Form Recipients
     eb2968df-4b48-4a76-b129-3a2011ed1b82: Content # Content
@@ -147,6 +150,7 @@ meta:
     ee082c58-0248-40c1-be7f-ecbbd205f56e: 'Hero Heading' # Hero Heading
     ef3c7cfd-b16f-4a9a-b7f8-cad052fdbbef: 'Hymn/Psalm Name' # Hymn/Psalm Name
     efe1648a-3d7f-4a16-a249-8e6870078081: Body # Body
+    f4d94e4a-9989-4cb2-b51b-e0c445006f6c: Profile # Profile
     f993b580-0e43-468a-9eab-ed72eef94d7a: 'Hymn of the Month Practice Tracks' # Hymn of the Month Practice Tracks
     fab4b26c-20f2-4f6b-a4f9-93c660dfcd40: 'Sub Heading' # Sub Heading
     fb27befa-4657-425c-b961-eeace2f94dc4: 'Block Background Image' # Block Background Image
