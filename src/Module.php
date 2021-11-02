@@ -7,6 +7,7 @@ namespace App;
 use App\Craft\ElementSaveClearStaticCache;
 use App\Craft\SetMessageEntrySlug\SetMessageEntrySlugFactory;
 use App\Http\Utility\ClearStaticCache;
+use App\Templating\TwigControl\TwigControl;
 use BuzzingPixel\TwigDumper\TwigDumper;
 use Config\di\Container;
 use Config\Twig;
@@ -18,7 +19,6 @@ use craft\events\RegisterCacheOptionsEvent;
 use craft\utilities\ClearCaches;
 use Exception;
 use Twig\Extension\ExtensionInterface;
-use Twig\Loader\FilesystemLoader;
 use yii\base\Event;
 use yii\base\Module as ModuleBase;
 
@@ -91,12 +91,13 @@ class Module extends ModuleBase
             );
         }
 
+        $twigControl = $di->get(TwigControl::class);
+
+        assert($twigControl instanceof TwigControl);
+
         /** @phpstan-ignore-next-line */
         if (! Craft::$app->getRequest()->getIsCpRequest()) {
-            /** @phpstan-ignore-next-line */
-            Craft::$app->getView()->getTwig()->setLoader(
-                $di->get(FilesystemLoader::class),
-            );
+            $twigControl->useCustomTwigLoader();
         }
 
         foreach (Twig::globals(di: $di) as $name => $val) {
