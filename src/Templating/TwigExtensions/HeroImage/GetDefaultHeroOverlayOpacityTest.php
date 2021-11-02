@@ -2,15 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Templating\TwigExtensions\HeroImageUrl;
+namespace App\Templating\TwigExtensions\HeroImage;
 
-use craft\elements\Asset;
-use craft\elements\db\AssetQuery;
 use craft\elements\GlobalSet;
 use craft\errors\InvalidFieldException;
 use craft\services\Globals;
 use PHPUnit\Framework\TestCase;
-use yii\base\InvalidConfigException;
 
 use function assert;
 use function is_array;
@@ -19,11 +16,11 @@ use function is_array;
  * @psalm-suppress PropertyNotSetInConstructor
  * @psalm-suppress MixedArrayAccess
  */
-class GetDefaultHeroImageUrlTest extends TestCase
+class GetDefaultHeroOverlayOpacityTest extends TestCase
 {
     public function testGetFunctions(): void
     {
-        $extension = new GetDefaultHeroImageUrl(
+        $extension = new GetDefaultHeroOverlayOpacity(
             globals: $this->createMock(Globals::class),
         );
 
@@ -32,7 +29,7 @@ class GetDefaultHeroImageUrlTest extends TestCase
         self::assertCount(1, $functions);
 
         self::assertSame(
-            'getDefaultHeroImageUrl',
+            'getDefaultHeroOverlayOpacity',
             $functions[0]->getName(),
         );
 
@@ -48,39 +45,26 @@ class GetDefaultHeroImageUrlTest extends TestCase
         );
 
         self::assertSame(
-            'getDefaultHeroImageUrl',
+            'getDefaultHeroOverlayOpacity',
             $callable[1],
         );
     }
 
     /**
      * @throws InvalidFieldException
-     * @throws InvalidConfigException
      */
     public function testGetDefaultHeroImageUrl(): void
     {
-        $asset = $this->createMock(Asset::class);
-
-        $asset->expects(self::once())
-            ->method('getUrl')
-            ->willReturn('testImageUrl');
-
-        $assetQueryStub = $this->createMock(
-            AssetQuery::class,
-        );
-
-        $assetQueryStub->expects(self::once())
-            ->method('one')
-            ->willReturn($asset);
-
         $generalSetStub = $this->createMock(
             GlobalSet::class,
         );
 
         $generalSetStub->expects(self::once())
             ->method('getFieldValue')
-            ->with(self::equalTo('defaultHeroImage'))
-            ->willReturn($assetQueryStub);
+            ->with(self::equalTo(
+                'heroDarkeningOverlayOpacity',
+            ))
+            ->willReturn('123');
 
         $globalsStub = $this->createMock(Globals::class);
 
@@ -89,11 +73,11 @@ class GetDefaultHeroImageUrlTest extends TestCase
             ->with(self::equalTo('general'))
             ->willReturn($generalSetStub);
 
-        $extension = new GetDefaultHeroImageUrl(globals: $globalsStub);
+        $extension = new GetDefaultHeroOverlayOpacity(globals: $globalsStub);
 
         self::assertSame(
-            'testImageUrl',
-            $extension->getDefaultHeroImageUrl(),
+            123,
+            $extension->getDefaultHeroOverlayOpacity(),
         );
     }
 }

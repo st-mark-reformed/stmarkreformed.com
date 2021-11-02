@@ -2,20 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Templating\TwigExtensions\HeroImageUrl;
+namespace App\Templating\TwigExtensions\HeroImage;
 
-use craft\elements\Asset;
-use craft\elements\db\AssetQuery;
 use craft\elements\GlobalSet;
 use craft\errors\InvalidFieldException;
 use craft\services\Globals;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
-use yii\base\InvalidConfigException;
 
 use function assert;
 
-class GetDefaultHeroImageUrl extends AbstractExtension
+class GetDefaultHeroOverlayOpacity extends AbstractExtension
 {
     public function __construct(private Globals $globals)
     {
@@ -32,16 +29,15 @@ class GetDefaultHeroImageUrl extends AbstractExtension
     private function getFunction(): TwigFunction
     {
         return new TwigFunction(
-            'getDefaultHeroImageUrl',
-            [$this, 'getDefaultHeroImageUrl']
+            'getDefaultHeroOverlayOpacity',
+            [$this, 'getDefaultHeroOverlayOpacity']
         );
     }
 
     /**
      * @throws InvalidFieldException
-     * @throws InvalidConfigException
      */
-    public function getDefaultHeroImageUrl(): string
+    public function getDefaultHeroOverlayOpacity(): int
     {
         $generalSet = $this->globals->getSetByHandle(
             'general',
@@ -49,16 +45,8 @@ class GetDefaultHeroImageUrl extends AbstractExtension
 
         assert($generalSet instanceof GlobalSet);
 
-        $assetQuery = $generalSet->getFieldValue(
-            'defaultHeroImage',
+        return (int) $generalSet->getFieldValue(
+            'heroDarkeningOverlayOpacity',
         );
-
-        assert($assetQuery instanceof AssetQuery);
-
-        $asset = $assetQuery->one();
-
-        assert($asset instanceof Asset);
-
-        return (string) $asset->getUrl();
     }
 }
