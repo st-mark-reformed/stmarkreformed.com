@@ -1,4 +1,4 @@
-dateModified: 1635799872
+dateModified: 1635827453
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -32,6 +32,7 @@ meta:
     2a9f1934-7a1f-41c3-bfdc-565035a5687f: 'Pastor''s Page Categories' # Pastor's Page Categories
     2a87f914-8ca0-4ff5-816f-eeed96eae0ab: 'Title or Honorific' # Title or Honorific
     3dc4707f-a219-4bde-9559-201300acd001: URL # URL
+    4d7448ea-2070-48fa-985b-cbf73346b3e0: Leadership # Leadership
     5c3a6cb0-491a-482a-b498-e87d97460799: 'Content Disposition' # Content Disposition
     5c25b52f-157e-404f-9578-025b3181bcc8: 'Latest Galleries' # Latest Galleries
     5df4f883-59cf-4b67-b323-6330a84cd1cd: City # City
@@ -87,6 +88,7 @@ meta:
     1619a0e9-2a7f-4450-ad7b-9eb6f10a435d: 'Call To Action' # Call To Action
     1849a26d-8a77-45c2-a9d4-9dd57e96be94: 'Resource Downloads' # Resource Downloads
     3925f2c2-f707-4557-ae5e-1b4e36801755: 'Short Description' # Short Description
+    5400e5d9-aa8f-439d-8bd5-0a2141010eae: 'Stripe Payment Form' # Stripe Payment Form
     6388b6f1-05a6-4091-8161-5eaeb0cb5359: Email # Email
     7522d6a8-afc9-4759-9891-9a6b55c68ba8: 'Internal Messages' # Internal Messages
     8166c5cb-d63f-45c7-ae99-c33961a4cf3d: 'Facebook URL' # Facebook URL
@@ -121,6 +123,7 @@ meta:
     b5819ef5-9761-4d28-b9c2-d7c2a3b41532: 'Twitter Handle' # Twitter Handle
     b4204049-2a69-459e-b105-94be12ec6081: URL # URL
     ba477ad1-a81e-4f6c-9976-f0f2af90b390: 'Leadership Listing Details' # Leadership Listing Details
+    bdeb94af-1e71-4ccc-97b0-682301d10146: 'Stripe Payment Form' # Stripe Payment Form
     c4a6682d-42d5-4782-9217-84d3db36d3be: Profile # Profile
     c66e62d9-2ca8-4489-8c97-3f4dca8ccb60: Common # Common
     c67a7c62-3fbd-43ac-86c6-32c299b87bfe: Users # Users
@@ -147,6 +150,7 @@ meta:
     e7369087-a5e9-4f71-85ba-d13b9ef55293: 'Contact Form Recipients' # Contact Form Recipients
     eb2968df-4b48-4a76-b129-3a2011ed1b82: Content # Content
     ec8b995b-78c1-4e7e-a2ba-cab6d24be004: 'Leadership Position' # Leadership Position
+    ecdcacd7-286c-4761-8dbd-ecbbbe5921cf: 'No top space' # No top space
     ee082c58-0248-40c1-be7f-ecbbd205f56e: 'Hero Heading' # Hero Heading
     ef3c7cfd-b16f-4a9a-b7f8-cad052fdbbef: 'Hymn/Psalm Name' # Hymn/Psalm Name
     efe1648a-3d7f-4a16-a249-8e6870078081: Body # Body

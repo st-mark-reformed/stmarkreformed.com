@@ -10,6 +10,7 @@ use App\Http\PageBuilder\BlockResponse\ImageContentCta\ImageContentCta;
 use App\Http\PageBuilder\BlockResponse\LatestGalleries\LatestGalleries;
 use App\Http\PageBuilder\BlockResponse\Leadership\Leadership;
 use App\Http\PageBuilder\BlockResponse\SimpleCta\SimpleCta;
+use App\Http\PageBuilder\BlockResponse\StripePaymentForm\StripePaymentForm;
 use craft\elements\MatrixBlock;
 
 interface BlockResponseBuilderContract
@@ -21,6 +22,7 @@ interface BlockResponseBuilderContract
         'latestGalleries' => LatestGalleries::class,
         'leadership' => Leadership::class,
         'simpleCta' => SimpleCta::class,
+        'stripePaymentForm' => StripePaymentForm::class,
     ];
 
     /**

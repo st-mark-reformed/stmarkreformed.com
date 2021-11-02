@@ -164,7 +164,7 @@ fields:
     translationMethod: site
     type: verbb\supertable\fields\SuperTableField
   8936057c-98bb-4ca4-82b0-ba17eb71b0c4: # No top space
-    columnSuffix: hhmscnsl
+    columnSuffix: null
     contentColumnType: boolean
     fieldGroup: null
     handle: noTopSpace

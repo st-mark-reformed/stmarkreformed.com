@@ -1,0 +1,68 @@
+field: a7845568-a0c6-44e5-8b75-3ef735f6ef8d # Page Builder
+fieldLayouts:
+  7c8e2e5e-e189-44ec-9498-6781ebc45975:
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: ecdcacd7-286c-4761-8dbd-ecbbbe5921cf # No top space
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: bdeb94af-1e71-4ccc-97b0-682301d10146 # Stripe Payment Form
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Content
+        sortOrder: 1
+fields:
+  bdeb94af-1e71-4ccc-97b0-682301d10146: # Stripe Payment Form
+    columnSuffix: null
+    contentColumnType: string
+    fieldGroup: null
+    handle: stripePaymentForm
+    instructions: ''
+    name: 'Stripe Payment Form'
+    searchable: false
+    settings:
+      allowMultipleSources: false
+      allowSelfRelations: false
+      limit: ''
+      localizeRelations: false
+      selectionLabel: ''
+      showSiteMenu: true
+      source: '*'
+      sources: '*'
+      targetSiteId: null
+      validateRelatedElements: false
+      viewMode: null
+    translationKeyFormat: null
+    translationMethod: site
+    type: enupal\stripe\fields\StripePaymentForms
+  ecdcacd7-286c-4761-8dbd-ecbbbe5921cf: # No top space
+    columnSuffix: oarmhyyt
+    contentColumnType: boolean
+    fieldGroup: null
+    handle: noTopSpace
+    instructions: ''
+    name: 'No top space'
+    searchable: false
+    settings:
+      default: false
+      offLabel: null
+      onLabel: null
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
+handle: stripePaymentForm
+name: 'Stripe Payment Form'
+sortOrder: 7

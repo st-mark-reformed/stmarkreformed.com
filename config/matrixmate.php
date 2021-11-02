@@ -8,7 +8,10 @@ return [
             'groups' => [
                 [
                     'label' => 'Content',
-                    'types' => ['basicBlock'],
+                    'types' => [
+                        'basicBlock',
+                        'stripePaymentForm',
+                    ],
                 ],
                 [
                     'label' => 'CTAs',
