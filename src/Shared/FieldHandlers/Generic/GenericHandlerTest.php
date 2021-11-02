@@ -113,6 +113,35 @@ class GenericHandlerTest extends TestCase
     /**
      * @throws InvalidFieldException
      */
+    public function testGetInt(): void
+    {
+        $returnInt = '456';
+
+        $this->fieldReturn = $returnInt;
+
+        $result = $this->handler->getInt(
+            element: $this->element,
+            field: 'aFieldHandle',
+        );
+
+        self::assertSame(((int) $returnInt), $result);
+
+        self::assertCount(1, $this->elementCalls);
+
+        self::assertSame(
+            'getFieldValue',
+            $this->elementCalls[0]['method'],
+        );
+
+        self::assertSame(
+            'aFieldHandle',
+            $this->elementCalls[0]['fieldHandle'],
+        );
+    }
+
+    /**
+     * @throws InvalidFieldException
+     */
     public function testGetBoolean(): void
     {
         $returnString = '1';

@@ -45,6 +45,18 @@ class GenericHandler
      *
      * @phpstan-ignore-next-line
      */
+    public function getInt(
+        Element $element,
+        string $field,
+    ): int {
+        return (int) $element->getFieldValue($field);
+    }
+
+    /**
+     * @throws InvalidFieldException
+     *
+     * @phpstan-ignore-next-line
+     */
     public function getBoolean(
         Element $element,
         string $field,
