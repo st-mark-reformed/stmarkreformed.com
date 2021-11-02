@@ -24,6 +24,10 @@ return [
                         'featuredSermonSeries',
                     ],
                 ],
+                [
+                    'label' => 'Pre-defined',
+                    'types' => ['leadership'],
+                ],
             ],
             // 'types' => [
             //     'imageContentCta' => [

@@ -8,6 +8,7 @@ use App\Http\PageBuilder\BlockResponse\BasicBlock\BasicBlock;
 use App\Http\PageBuilder\BlockResponse\FeaturedSermonSeries\FeaturedSermonSeries;
 use App\Http\PageBuilder\BlockResponse\ImageContentCta\ImageContentCta;
 use App\Http\PageBuilder\BlockResponse\LatestGalleries\LatestGalleries;
+use App\Http\PageBuilder\BlockResponse\Leadership\Leadership;
 use App\Http\PageBuilder\BlockResponse\SimpleCta\SimpleCta;
 use craft\elements\MatrixBlock;
 
@@ -18,6 +19,7 @@ interface BlockResponseBuilderContract
         'featuredSermonSeries' => FeaturedSermonSeries::class,
         'imageContentCta' => ImageContentCta::class,
         'latestGalleries' => LatestGalleries::class,
+        'leadership' => Leadership::class,
         'simpleCta' => SimpleCta::class,
     ];
 

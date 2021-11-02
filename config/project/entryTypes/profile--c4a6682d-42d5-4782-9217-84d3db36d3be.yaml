@@ -73,9 +73,9 @@ fieldLayouts:
             width: 50
           -
             fieldUid: ec8b995b-78c1-4e7e-a2ba-cab6d24be004 # Leadership Position
-            instructions: null
-            label: null
-            required: false
+            instructions: 'This controls whether a profile shows on the leadership page. Don''t select a value unless this person is part of the St. Mark leadership.'
+            label: ''
+            required: ''
             tip: null
             type: craft\fieldlayoutelements\CustomField
             warning: null
