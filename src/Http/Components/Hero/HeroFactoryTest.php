@@ -6,9 +6,13 @@ namespace App\Http\Components\Hero;
 
 use App\Http\Components\Link\Link;
 use App\Http\Components\Link\LinkFactory;
-use App\Templating\TwigExtensions\HeroImageUrl\GetDefaultHeroImageUrl;
+use App\Shared\FieldHandlers\Assets\AssetsFieldHandler;
+use App\Shared\FieldHandlers\Generic\GenericHandler;
+use App\Shared\FieldHandlers\LinkField\LinkFieldHandler;
+use App\Templating\TwigExtensions\HeroImage\GetDefaultHeroImageUrl;
+use App\Templating\TwigExtensions\HeroImage\GetDefaultHeroOverlayOpacity;
+use craft\base\Element;
 use craft\elements\Asset;
-use craft\elements\db\AssetQuery;
 use craft\elements\Entry;
 use craft\errors\InvalidFieldException;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -16,104 +20,241 @@ use PHPUnit\Framework\TestCase;
 use typedlinkfield\models\Link as LinkFieldModel;
 use yii\base\InvalidConfigException;
 
+use function array_pop;
+use function assert;
+
 /**
  * @psalm-suppress PropertyNotSetInConstructor
+ * @psalm-suppress MixedArgument
  * @psalm-suppress MixedArrayAccess
+ * @psalm-suppress MixedAssignment
  */
 class HeroFactoryTest extends TestCase
 {
+    private HeroFactory $factory;
+
+    /**
+     * @var Entry&MockObject
+     * @phpstan-ignore-next-line
+     */
+    private mixed $entry;
+
+    /** @var mixed[] */
+    private array $calls;
+
+    private bool $assetHandlerReturnsAsset = false;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->calls = [];
+
+        $this->assetHandlerReturnsAsset = false;
+
+        $this->entry = $this->createMock(Entry::class);
+
+        $this->factory = new HeroFactory(
+            linkFactory: $this->mockLinkFactory(),
+            genericHandler: $this->mockGenericHandler(),
+            linkFieldHandler: $this->mockLinkFieldHandler(),
+            assetsFieldHandler: $this->mockAssetsFieldHandler(),
+            defaultImageUrl: $this->mockGetDefaultHeroImageUrl(),
+            defaultOverlayOpacity: $this->mockGetDefaultHeroOverlayOpacity(),
+        );
+    }
+
     /**
      * @return MockObject&LinkFactory
-     *
-     * @phpstan-ignore-next-line
      */
-    private function createLinkFactoryStub(
-        LinkFieldModel $expectedInput,
-    ): MockObject|LinkFactory {
-        $linkFactoryStub = $this->createMock(
-            LinkFactory::class,
-        );
-
-        $linkFactoryStub->method('fromLinkFieldModel')
-            ->with(self::equalTo($expectedInput))
-            ->willReturn(new Link(
-                isEmpty: false,
-                href: 'testHref',
-            ));
-
-        return $linkFactoryStub;
-    }
-
-    /**
-     * @return MockObject&Asset
-     *
-     * @phpstan-ignore-next-line
-     */
-    private function createHeroImageAssetStub(): MockObject|Asset
+    private function mockLinkFactory(): mixed
     {
-        $assetStub = $this->createMock(Asset::class);
+        $linkFactory = $this->createMock(LinkFactory::class);
 
-        $assetStub->method('getUrl')->willReturn('testUrl');
+        $linkFactory->method('fromLinkFieldModel')
+            ->willReturnCallback(
+                function (LinkFieldModel $linkFieldModel): Link {
+                    $this->calls[] = [
+                        'object' => 'LinkFactory',
+                        'method' => 'fromLinkFieldModel',
+                        'linkFieldModel' => $linkFieldModel,
+                    ];
 
-        return $assetStub;
+                    return new Link(
+                        isEmpty: false,
+                        content: 'testLinkContent',
+                        href: 'testLinkHref',
+                        newWindow: false,
+                    );
+                }
+            );
+
+        return $linkFactory;
     }
 
     /**
-     * @return MockObject&AssetQuery
-     *
-     * @phpstan-ignore-next-line
+     * @return MockObject&GenericHandler
      */
-    private function createHeroImageQueryStub(
-        bool $returnsAsset = false,
-    ): AssetQuery|MockObject {
-        $assetQueryStub = $this->createMock(
-            AssetQuery::class,
-        );
+    private function mockGenericHandler(): mixed
+    {
+        $handler = $this->createMock(GenericHandler::class);
 
-        $assetQueryStub->method('one')->willReturn(
-            $returnsAsset ? $this->createHeroImageAssetStub() : null,
-        );
+        $handler->method('getString')
+            ->willReturnCallback(
+                function (Element $element, string $field): string {
+                    $this->calls[] = [
+                        'object' => 'GenericHandler',
+                        'method' => 'getString',
+                        'element' => $element,
+                        'field' => $field,
+                    ];
 
-        return $assetQueryStub;
+                    return 'testGetString';
+                }
+            );
+
+        $handler->method('getBoolean')
+            ->willReturnCallback(
+                function (Element $element, string $field): bool {
+                    $this->calls[] = [
+                        'object' => 'GenericHandler',
+                        'method' => 'getBoolean',
+                        'element' => $element,
+                        'field' => $field,
+                    ];
+
+                    return true;
+                }
+            );
+
+        $handler->method('getInt')
+            ->willReturnCallback(
+                function (Element $element, string $field): int {
+                    $this->calls[] = [
+                        'object' => 'GenericHandler',
+                        'method' => 'getBoolean',
+                        'element' => $element,
+                        'field' => $field,
+                    ];
+
+                    return 587;
+                }
+            );
+
+        return $handler;
     }
 
     /**
-     * @return MockObject&Entry
-     *
-     * @noinspection PhpMixedReturnTypeCanBeReducedInspection
-     *
-     * @phpstan-ignore-next-line
+     * @return MockObject&LinkFieldHandler
      */
-    private function createEntryStub(
-        LinkFieldModel $heroUpperCtaValue,
-        AssetQuery|null $heroImageQueryStub = null,
-        bool $useShortHeroValue = false,
-    ): Entry|MockObject {
-        if ($heroImageQueryStub === null) {
-            $heroImageQueryStub = $this->createHeroImageQueryStub();
-        }
+    private function mockLinkFieldHandler(): mixed
+    {
+        $handler = $this->createMock(
+            LinkFieldHandler::class,
+        );
 
-        $entryStub = $this->createMock(Entry::class);
+        $handler->method('getModel')->willReturnCallback(
+            function (Element $element, string $field): LinkFieldModel {
+                $this->calls[] = [
+                    'object' => 'LinkFieldHandler',
+                    'method' => 'getModel',
+                    'element' => $element,
+                    'field' => $field,
+                ];
 
-        $entryStub->method('getFieldValue')->willReturnCallback(
-            static function (string $fieldHandle) use (
-                $heroImageQueryStub,
-                $heroUpperCtaValue,
-                $useShortHeroValue,
-            ): mixed {
-                return match ($fieldHandle) {
-                    'heroImage' => $heroImageQueryStub,
-                    'heroUpperCta' => $heroUpperCtaValue,
-                    'heroHeading' => 'testHeroHeadingValue',
-                    'heroSubheading' => 'testHeroSubheadingValue',
-                    'heroParagraph' => 'testHeroParagraphValue',
-                    'useShortHero' => $useShortHeroValue,
-                    default => null,
-                };
+                $model = $this->createMock(
+                    LinkFieldModel::class,
+                );
+
+                $model->method('getLink')->willReturn(
+                    'testLink',
+                );
+
+                return $model;
             }
         );
 
-        return $entryStub;
+        return $handler;
+    }
+
+    /**
+     * @return MockObject&AssetsFieldHandler
+     */
+    private function mockAssetsFieldHandler(): mixed
+    {
+        $handler = $this->createMock(
+            AssetsFieldHandler::class,
+        );
+
+        $handler->method('getOneOrNull')->willReturnCallback(
+            function (Element $element, string $field): ?Asset {
+                $this->calls[] = [
+                    'object' => 'AssetsFieldHandler',
+                    'method' => 'getOneOrNull',
+                    'element' => $element,
+                    'field' => $field,
+                ];
+
+                if (! $this->assetHandlerReturnsAsset) {
+                    return null;
+                }
+
+                $model = $this->createMock(Asset::class);
+
+                $model->method('getUrl')->willReturn(
+                    'testAssetUrl',
+                );
+
+                return $model;
+            }
+        );
+
+        return $handler;
+    }
+
+    /**
+     * @return MockObject&GetDefaultHeroImageUrl
+     */
+    private function mockGetDefaultHeroImageUrl(): mixed
+    {
+        $get = $this->createMock(
+            GetDefaultHeroImageUrl::class,
+        );
+
+        $get->method('getDefaultHeroImageUrl')->willReturnCallback(
+            function (): string {
+                $this->calls[] = [
+                    'object' => 'GetDefaultHeroImageUrl',
+                    'method' => 'getDefaultHeroImageUrl',
+                ];
+
+                return 'testDefaultHeroImageUrl';
+            }
+        );
+
+        return $get;
+    }
+
+    /**
+     * @return MockObject&GetDefaultHeroOverlayOpacity
+     */
+    private function mockGetDefaultHeroOverlayOpacity(): mixed
+    {
+        $get = $this->createMock(
+            GetDefaultHeroOverlayOpacity::class,
+        );
+
+        $get->method('getDefaultHeroOverlayOpacity')
+            ->willReturnCallback(function (): int {
+                $this->calls[] = [
+                    'object' => 'GetDefaultHeroOverlayOpacity',
+                    'method' => 'getDefaultHeroOverlayOpacity',
+                ];
+
+                return 476;
+            });
+
+        return $get;
     }
 
     /**
@@ -122,59 +263,113 @@ class HeroFactoryTest extends TestCase
      */
     public function testCreateFromEntryWhenNoHeroImage(): void
     {
-        $linkFieldModel = $this->createMock(
-            LinkFieldModel::class,
-        );
+        $hero = $this->factory->createFromEntry(entry: $this->entry);
 
-        $getDefaultHeroImageUrlSpy = $this->createMock(
-            GetDefaultHeroImageUrl::class,
-        );
-
-        $getDefaultHeroImageUrlSpy->expects(self::never())
-            ->method('getDefaultHeroImageUrl');
-
-        $factory = new HeroFactory(
-            linkFactory: $this->createLinkFactoryStub(
-                expectedInput: $linkFieldModel,
-            ),
-            getDefaultHeroImageUrl: $getDefaultHeroImageUrlSpy,
-        );
-
-        $hero = $factory->createFromEntry(
-            $this->createEntryStub(
-                heroUpperCtaValue: $linkFieldModel,
-                heroImageQueryStub: $this->createHeroImageQueryStub(
-                    returnsAsset: true,
-                ),
-            ),
-        );
+        self::assertSame(476, $hero->heroOverlayOpacity());
 
         self::assertSame(
-            'testUrl',
+            'testDefaultHeroImageUrl',
             $hero->heroImageUrl(),
         );
 
         self::assertSame(
-            'testHref',
+            'testLinkContent',
+            $hero->upperCta()->content(),
+        );
+
+        self::assertSame(
+            'testLinkHref',
             $hero->upperCta()->href(),
         );
 
         self::assertSame(
-            'testHeroHeadingValue',
+            'testGetString',
             $hero->heroHeading(),
         );
 
         self::assertSame(
-            'testHeroSubheadingValue',
+            'testGetString',
             $hero->heroSubHeading(),
         );
 
         self::assertSame(
-            'testHeroParagraphValue',
+            'testGetString',
             $hero->heroParagraph(),
         );
 
-        self::assertFalse($hero->useShortHero());
+        self::assertTrue($hero->useShortHero());
+
+        $callsExceptLast = $this->calls;
+
+        $lastCall = array_pop($callsExceptLast);
+
+        self::assertSame(
+            [
+                [
+                    'object' => 'AssetsFieldHandler',
+                    'method' => 'getOneOrNull',
+                    'element' => $this->entry,
+                    'field' => 'heroImage',
+                ],
+                [
+                    'object' => 'LinkFieldHandler',
+                    'method' => 'getModel',
+                    'element' => $this->entry,
+                    'field' => 'heroUpperCta',
+                ],
+                [
+                    'object' => 'GenericHandler',
+                    'method' => 'getString',
+                    'element' => $this->entry,
+                    'field' => 'heroHeading',
+                ],
+                [
+                    'object' => 'GenericHandler',
+                    'method' => 'getString',
+                    'element' => $this->entry,
+                    'field' => 'heroSubheading',
+                ],
+                [
+                    'object' => 'GenericHandler',
+                    'method' => 'getString',
+                    'element' => $this->entry,
+                    'field' => 'heroParagraph',
+                ],
+                [
+                    'object' => 'GenericHandler',
+                    'method' => 'getBoolean',
+                    'element' => $this->entry,
+                    'field' => 'useShortHero',
+                ],
+                [
+                    'object' => 'GetDefaultHeroOverlayOpacity',
+                    'method' => 'getDefaultHeroOverlayOpacity',
+                ],
+                [
+                    'object' => 'GetDefaultHeroImageUrl',
+                    'method' => 'getDefaultHeroImageUrl',
+                ],
+            ],
+            $callsExceptLast,
+        );
+
+        self::assertCount(3, $lastCall);
+
+        self::assertSame('LinkFactory', $lastCall['object']);
+
+        self::assertSame(
+            'fromLinkFieldModel',
+            $lastCall['method'],
+        );
+
+        $linkFieldModel = $lastCall['linkFieldModel'];
+
+        assert($linkFieldModel instanceof LinkFieldModel);
+
+        self::assertSame(
+            'testLink',
+            $linkFieldModel->getLink(),
+        );
     }
 
     /**
@@ -183,56 +378,112 @@ class HeroFactoryTest extends TestCase
      */
     public function testCreateFromEntryWhenHeroImage(): void
     {
-        $linkFieldModel = $this->createMock(
-            LinkFieldModel::class,
-        );
+        $this->assetHandlerReturnsAsset = true;
 
-        $getDefaultHeroImageUrlSpy = $this->createMock(
-            GetDefaultHeroImageUrl::class,
-        );
+        $hero = $this->factory->createFromEntry(entry: $this->entry);
 
-        $getDefaultHeroImageUrlSpy->expects(self::once())
-            ->method('getDefaultHeroImageUrl')
-            ->willReturn('testDefaultHeroImageUrl');
-
-        $factory = new HeroFactory(
-            linkFactory: $this->createLinkFactoryStub(
-                expectedInput: $linkFieldModel,
-            ),
-            getDefaultHeroImageUrl: $getDefaultHeroImageUrlSpy,
-        );
-
-        $hero = $factory->createFromEntry(
-            $this->createEntryStub(
-                heroUpperCtaValue: $linkFieldModel
-            ),
-        );
+        self::assertSame(587, $hero->heroOverlayOpacity());
 
         self::assertSame(
-            'testDefaultHeroImageUrl',
+            'testAssetUrl',
             $hero->heroImageUrl(),
         );
 
         self::assertSame(
-            'testHref',
+            'testLinkContent',
+            $hero->upperCta()->content(),
+        );
+
+        self::assertSame(
+            'testLinkHref',
             $hero->upperCta()->href(),
         );
 
         self::assertSame(
-            'testHeroHeadingValue',
+            'testGetString',
             $hero->heroHeading(),
         );
 
         self::assertSame(
-            'testHeroSubheadingValue',
+            'testGetString',
             $hero->heroSubHeading(),
         );
 
         self::assertSame(
-            'testHeroParagraphValue',
+            'testGetString',
             $hero->heroParagraph(),
         );
 
-        self::assertFalse($hero->useShortHero());
+        self::assertTrue($hero->useShortHero());
+
+        $callsExceptLast = $this->calls;
+
+        $lastCall = array_pop($callsExceptLast);
+
+        self::assertSame(
+            [
+                [
+                    'object' => 'AssetsFieldHandler',
+                    'method' => 'getOneOrNull',
+                    'element' => $this->entry,
+                    'field' => 'heroImage',
+                ],
+                [
+                    'object' => 'LinkFieldHandler',
+                    'method' => 'getModel',
+                    'element' => $this->entry,
+                    'field' => 'heroUpperCta',
+                ],
+                [
+                    'object' => 'GenericHandler',
+                    'method' => 'getString',
+                    'element' => $this->entry,
+                    'field' => 'heroHeading',
+                ],
+                [
+                    'object' => 'GenericHandler',
+                    'method' => 'getString',
+                    'element' => $this->entry,
+                    'field' => 'heroSubheading',
+                ],
+                [
+                    'object' => 'GenericHandler',
+                    'method' => 'getString',
+                    'element' => $this->entry,
+                    'field' => 'heroParagraph',
+                ],
+                [
+                    'object' => 'GenericHandler',
+                    'method' => 'getBoolean',
+                    'element' => $this->entry,
+                    'field' => 'useShortHero',
+                ],
+                [
+                    'object' => 'GenericHandler',
+                    'method' => 'getBoolean',
+                    'element' => $this->entry,
+                    'field' => 'heroDarkeningOverlayOpacity',
+                ],
+            ],
+            $callsExceptLast,
+        );
+
+        self::assertCount(3, $lastCall);
+
+        self::assertSame('LinkFactory', $lastCall['object']);
+
+        self::assertSame(
+            'fromLinkFieldModel',
+            $lastCall['method'],
+        );
+
+        $linkFieldModel = $lastCall['linkFieldModel'];
+
+        assert($linkFieldModel instanceof LinkFieldModel);
+
+        self::assertSame(
+            'testLink',
+            $linkFieldModel->getLink(),
+        );
     }
 }

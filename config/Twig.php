@@ -6,7 +6,8 @@ namespace Config;
 
 use App\Images\ImageHandler;
 use App\Templating\TwigControl\ViewManager;
-use App\Templating\TwigExtensions\HeroImageUrl\GetDefaultHeroImageUrl;
+use App\Templating\TwigExtensions\HeroImage\GetDefaultHeroImageUrl;
+use App\Templating\TwigExtensions\HeroImage\GetDefaultHeroOverlayOpacity;
 use App\Templating\TwigExtensions\Menu\MenuTwigExtension;
 use App\Templating\TwigExtensions\ReadJson\ReadJson;
 use BuzzingPixel\TwigMarkdown\MarkdownTwigExtension;
@@ -24,6 +25,7 @@ class Twig
 
     public const EXTENSIONS = [
         GetDefaultHeroImageUrl::class,
+        GetDefaultHeroOverlayOpacity::class,
         MarkdownTwigExtension::class,
         MenuTwigExtension::class,
         ReadJson::class,

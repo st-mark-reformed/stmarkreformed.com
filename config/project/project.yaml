@@ -1,4 +1,4 @@
-dateModified: 1635827453
+dateModified: 1635873062
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -142,6 +142,7 @@ meta:
     df286b48-0507-4f99-9892-1f542903143c: Heading # Heading
     e2a3e24e-58ee-4326-8fc2-163003e8205b: 'Gallery Showcase Notes' # Gallery Showcase Notes
     e2b3f41d-b5fb-443c-988f-96c387bfa764: 'Number to Showcase' # Number to Showcase
+    e6c814e5-440d-4c5f-baf9-e2dc8e69411d: 'Hero Darkening Overlay Opacity' # Hero Darkening Overlay Opacity
     e7ecd57e-c79d-4e1d-9c73-e34d3f1fb67b: 'Sermon Series' # Sermon Series
     e91f5555-0d06-411a-a55c-c24f14632bf4: Pages # Pages
     e355e9ca-6733-4125-823c-1111afcb79eb: Options # Options
@@ -175,6 +176,11 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 1.4.2
+  craft-range-slider:
+    edition: standard
+    enabled: true
+    licenseKey: YQBQVQZ51PIPV285RJ0HMLIF
+    schemaVersion: 1.0.0
   craft-scheduler:
     edition: standard
     enabled: true

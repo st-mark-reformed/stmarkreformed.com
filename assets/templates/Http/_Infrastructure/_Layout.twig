@@ -30,10 +30,15 @@
     <div class="bg-white">
         <div class="relative overflow-hidden">
             <div
-                class="hero-background-image bg-bronze bg-cover bg-no-repeat bg-center bg-fixed"
+                class="hero-background-image bg-bronze bg-cover bg-no-repeat bg-center bg-fixed relative"
             >
+                {% if hero.heroOverlayOpacity > 0 %}
+                    <div
+                        class="absolute w-full h-full inset-0 z-10 bg-black"
+                        style="/* stylelint-disable */opacity: {{ (hero.heroOverlayOpacity / 100) }};/* stylelint-enable */"></div>
+                {% endif %}
                 <header
-                    class="relative"
+                    class="relative z-50"
                     xmlns:x-transition="http://www.w3.org/1999/xhtml"
                     xmlns:x-bind="http://www.w3.org/1999/xhtml"
                     x-data="{mobileMenuIsActive: false}"
@@ -187,7 +192,7 @@
                         </div>
                     </div>
                 </header>
-                <div class="py-10 {#sm:pt-16 lg:pt-8 lg:pb-16#} lg:overflow-hidden">
+                <div class="py-10 {#sm:pt-16 lg:pt-8 lg:pb-16#} lg:overflow-hidden relative z-20">
                     <div class="mx-auto max-w-7xl lg:px-8">
                         <div{% if hero.heroSubHeading or hero.heroParagraph %} class="lg:grid lg:grid-cols-2 lg:gap-8"{% endif %}>
                             <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center lg:px-0{% if hero.heroSubHeading or hero.heroParagraph %} lg:text-left lg:flex lg:items-center{% endif %}">

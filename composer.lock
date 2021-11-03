@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6fb86e62b59593d28798fc56d63eaf3b",
+    "content-hash": "08b36bdda892b3ce3f7d31ea6b42e022",
     "packages": [
         {
             "name": "buzzingpixel/bp-cache",
@@ -3134,6 +3134,66 @@
                 "source": "https://github.com/thephpleague/oauth2-client/tree/2.6.0"
             },
             "time": "2020-10-28T02:03:40+00:00"
+        },
+        {
+            "name": "lewisjenkins/craft-range-slider",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lewisjenkins/craft-range-slider.git",
+                "reference": "d0a641ab6a87ff49a8c6dc65232aa53d1a2ee695"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lewisjenkins/craft-range-slider/zipball/d0a641ab6a87ff49a8c6dc65232aa53d1a2ee695",
+                "reference": "d0a641ab6a87ff49a8c6dc65232aa53d1a2ee695",
+                "shasum": ""
+            },
+            "require": {
+                "craftcms/cms": "^3.0.0"
+            },
+            "type": "craft-plugin",
+            "extra": {
+                "name": "LJ Range Slider",
+                "handle": "craft-range-slider",
+                "developer": "Lewis Jenkins",
+                "developerUrl": "https://lj.io",
+                "hasCpSettings": false,
+                "hasCpSection": false,
+                "changelogUrl": "https://raw.githubusercontent.com/lewisjenkins/craft-range-slider/master/CHANGELOG.md",
+                "class": "lewisjenkins\\craftrangeslider\\CraftRangeSlider"
+            },
+            "autoload": {
+                "psr-4": {
+                    "lewisjenkins\\craftrangeslider\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Lewis Jenkins",
+                    "homepage": "https://lj.io"
+                }
+            ],
+            "description": "An easy-to-use, flexible and responsive range slider for Craft CMS.",
+            "keywords": [
+                "Craft",
+                "cms",
+                "craft range slider",
+                "craft-plugin",
+                "craftcms",
+                "lj range slider"
+            ],
+            "support": {
+                "docs": "https://github.com/lewisjenkins/craft-range-slider/blob/master/README.md",
+                "email": "lewis@lj.io",
+                "issues": "https://github.com/lewisjenkins/craft-range-slider/issues",
+                "source": "https://github.com/lewisjenkins/craft-range-slider/tree/master"
+            },
+            "time": "2019-07-21T17:31:37+00:00"
         },
         {
             "name": "lucidtaz/yii2-whoops",

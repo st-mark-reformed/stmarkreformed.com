@@ -40,6 +40,7 @@
         "doublesecretagency/craft-inventory": "2.1.1",
         "enupal/stripe": "3.3.6",
         "gumlet/php-image-resize": "^2.0",
+        "lewisjenkins/craft-range-slider": "^1.0",
         "lucidtaz/yii2-whoops": "dev-master",
         "michelf/php-smartypants": "1.8.1",
         "percipioglobal/craft-colour-swatches": "^1.4",

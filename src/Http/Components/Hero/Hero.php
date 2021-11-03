@@ -9,6 +9,7 @@ use App\Http\Components\Link\Link;
 class Hero
 {
     public function __construct(
+        private int $heroOverlayOpacity,
         private string $heroImageUrl,
         private Link $upperCta,
         private string $heroHeading,
@@ -16,6 +17,11 @@ class Hero
         private string $heroParagraph = '',
         private bool $useShortHero = true,
     ) {
+    }
+
+    public function heroOverlayOpacity(): int
+    {
+        return $this->heroOverlayOpacity;
     }
 
     public function heroImageUrl(): string

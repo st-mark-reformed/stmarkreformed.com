@@ -5,21 +5,24 @@ declare(strict_types=1);
 namespace App\Http\Components\Hero;
 
 use App\Http\Components\Link\LinkFactory;
-use App\Templating\TwigExtensions\HeroImageUrl\GetDefaultHeroImageUrl;
-use craft\elements\Asset;
-use craft\elements\db\AssetQuery;
+use App\Shared\FieldHandlers\Assets\AssetsFieldHandler;
+use App\Shared\FieldHandlers\Generic\GenericHandler;
+use App\Shared\FieldHandlers\LinkField\LinkFieldHandler;
+use App\Templating\TwigExtensions\HeroImage\GetDefaultHeroImageUrl;
+use App\Templating\TwigExtensions\HeroImage\GetDefaultHeroOverlayOpacity;
 use craft\elements\Entry;
 use craft\errors\InvalidFieldException;
-use typedlinkfield\models\Link;
 use yii\base\InvalidConfigException;
-
-use function assert;
 
 class HeroFactory
 {
     public function __construct(
         private LinkFactory $linkFactory,
-        private GetDefaultHeroImageUrl $getDefaultHeroImageUrl,
+        private GenericHandler $genericHandler,
+        private LinkFieldHandler $linkFieldHandler,
+        private AssetsFieldHandler $assetsFieldHandler,
+        private GetDefaultHeroImageUrl $defaultImageUrl,
+        private GetDefaultHeroOverlayOpacity $defaultOverlayOpacity,
     ) {
     }
 
@@ -29,41 +32,48 @@ class HeroFactory
      */
     public function createFromEntry(Entry $entry): Hero
     {
-        $heroImageQuery = $entry->getFieldValue('heroImage');
-
-        assert($heroImageQuery instanceof AssetQuery);
-
-        $heroImageAsset = $heroImageQuery->one();
-
-        assert(
-            $heroImageAsset instanceof Asset ||
-            $heroImageAsset === null,
+        $heroImageAsset = $this->assetsFieldHandler->getOneOrNull(
+            element: $entry,
+            field: 'heroImage',
         );
 
-        $heroUpperCta = $entry->getFieldValue('heroUpperCta');
-
-        assert($heroUpperCta instanceof Link);
-
-        $heroHeading = (string) $entry->getFieldValue(
-            'heroHeading',
+        $heroUpperCta = $this->linkFieldHandler->getModel(
+            element: $entry,
+            field: 'heroUpperCta',
         );
 
-        $heroHeadingSubheading = (string) $entry->getFieldValue(
-            'heroSubheading',
+        $heroHeading = $this->genericHandler->getString(
+            element: $entry,
+            field: 'heroHeading',
         );
 
-        $heroParagraph = (string) $entry->getFieldValue(
-            'heroParagraph',
+        $heroHeadingSubheading = $this->genericHandler->getString(
+            element: $entry,
+            field: 'heroSubheading',
         );
 
-        $useShortHero = (bool) $entry->getFieldValue(
-            'useShortHero',
+        $heroParagraph = $this->genericHandler->getString(
+            element: $entry,
+            field: 'heroParagraph',
         );
+
+        $useShortHero = $this->genericHandler->getBoolean(
+            element: $entry,
+            field: 'useShortHero',
+        );
+
+        $hasHero = $heroImageAsset !== null;
 
         return new Hero(
-            heroImageUrl: $heroImageAsset !== null ?
+            heroOverlayOpacity: $hasHero ?
+                $this->genericHandler->getInt(
+                    element: $entry,
+                    field: 'heroDarkeningOverlayOpacity',
+                ) :
+                $this->defaultOverlayOpacity->getDefaultHeroOverlayOpacity(),
+            heroImageUrl: $hasHero ?
                 (string) $heroImageAsset->getUrl() :
-                $this->getDefaultHeroImageUrl->getDefaultHeroImageUrl(),
+                $this->defaultImageUrl->getDefaultHeroImageUrl(),
             upperCta: $this->linkFactory->fromLinkFieldModel(
                 linkFieldModel: $heroUpperCta,
             ),

@@ -197,6 +197,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/verbb/base" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/vaersaagod/matrixmate" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/supercool/buttonbox" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/lewisjenkins/craft-range-slider" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
