@@ -46,6 +46,7 @@
         "percipioglobal/craft-colour-swatches": "^1.4",
         "php-di/php-di": "^6.3",
         "sebastianlenz/linkfield": "^1.0",
+        "slim/flash": "^0.4.0",
         "spatie/image-optimizer": "^1.5",
         "supercool/buttonbox": "^2.0",
         "tde/craftplugin-geoaddress": "1.0.13",

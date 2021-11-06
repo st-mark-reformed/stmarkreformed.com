@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\PageBuilder\BlockResponse;
 
 use App\Http\PageBuilder\BlockResponse\BasicBlock\BasicBlock;
+use App\Http\PageBuilder\BlockResponse\ContactForm\ContactForm;
 use App\Http\PageBuilder\BlockResponse\FeaturedSermonSeries\FeaturedSermonSeries;
 use App\Http\PageBuilder\BlockResponse\ImageContentCta\ImageContentCta;
 use App\Http\PageBuilder\BlockResponse\LatestGalleries\LatestGalleries;
@@ -17,6 +18,7 @@ interface BlockResponseBuilderContract
 {
     public const BLOCK_TYPE_MAP = [
         'basicBlock' => BasicBlock::class,
+        'contactForm' => ContactForm::class,
         'featuredSermonSeries' => FeaturedSermonSeries::class,
         'imageContentCta' => ImageContentCta::class,
         'latestGalleries' => LatestGalleries::class,

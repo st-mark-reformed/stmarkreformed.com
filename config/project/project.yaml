@@ -1,4 +1,4 @@
-dateModified: 1635873062
+dateModified: 1635989948
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -48,9 +48,11 @@ meta:
     7e5beee3-8da3-428c-9d03-dfe089f86b20: 'Hero Paragraph' # Hero Paragraph
     7e651c1f-ddb7-4bd0-9842-d0d8b71f4671: Subheading # Subheading
     07efee91-98b9-462b-824d-885cbf31780d: 'Latest Types' # Latest Types
+    8c21d3d3-5328-4d12-adf7-302be60334d6: 'Success Redirect' # Success Redirect
     8e41a4a3-46e9-41d1-bb64-46f3cd0979c0: 'Import Search String' # Import Search String
     8f9ce4e3-aa79-49a5-9857-a5a0eb2396c6: Body # Body
     8f73d9f8-3435-4396-bb8f-e729910f2665: Gallery # Gallery
+    14b87d92-8527-4c88-b148-9be99799b28d: Content # Content
     16af453e-7756-4645-b749-cdee119c0d14: Address # Address
     16f9c03e-c104-4d75-84e9-479cd71b1d32: 'Gallery Showcase' # Gallery Showcase
     18b18430-9890-470a-8f25-961f5dbc13eb: 'Featured Sermon Series' # Featured Sermon Series
@@ -61,9 +63,11 @@ meta:
     46e9048c-cfef-4f69-acd7-cd03439b3867: 'Use Short Hero?' # Use Short Hero?
     51c9e48c-507e-4e3d-8152-0dba14ef55c3: 'Address Line 2' # Address Line 2
     58ef7773-046d-4cbb-b5e9-84ed62735bd3: 'Profile Photo' # Profile Photo
+    61dc28f8-137c-4b78-b5f9-db7ebe405614: 'Enable static cache' # Enable static cache
     62f59ace-8a18-4494-8018-6176e8798a8a: Image/Content/Cta # Image/Content/Cta
     65d4cdb4-f28e-469a-a25f-420675afd673: Heading # Heading
     068d01a2-6a79-498a-a08a-ef779b9e6b59: Headline # Headline
+    078fa3f5-a47e-422b-a7eb-aad70ed389f6: 'Contact Form' # Contact Form
     83ae5632-273d-44d5-b592-476a39460f51: 'Entry Builder' # Entry Builder
     84f0c3bc-62d3-4031-83c9-053e7a1fc6b2: General # General
     86d6041c-07e9-4e14-9e05-e68dafc0ecae: Image # Image

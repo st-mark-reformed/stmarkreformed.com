@@ -17,6 +17,11 @@ module.exports = {
                 'bronze-lightened-2': '#594b08',
                 'bronze-lightened-1': '#493a08',
                 bronze: '#392c08',
+                'lightest-red': '#eeadad',
+                'lighter-red': '#ee908f',
+                'light-red': '#ca5153',
+                red: '#870f12',
+                'dark-red': '#540a0c',
             },
             fontFamily: {},
             typography: (theme) => ({

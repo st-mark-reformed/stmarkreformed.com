@@ -211,6 +211,7 @@
       <path value="$PROJECT_DIR$/vendor/vaersaagod/matrixmate" />
       <path value="$PROJECT_DIR$/vendor/supercool/buttonbox" />
       <path value="$PROJECT_DIR$/vendor/lewisjenkins/craft-range-slider" />
+      <path value="$PROJECT_DIR$/vendor/slim/flash" />
     </include_path>
   </component>
   <component name="PhpProjectServersManager">

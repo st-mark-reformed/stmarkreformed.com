@@ -198,6 +198,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/vaersaagod/matrixmate" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/supercool/buttonbox" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/lewisjenkins/craft-range-slider" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/slim/flash" />
+      <excludeFolder url="file://$MODULE_DIR$/.phpunit.cache" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

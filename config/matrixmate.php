@@ -10,6 +10,7 @@ return [
                     'label' => 'Content',
                     'types' => [
                         'basicBlock',
+                        'contactForm',
                         'stripePaymentForm',
                     ],
                 ],
