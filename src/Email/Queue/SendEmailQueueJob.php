@@ -11,6 +11,9 @@ use craft\queue\BaseJob;
 
 use function assert;
 
+/**
+ * @codeCoverageIgnore
+ */
 class SendEmailQueueJob extends BaseJob
 {
     public function __construct(private Email $email)
