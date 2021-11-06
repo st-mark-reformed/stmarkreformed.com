@@ -49,7 +49,7 @@ fields:
     translationMethod: site
     type: enupal\stripe\fields\StripePaymentForms
   ecdcacd7-286c-4761-8dbd-ecbbbe5921cf: # No top space
-    columnSuffix: oarmhyyt
+    columnSuffix: null
     contentColumnType: boolean
     fieldGroup: null
     handle: noTopSpace

@@ -4,6 +4,15 @@ fieldLayouts:
       -
         elements:
           -
+            fieldUid: e6c814e5-440d-4c5f-baf9-e2dc8e69411d # Hero Darkening Overlay Opacity
+            instructions: ''
+            label: 'Default Hero Darkening Overlay Opacity'
+            required: ''
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
             fieldUid: abf9672d-3bab-4e78-a495-5f5b79756405 # Default Hero Image
             instructions: ''
             label: ''

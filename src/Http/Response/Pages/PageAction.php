@@ -6,6 +6,7 @@ namespace App\Http\Response\Pages;
 
 use App\Http\Response\Pages\RenderPage\RenderPageFactory;
 use App\Http\Shared\RouteParamsHandler;
+use App\Shared\FieldHandlers\Generic\GenericHandler;
 use BuzzingPixel\SlimBridge\ElementSetRoute\RouteParams;
 use craft\errors\InvalidFieldException;
 use Psr\Http\Message\ResponseFactoryInterface;
@@ -16,6 +17,7 @@ class PageAction
 {
     public function __construct(
         private RouteParams $routeParams,
+        private GenericHandler $genericHandler,
         private RenderPageFactory $renderPageFactory,
         private RouteParamsHandler $routeParamsHandler,
         private ResponseFactoryInterface $responseFactory,
@@ -32,8 +34,19 @@ class PageAction
             routeParams: $this->routeParams
         );
 
-        $response = $this->responseFactory->createResponse()
-            ->withHeader('EnableStaticCache', 'true');
+        $enableStaticCache = $this->genericHandler->getBoolean(
+            element: $entry,
+            field: 'enableStaticCache',
+        );
+
+        $response = $this->responseFactory->createResponse();
+
+        if ($enableStaticCache) {
+            $response = $response->withHeader(
+                'EnableStaticCache',
+                'true'
+            );
+        }
 
         $response->getBody()->write(
             $this->renderPageFactory->make(entry: $entry)->render(),
