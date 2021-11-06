@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+// Start session
+session_start();
+
 /**
  * CraftCMS front controller
  */
