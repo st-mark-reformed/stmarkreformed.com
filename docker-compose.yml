@@ -46,8 +46,31 @@ services:
         aliases:
           - stmark-redis
 
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.14.0
+    container_name: stmark-elasticsearch
+    environment:
+      - cluster.name=es-docker-cluster
+      - node.name=stmark-elasticsearch
+      - cluster.initial_master_nodes=stmark-elasticsearch
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - elasticsearch-data-volume:/usr/share/elasticsearch/data
+    expose:
+      - "9200"
+    networks:
+      default:
+        aliases:
+          - stmark-elasticsearch
+
 volumes:
   db-volume:
+  elasticsearch-data-volume:
   log-volume:
   redis-volume:
   storage-volume:

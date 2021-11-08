@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Craft\Commands\ElasticSearchConsoleController;
 use App\Craft\ElementSaveClearStaticCache;
 use App\Craft\SetMessageEntrySlug\SetMessageEntrySlugFactory;
 use App\Http\Utility\ClearStaticCache;
@@ -218,7 +219,9 @@ class Module extends ModuleBase
 
     private function mapConsoleControllers(): void
     {
-        $this->controllerMap = [];
+        $this->controllerMap = [
+            'elastic-search' => ElasticSearchConsoleController::class,
+        ];
     }
 
     private function mapWebControllers(): void
