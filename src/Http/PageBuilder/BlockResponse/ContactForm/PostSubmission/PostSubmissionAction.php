@@ -37,8 +37,8 @@ class PostSubmissionAction
         assert(is_array($requestData));
 
         $formValues = new FormValues(
-            fromUrl: (string) ($requestData['from_url']),
-            redirectUrl: (string) ($requestData['redirect_url']),
+            fromUrl: (string) ($requestData['from_url'] ?? ''),
+            redirectUrl: (string) ($requestData['redirect_url'] ?? ''),
             name: (string) ($requestData['your_name'] ?? ''),
             email: (string) ($requestData['your_email'] ?? ''),
             message: (string) ($requestData['message'] ?? ''),

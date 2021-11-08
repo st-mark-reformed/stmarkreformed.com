@@ -31,11 +31,6 @@ class StringValueNonEmpty implements Stringable
         return $this->value;
     }
 
-    public function hasValue(): bool
-    {
-        return $this->value !== '';
-    }
-
     public static function fromString(string $value): self
     {
         return new self($value);
