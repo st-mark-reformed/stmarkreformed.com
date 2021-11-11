@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Craft\Commands;
 
+use App\ElasticSearch\Console\IndexAllMessagesCommand;
 use App\ElasticSearch\Console\SetUpIndicesCommand;
 use BuzzingPixel\CraftScheduler\Cli\Services\Output;
 use Config\di\Container;
@@ -21,6 +22,7 @@ use function assert;
 class ElasticSearchConsoleController extends Controller
 {
     private SetUpIndicesCommand $setUpIndicesCommand;
+    private IndexAllMessagesCommand $indexAllMessagesCommand;
 
     /**
      * @phpstan-ignore-next-line
@@ -44,10 +46,25 @@ class ElasticSearchConsoleController extends Controller
         assert($setUpIndicesCommand instanceof SetUpIndicesCommand);
 
         $this->setUpIndicesCommand = $setUpIndicesCommand;
+
+        $indexAllMessagesCommand = $container->get(
+            IndexAllMessagesCommand::class
+        );
+
+        assert(
+            $indexAllMessagesCommand instanceof IndexAllMessagesCommand
+        );
+
+        $this->indexAllMessagesCommand = $indexAllMessagesCommand;
     }
 
     public function actionSetUpIndices(): void
     {
         $this->setUpIndicesCommand->run(output: $this->output);
+    }
+
+    public function actionIndexAllMessages(): void
+    {
+        $this->indexAllMessagesCommand->run(output: $this->output);
     }
 }
