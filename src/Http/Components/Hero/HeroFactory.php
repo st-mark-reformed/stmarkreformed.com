@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Components\Hero;
 
+use App\Http\Components\Link\Link;
 use App\Http\Components\Link\LinkFactory;
 use App\Shared\FieldHandlers\Assets\AssetsFieldHandler;
 use App\Shared\FieldHandlers\Generic\GenericHandler;
@@ -64,21 +65,47 @@ class HeroFactory
 
         $hasHero = $heroImageAsset !== null;
 
-        return new Hero(
-            heroOverlayOpacity: $hasHero ?
-                $this->genericHandler->getInt(
-                    element: $entry,
-                    field: 'heroDarkeningOverlayOpacity',
-                ) :
-                $this->defaultOverlayOpacity->getDefaultHeroOverlayOpacity(),
-            heroImageUrl: $hasHero ?
-                (string) $heroImageAsset->getUrl() :
-                $this->defaultImageUrl->getDefaultHeroImageUrl(),
+        return $this->createFromDefaults(
+            heroOverlayOpacity: $hasHero ? $this->genericHandler->getInt(
+                element: $entry,
+                field: 'heroDarkeningOverlayOpacity',
+            ) : 0,
+            heroImageUrl: $hasHero ? (string) $heroImageAsset->getUrl() : '',
             upperCta: $this->linkFactory->fromLinkFieldModel(
                 linkFieldModel: $heroUpperCta,
             ),
             heroHeading: $heroHeading,
             heroSubHeading: $heroHeadingSubheading,
+            heroParagraph: $heroParagraph,
+            useShortHero: $useShortHero,
+        );
+    }
+
+    /**
+     * @throws InvalidConfigException
+     * @throws InvalidFieldException
+     */
+    public function createFromDefaults(
+        int $heroOverlayOpacity = 0,
+        string $heroImageUrl = '',
+        ?Link $upperCta = null,
+        string $heroHeading = '',
+        string $heroSubHeading = '',
+        string $heroParagraph = '',
+        bool $useShortHero = true,
+    ): Hero {
+        $hasHero = $heroImageUrl !== '';
+
+        return new Hero(
+            heroOverlayOpacity: $hasHero ?
+                $heroOverlayOpacity :
+                $this->defaultOverlayOpacity->getDefaultHeroOverlayOpacity(),
+            heroImageUrl: $hasHero ?
+                $heroImageUrl :
+                $this->defaultImageUrl->getDefaultHeroImageUrl(),
+            upperCta: $upperCta ?? new Link(isEmpty: true),
+            heroHeading: $heroHeading,
+            heroSubHeading: $heroSubHeading,
             heroParagraph: $heroParagraph,
             useShortHero: $useShortHero,
         );

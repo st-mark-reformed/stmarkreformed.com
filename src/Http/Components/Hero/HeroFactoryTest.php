@@ -21,6 +21,7 @@ use typedlinkfield\models\Link as LinkFieldModel;
 use yii\base\InvalidConfigException;
 
 use function array_pop;
+use function array_values;
 use function assert;
 
 /**
@@ -299,9 +300,13 @@ class HeroFactoryTest extends TestCase
 
         self::assertTrue($hero->useShortHero());
 
-        $callsExceptLast = $this->calls;
+        $callsExceptLink = $this->calls;
 
-        $lastCall = array_pop($callsExceptLast);
+        $linkCall = $callsExceptLink[6];
+
+        unset($callsExceptLink[6]);
+
+        $callsExceptLink = array_values($callsExceptLink);
 
         self::assertSame(
             [
@@ -350,19 +355,19 @@ class HeroFactoryTest extends TestCase
                     'method' => 'getDefaultHeroImageUrl',
                 ],
             ],
-            $callsExceptLast,
+            $callsExceptLink,
         );
 
-        self::assertCount(3, $lastCall);
+        self::assertCount(3, $linkCall);
 
-        self::assertSame('LinkFactory', $lastCall['object']);
+        self::assertSame('LinkFactory', $linkCall['object']);
 
         self::assertSame(
             'fromLinkFieldModel',
-            $lastCall['method'],
+            $linkCall['method'],
         );
 
-        $linkFieldModel = $lastCall['linkFieldModel'];
+        $linkFieldModel = $linkCall['linkFieldModel'];
 
         assert($linkFieldModel instanceof LinkFieldModel);
 
