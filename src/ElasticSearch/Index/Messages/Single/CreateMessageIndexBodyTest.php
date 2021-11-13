@@ -123,11 +123,15 @@ class CreateMessageIndexBodyTest extends TestCase
 
                 $entry1->title = 'test entry title 1';
 
+                $entry1->slug = 'test-entry-slug-1';
+
                 $entry1->uid = 'entryUid1';
 
                 $entry2 = $this->createMock(Entry::class);
 
                 $entry2->title = 'test entry title 2';
+
+                $entry2->slug = 'test-entry-slug-2';
 
                 $entry2->uid = 'entryUid2';
 
@@ -143,11 +147,11 @@ class CreateMessageIndexBodyTest extends TestCase
      */
     private function mockCategoryFieldHandler(): mixed
     {
-        $categoriesFieldhandler = $this->createMock(
+        $categoriesFieldHandler = $this->createMock(
             CategoriesFieldHandler::class,
         );
 
-        $categoriesFieldhandler->method('getAll')->willReturnCallback(
+        $categoriesFieldHandler->method('getAll')->willReturnCallback(
             function (Element $element, string $field): array {
                 $this->calls[] = [
                     'object' => 'CategoriesFieldHandler',
@@ -160,11 +164,15 @@ class CreateMessageIndexBodyTest extends TestCase
 
                 $cat1->title = 'test cat title 1';
 
+                $cat1->slug = 'test-cat-slug-1';
+
                 $cat1->uid = 'catUid1';
 
                 $cat2 = $this->createMock(Category::class);
 
                 $cat2->title = 'test cat title 2';
+
+                $cat2->slug = 'test-cat-slug-2';
 
                 $cat2->uid = 'catUid2';
 
@@ -172,7 +180,7 @@ class CreateMessageIndexBodyTest extends TestCase
             }
         );
 
-        return $categoriesFieldhandler;
+        return $categoriesFieldHandler;
     }
 
     /**
@@ -192,9 +200,11 @@ class CreateMessageIndexBodyTest extends TestCase
             [
                 'title' => 'test message title',
                 'speakerName' => 'test entry title 1, test entry title 2',
+                'speakerSlug' => 'test-entry-slug-1, test-entry-slug-2',
                 'speakerId' => 'entryUid1, entryUid2',
                 'messageText' => 'genericString',
                 'messageSeries' => 'test cat title 1, test cat title 2',
+                'messageSeriesSlug' => 'test-cat-slug-1, test-cat-slug-2',
                 'messageSeriesId' => 'catUid1, catUid2',
                 'shortDescription' => 'genericString',
                 'tags' => 'test tag title 1, test tag title 2',

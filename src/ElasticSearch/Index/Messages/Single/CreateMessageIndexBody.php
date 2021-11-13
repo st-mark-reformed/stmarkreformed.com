@@ -43,6 +43,11 @@ class CreateMessageIndexBody
             $speakers,
         ));
 
+        $speakerSlugs = implode(', ', array_map(
+            static fn (Entry $s) => (string) $s->slug,
+            $speakers,
+        ));
+
         $speakerIds = implode(', ', array_map(
             static fn (Entry $s) => (string) $s->uid,
             $speakers,
@@ -60,6 +65,11 @@ class CreateMessageIndexBody
 
         $seriesNames = implode(', ', array_map(
             static fn (Category $c) => (string) $c->title,
+            $series,
+        ));
+
+        $seriesSlugs = implode(', ', array_map(
+            static fn (Category $c) => (string) $c->slug,
             $series,
         ));
 
@@ -91,9 +101,11 @@ class CreateMessageIndexBody
         return [
             'title' => (string) $message->title,
             'speakerName' => $speakerNames,
+            'speakerSlug' => $speakerSlugs,
             'speakerId' => $speakerIds,
             'messageText' => $messageText,
             'messageSeries' => $seriesNames,
+            'messageSeriesSlug' => $seriesSlugs,
             'messageSeriesId' => $seriesIds,
             'shortDescription' => $shortDescription,
             'tags' => $tagNames,
