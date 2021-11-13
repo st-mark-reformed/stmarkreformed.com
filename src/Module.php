@@ -7,6 +7,7 @@ namespace App;
 use App\Craft\Commands\ElasticSearchConsoleController;
 use App\Craft\ElementSaveClearStaticCache;
 use App\Craft\SetMessageEntrySlug\SetMessageEntrySlugFactory;
+use App\ElasticSearch\ElasticSearchApi;
 use App\Http\Utility\ClearStaticCache;
 use App\Templating\TwigControl\TwigControl;
 use BuzzingPixel\TwigDumper\TwigDumper;
@@ -155,6 +156,10 @@ class Module extends ModuleBase
             $clearStaticCache instanceof ElementSaveClearStaticCache
         );
 
+        $elasticSearchApi = $di->get(ElasticSearchApi::class);
+
+        assert($elasticSearchApi instanceof ElasticSearchApi);
+
         Event::on(
             Element::class,
             Element::EVENT_BEFORE_SAVE,
@@ -181,6 +186,18 @@ class Module extends ModuleBase
             Element::class,
             Element::EVENT_AFTER_DELETE,
             [$clearStaticCache, 'clear'],
+        );
+
+        Event::on(
+            Element::class,
+            Element::EVENT_AFTER_SAVE,
+            [$elasticSearchApi, 'queueIndexAllMessages'],
+        );
+
+        Event::on(
+            Element::class,
+            Element::EVENT_AFTER_DELETE,
+            [$elasticSearchApi, 'queueIndexAllMessages'],
         );
 
         Event::on(
