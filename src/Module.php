@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Craft\Behaviors\ProfileEntriesBehavior;
 use App\Craft\Commands\ElasticSearchConsoleController;
 use App\Craft\ElementSaveClearStaticCache;
 use App\Craft\SetMessageEntrySlug\SetMessageEntrySlugFactory;
@@ -15,7 +16,10 @@ use Config\di\Container;
 use Config\Twig;
 use Craft;
 use craft\base\Element;
+use craft\base\Model;
 use craft\console\Application as ConsoleApplication;
+use craft\elements\Entry;
+use craft\events\DefineBehaviorsEvent;
 use craft\events\ModelEvent;
 use craft\events\RegisterCacheOptionsEvent;
 use craft\utilities\ClearCaches;
@@ -24,6 +28,7 @@ use Twig\Extension\ExtensionInterface;
 use yii\base\Event;
 use yii\base\Module as ModuleBase;
 
+use function array_merge;
 use function assert;
 use function class_exists;
 use function getenv;
@@ -215,6 +220,19 @@ class Module extends ModuleBase
                     'label' => 'Static Caches',
                     'action' => [$clearStaticCache, 'clear'],
                 ];
+            }
+        );
+
+        Event::on(
+            Entry::class,
+            Model::EVENT_DEFINE_BEHAVIORS,
+            static function (DefineBehaviorsEvent $event): void {
+                $event->behaviors = array_merge(
+                    $event->behaviors,
+                    [
+                        'profileFullNameWithHonorific' => ProfileEntriesBehavior::class,
+                    ],
+                );
             }
         );
     }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\PageBuilder\BlockResponse\Leadership;
 
+use App\Craft\Behaviors\ProfileEntriesBehavior;
 use App\Shared\ElementQueryFactories\EntryQueryFactory;
 use App\Shared\FieldHandlers\Assets\AssetsFieldHandler;
 use App\Shared\FieldHandlers\Generic\GenericHandler;
@@ -12,6 +13,8 @@ use craft\errors\InvalidFieldException;
 use yii\base\InvalidConfigException;
 
 use function array_map;
+
+// phpcs:disable Squiz.Commenting.FunctionComment.SpacingAfterParamType
 
 class RetrievePeople
 {
@@ -38,7 +41,7 @@ class RetrievePeople
         $query->leadershipPosition($position);
 
         /**
-         * @var Entry[] $entries
+         * @var array<array-key, Entry&ProfileEntriesBehavior> $entries
          */
         $entries = $query->all();
 
@@ -49,11 +52,16 @@ class RetrievePeople
     }
 
     /**
+     * @param Entry&ProfileEntriesBehavior $entry
+     *
      * @throws InvalidFieldException
      * @throws InvalidConfigException
+     *
+     * @phpstan-ignore-next-line
      */
-    private function createPersonModel(Entry $entry): LeadershipPersonContentModel
-    {
+    private function createPersonModel(
+        mixed $entry
+    ): LeadershipPersonContentModel {
         $imageAsset = $this->assetsFieldHandler->getOneOrNull(
             element: $entry,
             field: 'profilePhoto',
@@ -65,17 +73,6 @@ class RetrievePeople
             $imageUrl = (string) $imageAsset->getUrl();
         }
 
-        $honorific = $this->genericHandler->getString(
-            element: $entry,
-            field: 'titleOrHonorific',
-        );
-
-        $name = (string) $entry->title;
-
-        if ($honorific !== '') {
-            $name = $honorific . ' ' . $name;
-        }
-
         $bio = $this->genericHandler->getTwigMarkup(
             element: $entry,
             field: 'bio',
@@ -83,7 +80,7 @@ class RetrievePeople
 
         return new LeadershipPersonContentModel(
             imageUrl: $imageUrl,
-            title: $name,
+            title: $entry->fullNameHonorific(),
             content: $bio,
         );
     }

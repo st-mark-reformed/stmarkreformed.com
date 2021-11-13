@@ -15,7 +15,6 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Twig\Markup;
 
-use function array_filter;
 use function count;
 
 /**
@@ -64,27 +63,6 @@ class RetrievePeopleTest extends TestCase
     private function mockGenericHandler(): mixed
     {
         $handler = $this->createMock(GenericHandler::class);
-
-        $handler->method('getString')->willReturnCallback(
-            function (Element $element, string $field): string {
-                $this->genericHandlerCalls[] = [
-                    'method' => 'getString',
-                    'element' => $element,
-                    'field' => $field,
-                ];
-
-                $counter = array_filter(
-                    $this->genericHandlerCalls,
-                    static fn (array $g) => $g['method'] === 'getString',
-                );
-
-                if (count($counter) > 1) {
-                    return '';
-                }
-
-                return 'handlerString';
-            }
-        );
 
         $handler->method('getTwigMarkup')->willReturnCallback(
             function (Element $element, string $field): Markup {
@@ -143,11 +121,25 @@ class RetrievePeopleTest extends TestCase
 
         $this->entry1 = $this->createMock(Entry::class);
 
-        $this->entry1->title = 'Entry 1 Title';
+        $this->entry1->method('__call')->willReturnCallback(
+            static function (string $name): string {
+                /** @phpstan-ignore-next-line */
+                return match ($name) {
+                    'fullNameHonorific' => 'Entry 1 Title',
+                };
+            }
+        );
 
         $this->entry2 = $this->createMock(Entry::class);
 
-        $this->entry2->title = 'Entry 2 Title';
+        $this->entry2->method('__call')->willReturnCallback(
+            static function (string $name): string {
+                /** @phpstan-ignore-next-line */
+                return match ($name) {
+                    'fullNameHonorific' => 'Entry 2 Title',
+                };
+            }
+        );
 
         $query->method('all')->willReturn([
             $this->entry1,
@@ -208,7 +200,7 @@ class RetrievePeopleTest extends TestCase
         );
 
         self::assertSame(
-            'handlerString Entry 1 Title',
+            'Entry 1 Title',
             $models[0]->title()
         );
 
@@ -244,19 +236,9 @@ class RetrievePeopleTest extends TestCase
                     'params' => ['testPosition'],
                 ],
                 [
-                    'method' => 'getString',
-                    'element' => $this->entry1,
-                    'field' => 'titleOrHonorific',
-                ],
-                [
                     'method' => 'getTwigMarkup',
                     'element' => $this->entry1,
                     'field' => 'bio',
-                ],
-                [
-                    'method' => 'getString',
-                    'element' => $this->entry2,
-                    'field' => 'titleOrHonorific',
                 ],
                 [
                     'method' => 'getTwigMarkup',
