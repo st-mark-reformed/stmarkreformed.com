@@ -1,0 +1,17 @@
+columnSuffix: obskjgmv
+contentColumnType: datetime
+fieldGroup: c66e62d9-2ca8-4489-8c97-3f4dca8ccb60 # Common
+handle: latestEntryAt
+instructions: ''
+name: 'Latest Entry At'
+searchable: false
+settings:
+  max: null
+  min: null
+  minuteIncrement: '30'
+  showDate: true
+  showTime: true
+  showTimeZone: ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Date

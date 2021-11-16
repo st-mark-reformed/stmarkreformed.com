@@ -83,8 +83,8 @@ permissions:
   - 'editpeerentrydrafts:9c3eb649-30d1-4de9-8679-4495fe2a2923'
   - 'editentries:9c3eb649-30d1-4de9-8679-4495fe2a2923'
   - 'editglobalset:84f0c3bc-62d3-4031-83c9-053e7a1fc6b2' # General
-  - 'editcategories:8944d860-7b65-43bb-b62e-9750d6416ebc'
-  - 'editcategories:3997eb97-922e-4368-8704-2c22cb7dcb1e'
+  - 'editcategories:8944d860-7b65-43bb-b62e-9750d6416ebc' # Internal Message Series
+  - 'editcategories:3997eb97-922e-4368-8704-2c22cb7dcb1e' # Message Series
   - 'editcategories:0a59f674-1687-4158-897b-c69d0ed334ce'
   - 'editcategories:058c9a87-ef94-4f63-bab6-4bca4d0296fb'
   - 'saveassetinvolume:fe2952ce-382a-4470-8f04-a7bdd1b48f66'

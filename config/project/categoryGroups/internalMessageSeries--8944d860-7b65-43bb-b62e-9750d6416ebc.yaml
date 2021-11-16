@@ -1,3 +1,4 @@
+defaultPlacement: end
 fieldLayouts:
   e4239c34-ae11-4345-8b74-7bba3fe2ef94:
     tabs:
@@ -37,6 +38,19 @@ fieldLayouts:
             width: 100
         name: Content
         sortOrder: 1
+      -
+        elements:
+          -
+            fieldUid: b1b4e23d-e236-44f0-8170-0170b4447e96 # Latest Entry At
+            instructions: 'Do not edit this field, it is automatically managed'
+            label: ''
+            required: ''
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Automated
+        sortOrder: 2
 handle: internalMessageSeries
 name: 'Internal Message Series'
 siteSettings:

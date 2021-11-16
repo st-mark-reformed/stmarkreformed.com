@@ -1,20 +1,63 @@
+defaultPlacement: end
 fieldLayouts:
   07ab0ac0-b528-4a5f-aa80-e8e4da7bbaa3:
     tabs:
       -
-        fields:
-          3925f2c2-f707-4557-ae5e-1b4e36801755: # Short Description
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            disabled: false
+            id: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\TitleField
+            warning: null
+            width: 100
+          -
+            fieldUid: 3925f2c2-f707-4557-ae5e-1b4e36801755 # Short Description
+            instructions: null
+            label: null
             required: '0'
-            sortOrder: '1'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Details
-        sortOrder: '1'
+        sortOrder: 1
+      -
+        elements:
+          -
+            fieldUid: b1b4e23d-e236-44f0-8170-0170b4447e96 # Latest Entry At
+            instructions: 'Do not edit this field, it is automatically managed'
+            label: ''
+            required: ''
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Automated
+        sortOrder: 2
 handle: messageSeries
 name: 'Message Series'
 siteSettings:
   94e92402-bc7d-4413-bc65-a236d81d53aa: # St. Mark Reformed Church
-    hasUrls: '0'
+    hasUrls: false
     template: null
     uriFormat: null
 structure:
-  maxLevels: '1'
+  maxLevels: 1
   uid: 7a3b6abf-4feb-45f5-8718-f36a645bb96f

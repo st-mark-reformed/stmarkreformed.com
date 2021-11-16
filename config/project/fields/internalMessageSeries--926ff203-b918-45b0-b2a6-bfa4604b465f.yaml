@@ -13,7 +13,7 @@ settings:
   localizeRelations: false
   selectionLabel: ''
   showSiteMenu: true
-  source: 'group:8944d860-7b65-43bb-b62e-9750d6416ebc'
+  source: 'group:8944d860-7b65-43bb-b62e-9750d6416ebc' # Internal Message Series
   sources: '*'
   targetSiteId: null
   validateRelatedElements: false

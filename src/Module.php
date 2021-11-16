@@ -6,10 +6,12 @@ namespace App;
 
 use App\Craft\Behaviors\ProfileEntriesBehavior;
 use App\Craft\Commands\ElasticSearchConsoleController;
+use App\Craft\Commands\MessagesConsoleController;
 use App\Craft\ElementSaveClearStaticCache;
 use App\Craft\SetMessageEntrySlug\SetMessageEntrySlugFactory;
-use App\ElasticSearch\ElasticSearchApi;
+use App\ElasticSearch\Events\ModifyElementQueueIndexAllMessages;
 use App\Http\Utility\ClearStaticCache;
+use App\Messages\Events\ModifyElementQueueSetMessageSeriesLatestEntry;
 use App\Templating\TwigControl\TwigControl;
 use BuzzingPixel\TwigDumper\TwigDumper;
 use Config\di\Container;
@@ -161,9 +163,23 @@ class Module extends ModuleBase
             $clearStaticCache instanceof ElementSaveClearStaticCache
         );
 
-        $elasticSearchApi = $di->get(ElasticSearchApi::class);
+        $modifyElementQueueIndexAllMessages = $di->get(
+            ModifyElementQueueIndexAllMessages::class
+        );
 
-        assert($elasticSearchApi instanceof ElasticSearchApi);
+        assert(
+            $modifyElementQueueIndexAllMessages instanceof
+                ModifyElementQueueIndexAllMessages
+        );
+
+        $modifyElementQueueSetMessageSeriesLatestEntry = $di->get(
+            ModifyElementQueueSetMessageSeriesLatestEntry::class,
+        );
+
+        assert(
+            $modifyElementQueueSetMessageSeriesLatestEntry instanceof
+                ModifyElementQueueSetMessageSeriesLatestEntry
+        );
 
         Event::on(
             Element::class,
@@ -184,25 +200,43 @@ class Module extends ModuleBase
         Event::on(
             Element::class,
             Element::EVENT_AFTER_SAVE,
-            [$clearStaticCache, 'clear'],
+            [$modifyElementQueueIndexAllMessages, 'respond'],
         );
 
         Event::on(
             Element::class,
             Element::EVENT_AFTER_DELETE,
-            [$clearStaticCache, 'clear'],
+            [$modifyElementQueueIndexAllMessages, 'respond'],
         );
 
         Event::on(
             Element::class,
             Element::EVENT_AFTER_SAVE,
-            [$elasticSearchApi, 'queueIndexAllMessages'],
+            [
+                $modifyElementQueueSetMessageSeriesLatestEntry,
+                'respond',
+            ],
         );
 
         Event::on(
             Element::class,
             Element::EVENT_AFTER_DELETE,
-            [$elasticSearchApi, 'queueIndexAllMessages'],
+            [
+                $modifyElementQueueSetMessageSeriesLatestEntry,
+                'respond',
+            ],
+        );
+
+        Event::on(
+            Element::class,
+            Element::EVENT_AFTER_SAVE,
+            [$clearStaticCache, 'clear'],
+        );
+
+        Event::on(
+            Element::class,
+            Element::EVENT_AFTER_DELETE,
+            [$clearStaticCache, 'clear'],
         );
 
         Event::on(
@@ -256,6 +290,7 @@ class Module extends ModuleBase
     {
         $this->controllerMap = [
             'elastic-search' => ElasticSearchConsoleController::class,
+            'messages' => MessagesConsoleController::class,
         ];
     }
 

@@ -1,4 +1,4 @@
-dateModified: 1636728974
+dateModified: 1636932453
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -92,10 +92,12 @@ meta:
     1619a0e9-2a7f-4450-ad7b-9eb6f10a435d: 'Call To Action' # Call To Action
     1849a26d-8a77-45c2-a9d4-9dd57e96be94: 'Resource Downloads' # Resource Downloads
     3925f2c2-f707-4557-ae5e-1b4e36801755: 'Short Description' # Short Description
+    3997eb97-922e-4368-8704-2c22cb7dcb1e: 'Message Series' # Message Series
     5400e5d9-aa8f-439d-8bd5-0a2141010eae: 'Stripe Payment Form' # Stripe Payment Form
     6388b6f1-05a6-4091-8161-5eaeb0cb5359: Email # Email
     7522d6a8-afc9-4759-9891-9a6b55c68ba8: 'Internal Messages' # Internal Messages
     8166c5cb-d63f-45c7-ae99-c33961a4cf3d: 'Facebook URL' # Facebook URL
+    8944d860-7b65-43bb-b62e-9750d6416ebc: 'Internal Message Series' # Internal Message Series
     42896f14-4d1e-4a82-8219-53d7de7d33ce: 'Last Name' # Last Name
     51614c49-f9f5-4660-abc0-d551062072b8: 'Message Series' # Message Series
     63998a0f-586b-4b03-ba27-74b694bf10dd: 'Hymn of the Month Music' # Hymn of the Month Music
@@ -119,6 +121,7 @@ meta:
     a7845568-a0c6-44e5-8b75-3ef735f6ef8d: 'Page Builder' # Page Builder
     aadb813b-3e01-45db-85cb-3ef90a02a7b9: CTAs # CTAs
     abf9672d-3bab-4e78-a495-5f5b79756405: 'Default Hero Image' # Default Hero Image
+    b1b4e23d-e236-44f0-8170-0170b4447e96: 'Latest Entry At' # Latest Entry At
     b149c792-7a23-44b8-b08b-12fd4059475d: 'Primary Image' # Primary Image
     b153d5f7-fd35-4731-9437-eb1333cdc3e2: 'SEO Description' # SEO Description
     b347cbd4-6649-4d68-9a40-b7d125c99e96: Alignment # Alignment
