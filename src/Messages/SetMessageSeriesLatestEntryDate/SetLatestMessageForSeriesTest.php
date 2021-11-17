@@ -49,6 +49,8 @@ class SetLatestMessageForSeriesTest extends TestCase
     }
 
     /**
+     * @param R $return
+     *
      * @return R
      *
      * @template R

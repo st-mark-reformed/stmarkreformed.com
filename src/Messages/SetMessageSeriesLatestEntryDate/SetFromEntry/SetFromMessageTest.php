@@ -59,6 +59,8 @@ class SetFromMessageTest extends TestCase
     }
 
     /**
+     * @param R $return
+     *
      * @return R
      *
      * @template R

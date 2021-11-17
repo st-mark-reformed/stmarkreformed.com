@@ -1,4 +1,4 @@
-dateModified: 1636932453
+dateModified: 1637080401
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -49,6 +49,7 @@ meta:
     7e651c1f-ddb7-4bd0-9842-d0d8b71f4671: Subheading # Subheading
     07efee91-98b9-462b-824d-885cbf31780d: 'Latest Types' # Latest Types
     8c21d3d3-5328-4d12-adf7-302be60334d6: 'Success Redirect' # Success Redirect
+    8e19ed95-a88d-470b-a8f3-9f2e9030c041: 'Has Messages' # Has Messages
     8e41a4a3-46e9-41d1-bb64-46f3cd0979c0: 'Import Search String' # Import Search String
     8f9ce4e3-aa79-49a5-9857-a5a0eb2396c6: Body # Body
     8f73d9f8-3435-4396-bb8f-e729910f2665: Gallery # Gallery
@@ -94,6 +95,7 @@ meta:
     3925f2c2-f707-4557-ae5e-1b4e36801755: 'Short Description' # Short Description
     3997eb97-922e-4368-8704-2c22cb7dcb1e: 'Message Series' # Message Series
     5400e5d9-aa8f-439d-8bd5-0a2141010eae: 'Stripe Payment Form' # Stripe Payment Form
+    6175eec4-dbc2-4d76-8087-5e21be9754e8: 'Exclude From Featured' # Exclude From Featured
     6388b6f1-05a6-4091-8161-5eaeb0cb5359: Email # Email
     7522d6a8-afc9-4759-9891-9a6b55c68ba8: 'Internal Messages' # Internal Messages
     8166c5cb-d63f-45c7-ae99-c33961a4cf3d: 'Facebook URL' # Facebook URL

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\ElasticSearch\Events;
+namespace App\Profiles\Events;
 
-use App\ElasticSearch\ElasticSearchApi;
+use App\Profiles\ProfilesApi;
 use craft\base\Element;
 use craft\elements\Entry;
 use craft\models\EntryType;
@@ -19,10 +19,11 @@ use function debug_backtrace;
  * @psalm-suppress MixedArrayAccess
  * @psalm-suppress PossiblyFalseArgument
  * @psalm-suppress PropertyNotSetInConstructor
+ * @psalm-suppress MixedInferredReturnType
  */
-class ModifyElementQueueIndexAllMessagesTest extends TestCase
+class ModifyElementQueueSetHasMessagesOnAllProfilesTest extends TestCase
 {
-    private ModifyElementQueueIndexAllMessages $responder;
+    private ModifyElementQueueSetHasMessagesOnAllProfiles $responder;
 
     /** @var mixed[] */
     private array $calls = [];
@@ -33,8 +34,8 @@ class ModifyElementQueueIndexAllMessagesTest extends TestCase
 
         $this->calls = [];
 
-        $this->responder = new ModifyElementQueueIndexAllMessages(
-            elasticSearchApi: $this->mockElasticSearchApi(),
+        $this->responder = new ModifyElementQueueSetHasMessagesOnAllProfiles(
+            profilesApi: $this->mockProfilesApi(),
         );
     }
 
@@ -64,15 +65,15 @@ class ModifyElementQueueIndexAllMessagesTest extends TestCase
     }
 
     /**
-     * @return ElasticSearchApi&MockObject
+     * @return ProfilesApi&MockObject
      */
-    private function mockElasticSearchApi(): mixed
+    private function mockProfilesApi(): mixed
     {
-        $api = $this->createMock(ElasticSearchApi::class);
+        $api = $this->createMock(ProfilesApi::class);
 
         $api->method(self::anything())->willReturnCallback(
             function (): void {
-                $this->genericCall(object: 'ElasticSearchApi');
+                $this->genericCall(object: 'ProfilesApi');
             }
         );
 
@@ -139,8 +140,8 @@ class ModifyElementQueueIndexAllMessagesTest extends TestCase
         self::assertSame(
             [
                 [
-                    'object' => 'ElasticSearchApi',
-                    'method' => 'queueIndexAllMessages',
+                    'object' => 'ProfilesApi',
+                    'method' => 'queueSetHasMessagesOnAllProfiles',
                     'args' => [],
                 ],
             ],

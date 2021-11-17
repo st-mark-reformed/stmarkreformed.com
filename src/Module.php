@@ -7,11 +7,13 @@ namespace App;
 use App\Craft\Behaviors\ProfileEntriesBehavior;
 use App\Craft\Commands\ElasticSearchConsoleController;
 use App\Craft\Commands\MessagesConsoleController;
+use App\Craft\Commands\ProfilesConsoleController;
 use App\Craft\ElementSaveClearStaticCache;
 use App\Craft\SetMessageEntrySlug\SetMessageEntrySlugFactory;
 use App\ElasticSearch\Events\ModifyElementQueueIndexAllMessages;
 use App\Http\Utility\ClearStaticCache;
 use App\Messages\Events\ModifyElementQueueSetMessageSeriesLatestEntry;
+use App\Profiles\Events\ModifyElementQueueSetHasMessagesOnAllProfiles;
 use App\Templating\TwigControl\TwigControl;
 use BuzzingPixel\TwigDumper\TwigDumper;
 use Config\di\Container;
@@ -181,6 +183,15 @@ class Module extends ModuleBase
                 ModifyElementQueueSetMessageSeriesLatestEntry
         );
 
+        $modifyElementQueueSetHasMessagesOnAllProfiles = $di->get(
+            ModifyElementQueueSetHasMessagesOnAllProfiles::class,
+        );
+
+        assert(
+            $modifyElementQueueSetHasMessagesOnAllProfiles instanceof
+                ModifyElementQueueSetHasMessagesOnAllProfiles
+        );
+
         Event::on(
             Element::class,
             Element::EVENT_BEFORE_SAVE,
@@ -223,6 +234,24 @@ class Module extends ModuleBase
             Element::EVENT_AFTER_DELETE,
             [
                 $modifyElementQueueSetMessageSeriesLatestEntry,
+                'respond',
+            ],
+        );
+
+        Event::on(
+            Element::class,
+            Element::EVENT_AFTER_SAVE,
+            [
+                $modifyElementQueueSetHasMessagesOnAllProfiles,
+                'respond',
+            ],
+        );
+
+        Event::on(
+            Element::class,
+            Element::EVENT_AFTER_DELETE,
+            [
+                $modifyElementQueueSetHasMessagesOnAllProfiles,
                 'respond',
             ],
         );
@@ -291,6 +320,7 @@ class Module extends ModuleBase
         $this->controllerMap = [
             'elastic-search' => ElasticSearchConsoleController::class,
             'messages' => MessagesConsoleController::class,
+            'profiles' => ProfilesConsoleController::class,
         ];
     }
 

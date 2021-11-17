@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Messages\Console;
+namespace App\Profiles\Console;
 
-use App\Messages\MessagesApi;
+use App\Profiles\ProfilesApi;
 use BuzzingPixel\CraftScheduler\Cli\Services\Output;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -17,9 +17,9 @@ use function debug_backtrace;
  * @psalm-suppress MixedArrayAccess
  * @psalm-suppress PropertyNotSetInConstructor
  */
-class SetMessageSeriesLatestEntryCommandTest extends TestCase
+class SetHasMessagesOnAllProfilesCommandTest extends TestCase
 {
-    private SetMessageSeriesLatestEntryCommand $command;
+    private SetHasMessagesOnAllProfilesCommand $command;
 
     /** @var mixed[] */
     private array $calls = [];
@@ -33,8 +33,8 @@ class SetMessageSeriesLatestEntryCommandTest extends TestCase
 
         $this->output = $this->mockOutput();
 
-        $this->command = new SetMessageSeriesLatestEntryCommand(
-            messagesApi: $this->mockMessagesApi(),
+        $this->command = new SetHasMessagesOnAllProfilesCommand(
+            profilesApi: $this->mockProfilesApi(),
         );
     }
 
@@ -80,15 +80,15 @@ class SetMessageSeriesLatestEntryCommandTest extends TestCase
     }
 
     /**
-     * @return MessagesApi&MockObject
+     * @return ProfilesApi&MockObject
      */
-    private function mockMessagesApi(): mixed
+    private function mockProfilesApi(): mixed
     {
-        $api = $this->createMock(MessagesApi::class);
+        $api = $this->createMock(ProfilesApi::class);
 
-        $api->method('setMessageSeriesLatestEntry')
+        $api->method(self::anything())
             ->willReturnCallback(function (): void {
-                $this->genericCall(object: 'MessagesApi');
+                $this->genericCall(object: 'ProfilesApi');
             });
 
         return $api;
@@ -104,20 +104,20 @@ class SetMessageSeriesLatestEntryCommandTest extends TestCase
                     'object' => 'Output',
                     'method' => 'writeln',
                     'args' => [
-                        'Setting messages series latest entry dates...',
+                        'Updating all profiles...',
                         BaseConsole::FG_YELLOW,
                     ],
                 ],
                 [
-                    'object' => 'MessagesApi',
-                    'method' => 'setMessageSeriesLatestEntry',
+                    'object' => 'ProfilesApi',
+                    'method' => 'setHasMessagesOnAllProfiles',
                     'args' => [],
                 ],
                 [
                     'object' => 'Output',
                     'method' => 'writeln',
                     'args' => [
-                        'Finished setting messages series latest entry dates.',
+                        'Finished updating all profiles.',
                         BaseConsole::FG_GREEN,
                     ],
                 ],

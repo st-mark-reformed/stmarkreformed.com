@@ -100,6 +100,19 @@ fieldLayouts:
             width: 100
         name: Content
         sortOrder: 1
+      -
+        elements:
+          -
+            fieldUid: 8e19ed95-a88d-470b-a8f3-9f2e9030c041 # Has Messages
+            instructions: 'Do not edit this field, it is automatically managed'
+            label: ''
+            required: ''
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Automated
+        sortOrder: 2
 handle: profile
 hasTitleField: false
 name: Profile

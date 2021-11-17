@@ -2,13 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Messages;
+namespace App\Profiles;
 
-use App\Messages\Queue\SetMessageSeriesLatestEntryQueueJob;
-use App\Messages\RetrieveMessages\MessageRetrieval;
-use App\Messages\RetrieveMessages\MessageRetrievalParams;
-use App\Messages\RetrieveMessages\MessagesResult;
-use App\Messages\SetMessageSeriesLatestEntryDate\SetMessageSeriesLatestEntry;
+use App\Profiles\Queue\SetHasMessagesOnAllProfilesQueueJob;
+use App\Profiles\SetHasMessages\SetHasMessagesOnAllProfiles;
 use craft\queue\Queue;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -22,9 +19,9 @@ use function is_array;
  * @psalm-suppress PossiblyFalseArgument
  * @psalm-suppress PropertyNotSetInConstructor
  */
-class MessagesApiTest extends TestCase
+class ProfilesApiTest extends TestCase
 {
-    private MessagesApi $messagesApi;
+    private ProfilesApi $api;
 
     /** @var mixed[] */
     private array $calls = [];
@@ -35,10 +32,9 @@ class MessagesApiTest extends TestCase
 
         $this->calls = [];
 
-        $this->messagesApi = new MessagesApi(
+        $this->api = new ProfilesApi(
             queue: $this->mockQueue(),
-            messageRetrieval: $this->mockMessageRetrieval(),
-            setMessageSeriesLatestEntry: $this->mockSetMessageSeriesLatestEntry(),
+            setHasMessagesOnAllProfiles: $this->mockSetHasMessagesOnAllProfiles(),
         );
     }
 
@@ -87,45 +83,18 @@ class MessagesApiTest extends TestCase
     }
 
     /**
-     * @return MessageRetrieval&MockObject
+     * @return SetHasMessagesOnAllProfiles&MockObject
      */
-    private function mockMessageRetrieval(): mixed
-    {
-        $messageRetrieval = $this->createMock(
-            MessageRetrieval::class,
-        );
-
-        $messageRetrieval->method('fromParams')->willReturnCallback(
-            function (MessageRetrievalParams $params): MessagesResult {
-                $this->calls[] = [
-                    'object' => 'MessageRetrieval',
-                    'method' => 'fromParams',
-                    'params' => $params,
-                ];
-
-                return new MessagesResult(
-                    absoluteTotal: 42,
-                    messages: [],
-                );
-            }
-        );
-
-        return $messageRetrieval;
-    }
-
-    /**
-     * @return SetMessageSeriesLatestEntry&MockObject
-     */
-    private function mockSetMessageSeriesLatestEntry(): mixed
+    private function mockSetHasMessagesOnAllProfiles(): mixed
     {
         $set = $this->createMock(
-            SetMessageSeriesLatestEntry::class,
+            SetHasMessagesOnAllProfiles::class,
         );
 
         $set->method(self::anything())->willReturnCallback(
             function (): void {
                 $this->genericCall(
-                    object: 'SetMessageSeriesLatestEntry',
+                    object: 'SetHasMessagesOnAllProfiles',
                 );
             }
         );
@@ -133,34 +102,14 @@ class MessagesApiTest extends TestCase
         return $set;
     }
 
-    public function testRetrieveMessages(): void
+    public function testSetHasMessagesOnAllProfiles(): void
     {
-        $params = new MessageRetrievalParams();
-
-        $result = $this->messagesApi->retrieveMessages(params: $params);
-
-        self::assertSame(42, $result->absoluteTotal());
+        $this->api->setHasMessagesOnAllProfiles();
 
         self::assertSame(
             [
                 [
-                    'object' => 'MessageRetrieval',
-                    'method' => 'fromParams',
-                    'params' => $params,
-                ],
-            ],
-            $this->calls,
-        );
-    }
-
-    public function testSetMessageSeriesLatestEntry(): void
-    {
-        $this->messagesApi->setMessageSeriesLatestEntry();
-
-        self::assertSame(
-            [
-                [
-                    'object' => 'SetMessageSeriesLatestEntry',
+                    'object' => 'SetHasMessagesOnAllProfiles',
                     'method' => 'set',
                     'args' => [],
                 ],
@@ -171,7 +120,7 @@ class MessagesApiTest extends TestCase
 
     public function testQueueSetMessageSeriesLatestEntry(): void
     {
-        $this->messagesApi->queueSetMessageSeriesLatestEntry();
+        $this->api->queueSetHasMessagesOnAllProfiles();
 
         self::assertCount(1, $this->calls);
 
@@ -192,7 +141,7 @@ class MessagesApiTest extends TestCase
         self::assertCount(1, $args);
 
         self::assertInstanceOf(
-            SetMessageSeriesLatestEntryQueueJob::class,
+            SetHasMessagesOnAllProfilesQueueJob::class,
             $args[0],
         );
     }

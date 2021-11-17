@@ -39,7 +39,14 @@ class ModifyElementQueueSetMessageSeriesLatestEntryTest extends TestCase
     }
 
     /**
+     * @param R $return
+     *
+     * @return R
+     *
+     * @template R
      * @psalm-suppress PossiblyUndefinedArrayOffset
+     * @psalm-suppress MixedReturnStatement
+     * @psalm-suppress MixedInferredReturnType
      */
     private function genericCall(
         string $object,
