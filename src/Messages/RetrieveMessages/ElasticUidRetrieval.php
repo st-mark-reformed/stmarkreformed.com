@@ -9,10 +9,6 @@ use Elasticsearch\Client;
 use function array_map;
 use function count;
 
-/**
- * @psalm-suppress MixedArgument
- * @psalm-suppress MixedReturnTypeCoercion
- */
 class ElasticUidRetrieval
 {
     public function __construct(private Client $client)

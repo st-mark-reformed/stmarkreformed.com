@@ -11,7 +11,6 @@ use PHPUnit\Framework\TestCase;
 
 use function assert;
 
-/** @psalm-suppress PropertyNotSetInConstructor */
 class SetMessageEntrySlugTest extends TestCase
 {
     public function testSet(): void
@@ -35,7 +34,6 @@ class SetMessageEntrySlugTest extends TestCase
 
         $setMessageEntrySlug->set();
 
-        /** @psalm-suppress DocblockTypeContradiction */
         self::assertSame(
             '1982-01-27-test-title',
             $entryStub->slug,

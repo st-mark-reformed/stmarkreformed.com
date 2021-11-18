@@ -8,7 +8,7 @@ function docker-phpcs() {
     fi
 
     docker run ${interactiveArgs} \
-        --name stmark-psalm \
+        --name stmark-phpcs \
         -v ${PWD}:/opt/project \
         -w /opt/project \
         --env ENABLE_PHP_DEV_CONFIG=1 \
@@ -17,7 +17,7 @@ function docker-phpcs() {
         --env DISABLE_NGINX=1 \
         registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app bash -c "php -d memory_limit=4G ./vendor/bin/phpcs";
 
-    docker rm stmark-psalm >/dev/null 2>&1;
+    docker rm stmark-phpcs >/dev/null 2>&1;
 
     return 0;
 }
@@ -36,7 +36,7 @@ function docker-phpcbf() {
     fi
 
     docker run ${interactiveArgs} \
-        --name stmark-psalm \
+        --name stmark-phpcs \
         -v ${PWD}:/opt/project \
         -w /opt/project \
         --env ENABLE_PHP_DEV_CONFIG=1 \
@@ -45,7 +45,7 @@ function docker-phpcbf() {
         --env DISABLE_NGINX=1 \
         registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app bash -c "php -d memory_limit=4G ./vendor/bin/phpcbf";
 
-    docker rm stmark-psalm >/dev/null 2>&1;
+    docker rm stmark-phpcs >/dev/null 2>&1;
 
     return 0;
 }

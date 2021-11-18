@@ -6,12 +6,6 @@ namespace App\Http\Utility;
 
 use PHPUnit\Framework\TestCase;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress MixedAssignment
- * @psalm-suppress MixedArgument
- */
 class QueryStringTest extends TestCase
 {
     public function testParse(): void

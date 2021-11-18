@@ -7,10 +7,6 @@ use craft\queue\Queue;
 use craft\services\Elements as ElementsService;
 use craft\services\Globals;
 
-/**
- * @psalm-suppress MixedInferredReturnType
- * @psalm-suppress UndefinedClass
- */
 return [
     ElementsService::class => static function (): ElementsService {
         /** @phpstan-ignore-next-line */

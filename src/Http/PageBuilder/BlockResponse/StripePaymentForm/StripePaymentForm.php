@@ -19,9 +19,6 @@ use Twig\Markup;
 use yii\base\Exception;
 use yii\base\InvalidConfigException;
 
-/**
- * @psalm-suppress RedundantCastGivenDocblockType
- */
 class StripePaymentForm implements BlockResponseBuilderContract
 {
     public function __construct(

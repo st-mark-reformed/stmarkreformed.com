@@ -29,26 +29,19 @@ $twigDumper = $dumper = new ServerDumper('tcp://127.0.0.1:9912', $fallbackDumper
 $varStore            = new stdClass();
 $varStore->hasDumped = false;
 
-/** @psalm-suppress MissingClosureParamType */
 VarDumper::setHandler(static function ($var) use ($cloner, $dumper, $twigDumper, $varStore): void {
-    /**
-     * @psalm-suppress RedundantCondition
-     * @phpstan-ignore-next-line
-     */
+    /** @phpstan-ignore-next-line */
     if (PHP_SAPI !== 'cli' && $varStore->hasDumped === false) {
         echo '<head><title>Symfony Dumper</title></head><body>';
         $varStore->hasDumped = true;
     }
 
-    /** @psalm-suppress MixedAssignment */
     $checkForTwigDumperFile = debug_backtrace()[1]['file'] ?? '';
 
     if (! $checkForTwigDumperFile) {
-        /** @psalm-suppress MixedAssignment */
         $checkForTwigDumperFile = debug_backtrace()[2]['file'] ?? '';
     }
 
-    /** @psalm-suppress MixedArgument */
     $checkForTwigDumperArray = explode(DIRECTORY_SEPARATOR, $checkForTwigDumperFile);
 
     $isTwigDumper = $checkForTwigDumperArray[count($checkForTwigDumperArray) - 1] === 'TwigDumper.php';
@@ -76,7 +69,6 @@ VarDumper::setHandler(static function ($var) use ($cloner, $dumper, $twigDumper,
         echo '<pre style="margin-bottom: -16px; background-color: #fff">';
     }
 
-    /** @psalm-suppress MixedOperand */
     echo $traceItem['file'] . ':' . $traceItem['line'] . ': ';
 
     if (PHP_SAPI !== 'cli') {

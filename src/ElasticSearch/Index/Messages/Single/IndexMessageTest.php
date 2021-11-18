@@ -8,10 +8,6 @@ use craft\elements\Entry;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class IndexMessageTest extends TestCase
 {
     private IndexMessage $indexMessage;

@@ -14,10 +14,6 @@ use craft\queue\Queue;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class ElasticSearchApiTest extends TestCase
 {
     private ElasticSearchApi $api;

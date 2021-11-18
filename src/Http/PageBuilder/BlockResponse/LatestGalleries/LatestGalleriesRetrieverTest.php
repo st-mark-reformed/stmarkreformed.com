@@ -13,10 +13,6 @@ use craft\errors\InvalidFieldException;
 use PHPUnit\Framework\TestCase;
 use yii\base\InvalidConfigException;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class LatestGalleriesRetrieverTest extends TestCase
 {
     private LatestGalleriesRetriever $retriever;

@@ -10,10 +10,6 @@ use Elasticsearch\Client;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class CreateMessageIndexTest extends TestCase
 {
     private CreateMessageIndex $createMessageIndex;

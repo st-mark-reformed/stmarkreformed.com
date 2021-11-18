@@ -15,10 +15,6 @@ use yii\base\InvalidConfigException;
 use function assert;
 use function is_array;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class GetDefaultHeroImageUrlTest extends TestCase
 {
     public function testGetFunctions(): void

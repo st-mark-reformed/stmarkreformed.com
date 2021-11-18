@@ -18,9 +18,6 @@ use function assert;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- */
 class m211101_173038_update_messages_to_use_profiles extends Migration
 {
     public function safeUp(): bool
@@ -69,20 +66,13 @@ class m211101_173038_update_messages_to_use_profiles extends Migration
             return;
         }
 
-        /**
-         * @psalm-suppress PossiblyInvalidPropertyFetch
-         */
         $entry->setFieldValue(
             'profile',
             /** @phpstan-ignore-next-line */
             [$profile->id],
         );
 
-        /**
-         * @psalm-suppress UndefinedConstant
-         * @psalm-suppress UndefinedClass
-         * @phpstan-ignore-next-line
-         */
+        /** @phpstan-ignore-next-line */
         Craft::$app->getElements()->saveElement($entry);
     }
 

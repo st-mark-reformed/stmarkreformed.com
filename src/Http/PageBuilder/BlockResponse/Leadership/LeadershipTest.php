@@ -12,13 +12,6 @@ use Twig\Environment as TwigEnvironment;
 use function assert;
 use function is_array;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress MixedAssignment
- * @psalm-suppress MixedArgument
- * @psalm-suppress MixedMethodCall
- */
 class LeadershipTest extends TestCase
 {
     private Leadership $service;

@@ -6,9 +6,6 @@ namespace App\Http\PageBuilder\BlockResponse\Leadership;
 
 use function array_map;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- */
 class LeadershipContentModel
 {
     /** @var LeadershipSectionContentModel[] */

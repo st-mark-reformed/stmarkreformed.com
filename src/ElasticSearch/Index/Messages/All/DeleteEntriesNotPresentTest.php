@@ -8,10 +8,6 @@ use Elasticsearch\Client;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class DeleteEntriesNotPresentTest extends TestCase
 {
     private DeleteEntriesNotPresent $deleteEntriesNotPresent;

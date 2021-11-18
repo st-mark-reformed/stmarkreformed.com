@@ -7,12 +7,6 @@ namespace App\Http\PageBuilder\BlockResponse\ContactForm\PostSubmission\Responde
 use App\Http\PageBuilder\BlockResponse\ContactForm\PostSubmission\SendEmail\SendEmailResult;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArgument
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress MixedAssignment
- */
 class ResponderFactoryTest extends TestCase
 {
     private ResponderFactory $factory;

@@ -17,7 +17,6 @@ use PHPUnit\Framework\TestCase;
 
 use function assert;
 
-/** @psalm-suppress PropertyNotSetInConstructor */
 class SetMessageEntrySlugFactoryTest extends TestCase
 {
     public function testMakeWhenExceptionThrown(): void

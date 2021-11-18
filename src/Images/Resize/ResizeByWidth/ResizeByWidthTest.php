@@ -15,10 +15,6 @@ use PHPUnit\Framework\TestCase;
 use Spatie\ImageOptimizer\OptimizerChain;
 use SplFileInfo;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class ResizeByWidthTest extends TestCase
 {
     private SplFileInfo $sourceFileInfoStub;

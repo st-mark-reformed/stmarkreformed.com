@@ -165,15 +165,6 @@
       <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
       <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
       <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
-      <path value="$PROJECT_DIR$/vendor/dnoegel/php-xdg-base-dir" />
-      <path value="$PROJECT_DIR$/vendor/felixfbecker/advanced-json-rpc" />
-      <path value="$PROJECT_DIR$/vendor/felixfbecker/language-server-protocol" />
-      <path value="$PROJECT_DIR$/vendor/openlss/lib-array2xml" />
-      <path value="$PROJECT_DIR$/vendor/amphp/amp" />
-      <path value="$PROJECT_DIR$/vendor/amphp/byte-stream" />
-      <path value="$PROJECT_DIR$/vendor/webmozart/path-util" />
-      <path value="$PROJECT_DIR$/vendor/netresearch/jsonmapper" />
-      <path value="$PROJECT_DIR$/vendor/vimeo/psalm" />
       <path value="$PROJECT_DIR$/vendor/buzzingpixel/craft-scheduler" />
       <path value="$PROJECT_DIR$/vendor/buzzingpixel/craft-slim-bridge" />
       <path value="$PROJECT_DIR$/vendor/fig/http-message-util" />

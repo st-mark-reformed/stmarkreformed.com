@@ -18,11 +18,6 @@ use yii\base\Exception;
 
 use function debug_backtrace;
 
-/**
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress PossiblyFalseArgument
- * @psalm-suppress PropertyNotSetInConstructor
- */
 class SetHasMessagesOnAProfileTest extends TestCase
 {
     private SetHasMessagesOnAProfile $service;
@@ -65,9 +60,6 @@ class SetHasMessagesOnAProfileTest extends TestCase
      * @return R
      *
      * @template R
-     * @psalm-suppress PossiblyUndefinedArrayOffset
-     * @psalm-suppress MixedReturnStatement
-     * @psalm-suppress MixedInferredReturnType
      */
     private function genericCall(
         string $object,

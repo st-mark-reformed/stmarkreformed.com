@@ -10,8 +10,6 @@ use lucidtaz\yii2whoops\ErrorHandler;
 
 /**
  * @codeCoverageIgnore
- * @psalm-suppress     MissingPropertyType
- * @psalm-suppress     PropertyNotSetInConstructor
  */
 class CustomErrorHandler extends ErrorHandler
 {

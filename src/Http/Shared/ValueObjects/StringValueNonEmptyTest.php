@@ -10,12 +10,6 @@ use Throwable;
 
 use function assert;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress MixedAssignment
- * @psalm-suppress MixedArgument
- */
 class StringValueNonEmptyTest extends TestCase
 {
     public function testEmptyValue(): void

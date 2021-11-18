@@ -15,10 +15,6 @@ use Psr\Http\Message\StreamInterface;
 
 use function assert;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class SourceFileRetrieverTest extends TestCase
 {
     private SourceFileRetriever $service;
@@ -66,7 +62,6 @@ class SourceFileRetrieverTest extends TestCase
             GuzzleClient::class,
         );
 
-        /** @psalm-suppress DeprecatedMethod */
         $guzzleClientStub->method('get')->willReturnCallback(
             function (string $uri) use (
                 $guzzleResponse,

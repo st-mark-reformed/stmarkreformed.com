@@ -18,12 +18,6 @@ use Slim\Interfaces\RouteInterface;
 
 use function assert;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArgument
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress MixedAssignment
- */
 class PostSubmissionActionTest extends TestCase
 {
     private PostSubmissionAction $action;

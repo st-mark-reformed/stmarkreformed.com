@@ -13,10 +13,6 @@ use PHPUnit\Framework\TestCase;
 
 use function assert;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class MatrixFieldHandlerTest extends TestCase
 {
     private MatrixFieldHandler $handler;

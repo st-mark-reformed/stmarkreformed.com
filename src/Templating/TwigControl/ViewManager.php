@@ -21,10 +21,6 @@ use function parse_url;
 use const PHP_EOL;
 
 /**
- * @psalm-suppress MixedArgument
- * @psalm-suppress MixedArgumentTypeCoercion
- * @psalm-suppress MixedArrayOffset
- * @psalm-suppress MixedAssignment
  * @codeCoverageIgnore
  * Yii is making us do some dirty things and this is too complicated to test
  * or, at least, I don't want to spend the time writing the tests

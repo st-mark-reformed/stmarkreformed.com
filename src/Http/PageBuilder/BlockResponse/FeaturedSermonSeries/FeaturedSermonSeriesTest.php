@@ -17,13 +17,6 @@ use Twig\Environment as TwigEnvironment;
 
 use function assert;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress MixedAssignment
- * @psalm-suppress EmptyArrayAccess
- * @psalm-suppress MixedArgument
- */
 class FeaturedSermonSeriesTest extends TestCase
 {
     public function testBuildResponse(): void

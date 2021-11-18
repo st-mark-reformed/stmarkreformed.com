@@ -10,12 +10,6 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use yii\base\Event;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress MixedAssignment
- * @psalm-suppress MixedArgument
- */
 class ElementSaveClearStaticCacheTest extends TestCase
 {
     private ElementSaveClearStaticCache $service;

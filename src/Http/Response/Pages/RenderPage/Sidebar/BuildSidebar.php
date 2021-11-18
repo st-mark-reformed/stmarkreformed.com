@@ -14,10 +14,6 @@ use Twig\Markup;
 use function array_map;
 use function array_merge;
 
-/**
- * @psalm-suppress ArgumentTypeCoercion
- * @psalm-suppress PossiblyInvalidMethodCall
- */
 class BuildSidebar
 {
     public function __construct(private TwigEnvironment $twig)

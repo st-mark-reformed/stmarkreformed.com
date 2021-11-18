@@ -12,7 +12,6 @@ use Spatie\ImageOptimizer\OptimizerChainFactory;
 
 use function DI\autowire;
 
-/** @psalm-suppress UndefinedConstant */
 return [
     ImageCacheFileSystem::class => static function (): ImageCacheFileSystem {
         return new ImageCacheFileSystem(
@@ -26,7 +25,6 @@ return [
     OptimizerChain::class => static function (ContainerInterface $di): OptimizerChain {
         $chain = OptimizerChainFactory::create();
 
-        /** @psalm-suppress MixedArgument */
         $chain->useLogger($di->get(LoggerInterface::class));
 
         return OptimizerChainFactory::create();

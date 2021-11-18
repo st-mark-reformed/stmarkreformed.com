@@ -14,12 +14,6 @@ use function assert;
 use function debug_backtrace;
 use function is_array;
 
-/**
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress PossiblyFalseArgument
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedInferredReturnType
- */
 class SetMessageSeriesLatestEntryTest extends TestCase
 {
     private SetMessageSeriesLatestEntry $service;
@@ -45,9 +39,6 @@ class SetMessageSeriesLatestEntryTest extends TestCase
      * @return R
      *
      * @template R
-     * @psalm-suppress PossiblyUndefinedArrayOffset
-     * @psalm-suppress MixedReturnStatement
-     * @psalm-suppress MixedInferredReturnType
      */
     private function genericCall(
         string $object,

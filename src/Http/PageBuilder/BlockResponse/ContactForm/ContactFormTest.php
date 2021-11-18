@@ -21,12 +21,6 @@ use function array_pop;
 use function assert;
 use function is_array;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArgument
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress MixedAssignment
- */
 class ContactFormTest extends TestCase
 {
     private ContactForm $contactForm;

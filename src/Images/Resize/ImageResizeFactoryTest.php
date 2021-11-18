@@ -7,10 +7,6 @@ namespace App\Images\Resize;
 use Gumlet\ImageResizeException;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class ImageResizeFactoryTest extends TestCase
 {
     /**

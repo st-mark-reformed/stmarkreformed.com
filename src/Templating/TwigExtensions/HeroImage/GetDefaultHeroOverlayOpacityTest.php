@@ -12,10 +12,6 @@ use PHPUnit\Framework\TestCase;
 use function assert;
 use function is_array;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class GetDefaultHeroOverlayOpacityTest extends TestCase
 {
     public function testGetFunctions(): void

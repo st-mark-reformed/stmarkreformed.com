@@ -10,10 +10,6 @@ use Exception;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class IndexMessageEntryFactoryTest extends TestCase
 {
     public IndexMessageEntryFactory $factory;

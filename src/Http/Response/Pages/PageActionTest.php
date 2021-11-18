@@ -19,12 +19,6 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 use yii\base\InvalidConfigException;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress MixedAssignment
- * @psalm-suppress MixedArgument
- */
 class PageActionTest extends TestCase
 {
     private PageAction $action;

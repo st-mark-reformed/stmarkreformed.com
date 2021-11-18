@@ -13,10 +13,6 @@ use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use yii\base\InvalidConfigException;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class BlockResponseBuilderFactoryTest extends TestCase
 {
     /**

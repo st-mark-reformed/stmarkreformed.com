@@ -11,31 +11,23 @@ use Throwable;
 
 use function count;
 
-/**
- * @psalm-suppress RedundantPropertyInitializationCheck
- */
 class FormValues
 {
     /** @var array<string, string> */
     private array $errorMessages = [];
 
-    /** @psalm-suppress PropertyNotSetInConstructor */
     private StringValue $fromUrl;
 
-    /** @psalm-suppress PropertyNotSetInConstructor */
     private StringValue $redirectUrl;
 
-    /** @psalm-suppress PropertyNotSetInConstructor */
     private StringValueNonEmpty $name;
 
     private string $nameRaw;
 
-    /** @psalm-suppress PropertyNotSetInConstructor */
     private EmailAddressNonEmpty $email;
 
     private string $emailRaw;
 
-    /** @psalm-suppress PropertyNotSetInConstructor */
     private StringValueNonEmpty $message;
 
     private string $messageRaw;

@@ -6,12 +6,6 @@ namespace App\Http\Shared\ValueObjects;
 
 use PHPUnit\Framework\TestCase;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress MixedAssignment
- * @psalm-suppress MixedArgument
- */
 class StringValueTest extends TestCase
 {
     public function testStringValueEmpty(): void

@@ -8,7 +8,7 @@ function docker-phpstan() {
     fi
 
     docker run ${interactiveArgs} \
-        --name stmark-psalm \
+        --name stmark-phpstan \
         -v ${PWD}:/opt/project \
         -w /opt/project \
         --env ENABLE_PHP_DEV_CONFIG=1 \
@@ -17,7 +17,7 @@ function docker-phpstan() {
         --env DISABLE_NGINX=1 \
         registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app bash -c "XDEBUG_MODE=off php -d memory_limit=4G ./vendor/bin/phpstan analyse CraftFrontController.php public/index.php config src";
 
-    docker rm stmark-psalm >/dev/null 2>&1;
+    docker rm stmark-phpstan >/dev/null 2>&1;
 
     return 0;
 }

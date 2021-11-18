@@ -13,10 +13,6 @@ use verbb\supertable\elements\SuperTableBlockElement;
 
 use function assert;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class SuperTableFieldHandlerTest extends TestCase
 {
     private SuperTableFieldHandler $handler;

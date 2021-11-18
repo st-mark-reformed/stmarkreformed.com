@@ -6,9 +6,6 @@ namespace App\Http\PageBuilder\BlockResponse\LatestGalleries\Entities;
 
 use function array_map;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- */
 class LatestGalleriesContentModel
 {
     /** @var GalleryItem[] */

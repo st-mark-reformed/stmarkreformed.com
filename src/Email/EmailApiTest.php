@@ -15,10 +15,6 @@ use ReflectionClass;
 
 use function assert;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class EmailApiTest extends TestCase
 {
     private EmailApi $emailApi;

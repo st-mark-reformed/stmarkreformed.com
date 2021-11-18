@@ -30,10 +30,7 @@ class RetrieveMostRecentSeries
 
         $sermonQuery->section('messages');
 
-        /**
-         * @psalm-suppress UndefinedMagicMethod
-         * @phpstan-ignore-next-line
-         */
+        /** @phpstan-ignore-next-line */
         $sermonQuery->messageSeries(':notempty:');
 
         $sermon = $sermonQuery->one();

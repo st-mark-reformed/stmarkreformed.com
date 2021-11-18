@@ -26,9 +26,6 @@ use function mkdir;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- */
 class m211031_015017_move_users_to_profiles extends Migration
 {
     public function safeUp(): bool
@@ -47,11 +44,7 @@ class m211031_015017_move_users_to_profiles extends Migration
     /** @phpstan-ignore-next-line */
     private ?Section $section = null;
 
-    /**
-     * @psalm-suppress UndefinedClass
-     * @psalm-suppress MixedInferredReturnType
-     * @phpstan-ignore-next-line
-     */
+    /** @phpstan-ignore-next-line */
     private function getSection(): Section
     {
         if ($this->section === null) {
@@ -160,11 +153,7 @@ class m211031_015017_move_users_to_profiles extends Migration
             );
         }
 
-        /**
-         * @psalm-suppress UndefinedConstant
-         * @psalm-suppress UndefinedClass
-         * @phpstan-ignore-next-line
-         */
+        /** @phpstan-ignore-next-line */
         Craft::$app->getElements()->saveElement($entry);
     }
 
@@ -178,10 +167,7 @@ class m211031_015017_move_users_to_profiles extends Migration
      */
     private function createProfilePhoto(Asset $oldPhoto): Asset
     {
-        /**
-         * @psalm-suppress UndefinedClass
-         * @phpstan-ignore-next-line
-         */
+        /** @phpstan-ignore-next-line */
         $newFolder = Craft::$app->getAssets()
             ->findFolder(['name' => 'General']);
 
@@ -191,10 +177,7 @@ class m211031_015017_move_users_to_profiles extends Migration
 
         $oldPhotoPath = $volume->getRootPath() . '/' . $oldPhoto->getPath();
 
-        /**
-         * @psalm-suppress UndefinedConstant
-         * @phpstan-ignore-next-line
-         */
+        /** @phpstan-ignore-next-line */
         $tmpPhotoDir = CRAFT_BASE_PATH . '/storage/tmp-user-photos';
 
         $tempPhotoPath = $tmpPhotoDir . '/' . $oldPhoto->getFilename();

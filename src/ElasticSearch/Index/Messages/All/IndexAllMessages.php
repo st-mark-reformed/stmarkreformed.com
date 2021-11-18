@@ -42,19 +42,11 @@ class IndexAllMessages
             'body' => ['size' => 10000],
         ]);
 
-        /**
-         * @psalm-suppress MixedArgument
-         * @psalm-suppress MixedArrayAccess
-         * @psalm-suppress MissingClosureReturnType
-         */
         $indexedIds = array_map(
             static fn (array $i) => $i['_id'],
             $index['hits']['hits'],
         );
 
-        /**
-         * @psalm-suppress MixedArgumentTypeCoercion
-         */
         $this->deleteEntriesNotPresent->run(
             entryIds: $entryIds,
             indexedIds: $indexedIds,

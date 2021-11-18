@@ -13,10 +13,6 @@ use function count;
 
 use const PHP_EOL;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class PageBuilderResponseCompilerTest extends TestCase
 {
     /** @var mixed[] */

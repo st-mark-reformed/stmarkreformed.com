@@ -6,7 +6,6 @@ namespace App\Craft\SetMessageEntrySlug\Services;
 
 use PHPUnit\Framework\TestCase;
 
-/** @psalm-suppress PropertyNotSetInConstructor */
 class DoNotSetSlugTest extends TestCase
 {
     public function testSet(): void

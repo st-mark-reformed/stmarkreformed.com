@@ -14,10 +14,6 @@ use craft\errors\InvalidFieldException;
 use PHPUnit\Framework\TestCase;
 use yii\base\InvalidConfigException;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class RetrieveMostRecentSeriesTest extends TestCase
 {
     /**

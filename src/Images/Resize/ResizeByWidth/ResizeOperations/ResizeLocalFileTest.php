@@ -13,10 +13,6 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SplFileInfo;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class ResizeLocalFileTest extends TestCase
 {
     /** @var ImageResizeFactory&MockObject */

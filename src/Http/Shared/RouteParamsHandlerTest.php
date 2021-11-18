@@ -8,10 +8,6 @@ use BuzzingPixel\SlimBridge\ElementSetRoute\RouteParams;
 use craft\elements\Entry;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class RouteParamsHandlerTest extends TestCase
 {
     public function testGetEntry(): void

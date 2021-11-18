@@ -12,11 +12,6 @@ use yii\helpers\BaseConsole;
 
 use function debug_backtrace;
 
-/**
- * @psalm-suppress MissingClosureParamType
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress PropertyNotSetInConstructor
- */
 class SetMessageSeriesLatestEntryCommandTest extends TestCase
 {
     private SetMessageSeriesLatestEntryCommand $command;
@@ -44,9 +39,6 @@ class SetMessageSeriesLatestEntryCommandTest extends TestCase
      * @return R
      *
      * @template R
-     * @psalm-suppress PossiblyUndefinedArrayOffset
-     * @psalm-suppress MixedReturnStatement
-     * @psalm-suppress MixedInferredReturnType
      */
     private function genericCall(
         string $object,

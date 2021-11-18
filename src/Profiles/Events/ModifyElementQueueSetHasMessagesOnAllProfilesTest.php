@@ -15,12 +15,6 @@ use yii\base\InvalidConfigException;
 
 use function debug_backtrace;
 
-/**
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress PossiblyFalseArgument
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedInferredReturnType
- */
 class ModifyElementQueueSetHasMessagesOnAllProfilesTest extends TestCase
 {
     private ModifyElementQueueSetHasMessagesOnAllProfiles $responder;
@@ -45,9 +39,6 @@ class ModifyElementQueueSetHasMessagesOnAllProfilesTest extends TestCase
      * @return R
      *
      * @template R
-     * @psalm-suppress PossiblyUndefinedArrayOffset
-     * @psalm-suppress MixedReturnStatement
-     * @psalm-suppress MixedInferredReturnType
      */
     private function genericCall(
         string $object,

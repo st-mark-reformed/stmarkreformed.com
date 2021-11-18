@@ -40,15 +40,11 @@ class SendMailWithCraftMailer implements SendMailContract
 
                 $name = $r->name()->toString();
 
-                /** @psalm-suppress MixedArrayAssignment */
                 $to[$address] = $name;
             },
         );
 
-        /**
-         * @phpstan-ignore-next-line
-         * @psalm-suppress MixedArgument
-         */
+        /** @phpstan-ignore-next-line */
         $craftMessage->setTo($to);
 
         $from = $email->from();

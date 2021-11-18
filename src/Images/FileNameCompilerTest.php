@@ -7,10 +7,6 @@ namespace App\Images;
 use PHPUnit\Framework\TestCase;
 use SplFileInfo;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class FileNameCompilerTest extends TestCase
 {
     private FileNameCompiler $fileNameCompiler;

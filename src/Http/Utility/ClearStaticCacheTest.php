@@ -7,12 +7,6 @@ namespace App\Http\Utility;
 use BuzzingPixel\StaticCache\CacheApi\CacheApiContract;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress MixedAssignment
- * @psalm-suppress MixedArgument
- */
 class ClearStaticCacheTest extends TestCase
 {
     public function testClear(): void

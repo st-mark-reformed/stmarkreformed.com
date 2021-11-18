@@ -7,10 +7,6 @@ namespace App\Http\PageBuilder\Shared\AudioPlayer;
 use PHPUnit\Framework\TestCase;
 use Twig\Environment as TwigEnvironment;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class RenderAudioPlayerFromContentModelTest extends TestCase
 {
     private RenderAudioPlayerFromContentModel $renderer;

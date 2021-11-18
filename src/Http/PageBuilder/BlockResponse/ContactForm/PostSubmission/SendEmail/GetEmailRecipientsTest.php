@@ -13,12 +13,6 @@ use craft\services\Globals;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArgument
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress MixedAssignment
- */
 class GetEmailRecipientsTest extends TestCase
 {
     private bool $devMode = false;

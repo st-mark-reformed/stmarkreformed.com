@@ -8,12 +8,6 @@ use App\Images\Queue\PushToQueueIfNotInQueue;
 use craft\queue\BaseJob;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress MixedMethodCall
- * @psalm-suppress MixedAssignment
- */
 class ImageHandlerTest extends TestCase
 {
     private ImageHandler $imageHandler;

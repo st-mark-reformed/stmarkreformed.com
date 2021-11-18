@@ -8,10 +8,6 @@ use craft\queue\BaseJob;
 use craft\queue\Queue;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class PushToQueueIfNotInQueueTest extends TestCase
 {
     private PushToQueueIfNotInQueue $pusher;
@@ -52,10 +48,7 @@ class PushToQueueIfNotInQueueTest extends TestCase
 
     public function testPushWhenJobIsInQueue(): void
     {
-        /**
-         * @psalm-suppress InvalidPropertyAssignmentValue
-         * @phpstan-ignore-next-line
-         */
+        /** @phpstan-ignore-next-line */
         $this->queueJobsInQueue = [
             ['description' => 'testDesc1'],
             ['description' => 'testDesc2'],
@@ -75,10 +68,7 @@ class PushToQueueIfNotInQueueTest extends TestCase
 
     public function testPush(): void
     {
-        /**
-         * @psalm-suppress InvalidPropertyAssignmentValue
-         * @phpstan-ignore-next-line
-         */
+        /** @phpstan-ignore-next-line */
         $this->queueJobsInQueue = [
             ['description' => 'testDesc1'],
             ['description' => 'testDesc2'],

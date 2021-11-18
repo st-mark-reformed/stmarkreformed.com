@@ -16,13 +16,6 @@ use Twig\Environment as TwigEnvironment;
 use function assert;
 use function is_array;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArgument
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress MixedAssignment
- * @psalm-suppress PossiblyNullReference
- */
 class SendEmailTest extends TestCase
 {
     private SendEmail $sendEmail;

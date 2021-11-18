@@ -8,11 +8,6 @@ use Elasticsearch\Client;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress PossiblyFalseArgument
- * @psalm-suppress PropertyNotSetInConstructor
- */
 class ElasticUidRetrievalTest extends TestCase
 {
     private ElasticUidRetrieval $elasticUidRetrieval;

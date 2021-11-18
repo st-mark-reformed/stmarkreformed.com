@@ -22,12 +22,6 @@ use PHPUnit\Framework\TestCase;
 use Twig\Environment as TwigEnvironment;
 use yii\base\InvalidConfigException;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress MixedAssignment
- * @psalm-suppress MixedArgument
- */
 class RenderPageFactoryTest extends TestCase
 {
     private RenderPageFactory $factory;

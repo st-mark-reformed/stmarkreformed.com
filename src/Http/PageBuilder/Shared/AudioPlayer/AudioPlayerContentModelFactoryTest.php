@@ -17,10 +17,6 @@ use Exception;
 use PHPUnit\Framework\TestCase;
 use yii\base\InvalidConfigException;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class AudioPlayerContentModelFactoryTest extends TestCase
 {
     /**

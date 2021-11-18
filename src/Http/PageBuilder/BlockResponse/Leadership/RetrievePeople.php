@@ -34,10 +34,7 @@ class RetrievePeople
 
         $query->section('profiles');
 
-        /**
-         * @psalm-suppress UndefinedMagicMethod
-         * @phpstan-ignore-next-line
-         */
+        /** @phpstan-ignore-next-line */
         $query->leadershipPosition($position);
 
         /**

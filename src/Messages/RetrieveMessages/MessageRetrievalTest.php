@@ -13,11 +13,6 @@ use PHPUnit\Framework\TestCase;
 
 use function debug_backtrace;
 
-/**
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress PossiblyFalseArgument
- * @psalm-suppress PropertyNotSetInConstructor
- */
 class MessageRetrievalTest extends TestCase
 {
     private MessageRetrieval $messageRetrieval;

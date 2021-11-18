@@ -6,10 +6,6 @@ namespace App\Shared\Files;
 
 use PHPUnit\Framework\TestCase;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class RemoteSplFileInfoTest extends TestCase
 {
     public function test(): void

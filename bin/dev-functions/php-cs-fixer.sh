@@ -8,7 +8,7 @@ function docker-php-cs-fixer-check() {
     fi
 
     docker run ${interactiveArgs} \
-        --name stmark-psalm \
+        --name stmark-phpcsfixer \
         -v ${PWD}:/opt/project \
         -w /opt/project \
         --env ENABLE_PHP_DEV_CONFIG=1 \
@@ -17,7 +17,7 @@ function docker-php-cs-fixer-check() {
         --env DISABLE_NGINX=1 \
         registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app bash -c "XDEBUG_MODE=off ./vendor/bin/php-cs-fixer fix -v --dry-run --stop-on-violation --using-cache=no";
 
-    docker rm stmark-psalm >/dev/null 2>&1;
+    docker rm stmark-phpcsfixer >/dev/null 2>&1;
 
     return 0;
 }
@@ -36,7 +36,7 @@ function docker-php-cs-fixer-fix() {
     fi
 
     docker run ${interactiveArgs} \
-        --name stmark-psalm \
+        --name stmark-phpcsfixer \
         -v ${PWD}:/opt/project \
         -w /opt/project \
         --env ENABLE_PHP_DEV_CONFIG=1 \
@@ -45,7 +45,7 @@ function docker-php-cs-fixer-fix() {
         --env DISABLE_NGINX=1 \
         registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app bash -c "XDEBUG_MODE=off ./vendor/bin/php-cs-fixer fix -v --using-cache=no";
 
-    docker rm stmark-psalm >/dev/null 2>&1;
+    docker rm stmark-phpcsfixer >/dev/null 2>&1;
 
     return 0;
 }

@@ -10,12 +10,6 @@ use PHPUnit\Framework\TestCase;
 use Slim\Flash\Messages as FlashMessages;
 use Slim\Psr7\Factory\ResponseFactory;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArgument
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress MixedAssignment
- */
 class SendInvalidResponseTest extends TestCase
 {
     public function testRespond(): void

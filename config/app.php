@@ -9,12 +9,6 @@ use yii\redis\Cache;
 use yii\redis\Connection;
 use yii\redis\Session;
 
-/**
- * @psalm-suppress UnusedVariable
- * @psalm-suppress UndefinedClass
- * @psalm-suppress MixedReturnStatement
- * @psalm-suppress MixedInferredReturnType
- */
 $config = [
     'modules' => [
         'dev' => Module::class,

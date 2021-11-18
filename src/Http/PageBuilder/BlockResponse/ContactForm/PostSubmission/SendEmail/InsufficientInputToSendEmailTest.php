@@ -7,12 +7,6 @@ namespace App\Http\PageBuilder\BlockResponse\ContactForm\PostSubmission\SendEmai
 use App\Http\PageBuilder\BlockResponse\ContactForm\PostSubmission\FormValues;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArgument
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress MixedAssignment
- */
 class InsufficientInputToSendEmailTest extends TestCase
 {
     public function testSend(): void

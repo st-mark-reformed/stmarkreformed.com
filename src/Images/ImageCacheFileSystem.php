@@ -9,7 +9,6 @@ use League\Flysystem\Filesystem;
 
 /**
  * @method Local getAdapter()
- * @psalm-suppress PropertyNotSetInConstructor
  */
 class ImageCacheFileSystem extends Filesystem
 {

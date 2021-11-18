@@ -16,10 +16,6 @@ use League\Flysystem\FileNotFoundException;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class ResizeRemoteFileTest extends TestCase
 {
     /** @var ImageResizeFactory&MockObject */

@@ -7,7 +7,6 @@ use App\Shared\Files\RootDirectoryFileSystem;
 use App\Shared\Files\TempFilesFileSystem;
 use League\Flysystem\Adapter\Local;
 
-/** @psalm-suppress UndefinedConstant */
 return [
     PublicDirectoryFileSystem::class => static function (): PublicDirectoryFileSystem {
         return new PublicDirectoryFileSystem(

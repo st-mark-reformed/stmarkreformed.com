@@ -2,10 +2,7 @@
 
 declare(strict_types=1);
 
-/**
- * @psalm-suppress UndefinedConstant
- * @phpstan-ignore-next-line
- */
+/** @phpstan-ignore-next-line */
 $craftBasePath = (string) CRAFT_BASE_PATH;
 
 $devMode = (bool) getenv('DEV_MODE');

@@ -10,9 +10,6 @@ use Throwable;
 
 use function count;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- */
 class Email
 {
     /** @var array<string, string> */

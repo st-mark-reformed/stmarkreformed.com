@@ -17,11 +17,6 @@ use function assert;
 use function debug_backtrace;
 use function is_array;
 
-/**
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress PossiblyFalseArgument
- * @psalm-suppress PropertyNotSetInConstructor
- */
 class MessagesApiTest extends TestCase
 {
     private MessagesApi $messagesApi;
@@ -48,9 +43,6 @@ class MessagesApiTest extends TestCase
      * @return R
      *
      * @template R
-     * @psalm-suppress PossiblyUndefinedArrayOffset
-     * @psalm-suppress MixedReturnStatement
-     * @psalm-suppress MixedInferredReturnType
      */
     private function genericCall(
         string $object,

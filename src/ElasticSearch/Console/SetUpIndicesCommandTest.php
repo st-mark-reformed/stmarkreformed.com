@@ -10,11 +10,6 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use yii\helpers\BaseConsole;
 
-/**
- * @psalm-suppress MissingClosureParamType
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress PropertyNotSetInConstructor
- */
 class SetUpIndicesCommandTest extends TestCase
 {
     private SetUpIndicesCommand $setUpIndicesCommand;

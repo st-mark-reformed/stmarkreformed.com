@@ -25,9 +25,6 @@ jobs:
       - name: Run PHPUnit
         run: docker exec stmark-code-quality bash -c "XDEBUG_MODE=coverage ./vendor/bin/phpunit"
 
-      - name: Run Psalm
-        run: docker exec stmark-code-quality bash -c "XDEBUG_MODE=off php -d memory_limit=4G ./vendor/bin/psalm --no-cache"
-
       - name: Run PHPStan
         run: docker exec stmark-code-quality bash -c "XDEBUG_MODE=off php -d memory_limit=4G ./vendor/bin/phpstan analyse CraftFrontController.php public/index.php config src --no-progress"
 

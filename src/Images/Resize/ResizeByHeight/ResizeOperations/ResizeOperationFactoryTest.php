@@ -11,10 +11,6 @@ use App\Shared\Files\TempFilesFileSystem;
 use PHPUnit\Framework\TestCase;
 use SplFileInfo;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class ResizeOperationFactoryTest extends TestCase
 {
     private ResizeOperationFactory $factory;

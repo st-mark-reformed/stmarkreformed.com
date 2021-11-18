@@ -9,9 +9,6 @@ use function array_map;
 use function array_values;
 use function count;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- */
 class AudioPlayerContentModel
 {
     /** @var AudioPlayerKeyValItem[] */

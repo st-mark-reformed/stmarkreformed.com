@@ -6,10 +6,6 @@ namespace App\Http\Entities;
 
 use PHPUnit\Framework\TestCase;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class MetaTest extends TestCase
 {
     public function testMeta(): void

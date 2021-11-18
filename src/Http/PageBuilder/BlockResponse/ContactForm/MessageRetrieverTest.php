@@ -12,12 +12,6 @@ use Slim\Flash\Messages as FlashMessages;
 
 use function assert;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArgument
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress MixedAssignment
- */
 class MessageRetrieverTest extends TestCase
 {
     private MessageRetriever $messageRetriever;

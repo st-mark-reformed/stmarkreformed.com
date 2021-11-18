@@ -15,8 +15,6 @@ use function assert;
 // phpcs:disable SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingAnyTypeHint
 
 /**
- * @psalm-suppress MixedArgument
- * @psalm-suppress MissingParamType
  * @codeCoverageIgnore
  */
 class ElasticSearchConsoleController extends Controller

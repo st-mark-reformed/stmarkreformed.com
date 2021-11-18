@@ -12,11 +12,6 @@ use yii\helpers\BaseConsole;
 
 use function debug_backtrace;
 
-/**
- * @psalm-suppress MissingClosureParamType
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress PropertyNotSetInConstructor
- */
 class SetHasMessagesOnAllProfilesCommandTest extends TestCase
 {
     private SetHasMessagesOnAllProfilesCommand $command;
@@ -44,9 +39,6 @@ class SetHasMessagesOnAllProfilesCommandTest extends TestCase
      * @return R
      *
      * @template R
-     * @psalm-suppress PossiblyUndefinedArrayOffset
-     * @psalm-suppress MixedReturnStatement
-     * @psalm-suppress MixedInferredReturnType
      */
     private function genericCall(
         string $object,

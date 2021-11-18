@@ -11,10 +11,6 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class ColorOptionFromElementFieldTest extends TestCase
 {
     private ColorOptionFromElementField $handler;

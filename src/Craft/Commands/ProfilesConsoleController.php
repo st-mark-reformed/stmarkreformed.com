@@ -13,11 +13,8 @@ use yii\console\Controller;
 use function assert;
 
 /**
- * @psalm-suppress MixedArgument
- * @psalm-suppress MissingParamType
  * @codeCoverageIgnore
  */
-
 class ProfilesConsoleController extends Controller
 {
     private SetHasMessagesOnAllProfilesCommand $setHasMessagesOnAllProfilesCommand;

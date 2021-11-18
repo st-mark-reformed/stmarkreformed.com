@@ -8,12 +8,6 @@ use craft\web\View;
 use Twig\Environment as TwigEnvironment;
 use Twig\Loader\FilesystemLoader;
 
-/**
- * @psalm-suppress MixedInferredReturnType
- * @psalm-suppress UndefinedClass
- * @psalm-suppress MixedArgument
- * @psalm-suppress UndefinedConstant
- */
 return [
     TemplateLoader::class => static function (): TemplateLoader {
         /** @phpstan-ignore-next-line */

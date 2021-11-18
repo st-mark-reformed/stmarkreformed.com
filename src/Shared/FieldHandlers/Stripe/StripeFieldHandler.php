@@ -11,9 +11,6 @@ use enupal\stripe\elements\PaymentForm;
 
 use function assert;
 
-/**
- * @psalm-suppress MixedReturnTypeCoercion
- */
 class StripeFieldHandler
 {
     /**

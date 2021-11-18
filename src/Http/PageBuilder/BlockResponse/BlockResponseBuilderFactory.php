@@ -28,11 +28,9 @@ class BlockResponseBuilderFactory
 
         $handle = $matrixBlock->getType()->handle;
 
-        /** @psalm-suppress MixedAssignment */
         $responseBuilderClass = $typeMap[$handle] ??
             BlockNotImplemented::class;
 
-        /** @psalm-suppress MixedArgument */
         $class = $this->container->get($responseBuilderClass);
 
         assert($class instanceof BlockResponseBuilderContract);

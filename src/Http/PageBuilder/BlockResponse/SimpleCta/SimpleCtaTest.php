@@ -25,13 +25,6 @@ use verbb\supertable\elements\SuperTableBlockElement;
 use function assert;
 use function count;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress MixedAssignment
- * @psalm-suppress MixedArgument
- * @psalm-suppress MixedMethodCall
- */
 class SimpleCtaTest extends TestCase
 {
     private SimpleCta $service;

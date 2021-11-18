@@ -10,13 +10,6 @@ use Slim\Flash\Messages as FlashMessages;
 
 use function assert;
 
-/**
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress MixedAssignment
- * @psalm-suppress MixedInferredReturnType
- * @psalm-suppress MixedReturnStatement
- * @psalm-suppress PossiblyNullArrayAccess
- */
 class MessageRetriever
 {
     public function __construct(private FlashMessages $messages)

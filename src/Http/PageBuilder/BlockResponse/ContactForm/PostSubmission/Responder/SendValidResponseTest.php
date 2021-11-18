@@ -9,12 +9,6 @@ use App\Http\PageBuilder\BlockResponse\ContactForm\PostSubmission\SendEmail\Send
 use PHPUnit\Framework\TestCase;
 use Slim\Psr7\Factory\ResponseFactory;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArgument
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress MixedAssignment
- */
 class SendValidResponseTest extends TestCase
 {
     public function testRespond(): void

@@ -11,9 +11,6 @@ use verbb\supertable\elements\SuperTableBlockElement;
 
 use function assert;
 
-/**
- * @psalm-suppress MixedReturnTypeCoercion
- */
 class SuperTableFieldHandler
 {
     /**

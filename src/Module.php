@@ -63,8 +63,6 @@ class Module extends ModuleBase
      * Sets up the module
      *
      * @throws Exception
-     *
-     * @psalm-suppress UndefinedClass
      */
     private function setUp(): void
     {
@@ -120,7 +118,6 @@ class Module extends ModuleBase
         }
 
         foreach (Twig::EXTENSIONS as $extClassString) {
-            /** @psalm-suppress UndefinedMethod */
             if (
                 method_exists(
                     $extClassString,
@@ -131,7 +128,6 @@ class Module extends ModuleBase
                 continue;
             }
 
-            /** @psalm-suppress MixedAssignment */
             $ext = $di->get($extClassString);
 
             assert($ext instanceof ExtensionInterface);
@@ -300,9 +296,6 @@ class Module extends ModuleBase
         );
     }
 
-    /**
-     * @psalm-suppress UndefinedClass
-     */
     private function mapControllers(): void
     {
         /** @phpstan-ignore-next-line */

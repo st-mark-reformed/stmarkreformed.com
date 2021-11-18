@@ -16,10 +16,6 @@ use craft\errors\InvalidFieldException;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class CreateMessageIndexBodyTest extends TestCase
 {
     private CreateMessageIndexBody $createMessageIndexBody;

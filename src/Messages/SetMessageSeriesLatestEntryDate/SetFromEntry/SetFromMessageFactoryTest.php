@@ -7,12 +7,6 @@ namespace App\Messages\SetMessageSeriesLatestEntryDate\SetFromEntry;
 use craft\elements\Entry;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress PossiblyFalseArgument
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedInferredReturnType
- */
 class SetFromMessageFactoryTest extends TestCase
 {
     private SetFromMessageFactory $factory;

@@ -22,7 +22,6 @@ class Container
             return self::$container;
         }
 
-        /** @psalm-suppress MissingFile */
         $containerBuilder = (new ContainerBuilder())
             ->useAnnotations(true)
             ->useAutowiring(true)

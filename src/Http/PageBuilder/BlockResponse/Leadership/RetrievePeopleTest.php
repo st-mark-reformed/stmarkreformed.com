@@ -17,13 +17,6 @@ use Twig\Markup;
 
 use function count;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress MixedAssignment
- * @psalm-suppress MixedArgument
- * @psalm-suppress MixedMethodCall
- */
 class RetrievePeopleTest extends TestCase
 {
     private RetrievePeople $service;

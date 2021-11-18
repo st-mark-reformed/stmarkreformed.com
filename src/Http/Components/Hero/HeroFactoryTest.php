@@ -24,12 +24,6 @@ use function array_pop;
 use function array_values;
 use function assert;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArgument
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress MixedAssignment
- */
 class HeroFactoryTest extends TestCase
 {
     private HeroFactory $factory;

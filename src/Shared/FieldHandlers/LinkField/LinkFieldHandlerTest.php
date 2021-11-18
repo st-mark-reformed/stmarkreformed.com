@@ -10,10 +10,6 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use typedlinkfield\models\Link as LinkFieldModel;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class LinkFieldHandlerTest extends TestCase
 {
     private LinkFieldHandler $handler;

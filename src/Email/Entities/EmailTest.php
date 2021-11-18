@@ -6,10 +6,6 @@ namespace App\Email\Entities;
 
 use PHPUnit\Framework\TestCase;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class EmailTest extends TestCase
 {
     public function testValidEmail(): void

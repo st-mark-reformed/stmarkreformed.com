@@ -11,9 +11,6 @@ use craft\errors\InvalidFieldException;
 
 use function assert;
 
-/**
- * @psalm-suppress MixedReturnTypeCoercion
- */
 class MatrixFieldHandler
 {
     /**

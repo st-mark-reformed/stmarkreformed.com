@@ -11,12 +11,6 @@ use Twig\Environment as TwigEnvironment;
 
 use function assert;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress MixedAssignment
- * @psalm-suppress MixedArgument
- */
 class BuildSidebarTest extends TestCase
 {
     private BuildSidebar $buildSidebar;

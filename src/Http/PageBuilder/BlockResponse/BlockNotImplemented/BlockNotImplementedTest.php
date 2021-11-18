@@ -13,10 +13,6 @@ use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 use yii\base\InvalidConfigException;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class BlockNotImplementedTest extends TestCase
 {
     /**

@@ -30,12 +30,9 @@ class ReadJson extends AbstractExtension
 
     /**
      * @return mixed[]
-     *
-     * @psalm-suppress MixedInferredReturnType
      */
     public function readJsonFunction(string $filePath): array
     {
-        /** @psalm-suppress MixedReturnStatement */
         return json_decode(
             (string) file_get_contents($filePath),
             true,

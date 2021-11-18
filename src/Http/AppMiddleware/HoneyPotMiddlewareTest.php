@@ -14,10 +14,6 @@ use Throwable;
 
 use function assert;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class HoneyPotMiddlewareTest extends TestCase
 {
     /** @var MockObject&ServerRequestInterface */

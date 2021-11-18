@@ -11,10 +11,6 @@ use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use Twig\Loader\LoaderInterface;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class TwigControlTest extends TestCase
 {
     private TwigControl $service;

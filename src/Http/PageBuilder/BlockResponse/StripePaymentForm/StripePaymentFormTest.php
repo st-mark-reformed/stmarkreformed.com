@@ -25,12 +25,6 @@ use yii\base\InvalidConfigException;
 use function array_pop;
 use function assert;
 
-/**
- * @psalm-suppress MixedArgument
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress MixedAssignment
- * @psalm-suppress PropertyNotSetInConstructor
- */
 class StripePaymentFormTest extends TestCase
 {
     private StripePaymentForm $service;

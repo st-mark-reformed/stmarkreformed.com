@@ -15,10 +15,6 @@ use PHPUnit\Framework\TestCase;
 
 use function assert;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- */
 class SendMailWithCraftMailerTest extends TestCase
 {
     private SendMailWithCraftMailer $sendMail;

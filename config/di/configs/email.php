@@ -10,10 +10,6 @@ use craft\models\MailSettings;
 
 use function DI\autowire;
 
-/**
- * @psalm-suppress MixedInferredReturnType
- * @psalm-suppress UndefinedClass
- */
 return [
     CraftMailer::class => static function (): CraftMailer {
         /** @phpstan-ignore-next-line */

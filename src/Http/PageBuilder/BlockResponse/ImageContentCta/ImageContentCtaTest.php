@@ -26,13 +26,6 @@ use yii\base\InvalidConfigException;
 
 use function assert;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- * @psalm-suppress MixedArrayAccess
- * @psalm-suppress MixedAssignment
- * @psalm-suppress MixedArgument
- * @psalm-suppress MixedMethodCall
- */
 class ImageContentCtaTest extends TestCase
 {
     private ImageContentCta $service;
