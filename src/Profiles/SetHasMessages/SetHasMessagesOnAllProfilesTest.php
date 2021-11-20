@@ -5,54 +5,26 @@ declare(strict_types=1);
 namespace App\Profiles\SetHasMessages;
 
 use App\Shared\ElementQueryFactories\EntryQueryFactory;
+use App\Shared\Testing\TestCase;
 use craft\elements\db\EntryQuery;
 use craft\elements\Entry;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 
 use function assert;
-use function debug_backtrace;
 use function is_array;
 
 class SetHasMessagesOnAllProfilesTest extends TestCase
 {
     private SetHasMessagesOnAllProfiles $service;
 
-    /** @var mixed[] */
-    private array $calls = [];
-
     protected function setUp(): void
     {
         parent::setUp();
-
-        $this->calls = [];
 
         $this->service = new SetHasMessagesOnAllProfiles(
             queryFactory: $this->mockQueryFactory(),
             setHasMessagesOnAProfile: $this->mockSetHasMessagesOnAProfile(),
         );
-    }
-
-    /**
-     * @param R $return
-     *
-     * @return R
-     *
-     * @template R
-     */
-    private function genericCall(
-        string $object,
-        mixed $return = null
-    ): mixed {
-        $trace = debug_backtrace()[5];
-
-        $this->calls[] = [
-            'object' => $object,
-            'method' => $trace['function'],
-            'args' => $trace['args'],
-        ];
-
-        return $return;
     }
 
     /**

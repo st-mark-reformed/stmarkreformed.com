@@ -6,24 +6,19 @@ namespace App\Profiles\SetHasMessages;
 
 use App\Shared\ElementQueryFactories\EntryQueryFactory;
 use App\Shared\FieldHandlers\Generic\GenericHandler;
+use App\Shared\Testing\TestCase;
 use craft\elements\db\EntryQuery;
 use craft\elements\Entry;
 use craft\errors\ElementNotFoundException;
 use craft\errors\InvalidFieldException;
 use craft\services\Elements as ElementsService;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 use Throwable;
 use yii\base\Exception;
-
-use function debug_backtrace;
 
 class SetHasMessagesOnAProfileTest extends TestCase
 {
     private SetHasMessagesOnAProfile $service;
-
-    /** @var mixed[] */
-    private array $calls = [];
 
     private bool $genericBooleanReturn = false;
 
@@ -39,8 +34,6 @@ class SetHasMessagesOnAProfileTest extends TestCase
     {
         parent::setUp();
 
-        $this->calls = [];
-
         $this->genericBooleanReturn = false;
 
         $this->queryCountReturn = 0;
@@ -52,28 +45,6 @@ class SetHasMessagesOnAProfileTest extends TestCase
         );
 
         $this->profile = $this->mockProfile();
-    }
-
-    /**
-     * @param R $return
-     *
-     * @return R
-     *
-     * @template R
-     */
-    private function genericCall(
-        string $object,
-        mixed $return = null
-    ): mixed {
-        $trace = debug_backtrace()[5];
-
-        $this->calls[] = [
-            'object' => $object,
-            'method' => $trace['function'],
-            'args' => $trace['args'],
-        ];
-
-        return $return;
     }
 
     /**

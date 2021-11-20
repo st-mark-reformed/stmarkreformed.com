@@ -1,0 +1,20 @@
+{# @var Markup[] audioPlayers #}
+{# @var \Twig\Markup pagination #}
+
+{% extends '@app/Http/Response/Media/Messages/MessagesLayout.twig' %}
+
+{% block messagesConent %}
+    <div class="pb-2">
+        {{ pagination }}
+    </div>
+    <div class="p-4 lg:px-20 lg:py-10 bg-gray-100 rounded-lg">
+        {% for audioPlayer in audioPlayers %}
+            <div class="{% if not loop.last %}pb-12{% endif %}">
+                {{ audioPlayer }}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="pt-2">
+        {{ pagination }}
+    </div>
+{% endblock %}

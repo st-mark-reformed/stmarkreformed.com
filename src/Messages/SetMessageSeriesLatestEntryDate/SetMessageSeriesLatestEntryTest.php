@@ -5,54 +5,26 @@ declare(strict_types=1);
 namespace App\Messages\SetMessageSeriesLatestEntryDate;
 
 use App\Shared\ElementQueryFactories\CategoryQueryFactory;
+use App\Shared\Testing\TestCase;
 use craft\elements\Category;
 use craft\elements\db\CategoryQuery;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 
 use function assert;
-use function debug_backtrace;
 use function is_array;
 
 class SetMessageSeriesLatestEntryTest extends TestCase
 {
     private SetMessageSeriesLatestEntry $service;
 
-    /** @var mixed[] */
-    private array $calls = [];
-
     protected function setUp(): void
     {
         parent::setUp();
-
-        $this->calls = [];
 
         $this->service = new SetMessageSeriesLatestEntry(
             categoryQueryFactory: $this->mockCategoryQueryFactory(),
             setLatestEntryForCategory: $this->mockSetLatestEntryForCategory(),
         );
-    }
-
-    /**
-     * @param R $return
-     *
-     * @return R
-     *
-     * @template R
-     */
-    private function genericCall(
-        string $object,
-        mixed $return = null
-    ): mixed {
-        $trace = debug_backtrace()[5];
-
-        $this->calls[] = [
-            'object' => $object,
-            'method' => $trace['function'],
-            'args' => $trace['args'],
-        ];
-
-        return $return;
     }
 
     /**

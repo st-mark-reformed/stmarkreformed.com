@@ -5,54 +5,25 @@ declare(strict_types=1);
 namespace App\ElasticSearch\Events;
 
 use App\ElasticSearch\ElasticSearchApi;
+use App\Shared\Testing\TestCase;
 use craft\base\Element;
 use craft\elements\Entry;
 use craft\models\EntryType;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 use yii\base\Event;
 use yii\base\InvalidConfigException;
-
-use function debug_backtrace;
 
 class ModifyElementQueueIndexAllMessagesTest extends TestCase
 {
     private ModifyElementQueueIndexAllMessages $responder;
 
-    /** @var mixed[] */
-    private array $calls = [];
-
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->calls = [];
-
         $this->responder = new ModifyElementQueueIndexAllMessages(
             elasticSearchApi: $this->mockElasticSearchApi(),
         );
-    }
-
-    /**
-     * @param R $return
-     *
-     * @return R
-     *
-     * @template R
-     */
-    private function genericCall(
-        string $object,
-        mixed $return = null
-    ): mixed {
-        $trace = debug_backtrace()[5];
-
-        $this->calls[] = [
-            'object' => $object,
-            'method' => $trace['function'],
-            'args' => $trace['args'],
-        ];
-
-        return $return;
     }
 
     /**

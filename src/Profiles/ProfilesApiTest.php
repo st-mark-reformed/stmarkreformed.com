@@ -6,53 +6,25 @@ namespace App\Profiles;
 
 use App\Profiles\Queue\SetHasMessagesOnAllProfilesQueueJob;
 use App\Profiles\SetHasMessages\SetHasMessagesOnAllProfiles;
+use App\Shared\Testing\TestCase;
 use craft\queue\Queue;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 
 use function assert;
-use function debug_backtrace;
 use function is_array;
 
 class ProfilesApiTest extends TestCase
 {
     private ProfilesApi $api;
 
-    /** @var mixed[] */
-    private array $calls = [];
-
     protected function setUp(): void
     {
         parent::setUp();
-
-        $this->calls = [];
 
         $this->api = new ProfilesApi(
             queue: $this->mockQueue(),
             setHasMessagesOnAllProfiles: $this->mockSetHasMessagesOnAllProfiles(),
         );
-    }
-
-    /**
-     * @param R $return
-     *
-     * @return R
-     *
-     * @template R
-     */
-    private function genericCall(
-        string $object,
-        mixed $return = null
-    ): mixed {
-        $trace = debug_backtrace()[5];
-
-        $this->calls[] = [
-            'object' => $object,
-            'method' => $trace['function'],
-            'args' => $trace['args'],
-        ];
-
-        return $return;
     }
 
     /**

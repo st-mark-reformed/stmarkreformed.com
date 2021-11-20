@@ -9,54 +9,26 @@ use App\Messages\RetrieveMessages\MessageRetrieval;
 use App\Messages\RetrieveMessages\MessageRetrievalParams;
 use App\Messages\RetrieveMessages\MessagesResult;
 use App\Messages\SetMessageSeriesLatestEntryDate\SetMessageSeriesLatestEntry;
+use App\Shared\Testing\TestCase;
 use craft\queue\Queue;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 
 use function assert;
-use function debug_backtrace;
 use function is_array;
 
 class MessagesApiTest extends TestCase
 {
     private MessagesApi $messagesApi;
 
-    /** @var mixed[] */
-    private array $calls = [];
-
     protected function setUp(): void
     {
         parent::setUp();
-
-        $this->calls = [];
 
         $this->messagesApi = new MessagesApi(
             queue: $this->mockQueue(),
             messageRetrieval: $this->mockMessageRetrieval(),
             setMessageSeriesLatestEntry: $this->mockSetMessageSeriesLatestEntry(),
         );
-    }
-
-    /**
-     * @param R $return
-     *
-     * @return R
-     *
-     * @template R
-     */
-    private function genericCall(
-        string $object,
-        mixed $return = null
-    ): mixed {
-        $trace = debug_backtrace()[5];
-
-        $this->calls[] = [
-            'object' => $object,
-            'method' => $trace['function'],
-            'args' => $trace['args'],
-        ];
-
-        return $return;
     }
 
     /**

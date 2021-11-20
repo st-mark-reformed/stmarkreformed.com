@@ -46,4 +46,15 @@ class MessagesResult
     {
         return count($this->messages());
     }
+
+    /**
+     * @return mixed[]
+     */
+    public function map(callable $callback): array
+    {
+        return array_map(
+            $callback,
+            $this->messages(),
+        );
+    }
 }

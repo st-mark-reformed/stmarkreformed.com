@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\PageBuilder\BlockResponse\ContactForm\PostSubmission\PostSubmissionAction;
+use App\Http\Response\Media\Messages\PaginatedMessagesListAction;
 use Config\Tinker;
 use Slim\App;
 
@@ -34,4 +35,6 @@ return static function (App $app): void {
     }
 
     PostSubmissionAction::addRoute(routeCollector: $app);
+
+    PaginatedMessagesListAction::addRoute(routeCollector: $app);
 };

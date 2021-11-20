@@ -5,19 +5,14 @@ declare(strict_types=1);
 namespace App\Profiles\Console;
 
 use App\Profiles\ProfilesApi;
+use App\Shared\Testing\TestCase;
 use BuzzingPixel\CraftScheduler\Cli\Services\Output;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 use yii\helpers\BaseConsole;
-
-use function debug_backtrace;
 
 class SetHasMessagesOnAllProfilesCommandTest extends TestCase
 {
     private SetHasMessagesOnAllProfilesCommand $command;
-
-    /** @var mixed[] */
-    private array $calls = [];
 
     /** @var Output&MockObject */
     private mixed $output;
@@ -31,28 +26,6 @@ class SetHasMessagesOnAllProfilesCommandTest extends TestCase
         $this->command = new SetHasMessagesOnAllProfilesCommand(
             profilesApi: $this->mockProfilesApi(),
         );
-    }
-
-    /**
-     * @param R $return
-     *
-     * @return R
-     *
-     * @template R
-     */
-    private function genericCall(
-        string $object,
-        mixed $return = null
-    ): mixed {
-        $trace = debug_backtrace()[5];
-
-        $this->calls[] = [
-            'object' => $object,
-            'method' => $trace['function'],
-            'args' => $trace['args'],
-        ];
-
-        return $return;
     }
 
     /**

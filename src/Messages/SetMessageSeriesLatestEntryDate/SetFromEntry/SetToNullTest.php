@@ -4,22 +4,17 @@ declare(strict_types=1);
 
 namespace App\Messages\SetMessageSeriesLatestEntryDate\SetFromEntry;
 
+use App\Shared\Testing\TestCase;
 use craft\elements\Category;
 use craft\errors\ElementNotFoundException;
 use craft\services\Elements as ElementsService;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 use Throwable;
 use yii\base\Exception;
-
-use function debug_backtrace;
 
 class SetToNullTest extends TestCase
 {
     private SetToNull $service;
-
-    /** @var mixed[] */
-    private array $calls = [];
 
     /**
      * @var Category&MockObject
@@ -31,35 +26,11 @@ class SetToNullTest extends TestCase
     {
         parent::setUp();
 
-        $this->calls = [];
-
         $this->service = new SetToNull(
             elementsService: $this->mockElementsService(),
         );
 
         $this->series = $this->mockSeries();
-    }
-
-    /**
-     * @param R $return
-     *
-     * @return R
-     *
-     * @template R
-     */
-    private function genericCall(
-        string $object,
-        mixed $return = null
-    ): mixed {
-        $trace = debug_backtrace()[5];
-
-        $this->calls[] = [
-            'object' => $object,
-            'method' => $trace['function'],
-            'args' => $trace['args'],
-        ];
-
-        return $return;
     }
 
     /**

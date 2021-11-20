@@ -7,20 +7,15 @@ namespace App\Messages\SetMessageSeriesLatestEntryDate;
 use App\Messages\SetMessageSeriesLatestEntryDate\SetFromEntry\SetFromMessageContract;
 use App\Messages\SetMessageSeriesLatestEntryDate\SetFromEntry\SetFromMessageFactory;
 use App\Shared\ElementQueryFactories\EntryQueryFactory;
+use App\Shared\Testing\TestCase;
 use craft\elements\Category;
 use craft\elements\db\EntryQuery;
 use craft\elements\Entry;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
-
-use function debug_backtrace;
 
 class SetLatestMessageForSeriesTest extends TestCase
 {
     private SetLatestMessageForSeries $service;
-
-    /** @var mixed[] */
-    private array $calls = [];
 
     /**
      * @var Entry&MockObject
@@ -32,36 +27,12 @@ class SetLatestMessageForSeriesTest extends TestCase
     {
         parent::setUp();
 
-        $this->calls = [];
-
         $this->message = $this->createMock(Entry::class);
 
         $this->service = new SetLatestMessageForSeries(
             entryQueryFactory: $this->mockEntryQueryFactory(),
             setFromEntryFactory: $this->mockSetFromEntryFactory(),
         );
-    }
-
-    /**
-     * @param R $return
-     *
-     * @return R
-     *
-     * @template R
-     */
-    private function genericCall(
-        string $object,
-        mixed $return = null
-    ): mixed {
-        $trace = debug_backtrace()[5];
-
-        $this->calls[] = [
-            'object' => $object,
-            'method' => $trace['function'],
-            'args' => $trace['args'],
-        ];
-
-        return $return;
     }
 
     /**

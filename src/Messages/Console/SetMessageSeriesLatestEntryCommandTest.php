@@ -5,19 +5,14 @@ declare(strict_types=1);
 namespace App\Messages\Console;
 
 use App\Messages\MessagesApi;
+use App\Shared\Testing\TestCase;
 use BuzzingPixel\CraftScheduler\Cli\Services\Output;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 use yii\helpers\BaseConsole;
-
-use function debug_backtrace;
 
 class SetMessageSeriesLatestEntryCommandTest extends TestCase
 {
     private SetMessageSeriesLatestEntryCommand $command;
-
-    /** @var mixed[] */
-    private array $calls = [];
 
     /** @var Output&MockObject */
     private mixed $output;
@@ -31,28 +26,6 @@ class SetMessageSeriesLatestEntryCommandTest extends TestCase
         $this->command = new SetMessageSeriesLatestEntryCommand(
             messagesApi: $this->mockMessagesApi(),
         );
-    }
-
-    /**
-     * @param R $return
-     *
-     * @return R
-     *
-     * @template R
-     */
-    private function genericCall(
-        string $object,
-        mixed $return = null
-    ): mixed {
-        $trace = debug_backtrace()[5];
-
-        $this->calls[] = [
-            'object' => $object,
-            'method' => $trace['function'],
-            'args' => $trace['args'],
-        ];
-
-        return $return;
     }
 
     /**

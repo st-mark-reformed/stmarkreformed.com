@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Entities;
+namespace App\Http\Pagination;
 
 use App\Http\Utility\QueryString;
 
@@ -138,6 +138,11 @@ class Pagination
     public function queryString(): string
     {
         return $this->queryString;
+    }
+
+    public function queryStringBased(): bool
+    {
+        return $this->queryStringBased;
     }
 
     public function withQueryString(string $val): Pagination
