@@ -138,7 +138,7 @@ fieldLayouts:
 handle: messages
 hasTitleField: true
 name: Messages
-section: 43a22c1a-0c67-4cd1-ba07-6ebfdf91d242
+section: 43a22c1a-0c67-4cd1-ba07-6ebfdf91d242 # Messages
 sortOrder: 1
 titleFormat: null
 titleTranslationKeyFormat: null

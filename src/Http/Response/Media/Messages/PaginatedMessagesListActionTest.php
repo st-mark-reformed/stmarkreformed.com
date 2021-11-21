@@ -20,7 +20,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use function assert;
 use function is_array;
 
-// phpcs:disable  Generic.Files.LineLength.TooLong
+// phpcs:disable Generic.Files.LineLength.TooLong
 
 class PaginatedMessagesListActionTest extends TestCase
 {

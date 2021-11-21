@@ -42,16 +42,16 @@ permissions:
   - 'deletepeerentrydrafts:fa85e855-64ff-434d-b40e-f4e6188f46dd'
   - 'editpeerentrydrafts:fa85e855-64ff-434d-b40e-f4e6188f46dd'
   - 'editentries:fa85e855-64ff-434d-b40e-f4e6188f46dd'
-  - 'createentries:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242'
-  - 'publishentries:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242'
-  - 'deleteentries:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242'
-  - 'publishpeerentries:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242'
-  - 'deletepeerentries:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242'
-  - 'editpeerentries:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242'
-  - 'publishpeerentrydrafts:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242'
-  - 'deletepeerentrydrafts:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242'
-  - 'editpeerentrydrafts:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242'
-  - 'editentries:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242'
+  - 'createentries:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242' # Messages
+  - 'publishentries:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242' # Messages
+  - 'deleteentries:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242' # Messages
+  - 'publishpeerentries:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242' # Messages
+  - 'deletepeerentries:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242' # Messages
+  - 'editpeerentries:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242' # Messages
+  - 'publishpeerentrydrafts:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242' # Messages
+  - 'deletepeerentrydrafts:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242' # Messages
+  - 'editpeerentrydrafts:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242' # Messages
+  - 'editentries:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242' # Messages
   - 'createentries:51c0f62a-b5a5-4135-bc90-471528d63f56'
   - 'publishentries:51c0f62a-b5a5-4135-bc90-471528d63f56'
   - 'deleteentries:51c0f62a-b5a5-4135-bc90-471528d63f56'

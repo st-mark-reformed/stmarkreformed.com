@@ -47,6 +47,15 @@ trait MockResponseFactoryForTesting
             $this->responseBody,
         );
 
+        $this->response->method('withHeader')->willReturnCallback(
+            function (): ResponseInterface {
+                return $this->genericCall(
+                    object: 'ResponseInterface',
+                    return: $this->response,
+                );
+            }
+        );
+
         $mock = $this->createMock(
             ResponseFactoryInterface::class,
         );
