@@ -179,7 +179,7 @@ class AudioPlayerContentModelFactoryTest extends TestCase
             $keyVal1->value(),
         );
         self::assertSame(
-            '/media/messages/by/test-slug-1',
+            '/media/messages?by%5B0%5D=test-slug-1',
             $keyVal1->href(),
         );
 
@@ -190,7 +190,7 @@ class AudioPlayerContentModelFactoryTest extends TestCase
             $keyVal2->value(),
         );
         self::assertSame(
-            '/media/messages/by/test-slug-2',
+            '/media/messages?by%5B0%5D=test-slug-2',
             $keyVal2->href(),
         );
 
@@ -212,7 +212,7 @@ class AudioPlayerContentModelFactoryTest extends TestCase
             $keyVal4->value(),
         );
         self::assertSame(
-            '/media/messages/series/series-slug-1',
+            '/media/messages?series%5B0%5D=series-slug-1',
             $keyVal4->href(),
         );
 
@@ -223,7 +223,7 @@ class AudioPlayerContentModelFactoryTest extends TestCase
             $keyVal5->value(),
         );
         self::assertSame(
-            '/media/messages/series/series-slug-2',
+            '/media/messages?series%5B0%5D=series-slug-2',
             $keyVal5->href(),
         );
 

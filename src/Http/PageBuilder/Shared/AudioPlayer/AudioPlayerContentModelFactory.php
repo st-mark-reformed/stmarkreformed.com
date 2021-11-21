@@ -15,6 +15,7 @@ use DateTimeInterface;
 use yii\base\InvalidConfigException;
 
 use function assert;
+use function http_build_query;
 use function implode;
 use function trim;
 
@@ -67,7 +68,9 @@ class AudioPlayerContentModelFactory
                     ),
                     (string) $speaker->title,
                 ])),
-                href: '/media/messages/by/' . $slug,
+                href: '/media/messages?' . http_build_query(
+                    ['by' => [$slug]],
+                ),
             );
         }
 
@@ -91,7 +94,9 @@ class AudioPlayerContentModelFactory
             $keyValItems[] = new AudioPlayerKeyValItem(
                 key: 'series',
                 value: (string) $seriesCategory->title,
-                href: '/media/messages/series/' . $slug,
+                href: '/media/messages?' . http_build_query(
+                    ['series' => [$slug]],
+                ),
             );
         }
 
