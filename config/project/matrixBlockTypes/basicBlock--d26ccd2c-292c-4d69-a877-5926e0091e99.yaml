@@ -115,7 +115,7 @@ fields:
     settings:
       availableTransforms: '*'
       availableVolumes:
-        - fe2952ce-382a-4470-8f04-a7bdd1b48f66
+        - fe2952ce-382a-4470-8f04-a7bdd1b48f66 # General
       cleanupHtml: true
       columnType: text
       configSelectionMode: choose

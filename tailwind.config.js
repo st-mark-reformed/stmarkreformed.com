@@ -23,7 +23,9 @@ module.exports = {
                 red: '#870f12',
                 'dark-red': '#540a0c',
             },
-            fontFamily: {},
+            fontFamily: {
+                sans: ['Open Sans', 'sans-serif'],
+            },
             typography: (theme) => ({
                 DEFAULT: {
                     css: {

@@ -7,17 +7,17 @@ searchable: '1'
 settings:
   allowedKinds:
     - image
-  defaultUploadLocationSource: 'volume:fe2952ce-382a-4470-8f04-a7bdd1b48f66'
+  defaultUploadLocationSource: 'volume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
   defaultUploadLocationSubpath: ''
   limit: '1'
   localizeRelations: false
   restrictFiles: '1'
   selectionLabel: 'Add an Image'
-  singleUploadLocationSource: 'volume:fe2952ce-382a-4470-8f04-a7bdd1b48f66'
+  singleUploadLocationSource: 'volume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
   singleUploadLocationSubpath: ''
   source: null
   sources:
-    - 'volume:fe2952ce-382a-4470-8f04-a7bdd1b48f66'
+    - 'volume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
   targetSiteId: null
   useSingleFolder: '1'
   viewMode: large

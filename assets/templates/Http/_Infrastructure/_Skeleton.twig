@@ -26,6 +26,21 @@
 
     <meta property="og:image" content="/share.png" itemprop="image">
 
+    {# Preconnect #}
+    {% for item in meta.preConnect %}
+        {% if item is iterable %}
+            <link
+                rel="preconnect"
+                href="{{ item.href }}"
+                {% if item.attributes is defined %}
+                {{ item.attributes }}
+                {% endif %}
+            >
+        {% else %}
+            <link rel="preconnect" href="{{ item }}">
+        {% endif %}
+    {% endfor %}
+
     {# CSS #}
     {% for stylesheet in meta.stylesheets %}
     <link rel="stylesheet" href="{{ stylesheet }}">

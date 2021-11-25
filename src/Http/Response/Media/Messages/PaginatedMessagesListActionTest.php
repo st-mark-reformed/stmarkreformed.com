@@ -124,7 +124,7 @@ class PaginatedMessagesListActionTest extends TestCase
                     'method' => 'get',
                     'args' => [
                         '/media/messages',
-                        'App\Http\Response\Media\Messages\PaginatedMessagesListAction',
+                        PaginatedMessagesListAction::class,
                     ],
                 ],
             ],
