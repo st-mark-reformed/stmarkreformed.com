@@ -23,7 +23,7 @@ function docker-php-cs-fixer-check() {
 }
 
 function dev-php-cs-fixer-check() {
-    XDEBUG_MODE=off ./vendor/bin/php-cs-fixer fix -v --dry-run --stop-on-violation --using-cache=no;
+    XDEBUG_MODE=off /usr/local/bin/php80 ./vendor/bin/php-cs-fixer fix -v --dry-run --stop-on-violation --using-cache=no;
 
     return 0;
 }
@@ -51,7 +51,7 @@ function docker-php-cs-fixer-fix() {
 }
 
 function dev-php-cs-fixer-fix() {
-    XDEBUG_MODE=off ./vendor/bin/php-cs-fixer fix -v --using-cache=no;
+    XDEBUG_MODE=off /usr/local/bin/php80 ./vendor/bin/php-cs-fixer fix -v --using-cache=no;
 
     return 0;
 }

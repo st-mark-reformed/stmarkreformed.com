@@ -161,7 +161,13 @@ class Pagination
     {
         $clone = clone $this;
 
-        $clone->queryString = '?' . http_build_query($val);
+        $queryString = http_build_query($val);
+
+        if ($queryString !== '') {
+            $queryString = '?' . $queryString;
+        }
+
+        $clone->queryString = $queryString;
 
         return $clone;
     }

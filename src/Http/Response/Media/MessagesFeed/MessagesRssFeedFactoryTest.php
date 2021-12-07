@@ -12,11 +12,14 @@ use App\Shared\Rss\RssFeedFactory;
 use App\Shared\Testing\TestCase;
 use craft\elements\db\EntryQuery;
 use craft\elements\Entry;
+use craft\errors\InvalidFieldException;
 use DateTime;
 use DateTimeImmutable;
 use DateTimeInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use SimpleXMLElement;
+use yii\base\Exception;
+use yii\base\InvalidConfigException;
 
 use function assert;
 use function file_get_contents;
@@ -131,6 +134,11 @@ class MessagesRssFeedFactoryTest extends TestCase
         return $entry;
     }
 
+    /**
+     * @throws InvalidFieldException
+     * @throws Exception
+     * @throws InvalidConfigException
+     */
     public function testMake(): void
     {
         $feed = (string) file_get_contents(

@@ -22,7 +22,7 @@ RUN yarn build-prod
 ###############
 # php
 ###############
-FROM --platform=$BUILDPLATFORM php:8.0.11-fpm
+FROM --platform=$BUILDPLATFORM php:8.0.13-fpm
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
 RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM"
@@ -125,7 +125,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 EXPOSE 80
 
 # Add composer
-COPY --from=composer:2.1.5 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.1.14 /usr/bin/composer /usr/bin/composer
 
 # Standard production config
 RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini
@@ -135,7 +135,7 @@ COPY docker/application/php/php-fpm.conf /usr/local/etc/php-fpm.d/zzz-custom.con
 COPY docker/application/php/php.ini $PHP_INI_DIR/conf.d/
 
 # Install xdebug
-RUN pecl install xdebug-3.0.4
+RUN pecl install xdebug-3.1.2
 COPY docker/application/php/xdebug.ini $PHP_INI_DIR/disabled/
 
 # Install redis

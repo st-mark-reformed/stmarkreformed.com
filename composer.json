@@ -19,7 +19,7 @@
         }
     ],
     "require": {
-        "php": ">=8.0.11",
+        "php": ">=8.0.13",
         "ext-dom": "*",
         "ext-json": "*",
         "ext-libxml": "*",
@@ -33,11 +33,12 @@
         "buzzingpixel/twig-markdown": "^1.0",
         "buzzingpixel/twig-smartypants": "^1.0",
         "buzzingpixel/twig-widont": "^1.0",
-        "cocur/slugify": "3.2",
+        "cocur/slugify": "^4.0.0",
         "craftcms/ckeditor": "1.1.2",
-        "craftcms/cms": "3.7.14",
+        "craftcms/cms": "3.7.24",
         "craftcms/redactor": "2.8.8",
         "daverandom/resume": "^0.0.3",
+        "doctrine/annotations": "^1.13",
         "dolphiq/redirect": "1.1.1",
         "doublesecretagency/craft-inventory": "2.1.1",
         "elasticsearch/elasticsearch": "^7.15",
