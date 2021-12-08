@@ -2,19 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Response\Media\Galleries;
+namespace App\Http\Response\Media\Resources;
 
 use App\Http\Pagination\Pagination;
-use App\Http\Response\Media\Galleries\Response\PaginatedGalleriesListResponderFactory;
+use App\Http\Response\Media\Resources\Response\PaginatedResourcesResponderFactory;
 use App\Http\Shared\PageNumberFactory;
-use craft\errors\InvalidFieldException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Exception\HttpNotFoundException;
 use Slim\Interfaces\RouteCollectorProxyInterface;
-use yii\base\InvalidConfigException;
 
-class PaginatedGalleriesListAction
+class PaginatedResourcesListAction
 {
     private const PER_PAGE = 12;
 
@@ -22,22 +20,20 @@ class PaginatedGalleriesListAction
         RouteCollectorProxyInterface $routeCollector
     ): void {
         $routeCollector->get(
-            '/media/galleries[/page/{pageNum:\d+}]',
+            '/resources[/page/{pageNum:\d+}]',
             self::class,
         );
     }
 
     public function __construct(
         private PageNumberFactory $pageNumberFactory,
-        private RetrieveGalleries $retrieveGalleries,
-        private PaginatedGalleriesListResponderFactory $responderFactory,
+        private RetrieveResources $retrieveResources,
+        private PaginatedResourcesResponderFactory $responderFactory,
     ) {
     }
 
     /**
      * @throws HttpNotFoundException
-     * @throws InvalidFieldException
-     * @throws InvalidConfigException
      */
     public function __invoke(ServerRequestInterface $request): ResponseInterface
     {
@@ -46,25 +42,24 @@ class PaginatedGalleriesListAction
         );
 
         $pagination = (new Pagination())
-            ->withBase(val: '/media/galleries')
+            ->withBase(val: '/resources')
             ->withPerPage(val: self::PER_PAGE)
             ->withCurrentPage(val: $pageNum)
             ->withQueryStringFromArray(val: $request->getQueryParams());
 
-        $galleryResults = $this->retrieveGalleries->retrieve(
-            pagination: $pagination,
-        );
+        $results = $this->retrieveResources->retrieve(pagination: $pagination);
 
         $pagination = $pagination->withTotalResults(
-            val: $galleryResults->totalResults(),
+            val: $results->totalResults(),
         );
 
         return $this->responderFactory->make(
+            results: $results,
             request: $request,
-            galleryResults: $galleryResults,
-        )->respond(
             pagination: $pagination,
-            galleryResults: $galleryResults,
+        )->respond(
+            results: $results,
+            pagination: $pagination,
         );
     }
 }

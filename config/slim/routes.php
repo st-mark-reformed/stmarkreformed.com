@@ -6,6 +6,7 @@ use App\Http\PageBuilder\BlockResponse\ContactForm\PostSubmission\PostSubmission
 use App\Http\Response\Media\Galleries\PaginatedGalleriesListAction;
 use App\Http\Response\Media\Messages\PaginatedMessagesListAction;
 use App\Http\Response\Media\MessagesFeed\MessagesFeedAction;
+use App\Http\Response\Media\Resources\PaginatedResourcesListAction;
 use Config\Tinker;
 use Slim\App;
 
@@ -43,4 +44,6 @@ return static function (App $app): void {
     MessagesFeedAction::addRoute(routeCollector: $app);
 
     PaginatedGalleriesListAction::addRoute(routeCollector: $app);
+
+    PaginatedResourcesListAction::addRoute(routeCollector: $app);
 };

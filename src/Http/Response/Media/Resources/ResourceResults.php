@@ -2,17 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Response\Media\Galleries;
+namespace App\Http\Response\Media\Resources;
 
 use function array_map;
+use function count;
 
-class GalleryResults
+class ResourceResults
 {
-    /** @var GalleryItem[] */
+    /** @var ResourceItem[] */
     private array $items = [];
 
     /**
-     * @param GalleryItem[] $incomingItems
+     * @param ResourceItem[] $incomingItems
      */
     public function __construct(
         private bool $hasEntries,
@@ -20,7 +21,7 @@ class GalleryResults
         array $incomingItems,
     ) {
         array_map(
-            function (GalleryItem $item): void {
+            function (ResourceItem $item): void {
                 $this->items[] = $item;
             },
             $incomingItems,
@@ -38,10 +39,15 @@ class GalleryResults
     }
 
     /**
-     * @return GalleryItem[]
+     * @return ResourceItem[]
      */
     public function items(): array
     {
         return $this->items;
+    }
+
+    public function count(): int
+    {
+        return count($this->items());
     }
 }

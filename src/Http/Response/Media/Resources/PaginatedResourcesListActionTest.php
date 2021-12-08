@@ -2,31 +2,29 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Response\Media\Galleries;
+namespace App\Http\Response\Media\Resources;
 
 use App\Http\Pagination\Pagination;
-use App\Http\Response\Media\Galleries\Response\PaginatedGalleriesListResponderContract;
-use App\Http\Response\Media\Galleries\Response\PaginatedGalleriesListResponderFactory;
+use App\Http\Response\Media\Resources\Response\PaginatedResourcesResponderContract;
+use App\Http\Response\Media\Resources\Response\PaginatedResourcesResponderFactory;
 use App\Http\Shared\MockPageNumberFactoryForTesting;
 use App\Shared\Testing\TestCase;
-use craft\errors\InvalidFieldException;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Exception\HttpNotFoundException;
 use Slim\Interfaces\RouteCollectorProxyInterface;
 use Slim\Interfaces\RouteInterface;
-use yii\base\InvalidConfigException;
 
 use function assert;
 
-class PaginatedGalleriesListActionTest extends TestCase
+class PaginatedResourcesListActionTest extends TestCase
 {
     use MockPageNumberFactoryForTesting;
 
-    private PaginatedGalleriesListAction $action;
+    private PaginatedResourcesListAction $action;
 
-    private GalleryResults $galleryResults;
+    private ResourceResults $results;
 
     private ResponseInterface $response;
 
@@ -34,95 +32,78 @@ class PaginatedGalleriesListActionTest extends TestCase
     {
         parent::setUp();
 
-        $this->action = new PaginatedGalleriesListAction(
+        $this->action = new PaginatedResourcesListAction(
             pageNumberFactory: $this->mockPageNumberFactory(),
-            retrieveGalleries: $this->mockRetrieveGalleries(),
+            retrieveResources: $this->mockRetrieveResources(),
             responderFactory: $this->mockResponderFactory(),
         );
     }
 
     /**
-     * @return RetrieveGalleries&MockObject
+     * @return RetrieveResources&MockObject
      */
-    private function mockRetrieveGalleries(): RetrieveGalleries|MockObject
+    private function mockRetrieveResources(): RetrieveResources|MockObject
     {
-        $this->galleryResults = new GalleryResults(
+        $this->results = new ResourceResults(
             hasEntries: false,
             totalResults: 12,
             incomingItems: [],
         );
 
-        $retrieveGalleries = $this->createMock(
-            RetrieveGalleries::class,
+        $retrieveResources = $this->createMock(
+            RetrieveResources::class,
         );
 
-        $retrieveGalleries->method('retrieve')->willReturnCallback(
-            function (): GalleryResults {
+        $retrieveResources->method('retrieve')->willReturnCallback(
+            function (): ResourceResults {
                 return $this->genericCall(
-                    object: 'RetrieveGalleries',
-                    return: $this->galleryResults,
+                    object: 'RetrieveResources',
+                    return: $this->results,
                 );
             }
         );
 
-        return $retrieveGalleries;
+        return $retrieveResources;
     }
 
     /**
-     * @return PaginatedGalleriesListResponderFactory&MockObject
+     * @return PaginatedResourcesResponderFactory&MockObject
      */
-    private function mockResponderFactory(): PaginatedGalleriesListResponderFactory|MockObject
+    private function mockResponderFactory(): PaginatedResourcesResponderFactory|MockObject
     {
         $this->response = $this->createMock(
             ResponseInterface::class,
         );
 
         $responder = $this->createMock(
-            PaginatedGalleriesListResponderContract::class,
+            PaginatedResourcesResponderContract::class,
         );
 
         $responder->method('respond')->willReturnCallback(
             function (): ResponseInterface {
                 return $this->genericCall(
-                    object: 'PaginatedGalleriesListResponderContract',
+                    object: 'PaginatedResourcesResponderContract',
                     return: $this->response,
                 );
             }
         );
 
         $factory = $this->createMock(
-            PaginatedGalleriesListResponderFactory::class,
+            PaginatedResourcesResponderFactory::class,
         );
 
         $factory->method('make')->willReturnCallback(
             function () use (
                 $responder,
-            ): PaginatedGalleriesListResponderContract {
+            ): PaginatedResourcesResponderContract {
                 return $this->genericCall(
-                    object: 'PaginatedGalleriesListResponderFactory',
+                    object: 'PaginatedResourcesResponderFactory',
                     return: $responder,
                 );
             }
         );
 
         return $factory;
-    }
-
-    /**
-     * @return ServerRequestInterface&MockObject
-     */
-    private function mockRequest(): ServerRequestInterface|MockObject
-    {
-        $request = $this->createMock(
-            ServerRequestInterface::class,
-        );
-
-        $request->method('getQueryParams')->willReturn([
-            'foo' => 'bar',
-            'baz' => 'foo',
-        ]);
-
-        return $request;
     }
 
     public function testAddRoute(): void
@@ -143,7 +124,7 @@ class PaginatedGalleriesListActionTest extends TestCase
                 }
             );
 
-        PaginatedGalleriesListAction::addRoute(routeCollector: $routeCollector);
+        PaginatedResourcesListAction::addRoute(routeCollector: $routeCollector);
 
         self::assertSame(
             [
@@ -151,8 +132,8 @@ class PaginatedGalleriesListActionTest extends TestCase
                     'object' => 'RouteCollectorProxyInterface',
                     'method' => 'get',
                     'args' => [
-                        '/media/galleries[/page/{pageNum:\d+}]',
-                        PaginatedGalleriesListAction::class,
+                        '/resources[/page/{pageNum:\d+}]',
+                        PaginatedResourcesListAction::class,
                     ],
                 ],
             ],
@@ -161,9 +142,24 @@ class PaginatedGalleriesListActionTest extends TestCase
     }
 
     /**
+     * @return ServerRequestInterface&MockObject
+     */
+    private function mockRequest(): ServerRequestInterface|MockObject
+    {
+        $request = $this->createMock(
+            ServerRequestInterface::class,
+        );
+
+        $request->method('getQueryParams')->willReturn([
+            'foo' => 'bar',
+            'baz' => 'foo',
+        ]);
+
+        return $request;
+    }
+
+    /**
      * @throws HttpNotFoundException
-     * @throws InvalidFieldException
-     * @throws InvalidConfigException
      */
     public function testInvoke(): void
     {
@@ -185,7 +181,7 @@ class PaginatedGalleriesListActionTest extends TestCase
         );
 
         self::assertSame(
-            'RetrieveGalleries',
+            'RetrieveResources',
             $this->calls[1]['object'],
         );
 
@@ -217,7 +213,7 @@ class PaginatedGalleriesListActionTest extends TestCase
         );
 
         self::assertSame(
-            '/media/galleries',
+            '/resources',
             $call1Pagination->base(),
         );
 
@@ -227,19 +223,50 @@ class PaginatedGalleriesListActionTest extends TestCase
         );
 
         self::assertSame(
-            [
-                'object' => 'PaginatedGalleriesListResponderFactory',
-                'method' => 'make',
-                'args' => [
-                    $this->galleryResults,
-                    $request,
-                ],
-            ],
-            $this->calls[2],
+            'PaginatedResourcesResponderFactory',
+            $this->calls[2]['object'],
+        );
+
+        self::assertSame('make', $this->calls[2]['method']);
+
+        $call2Args = $this->calls[2]['args'];
+
+        self::assertCount(3, $call2Args);
+
+        $call2Pagination = $call2Args[0];
+
+        assert($call2Pagination instanceof Pagination);
+
+        self::assertSame(2, $call2Pagination->pad());
+
+        self::assertSame(
+            876,
+            $call2Pagination->currentPage(),
+        );
+
+        self::assertSame(12, $call2Pagination->perPage());
+
+        self::assertSame(
+            12,
+            $call2Pagination->totalResults(),
         );
 
         self::assertSame(
-            'PaginatedGalleriesListResponderContract',
+            '/resources',
+            $call2Pagination->base(),
+        );
+
+        self::assertSame(
+            '?foo=bar&baz=foo',
+            $call2Pagination->queryString(),
+        );
+
+        self::assertSame($this->results, $call2Args[1]);
+
+        self::assertSame($request, $call2Args[2]);
+
+        self::assertSame(
+            'PaginatedResourcesResponderContract',
             $this->calls[3]['object'],
         );
 
@@ -271,7 +298,7 @@ class PaginatedGalleriesListActionTest extends TestCase
         );
 
         self::assertSame(
-            '/media/galleries',
+            '/resources',
             $call3Pagination->base(),
         );
 
@@ -280,9 +307,6 @@ class PaginatedGalleriesListActionTest extends TestCase
             $call3Pagination->queryString(),
         );
 
-        self::assertSame(
-            $this->galleryResults,
-            $call3Args[1],
-        );
+        self::assertSame($this->results, $call3Args[1]);
     }
 }

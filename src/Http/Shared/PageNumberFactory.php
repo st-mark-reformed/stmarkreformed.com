@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Response\Media\Galleries;
+namespace App\Http\Shared;
 
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Exception\HttpNotFoundException;
