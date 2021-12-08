@@ -2,9 +2,11 @@
 
 import AudioPlayer from './Components/AudioPlayer.js';
 import Flatpickr from './Components/Flatpickr.js';
+import Masonry from './Components/Masonry.js';
 import Selects from './Components/Selects.js';
 
 window.Methods.AudioPlayer = AudioPlayer;
+window.Methods.Masonry = Masonry;
 
 // Flatpickr
 const flatpickrEls = document.querySelectorAll(

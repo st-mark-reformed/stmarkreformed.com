@@ -12,16 +12,16 @@ permissions:
   - administrateusers
   - editusers
   - deleteusers
-  - 'createentries:65087f98-610e-4026-a91b-70bdef20426f'
-  - 'publishentries:65087f98-610e-4026-a91b-70bdef20426f'
-  - 'deleteentries:65087f98-610e-4026-a91b-70bdef20426f'
-  - 'publishpeerentries:65087f98-610e-4026-a91b-70bdef20426f'
-  - 'deletepeerentries:65087f98-610e-4026-a91b-70bdef20426f'
-  - 'editpeerentries:65087f98-610e-4026-a91b-70bdef20426f'
-  - 'publishpeerentrydrafts:65087f98-610e-4026-a91b-70bdef20426f'
-  - 'deletepeerentrydrafts:65087f98-610e-4026-a91b-70bdef20426f'
-  - 'editpeerentrydrafts:65087f98-610e-4026-a91b-70bdef20426f'
-  - 'editentries:65087f98-610e-4026-a91b-70bdef20426f'
+  - 'createentries:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
+  - 'publishentries:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
+  - 'deleteentries:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
+  - 'publishpeerentries:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
+  - 'deletepeerentries:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
+  - 'editpeerentries:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
+  - 'publishpeerentrydrafts:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
+  - 'deletepeerentrydrafts:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
+  - 'editpeerentrydrafts:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
+  - 'editentries:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
   - 'createentries:b4830095-9974-475a-9af6-aac12c7e626d'
   - 'publishentries:b4830095-9974-475a-9af6-aac12c7e626d'
   - 'deleteentries:b4830095-9974-475a-9af6-aac12c7e626d'

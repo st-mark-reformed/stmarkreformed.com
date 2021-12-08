@@ -1,0 +1,69 @@
+{# @var \App\Images\ImageHandler ImageHandler #}
+{# @var \App\Http\Response\Media\Gallery\GalleryItems $items #}
+
+{% set breadcrumbs = breadcrumbs ?? '' %}
+
+{% extends 'Http/_Infrastructure/_Layout.twig' %}
+
+{% block content %}
+    <div class="min-h-screen-minus-header-and-footer">
+        <div class="min-h-screen-minus-header-and-footer overflow-hidden md:flex">
+            <div class="flex-1 flex flex-col">
+                {{ breadcrumbs }}
+                <div>
+                    <div
+                        x-init="RunWhenReady('Masonry', {
+                            el: $el,
+                            refs: $refs,
+                            watch: $watch,
+                            data: $data,
+                        })"
+                        x-data="{
+                            isReady: false,
+                        }"
+                        class="wrapper-masonry"
+                    >
+                        <div
+                            class="loading p-10"
+                            x-show="!isReady"
+                        >
+                            <div class="relative block w-full border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400">
+                                Loading photo gallery&hellip;
+                            </div>
+                        </div>
+                        <div
+                            x-show="isReady"
+                            style="display: none;"
+                            x-ref="container"
+                        >
+                            {% for item in items.items %}
+                                {# @var \App\Http\Response\Media\Gallery\GalleryItem item #}
+
+                                {% set image1x = ImageHandler.resizeToWidthByQueue(
+                                    item.imgUrl,
+                                    820,
+                                    true,
+                                ) %}
+
+                                {% set image2x = ImageHandler.resizeToWidthByQueue(
+                                    item.imgUrl,
+                                    1640,
+                                ) %}
+
+                                <img
+                                    src="{{ image1x }}"
+                                    {% if image2x %}
+                                    srcset="{{ image1x }} 1x, {{ image2x }} 2x"
+                                    {% endif %}
+                                    class="image"
+                                    ref="masonry-item"
+                                    alt="{{ item.title }}"
+                                >
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

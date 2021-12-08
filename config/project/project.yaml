@@ -1,4 +1,4 @@
-dateModified: 1637717691
+dateModified: 1638851291
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -105,6 +105,7 @@ meta:
     42896f14-4d1e-4a82-8219-53d7de7d33ce: 'Last Name' # Last Name
     51614c49-f9f5-4660-abc0-d551062072b8: 'Message Series' # Message Series
     63998a0f-586b-4b03-ba27-74b694bf10dd: 'Hymn of the Month Music' # Hymn of the Month Music
+    65087f98-610e-4026-a91b-70bdef20426f: Galleries # Galleries
     076138c8-eca9-475a-a69b-b912c2dae610: 'Stripe Payment Form' # Stripe Payment Form
     076403e9-0a6b-468a-8c8a-0274f6c28bdc: 'Show Teal Overlay On Image' # Show Teal Overlay On Image
     93012d1f-1633-417a-81d5-8f4b4e0ea023: Galleries # Galleries

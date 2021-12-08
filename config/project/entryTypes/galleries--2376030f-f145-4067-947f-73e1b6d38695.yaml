@@ -36,6 +36,6 @@ fieldLayouts:
 handle: galleries
 hasTitleField: '1'
 name: Galleries
-section: 65087f98-610e-4026-a91b-70bdef20426f
+section: 65087f98-610e-4026-a91b-70bdef20426f # Galleries
 sortOrder: '1'
 titleFormat: null
