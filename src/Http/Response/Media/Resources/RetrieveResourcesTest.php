@@ -20,14 +20,9 @@ class RetrieveResourcesTest extends TestCase
 {
     private RetrieveResources $retrieveResources;
 
-    /** @var array<array-key, Entry&MockObject> */
-    private array $entries = [];
-
     protected function setUp(): void
     {
         parent::setUp();
-
-        $this->entries = [];
 
         $this->retrieveResources = new RetrieveResources(
             entryQueryFactory: $this->mockEntryQueryFactory(),
@@ -106,8 +101,8 @@ class RetrieveResourcesTest extends TestCase
                         url: '/entry/url/1',
                     ),
                     $this->mockEntry(
-                        title: 'Entry Title 1',
-                        url: '/entry/url/1',
+                        title: 'Entry Title 2',
+                        url: '/entry/url/2',
                     ),
                 ];
             }
@@ -130,8 +125,6 @@ class RetrieveResourcesTest extends TestCase
         $entry->title = $title;
 
         $entry->method('getUrl')->willReturn($url);
-
-        $this->entries[] = $entry;
 
         return $entry;
     }
@@ -156,8 +149,8 @@ class RetrieveResourcesTest extends TestCase
                     'url' => '/entry/url/1',
                 ],
                 [
-                    'title' => 'Entry Title 1',
-                    'url' => '/entry/url/1',
+                    'title' => 'Entry Title 2',
+                    'url' => '/entry/url/2',
                 ],
             ],
             array_map(

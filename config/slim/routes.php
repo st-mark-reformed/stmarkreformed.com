@@ -7,6 +7,7 @@ use App\Http\Response\Media\Galleries\PaginatedGalleriesListAction;
 use App\Http\Response\Media\Messages\PaginatedMessagesListAction;
 use App\Http\Response\Media\MessagesFeed\MessagesFeedAction;
 use App\Http\Response\Media\Resources\PaginatedResourcesListAction;
+use App\Http\Response\News\NewsList\PaginatedNewsListAction;
 use Config\Tinker;
 use Slim\App;
 
@@ -46,4 +47,6 @@ return static function (App $app): void {
     PaginatedGalleriesListAction::addRoute(routeCollector: $app);
 
     PaginatedResourcesListAction::addRoute(routeCollector: $app);
+
+    PaginatedNewsListAction::addRoute(routeCollector: $app);
 };

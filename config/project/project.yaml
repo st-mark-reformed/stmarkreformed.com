@@ -1,4 +1,4 @@
-dateModified: 1639063935
+dateModified: 1639064155
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -65,6 +65,7 @@ meta:
     40a813c7-72ac-4043-b70b-718c0a7868b3: 'Link List Block' # Link List Block
     43a22c1a-0c67-4cd1-ba07-6ebfdf91d242: Messages # Messages
     46e9048c-cfef-4f69-acd7-cd03439b3867: 'Use Short Hero?' # Use Short Hero?
+    51c0f62a-b5a5-4135-bc90-471528d63f56: News # News
     51c9e48c-507e-4e3d-8152-0dba14ef55c3: 'Address Line 2' # Address Line 2
     58ef7773-046d-4cbb-b5e9-84ed62735bd3: 'Profile Photo' # Profile Photo
     61dc28f8-137c-4b78-b5f9-db7ebe405614: 'Enable static cache' # Enable static cache
