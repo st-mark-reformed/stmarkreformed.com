@@ -1,4 +1,4 @@
-dateModified: 1638999702
+dateModified: 1639063935
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -30,7 +30,6 @@ meta:
     1f642a1f-8157-48c8-b796-705f62303756: Latitude # Latitude
     1fd7bdfe-3297-4602-90a4-7bbb4671eac3: 'Message Text' # Message Text
     1fddf7ac-c47a-491d-961f-bf23c0cc3e91: 'Simple Cta' # Simple Cta
-    2a9f1934-7a1f-41c3-bfdc-565035a5687f: 'Pastor''s Page Categories' # Pastor's Page Categories
     2a87f914-8ca0-4ff5-816f-eeed96eae0ab: 'Title or Honorific' # Title or Honorific
     3dc4707f-a219-4bde-9559-201300acd001: URL # URL
     4d7448ea-2070-48fa-985b-cbf73346b3e0: Leadership # Leadership
@@ -59,6 +58,7 @@ meta:
     16af453e-7756-4645-b749-cdee119c0d14: Address # Address
     16f9c03e-c104-4d75-84e9-479cd71b1d32: 'Gallery Showcase' # Gallery Showcase
     18b18430-9890-470a-8f25-961f5dbc13eb: 'Featured Sermon Series' # Featured Sermon Series
+    26a56254-9393-462d-97ff-ed3bd41ec91a: News # News
     27b7be51-9d75-42da-9b5f-b2e1fb678ed6: SEO # SEO
     29f855c0-8761-4086-ae93-dcda8685d73c: 'St. Mark Reformed Church' # St. Mark Reformed Church
     32d76b8c-d3f3-45cf-8b3d-55991f485a16: Bio # Bio
@@ -151,12 +151,12 @@ meta:
     da36af03-83a6-417a-a103-f6a96f2c5b66: URL # URL
     dd0ea504-a9fc-46ce-82d3-77a382c44954: 'Background Color' # Background Color
     dd1bb219-b7c4-4a1d-97e5-80801d58ca98: 'Associated User Account' # Associated User Account
-    de88a8f8-2563-459e-8a52-b3ad2f0ec006: 'News Categories' # News Categories
     df286b48-0507-4f99-9892-1f542903143c: Heading # Heading
     e2a3e24e-58ee-4326-8fc2-163003e8205b: 'Gallery Showcase Notes' # Gallery Showcase Notes
     e2b3f41d-b5fb-443c-988f-96c387bfa764: 'Number to Showcase' # Number to Showcase
     e6c814e5-440d-4c5f-baf9-e2dc8e69411d: 'Hero Darkening Overlay Opacity' # Hero Darkening Overlay Opacity
     e7ecd57e-c79d-4e1d-9c73-e34d3f1fb67b: 'Sermon Series' # Sermon Series
+    e59c60ae-fe1d-4183-80c1-d6ed6357ab7e: 'Pastor''s Page' # Pastor's Page
     e91f5555-0d06-411a-a55c-c24f14632bf4: Pages # Pages
     e355e9ca-6733-4125-823c-1111afcb79eb: Options # Options
     e2740f44-01f5-47b5-910c-1a64d2a306b7: Messages # Messages

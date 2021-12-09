@@ -4,53 +4,113 @@ fieldLayouts:
       -
         elements:
           -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            disabled: false
+            id: null
             instructions: null
             label: Title
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
             type: craft\fieldlayoutelements\EntryTitleField
+            warning: null
+            width: 100
           -
             fieldUid: 799005b5-502a-4951-bb7e-ae247d00979c # Hero Image
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: ee082c58-0248-40c1-be7f-ecbbd205f56e # Hero Heading
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: e13796c0-a36c-490c-bf23-eb7f25d5465f # Hero Subheading
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: b149c792-7a23-44b8-b08b-12fd4059475d # Primary Image
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
-          -
-            fieldUid: 2a9f1934-7a1f-41c3-bfdc-565035a5687f # Pastor's Page Categories
-            required: false
-            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: 83ae5632-273d-44d5-b592-476a39460f51 # Entry Builder
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Publish
         sortOrder: 1
       -
         elements:
           -
             fieldUid: 0bb8ab16-3c86-4ffb-86da-18c4e22a554e # Search Engine Indexing
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: a5663b9c-311e-405f-a780-b856c4cd8464 # SEO Title
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: b153d5f7-fd35-4731-9437-eb1333cdc3e2 # SEO Description
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: 98eceee6-f51c-4e12-b27e-8af4e80fb147 # Custom Share Image
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: SEO
         sortOrder: 2
 handle: pastorsPage
@@ -58,4 +118,6 @@ hasTitleField: true
 name: 'Pastor''s Page'
 section: c9e7c52c-9526-4153-8f74-d00efe20d1d2
 sortOrder: 1
-titleFormat: ''
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: ''
