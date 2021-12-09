@@ -1,0 +1,44 @@
+{# @var string breadcrumbs #}
+{# @var \App\Http\Response\Media\Resource\ResourceItem resource #}
+
+{% extends 'Http/_Infrastructure/_Layout.twig' %}
+
+{% block content %}
+    <div class="min-h-screen-minus-header-and-footer">
+        <div class="min-h-screen-minus-header-and-footer overflow-hidden md:flex">
+            <div class="flex-1 flex flex-col">
+                {{ breadcrumbs }}
+
+                <div class="max-w-7xl mx-auto text-center py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+                    <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                        {{ resource.title }}
+                    </h2>
+                    {% if resource.hasBody %}
+                        <div class="prose max-w-none mt-10">
+                            {{ resource.body|smartypants|widont }}
+                        </div>
+                    {% endif %}
+                    <div class="mt-8">
+                        <div class="mb-6">
+                            {% for download in resource.resourceDownloads %}
+                                <a
+                                    href="{{ download.url }}"
+                                    class="items-center justify-center px-5 py-3 border border-transparent text-base hover:text-crimson"
+                                    download
+                                >
+                                    <span class="block w-20 h-20 mx-auto mb-4">
+                                        {% include 'Svg/DocumentDownload.svg' %}
+                                    </span>
+                                    <span class="block">
+                                        {{ download.filename }}
+                                    </span>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

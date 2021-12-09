@@ -23,7 +23,14 @@ class GenericHandler
     ): Markup {
         $markup = $element->getFieldValue($field);
 
-        assert($markup instanceof Markup);
+        assert($markup instanceof Markup || $markup === null);
+
+        if ($markup === null) {
+            return new Markup(
+                '',
+                'UTF-8',
+            );
+        }
 
         return $markup;
     }

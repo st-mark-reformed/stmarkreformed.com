@@ -40,6 +40,6 @@ fieldLayouts:
 handle: resources
 hasTitleField: true
 name: Resources
-section: 9c3eb649-30d1-4de9-8679-4495fe2a2923
+section: 9c3eb649-30d1-4de9-8679-4495fe2a2923 # Resources
 sortOrder: 1
 titleFormat: ''

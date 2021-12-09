@@ -1,4 +1,4 @@
-dateModified: 1638851291
+dateModified: 1638999702
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -54,6 +54,7 @@ meta:
     8e41a4a3-46e9-41d1-bb64-46f3cd0979c0: 'Import Search String' # Import Search String
     8f9ce4e3-aa79-49a5-9857-a5a0eb2396c6: Body # Body
     8f73d9f8-3435-4396-bb8f-e729910f2665: Gallery # Gallery
+    9c3eb649-30d1-4de9-8679-4495fe2a2923: Resources # Resources
     14b87d92-8527-4c88-b148-9be99799b28d: Content # Content
     16af453e-7756-4645-b749-cdee119c0d14: Address # Address
     16f9c03e-c104-4d75-84e9-479cd71b1d32: 'Gallery Showcase' # Gallery Showcase

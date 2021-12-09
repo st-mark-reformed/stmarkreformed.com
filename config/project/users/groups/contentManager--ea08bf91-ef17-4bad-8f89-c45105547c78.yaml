@@ -72,16 +72,16 @@ permissions:
   - 'deletepeerentrydrafts:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
   - 'editpeerentrydrafts:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
   - 'editentries:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
-  - 'createentries:9c3eb649-30d1-4de9-8679-4495fe2a2923'
-  - 'publishentries:9c3eb649-30d1-4de9-8679-4495fe2a2923'
-  - 'deleteentries:9c3eb649-30d1-4de9-8679-4495fe2a2923'
-  - 'publishpeerentries:9c3eb649-30d1-4de9-8679-4495fe2a2923'
-  - 'deletepeerentries:9c3eb649-30d1-4de9-8679-4495fe2a2923'
-  - 'editpeerentries:9c3eb649-30d1-4de9-8679-4495fe2a2923'
-  - 'publishpeerentrydrafts:9c3eb649-30d1-4de9-8679-4495fe2a2923'
-  - 'deletepeerentrydrafts:9c3eb649-30d1-4de9-8679-4495fe2a2923'
-  - 'editpeerentrydrafts:9c3eb649-30d1-4de9-8679-4495fe2a2923'
-  - 'editentries:9c3eb649-30d1-4de9-8679-4495fe2a2923'
+  - 'createentries:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
+  - 'publishentries:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
+  - 'deleteentries:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
+  - 'publishpeerentries:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
+  - 'deletepeerentries:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
+  - 'editpeerentries:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
+  - 'publishpeerentrydrafts:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
+  - 'deletepeerentrydrafts:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
+  - 'editpeerentrydrafts:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
+  - 'editentries:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
   - 'editglobalset:84f0c3bc-62d3-4031-83c9-053e7a1fc6b2' # General
   - 'editcategories:8944d860-7b65-43bb-b62e-9750d6416ebc' # Internal Message Series
   - 'editcategories:3997eb97-922e-4368-8704-2c22cb7dcb1e' # Message Series

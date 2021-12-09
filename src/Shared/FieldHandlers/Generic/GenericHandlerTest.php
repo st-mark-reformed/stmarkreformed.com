@@ -51,6 +51,35 @@ class GenericHandlerTest extends TestCase
     /**
      * @throws InvalidFieldException
      */
+    public function testGetTwigMarkupWhenNull(): void
+    {
+        $this->fieldReturn = null;
+
+        $result = $this->handler->getTwigMarkup(
+            element: $this->element,
+            field: 'someFieldHandle',
+        );
+
+        self::assertInstanceOf(Markup::class, $result);
+
+        self::assertSame('', (string) $result);
+
+        self::assertCount(1, $this->elementCalls);
+
+        self::assertSame(
+            'getFieldValue',
+            $this->elementCalls[0]['method'],
+        );
+
+        self::assertSame(
+            'someFieldHandle',
+            $this->elementCalls[0]['fieldHandle'],
+        );
+    }
+
+    /**
+     * @throws InvalidFieldException
+     */
     public function testGetTwigMarkup(): void
     {
         $returnMarkup = new Markup('test', 'UTF-8');
