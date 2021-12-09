@@ -18,12 +18,12 @@
         {% if contentModel.preHeadline or contentModel.headline %}
             <div class="mb-8">
                 {% if contentModel.preHeadline %}
-                    <h3 class="text-base font-semibold uppercase tracking-wider {% if overLight%}text-gray-600{% else %}text-gray-100{% endif %}">
+                    <h3 class="text-base font-semibold uppercase tracking-wider {% if overLight %}text-gray-600{% else %}text-gray-100{% endif %}">
                         {{ contentModel.preHeadline|smartypants|widont }}
                     </h3>
                 {% endif %}
                 {% if contentModel.headline %}
-                    <h2 class="mt-2 {% if overLight %}text-black{% else %}text-white{% endif%} text-3xl font-extrabold tracking-tight sm:text-4xl">
+                    <h2 class="mt-2 {% if overLight %}text-black{% else %}text-white{% endif %} text-3xl font-extrabold tracking-tight sm:text-4xl">
                         {{ contentModel.headline|smartypants|widont }}
                     </h2>
                 {% endif %}

@@ -10,6 +10,7 @@ class NewsItem
         private string $title,
         private string $excerpt,
         private string $url,
+        private string $readableDate,
     ) {
     }
 
@@ -26,5 +27,10 @@ class NewsItem
     public function url(): string
     {
         return $this->url;
+    }
+
+    public function readableDate(): string
+    {
+        return $this->readableDate;
     }
 }

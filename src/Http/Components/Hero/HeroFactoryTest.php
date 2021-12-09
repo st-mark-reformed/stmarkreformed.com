@@ -381,6 +381,13 @@ class HeroFactoryTest extends TestCase
 
         $hero = $this->factory->createFromEntry(entry: $this->entry);
 
+        $newHeroHeading = $hero->withHeroHeading(value: 'Test Val');
+
+        self::assertSame(
+            'Test Val',
+            $newHeroHeading->heroHeading(),
+        );
+
         self::assertSame(587, $hero->heroOverlayOpacity());
 
         self::assertSame(

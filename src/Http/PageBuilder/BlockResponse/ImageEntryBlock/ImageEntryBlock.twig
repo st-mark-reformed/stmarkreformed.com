@@ -1,0 +1,30 @@
+{# @var \App\Http\PageBuilder\BlockResponse\ImageEntryBlock\ImageEntryBlockContentModel contentModel #}
+
+{% set image1x = ImageHandler.resizeToWidthByQueue(
+    contentModel.imageUrl,
+    1920,
+    true,
+) %}
+
+{% set image2x = ImageHandler.resizeToWidthByQueue(
+    contentModel.imageUrl,
+    3840,
+    true,
+) %}
+
+<div class="relative">
+    <div
+        class="relative mx-auto py-10 max-w-6xl"
+    >
+        <div class="mt-3 text-lg text-gray-600 prose max-w-none text-center">
+            <img
+                src="{{ image1x }}"
+                {% if image2x %}
+                srcset="{{ image1x }} 1x, {{ image2x }} 2x"
+                {% endif %}
+                alt="{{ contentModel.imageTitle }}"
+                class="mx-auto"
+            >
+        </div>
+    </div>
+</div>

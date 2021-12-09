@@ -39,6 +39,15 @@ class Hero
         return $this->heroHeading;
     }
 
+    public function withHeroHeading(string $value): self
+    {
+        $clone = clone $this;
+
+        $clone->heroHeading = $value;
+
+        return $clone;
+    }
+
     public function heroSubHeading(): string
     {
         return $this->heroSubHeading;

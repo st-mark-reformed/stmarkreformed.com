@@ -55,6 +55,8 @@ class RetrieveNewsItems
                     ),
                 ),
                 url: (string) $entry->getUrl(),
+                /** @phpstan-ignore-next-line */
+                readableDate: $entry->postDate->format('F jS, Y'),
             ),
             $results,
         );

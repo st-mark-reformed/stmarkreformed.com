@@ -27,6 +27,24 @@ fieldLayouts:
             warning: null
             width: 100
           -
+            fieldUid: 46e9048c-cfef-4f69-acd7-cd03439b3867 # Use Short Hero?
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: e6c814e5-440d-4c5f-baf9-e2dc8e69411d # Hero Darkening Overlay Opacity
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
             fieldUid: 799005b5-502a-4951-bb7e-ae247d00979c # Hero Image
             instructions: null
             label: null
@@ -36,7 +54,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: ee082c58-0248-40c1-be7f-ecbbd205f56e # Hero Heading
+            fieldUid: 7aa1e2e9-fcc5-4e79-b8ea-322145910185 # Hero Upper CTA
             instructions: null
             label: null
             required: false
@@ -45,7 +63,25 @@ fieldLayouts:
             warning: null
             width: 100
           -
+            fieldUid: ee082c58-0248-40c1-be7f-ecbbd205f56e # Hero Heading
+            instructions: ''
+            label: ''
+            required: '1'
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
             fieldUid: e13796c0-a36c-490c-bf23-eb7f25d5465f # Hero Subheading
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 7e5beee3-8da3-428c-9d03-dfe089f86b20 # Hero Paragraph
             instructions: null
             label: null
             required: false

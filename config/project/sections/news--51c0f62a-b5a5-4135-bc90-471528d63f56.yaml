@@ -19,6 +19,6 @@ siteSettings:
   94e92402-bc7d-4413-bc65-a236d81d53aa: # St. Mark Reformed Church
     enabledByDefault: true
     hasUrls: true
-    template: todo
+    template: _slimBridge/\App\Http\Response\News\NewsItem\DisplayNewsItemAction
     uriFormat: 'news/{slug}'
 type: channel

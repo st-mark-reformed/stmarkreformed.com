@@ -138,10 +138,12 @@ class RetrieveNewsItemsTest extends TestCase
                     $this->mockEntry(
                         title: 'Entry Title 1',
                         url: '/entry/url/1',
+                        dateTimeAtom: '1982-01-27T00:00:00+00:00',
                     ),
                     $this->mockEntry(
                         title: 'Entry Title 2',
                         url: '/entry/url/2',
+                        dateTimeAtom: '1992-01-27T00:00:00+00:00',
                     ),
                 ];
             }
@@ -158,12 +160,22 @@ class RetrieveNewsItemsTest extends TestCase
     private function mockEntry(
         string $title,
         string $url,
+        string $dateTimeAtom,
     ): Entry|MockObject {
         $entry = $this->createMock(Entry::class);
 
         $entry->title = $title;
 
         $entry->method('getUrl')->willReturn($url);
+
+        $dateTime = DateTime::createFromFormat(
+            DateTimeInterface::ATOM,
+            $dateTimeAtom,
+        );
+
+        assert($dateTime instanceof DateTime);
+
+        $entry->postDate = $dateTime;
 
         return $entry;
     }
@@ -211,21 +223,22 @@ class RetrieveNewsItemsTest extends TestCase
                     'title' => 'Entry Title 1',
                     'excerpt' => 'TruncatedString',
                     'url' => '/entry/url/1',
+                    'date' => 'January 27th, 1982',
                 ],
                 [
                     'title' => 'Entry Title 2',
                     'excerpt' => 'TruncatedString',
                     'url' => '/entry/url/2',
+                    'date' => 'January 27th, 1992',
                 ],
             ],
             array_map(
-                static function (NewsItem $item): array {
-                    return [
-                        'title' => $item->title(),
-                        'excerpt' => $item->excerpt(),
-                        'url' => $item->url(),
-                    ];
-                },
+                static fn (NewsItem $item) => [
+                    'title' => $item->title(),
+                    'excerpt' => $item->excerpt(),
+                    'url' => $item->url(),
+                    'date' => $item->readableDate(),
+                ],
                 $results->items(),
             ),
         );
