@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\PageBuilder\BlockResponse\ContactForm\PostSubmission\PostSubmissionAction;
+use App\Http\Response\LogIn\PostLogInAction;
 use App\Http\Response\Media\Galleries\PaginatedGalleriesListAction;
 use App\Http\Response\Media\Messages\PaginatedMessagesListAction;
 use App\Http\Response\Media\MessagesFeed\MessagesFeedAction;
@@ -52,4 +53,6 @@ return static function (App $app): void {
     PaginatedNewsListAction::addRoute(routeCollector: $app);
 
     PastorsPageListAction::addRoute(routeCollector: $app);
+
+    PostLogInAction::addRoute(routeCollector: $app);
 };

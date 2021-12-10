@@ -10,6 +10,7 @@ use App\Templating\TwigExtensions\HeroImage\GetDefaultHeroImageUrl;
 use App\Templating\TwigExtensions\HeroImage\GetDefaultHeroOverlayOpacity;
 use App\Templating\TwigExtensions\Menu\MenuTwigExtension;
 use App\Templating\TwigExtensions\ReadJson\ReadJson;
+use App\Templating\TwigExtensions\SlimFlashMessages\SlimFlashMessages;
 use BuzzingPixel\TwigMarkdown\MarkdownTwigExtension;
 use buzzingpixel\twigsmartypants\SmartypantsTwigExtension;
 use buzzingpixel\twigwidont\WidontTwigExtension;
@@ -29,6 +30,7 @@ class Twig
         MarkdownTwigExtension::class,
         MenuTwigExtension::class,
         ReadJson::class,
+        SlimFlashMessages::class,
         SmartypantsTwigExtension::class,
         WidontTwigExtension::class,
     ];
