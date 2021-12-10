@@ -61,6 +61,7 @@ class RespondWithResultsTest extends TestCase
         $response = $this->responder->respond(
             pagination: $pagination,
             results: $results,
+            pageTitle: 'Test Page Title',
         );
 
         self::assertSame($this->response, $response);
@@ -84,7 +85,7 @@ class RespondWithResultsTest extends TestCase
                     0,
                     '',
                     null,
-                    'News',
+                    'Test Page Title',
                 ],
             ],
             $this->calls[1],
@@ -127,7 +128,7 @@ class RespondWithResultsTest extends TestCase
         assert($call3Meta instanceof Meta);
 
         self::assertSame(
-            'News',
+            'Test Page Title',
             $call3Meta->metaTitle(),
         );
 

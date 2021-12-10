@@ -58,6 +58,7 @@ class RespondWithNoResultsTest extends TestCase
         $response = $this->responder->respond(
             pagination: $pagination,
             results: $results,
+            pageTitle: 'Test Title',
         );
 
         self::assertSame($this->response, $response);
@@ -81,7 +82,7 @@ class RespondWithNoResultsTest extends TestCase
                     0,
                     '',
                     null,
-                    'News',
+                    'Test Title',
                 ],
             ],
             $this->calls[1],
@@ -114,7 +115,10 @@ class RespondWithNoResultsTest extends TestCase
 
         assert($call2Meta instanceof Meta);
 
-        self::assertSame('News', $call2Meta->metaTitle());
+        self::assertSame(
+            'Test Title',
+            $call2Meta->metaTitle(),
+        );
 
         self::assertSame(
             $this->hero,

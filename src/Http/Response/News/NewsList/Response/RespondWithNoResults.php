@@ -36,15 +36,16 @@ class RespondWithNoResults implements PaginatedNewsListResponderContract
     public function respond(
         NewsResults $results,
         Pagination $pagination,
+        string $pageTitle,
     ): ResponseInterface {
         $response = $this->responseFactory->createResponse();
 
         $response->getBody()->write($this->twig->render(
             '@app/Http/Response/News/NewsList/Response/RespondWithNoResults.twig',
             [
-                'meta' => new Meta(metaTitle: 'News'),
+                'meta' => new Meta(metaTitle: $pageTitle),
                 'hero' => $this->heroFactory->createFromDefaults(
-                    heroHeading: 'News',
+                    heroHeading: $pageTitle,
                 ),
             ],
         ));

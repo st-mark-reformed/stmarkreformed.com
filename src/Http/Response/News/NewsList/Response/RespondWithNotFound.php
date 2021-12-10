@@ -22,6 +22,7 @@ class RespondWithNotFound implements PaginatedNewsListResponderContract
     public function respond(
         NewsResults $results,
         Pagination $pagination,
+        string $pageTitle,
     ): ResponseInterface {
         throw new HttpNotFoundException($this->request);
     }

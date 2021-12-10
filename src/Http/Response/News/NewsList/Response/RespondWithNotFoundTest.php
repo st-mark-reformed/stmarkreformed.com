@@ -46,6 +46,7 @@ class RespondWithNotFoundTest extends TestCase
             $this->responder->respond(
                 results: $results,
                 pagination: $pagination,
+                pageTitle: 'Test Title',
             );
         } catch (Throwable $e) {
             $exception = $e;

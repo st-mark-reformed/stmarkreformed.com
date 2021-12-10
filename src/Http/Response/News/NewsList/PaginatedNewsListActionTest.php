@@ -281,7 +281,7 @@ class PaginatedNewsListActionTest extends TestCase
 
         $call3Args = $this->calls[3]['args'];
 
-        self::assertCount(2, $call3Args);
+        self::assertCount(3, $call3Args);
 
         self::assertSame($this->results, $call3Args[0]);
 
@@ -312,5 +312,7 @@ class PaginatedNewsListActionTest extends TestCase
             '?foo=bar&baz=foo',
             $call3Pagination->queryString(),
         );
+
+        self::assertSame('News', $call3Args[2]);
     }
 }

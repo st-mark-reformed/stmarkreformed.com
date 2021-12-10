@@ -283,7 +283,7 @@ class PastorsPageListActionTest extends TestCase
 
         $call3Args = $this->calls[3]['args'];
 
-        self::assertCount(2, $call3Args);
+        self::assertCount(3, $call3Args);
 
         self::assertSame($this->results, $call3Args[0]);
 
@@ -314,5 +314,7 @@ class PastorsPageListActionTest extends TestCase
             '?foo=bar&baz=foo',
             $call3Pagination->queryString(),
         );
+
+        self::assertSame("Pastor's Page", $call3Args[2]);
     }
 }

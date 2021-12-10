@@ -63,6 +63,7 @@ class PaginatedNewsListAction
             pagination: $pagination,
         )->respond(
             results: $results,
+            pageTitle: 'News',
             pagination: $pagination,
         );
     }

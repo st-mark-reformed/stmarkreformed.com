@@ -67,6 +67,7 @@ class PastorsPageListAction
         )->respond(
             results: $results,
             pagination: $pagination,
+            pageTitle: "Pastor's Page",
         );
     }
 }

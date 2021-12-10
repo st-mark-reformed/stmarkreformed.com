@@ -13,5 +13,6 @@ interface PaginatedNewsListResponderContract
     public function respond(
         NewsResults $results,
         Pagination $pagination,
+        string $pageTitle,
     ): ResponseInterface;
 }
