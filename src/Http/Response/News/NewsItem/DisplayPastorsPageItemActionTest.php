@@ -22,12 +22,12 @@ use yii\base\InvalidConfigException;
 use function array_map;
 use function assert;
 
-class DisplayNewsItemActionTest extends TestCase
+class DisplayPastorsPageItemActionTest extends TestCase
 {
     use MockHeroFactoryForTesting;
     use MockRouteParamsHandlerForTesting;
 
-    private DisplayNewsItemAction $action;
+    private DisplayPastorsPageItemAction $action;
 
     private RouteParams $routeParams;
 
@@ -43,7 +43,7 @@ class DisplayNewsItemActionTest extends TestCase
             ResponseInterface::class,
         );
 
-        $this->action = new DisplayNewsItemAction(
+        $this->action = new DisplayPastorsPageItemAction(
             heroFactory: $this->mockHeroFactory(),
             routeParams: $this->routeParams,
             compileResponse: $this->mockCompileResponse(),
@@ -174,13 +174,13 @@ class DisplayNewsItemActionTest extends TestCase
                 ],
                 [
                     'isEmpty' => false,
-                    'content' => 'All News',
-                    'href' => '/news',
+                    'content' => "All Pastor's Page Items",
+                    'href' => '/pastors-page',
                     'newWindow' => false,
                 ],
                 [
                     'isEmpty' => false,
-                    'content' => 'Viewing News Item',
+                    'content' => 'Viewing Entry',
                     'href' => '',
                     'newWindow' => false,
                 ],

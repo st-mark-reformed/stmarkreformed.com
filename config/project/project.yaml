@@ -1,4 +1,4 @@
-dateModified: 1639102465
+dateModified: 1639103553
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -139,6 +139,7 @@ meta:
     ba477ad1-a81e-4f6c-9976-f0f2af90b390: 'Leadership Listing Details' # Leadership Listing Details
     bdeb94af-1e71-4ccc-97b0-682301d10146: 'Stripe Payment Form' # Stripe Payment Form
     c4a6682d-42d5-4782-9217-84d3db36d3be: Profile # Profile
+    c9e7c52c-9526-4153-8f74-d00efe20d1d2: 'Pastor''s Page' # Pastor's Page
     c66e62d9-2ca8-4489-8c97-3f4dca8ccb60: Common # Common
     c67a7c62-3fbd-43ac-86c6-32c299b87bfe: Users # Users
     c665efa6-4acd-4798-ab92-b0f46bf5fd05: 'Show Sub-Page Sidebar' # Show Sub-Page Sidebar

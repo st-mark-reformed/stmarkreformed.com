@@ -152,7 +152,7 @@ fieldLayouts:
 handle: pastorsPage
 hasTitleField: true
 name: 'Pastor''s Page'
-section: c9e7c52c-9526-4153-8f74-d00efe20d1d2
+section: c9e7c52c-9526-4153-8f74-d00efe20d1d2 # Pastor's Page
 sortOrder: 1
 titleFormat: null
 titleTranslationKeyFormat: null
