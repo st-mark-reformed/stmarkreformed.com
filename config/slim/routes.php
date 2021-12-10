@@ -8,6 +8,7 @@ use App\Http\Response\Media\Messages\PaginatedMessagesListAction;
 use App\Http\Response\Media\MessagesFeed\MessagesFeedAction;
 use App\Http\Response\Media\Resources\PaginatedResourcesListAction;
 use App\Http\Response\News\NewsList\PaginatedNewsListAction;
+use App\Http\Response\News\NewsList\PastorsPageListAction;
 use Config\Tinker;
 use Slim\App;
 
@@ -49,4 +50,6 @@ return static function (App $app): void {
     PaginatedResourcesListAction::addRoute(routeCollector: $app);
 
     PaginatedNewsListAction::addRoute(routeCollector: $app);
+
+    PastorsPageListAction::addRoute(routeCollector: $app);
 };

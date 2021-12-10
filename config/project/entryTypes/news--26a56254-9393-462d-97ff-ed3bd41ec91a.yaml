@@ -66,7 +66,7 @@ fieldLayouts:
             fieldUid: ee082c58-0248-40c1-be7f-ecbbd205f56e # Hero Heading
             instructions: ''
             label: ''
-            required: '1'
+            required: ''
             tip: null
             type: craft\fieldlayoutelements\CustomField
             warning: null

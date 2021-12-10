@@ -28,15 +28,17 @@ class RetrieveNewsItems
      * @throws InvalidFieldException
      * @throws InvalidConfigException
      */
-    public function retrieve(Pagination $pagination): NewsResults
-    {
+    public function retrieve(
+        Pagination $pagination,
+        string $section = 'news',
+    ): NewsResults {
         $perPage = $pagination->perPage();
 
         $currentPage = $pagination->currentPage();
 
         $query = $this->entryQueryFactory->make();
 
-        $query->section('news');
+        $query->section($section);
 
         $totalResults = (int) $query->count();
 
