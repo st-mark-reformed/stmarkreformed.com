@@ -8,6 +8,9 @@ use App\Http\Response\Media\Galleries\PaginatedGalleriesListAction;
 use App\Http\Response\Media\Messages\PaginatedMessagesListAction;
 use App\Http\Response\Media\MessagesFeed\MessagesFeedAction;
 use App\Http\Response\Media\Resources\PaginatedResourcesListAction;
+use App\Http\Response\Members\InternalMedia\DownloadAudio\DownloadAudioAction;
+use App\Http\Response\Members\InternalMedia\InternalMediaAction;
+use App\Http\Response\Members\MembersIndexAction;
 use App\Http\Response\News\NewsList\PaginatedNewsListAction;
 use App\Http\Response\News\NewsList\PastorsPageListAction;
 use Config\Tinker;
@@ -54,5 +57,11 @@ return static function (App $app): void {
 
     PastorsPageListAction::addRoute(routeCollector: $app);
 
+    MembersIndexAction::addRoute(routeCollector: $app);
+
     PostLogInAction::addRoute(routeCollector: $app);
+
+    InternalMediaAction::addRoute(routeCollector: $app);
+
+    DownloadAudioAction::addRoute(routeCollector: $app);
 };

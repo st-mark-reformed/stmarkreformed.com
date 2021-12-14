@@ -18,6 +18,9 @@ class SlimFlashMessages extends AbstractExtension
     {
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public static function shouldAddExtension(): bool
     {
         return session_status() === PHP_SESSION_ACTIVE;

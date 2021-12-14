@@ -259,4 +259,170 @@ class AudioPlayerContentModelFactoryTest extends TestCase
 
         self::assertNull($model->getFirstSeries());
     }
+
+    public function testMakeFromInternalMessageEntry(): void
+    {
+        $speaker1 = $this->createMock(Entry::class);
+
+        $speaker1->slug = 'test-slug-1';
+
+        $speaker1->title = 'Test Full Name 1';
+
+        $speaker1->method('getFieldValue')->willReturnCallback(
+            static function (string $fieldHandle): string {
+                return match ($fieldHandle) {
+                    'titleOrHonorific' => 'Test Title 1',
+                    default => throw new Exception(),
+                };
+            }
+        );
+
+        $speaker2 = $this->createMock(Entry::class);
+
+        $speaker2->slug = 'test-slug-2';
+
+        $speaker2->title = 'Test Full Name 2';
+
+        $speaker2->method('getFieldValue')->willReturnCallback(
+            static function (string $fieldHandle): string {
+                return match ($fieldHandle) {
+                    'titleOrHonorific' => '',
+                    default => throw new Exception(),
+                };
+            }
+        );
+
+        $speakerQuery = $this->createMock(
+            EntryQuery::class,
+        );
+
+        $speakerQuery->method('all')->willReturn([
+            $speaker1,
+            $speaker2,
+        ]);
+
+        $sermonAudioAsset = $this->createMock(Asset::class);
+
+        $sermonAudioAsset->method('getMimeType')->willReturn(
+            'audio/mpeg',
+        );
+
+        $sermonAudioAsset->method('getExtension')->willReturn(
+            'mp3',
+        );
+
+        $sermonAudioAsset->method('getUrl')->willReturn(
+            '/test/asset/url',
+        );
+
+        $sermonAudioAssetQuery = $this->createMock(
+            AssetQuery::class,
+        );
+
+        $sermonAudioAssetQuery->method('one')->willReturn(
+            $sermonAudioAsset,
+        );
+
+        $sermon = $this->createMock(Entry::class);
+
+        /** @phpstan-ignore-next-line */
+        $sermon->postDate = DateTime::createFromFormat(
+            DateTimeInterface::ATOM,
+            '1982-01-27T00:00:00+00:00',
+        );
+
+        $sermon->method('getFieldValue')->willReturnCallback(
+            static function (string $fieldHandle) use (
+                $speakerQuery,
+                $sermonAudioAssetQuery,
+            ): mixed {
+                return match ($fieldHandle) {
+                    'profile' => $speakerQuery,
+                    'internalAudio' => $sermonAudioAssetQuery,
+                    'messageText' => 'Test Message Text',
+                    default => throw new Exception(),
+                };
+            }
+        );
+
+        $sermon->method('getUrl')->willReturn(
+            '/test/sermon/url'
+        );
+
+        $sermon->title = 'Test Sermon Title';
+
+        $sermon->slug = 'test-slug';
+
+        $factory = new AudioPlayerContentModelFactory();
+
+        $model = $factory->makeFromInternalMessageEntry(entry: $sermon);
+
+        self::assertSame(
+            '/test/sermon/url',
+            $model->href(),
+        );
+
+        self::assertSame(
+            'Test Sermon Title',
+            $model->title(),
+        );
+
+        self::assertSame(
+            'January 27, 1982',
+            $model->subTitle(),
+        );
+
+        self::assertSame(
+            '/members/internal-audio/audio/test-slug',
+            $model->audioFileHref(),
+        );
+
+        self::assertSame(
+            'audio/mp3',
+            $model->audioFileMimeType(),
+        );
+
+        self::assertTrue($model->hasKeyValueItems());
+
+        $keyValItems = $model->keyValueItems();
+
+        self::assertCount(3, $keyValItems);
+
+        $keyVal1 = $keyValItems[0];
+        self::assertSame('by', $keyVal1->key());
+        self::assertSame(
+            'Test Title 1 Test Full Name 1',
+            $keyVal1->value(),
+        );
+        self::assertSame(
+            '/media/messages?by%5B0%5D=test-slug-1',
+            $keyVal1->href(),
+        );
+
+        $keyVal2 = $keyValItems[1];
+        self::assertSame('by', $keyVal2->key());
+        self::assertSame(
+            'Test Full Name 2',
+            $keyVal2->value(),
+        );
+        self::assertSame(
+            '/media/messages?by%5B0%5D=test-slug-2',
+            $keyVal2->href(),
+        );
+
+        $keyVal3 = $keyValItems[2];
+        self::assertSame('text', $keyVal3->key());
+        self::assertSame(
+            'Test Message Text',
+            $keyVal3->value(),
+        );
+        self::assertSame(
+            '',
+            $keyVal3->href(),
+        );
+
+        self::assertSame([], $model->getSeries());
+
+        self::assertSame(null, $model->getFirstSeries());
+    }
 }

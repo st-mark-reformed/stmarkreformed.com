@@ -109,4 +109,80 @@ class AudioPlayerContentModelFactory
             keyValueItems: $keyValItems,
         );
     }
+
+    /**
+     * @throws InvalidFieldException
+     */
+    public function makeFromInternalMessageEntry(
+        Entry $entry,
+    ): AudioPlayerContentModel {
+        $postDate = $entry->postDate;
+
+        assert($postDate instanceof DateTimeInterface);
+
+        $audioAssetQuery = $entry->getFieldValue('internalAudio');
+
+        assert($audioAssetQuery instanceof AssetQuery);
+
+        $audioAsset = $audioAssetQuery->one();
+
+        assert($audioAsset instanceof Asset);
+
+        $mimeType = $audioAsset->getMimeType();
+
+        if (
+            $mimeType === 'audio/mpeg' &&
+            $audioAsset->getExtension() === 'mp3'
+        ) {
+            $mimeType = 'audio/mp3';
+        }
+
+        $speakerQuery = $entry->getFieldValue('profile');
+
+        assert($speakerQuery instanceof EntryQuery);
+
+        $keyValItems = [];
+
+        foreach ($speakerQuery->all() as $speaker) {
+            /** @phpstan-ignore-next-line */
+            assert($speaker instanceof Entry);
+
+            $slug = (string) $speaker->slug;
+
+            $keyValItems[] = new AudioPlayerKeyValItem(
+                key: 'by',
+                value: trim(implode(' ', [
+                    (string) $speaker->getFieldValue(
+                        'titleOrHonorific',
+                    ),
+                    (string) $speaker->title,
+                ])),
+                href: '/media/messages?' . http_build_query(
+                    ['by' => [$slug]],
+                ),
+            );
+        }
+
+        $messageText = (string) $entry->getFieldValue(
+            'messageText',
+        );
+
+        if ($messageText !== '') {
+            $keyValItems[] = new AudioPlayerKeyValItem(
+                key: 'text',
+                value: $messageText,
+            );
+        }
+
+        $slug = (string) $entry->slug;
+
+        return new AudioPlayerContentModel(
+            href: (string) $entry->getUrl(),
+            title: (string) $entry->title,
+            subTitle: $postDate->format('F j, Y'),
+            audioFileHref: '/members/internal-audio/audio/' . $slug,
+            audioFileMimeType: (string) $mimeType,
+            keyValueItems: $keyValItems,
+        );
+    }
 }
