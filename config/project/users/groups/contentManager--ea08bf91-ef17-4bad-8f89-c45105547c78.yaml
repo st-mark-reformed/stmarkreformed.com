@@ -32,16 +32,16 @@ permissions:
   - 'deletepeerentrydrafts:b4830095-9974-475a-9af6-aac12c7e626d'
   - 'editpeerentrydrafts:b4830095-9974-475a-9af6-aac12c7e626d'
   - 'editentries:b4830095-9974-475a-9af6-aac12c7e626d'
-  - 'createentries:fa85e855-64ff-434d-b40e-f4e6188f46dd'
-  - 'publishentries:fa85e855-64ff-434d-b40e-f4e6188f46dd'
-  - 'deleteentries:fa85e855-64ff-434d-b40e-f4e6188f46dd'
-  - 'publishpeerentries:fa85e855-64ff-434d-b40e-f4e6188f46dd'
-  - 'deletepeerentries:fa85e855-64ff-434d-b40e-f4e6188f46dd'
-  - 'editpeerentries:fa85e855-64ff-434d-b40e-f4e6188f46dd'
-  - 'publishpeerentrydrafts:fa85e855-64ff-434d-b40e-f4e6188f46dd'
-  - 'deletepeerentrydrafts:fa85e855-64ff-434d-b40e-f4e6188f46dd'
-  - 'editpeerentrydrafts:fa85e855-64ff-434d-b40e-f4e6188f46dd'
-  - 'editentries:fa85e855-64ff-434d-b40e-f4e6188f46dd'
+  - 'createentries:fa85e855-64ff-434d-b40e-f4e6188f46dd' # Internal Messages
+  - 'publishentries:fa85e855-64ff-434d-b40e-f4e6188f46dd' # Internal Messages
+  - 'deleteentries:fa85e855-64ff-434d-b40e-f4e6188f46dd' # Internal Messages
+  - 'publishpeerentries:fa85e855-64ff-434d-b40e-f4e6188f46dd' # Internal Messages
+  - 'deletepeerentries:fa85e855-64ff-434d-b40e-f4e6188f46dd' # Internal Messages
+  - 'editpeerentries:fa85e855-64ff-434d-b40e-f4e6188f46dd' # Internal Messages
+  - 'publishpeerentrydrafts:fa85e855-64ff-434d-b40e-f4e6188f46dd' # Internal Messages
+  - 'deletepeerentrydrafts:fa85e855-64ff-434d-b40e-f4e6188f46dd' # Internal Messages
+  - 'editpeerentrydrafts:fa85e855-64ff-434d-b40e-f4e6188f46dd' # Internal Messages
+  - 'editentries:fa85e855-64ff-434d-b40e-f4e6188f46dd' # Internal Messages
   - 'createentries:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242' # Messages
   - 'publishentries:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242' # Messages
   - 'deleteentries:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242' # Messages

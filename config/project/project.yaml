@@ -1,4 +1,4 @@
-dateModified: 1639103553
+dateModified: 1639526190
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -172,6 +172,7 @@ meta:
     efe1648a-3d7f-4a16-a249-8e6870078081: Body # Body
     f4d94e4a-9989-4cb2-b51b-e0c445006f6c: Profile # Profile
     f993b580-0e43-468a-9eab-ed72eef94d7a: 'Hymn of the Month Practice Tracks' # Hymn of the Month Practice Tracks
+    fa85e855-64ff-434d-b40e-f4e6188f46dd: 'Internal Messages' # Internal Messages
     fab4b26c-20f2-4f6b-a4f9-93c660dfcd40: 'Sub Heading' # Sub Heading
     fb27befa-4657-425c-b961-eeace2f94dc4: 'Block Background Image' # Block Background Image
     fb809945-7807-4e81-9c34-4ff030f0888a: Links # Links

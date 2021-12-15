@@ -98,7 +98,7 @@ fieldLayouts:
 handle: internalMessages
 hasTitleField: true
 name: 'Internal Messages'
-section: fa85e855-64ff-434d-b40e-f4e6188f46dd
+section: fa85e855-64ff-434d-b40e-f4e6188f46dd # Internal Messages
 sortOrder: 1
 titleFormat: null
 titleTranslationKeyFormat: null

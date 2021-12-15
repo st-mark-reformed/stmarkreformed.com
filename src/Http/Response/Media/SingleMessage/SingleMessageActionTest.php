@@ -30,14 +30,14 @@ class SingleMessageActionTest extends TestCase
     use MockTwigForTesting;
     use MockHeroFactoryForTesting;
     use MockMessagesSidebarForTesting;
-    use MockRouteParamsHandlerForTesting;
     use MockResponseFactoryForTesting;
-    use MockRenderAudioPlayerFromContentModelForTesting;
+    use MockRouteParamsHandlerForTesting;
     use MockAudioPlayerContentModelFactoryForTesting;
-
-    private SingleMessageAction $action;
+    use MockRenderAudioPlayerFromContentModelForTesting;
 
     private RouteParams $routeParams;
+
+    private SingleMessageAction $action;
 
     public function setUp(): void
     {
@@ -198,7 +198,10 @@ class SingleMessageActionTest extends TestCase
 
         $call7 = $this->calls[7];
 
-        self::assertSame('TwigEnvironment', $call7['object']);
+        self::assertSame(
+            'TwigEnvironment',
+            $call7['object'],
+        );
 
         self::assertSame('render', $call7['method']);
 
