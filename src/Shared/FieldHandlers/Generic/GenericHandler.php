@@ -6,6 +6,7 @@ namespace App\Shared\FieldHandlers\Generic;
 
 use craft\base\Element;
 use craft\errors\InvalidFieldException;
+use DateTimeInterface;
 use Twig\Markup;
 
 use function assert;
@@ -69,5 +70,21 @@ class GenericHandler
         string $field,
     ): bool {
         return (bool) $element->getFieldValue($field);
+    }
+
+    /**
+     * @throws InvalidFieldException
+     *
+     * @phpstan-ignore-next-line
+     */
+    public function getDate(
+        Element $element,
+        string $field,
+    ): DateTimeInterface {
+        $value = $element->getFieldValue($field);
+
+        assert($value instanceof DateTimeInterface);
+
+        return $value;
     }
 }

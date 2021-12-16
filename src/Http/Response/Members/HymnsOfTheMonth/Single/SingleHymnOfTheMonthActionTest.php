@@ -2,13 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Response\Members\InternalMedia\Single;
+namespace App\Http\Response\Members\HymnsOfTheMonth\Single;
 
 use App\Http\Components\Hero\MockHeroFactoryForTesting;
 use App\Http\Components\Link\Link;
 use App\Http\Entities\Meta;
-use App\Http\PageBuilder\Shared\AudioPlayer\MockAudioPlayerContentModelFactoryForTesting;
-use App\Http\PageBuilder\Shared\AudioPlayer\MockRenderAudioPlayerFromContentModelForTesting;
 use App\Http\Shared\MockRouteParamsHandlerForTesting;
 use App\Shared\Testing\MockResponseFactoryForTesting;
 use App\Shared\Testing\MockTwigForTesting;
@@ -22,20 +20,19 @@ use yii\base\InvalidConfigException;
 
 use function array_map;
 use function assert;
-use function is_array;
 
-class SingleMessageActionTest extends TestCase
+class SingleHymnOfTheMonthActionTest extends TestCase
 {
     use MockTwigForTesting;
     use MockHeroFactoryForTesting;
     use MockResponseFactoryForTesting;
     use MockRouteParamsHandlerForTesting;
-    use MockAudioPlayerContentModelFactoryForTesting;
-    use MockRenderAudioPlayerFromContentModelForTesting;
 
     private RouteParams $routeParams;
 
-    private SingleMessageAction $action;
+    private Result $result;
+
+    private SingleHymnOfTheMonthAction $action;
 
     protected function setUp(): void
     {
@@ -45,15 +42,32 @@ class SingleMessageActionTest extends TestCase
             RouteParams::class,
         );
 
-        $this->action = new SingleMessageAction(
+        $this->result = $this->createMock(Result::class);
+
+        $this->action = new SingleHymnOfTheMonthAction(
             twig: $this->mockTwig(),
             routeParams: $this->routeParams,
+            getResult: $this->mockGetResult(),
             heroFactory: $this->mockHeroFactory(),
             responseFactory: $this->mockResponseFactory(),
             routeParamsHandler: $this->mockRouteParamsHandler(),
-            contentModelFactory: $this->mockAudioPlayerContentModelFactory(),
-            renderAudioPlayer: $this->mockRenderAudioPlayerFromContentModel(),
         );
+    }
+
+    private function mockGetResult(): GetResult
+    {
+        $mock = $this->createMock(GetResult::class);
+
+        $mock->method('fromEntry')->willReturnCallback(
+            function (): Result {
+                return $this->genericCall(
+                    object: 'GetResult',
+                    return: $this->result,
+                );
+            }
+        );
+
+        return $mock;
     }
 
     /**
@@ -82,8 +96,8 @@ class SingleMessageActionTest extends TestCase
 
         self::assertSame(
             [
-                'object' => 'AudioPlayerContentModelFactory',
-                'method' => 'makeFromInternalMessageEntry',
+                'object' => 'GetResult',
+                'method' => 'fromEntry',
                 'args' => [$this->routeParamsHandlerEntry],
             ],
             $this->calls[1],
@@ -117,22 +131,20 @@ class SingleMessageActionTest extends TestCase
             $this->calls[4]['method'],
         );
 
-        $call4Args = $this->calls[4]['args'];
+        $args = $this->calls[4]['args'];
 
-        assert(is_array($call4Args));
-
-        self::assertCount(2, $call4Args);
+        self::assertCount(2, $args);
 
         self::assertSame(
-            '@app/Http/Response/Members/InternalMedia/Single/SingleMessage.twig',
-            $call4Args[0],
+            '@app/Http/Response/Members/HymnsOfTheMonth/Single/SingleHymnOfTheMonth.twig',
+            $args[0],
         );
 
-        $call4Context = $call4Args[1];
+        $context = $args[1];
 
-        assert(is_array($call4Context));
+        self::assertCount(4, $context);
 
-        self::assertCount(4, $call4Context);
+        self::assertSame($this->result, $context['result']);
 
         self::assertSame(
             [
@@ -150,13 +162,13 @@ class SingleMessageActionTest extends TestCase
                 ],
                 [
                     'isEmpty' => false,
-                    'content' => 'Internal Media',
-                    'href' => '/members/internal-media',
+                    'content' => 'Hymns of the Month',
+                    'href' => '/members/hymns-of-the-month',
                     'newWindow' => false,
                 ],
                 [
                     'isEmpty' => false,
-                    'content' => 'Viewing Media',
+                    'content' => 'Viewing Entry',
                     'href' => '',
                     'newWindow' => false,
                 ],
@@ -168,25 +180,20 @@ class SingleMessageActionTest extends TestCase
                     'href' => $link->href(),
                     'newWindow' => $link->newWindow(),
                 ],
-                $call4Context['breadcrumbs'],
+                $context['breadcrumbs'],
             )
         );
 
-        $meta = $call4Context['meta'];
+        $meta = $context['meta'];
 
         assert($meta instanceof Meta);
 
         self::assertSame(
-            'Test Route Params Entry Title | Internal Messages',
+            'Test Route Params Entry Title | Hymns of the Month',
             $meta->metaTitle(),
         );
 
-        self::assertSame($this->hero, $call4Context['hero']);
-
-        self::assertSame(
-            'RenderAudioPlayerFromContentModelReturnString',
-            (string) $call4Context['audioPlayerMarkup'],
-        );
+        self::assertSame($this->hero, $context['hero']);
 
         self::assertSame(
             [

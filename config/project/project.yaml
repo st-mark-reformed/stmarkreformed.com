@@ -1,4 +1,4 @@
-dateModified: 1639526190
+dateModified: 1639630221
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -136,6 +136,7 @@ meta:
     b1284b82-f1a8-41b1-8480-11c6366bb213: Pre-Headline # Pre-Headline
     b5819ef5-9761-4d28-b9c2-d7c2a3b41532: 'Twitter Handle' # Twitter Handle
     b4204049-2a69-459e-b105-94be12ec6081: URL # URL
+    b4830095-9974-475a-9af6-aac12c7e626d: 'Hymns of the Month' # Hymns of the Month
     ba477ad1-a81e-4f6c-9976-f0f2af90b390: 'Leadership Listing Details' # Leadership Listing Details
     bdeb94af-1e71-4ccc-97b0-682301d10146: 'Stripe Payment Form' # Stripe Payment Form
     c4a6682d-42d5-4782-9217-84d3db36d3be: Profile # Profile

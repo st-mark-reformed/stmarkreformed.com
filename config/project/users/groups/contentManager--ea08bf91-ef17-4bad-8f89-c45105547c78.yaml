@@ -22,16 +22,16 @@ permissions:
   - 'deletepeerentrydrafts:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
   - 'editpeerentrydrafts:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
   - 'editentries:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
-  - 'createentries:b4830095-9974-475a-9af6-aac12c7e626d'
-  - 'publishentries:b4830095-9974-475a-9af6-aac12c7e626d'
-  - 'deleteentries:b4830095-9974-475a-9af6-aac12c7e626d'
-  - 'publishpeerentries:b4830095-9974-475a-9af6-aac12c7e626d'
-  - 'deletepeerentries:b4830095-9974-475a-9af6-aac12c7e626d'
-  - 'editpeerentries:b4830095-9974-475a-9af6-aac12c7e626d'
-  - 'publishpeerentrydrafts:b4830095-9974-475a-9af6-aac12c7e626d'
-  - 'deletepeerentrydrafts:b4830095-9974-475a-9af6-aac12c7e626d'
-  - 'editpeerentrydrafts:b4830095-9974-475a-9af6-aac12c7e626d'
-  - 'editentries:b4830095-9974-475a-9af6-aac12c7e626d'
+  - 'createentries:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
+  - 'publishentries:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
+  - 'deleteentries:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
+  - 'publishpeerentries:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
+  - 'deletepeerentries:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
+  - 'editpeerentries:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
+  - 'publishpeerentrydrafts:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
+  - 'deletepeerentrydrafts:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
+  - 'editpeerentrydrafts:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
+  - 'editentries:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
   - 'createentries:fa85e855-64ff-434d-b40e-f4e6188f46dd' # Internal Messages
   - 'publishentries:fa85e855-64ff-434d-b40e-f4e6188f46dd' # Internal Messages
   - 'deleteentries:fa85e855-64ff-434d-b40e-f4e6188f46dd' # Internal Messages

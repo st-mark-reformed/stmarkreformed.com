@@ -6,6 +6,7 @@ namespace App\Shared\FieldHandlers\Generic;
 
 use craft\base\Element;
 use craft\errors\InvalidFieldException;
+use DateTime;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Twig\Markup;
@@ -190,6 +191,33 @@ class GenericHandlerTest extends TestCase
         self::assertSame(
             'fieldHandle',
             $this->elementCalls[0]['fieldHandle'],
+        );
+    }
+
+    /**
+     * @throws InvalidFieldException
+     */
+    public function testGetDate(): void
+    {
+        $this->fieldReturn = $this->createMock(
+            DateTime::class,
+        );
+
+        $value = $this->handler->getDate(
+            element: $this->element,
+            field: 'fooBarField',
+        );
+
+        self::assertSame($this->fieldReturn, $value);
+
+        self::assertSame(
+            [
+                [
+                    'method' => 'getFieldValue',
+                    'fieldHandle' => 'fooBarField',
+                ],
+            ],
+            $this->elementCalls,
         );
     }
 }
