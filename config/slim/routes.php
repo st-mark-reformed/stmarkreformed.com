@@ -8,6 +8,7 @@ use App\Http\Response\Media\Galleries\PaginatedGalleriesListAction;
 use App\Http\Response\Media\Messages\PaginatedMessagesListAction;
 use App\Http\Response\Media\MessagesFeed\MessagesFeedAction;
 use App\Http\Response\Media\Resources\PaginatedResourcesListAction;
+use App\Http\Response\Members\HymnsOfTheMonth\FileDownload\FileDownloadAction;
 use App\Http\Response\Members\HymnsOfTheMonth\HymnsOfTheMonthAction;
 use App\Http\Response\Members\InternalMedia\DownloadAudio\DownloadAudioAction;
 use App\Http\Response\Members\InternalMedia\InternalMediaAction;
@@ -67,4 +68,6 @@ return static function (App $app): void {
     DownloadAudioAction::addRoute(routeCollector: $app);
 
     HymnsOfTheMonthAction::addRoute(routeCollector: $app);
+
+    FileDownloadAction::addRoute($app);
 };
