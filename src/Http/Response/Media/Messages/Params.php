@@ -6,13 +6,13 @@ namespace App\Http\Response\Media\Messages;
 
 use App\Messages\RetrieveMessages\MessageRetrievalParams;
 use DateTimeImmutable;
+use LogicException;
 use Psr\Http\Message\ServerRequestInterface;
 use Throwable;
 
 use function array_filter;
 use function array_keys;
 use function array_map;
-use function assert;
 use function count;
 use function get_class_vars;
 use function gettype;
@@ -157,7 +157,9 @@ class Params
                 $this->dateRangeStart(),
             );
 
-            assert($dateRangeStart instanceof DateTimeImmutable);
+            if (! ($dateRangeStart instanceof DateTimeImmutable)) {
+                throw new LogicException();
+            }
         } catch (Throwable) {
             $dateRangeStart = null;
         }
@@ -168,7 +170,9 @@ class Params
                 $this->dateRangeEnd(),
             );
 
-            assert($dateRangeEnd instanceof DateTimeImmutable);
+            if (! ($dateRangeEnd instanceof DateTimeImmutable)) {
+                throw new LogicException();
+            }
         } catch (Throwable) {
             $dateRangeEnd = null;
         }
