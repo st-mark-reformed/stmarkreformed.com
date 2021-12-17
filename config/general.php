@@ -57,4 +57,8 @@ return [
         'testSecretKey' =>  getenv('STRIPE_SECRET_KEY'),
         'testMode' => (bool) getenv('STRIPE_TEST_MODE') ? 1 : 0,
     ],
+
+    'aliases' => [
+        '@webroot' => $craftBasePath . '/public',
+    ],
 ];

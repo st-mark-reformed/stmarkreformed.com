@@ -28,6 +28,8 @@ use craft\events\ModelEvent;
 use craft\events\RegisterCacheOptionsEvent;
 use craft\utilities\ClearCaches;
 use Exception;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Twig\Extension\ExtensionInterface;
 use yii\base\Event;
 use yii\base\Module as ModuleBase;
@@ -62,7 +64,8 @@ class Module extends ModuleBase
     /**
      * Sets up the module
      *
-     * @throws Exception
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     private function setUp(): void
     {
