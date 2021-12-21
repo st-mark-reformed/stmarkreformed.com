@@ -50,15 +50,27 @@
                                     1640,
                                 ) %}
 
-                                <img
-                                    src="{{ image1x }}"
-                                    {% if image2x %}
-                                    srcset="{{ image1x }} 1x, {{ image2x }} 2x"
-                                    {% endif %}
-                                    class="image"
+                                {% set imageFull = ImageHandler.resizeToWidthByQueue(
+                                    item.imgUrl,
+                                    3840,
+                                    true,
+                                ) %}
+
+                                <a
+                                    href="{{ imageFull }}"
+                                    target="_blank"
                                     ref="masonry-item"
-                                    alt="{{ item.title }}"
+                                    class="image block mb-8"
                                 >
+                                    <img
+                                        src="{{ image1x }}"
+                                        {% if image2x %}
+                                        srcset="{{ image1x }} 1x, {{ image2x }} 2x"
+                                        {% endif %}
+                                        class="image"
+                                        alt="{{ item.title }}"
+                                    >
+                                </a>
                             {% endfor %}
                         </div>
                     </div>
