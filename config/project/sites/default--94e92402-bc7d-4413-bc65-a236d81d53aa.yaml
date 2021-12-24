@@ -1,4 +1,4 @@
-baseUrl: 'http://stmarkreformed.test/'
+baseUrl: '@siteUrl'
 enabled: true
 handle: default
 hasUrls: true
