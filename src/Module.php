@@ -1,70 +1,100 @@
 <?php
 
-namespace src;
+declare(strict_types=1);
 
+namespace App;
+
+use App\Craft\Behaviors\ProfileEntriesBehavior;
+use App\Craft\Commands\ElasticSearchConsoleController;
+use App\Craft\Commands\MessagesConsoleController;
+use App\Craft\Commands\ProfilesConsoleController;
+use App\Craft\ElementSaveClearStaticCache;
+use App\Craft\SetMessageEntrySlug\SetMessageEntrySlugFactory;
+use App\ElasticSearch\Events\ModifyElementQueueIndexAllMessages;
+use App\Http\Utility\ClearStaticCache;
+use App\Messages\Events\ModifyElementQueueSetMessageSeriesLatestEntry;
+use App\Profiles\Events\ModifyElementQueueSetHasMessagesOnAllProfiles;
+use App\Templating\TwigControl\TwigControl;
 use BuzzingPixel\TwigDumper\TwigDumper;
+use Config\di\Container;
+use Config\Twig;
 use Craft;
-use Exception;
-use yii\base\Event;
-use craft\elements\Asset;
-use craft\elements\Entry;
-use craft\events\ModelEvent;
-use craft\services\Utilities;
-use src\services\CacheService;
-use yii\base\Module as ModuleBase;
-use src\services\EntrySlugService;
-use src\services\EntryRoutingService;
-use craft\events\SetElementRouteEvent;
-use src\twigextensions\DevTwigExtensions;
-use src\utilities\ImageTransformsUtility;
-use craft\events\RegisterComponentTypesEvent;
-use src\services\InitAssetTransformJobService;
+use craft\base\Element;
+use craft\base\Model;
 use craft\console\Application as ConsoleApplication;
+use craft\elements\Entry;
+use craft\events\DefineBehaviorsEvent;
+use craft\events\ModelEvent;
+use craft\events\RegisterCacheOptionsEvent;
+use craft\utilities\ClearCaches;
+use Exception;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
+use Twig\Extension\ExtensionInterface;
+use yii\base\Event;
+use yii\base\Module as ModuleBase;
 
+use function array_merge;
+use function assert;
+use function class_exists;
+use function getenv;
+use function method_exists;
+
+/**
+ * @codeCoverageIgnore
+ */
 class Module extends ModuleBase
 {
     /**
      * Initializes the module.
+     *
      * @throws Exception
      */
-    public function init()
+    public function init(): void
     {
         $this->setUp();
 
         $this->setEvents();
 
-        $this->registerUtilityTypes();
-
-        // Add in our console commands
-        if (Craft::$app instanceof ConsoleApplication) {
-            $this->controllerNamespace = 'src\commands';
-        }
+        $this->mapControllers();
 
         parent::init();
     }
 
     /**
      * Sets up the module
-     * @throws Exception
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
-    private function setUp()
+    private function setUp(): void
     {
-        Craft::setAlias('@root', dirname(__DIR__));
+        $di = Container::get();
 
+        /** @phpstan-ignore-next-line */
+        Craft::setAlias('@basePath', CRAFT_BASE_PATH);
+
+        /** @phpstan-ignore-next-line */
+        Craft::setAlias('@App', __DIR__);
+
+        /** @phpstan-ignore-next-line */
         Craft::setAlias('@dev', __DIR__);
 
+        /** @phpstan-ignore-next-line */
         Craft::setAlias('@src', __DIR__);
 
-        $secure = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on';
+        $secure   = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on';
         $protocol = $secure ? 'https://' : 'http://';
 
-        // Add in our console commands
+        /** @phpstan-ignore-next-line */
         if (Craft::$app instanceof ConsoleApplication) {
+            /** @phpstan-ignore-next-line */
             Craft::setAlias(
                 '@siteUrl',
                 getenv('SITE_URL'),
             );
         } else {
+            /** @phpstan-ignore-next-line */
             Craft::setAlias(
                 '@siteUrl',
                 getenv('USE_HTTP_HOST_FOR_SITE_URL') === 'true' ?
@@ -73,72 +103,225 @@ class Module extends ModuleBase
             );
         }
 
-        Craft::$app->view->registerTwigExtension(
-            new DevTwigExtensions()
-        );
+        $twigControl = $di->get(TwigControl::class);
 
-        if (getenv('CLEAR_TEMPLATE_CACHE_ON_LOAD') === 'true') {
-            (new CacheService())->clearTemplateCache();
+        assert($twigControl instanceof TwigControl);
+
+        /** @phpstan-ignore-next-line */
+        if (! Craft::$app->getRequest()->getIsCpRequest()) {
+            $twigControl->useCustomTwigLoader();
+        }
+
+        foreach (Twig::globals(di: $di) as $name => $val) {
+            /** @phpstan-ignore-next-line */
+            Craft::$app->getView()->getTwig()->addGlobal(
+                $name,
+                $val,
+            );
+        }
+
+        foreach (Twig::EXTENSIONS as $extClassString) {
+            if (
+                method_exists(
+                    $extClassString,
+                    'shouldAddExtension'
+                ) &&
+                ! $extClassString::shouldAddExtension()
+            ) {
+                continue;
+            }
+
+            $ext = $di->get($extClassString);
+
+            assert($ext instanceof ExtensionInterface);
+
+            /** @phpstan-ignore-next-line */
+            Craft::$app->getView()->registerTwigExtension($ext);
         }
 
         if (! class_exists(TwigDumper::class)) {
             return;
         }
 
-        Craft::$app->view->registerTwigExtension(new TwigDumper());
+        /** @phpstan-ignore-next-line */
+        Craft::$app->getView()->registerTwigExtension(
+            new TwigDumper(),
+        );
     }
 
     /**
      * Sets events
+     *
      * @throws Exception
      */
-    private function setEvents()
+    private function setEvents(): void
     {
+        $di = Container::get();
+
+        $clearStaticCache = $di->get(ElementSaveClearStaticCache::class);
+
+        assert(
+            $clearStaticCache instanceof ElementSaveClearStaticCache
+        );
+
+        $modifyElementQueueIndexAllMessages = $di->get(
+            ModifyElementQueueIndexAllMessages::class
+        );
+
+        assert(
+            $modifyElementQueueIndexAllMessages instanceof
+                ModifyElementQueueIndexAllMessages
+        );
+
+        $modifyElementQueueSetMessageSeriesLatestEntry = $di->get(
+            ModifyElementQueueSetMessageSeriesLatestEntry::class,
+        );
+
+        assert(
+            $modifyElementQueueSetMessageSeriesLatestEntry instanceof
+                ModifyElementQueueSetMessageSeriesLatestEntry
+        );
+
+        $modifyElementQueueSetHasMessagesOnAllProfiles = $di->get(
+            ModifyElementQueueSetHasMessagesOnAllProfiles::class,
+        );
+
+        assert(
+            $modifyElementQueueSetHasMessagesOnAllProfiles instanceof
+                ModifyElementQueueSetHasMessagesOnAllProfiles
+        );
+
         Event::on(
-            Entry::class,
-            Entry::EVENT_SET_ROUTE,
-            function (SetElementRouteEvent $eventModel) {
-                $entryRoutingService = new EntryRoutingService();
-                $entryRoutingService->entryControllerRouting($eventModel);
+            Element::class,
+            Element::EVENT_BEFORE_SAVE,
+            static function (ModelEvent $eventModel): void {
+                $factory = Container::get()->get(
+                    SetMessageEntrySlugFactory::class
+                );
+
+                assert(
+                    $factory instanceof SetMessageEntrySlugFactory
+                );
+
+                $factory->make(eventModel: $eventModel)->set();
+            }
+        );
+
+        Event::on(
+            Element::class,
+            Element::EVENT_AFTER_SAVE,
+            [$modifyElementQueueIndexAllMessages, 'respond'],
+        );
+
+        Event::on(
+            Element::class,
+            Element::EVENT_AFTER_DELETE,
+            [$modifyElementQueueIndexAllMessages, 'respond'],
+        );
+
+        Event::on(
+            Element::class,
+            Element::EVENT_AFTER_SAVE,
+            [
+                $modifyElementQueueSetMessageSeriesLatestEntry,
+                'respond',
+            ],
+        );
+
+        Event::on(
+            Element::class,
+            Element::EVENT_AFTER_DELETE,
+            [
+                $modifyElementQueueSetMessageSeriesLatestEntry,
+                'respond',
+            ],
+        );
+
+        Event::on(
+            Element::class,
+            Element::EVENT_AFTER_SAVE,
+            [
+                $modifyElementQueueSetHasMessagesOnAllProfiles,
+                'respond',
+            ],
+        );
+
+        Event::on(
+            Element::class,
+            Element::EVENT_AFTER_DELETE,
+            [
+                $modifyElementQueueSetHasMessagesOnAllProfiles,
+                'respond',
+            ],
+        );
+
+        Event::on(
+            Element::class,
+            Element::EVENT_AFTER_SAVE,
+            [$clearStaticCache, 'clear'],
+        );
+
+        Event::on(
+            Element::class,
+            Element::EVENT_AFTER_DELETE,
+            [$clearStaticCache, 'clear'],
+        );
+
+        Event::on(
+            ClearCaches::class,
+            ClearCaches::EVENT_REGISTER_CACHE_OPTIONS,
+            static function (RegisterCacheOptionsEvent $event): void {
+                $di = Container::get();
+
+                $clearStaticCache = $di->get(ClearStaticCache::class);
+
+                assert($clearStaticCache instanceof ClearStaticCache);
+
+                $event->options[] = [
+                    'key' => 'static-caches',
+                    'label' => 'Static Caches',
+                    'action' => [$clearStaticCache, 'clear'],
+                ];
             }
         );
 
         Event::on(
             Entry::class,
-            Entry::EVENT_BEFORE_SAVE,
-            function (ModelEvent $eventModel) {
-                /** @var Entry $entry */
-                $entry = $eventModel->sender;
-                (new EntrySlugService())->setEventEntrySlug($entry);
-                (new EntrySlugService())->setMessageEntrySlug($entry);
-            }
-        );
-
-        Event::on(
-            Asset::class,
-            Asset::EVENT_AFTER_SAVE,
-            function (ModelEvent $eventModel) {
-                /** @var Asset $asset */
-                $asset = $eventModel->sender;
-
-                // If this is not an image we can stop here
-                if (! $asset->getHeight()) {
-                    return;
-                }
-
-                (new InitAssetTransformJobService())->init((int) $asset->id);
+            Model::EVENT_DEFINE_BEHAVIORS,
+            static function (DefineBehaviorsEvent $event): void {
+                $event->behaviors = array_merge(
+                    $event->behaviors,
+                    [
+                        'profileFullNameWithHonorific' => ProfileEntriesBehavior::class,
+                    ],
+                );
             }
         );
     }
 
-    private function registerUtilityTypes()
+    private function mapControllers(): void
     {
-        Event::on(
-            Utilities::class,
-            Utilities::EVENT_REGISTER_UTILITY_TYPES,
-            function (RegisterComponentTypesEvent $event) {
-                $event->types[] = ImageTransformsUtility::class;
-            }
-        );
+        /** @phpstan-ignore-next-line */
+        if (Craft::$app instanceof ConsoleApplication) {
+            $this->mapConsoleControllers();
+
+            return;
+        }
+
+        $this->mapWebControllers();
+    }
+
+    private function mapConsoleControllers(): void
+    {
+        $this->controllerMap = [
+            'elastic-search' => ElasticSearchConsoleController::class,
+            'messages' => MessagesConsoleController::class,
+            'profiles' => ProfilesConsoleController::class,
+        ];
+    }
+
+    private function mapWebControllers(): void
+    {
+        $this->controllerMap = [];
     }
 }

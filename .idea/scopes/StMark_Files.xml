@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="StMark Files" pattern="file[stmarkreformed.com]:*/&amp;&amp;!file[stmarkreformed.com]:vendor//*&amp;&amp;!file[stmarkreformed.com]:node_modules//*&amp;&amp;!file[stmarkreformed.com]:.idea//*&amp;&amp;!file[stmarkreformed.com]:.phpunit.cache//*&amp;&amp;!file[stmarkreformed.com]:public/assets//*&amp;&amp;!file[stmarkreformed.com]:public/cache//*&amp;&amp;!file[stmarkreformed.com]:public/cpresources//*&amp;&amp;!file[stmarkreformed.com]:public/files//*&amp;&amp;!file[stmarkreformed.com]:public/imagecache//*&amp;&amp;!file[stmarkreformed.com]:public/uploads//*&amp;&amp;!file[stmarkreformed.com]:storage//*" />
+</component>

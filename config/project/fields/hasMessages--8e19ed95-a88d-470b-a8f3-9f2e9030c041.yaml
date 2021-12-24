@@ -1,0 +1,14 @@
+columnSuffix: pzuhvrex
+contentColumnType: boolean
+fieldGroup: c67a7c62-3fbd-43ac-86c6-32c299b87bfe # Users
+handle: hasMessages
+instructions: ''
+name: 'Has Messages'
+searchable: false
+settings:
+  default: false
+  offLabel: null
+  onLabel: null
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Lightswitch

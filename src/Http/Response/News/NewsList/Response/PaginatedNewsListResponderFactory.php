@@ -1,0 +1,49 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Http\Response\News\NewsList\Response;
+
+use App\Http\Components\Hero\HeroFactory;
+use App\Http\Pagination\Pagination;
+use App\Http\Pagination\RenderPagination;
+use App\Http\Response\News\NewsList\NewsResults;
+use Psr\Http\Message\ResponseFactoryInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Twig\Environment as TwigEnvironment;
+
+class PaginatedNewsListResponderFactory
+{
+    public function __construct(
+        private TwigEnvironment $twig,
+        private HeroFactory $heroFactory,
+        private RenderPagination $renderPagination,
+        private ResponseFactoryInterface $responseFactory,
+    ) {
+    }
+
+    public function make(
+        NewsResults $results,
+        Pagination $pagination,
+        ServerRequestInterface $request,
+    ): PaginatedNewsListResponderContract {
+        if (! $results->hasEntries() && $pagination->currentPage() > 1) {
+            return new RespondWithNotFound(request: $request);
+        }
+
+        if (! $results->hasEntries()) {
+            return new RespondWithNoResults(
+                twig: $this->twig,
+                heroFactory: $this->heroFactory,
+                responseFactory: $this->responseFactory,
+            );
+        }
+
+        return new RespondWithResults(
+            twig: $this->twig,
+            heroFactory: $this->heroFactory,
+            responseFactory: $this->responseFactory,
+            renderPagination: $this->renderPagination,
+        );
+    }
+}

@@ -1,0 +1,14 @@
+columnSuffix: khlvbpuw
+contentColumnType: boolean
+fieldGroup: e91f5555-0d06-411a-a55c-c24f14632bf4 # Pages
+handle: showSubPageSidebar
+instructions: ''
+name: 'Show Sub-Page Sidebar'
+searchable: false
+settings:
+  default: false
+  offLabel: null
+  onLabel: null
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Lightswitch

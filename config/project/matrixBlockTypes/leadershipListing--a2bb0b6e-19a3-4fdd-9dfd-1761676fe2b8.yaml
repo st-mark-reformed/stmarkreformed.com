@@ -1,11 +1,11 @@
-field: c9504fe8-d2fb-458b-a2e9-f8872585919a # Standard Page Builder
+field: c9504fe8-d2fb-458b-a2e9-f8872585919a # Old Page Builder
 fieldLayouts:
   bef4d4d8-3bfe-45ab-b6a1-33c8a57d3519:
     tabs:
       -
         elements:
           -
-            fieldUid: ba477ad1-a81e-4f6c-9976-f0f2af90b390
+            fieldUid: ba477ad1-a81e-4f6c-9976-f0f2af90b390 # Leadership Listing Details
             instructions: null
             label: null
             required: false
@@ -16,18 +16,26 @@ fieldLayouts:
         name: Content
         sortOrder: 1
 fields:
-  ba477ad1-a81e-4f6c-9976-f0f2af90b390:
-    contentColumnType: string
+  ba477ad1-a81e-4f6c-9976-f0f2af90b390: # Leadership Listing Details
+    columnSuffix: null
+    contentColumnType: text
     fieldGroup: null
     handle: leadershipListingDetails
     instructions: 'This block will list the leadership of the church'
     name: 'Leadership Listing Details'
     searchable: true
     settings:
-      fieldCustomCss: ''
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: null
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: none
-    type: superbig\entryinstructions\fields\EntryInstructionsField
+    type: craft\fields\PlainText
 handle: leadershipListing
 name: 'Leadership Listing'
 sortOrder: 5

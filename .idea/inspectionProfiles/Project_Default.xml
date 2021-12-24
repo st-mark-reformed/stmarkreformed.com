@@ -1,7 +1,96 @@
 <component name="InspectionProjectProfileManager">
   <profile version="1.0">
     <option name="myName" value="Project Default" />
+    <option name="scopesOrder">
+      <list>
+        <option value="All Changed Files" />
+        <option value="Open Files" />
+        <option value="Project Files" />
+        <option value="Scratches and Consoles" />
+        <option value="StMark Files" />
+        <option value="Tests" />
+      </list>
+    </option>
     <inspection_tool class="DuplicatedCode" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
-    <inspection_tool class="JSHint" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="Eslint" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="14">
+            <item index="0" class="java.lang.String" itemvalue="x-data" />
+            <item index="1" class="java.lang.String" itemvalue="@click.away" />
+            <item index="2" class="java.lang.String" itemvalue="x-show" />
+            <item index="3" class="java.lang.String" itemvalue="x-transition:enter" />
+            <item index="4" class="java.lang.String" itemvalue="x-transition:enter-start" />
+            <item index="5" class="java.lang.String" itemvalue="x-transition:enter-end" />
+            <item index="6" class="java.lang.String" itemvalue="x-transition:leave" />
+            <item index="7" class="java.lang.String" itemvalue="x-transition:leave-start" />
+            <item index="8" class="java.lang.String" itemvalue="x-transition:leave-end" />
+            <item index="9" class="java.lang.String" itemvalue="@click" />
+            <item index="10" class="java.lang.String" itemvalue="x-bind:aria-expanded" />
+            <item index="11" class="java.lang.String" itemvalue="x-init" />
+            <item index="12" class="java.lang.String" itemvalue="ref" />
+            <item index="13" class="java.lang.String" itemvalue="x-ref" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="PhpArrayShapeAttributeCanBeAddedInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PhpCSFixerValidationInspection" enabled="true" level="WEAK WARNING" enabled_by_default="false">
+      <scope name="StMark Files" level="WEAK WARNING" enabled="true">
+        <option name="CODING_STANDARD" value="Custom" />
+        <option name="CUSTOM_RULESET_PATH" value="$PROJECT_DIR$/.php-cs-fixer.php" />
+        <option name="ALLOW_RISKY_RULES" value="true" />
+      </scope>
+      <option name="CODING_STANDARD" value="Custom" />
+      <option name="CUSTOM_RULESET_PATH" value="$PROJECT_DIR$/.php-cs-fixer.php" />
+      <option name="ALLOW_RISKY_RULES" value="true" />
+    </inspection_tool>
+    <inspection_tool class="PhpCSValidationInspection" enabled="true" level="WEAK WARNING" enabled_by_default="false">
+      <scope name="StMark Files" level="WEAK WARNING" enabled="true">
+        <option name="CODING_STANDARD" value="Doctrine" />
+        <option name="SHOW_SNIFF_NAMES" value="true" />
+        <option name="INSTALLED_PATHS" value="$PROJECT_DIR$/vendor/doctrine/coding-standard/lib/Doctrine" />
+        <option name="EXTENSIONS" value="php" />
+      </scope>
+      <option name="CODING_STANDARD" value="Doctrine" />
+      <option name="SHOW_SNIFF_NAMES" value="true" />
+      <option name="INSTALLED_PATHS" value="$PROJECT_DIR$/vendor/doctrine/coding-standard/lib/Doctrine" />
+      <option name="EXTENSIONS" value="php" />
+    </inspection_tool>
+    <inspection_tool class="PhpDocSignatureInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PhpDocSignatureIsNotCompleteInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PhpIfWithCommonPartsInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PhpNamedArgumentsWithChangedOrderInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PhpNoReturnAttributeCanBeAddedInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PhpPluralMixedCanBeReplacedWithArrayInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PhpPureAttributeCanBeAddedInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PhpReturnValueOfMethodIsNeverUsedInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PhpSameParameterValueInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PhpStanGlobal" enabled="true" level="WEAK WARNING" enabled_by_default="false">
+      <scope name="StMark Files" level="WEAK WARNING" enabled="true">
+        <option name="memoryLimit" value="4G" />
+        <option name="level" value="8" />
+        <option name="config" value="$PROJECT_DIR$/phpstan.neon" />
+      </scope>
+      <option name="memoryLimit" value="4G" />
+      <option name="level" value="8" />
+      <option name="config" value="$PROJECT_DIR$/phpstan.neon" />
+    </inspection_tool>
+    <inspection_tool class="PsalmAdvanceCallableParamsInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PsalmGlobal" enabled="false" level="WEAK WARNING" enabled_by_default="false">
+      <scope name="StMark Files" level="WEAK WARNING" enabled="false">
+        <option name="config" value="$PROJECT_DIR$/psalm.xml" />
+        <option name="showInfo" value="true" />
+        <option name="findUnusedCode" value="true" />
+        <option name="findUnusedSuppress" value="true" />
+      </scope>
+      <option name="config" value="$PROJECT_DIR$/psalm.xml" />
+      <option name="showInfo" value="true" />
+      <option name="findUnusedCode" value="true" />
+      <option name="findUnusedSuppress" value="true" />
+    </inspection_tool>
+    <inspection_tool class="Stylelint" enabled="true" level="ERROR" enabled_by_default="true" />
   </profile>
 </component>

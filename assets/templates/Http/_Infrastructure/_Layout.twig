@@ -1,0 +1,263 @@
+{# @var \App\Images\ImageHandler ImageHandler #}
+{# @var \App\Http\Components\Hero\Hero hero #}
+
+{% extends 'Http/_Infrastructure/_Skeleton.twig' %}
+
+{% set backgroundImage1x = ImageHandler.resizeToWidthByQueue(
+    hero.heroImageUrl,
+    1920,
+    true,
+) %}
+
+{% set backgroundImage2x = ImageHandler.resizeToWidthByQueue(
+    hero.heroImageUrl,
+    3840,
+    true,
+) %}
+
+{% block skeletonContent %}
+    <style>
+        .hero-background-image {
+            background-image: url('{{ backgroundImage1x }}');
+        }
+
+        @media (min-resolution: 1.3dppx) {
+            .hero-background-image {
+                background-image: url('{{ backgroundImage2x }}');
+            }
+        }
+    </style>
+    <div class="bg-white">
+        <div class="relative overflow-hidden">
+            <div
+                class="hero-background-image bg-bronze bg-cover bg-no-repeat bg-center bg-fixed relative"
+            >
+                {% if hero.heroOverlayOpacity > 0 %}
+                    <div
+                        class="absolute w-full h-full inset-0 z-10 bg-black"
+                        style="/* stylelint-disable */opacity: {{ (hero.heroOverlayOpacity / 100) }};/* stylelint-enable */"></div>
+                {% endif %}
+                <header
+                    class="relative z-50"
+                    xmlns:x-transition="http://www.w3.org/1999/xhtml"
+                    xmlns:x-bind="http://www.w3.org/1999/xhtml"
+                    x-data="{mobileMenuIsActive: false}"
+                >
+                    <div class="pt-6">
+                        <nav class="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6" aria-label="Global">
+                            <div class="flex items-center flex-1">
+                                <div class="flex items-center justify-between w-full md:w-auto">
+                                    <a href="/">
+                                        <span class="sr-only">St. Mark Reformed Church</span>
+                                        <img class="h-8 w-auto sm:h-10" src="/assets/img/logo/logo-website-header.png" alt="">
+                                    </a>
+                                    <div class="-mr-2 flex items-center md:hidden">
+                                        <button
+                                            type="button"
+                                            class="bg-bronze rounded-md p-2 inline-flex items-center justify-center text-gray-200 hover:bg-saddle-brown focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white"
+                                            @click="mobileMenuIsActive = true"
+                                        >
+                                            <span class="sr-only">Open main menu</span>
+                                            {% include 'Svg/Heroicon/Menu.svg' %}
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="hidden space-x-8 md:flex md:ml-10">
+                                    {% for menuItem in mainMenu() %}
+                                        {# @var \App\Templating\TwigExtensions\Menu\MenuItem menuItem #}
+                                        {% if menuItem.hasSubMenu %}
+                                            <div
+                                                class="relative"
+                                                x-data="{subMenuIsActive: false}"
+                                            >
+                                                <button
+                                                    type="button"
+                                                    class="text-white hover:text-goldenrod group bg-transparent rounded-md inline-flex items-center text-base font-medium focus:outline-none"
+                                                    @click="subMenuIsActive = !subMenuIsActive"
+                                                    x-bind:aria-expanded="subMenuIsActive"
+                                                >
+                                                    <span>{{ menuItem.content|smartypants }}</span>
+                                                    {% include 'Svg/Heroicon/SolidChevronDown.svg' %}
+                                                </button>
+                                                <div
+                                                    class="absolute z-10 -ml-4 mt-3 transform w-screen max-w-xs -translate-x-1/2 left-1/2 rounded-lg shadow-lg z-50"
+                                                    x-show="subMenuIsActive"
+                                                    style="display: none;"
+                                                    x-transition:enter="transition ease-out duration-150"
+                                                    x-transition:enter-start="opacity-0 translate-y-1"
+                                                    x-transition:enter-end="opacity-100 translate-y-0"
+                                                    x-transition:leave="duration-100 ease-in"
+                                                    x-transition:leave-start="opacity-100 translate-y-0"
+                                                    x-transition:leave-end="opacity-0 translate-y-1"
+                                                    @click.away="subMenuIsActive = false"
+                                                >
+                                                    <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
+                                                        <div class="relative grid gap-6 bg-white p-6">
+                                                            {% for subMenuItem in menuItem.submenu %}
+                                                                <a
+                                                                    href="{{ subMenuItem.href }}"
+                                                                    class="-m-3 p-3 flex items-start rounded-lg text-base font-medium text-gray-900 hover:bg-bronze hover:text-gray-200"
+                                                                >
+                                                                    {{ subMenuItem.content|smartypants }}
+                                                                </a>
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            <a
+                                                href="{{ menuItem.href }}"
+                                                class="text-base font-medium text-white hover:text-goldenrod"
+                                            >
+                                                {{ menuItem.content|smartypants }}
+                                            </a>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="hidden md:flex md:items-center md:space-x-6">
+                                {% for menuItem in secondaryMenu() %}
+                                    <a
+                                        href="{{ menuItem.href }}"
+                                        class="text-base font-medium text-white hover:text-goldenrod"
+                                    >
+                                        {{ menuItem.content|smartypants }}
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </nav>
+                    </div>
+                    <div
+                        class="absolute top-0 inset-x-0 p-2 transition transform origin-top md:hidden z-50 select-none"
+                        style="display: none;"
+                        x-show="mobileMenuIsActive"
+                        @click.away="mobileMenuIsActive = false"
+                        x-transition:enter="transition ease-out duration-150"
+                        x-transition:enter-start="opacity-0 scale-95"
+                        x-transition:enter-end="opacity-100 scale-100"
+                        x-transition:leave="duration-100 ease-in"
+                        x-transition:leave-start="opacity-100 scale-100"
+                        x-transition:leave-end="opacity-0 scale-95"
+                    >
+                        <div class="rounded-lg shadow-md bg-white overflow-hidden">
+                            <div class="px-5 pt-4 flex items-center justify-between">
+                                <div>
+                                    <img class="h-8 w-auto" src="/assets/img/logo/logo-website-header.png" alt="">
+                                </div>
+                                <div class="-mr-2">
+                                    <button
+                                        type="button"
+                                        class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-600"
+                                        @click="mobileMenuIsActive = false"
+                                    >
+                                        <span class="sr-only">Close menu</span>
+                                        {% include 'Svg/Heroicon/Close.svg' %}
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="pt-5 pb-6">
+                                <div class="px-2 space-y-1">
+                                    {% for menuItem in mainMenu() %}
+                                        {# @var \App\Templating\TwigExtensions\Menu\MenuItem menuItem #}
+                                        <a
+                                            href="{{ menuItem.href }}"
+                                            class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-bronze hover:text-gray-200"
+                                        >
+                                            {{ menuItem.content|smartypants }}
+                                        </a>
+                                        {% for subMenuItem in menuItem.submenu %}
+                                            <a
+                                                href="{{ subMenuItem.href }}"
+                                                class="block pl-12 pr-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-bronze hover:text-gray-200"
+                                            >
+                                                {{ subMenuItem.content|smartypants }}
+                                            </a>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </div>
+                                <div class="mt-6 px-5">
+                                    <p class="text-center text-base font-medium text-gray-500">
+                                        {% for menuItem in secondaryMenu() %}
+                                            <a
+                                                href="{{ menuItem.href }}"
+                                                class="text-gray-900 hover:underline"
+                                            >
+                                                {{ menuItem.content|smartypants }}
+                                            </a>
+                                        {% endfor %}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <div class="py-10 {#sm:pt-16 lg:pt-8 lg:pb-16#} lg:overflow-hidden relative z-20">
+                    <div class="mx-auto max-w-7xl lg:px-8">
+                        <div{% if hero.heroSubHeading or hero.heroParagraph %} class="lg:grid lg:grid-cols-2 lg:gap-8"{% endif %}>
+                            <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center lg:px-0{% if hero.heroSubHeading or hero.heroParagraph %} lg:text-left lg:flex lg:items-center{% endif %}">
+                                <div class="{% if hero.useShortHero %}py-6{% else %}py-24{% endif %}">
+                                    {% if not hero.upperCta.isEmpty %}
+                                        <a
+                                            href="{{ hero.upperCta.href }}"
+                                            class="inline-flex items-center text-white bg-goldenrod rounded-full p-1 pr-2 sm:text-base lg:text-sm xl:text-base hover:bg-gold"
+                                            {% if hero.upperCta.newWindow %}
+                                            target="_blank"
+                                            {% endif %}
+                                        >
+                                            <span class="ml-4 text-sm">{{ hero.upperCta.content|smartypants }}</span>
+                                            {% include 'Svg/Heroicon/SolidChevronRight.svg' %}
+                                        </a>
+                                    {% endif %}
+                                    <h1 class="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
+                                        <span class="block">{{ hero.heroHeading|smartypants }}</span>
+                                        {% if hero.heroSubHeading %}
+                                            <span class="block bg-clip-text text-transparent bg-gradient-to-r from-teal-300 to-teal-200 sm:pb-5">
+                                                {{ hero.heroSubHeading|smartypants }}
+                                            </span>
+                                        {% endif %}
+                                    </h1>
+                                    {% if hero.heroParagraph %}
+                                        <p class="pt-2 text-base text-gray-100 sm:text-xl lg:text-lg xl:text-xl">
+                                            {{ hero.heroParagraph|smartypants|widont }}
+                                        </p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <main>
+                {% block content %}
+                    <div class="p-10">
+                        <div class="border-4 border-dashed border-gray-200 rounded-lg h-96"></div>
+                    </div>
+                {% endblock %}
+            </main>
+            <footer class="{# mt-24 sm:mt-12 #}bg-bronze">
+                <div class="mx-auto max-w-md py-12 px-4 overflow-hidden sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+                    <nav class="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
+                        {% for menuItem in mainMenu()|merge(secondaryMenu()) %}
+                            {# @var \App\Templating\TwigExtensions\Menu\MenuItem menuItem #}
+                            <div class="px-5 py-2">
+                                <a
+                                    href="{{ menuItem.href }}"
+                                    class="text-base font-bold text-gray-100 hover:text-goldenrod"
+                                >
+                                    {{ menuItem.content|smartypants }}
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </nav>
+                    <p class="mt-4 text-center text-base text-gray-100 font-light">
+                        St. Mark Reformed Church is a member of the <a class="text-gray-100 hover:text-goldenrod" href="https://crechurches.org/">Communion of Reformed Evangelical Churches</a>.
+                    </p>
+                    <p class="mt-4 text-center text-base text-gray-100 font-light">
+                        &copy; {{ 'now'|date('Y') }} St. Mark Reformed Church. All rights reserved.
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </div>
+{% endblock %}

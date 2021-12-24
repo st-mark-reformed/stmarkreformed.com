@@ -1,15 +1,24 @@
-enableVersioning: '1'
+defaultPlacement: end
+enableVersioning: true
 handle: pastorsPage
 name: 'Pastor''s Page'
 previewTargets:
   -
-    label: 'Primary entry page'
-    urlFormat: '{url}'
+    __assoc__:
+      -
+        - label
+        - 'Primary entry page'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
 propagationMethod: all
 siteSettings:
   94e92402-bc7d-4413-bc65-a236d81d53aa: # St. Mark Reformed Church
-    enabledByDefault: '1'
-    hasUrls: '1'
-    template: _controllerRoute/dev/news/entry
+    enabledByDefault: true
+    hasUrls: true
+    template: _slimBridge/\App\Http\Response\News\NewsItem\DisplayPastorsPageItemAction
     uriFormat: 'pastors-page/{slug}'
 type: channel

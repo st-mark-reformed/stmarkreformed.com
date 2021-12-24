@@ -1,0 +1,41 @@
+{# @var \App\Http\Components\Link\Link[] leaders #}
+{# @var \App\Http\Components\Link\Link[] series #}
+
+{% macro sidebarHeading(content) %}
+    <span class="text-white group rounded-md py-2 px-2 flex items-center text-xl font-bold">
+        {{ content|smartypants }}
+    </span>
+{% endmacro %}
+
+{% macro href(href, content, isActive) %}
+    <a
+        class="{% if isActive %}bg-bronze{% else%}hover:bg-bronze{% endif%} text-white group rounded-md py-2 px-2 flex items-center text-base font-normal"
+        href="{{ href }}"
+    >
+        {{ content|smartypants }}
+    </a>
+{% endmacro %}
+
+<div class="space-y-1">
+    {{ _self.sidebarHeading('Subscribe') }}
+    {# {{ _self.href('itpc://www.stmarkreformed.com/media/messages/feed', 'Subscribe in iTunes') }} #}
+    {{ _self.href('/media/messages/feed', 'Via RSS Feed') }}
+</div>
+
+{% if leaders|length > 0 %}
+    <div class="space-y-1">
+        {{ _self.sidebarHeading('Messages by') }}
+        {% for leader in leaders %}
+            {{ _self.href(leader.href, leader.content) }}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if series|length > 0 %}
+    <div class="space-y-1">
+        {{ _self.sidebarHeading('Most recent series') }}
+        {% for item in series %}
+            {{ _self.href(item.href, item.content) }}
+        {% endfor %}
+    </div>
+{% endif %}

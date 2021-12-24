@@ -1,0 +1,11 @@
+{# @var \App\Http\PageBuilder\BlockResponse\StripePaymentForm\StripePaymentFormContentModel contentModel #}
+
+<div class="relative mx-auto px-4 py-12 sm:max-w-5xl sm:px-14 sm:py-20 md:py-28 lg:py-32{% if contentModel.noTopSpace %} pt-0 sm:pt-0 md:pt-0 lg:pt-0 -mt-6 sm:-mt-12 md:-mt-20 lg:-mt-24{% endif %}">
+    {% for form in contentModel.forms %}
+        <div class="w-full flex items-center justify-center">
+            <div class="max-w-xl">
+                {{ form }}
+            </div>
+        </div>
+    {% endfor %}
+</div>

@@ -1,0 +1,365 @@
+field: a7845568-a0c6-44e5-8b75-3ef735f6ef8d # Page Builder
+fieldLayouts:
+  3fbd68cf-5499-4f24-b26e-1b1c47217582:
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: dd0ea504-a9fc-46ce-82d3-77a382c44954 # Background Color
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 5c3a6cb0-491a-482a-b498-e87d97460799 # Content Disposition
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 86d6041c-07e9-4e14-9e05-e68dafc0ecae # Image
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 076403e9-0a6b-468a-8c8a-0274f6c28bdc # Show Teal Overlay On Image
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: a9f088b8-989e-4f2b-81d0-3724c44b9447 # Pre-Headline
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 91bf91c7-572a-4deb-b5dc-7d055d4c0ba9 # Headline
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 466eae26-271a-4bd0-af4c-355f3ed1d39a # Content
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 6f396dab-91de-4f1d-8d0a-23fc18ae1ba4 # CTA
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Content
+        sortOrder: 1
+fields:
+  5c3a6cb0-491a-482a-b498-e87d97460799: # Content Disposition
+    columnSuffix: null
+    contentColumnType: text
+    fieldGroup: null
+    handle: contentDisposition
+    instructions: ''
+    name: 'Content Disposition'
+    searchable: false
+    settings:
+      displayAsGraphic: ''
+      displayFullwidth: ''
+      options:
+        -
+          __assoc__:
+            -
+              - label
+              - 'Image Left/ContentRight'
+            -
+              - showLabel
+              - '1'
+            -
+              - value
+              - imageLeftContentright
+            -
+              - imageUrl
+              - ''
+            -
+              - default
+              - '1'
+        -
+          __assoc__:
+            -
+              - label
+              - 'Content Left/Image Right'
+            -
+              - showLabel
+              - '1'
+            -
+              - value
+              - contentLeftImageRight
+            -
+              - imageUrl
+              - ''
+            -
+              - default
+              - ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: supercool\buttonbox\fields\Buttons
+  6f396dab-91de-4f1d-8d0a-23fc18ae1ba4: # CTA
+    columnSuffix: null
+    contentColumnType: text
+    fieldGroup: null
+    handle: cta
+    instructions: ''
+    name: CTA
+    searchable: false
+    settings:
+      allowCustomText: '1'
+      allowTarget: '1'
+      allowedLinkNames:
+        1: asset
+        3: entry
+        9: url
+      autoNoReferrer: ''
+      defaultLinkName: entry
+      defaultText: ''
+      enableAriaLabel: ''
+      enableTitle: ''
+      typeSettings:
+        __assoc__:
+          -
+            - asset
+            -
+              __assoc__:
+                -
+                  - sources
+                  -
+                    - 'folder:b886a851-ce2f-4594-a30d-955fa9112b15'
+                -
+                  - allowCustomQuery
+                  - ''
+          -
+            - category
+            -
+              __assoc__:
+                -
+                  - sources
+                  - '*'
+                -
+                  - allowCustomQuery
+                  - ''
+          -
+            - entry
+            -
+              __assoc__:
+                -
+                  - sources
+                  - '*'
+                -
+                  - allowCustomQuery
+                  - ''
+          -
+            - site
+            -
+              __assoc__:
+                -
+                  - sites
+                  - '*'
+          -
+            - user
+            -
+              __assoc__:
+                -
+                  - sources
+                  - '*'
+                -
+                  - allowCustomQuery
+                  - ''
+          -
+            - custom
+            -
+              __assoc__:
+                -
+                  - disableValidation
+                  - ''
+                -
+                  - allowAliases
+                  - ''
+          -
+            - email
+            -
+              __assoc__:
+                -
+                  - disableValidation
+                  - ''
+                -
+                  - allowAliases
+                  - ''
+          -
+            - tel
+            -
+              __assoc__:
+                -
+                  - disableValidation
+                  - ''
+                -
+                  - allowAliases
+                  - ''
+          -
+            - url
+            -
+              __assoc__:
+                -
+                  - disableValidation
+                  - '1'
+                -
+                  - allowAliases
+                  - ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: typedlinkfield\fields\LinkField
+  86d6041c-07e9-4e14-9e05-e68dafc0ecae: # Image
+    columnSuffix: null
+    contentColumnType: string
+    fieldGroup: null
+    handle: image
+    instructions: ''
+    name: Image
+    searchable: false
+    settings:
+      allowSelfRelations: false
+      allowUploads: true
+      allowedKinds:
+        - image
+      defaultUploadLocationSource: 'volume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
+      defaultUploadLocationSubpath: ''
+      limit: '1'
+      localizeRelations: false
+      previewMode: full
+      restrictFiles: '1'
+      selectionLabel: 'Add an image'
+      showSiteMenu: true
+      showUnpermittedFiles: false
+      showUnpermittedVolumes: false
+      singleUploadLocationSource: 'volume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
+      singleUploadLocationSubpath: ''
+      source: null
+      sources: '*'
+      targetSiteId: null
+      useSingleFolder: true
+      validateRelatedElements: false
+      viewMode: list
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Assets
+  91bf91c7-572a-4deb-b5dc-7d055d4c0ba9: # Headline
+    columnSuffix: null
+    contentColumnType: text
+    fieldGroup: null
+    handle: headline
+    instructions: ''
+    name: Headline
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: null
+      uiMode: enlarged
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  466eae26-271a-4bd0-af4c-355f3ed1d39a: # Content
+    columnSuffix: null
+    contentColumnType: text
+    fieldGroup: null
+    handle: contentField
+    instructions: ''
+    name: Content
+    searchable: false
+    settings:
+      columnType: text
+      initJs: null
+      purifierConfig: ''
+      purifyHtml: '1'
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\ckeditor\Field
+  076403e9-0a6b-468a-8c8a-0274f6c28bdc: # Show Teal Overlay On Image
+    columnSuffix: null
+    contentColumnType: boolean
+    fieldGroup: null
+    handle: showTealOverlayOnImage
+    instructions: ''
+    name: 'Show Teal Overlay On Image'
+    searchable: false
+    settings:
+      default: false
+      offLabel: null
+      onLabel: null
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
+  a9f088b8-989e-4f2b-81d0-3724c44b9447: # Pre-Headline
+    columnSuffix: null
+    contentColumnType: text
+    fieldGroup: null
+    handle: preHeadline
+    instructions: ''
+    name: Pre-Headline
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: null
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  dd0ea504-a9fc-46ce-82d3-77a382c44954: # Background Color
+    columnSuffix: null
+    contentColumnType: text
+    fieldGroup: null
+    handle: backgroundColor
+    instructions: ''
+    name: 'Background Color'
+    searchable: false
+    settings:
+      palette: 'Image/Content/Cta Background Options'
+      useConfigFile: '1'
+    translationKeyFormat: null
+    translationMethod: none
+    type: percipioglobal\colourswatches\fields\ColourSwatches
+handle: imageContentCta
+name: Image/Content/Cta
+sortOrder: 2

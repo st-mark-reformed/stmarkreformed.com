@@ -1,0 +1,68 @@
+{% set headline = headline ?? block('headline') ?? null %}
+{% set content = content ?? block('content') ?? null %}
+{% set contentList = contentList ?? [] %}
+{# types: info|success|caution|error #}
+{% set type = type ?? block('type') ?? null %}
+
+{% switch type %}
+    {% case 'success' %}
+        {% set wrapperBackgroundClass = 'bg-green-50' %}
+        {% set headlineClass = 'text-green-800' %}
+        {% set contentClass = 'text-green-700' %}
+    {% case 'caution' %}
+        {% set wrapperBackgroundClass = 'bg-yellow-50' %}
+        {% set headlineClass = 'text-yellow-800' %}
+        {% set contentClass = 'text-yellow-700' %}
+    {% case 'error' %}
+        {% set wrapperBackgroundClass = 'bg-lightest-red' %}
+        {% set headlineClass = 'text-dark-red' %}
+        {% set contentClass = 'text-red' %}
+    {% default %}
+        {% set wrapperBackgroundClass = 'bg-blue-50' %}
+        {% set headlineClass = 'text-blue-800' %}
+        {% set contentClass = 'text-blue-700' %}
+{% endswitch %}
+
+<div class="{{ wrapperBackgroundClass }} p-4 shadow sm:rounded-lg{# sm:px-10 #}">
+    <div class="flex">
+        <div class="flex-shrink-0">
+            {% switch type %}
+                {% case 'success' %}
+                    {% include 'Http/Svg/SolidCheckCircle.twig' with {classes: 'h-5 w-5 text-green-400'} only %}
+                {% case 'caution' %}
+                    {% include 'Http/Svg/SolidExclamation.twig' with {classes: 'h-5 w-5 text-yellow-400'} only %}
+                {% case 'error' %}
+                    {% include 'Http/Svg/SolidXCircle.twig' with {classes: 'h-5 w-5 text-red'} only %}
+                {% default %}
+                    {% include 'Http/Svg/SolidInformationCircle.twig' with {classes: 'h-5 w-5 text-blue-400'} only %}
+            {% endswitch %}
+        </div>
+        <div class="ml-3">
+            {% if headline %}
+                <h3 class="text-sm font-medium {{ headlineClass }}">
+                    {{ headline|smartypants }}
+                </h3>
+            {% endif %}
+            {% if content or contentList|length > 0 %}
+                <div class="{% if headline %}mt-2 {% endif %}text-sm {{ contentClass }}">
+                    {% if content %}
+                        <p>{{ content|smartypants|widont }}</p>
+                    {% endif %}
+                    {% if contentList|length > 0 %}
+                        <ul class="{% if content %}mt-2 {% endif %}list-disc list-inside">
+                            {% for item in contentList %}
+                                {% if item is iterable %}
+                                    {% for subItem in item %}
+                                        <li>{{ subItem|smartypants }}</li>
+                                    {% endfor %}
+                                {% else %}
+                                    <li>{{ item|smartypants }}</li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

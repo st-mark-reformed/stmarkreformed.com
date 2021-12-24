@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 
-function container-node-help() {
-    printf "[some_command] (Execute command in \`node\` image. Empty argument starts a bash session)";
-}
-
-function dev-composer-install() {
+function docker-composer-install() {
     if [ -t 0 ]; then
         interactiveArgs='-it';
     else
@@ -19,7 +15,7 @@ function dev-composer-install() {
         --env ENABLE_XDEBUG=1 \
         --env DISABLE_PHP_FPM=1 \
         --env DISABLE_NGINX=1 \
-        registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app bash -c "composer install --no-interaction --no-progress";
+        registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app bash -c "composer install";
 
     docker rm stmark-dev-composer-install >/dev/null 2>&1;
 

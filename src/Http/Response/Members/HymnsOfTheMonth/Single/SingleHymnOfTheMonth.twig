@@ -1,0 +1,64 @@
+{# @var \App\Http\Response\Members\HymnsOfTheMonth\Single\Result result #}
+
+{% extends 'Http/_Infrastructure/_MembersLayout.twig' %}
+
+{% block membersContent %}
+    <div class="py-16 bg-gray-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 space-y-8 sm:px-6 lg:px-8">
+            <div class="text-base max-w-prose mx-auto lg:max-w-none">
+                <h2 class="text-base font-semibold tracking-wide uppercase bg-clip-text text-transparent bg-gradient-to-r from-teal-700 to-teal-400">
+                    Hymn of the Month for {{ result.month|smartypants }}, {{ result.year|smartypants }}
+                </h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    {{ result.title|smartypants }}
+                </p>
+            </div>
+            <div class="relative z-10 text-base max-w-prose mx-auto lg:max-w-3xl lg:mx-0">
+                <p class="text-lg text-gray-500">The following tools and resources are provided to you as members, attendees, or friends of St. Mark to help you learn and sing the hymns and psalms we learn every month at our Monthly hymn sing. We hope they are a blessing to you.</p>
+            </div>
+            {% if result.musicSheetDownloadUrl %}
+                <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
+                    <div class="relative z-10">
+                        <div class="prose prose-indigo text-gray-500 mx-auto lg:max-w-none">
+                            <h3>Music sheet download:</h3>
+                        </div>
+                        <div class="mt-3 flex text-base max-w-prose mx-auto lg:max-w-none">
+                            <div class="rounded-md shadow">
+                                <a
+                                    href="{{ result.musicSheetDownloadUrl }}"
+                                    class="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-crimson hover:bg-crimson-dark"
+                                    download
+                                >
+                                    Download Music Sheet
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if result.tracks|length > 0 %}
+                <div class="lg:max-w-3xl">
+                    <div class="relative z-10">
+                        <div class="prose prose-indigo text-gray-500 mx-auto lg:max-w-none">
+                            <h3>Practice Tracks:</h3>
+                            <p>The following practice tracks of the full song mix and the various parts will aid you in learning and strengthening your singing of this piece.</p>
+                        </div>
+                        {% for track in result.tracks %}
+                            <div class="mt-3 flex text-base max-w-prose mx-auto lg:max-w-none">
+                                <div class="rounded-md shadow">
+                                    <a
+                                        href="{{ track.url }}"
+                                        class="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-crimson hover:bg-crimson-dark"
+                                        download
+                                    >
+                                        {{ track.title|smartypants }}
+                                    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

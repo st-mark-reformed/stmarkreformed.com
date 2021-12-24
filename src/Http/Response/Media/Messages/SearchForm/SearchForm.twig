@@ -1,0 +1,137 @@
+{# @var \App\Http\Response\Media\Messages\Params params #}
+{# @var \App\Http\Response\Media\Messages\SearchForm\OptionGroupCollection speakerGroupOptions #}
+{# @var \App\Http\Response\Media\Messages\SearchForm\OptionGroup seriesOptions #}
+
+<form class="space-y-4">
+    <div class="mt-6 grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6">
+        <div class="sm:col-span-2">
+            <label for="by" class="block text-sm font-medium text-gray-700">
+                By
+            </label>
+            <div class="mt-1">
+                <select
+                    id="by"
+                    name="by[]"
+                    class="max-w-lg block focus:ring-crimson focus:border-crimson w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
+                    ref="select"
+                    multiple
+                >
+                    {% for group in speakerGroupOptions.optionGroups %}
+                        {# @var \App\Http\Response\Media\Messages\SearchForm\OptionGroup group #}
+                        <optgroup label="{{ group.groupTitle }}">
+                            {% for option in group.options %}
+                                {# @var \App\Http\Response\Media\Messages\SearchForm\SelectOption option #}
+                                <option
+                                    value="{{ option.slug }}"
+                                    {% if option.isActive %}
+                                    selected
+                                    {% endif %}
+                                >
+                                    {{ option.name|smartypants }}
+                                </option>
+                            {% endfor %}
+                        </optgroup>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="sm:col-span-2">
+            <label for="series" class="block text-sm font-medium text-gray-700">
+                Series
+            </label>
+            <div class="mt-1">
+                <select
+                    id="series"
+                    name="series[]"
+                    class="max-w-lg block focus:ring-crimson focus:border-crimson w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
+                    ref="select"
+                    multiple
+                >
+                    {% for option in seriesOptions.options %}
+                        {# @var \App\Http\Response\Media\Messages\SearchForm\SelectOption option #}
+                        <option
+                            value="{{ option.slug }}"
+                            {% if option.isActive %}
+                            selected
+                            {% endif %}
+                        >
+                            {{ option.name|smartypants }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="sm:col-span-2">
+            <label for="scripture_reference" class="block text-sm font-medium text-gray-700">
+                Scripture Reference
+            </label>
+            <div class="mt-1">
+                <input
+                    type="text"
+                    id="scripture_reference"
+                    name="scripture_reference"
+                    class="shadow-sm focus:ring-crimson focus:border-crimson block w-full sm:text-sm border-gray-300 rounded-md"
+                    value="{{ params.scriptureReference }}"
+                >
+            </div>
+        </div>
+        <div class="sm:col-span-2">
+            <label for="title" class="block text-sm font-medium text-gray-700">
+                Title
+            </label>
+            <div class="mt-1">
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    class="shadow-sm focus:ring-crimson focus:border-crimson block w-full sm:text-sm border-gray-300 rounded-md"
+                    value="{{ params.title }}"
+                >
+            </div>
+        </div>
+        <div class="sm:col-span-2">
+            <label for="date_range_start" class="block text-sm font-medium text-gray-700">
+                Date Range Start
+            </label>
+            <div class="mt-1">
+                <input
+                    type="date"
+                    id="date_range_start"
+                    name="date_range_start"
+                    class="shadow-sm focus:ring-crimson focus:border-crimson block w-full sm:text-sm border-gray-300 rounded-md"
+                    value="{{ params.dateRangeStart }}"
+                >
+            </div>
+        </div>
+        <div class="sm:col-span-2">
+            <label for="date_range_end" class="block text-sm font-medium text-gray-700">
+                Date Range End
+            </label>
+            <div class="mt-1">
+                <input
+                    type="date"
+                    id="date_range_end"
+                    name="date_range_end"
+                    class="shadow-sm focus:ring-crimson focus:border-crimson block w-full sm:text-sm border-gray-300 rounded-md"
+                    value="{{ params.dateRangeEnd }}"
+                >
+            </div>
+        </div>
+    </div>
+    <div class="flex justify-end">
+        {% if params.hasSearchParams %}
+            <a
+                href="/media/messages"
+                class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-crimson"
+            >
+                Reset
+            </a>
+        {% endif %}
+        <button
+            type="submit"
+            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-crimson hover:bg-crimson-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-crimson-dark"
+        >
+            Search
+        </button>
+    </div>
+</form>

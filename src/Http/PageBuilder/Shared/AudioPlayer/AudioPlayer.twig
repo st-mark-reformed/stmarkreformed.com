@@ -1,0 +1,183 @@
+{# @var \App\Http\PageBuilder\Shared\AudioPlayer\AudioPlayerContentModel contentModel #}
+
+<div
+    class="w-full text-left"
+    x-init="RunWhenReady('AudioPlayer', {
+        data: data,
+        el: $el,
+        watch: $watch,
+    })"
+    x-data="{
+        data: {
+            playerIsInitialized: false,
+            isPlaying: false,
+            isScrubbing: false,
+            duration: '',
+            rollBack: 0,
+            rollForward: 0,
+        },
+    }"
+>
+    <div
+        class="flex items-center justify-center"
+    >
+        <div class="bg-white shadow-lg rounded-lg w-full">
+            <div class="flex">
+                <div class="w-full p-8 pb-0">
+                    <div class="flex justify-between">
+                        <div>
+                            <h3 class="text-2xl text-grey-darkest font-medium">
+                                {% if contentModel.href %}
+                                <a
+                                    href="{{ contentModel.href }}"
+                                    class="underline hover:text-saddle-brown-lightened-2"
+                                >
+                                    {{ contentModel.title|smartypants }}
+                                </a>
+                                {% else %}
+                                    {{ contentModel.title|smartypants }}
+                                {% endif %}
+                            </h3>
+                            <p class="text-sm text-grey mt-1">
+                                {{ contentModel.subTitle|smartypants }}
+                            </p>
+                            {% if contentModel.hasKeyValueItems %}
+                                <div class="mt-3">
+                                    {% for item in contentModel.keyValueItems %}
+                                        <dl class="text-sm text-grey mt-1">
+                                            <dt class="inline-block mr-1 font-bold">{{ item.key|smartypants }}:</dt>
+                                            <dd class="inline-block">
+                                                {% if item.href %}
+                                                    <a
+                                                        href="{{ item.href }}"
+                                                        class="underline hover:text-saddle-brown-lightened-2"
+                                                    >
+                                                        {{ item.value|smartypants }}
+                                                    </a>
+                                                {% else %}
+                                                    {{ item.value|smartypants }}
+                                                {% endif %}
+                                            </dd>
+                                        </dl>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <div class="mt-3">
+                                <a
+                                    href="{{ contentModel.audioFileHref }}"
+                                    class="text-xs underline hover:text-saddle-brown-lightened-2"
+                                    download
+                                >
+                                    Download Audio File
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="flex justify-between items-center mt-6 select-none"
+                        style="display: none;"
+                        x-show="data.playerIsInitialized"
+                    >
+                        <div
+                            class="text-gray-600 hover:text-saddle-brown-lightened-2 cursor-pointer relative"
+                            @click="data.rollBack = data.rollBack + 1"
+                        >
+                            {#<svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M4 5h3v10H4V5zm12 0v10l-9-5 9-5z"/></svg>#}
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path class="cls-1" d="M20,34a1,1,0,0,1-.64-.23l-12-10a1,1,0,0,1,0-1.54l12-10a1,1,0,1,1,1.28,1.54L9.56,23l11.08,9.23a1,1,0,0,1,.13,1.41A1,1,0,0,1,20,34Z"/><path class="cls-1" d="M42,52H26a1,1,0,0,1,0-2H42a13,13,0,0,0,0-26H9a1,1,0,0,1,0-2H42a15,15,0,0,1,0,30Z"/></svg>
+                            <span
+                                class="absolute right-0 top-0 mt-3"
+                                style="font-size: 0.6rem; margin-right: 0.4rem;"
+                            >30</span>
+                        </div>
+                        <div
+                            class="text-white p-4 rounded-full shadow-lg bg-crimson hover:bg-crimson-dark text-white cursor-pointer"
+                            @click="data.isPlaying = !data.isPlaying"
+                        >
+                            <svg
+                                class="w-8 h-8"
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 20 20"
+                                style="display: none;"
+                                x-show="data.isPlaying"
+                            ><path d="M5 4h3v12H5V4zm7 0h3v12h-3V4z"/></svg>
+                            <svg
+                                class="w-8 h-8 relative"
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 512 512"
+                                style="right: -2px;"
+                                x-show="! data.isPlaying"
+                            ><path d="M405.2,232.9L126.8,67.2c-3.4-2-6.9-3.2-10.9-3.2c-10.9,0-19.8,9-19.8,20H96v344h0.1c0,11,8.9,20,19.8,20  c4.1,0,7.5-1.4,11.2-3.4l278.1-165.5c6.6-5.5,10.8-13.8,10.8-23.1C416,246.7,411.8,238.5,405.2,232.9z"/></svg>
+                        </div>
+                        <div
+                            class="text-gray-600 hover:text-saddle-brown-lightened-2 cursor-pointer relative"
+                            @click="data.rollForward = data.rollForward + 1"
+                        >
+                            {#<svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 5h3v10h-3V5zM4 5l9 5-9 5V5z"/></svg>#}
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path class="cls-1" d="M44,34a1,1,0,0,1-.77-.36,1,1,0,0,1,.13-1.41L54.44,23,43.36,13.77a1,1,0,1,1,1.28-1.54l12,10a1,1,0,0,1,0,1.54l-12,10A1,1,0,0,1,44,34Z"/><path class="cls-1" d="M38,52H22a15,15,0,0,1,0-30H55a1,1,0,0,1,0,2H22a13,13,0,0,0,0,26H38a1,1,0,0,1,0,2Z"/></svg>
+                            <span
+                                class="absolute left-0 top-0 mt-3"
+                                style="font-size: 0.6rem; margin-left: 0.45rem;"
+                            >30</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mx-8 pb-10 relative select-none">
+                <div x-show="! data.playerIsInitialized">
+                    <audio
+                        class="w-full"
+                        src="{{ contentModel.audioFileHref }}"
+                        type="{{ contentModel.audioFileMimeType }}"
+                        controls="controls"
+                        preload="none"
+                        ref="audioPlayer"
+                    ></audio>
+                </div>
+                <div
+                    style="display: none;"
+                    x-show="data.playerIsInitialized"
+                >
+                    <div class="flex justify-between text-sm text-grey-darker">
+                        <p ref="currentTime">-:--</p>
+                        <p ref="duration">-:--</p>
+                    </div>
+                    <div
+                        class="mt-1 relative"
+                    >
+                        <div class="h-1 bg-gray-300 rounded-full">
+                            <div
+                                class="h-1 bg-crimson rounded-full relative"
+                                style="width: 0;"
+                                ref="progressBar"
+                            >
+                                <span
+                                    class="w-4 h-4 bg-crimson absolute bottom-0 rounded-full shadow"
+                                    style="right: -6px; margin-bottom: -6px;"
+                                ></span>
+                            </div>
+                        </div>
+                        <div
+                            class="text-sm text-white absolute bg-crimson px-2 py-1"
+                            style="top: -42px; left: 0; display: none;"
+                            ref="scrubber"
+                            x-show="data.isScrubbing"
+                        >
+                            <p ref="scrubberTime">-:--</p>
+                            <span
+                                class="block bg-crimson absolute"
+                                style="height: 14px; width: 1px; bottom: -14px; left: calc(50% - 2px);"
+                            ></span>
+                        </div>
+                    </div>
+                    <div
+                        class="absolute z-50 w-full h-5 cursor-pointer"
+                        style="top: 16px;"
+                        ref="playBar"
+                    ></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

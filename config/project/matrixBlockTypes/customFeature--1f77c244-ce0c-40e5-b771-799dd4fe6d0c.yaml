@@ -1,11 +1,11 @@
-field: c9504fe8-d2fb-458b-a2e9-f8872585919a # Standard Page Builder
+field: c9504fe8-d2fb-458b-a2e9-f8872585919a # Old Page Builder
 fieldLayouts:
   c1fd6fbc-52cc-4544-a457-369bb5d34a09:
     tabs:
       -
         elements:
           -
-            fieldUid: 1df46fad-0886-4911-9132-137b6262c9ff
+            fieldUid: 1df46fad-0886-4911-9132-137b6262c9ff # Heading
             instructions: null
             label: null
             required: true
@@ -14,7 +14,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: b660e427-16f8-4219-ab16-4d955f0176b4
+            fieldUid: b660e427-16f8-4219-ab16-4d955f0176b4 # Small Heading
             instructions: null
             label: null
             required: false
@@ -23,7 +23,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: 06ab3828-e4b9-4411-b012-c79e8d0dcd93
+            fieldUid: 06ab3828-e4b9-4411-b012-c79e8d0dcd93 # Excerpt
             instructions: null
             label: null
             required: false
@@ -32,7 +32,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: 302084e5-cc85-4e20-914e-49dd78f5e9a4
+            fieldUid: 302084e5-cc85-4e20-914e-49dd78f5e9a4 # Call To Action
             instructions: null
             label: null
             required: false
@@ -41,7 +41,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: 67830663-1954-426b-8d89-89bcb764a68b
+            fieldUid: 67830663-1954-426b-8d89-89bcb764a68b # Background Image
             instructions: null
             label: null
             required: false
@@ -52,7 +52,8 @@ fieldLayouts:
         name: Content
         sortOrder: 1
 fields:
-  1df46fad-0886-4911-9132-137b6262c9ff:
+  1df46fad-0886-4911-9132-137b6262c9ff: # Heading
+    columnSuffix: null
     contentColumnType: text
     fieldGroup: null
     handle: heading
@@ -66,12 +67,13 @@ fields:
       columnType: text
       initialRows: '4'
       multiline: ''
-      placeholder: ''
+      placeholder: null
       uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
-  06ab3828-e4b9-4411-b012-c79e8d0dcd93:
+  06ab3828-e4b9-4411-b012-c79e8d0dcd93: # Excerpt
+    columnSuffix: null
     contentColumnType: text
     fieldGroup: null
     handle: excerpt
@@ -85,12 +87,13 @@ fields:
       columnType: text
       initialRows: '4'
       multiline: '1'
-      placeholder: ''
+      placeholder: null
       uiMode: normal
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
-  302084e5-cc85-4e20-914e-49dd78f5e9a4:
+  302084e5-cc85-4e20-914e-49dd78f5e9a4: # Call To Action
+    columnSuffix: null
     contentColumnType: text
     fieldGroup: null
     handle: callToAction
@@ -139,7 +142,8 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\Table
-  67830663-1954-426b-8d89-89bcb764a68b:
+  67830663-1954-426b-8d89-89bcb764a68b: # Background Image
+    columnSuffix: null
     contentColumnType: string
     fieldGroup: null
     handle: backgroundImage
@@ -151,7 +155,7 @@ fields:
       allowUploads: true
       allowedKinds:
         - image
-      defaultUploadLocationSource: 'volume:fe2952ce-382a-4470-8f04-a7bdd1b48f66'
+      defaultUploadLocationSource: 'volume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
       defaultUploadLocationSubpath: ''
       limit: '1'
       localizeRelations: false
@@ -161,7 +165,7 @@ fields:
       showSiteMenu: true
       showUnpermittedFiles: false
       showUnpermittedVolumes: true
-      singleUploadLocationSource: 'volume:fe2952ce-382a-4470-8f04-a7bdd1b48f66'
+      singleUploadLocationSource: 'volume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
       singleUploadLocationSubpath: ''
       source: null
       sources: '*'
@@ -172,7 +176,8 @@ fields:
     translationKeyFormat: null
     translationMethod: site
     type: craft\fields\Assets
-  b660e427-16f8-4219-ab16-4d955f0176b4:
+  b660e427-16f8-4219-ab16-4d955f0176b4: # Small Heading
+    columnSuffix: null
     contentColumnType: text
     fieldGroup: null
     handle: smallHeading
@@ -186,7 +191,7 @@ fields:
       columnType: text
       initialRows: '4'
       multiline: ''
-      placeholder: ''
+      placeholder: null
       uiMode: normal
     translationKeyFormat: null
     translationMethod: none

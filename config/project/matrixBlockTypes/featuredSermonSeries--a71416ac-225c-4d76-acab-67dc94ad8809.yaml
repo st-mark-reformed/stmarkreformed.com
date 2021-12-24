@@ -1,11 +1,11 @@
-field: c9504fe8-d2fb-458b-a2e9-f8872585919a # Standard Page Builder
+field: c9504fe8-d2fb-458b-a2e9-f8872585919a # Old Page Builder
 fieldLayouts:
   baa56e61-ae3b-4f99-b7ee-a452a0f59d5c:
     tabs:
       -
         elements:
           -
-            fieldUid: 0363b404-b48e-4cdb-8a99-253db50b2d17
+            fieldUid: 0363b404-b48e-4cdb-8a99-253db50b2d17 # Select a series to display
             instructions: null
             label: null
             required: false
@@ -16,7 +16,8 @@ fieldLayouts:
         name: Content
         sortOrder: 1
 fields:
-  0363b404-b48e-4cdb-8a99-253db50b2d17:
+  0363b404-b48e-4cdb-8a99-253db50b2d17: # Select a series to display
+    columnSuffix: null
     contentColumnType: string
     fieldGroup: null
     handle: seriesToDisplay
@@ -32,7 +33,7 @@ fields:
       localizeRelations: false
       selectionLabel: 'Add a series'
       showSiteMenu: true
-      source: 'group:3997eb97-922e-4368-8704-2c22cb7dcb1e'
+      source: 'group:3997eb97-922e-4368-8704-2c22cb7dcb1e' # Message Series
       sources: '*'
       targetSiteId: null
       validateRelatedElements: false

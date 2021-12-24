@@ -1,0 +1,62 @@
+{# @var \App\Http\PageBuilder\BlockResponse\BasicBlock\BasicBlockContentModel contentModel #}
+
+{% set overLight = contentModel.tailwindBackgroundColor == 'white' %}
+
+{% switch contentModel.alignment %}
+    {% case 'center' %}
+        {% set textAlignmentClass = 'text-center' %}
+    {% case 'right' %}
+        {% set textAlignmentClass = 'text-right' %}
+    {% default %}
+        {% set textAlignmentClass = 'text-left' %}
+{% endswitch %}
+
+<div class="relative bg-{{ contentModel.tailwindBackgroundColor }}">
+    <div
+        class="relative mx-auto px-4 py-12 sm:max-w-5xl sm:px-14 sm:py-20 md:py-28 lg:py-32 {{ textAlignmentClass }}{% if contentModel.noTopSpace %} pt-0 sm:pt-0 md:pt-0 lg:pt-0 -mt-6 sm:-mt-12 md:-mt-20 lg:-mt-24{% endif %}"
+    >
+        {% if contentModel.preHeadline or contentModel.headline %}
+            <div class="mb-8">
+                {% if contentModel.preHeadline %}
+                    <h3 class="text-base font-semibold uppercase tracking-wider {% if overLight %}text-gray-600{% else %}text-gray-100{% endif %}">
+                        {{ contentModel.preHeadline|smartypants|widont }}
+                    </h3>
+                {% endif %}
+                {% if contentModel.headline %}
+                    <h2 class="mt-2 {% if overLight %}text-black{% else %}text-white{% endif %} text-3xl font-extrabold tracking-tight sm:text-4xl">
+                        {{ contentModel.headline|smartypants|widont }}
+                    </h2>
+                {% endif %}
+            </div>
+        {% endif %}
+        {% if contentModel.content.count %}
+            <div class="mt-3 text-lg {% if overLight%}text-gray-600{% else %}text-gray-100{% endif %} prose {% if not overLight %}prose-over-dark{% endif%} max-w-none">
+                {{ contentModel.content|smartypants|widont }}
+            </div>
+        {% endif %}
+        {% if contentModel.hasCtas %}
+            <div class="mt-8 {{ textAlignmentClass }}">
+                {% for cta in contentModel.ctas %}
+                    <div>
+                        <div class="inline-flex rounded-md shadow{% if not loop.last %} mb-2{% endif %}">
+                            <a
+                                href="{{ cta.href }}"
+                                class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md {% if overLight %}text-gray-100 bg-crimson hover:bg-crimson-dark{% else %}text-gray-900 bg-white hover:bg-gray-50{% endif %}"
+                                {% if cta.newWindow %}
+                                    target="_blank"
+                                {% endif %}
+                            >
+                                {{ cta.content|smartypants }}
+                                {% if cta.newWindow %}
+                                    {% include 'Svg/Heroicon/SolidExternalLink.svg' with {
+                                        textColorClass: 'text-gray-200',
+                                    } %}
+                                {% endif %}
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</div>

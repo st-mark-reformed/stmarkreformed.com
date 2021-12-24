@@ -1,4 +1,4 @@
-dateModified: 1633219157
+dateModified: 1639630221
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -20,76 +20,189 @@ graphql:
 meta:
   __names__:
     0bb8ab16-3c86-4ffb-86da-18c4e22a554e: 'Search Engine Indexing' # Search Engine Indexing
+    0bfb38a0-09a7-4e91-89f8-eacb1cc78129: 'Basic Block' # Basic Block
+    0d9de0c2-3e02-4799-905a-dc37c9ab8299: Subheading # Subheading
     0e14aaf7-e012-407f-a946-4531b9b59d3b: Globals # Globals
+    1a0827bd-1b3c-4260-9328-30c8c7307478: Subheading # Subheading
+    1de9d950-2b2b-4b09-957e-cc2396093495: Audio # Audio
+    1df46fad-0886-4911-9132-137b6262c9ff: Heading # Heading
+    1f77c244-ce0c-40e5-b771-799dd4fe6d0c: 'Custom Feature' # Custom Feature
+    1f642a1f-8157-48c8-b796-705f62303756: Latitude # Latitude
     1fd7bdfe-3297-4602-90a4-7bbb4671eac3: 'Message Text' # Message Text
-    2a9f1934-7a1f-41c3-bfdc-565035a5687f: 'Pastor''s Page Categories' # Pastor's Page Categories
+    1fddf7ac-c47a-491d-961f-bf23c0cc3e91: 'Simple Cta' # Simple Cta
     2a87f914-8ca0-4ff5-816f-eeed96eae0ab: 'Title or Honorific' # Title or Honorific
-    4dd0c44b-b829-489c-b62e-bf2f968677b0: 'Nav Title Override' # Nav Title Override
+    3dc4707f-a219-4bde-9559-201300acd001: URL # URL
+    4d7448ea-2070-48fa-985b-cbf73346b3e0: Leadership # Leadership
+    5c3a6cb0-491a-482a-b498-e87d97460799: 'Content Disposition' # Content Disposition
+    5c25b52f-157e-404f-9578-025b3181bcc8: 'Latest Galleries' # Latest Galleries
+    5df4f883-59cf-4b67-b323-6330a84cd1cd: City # City
     5e1b8bc2-ba40-47cd-a9c4-438c1a793250: 'Internal Audio' # Internal Audio
+    06ab3828-e4b9-4411-b012-c79e8d0dcd93: Excerpt # Excerpt
     6b75c664-339f-4a28-b126-60b34b55efce: 'Twitter URL' # Twitter URL
     6baa0e06-2c61-4aa9-bb22-249b9b32da5c: 'Files Above Webroot' # Files Above Webroot
     6bc8ff92-bd06-4bc8-aa10-5eb44afa22cf: 'Instagram URL' # Instagram URL
+    6e55c0af-73fd-4439-b563-1ace6387eda8: 'Stripe Form' # Stripe Form
     6e6660c3-e157-450f-a37e-ac8464ce38ff: Tags # Tags
-    7bfbcf22-c7b9-42b2-87d8-836e113d1c05: 'Sub Nav Title Override' # Sub Nav Title Override
+    6f396dab-91de-4f1d-8d0a-23fc18ae1ba4: CTA # CTA
+    7aa1e2e9-fcc5-4e79-b8ea-322145910185: 'Hero Upper CTA' # Hero Upper CTA
+    7e5beee3-8da3-428c-9d03-dfe089f86b20: 'Hero Paragraph' # Hero Paragraph
+    7e651c1f-ddb7-4bd0-9842-d0d8b71f4671: Subheading # Subheading
+    07efee91-98b9-462b-824d-885cbf31780d: 'Latest Types' # Latest Types
+    8c21d3d3-5328-4d12-adf7-302be60334d6: 'Success Redirect' # Success Redirect
+    8e19ed95-a88d-470b-a8f3-9f2e9030c041: 'Has Messages' # Has Messages
     8e41a4a3-46e9-41d1-bb64-46f3cd0979c0: 'Import Search String' # Import Search String
+    8f9ce4e3-aa79-49a5-9857-a5a0eb2396c6: Body # Body
     8f73d9f8-3435-4396-bb8f-e729910f2665: Gallery # Gallery
-    9f4b0515-9cf4-48e6-8a4d-0893819a0635: 'Page Options' # Page Options
+    9c3eb649-30d1-4de9-8679-4495fe2a2923: Resources # Resources
+    14b87d92-8527-4c88-b148-9be99799b28d: Content # Content
+    16af453e-7756-4645-b749-cdee119c0d14: Address # Address
+    16f9c03e-c104-4d75-84e9-479cd71b1d32: 'Gallery Showcase' # Gallery Showcase
+    18b18430-9890-470a-8f25-961f5dbc13eb: 'Featured Sermon Series' # Featured Sermon Series
+    26a56254-9393-462d-97ff-ed3bd41ec91a: News # News
     27b7be51-9d75-42da-9b5f-b2e1fb678ed6: SEO # SEO
     29f855c0-8761-4086-ae93-dcda8685d73c: 'St. Mark Reformed Church' # St. Mark Reformed Church
     32d76b8c-d3f3-45cf-8b3d-55991f485a16: Bio # Bio
-    46e9048c-cfef-4f69-acd7-cd03439b3867: 'Use Short Header?' # Use Short Header?
+    40a813c7-72ac-4043-b70b-718c0a7868b3: 'Link List Block' # Link List Block
+    43a22c1a-0c67-4cd1-ba07-6ebfdf91d242: Messages # Messages
+    46e9048c-cfef-4f69-acd7-cd03439b3867: 'Use Short Hero?' # Use Short Hero?
+    51c0f62a-b5a5-4135-bc90-471528d63f56: News # News
+    51c9e48c-507e-4e3d-8152-0dba14ef55c3: 'Address Line 2' # Address Line 2
+    58ef7773-046d-4cbb-b5e9-84ed62735bd3: 'Profile Photo' # Profile Photo
+    61dc28f8-137c-4b78-b5f9-db7ebe405614: 'Enable static cache' # Enable static cache
+    62f59ace-8a18-4494-8018-6176e8798a8a: Image/Content/Cta # Image/Content/Cta
+    65d4cdb4-f28e-469a-a25f-420675afd673: Heading # Heading
+    068d01a2-6a79-498a-a08a-ef779b9e6b59: Headline # Headline
+    078fa3f5-a47e-422b-a7eb-aad70ed389f6: 'Contact Form' # Contact Form
     83ae5632-273d-44d5-b592-476a39460f51: 'Entry Builder' # Entry Builder
     84f0c3bc-62d3-4031-83c9-053e7a1fc6b2: General # General
+    86d6041c-07e9-4e14-9e05-e68dafc0ecae: Image # Image
+    87c0adb7-92a2-47e7-ae13-83a48347bbfd: Headline # Headline
+    90be6229-e9e1-49fc-a6a3-58f9f26a8627: 'Background Color' # Background Color
+    91bf91c7-572a-4deb-b5dc-7d055d4c0ba9: Headline # Headline
     94e92402-bc7d-4413-bc65-a236d81d53aa: 'St. Mark Reformed Church' # St. Mark Reformed Church
     98eceee6-f51c-4e12-b27e-8af4e80fb147: 'Custom Share Image' # Custom Share Image
+    185c9077-feec-4a7f-b489-78fc453368b1: Content # Content
     0214b210-9d5a-47f7-8e2c-1dc100c5a952: Date # Date
-    714e71ca-d308-4ed3-8a66-351e750b7b70: Speaker # Speaker
+    234d8474-d5c9-4357-90de-18d4526c68a3: Profiles # Profiles
+    237c1074-3fbf-4e4e-a85b-b9c6af4a9732: CTAs # CTAs
+    261a469a-71d2-46af-8ca5-7b25e2a168f1: Pages # Pages
+    292cba0e-342e-4846-9263-6b573384de88: 'Feature Latest' # Feature Latest
+    0363b404-b48e-4cdb-8a99-253db50b2d17: 'Select a series to display' # Select a series to display
+    466eae26-271a-4bd0-af4c-355f3ed1d39a: Content # Content
+    505b895d-c9b1-4296-99ae-d2bef20459c3: Zip # Zip
+    714e71ca-d308-4ed3-8a66-351e750b7b70: 'Speaker (old, based on User)' # Speaker (old, based on User)
+    819a94af-ec06-4468-87c9-d689e0010136: 'First Name' # First Name
     922bdd2b-20e9-41d4-92bc-007b8452a18e: Slug # Slug
     926ff203-b918-45b0-b2a6-bfa4604b465f: 'Internal Message Series' # Internal Message Series
+    1619a0e9-2a7f-4450-ad7b-9eb6f10a435d: 'Call To Action' # Call To Action
     1849a26d-8a77-45c2-a9d4-9dd57e96be94: 'Resource Downloads' # Resource Downloads
     3925f2c2-f707-4557-ae5e-1b4e36801755: 'Short Description' # Short Description
+    3997eb97-922e-4368-8704-2c22cb7dcb1e: 'Message Series' # Message Series
+    5400e5d9-aa8f-439d-8bd5-0a2141010eae: 'Stripe Payment Form' # Stripe Payment Form
+    6175eec4-dbc2-4d76-8087-5e21be9754e8: 'Exclude From Featured' # Exclude From Featured
+    6388b6f1-05a6-4091-8161-5eaeb0cb5359: Email # Email
+    7522d6a8-afc9-4759-9891-9a6b55c68ba8: 'Internal Messages' # Internal Messages
     8166c5cb-d63f-45c7-ae99-c33961a4cf3d: 'Facebook URL' # Facebook URL
-    18290e78-8e88-4e1e-a79b-df42cc32eff0: 'Include in Nav?' # Include in Nav?
+    8944d860-7b65-43bb-b62e-9750d6416ebc: 'Internal Message Series' # Internal Message Series
+    42896f14-4d1e-4a82-8219-53d7de7d33ce: 'Last Name' # Last Name
     51614c49-f9f5-4660-abc0-d551062072b8: 'Message Series' # Message Series
     63998a0f-586b-4b03-ba27-74b694bf10dd: 'Hymn of the Month Music' # Hymn of the Month Music
+    65087f98-610e-4026-a91b-70bdef20426f: Galleries # Galleries
+    076138c8-eca9-475a-a69b-b912c2dae610: 'Stripe Payment Form' # Stripe Payment Form
+    076403e9-0a6b-468a-8c8a-0274f6c28bdc: 'Show Teal Overlay On Image' # Show Teal Overlay On Image
     93012d1f-1633-417a-81d5-8f4b4e0ea023: Galleries # Galleries
     145582f2-5bbe-48b1-9f7b-9058b3759d1a: Audio # Audio
+    302084e5-cc85-4e20-914e-49dd78f5e9a4: 'Call To Action' # Call To Action
     799005b5-502a-4951-bb7e-ae247d00979c: 'Hero Image' # Hero Image
+    8936057c-98bb-4ca4-82b0-ba17eb71b0c4: 'No top space' # No top space
+    9541534e-7593-41ec-b0c8-5b12cecf235c: Body # Body
+    67830663-1954-426b-8d89-89bcb764a68b: 'Background Image' # Background Image
+    96489851-57e6-4cdd-9f3c-d2e785615f32: Heading # Heading
+    a2bb0b6e-19a3-4fdd-9dfd-1761676fe2b8: 'Leadership Listing' # Leadership Listing
     a3adb82d-453d-4ae5-89d5-0f9b818b8d60: Messages # Messages
+    a9f088b8-989e-4f2b-81d0-3724c44b9447: Pre-Headline # Pre-Headline
+    a3358e0d-ff29-44f7-be26-bfe1bad34889: 'Background Color' # Background Color
     a5663b9c-311e-405f-a780-b856c4cd8464: 'SEO Title' # SEO Title
+    a9201e3f-ed7d-463f-b19f-20f487917a4a: Longitude # Longitude
+    a71416ac-225c-4d76-acab-67dc94ad8809: 'Featured Sermon Series' # Featured Sermon Series
+    a7845568-a0c6-44e5-8b75-3ef735f6ef8d: 'Page Builder' # Page Builder
+    aadb813b-3e01-45db-85cb-3ef90a02a7b9: CTAs # CTAs
     abf9672d-3bab-4e78-a495-5f5b79756405: 'Default Hero Image' # Default Hero Image
+    b1b4e23d-e236-44f0-8170-0170b4447e96: 'Latest Entry At' # Latest Entry At
     b149c792-7a23-44b8-b08b-12fd4059475d: 'Primary Image' # Primary Image
     b153d5f7-fd35-4731-9437-eb1333cdc3e2: 'SEO Description' # SEO Description
+    b347cbd4-6649-4d68-9a40-b7d125c99e96: Alignment # Alignment
+    b660e427-16f8-4219-ab16-4d955f0176b4: 'Small Heading' # Small Heading
+    b1284b82-f1a8-41b1-8480-11c6366bb213: Pre-Headline # Pre-Headline
     b5819ef5-9761-4d28-b9c2-d7c2a3b41532: 'Twitter Handle' # Twitter Handle
     b4204049-2a69-459e-b105-94be12ec6081: URL # URL
+    b4830095-9974-475a-9af6-aac12c7e626d: 'Hymns of the Month' # Hymns of the Month
+    ba477ad1-a81e-4f6c-9976-f0f2af90b390: 'Leadership Listing Details' # Leadership Listing Details
+    bdeb94af-1e71-4ccc-97b0-682301d10146: 'Stripe Payment Form' # Stripe Payment Form
+    c4a6682d-42d5-4782-9217-84d3db36d3be: Profile # Profile
+    c9e7c52c-9526-4153-8f74-d00efe20d1d2: 'Pastor''s Page' # Pastor's Page
     c66e62d9-2ca8-4489-8c97-3f4dca8ccb60: Common # Common
     c67a7c62-3fbd-43ac-86c6-32c299b87bfe: Users # Users
-    c9504fe8-d2fb-458b-a2e9-f8872585919a: 'Standard Page Builder' # Standard Page Builder
-    de88a8f8-2563-459e-8a52-b3ad2f0ec006: 'News Categories' # News Categories
+    c665efa6-4acd-4798-ab92-b0f46bf5fd05: 'Show Sub-Page Sidebar' # Show Sub-Page Sidebar
+    c9504fe8-d2fb-458b-a2e9-f8872585919a: 'Old Page Builder' # Old Page Builder
+    cf5e0084-b552-41a9-acab-14266180cd09: 'Contact Form' # Contact Form
+    d4e3e352-d099-4aab-9f65-175196a92487: Heading # Heading
+    d9d26b1f-c9ea-4482-8649-b8f387765fc8: 'Contact Form Details' # Contact Form Details
+    d26ccd2c-292c-4d69-a877-5926e0091e99: 'Basic Block' # Basic Block
+    d41c8997-be52-49d3-8b4b-a09ee99a12cd: 'Map Block' # Map Block
+    d84e3ace-3a36-46b0-bf4d-a2dc40d9e932: Pre-Headline # Pre-Headline
+    da36af03-83a6-417a-a103-f6a96f2c5b66: URL # URL
+    dd0ea504-a9fc-46ce-82d3-77a382c44954: 'Background Color' # Background Color
+    dd1bb219-b7c4-4a1d-97e5-80801d58ca98: 'Associated User Account' # Associated User Account
+    df286b48-0507-4f99-9892-1f542903143c: Heading # Heading
+    e2a3e24e-58ee-4326-8fc2-163003e8205b: 'Gallery Showcase Notes' # Gallery Showcase Notes
+    e2b3f41d-b5fb-443c-988f-96c387bfa764: 'Number to Showcase' # Number to Showcase
+    e6c814e5-440d-4c5f-baf9-e2dc8e69411d: 'Hero Darkening Overlay Opacity' # Hero Darkening Overlay Opacity
+    e7ecd57e-c79d-4e1d-9c73-e34d3f1fb67b: 'Sermon Series' # Sermon Series
+    e59c60ae-fe1d-4183-80c1-d6ed6357ab7e: 'Pastor''s Page' # Pastor's Page
     e91f5555-0d06-411a-a55c-c24f14632bf4: Pages # Pages
+    e355e9ca-6733-4125-823c-1111afcb79eb: Options # Options
+    e2740f44-01f5-47b5-910c-1a64d2a306b7: Messages # Messages
     e13796c0-a36c-490c-bf23-eb7f25d5465f: 'Hero Subheading' # Hero Subheading
     e7369087-a5e9-4f71-85ba-d13b9ef55293: 'Contact Form Recipients' # Contact Form Recipients
+    eb2968df-4b48-4a76-b129-3a2011ed1b82: Content # Content
     ec8b995b-78c1-4e7e-a2ba-cab6d24be004: 'Leadership Position' # Leadership Position
+    ecdcacd7-286c-4761-8dbd-ecbbbe5921cf: 'No top space' # No top space
     ee082c58-0248-40c1-be7f-ecbbd205f56e: 'Hero Heading' # Hero Heading
     ef3c7cfd-b16f-4a9a-b7f8-cad052fdbbef: 'Hymn/Psalm Name' # Hymn/Psalm Name
     efe1648a-3d7f-4a16-a249-8e6870078081: Body # Body
+    f4d94e4a-9989-4cb2-b51b-e0c445006f6c: Profile # Profile
     f993b580-0e43-468a-9eab-ed72eef94d7a: 'Hymn of the Month Practice Tracks' # Hymn of the Month Practice Tracks
+    fa85e855-64ff-434d-b40e-f4e6188f46dd: 'Internal Messages' # Internal Messages
+    fab4b26c-20f2-4f6b-a4f9-93c660dfcd40: 'Sub Heading' # Sub Heading
+    fb27befa-4657-425c-b961-eeace2f94dc4: 'Block Background Image' # Block Background Image
+    fb809945-7807-4e81-9c34-4ff030f0888a: Links # Links
+    fe2952ce-382a-4470-8f04-a7bdd1b48f66: General # General
+    ff6f181e-01c5-4ca2-815d-5b737efab5d6: State # State
+    ff7e24a0-727a-431d-94b0-8dcb29c49241: Page # Page
 plugins:
+  buttonbox:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
   ckeditor:
     enabled: '1'
     licenseKey: null
     schemaVersion: 1.0.0
     settings: null
-  craft-static:
-    enabled: '1'
-    licenseKey: null
-    schemaVersion: 2.0.0
-    settings: null
-  entry-instructions:
-    enabled: '1'
-    licenseKey: null
+  colour-swatches:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.4.2
+  craft-range-slider:
+    edition: standard
+    enabled: true
+    licenseKey: YQBQVQZ51PIPV285RJ0HMLIF
     schemaVersion: 1.0.0
-    settings: null
+  craft-scheduler:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
   enupal-stripe:
     edition: standard
     enabled: true
@@ -163,19 +276,14 @@ plugins:
     schemaVersion: 1.0.1
     settings:
       googleApiKey: AIzaSyDgRVyQkQ0T6k5dPlXCO_SLZOK4EGaBig0
-  imager:
-    edition: standard
-    enabled: true
-    schemaVersion: 2.0.0
   inventory:
     edition: standard
     enabled: true
     schemaVersion: 2.0.0
-  minify:
-    enabled: '1'
-    licenseKey: null
+  matrixmate:
+    edition: standard
+    enabled: true
     schemaVersion: 1.0.0
-    settings: null
   redactor:
     edition: standard
     enabled: true
@@ -184,6 +292,18 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 1.0.5
+  slim-bridge:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  super-table:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.2.1
+  typedlinkfield:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
 system:
   edition: pro
   live: true

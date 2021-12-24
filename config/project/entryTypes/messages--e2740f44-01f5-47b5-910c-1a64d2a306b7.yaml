@@ -4,58 +4,142 @@ fieldLayouts:
       -
         elements:
           -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            disabled: false
+            id: null
             instructions: null
             label: Title
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
             type: craft\fieldlayoutelements\EntryTitleField
+            warning: null
+            width: 100
           -
             fieldUid: 145582f2-5bbe-48b1-9f7b-9058b3759d1a # Audio
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
-            fieldUid: 714e71ca-d308-4ed3-8a66-351e750b7b70 # Speaker
-            required: false
+            fieldUid: f4d94e4a-9989-4cb2-b51b-e0c445006f6c # Profile
+            instructions: ''
+            label: Speaker
+            required: ''
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: 1fd7bdfe-3297-4602-90a4-7bbb4671eac3 # Message Text
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: 51614c49-f9f5-4660-abc0-d551062072b8 # Message Series
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: 3925f2c2-f707-4557-ae5e-1b4e36801755 # Short Description
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: 6e6660c3-e157-450f-a37e-ac8464ce38ff # Tags
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Publish
-        sortOrder: '1'
+        sortOrder: 1
       -
         elements:
           -
             fieldUid: 0bb8ab16-3c86-4ffb-86da-18c4e22a554e # Search Engine Indexing
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: a5663b9c-311e-405f-a780-b856c4cd8464 # SEO Title
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: b153d5f7-fd35-4731-9437-eb1333cdc3e2 # SEO Description
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: 98eceee6-f51c-4e12-b27e-8af4e80fb147 # Custom Share Image
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: SEO
-        sortOrder: '2'
+        sortOrder: 2
+      -
+        elements:
+          -
+            fieldUid: 714e71ca-d308-4ed3-8a66-351e750b7b70 # Speaker (old, based on User)
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Deprecated
+        sortOrder: 3
 handle: messages
-hasTitleField: '1'
+hasTitleField: true
 name: Messages
-section: 43a22c1a-0c67-4cd1-ba07-6ebfdf91d242
-sortOrder: '1'
+section: 43a22c1a-0c67-4cd1-ba07-6ebfdf91d242 # Messages
+sortOrder: 1
 titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: ''

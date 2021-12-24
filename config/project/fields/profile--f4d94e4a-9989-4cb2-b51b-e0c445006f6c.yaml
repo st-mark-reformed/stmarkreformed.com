@@ -1,0 +1,22 @@
+columnSuffix: null
+contentColumnType: string
+fieldGroup: a3adb82d-453d-4ae5-89d5-0f9b818b8d60 # Messages
+handle: profile
+instructions: ''
+name: Profile
+searchable: false
+settings:
+  allowSelfRelations: false
+  limit: '1'
+  localizeRelations: false
+  selectionLabel: 'Add Profile'
+  showSiteMenu: false
+  source: null
+  sources:
+    - 'section:234d8474-d5c9-4357-90de-18d4526c68a3' # Profiles
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: null
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Entries

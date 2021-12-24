@@ -1,0 +1,10 @@
+{# @var \App\Http\Response\Pages\RenderPage\Sidebar\SidebarContentModel[] sidebarItems #}
+
+{% for contentModel in sidebarItems %}
+    <a
+        href="{{ contentModel.href }}"
+        class="{% if contentModel.active %}bg-bronze{% else%}hover:bg-bronze{% endif%} text-white group rounded-md py-2 px-2 flex items-center text-base {% if loop.first %}font-bold{% else %}font-normal{% endif %}"
+    >
+        {{ contentModel.content|smartypants }}
+    </a>
+{% endfor %}

@@ -9,7 +9,7 @@ settings:
   allowUploads: true
   allowedKinds:
     - audio
-  defaultUploadLocationSource: 'volume:fe2952ce-382a-4470-8f04-a7bdd1b48f66'
+  defaultUploadLocationSource: 'volume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
   defaultUploadLocationSubpath: ''
   limit: ''
   localizeRelations: false

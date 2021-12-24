@@ -1,0 +1,11 @@
+parameters:
+    level: max
+    treatPhpDocTypesAsCertain: false
+    ignoreErrors:
+        - '#Method .* has parameter .* with no value type specified in iterable type craft\\elements\\Entry\.#'
+        - '#Property .* type has no value type specified in iterable type craft\\elements\\Entry\.#'
+    excludes_analyse:
+
+includes:
+    - vendor/phpstan/phpstan-deprecation-rules/rules.neon
+    - vendor/phpstan/phpstan-strict-rules/rules.neon

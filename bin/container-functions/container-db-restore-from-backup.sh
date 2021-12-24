@@ -30,7 +30,7 @@ function container-db-restore-from-backup() {
     docker cp docker/localStorage/dbBackups/${secondArg} stmark-db:/dump.sql;
 
     # Clear local database in prep for new dump
-    docker exec ${interactiveArgs} stmark-db bash -c 'mysqldump -u${DB_USER} -p${DB_PASSWORD} --add-drop-table --no-data ${DB_DATABASE} | grep ^DROP | mysql --init-command=\"SET SESSION FOREIGN_KEY_CHECKS=0;\" -u${DB_USER} -p${DB_PASSWORD} ${DB_DATABASE} --force';
+    docker exec ${interactiveArgs} stmark-db bash -c 'mysqldump -u${DB_USER} -p${DB_PASSWORD} --add-drop-table --no-data ${DB_DATABASE} | grep ^DROP | mysql --init-command="SET SESSION FOREIGN_KEY_CHECKS=0;" -u${DB_USER} -p${DB_PASSWORD} ${DB_DATABASE} --force';
 
     # Import database dump into local database
     docker exec ${interactiveArgs} stmark-db bash -c 'mysql -u${DB_USER} -p${DB_PASSWORD} ${DB_DATABASE} < /dump.sql';

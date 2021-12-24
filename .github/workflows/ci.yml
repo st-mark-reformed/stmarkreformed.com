@@ -4,11 +4,53 @@ jobs:
   code-quality:
     runs-on: self-hosted
     steps:
-      # TODO: add code quality tools
       - name: Checkout repo
         uses: actions/checkout@v2
+
       - name: Build Docker image
         run: ./dev docker-build
+
+      - name: Make sure stmark-code-quality container is not running
+        run: docker rm -f stmark-code-quality &>/dev/null && echo 'Removed old container'
+
+      - name: Make sure stmark-node-code-quality container is not running
+        run: docker rm -f stmark-node-code-quality &>/dev/null && echo 'Removed old container'
+
+      - name: Create code quality docker container
+        run: docker run -d --name stmark-code-quality -w /opt/project --env ENABLE_PHP_DEV_CONFIG=1 --env ENABLE_XDEBUG=1 --env DISABLE_PHP_FPM=1 --env DISABLE_NGINX=1 registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app
+
+      - name: Install All Composer Dependencies
+        run: docker exec stmark-code-quality bash -c "composer install --no-interaction --no-progress"
+
+      - name: Run PHPUnit
+        run: docker exec stmark-code-quality bash -c "XDEBUG_MODE=coverage ./vendor/bin/phpunit"
+
+      - name: Run PHPStan
+        run: docker exec stmark-code-quality bash -c "XDEBUG_MODE=off php -d memory_limit=4G ./vendor/bin/phpstan analyse CraftFrontController.php public/index.php config src --no-progress"
+
+      - name: Run PHPCS
+        run: docker exec stmark-code-quality bash -c "XDEBUG_MODE=off php -d memory_limit=4G ./vendor/bin/phpcs"
+
+      - name: Run php-cs-fixer
+        run: docker exec stmark-code-quality bash -c "XDEBUG_MODE=off ./vendor/bin/php-cs-fixer fix -v --using-cache=no"
+
+      - name: Install node dependencies
+        run: docker run --name stmark-node-code-quality -v ${PWD}:/app -w /app node:16.10.0 bash -c "yarn" && docker rm -f stmark-node-code-quality &>/dev/null
+
+      - name: Run eslint
+        run: docker run --name stmark-node-code-quality -v ${PWD}:/app -w /app node:16.10.0 bash -c 'yarn eslint --ext .js --ext .ts --ext .jsx --ext .tsx --ext .html --ext .vue --ext .mjs --ext .twig --no-error-on-unmatched-pattern assets src' && docker rm -f stmark-node-code-quality &>/dev/null
+
+      - name: Run stylelint
+        run: docker run --name stmark-node-code-quality -v ${PWD}:/app -w /app node:16.10.0 bash -c 'yarn stylelint --allow-empty-input "assets/**/*.{css,pcss,html,twig}" "src/**/*.{css,pcss,html,twig}"' && docker rm -f stmark-node-code-quality &>/dev/null
+
+      - name: Stop and remove the code quality docker container
+        if: always()
+        run: docker rm -f stmark-code-quality &>/dev/null
+
+      - name: Stop and remove the node code quality docker container
+        if: always()
+        run: docker rm -f stmark-node-code-quality &>/dev/null
+
   trigger-deploy:
     needs: code-quality
     runs-on: self-hosted

@@ -1,0 +1,49 @@
+{# @var \App\Http\PageBuilder\BlockResponse\Leadership\LeadershipContentModel contentModel #}
+
+<div class="relative">
+    <div
+        class="relative mx-auto px-4 py-12 sm:max-w-4xl sm:px-14 sm:py-20 md:py-28 lg:py-32 text-left"
+    >
+        {% for section in contentModel.leadershipSections %}
+            {# @var \App\Http\PageBuilder\BlockResponse\Leadership\LeadershipSectionContentModel section #}
+            <div>
+                <h2 class="mt-2 text-black text-3xl font-extrabold tracking-tight sm:text-4xl">
+                    {{ section.sectionTitle|smartypants|widont }}
+                </h2>
+                {% for person in section.people %}
+                    {# @var \App\Http\PageBuilder\BlockResponse\Leadership\LeadershipPersonContentModel person #}
+                    <div class="my-10">
+                        {% if person.imageUrl %}
+                            {% set image1x = ImageHandler.resizeToWidthByQueue(
+                                person.imageUrl,
+                                128,
+                                true,
+                            ) %}
+                            {% set image2x = ImageHandler.resizeToWidthByQueue(
+                                person.imageUrl,
+                                256,
+                                true,
+                            ) %}
+                            <img
+                                src="{{ image1x }}"
+                                srcset="{{ image1x }} 1x, {{ image2x }} 2x"
+                                alt="{{ person.title }}"
+                                class="float-left w-32 mt-2 mr-4 mb-2"
+                            >
+                        {% endif %}
+                        <h3 class="text-lg font-semibold tracking-wider text-gray-900 mb-2">
+                            {{ person.title|smartypants }}
+                        </h3>
+                        <div class="prose max-w-none">
+                            {{ person.content|smartypants|widont }}
+                        </div>
+                        <span class="block clear-both"></span>
+                    </div>
+                {% endfor %}
+            </div>
+            {% if not loop.last %}
+            <hr class="w-full border border-gray-300 my-10">
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

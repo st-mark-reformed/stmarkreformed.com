@@ -7,17 +7,17 @@ searchable: '1'
 settings:
   allowedKinds:
     - audio
-  defaultUploadLocationSource: 'volume:1de9d950-2b2b-4b09-957e-cc2396093495'
+  defaultUploadLocationSource: 'volume:1de9d950-2b2b-4b09-957e-cc2396093495' # Audio
   defaultUploadLocationSubpath: ''
   limit: '1'
   localizeRelations: false
   restrictFiles: '1'
   selectionLabel: 'Add an audio file'
-  singleUploadLocationSource: 'volume:1de9d950-2b2b-4b09-957e-cc2396093495'
+  singleUploadLocationSource: 'volume:1de9d950-2b2b-4b09-957e-cc2396093495' # Audio
   singleUploadLocationSubpath: ''
   source: null
   sources:
-    - 'volume:1de9d950-2b2b-4b09-957e-cc2396093495'
+    - 'volume:1de9d950-2b2b-4b09-957e-cc2396093495' # Audio
   targetSiteId: null
   useSingleFolder: '1'
   viewMode: list

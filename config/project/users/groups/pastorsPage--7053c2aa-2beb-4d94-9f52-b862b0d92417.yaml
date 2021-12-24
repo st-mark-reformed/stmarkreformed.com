@@ -2,13 +2,13 @@ handle: pastorsPage
 name: 'Pastor''s Page'
 permissions:
   - accesscp
-  - 'createentries:c9e7c52c-9526-4153-8f74-d00efe20d1d2'
-  - 'publishentries:c9e7c52c-9526-4153-8f74-d00efe20d1d2'
-  - 'deleteentries:c9e7c52c-9526-4153-8f74-d00efe20d1d2'
-  - 'publishpeerentries:c9e7c52c-9526-4153-8f74-d00efe20d1d2'
-  - 'deletepeerentries:c9e7c52c-9526-4153-8f74-d00efe20d1d2'
-  - 'editpeerentries:c9e7c52c-9526-4153-8f74-d00efe20d1d2'
-  - 'publishpeerentrydrafts:c9e7c52c-9526-4153-8f74-d00efe20d1d2'
-  - 'deletepeerentrydrafts:c9e7c52c-9526-4153-8f74-d00efe20d1d2'
-  - 'editpeerentrydrafts:c9e7c52c-9526-4153-8f74-d00efe20d1d2'
-  - 'editentries:c9e7c52c-9526-4153-8f74-d00efe20d1d2'
+  - 'createentries:c9e7c52c-9526-4153-8f74-d00efe20d1d2' # Pastor's Page
+  - 'publishentries:c9e7c52c-9526-4153-8f74-d00efe20d1d2' # Pastor's Page
+  - 'deleteentries:c9e7c52c-9526-4153-8f74-d00efe20d1d2' # Pastor's Page
+  - 'publishpeerentries:c9e7c52c-9526-4153-8f74-d00efe20d1d2' # Pastor's Page
+  - 'deletepeerentries:c9e7c52c-9526-4153-8f74-d00efe20d1d2' # Pastor's Page
+  - 'editpeerentries:c9e7c52c-9526-4153-8f74-d00efe20d1d2' # Pastor's Page
+  - 'publishpeerentrydrafts:c9e7c52c-9526-4153-8f74-d00efe20d1d2' # Pastor's Page
+  - 'deletepeerentrydrafts:c9e7c52c-9526-4153-8f74-d00efe20d1d2' # Pastor's Page
+  - 'editpeerentrydrafts:c9e7c52c-9526-4153-8f74-d00efe20d1d2' # Pastor's Page
+  - 'editentries:c9e7c52c-9526-4153-8f74-d00efe20d1d2' # Pastor's Page

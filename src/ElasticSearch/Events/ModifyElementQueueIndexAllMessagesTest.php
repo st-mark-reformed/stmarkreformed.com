@@ -1,0 +1,113 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\ElasticSearch\Events;
+
+use App\ElasticSearch\ElasticSearchApi;
+use App\Shared\Testing\TestCase;
+use craft\base\Element;
+use craft\elements\Entry;
+use craft\models\EntryType;
+use PHPUnit\Framework\MockObject\MockObject;
+use yii\base\Event;
+use yii\base\InvalidConfigException;
+
+class ModifyElementQueueIndexAllMessagesTest extends TestCase
+{
+    private ModifyElementQueueIndexAllMessages $responder;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->responder = new ModifyElementQueueIndexAllMessages(
+            elasticSearchApi: $this->mockElasticSearchApi(),
+        );
+    }
+
+    /**
+     * @return ElasticSearchApi&MockObject
+     */
+    private function mockElasticSearchApi(): mixed
+    {
+        $api = $this->createMock(ElasticSearchApi::class);
+
+        $api->method(self::anything())->willReturnCallback(
+            function (): void {
+                $this->genericCall(object: 'ElasticSearchApi');
+            }
+        );
+
+        return $api;
+    }
+
+    /**
+     * @throws InvalidConfigException
+     */
+    public function testWhenElementIsNotEntry(): void
+    {
+        $element = $this->createMock(Element::class);
+
+        $event = $this->createMock(Event::class);
+
+        $event->sender = $element;
+
+        $this->responder->respond(event: $event);
+
+        self::assertSame([], $this->calls);
+    }
+
+    /**
+     * @throws InvalidConfigException
+     */
+    public function testWhenHandleIsNotMessages(): void
+    {
+        $type = $this->createMock(EntryType::class);
+
+        $type->handle = 'fooBar';
+
+        $element = $this->createMock(Entry::class);
+
+        $element->method('getType')->willReturn($type);
+
+        $event = $this->createMock(Event::class);
+
+        $event->sender = $element;
+
+        $this->responder->respond(event: $event);
+
+        self::assertSame([], $this->calls);
+    }
+
+    /**
+     * @throws InvalidConfigException
+     */
+    public function testWhenHandleIsMessages(): void
+    {
+        $type = $this->createMock(EntryType::class);
+
+        $type->handle = 'messages';
+
+        $element = $this->createMock(Entry::class);
+
+        $element->method('getType')->willReturn($type);
+
+        $event = $this->createMock(Event::class);
+
+        $event->sender = $element;
+
+        $this->responder->respond(event: $event);
+
+        self::assertSame(
+            [
+                [
+                    'object' => 'ElasticSearchApi',
+                    'method' => 'queueIndexAllMessages',
+                    'args' => [],
+                ],
+            ],
+            $this->calls
+        );
+    }
+}

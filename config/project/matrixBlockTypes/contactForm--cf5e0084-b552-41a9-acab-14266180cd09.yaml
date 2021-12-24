@@ -1,11 +1,11 @@
-field: c9504fe8-d2fb-458b-a2e9-f8872585919a # Standard Page Builder
+field: c9504fe8-d2fb-458b-a2e9-f8872585919a # Old Page Builder
 fieldLayouts:
   b7924ff9-7056-4ce3-892c-cbf035702abc:
     tabs:
       -
         elements:
           -
-            fieldUid: d9d26b1f-c9ea-4482-8649-b8f387765fc8
+            fieldUid: d9d26b1f-c9ea-4482-8649-b8f387765fc8 # Contact Form Details
             instructions: null
             label: null
             required: false
@@ -16,18 +16,26 @@ fieldLayouts:
         name: Content
         sortOrder: 1
 fields:
-  d9d26b1f-c9ea-4482-8649-b8f387765fc8:
-    contentColumnType: string
+  d9d26b1f-c9ea-4482-8649-b8f387765fc8: # Contact Form Details
+    columnSuffix: null
+    contentColumnType: text
     fieldGroup: null
     handle: contactFormDetails
     instructions: 'This block will list the contact form'
     name: 'Contact Form Details'
     searchable: true
     settings:
-      fieldCustomCss: ''
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: null
+      uiMode: normal
     translationKeyFormat: null
     translationMethod: none
-    type: superbig\entryinstructions\fields\EntryInstructionsField
+    type: craft\fields\PlainText
 handle: contactForm
 name: 'Contact Form'
 sortOrder: 6

@@ -1,0 +1,11 @@
+{# @var \Twig\Markup content #}
+{# @var \Twig\Markup breadcrumbs #}
+
+{% set breadcrumbs = breadcrumbs ?? '' %}
+
+{% extends 'Http/_Infrastructure/_Layout.twig' %}
+
+{% block content %}
+    {{ breadcrumbs }}
+    {{ content }}
+{% endblock %}

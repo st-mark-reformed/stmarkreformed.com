@@ -67,7 +67,7 @@ fieldLayouts:
 handle: hymnsOfTheMonth
 hasTitleField: false
 name: 'Hymns of the Month'
-section: b4830095-9974-475a-9af6-aac12c7e626d
+section: b4830095-9974-475a-9af6-aac12c7e626d # Hymns of the Month
 sortOrder: 1
 titleFormat: '{date|date(''F, Y'')}'
 titleTranslationKeyFormat: null

@@ -43,6 +43,12 @@ services:
     volumes:
       - log-volume:/var/log
 
+  redis:
+    restart: always
+
+  elasticsearch:
+    restart: always
+
 volumes:
   cp-resources-volume:
   image-cache-volume:

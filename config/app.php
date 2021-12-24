@@ -1,48 +1,39 @@
 <?php
+
 declare(strict_types=1);
 
-use src\Module;
-use craft\helpers\App;
-use src\CustomErrorHandler;
-use craft\mail\transportadapters\Smtp;
+use App\CustomErrorHandler;
+use App\Module;
+use craft\behaviors\SessionBehavior;
+use yii\redis\Cache;
+use yii\redis\Connection;
+use yii\redis\Session;
 
 $config = [
     'modules' => [
         'dev' => Module::class,
     ],
-    'bootstrap' => [
-        'dev'
-    ],
+    'bootstrap' => ['dev'],
     'components' => [
-        'mailer' => function () {
-            $settings = App::mailSettings();
-
-            $settings->fromEmail = 'info@stmarkreformed.com';
-
-            $settings->fromName = 'St. Mark Reformed Church';
-
-            $settings->template = '';
-
-            $settings->transportType = Smtp::class;
-
-            $settings->transportSettings = [
-                'encryptionMethod' => 'tls',
-                'host' => 'smtp.mandrillapp.com',
-                'port' => '587',
-                'timeout' => '30',
-                'useAuthentication' => '1',
-                'username' => 'info@buzzingpixel.com',
-                'password' => getenv('SMTP_PASSWORD'),
-            ];
-
-            $config = App::mailerConfig($settings);
-
-            return Craft::createObject($config);
-        },
+        'redis' => [
+            'class' => Connection::class,
+            'hostname' => (string) getenv('REDIS_HOST'),
+            // 'port' => getenv('REDIS_PORT'),
+            // 'password' => getenv('REDIS_PASSWORD'),
+        ],
+        'cache' => [
+            'class' => Cache::class,
+            'defaultDuration' => 86400,
+            'keyPrefix' => getenv('CRAFT_REDIS_KEY_PREFIX'),
+        ],
+        'session' => [
+            'class' => Session::class,
+            'as session' => SessionBehavior::class,
+        ],
     ],
 ];
 
-if (getenv('DEV_MODE') === 'true' && strtolower(PHP_SAPI) !== 'cli') {
+if ((bool) getenv('DEV_MODE') && mb_strtolower(PHP_SAPI) !== 'cli') {
     $config['components']['errorHandler'] = [
         'class' => CustomErrorHandler::class,
     ];

@@ -1,17 +1,21 @@
+columnSuffix: null
 contentColumnType: string
 fieldGroup: a3adb82d-453d-4ae5-89d5-0f9b818b8d60 # Messages
 handle: speaker
 instructions: ''
-name: Speaker
-searchable: '1'
+name: 'Speaker (old, based on User)'
+searchable: true
 settings:
+  allowSelfRelations: false
   limit: ''
   localizeRelations: false
   selectionLabel: 'Add a speaker'
+  showSiteMenu: true
   source: null
   sources:
     - 'group:ee405175-77ba-4896-82e4-85669574f92a'
   targetSiteId: null
+  validateRelatedElements: false
   viewMode: null
 translationKeyFormat: null
 translationMethod: site

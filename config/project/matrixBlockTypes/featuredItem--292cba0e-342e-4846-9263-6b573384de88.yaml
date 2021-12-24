@@ -1,11 +1,11 @@
-field: c9504fe8-d2fb-458b-a2e9-f8872585919a # Standard Page Builder
+field: c9504fe8-d2fb-458b-a2e9-f8872585919a # Old Page Builder
 fieldLayouts:
   92072b29-a87d-41b8-b59d-c48e019930e9:
     tabs:
       -
         elements:
           -
-            fieldUid: 07efee91-98b9-462b-824d-885cbf31780d
+            fieldUid: 07efee91-98b9-462b-824d-885cbf31780d # Latest Types
             instructions: null
             label: null
             required: false
@@ -16,7 +16,8 @@ fieldLayouts:
         name: Content
         sortOrder: 1
 fields:
-  07efee91-98b9-462b-824d-885cbf31780d:
+  07efee91-98b9-462b-824d-885cbf31780d: # Latest Types
+    columnSuffix: null
     contentColumnType: string
     fieldGroup: null
     handle: latestTypes
