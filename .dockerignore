@@ -4,7 +4,8 @@ docker/localStorage/*
 fabCache/*
 filesAboveWebroot/*
 node_modules/*
-public/assets/*
+public/assets/css/*
+public/assets/js/*
 public/cache/*
 public/cpresources/*
 public/files/*
