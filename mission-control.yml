@@ -79,10 +79,12 @@ pipelineItems:
   - description: "Run various after scripts"
     script: |
       cd /root/stmarkreformed.com;
-      ./dev container-app php craft migrate/all --interactive=0;
       ./dev container-app php craft project-config/apply --interactive=0;
+      ./dev container-app php craft migrate/all --interactive=0;
       ./dev container-app php craft cache/flush-all --interactive=0;
-      ./dev container-app php craft craft-static/cache/purge --interactive=0;
+      ./dev container-app php craft clear-caches/compiled-templates --interactive=0;
+      ./dev container-app php craft clear-caches/data --interactive=0;
+      ./dev container-app php craft clear-caches/static-caches --interactive=0;
     runOnServers:
       - buzzingpixel-do-buzzingpixel-docker
 
