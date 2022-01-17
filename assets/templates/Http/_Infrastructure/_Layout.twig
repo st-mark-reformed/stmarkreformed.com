@@ -30,7 +30,7 @@
     <div class="bg-white">
         <div class="relative overflow-hidden">
             <div
-                class="hero-background-image bg-bronze bg-cover bg-no-repeat bg-center bg-fixed relative"
+                class="hero-background-image bg-bronze bg-cover bg-no-repeat bg-center bg-fixed relative z-50"
             >
                 {% if hero.heroOverlayOpacity > 0 %}
                     <div
@@ -228,7 +228,7 @@
                     </div>
                 </div>
             </div>
-            <main>
+            <main class="relative z-10">
                 {% block content %}
                     <div class="p-10">
                         <div class="border-4 border-dashed border-gray-200 rounded-lg h-96"></div>
