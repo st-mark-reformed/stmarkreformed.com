@@ -60,9 +60,9 @@
     {{ ViewManager.renderQueuedCss }}
 </head>
 <body class="bg-bronze">
-    <main>
+    <div>
         {{ block('skeletonContent') }}
-    </main>
+    </div>
 
     {% for jsFile in meta.jsFiles %}
         {% if jsFile is iterable %}
