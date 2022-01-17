@@ -228,7 +228,11 @@ class MessagesRssFeedFactoryTest extends TestCase
         assert($call5Arg1 instanceof SimpleXMLElement);
 
         self::assertSame(
-            '<channel><atom:link href="TestSiteUrlReturn" type="application/rss+xml" rel="self"/><title>Messages From St. Mark Reformed Church</title><link>TestSiteUrlReturn</link><pubDate>Wed, 27 Jan 1982 10:00:10 +0000</pubDate><description>Serving Christ and the world through liturgy, mission, and community.</description><itunes:summary>Serving Christ and the world through liturgy, mission, and community.</itunes:summary><language>en-US</language><itunes:author>St. Mark Reformed Church</itunes:author><image><url>TestSiteUrlReturn</url></image><itunes:image href="TestSiteUrlReturn"/><itunes:owner><itunes:name>St. Mark Reformed Church</itunes:name><itunes:email>info@stmarkreformed.com</itunes:email></itunes:owner><itunes:category text="Religion &amp;amp; Spirituality"/><itunes:explicit>no</itunes:explicit><copyright>Copyright 2021 St. Mark Reformed Church</copyright></channel>',
+            str_replace(
+                '{{YEAR}}',
+                (new DateTimeImmutable())->format('Y'),
+                '<channel><atom:link href="TestSiteUrlReturn" type="application/rss+xml" rel="self"/><title>Messages From St. Mark Reformed Church</title><link>TestSiteUrlReturn</link><pubDate>Wed, 27 Jan 1982 10:00:10 +0000</pubDate><description>Serving Christ and the world through liturgy, mission, and community.</description><itunes:summary>Serving Christ and the world through liturgy, mission, and community.</itunes:summary><language>en-US</language><itunes:author>St. Mark Reformed Church</itunes:author><image><url>TestSiteUrlReturn</url></image><itunes:image href="TestSiteUrlReturn"/><itunes:owner><itunes:name>St. Mark Reformed Church</itunes:name><itunes:email>info@stmarkreformed.com</itunes:email></itunes:owner><itunes:category text="Religion &amp;amp; Spirituality"/><itunes:explicit>no</itunes:explicit><copyright>Copyright {{YEAR}} St. Mark Reformed Church</copyright></channel>',
+            ),
             $call5Arg1->saveXML(),
         );
 
@@ -253,7 +257,11 @@ class MessagesRssFeedFactoryTest extends TestCase
         assert($call7Arg1 instanceof SimpleXMLElement);
 
         self::assertSame(
-            '<channel><atom:link href="TestSiteUrlReturn" type="application/rss+xml" rel="self"/><title>Messages From St. Mark Reformed Church</title><link>TestSiteUrlReturn</link><pubDate>Wed, 27 Jan 1982 10:00:10 +0000</pubDate><description>Serving Christ and the world through liturgy, mission, and community.</description><itunes:summary>Serving Christ and the world through liturgy, mission, and community.</itunes:summary><language>en-US</language><itunes:author>St. Mark Reformed Church</itunes:author><image><url>TestSiteUrlReturn</url></image><itunes:image href="TestSiteUrlReturn"/><itunes:owner><itunes:name>St. Mark Reformed Church</itunes:name><itunes:email>info@stmarkreformed.com</itunes:email></itunes:owner><itunes:category text="Religion &amp;amp; Spirituality"/><itunes:explicit>no</itunes:explicit><copyright>Copyright 2021 St. Mark Reformed Church</copyright></channel>',
+            str_replace(
+                '{{YEAR}}',
+                (new DateTimeImmutable())->format('Y'),
+                '<channel><atom:link href="TestSiteUrlReturn" type="application/rss+xml" rel="self"/><title>Messages From St. Mark Reformed Church</title><link>TestSiteUrlReturn</link><pubDate>Wed, 27 Jan 1982 10:00:10 +0000</pubDate><description>Serving Christ and the world through liturgy, mission, and community.</description><itunes:summary>Serving Christ and the world through liturgy, mission, and community.</itunes:summary><language>en-US</language><itunes:author>St. Mark Reformed Church</itunes:author><image><url>TestSiteUrlReturn</url></image><itunes:image href="TestSiteUrlReturn"/><itunes:owner><itunes:name>St. Mark Reformed Church</itunes:name><itunes:email>info@stmarkreformed.com</itunes:email></itunes:owner><itunes:category text="Religion &amp;amp; Spirituality"/><itunes:explicit>no</itunes:explicit><copyright>Copyright {{YEAR}} St. Mark Reformed Church</copyright></channel>',
+            ),
             $call7Arg1->saveXML(),
         );
 
