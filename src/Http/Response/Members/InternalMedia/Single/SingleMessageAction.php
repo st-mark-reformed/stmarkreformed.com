@@ -9,11 +9,15 @@ use App\Http\Components\Link\Link;
 use App\Http\Entities\Meta;
 use App\Http\PageBuilder\Shared\AudioPlayer\AudioPlayerContentModelFactory;
 use App\Http\PageBuilder\Shared\AudioPlayer\RenderAudioPlayerFromContentModel;
+use App\Http\RouteMiddleware\RequireLogIn\RequireLogInMiddleware;
 use App\Http\Shared\RouteParamsHandler;
 use BuzzingPixel\SlimBridge\ElementSetRoute\RouteParams;
+use BuzzingPixel\SlimBridge\ElementSetRoute\RouteParsing\ParsedRoute;
+use BuzzingPixel\SlimBridge\ElementSetRoute\SetRouteFromParsed\RoutingCallbackContract;
 use craft\errors\InvalidFieldException;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
+use Slim\Interfaces\RouteInterface;
 use Twig\Environment as TwigEnvironment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -21,8 +25,19 @@ use Twig\Error\SyntaxError;
 use Twig\Markup;
 use yii\base\InvalidConfigException;
 
-class SingleMessageAction
+class SingleMessageAction implements RoutingCallbackContract
 {
+    public static function routingCallback(
+        RouteInterface $route,
+        ParsedRoute $parsedRoute
+    ): void {
+        $route->setArgument(
+            'pageTitle',
+            'Log in to view the members area',
+        )
+        ->add(RequireLogInMiddleware::class);
+    }
+
     public function __construct(
         private TwigEnvironment $twig,
         private HeroFactory $heroFactory,
