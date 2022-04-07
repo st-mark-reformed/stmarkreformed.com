@@ -1,0 +1,20 @@
+allowRepeatingEvents: true
+color: '#C024EA'
+description: 'The default calendar'
+descriptionFieldHandle: null
+fieldLayout: null
+handle: default
+hasTitleField: true
+icsHash: null
+icsTimezone: floating
+locationFieldHandle: null
+name: Default
+siteSettings:
+  13e45dd5-a7bd-405b-bb0b-e493d64f95ee:
+    enabledByDefault: true
+    hasUrls: null
+    siteId: 94e92402-bc7d-4413-bc65-a236d81d53aa # St. Mark Reformed Church
+    template: null
+    uriFormat: null
+titleFormat: null
+titleLabel: Title

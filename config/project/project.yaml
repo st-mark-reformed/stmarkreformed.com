@@ -1,4 +1,4 @@
-dateModified: 1640323744
+dateModified: 1649371275
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -85,6 +85,7 @@ meta:
     0214b210-9d5a-47f7-8e2c-1dc100c5a952: Date # Date
     234d8474-d5c9-4357-90de-18d4526c68a3: Profiles # Profiles
     237c1074-3fbf-4e4e-a85b-b9c6af4a9732: CTAs # CTAs
+    237f9d52-9653-4a6e-8ffc-ab1b6fb27d28: Default # Default
     261a469a-71d2-46af-8ca5-7b25e2a168f1: Pages # Pages
     292cba0e-342e-4846-9263-6b573384de88: 'Feature Latest' # Feature Latest
     0363b404-b48e-4cdb-8a99-253db50b2d17: 'Select a series to display' # Select a series to display
@@ -185,6 +186,28 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 1.0.0
+  calendar:
+    edition: lite
+    enabled: true
+    licenseKey: 1Q0DKY4178R8CJXBBFOZCPQS
+    schemaVersion: 3.3.2
+    settings:
+      allDay: false
+      authoredEventEditOnly: ''
+      defaultView: month
+      demoBannerDisabled: ''
+      descriptionFieldHandle: null
+      eventDuration: 60
+      firstDayOfWeek: '0'
+      guestAccess: null
+      locationFieldHandle: null
+      overlapThreshold: 5
+      pluginName: null
+      quickCreateEnabled: '1'
+      showDisabledEvents: '1'
+      showMiniCal: '1'
+      timeFormat: 12-hour
+      timeInterval: 30
   ckeditor:
     enabled: '1'
     licenseKey: null
