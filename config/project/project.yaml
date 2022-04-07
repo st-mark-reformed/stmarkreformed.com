@@ -1,4 +1,4 @@
-dateModified: 1649371612
+dateModified: 1649372975
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -123,6 +123,7 @@ meta:
     a3adb82d-453d-4ae5-89d5-0f9b818b8d60: Messages # Messages
     a9f088b8-989e-4f2b-81d0-3724c44b9447: Pre-Headline # Pre-Headline
     a3358e0d-ff29-44f7-be26-bfe1bad34889: 'Background Color' # Background Color
+    a4487a6f-eaef-4592-8d8f-0c429f677f5d: Location # Location
     a5663b9c-311e-405f-a780-b856c4cd8464: 'SEO Title' # SEO Title
     a9201e3f-ed7d-463f-b19f-20f487917a4a: Longitude # Longitude
     a71416ac-225c-4d76-acab-67dc94ad8809: 'Featured Sermon Series' # Featured Sermon Series
@@ -166,6 +167,7 @@ meta:
     e2740f44-01f5-47b5-910c-1a64d2a306b7: Messages # Messages
     e13796c0-a36c-490c-bf23-eb7f25d5465f: 'Hero Subheading' # Hero Subheading
     e7369087-a5e9-4f71-85ba-d13b9ef55293: 'Contact Form Recipients' # Contact Form Recipients
+    ea08bf91-ef17-4bad-8f89-c45105547c78: 'Content Manager' # Content Manager
     eb2968df-4b48-4a76-b129-3a2011ed1b82: Content # Content
     ec8b995b-78c1-4e7e-a2ba-cab6d24be004: 'Leadership Position' # Leadership Position
     ecdcacd7-286c-4761-8dbd-ecbbbe5921cf: 'No top space' # No top space

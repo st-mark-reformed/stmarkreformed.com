@@ -2,6 +2,7 @@ description: ''
 handle: contentManager
 name: 'Content Manager'
 permissions:
+  - accessplugin-calendar
   - accesscp
   - registerusers
   - moderateusers
@@ -85,8 +86,6 @@ permissions:
   - 'editglobalset:84f0c3bc-62d3-4031-83c9-053e7a1fc6b2' # General
   - 'editcategories:8944d860-7b65-43bb-b62e-9750d6416ebc' # Internal Message Series
   - 'editcategories:3997eb97-922e-4368-8704-2c22cb7dcb1e' # Message Series
-  - 'editcategories:0a59f674-1687-4158-897b-c69d0ed334ce'
-  - 'editcategories:058c9a87-ef94-4f63-bab6-4bca4d0296fb'
   - 'saveassetinvolume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
   - 'createfoldersinvolume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
   - 'deletefilesandfoldersinvolume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
@@ -131,3 +130,6 @@ permissions:
   - 'editpeerimagesinvolume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
   - 'viewpeerfilesinvolume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
   - 'viewvolume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
+  - 'calendar-manageeventsfor:all'
+  - 'calendar-manageeventsfor:237f9d52-9653-4a6e-8ffc-ab1b6fb27d28' # St. Mark Events
+  - calendar-manageevents

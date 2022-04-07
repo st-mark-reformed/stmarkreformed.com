@@ -2,12 +2,27 @@ allowRepeatingEvents: true
 color: '#c31132'
 description: 'The calendar for St. mark Events'
 descriptionFieldHandle: '0'
-fieldLayout: null
+fieldLayout:
+  tabs:
+    -
+      elements:
+        -
+          fieldUid: a4487a6f-eaef-4592-8d8f-0c429f677f5d # Location
+          instructions: null
+          label: null
+          required: false
+          tip: null
+          type: craft\fieldlayoutelements\CustomField
+          warning: null
+          width: 100
+      name: Details
+      sortOrder: 1
+  uid: 0504f69d-bf43-4817-9f82-4b04ea7aec3f
 handle: stMarkEvents
 hasTitleField: true
 icsHash: null
 icsTimezone: floating
-locationFieldHandle: '0'
+locationFieldHandle: location
 name: 'St. Mark Events'
 siteSettings:
   13e45dd5-a7bd-405b-bb0b-e493d64f95ee:
