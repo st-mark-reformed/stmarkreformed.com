@@ -1,4 +1,4 @@
-dateModified: 1649371275
+dateModified: 1649371489
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -85,7 +85,7 @@ meta:
     0214b210-9d5a-47f7-8e2c-1dc100c5a952: Date # Date
     234d8474-d5c9-4357-90de-18d4526c68a3: Profiles # Profiles
     237c1074-3fbf-4e4e-a85b-b9c6af4a9732: CTAs # CTAs
-    237f9d52-9653-4a6e-8ffc-ab1b6fb27d28: Default # Default
+    237f9d52-9653-4a6e-8ffc-ab1b6fb27d28: 'St. Mark Events' # St. Mark Events
     261a469a-71d2-46af-8ca5-7b25e2a168f1: Pages # Pages
     292cba0e-342e-4846-9263-6b573384de88: 'Feature Latest' # Feature Latest
     0363b404-b48e-4cdb-8a99-253db50b2d17: 'Select a series to display' # Select a series to display
@@ -195,7 +195,7 @@ plugins:
       allDay: false
       authoredEventEditOnly: ''
       defaultView: month
-      demoBannerDisabled: ''
+      demoBannerDisabled: true
       descriptionFieldHandle: null
       eventDuration: 60
       firstDayOfWeek: '0'
