@@ -1,11 +1,11 @@
 field: a7845568-a0c6-44e5-8b75-3ef735f6ef8d # Page Builder
 fieldLayouts:
-  7091e0b0-79b9-4b20-ad14-0ad0173958e6:
+  f64ce190-4cd5-469c-8a93-24fc5dfb9559:
     tabs:
       -
         elements:
           -
-            fieldUid: d4e3e352-d099-4aab-9f65-175196a92487 # Heading
+            fieldUid: b0f85794-2ed8-4526-977b-0099ead28ee1 # Heading
             instructions: null
             label: null
             required: false
@@ -14,7 +14,7 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            fieldUid: fab4b26c-20f2-4f6b-a4f9-93c660dfcd40 # Sub Heading
+            fieldUid: 6d75b4fe-9798-4b39-84b6-a6164b04ce9c # Sub Heading
             instructions: null
             label: null
             required: false
@@ -25,27 +25,7 @@ fieldLayouts:
         name: Content
         sortOrder: 1
 fields:
-  d4e3e352-d099-4aab-9f65-175196a92487: # Heading
-    columnSuffix: null
-    contentColumnType: text
-    fieldGroup: null
-    handle: heading
-    instructions: ''
-    name: Heading
-    searchable: false
-    settings:
-      byteLimit: null
-      charLimit: null
-      code: ''
-      columnType: null
-      initialRows: '4'
-      multiline: ''
-      placeholder: null
-      uiMode: normal
-    translationKeyFormat: null
-    translationMethod: none
-    type: craft\fields\PlainText
-  fab4b26c-20f2-4f6b-a4f9-93c660dfcd40: # Sub Heading
+  6d75b4fe-9798-4b39-84b6-a6164b04ce9c: # Sub Heading
     columnSuffix: null
     contentColumnType: text
     fieldGroup: null
@@ -65,6 +45,26 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
-handle: latestGalleries
-name: 'Latest Galleries'
-sortOrder: 4
+  b0f85794-2ed8-4526-977b-0099ead28ee1: # Heading
+    columnSuffix: null
+    contentColumnType: text
+    fieldGroup: null
+    handle: heading
+    instructions: ''
+    name: Heading
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: null
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+handle: upcomingEvents
+name: 'Upcoming Events'
+sortOrder: 3

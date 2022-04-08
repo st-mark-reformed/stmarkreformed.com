@@ -24,6 +24,7 @@ return [
                 [
                     'label' => 'Features',
                     'types' => [
+                        'latestEvents',
                         'latestGalleries',
                         'featuredSermonSeries',
                     ],

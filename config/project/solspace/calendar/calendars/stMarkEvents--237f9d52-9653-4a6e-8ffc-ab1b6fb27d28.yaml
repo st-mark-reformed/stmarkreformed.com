@@ -7,6 +7,15 @@ fieldLayout:
     -
       elements:
         -
+          fieldUid: e4b39f1c-8120-4ef4-afaf-01d4f8d6e87f # Location Short
+          instructions: null
+          label: null
+          required: false
+          tip: null
+          type: craft\fieldlayoutelements\CustomField
+          warning: null
+          width: 100
+        -
           fieldUid: a4487a6f-eaef-4592-8d8f-0c429f677f5d # Location
           instructions: null
           label: null

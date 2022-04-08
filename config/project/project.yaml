@@ -1,4 +1,4 @@
-dateModified: 1649372975
+dateModified: 1649523292
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -41,6 +41,7 @@ meta:
     6b75c664-339f-4a28-b126-60b34b55efce: 'Twitter URL' # Twitter URL
     6baa0e06-2c61-4aa9-bb22-249b9b32da5c: 'Files Above Webroot' # Files Above Webroot
     6bc8ff92-bd06-4bc8-aa10-5eb44afa22cf: 'Instagram URL' # Instagram URL
+    6d75b4fe-9798-4b39-84b6-a6164b04ce9c: 'Sub Heading' # Sub Heading
     6e55c0af-73fd-4439-b563-1ace6387eda8: 'Stripe Form' # Stripe Form
     6e6660c3-e157-450f-a37e-ac8464ce38ff: Tags # Tags
     6f396dab-91de-4f1d-8d0a-23fc18ae1ba4: CTA # CTA
@@ -58,6 +59,7 @@ meta:
     16af453e-7756-4645-b749-cdee119c0d14: Address # Address
     16f9c03e-c104-4d75-84e9-479cd71b1d32: 'Gallery Showcase' # Gallery Showcase
     18b18430-9890-470a-8f25-961f5dbc13eb: 'Featured Sermon Series' # Featured Sermon Series
+    20cb6e94-520d-45e9-8866-547a6cac6f1f: 'Upcoming Events' # Upcoming Events
     26a56254-9393-462d-97ff-ed3bd41ec91a: News # News
     27b7be51-9d75-42da-9b5f-b2e1fb678ed6: SEO # SEO
     29f855c0-8761-4086-ae93-dcda8685d73c: 'St. Mark Reformed Church' # St. Mark Reformed Church
@@ -130,6 +132,7 @@ meta:
     a7845568-a0c6-44e5-8b75-3ef735f6ef8d: 'Page Builder' # Page Builder
     aadb813b-3e01-45db-85cb-3ef90a02a7b9: CTAs # CTAs
     abf9672d-3bab-4e78-a495-5f5b79756405: 'Default Hero Image' # Default Hero Image
+    b0f85794-2ed8-4526-977b-0099ead28ee1: Heading # Heading
     b1b4e23d-e236-44f0-8170-0170b4447e96: 'Latest Entry At' # Latest Entry At
     b149c792-7a23-44b8-b08b-12fd4059475d: 'Primary Image' # Primary Image
     b153d5f7-fd35-4731-9437-eb1333cdc3e2: 'SEO Description' # SEO Description
@@ -159,6 +162,7 @@ meta:
     df286b48-0507-4f99-9892-1f542903143c: Heading # Heading
     e2a3e24e-58ee-4326-8fc2-163003e8205b: 'Gallery Showcase Notes' # Gallery Showcase Notes
     e2b3f41d-b5fb-443c-988f-96c387bfa764: 'Number to Showcase' # Number to Showcase
+    e4b39f1c-8120-4ef4-afaf-01d4f8d6e87f: 'Location Short' # Location Short
     e6c814e5-440d-4c5f-baf9-e2dc8e69411d: 'Hero Darkening Overlay Opacity' # Hero Darkening Overlay Opacity
     e7ecd57e-c79d-4e1d-9c73-e34d3f1fb67b: 'Sermon Series' # Sermon Series
     e59c60ae-fe1d-4183-80c1-d6ed6357ab7e: 'Pastor''s Page' # Pastor's Page

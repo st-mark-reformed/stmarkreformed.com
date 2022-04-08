@@ -157,6 +157,7 @@ fields:
       maxRows: ''
       minRows: ''
       placeholderKey: null
+      propagationKeyFormat: null
       propagationMethod: all
       selectionLabel: 'Add CTA'
       staticField: ''
@@ -266,4 +267,4 @@ fields:
     type: craft\fields\PlainText
 handle: basicBlock
 name: 'Basic Block'
-sortOrder: 5
+sortOrder: 6

@@ -133,6 +133,16 @@ fields:
                 -
                   - allowAliases
                   - ''
+          -
+            - solspaceCalendar-event
+            -
+              __assoc__:
+                -
+                  - sources
+                  - '*'
+                -
+                  - allowCustomQuery
+                  - ''
     translationKeyFormat: null
     translationMethod: none
     type: typedlinkfield\fields\LinkField
@@ -167,4 +177,4 @@ fields:
     type: craft\redactor\Field
 handle: contactForm
 name: 'Contact Form'
-sortOrder: 8
+sortOrder: 9
