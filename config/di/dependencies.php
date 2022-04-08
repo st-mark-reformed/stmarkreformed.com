@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 return array_merge(
     require __DIR__ . '/configs/cache.php',
+    require __DIR__ . '/configs/calendars.php',
     require __DIR__ . '/configs/craft.php',
     require __DIR__ . '/configs/elastic-search.php',
     require __DIR__ . '/configs/email.php',

@@ -206,6 +206,14 @@
       <path value="$PROJECT_DIR$/vendor/ezimuel/guzzlestreams" />
       <path value="$PROJECT_DIR$/vendor/ezimuel/ringphp" />
       <path value="$PROJECT_DIR$/vendor/elasticsearch/elasticsearch" />
+      <path value="$PROJECT_DIR$/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/property-info" />
+      <path value="$PROJECT_DIR$/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/vendor/symfony/property-access" />
+      <path value="$PROJECT_DIR$/vendor/nesbot/carbon" />
+      <path value="$PROJECT_DIR$/vendor/rlanvin/php-rrule" />
+      <path value="$PROJECT_DIR$/vendor/solspace/craft3-calendar" />
+      <path value="$PROJECT_DIR$/vendor/solspace/craft3-commons" />
     </include_path>
   </component>
   <component name="PhpProjectServersManager">

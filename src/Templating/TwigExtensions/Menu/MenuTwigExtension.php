@@ -37,6 +37,10 @@ class MenuTwigExtension extends AbstractExtension
                 href: '/ministries',
             ),
             new MenuItem(
+                content: 'Calendar',
+                href: '/calendar',
+            ),
+            new MenuItem(
                 content: 'About',
                 href: '/about',
                 submenu: [
