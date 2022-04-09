@@ -1,4 +1,4 @@
-allowRepeatingEvents: true
+allowRepeatingEvents: '1'
 color: '#c31132'
 description: 'The calendar for St. mark Events'
 descriptionFieldHandle: '0'
@@ -28,15 +28,15 @@ fieldLayout:
       sortOrder: 1
   uid: 0504f69d-bf43-4817-9f82-4b04ea7aec3f
 handle: stMarkEvents
-hasTitleField: true
-icsHash: null
+hasTitleField: '1'
+icsHash: 356a192b7913b04c54574d18c28d46e6395428ab6251d16e388c94.46146319
 icsTimezone: floating
 locationFieldHandle: location
 name: 'St. Mark Events'
 siteSettings:
   13e45dd5-a7bd-405b-bb0b-e493d64f95ee:
-    enabledByDefault: true
-    hasUrls: false
+    enabledByDefault: '1'
+    hasUrls: '0'
     siteId: 94e92402-bc7d-4413-bc65-a236d81d53aa # St. Mark Reformed Church
     template: null
     uriFormat: null
