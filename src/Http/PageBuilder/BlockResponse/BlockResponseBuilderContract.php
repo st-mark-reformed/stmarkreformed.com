@@ -14,6 +14,7 @@ use App\Http\PageBuilder\BlockResponse\LatestGalleries\LatestGalleries;
 use App\Http\PageBuilder\BlockResponse\Leadership\Leadership;
 use App\Http\PageBuilder\BlockResponse\SimpleCta\SimpleCta;
 use App\Http\PageBuilder\BlockResponse\StripePaymentForm\StripePaymentForm;
+use App\Http\PageBuilder\BlockResponse\UpcomingEvents\UpcomingEvents;
 use craft\elements\MatrixBlock;
 
 interface BlockResponseBuilderContract
@@ -29,6 +30,7 @@ interface BlockResponseBuilderContract
         'leadership' => Leadership::class,
         'simpleCta' => SimpleCta::class,
         'stripePaymentForm' => StripePaymentForm::class,
+        'upcomingEvents' => UpcomingEvents::class,
     ];
 
     /**
