@@ -9,11 +9,24 @@
 {% block content %}
     <div class="p-4 pb-10 max-w-1800px mx-auto">
         <div class="lg:flex lg:h-full lg:flex-col">
-            <header class="relative z-20 flex items-center justify-between border-b border-gray-200 py-4 lg:flex-none">
-                <h1 class="text-lg font-semibold text-gray-900">
+            <header class="relative z-20 sm:flex items-center justify-between border-b border-gray-200 py-4 lg:flex-none">
+                <h1 class="mb-4 sm:mb-0 text-lg font-semibold text-gray-900">
                     <time datetime="{{ monthString }}">{{ dateHeading }}</time>
                 </h1>
                 <div class="flex items-center">
+                    <div class="mr-4 items-center flex">
+                        <div class="relative">
+                            <a
+                                href="/?p=actions/calendar/api/ics&hash=356a192b7913b04c54574d18c28d46e6395428ab6251d16e388c94.46146319.ics"
+                                type="button"
+                                class="flex items-center rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
+                                id="menu-button"
+                                title="Copy and paste link into the subscribe action of your calendar"
+                            >
+                                Subscribe
+                            </a>
+                        </div>
+                    </div>
                     {% if currentMonthLink %}
                         <div class="mr-4 items-center flex">
                             <div class="relative">
@@ -22,8 +35,6 @@
                                     type="button"
                                     class="flex items-center rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
                                     id="menu-button"
-                                    aria-expanded="false"
-                                    aria-haspopup="true"
                                 >
                                     Current Month
                                 </a>
