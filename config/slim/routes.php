@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\PageBuilder\BlockResponse\ContactForm\PostSubmission\PostSubmissionAction;
 use App\Http\Response\Calendar\GetCalendarAction;
 use App\Http\Response\Calendar\GetCalendarIndexAction;
+use App\Http\Response\Calendar\GetIcsAction;
 use App\Http\Response\LogIn\PostLogInAction;
 use App\Http\Response\Media\Galleries\PaginatedGalleriesListAction;
 use App\Http\Response\Media\Messages\PaginatedMessagesListAction;
@@ -76,4 +77,6 @@ return static function (App $app): void {
     GetCalendarIndexAction::addRoute(routeCollector: $app);
 
     GetCalendarAction::addRoute(routeCollector: $app);
+
+    GetIcsAction::addRoute(routeCollector: $app);
 };

@@ -3,6 +3,7 @@
 {# @var \App\Http\Response\Calendar\MonthDayCollection monthDays #}
 {# @var \App\Http\Response\Calendar\EventCollection monthEventsOnly #}
 {# @var null|string currentMonthLink #}
+{# @var string icsUrl #}
 
 {% extends 'Http/_Infrastructure/_Layout.twig' %}
 
@@ -13,20 +14,20 @@
                 <h1 class="mb-4 sm:mb-0 text-lg font-semibold text-gray-900">
                     <time datetime="{{ monthString }}">{{ dateHeading }}</time>
                 </h1>
-                {#<div class="flex items-center">
+                <div class="flex items-center">
                     <div class="mr-4 items-center flex">
                         <div class="relative">
                             <a
-                                href="/?p=actions/calendar/api/ics&hash=356a192b7913b04c54574d18c28d46e6395428ab6251d16e388c94.46146319.ics"
+                                href="{{ icsUrl }}"
                                 type="button"
-                                class="flex items-center rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
+                                class="flex items-center rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 select-none"
                                 id="menu-button"
                                 title="Copy and paste link into the subscribe action of your calendar"
                             >
                                 Subscribe
                             </a>
                         </div>
-                    </div>#}
+                    </div>
                     {% if currentMonthLink %}
                         <div class="mr-4 items-center flex">
                             <div class="relative">

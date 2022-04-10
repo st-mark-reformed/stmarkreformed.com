@@ -8,15 +8,22 @@ use App\Http\Components\Hero\HeroFactory;
 use App\Http\Entities\Meta;
 use App\Shared\ElementQueryFactories\CalendarEventQueryFactory;
 use Carbon\Carbon;
+use craft\errors\InvalidFieldException;
 use DateInterval;
 use DateTimeImmutable;
 use DateTimeZone;
+use Exception;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Exception\HttpNotFoundException;
 use Slim\Interfaces\RouteCollectorProxyInterface;
 use Solspace\Calendar\Elements\Event;
+use Solspace\Calendar\Services\CalendarsService;
 use Twig\Environment as TwigEnvironment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
+use yii\base\InvalidConfigException;
 
 use function assert;
 use function mb_strlen;
@@ -32,15 +39,29 @@ class GetCalendarAction
         );
     }
 
+    /**
+     * @phpstan-ignore-next-line
+     */
     public function __construct(
         private TwigEnvironment $twig,
         private HeroFactory $heroFactory,
         private MonthDayFactory $monthDayFactory,
+        /** @phpstan-ignore-next-line */
+        private CalendarsService $calendarsService,
         private MonthRangeFactory $monthRangeFactory,
         private CalendarEventQueryFactory $calendarEventQueryFactory,
     ) {
     }
 
+    /**
+     * @throws HttpNotFoundException
+     * @throws SyntaxError
+     * @throws InvalidConfigException
+     * @throws RuntimeError
+     * @throws InvalidFieldException
+     * @throws LoaderError
+     * @throws Exception
+     */
     public function __invoke(
         ServerRequestInterface $request,
         ResponseInterface $response,
@@ -159,6 +180,7 @@ class GetCalendarAction
                 'nextMonthLink' => '/calendar/' . $nextMonth->format(
                     'Y/m',
                 ),
+                'icsUrl' => '/calendar/ics',
             ],
         ));
 

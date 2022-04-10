@@ -19,10 +19,6 @@ class GetCalendarIndexAction
         $routeCollector->get('/calendar', self::class);
     }
 
-    public function __construct()
-    {
-    }
-
     /**
      * @throws Exception
      */
