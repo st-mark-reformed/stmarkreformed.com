@@ -30,7 +30,7 @@ fieldLayout:
 handle: stMarkEvents
 hasTitleField: true
 icsHash: 356a192b7913b04c54574d18c28d46e6395428ab6251d16e388c94.46146319
-icsTimezone: America/Chicago
+icsTimezone: UTC
 locationFieldHandle: location
 name: 'St. Mark Events'
 siteSettings:
