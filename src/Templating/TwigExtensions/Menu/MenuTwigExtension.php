@@ -33,10 +33,6 @@ class MenuTwigExtension extends AbstractExtension
     {
         return [
             new MenuItem(
-                content: 'Ministries',
-                href: '/ministries',
-            ),
-            new MenuItem(
                 content: 'Calendar',
                 href: '/calendar',
             ),
@@ -47,6 +43,10 @@ class MenuTwigExtension extends AbstractExtension
                     new MenuItem(
                         content: 'About',
                         href: '/about',
+                    ),
+                    new MenuItem(
+                        content: 'Ministries',
+                        href: '/ministries',
                     ),
                     new MenuItem(
                         content: 'Mission Statement',
@@ -85,6 +85,11 @@ class MenuTwigExtension extends AbstractExtension
                     new MenuItem(
                         content: 'Resources',
                         href: '/resources',
+                    ),
+
+                    new MenuItem(
+                        content: 'News',
+                        href: '/news',
                     ),
                 ],
             ),
