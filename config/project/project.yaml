@@ -1,4 +1,4 @@
-dateModified: 1649558414
+dateModified: 1649943385
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -65,6 +65,7 @@ meta:
     29f855c0-8761-4086-ae93-dcda8685d73c: 'St. Mark Reformed Church' # St. Mark Reformed Church
     32d76b8c-d3f3-45cf-8b3d-55991f485a16: Bio # Bio
     40a813c7-72ac-4043-b70b-718c0a7868b3: 'Link List Block' # Link List Block
+    41c65c40-d9d3-4108-be8d-b2e275597409: 'Sub Heading' # Sub Heading
     43a22c1a-0c67-4cd1-ba07-6ebfdf91d242: Messages # Messages
     46e9048c-cfef-4f69-acd7-cd03439b3867: 'Use Short Hero?' # Use Short Hero?
     51c0f62a-b5a5-4135-bc90-471528d63f56: News # News
@@ -80,6 +81,7 @@ meta:
     86d6041c-07e9-4e14-9e05-e68dafc0ecae: Image # Image
     87c0adb7-92a2-47e7-ae13-83a48347bbfd: Headline # Headline
     90be6229-e9e1-49fc-a6a3-58f9f26a8627: 'Background Color' # Background Color
+    90e2cd21-b51b-4556-9169-f7a21a06e38c: Heading # Heading
     91bf91c7-572a-4deb-b5dc-7d055d4c0ba9: Headline # Headline
     94e92402-bc7d-4413-bc65-a236d81d53aa: 'St. Mark Reformed Church' # St. Mark Reformed Church
     98eceee6-f51c-4e12-b27e-8af4e80fb147: 'Custom Share Image' # Custom Share Image
@@ -117,6 +119,7 @@ meta:
     145582f2-5bbe-48b1-9f7b-9058b3759d1a: Audio # Audio
     302084e5-cc85-4e20-914e-49dd78f5e9a4: 'Call To Action' # Call To Action
     799005b5-502a-4951-bb7e-ae247d00979c: 'Hero Image' # Hero Image
+    1552993d-4af8-4850-9dad-526ccca0fdaf: 'Latest News' # Latest News
     8936057c-98bb-4ca4-82b0-ba17eb71b0c4: 'No top space' # No top space
     9541534e-7593-41ec-b0c8-5b12cecf235c: Body # Body
     67830663-1954-426b-8d89-89bcb764a68b: 'Background Image' # Background Image

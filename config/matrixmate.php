@@ -26,6 +26,7 @@ return [
                     'types' => [
                         'upcomingEvents',
                         'latestGalleries',
+                        'latestNews',
                         'featuredSermonSeries',
                     ],
                 ],

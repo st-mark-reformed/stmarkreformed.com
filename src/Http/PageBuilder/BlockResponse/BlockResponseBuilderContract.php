@@ -11,6 +11,7 @@ use App\Http\PageBuilder\BlockResponse\FeaturedSermonSeries\FeaturedSermonSeries
 use App\Http\PageBuilder\BlockResponse\ImageContentCta\ImageContentCta;
 use App\Http\PageBuilder\BlockResponse\ImageEntryBlock\ImageEntryBlock;
 use App\Http\PageBuilder\BlockResponse\LatestGalleries\LatestGalleries;
+use App\Http\PageBuilder\BlockResponse\LatestNews\LatestNews;
 use App\Http\PageBuilder\BlockResponse\Leadership\Leadership;
 use App\Http\PageBuilder\BlockResponse\SimpleCta\SimpleCta;
 use App\Http\PageBuilder\BlockResponse\StripePaymentForm\StripePaymentForm;
@@ -27,6 +28,7 @@ interface BlockResponseBuilderContract
         'imageContentCta' => ImageContentCta::class,
         'imageEntryBlock' => ImageEntryBlock::class,
         'latestGalleries' => LatestGalleries::class,
+        'latestNews' => LatestNews::class,
         'leadership' => Leadership::class,
         'simpleCta' => SimpleCta::class,
         'stripePaymentForm' => StripePaymentForm::class,

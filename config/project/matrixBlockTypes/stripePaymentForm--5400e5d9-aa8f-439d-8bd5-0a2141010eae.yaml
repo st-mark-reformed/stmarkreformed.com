@@ -65,4 +65,4 @@ fields:
     type: craft\fields\Lightswitch
 handle: stripePaymentForm
 name: 'Stripe Payment Form'
-sortOrder: 8
+sortOrder: 9

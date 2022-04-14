@@ -1,0 +1,70 @@
+field: a7845568-a0c6-44e5-8b75-3ef735f6ef8d # Page Builder
+fieldLayouts:
+  98076ed2-cd00-4e2f-95dd-5dfaa56b42bb:
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: 90e2cd21-b51b-4556-9169-f7a21a06e38c # Heading
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 41c65c40-d9d3-4108-be8d-b2e275597409 # Sub Heading
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Content
+        sortOrder: 1
+fields:
+  41c65c40-d9d3-4108-be8d-b2e275597409: # Sub Heading
+    columnSuffix: tzccmpqq
+    contentColumnType: text
+    fieldGroup: null
+    handle: subHeading
+    instructions: ''
+    name: 'Sub Heading'
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: null
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  90e2cd21-b51b-4556-9169-f7a21a06e38c: # Heading
+    columnSuffix: easgtalo
+    contentColumnType: text
+    fieldGroup: null
+    handle: heading
+    instructions: ''
+    name: Heading
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: null
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+handle: latestNews
+name: 'Latest News'
+sortOrder: 5
