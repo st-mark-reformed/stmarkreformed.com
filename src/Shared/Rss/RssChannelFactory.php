@@ -114,7 +114,7 @@ class RssChannelFactory
 
         $categoryElement->addAttribute(
             'text',
-            htmlspecialchars($category)
+            $category,
         );
 
         // @codeCoverageIgnoreStart

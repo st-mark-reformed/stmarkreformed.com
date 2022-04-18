@@ -17,7 +17,7 @@
       <itunes:name>St. Mark Reformed Church</itunes:name>
       <itunes:email>info@stmarkreformed.com</itunes:email>
     </itunes:owner>
-    <itunes:category text="Religion &amp;amp; Spirituality"/>
+    <itunes:category text="Religion &amp; Spirituality"/>
     <itunes:explicit>no</itunes:explicit>
     <copyright>Copyright {{YEAR}} St. Mark Reformed Church</copyright>
   </channel>
