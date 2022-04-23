@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b92f25532d7febb605e679982f017e37",
+    "content-hash": "d3bce57f23107364683cd1c26992c7a3",
     "packages": [
         {
             "name": "buzzingpixel/bp-cache",
@@ -10574,6 +10574,49 @@
                 "source": "https://github.com/hassankhan/config/tree/2.2.0"
             },
             "time": "2020-12-07T16:04:15+00:00"
+        },
+        {
+            "name": "morrislaptop/var-dumper-with-context",
+            "version": "v0.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/morrislaptop/var-dumper-with-context.git",
+                "reference": "5572e239a83c327ca38df66dc8e87d74592fbf81"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/morrislaptop/var-dumper-with-context/zipball/5572e239a83c327ca38df66dc8e87d74592fbf81",
+                "reference": "5572e239a83c327ca38df66dc8e87d74592fbf81",
+                "shasum": ""
+            },
+            "require-dev": {
+                "symfony/var-dumper": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/dump.php"
+                ],
+                "psr-4": {
+                    "Morrislaptop\\VarDumperWithContext\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Craig Morris",
+                    "email": "craig.michael.morris@gmail.com"
+                }
+            ],
+            "description": "Show the line number where the dump method was called",
+            "support": {
+                "issues": "https://github.com/morrislaptop/var-dumper-with-context/issues",
+                "source": "https://github.com/morrislaptop/var-dumper-with-context/tree/v0.3.2"
+            },
+            "time": "2019-10-16T15:27:59+00:00"
         },
         {
             "name": "myclabs/deep-copy",

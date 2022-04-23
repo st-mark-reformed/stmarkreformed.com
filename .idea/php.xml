@@ -214,6 +214,7 @@
       <path value="$PROJECT_DIR$/vendor/rlanvin/php-rrule" />
       <path value="$PROJECT_DIR$/vendor/solspace/craft3-calendar" />
       <path value="$PROJECT_DIR$/vendor/solspace/craft3-commons" />
+      <path value="$PROJECT_DIR$/vendor/morrislaptop/var-dumper-with-context" />
     </include_path>
   </component>
   <component name="PhpProjectServersManager">
