@@ -17,8 +17,6 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Exception\HttpNotFoundException;
 use Slim\Interfaces\RouteCollectorProxyInterface;
-use Solspace\Calendar\Elements\Event;
-use Solspace\Calendar\Services\CalendarsService;
 use Twig\Environment as TwigEnvironment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -39,16 +37,12 @@ class GetCalendarAction
         );
     }
 
-    /**
-     * @phpstan-ignore-next-line
-     */
     public function __construct(
         private TwigEnvironment $twig,
         private HeroFactory $heroFactory,
         private MonthDayFactory $monthDayFactory,
-        /** @phpstan-ignore-next-line */
-        private CalendarsService $calendarsService,
         private MonthRangeFactory $monthRangeFactory,
+        private MonthEventFactory $monthEventFactory,
         private CalendarEventQueryFactory $calendarEventQueryFactory,
     ) {
     }
@@ -131,16 +125,9 @@ class GetCalendarAction
 
         $dateHeading = $firstDay->format('F Y');
 
-        $monthEventsOnly = $events->filter(
-            static function (Event $event) use ($monthString): bool {
-                $startDate = $event->getStartDate();
-
-                if ($startDate === null) {
-                    return false;
-                }
-
-                return $startDate->format('Y-m') === $monthString;
-            }
+        $monthEventsOnly = $this->monthEventFactory->create(
+            events: $events,
+            monthString: $monthString,
         );
 
         $prevMonth = $startDate->sub(new DateInterval('P3D'));

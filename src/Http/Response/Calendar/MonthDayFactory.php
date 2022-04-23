@@ -6,6 +6,8 @@ namespace App\Http\Response\Calendar;
 
 use DatePeriod;
 use DateTimeImmutable;
+use DateTimeZone;
+use Exception;
 use Solspace\Calendar\Elements\Event;
 
 use function assert;
@@ -14,12 +16,21 @@ class MonthDayFactory
 {
     /**
      * @param DatePeriod<DateTimeImmutable> $monthRange
+     *
+     * @throws Exception
      */
     public function create(
         string $month,
         DatePeriod $monthRange,
         EventCollection $events,
     ): MonthDayCollection {
+        $currentTime = new DateTimeImmutable(
+            'now',
+            new DateTimeZone('US/Central'),
+        );
+
+        $currentDateInt = (int) $currentTime->format('Ymd');
+
         $items = [];
 
         foreach ($monthRange as $day) {
@@ -28,6 +39,8 @@ class MonthDayFactory
             $monthString = $day->format('Y-m');
 
             $dateString = $day->format('Y-m-d');
+
+            $dateInt = (int) $day->format('Ymd');
 
             $daysEvents = $events->filter(
                 static function (
@@ -46,6 +59,8 @@ class MonthDayFactory
             $items[] = new MonthDay(
                 day: $day,
                 events: $daysEvents,
+                isInPast: $dateInt < $currentDateInt,
+                isCurrentDay: $dateInt === $currentDateInt,
                 isActiveMonth: $monthString === $month,
             );
         }

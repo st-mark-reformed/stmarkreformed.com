@@ -47,4 +47,12 @@ class EventCollection
             $callback,
         ));
     }
+
+    /**
+     * @return mixed[]
+     */
+    public function mapToArray(callable $callback): array
+    {
+        return array_map($callback, $this->events);
+    }
 }

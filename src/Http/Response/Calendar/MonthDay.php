@@ -9,6 +9,8 @@ use DateTimeImmutable;
 class MonthDay
 {
     public function __construct(
+        public bool $isInPast,
+        public bool $isCurrentDay,
         public bool $isActiveMonth,
         public DateTimeImmutable $day,
         public EventCollection $events,
