@@ -16,10 +16,54 @@
     </a>
 {% endmacro %}
 
+{% macro subscribe(href, content, iconHref) %}
+    <a
+        class="hover:bg-bronze text-white group rounded-md py-2 px-2 flex items-center text-base font-normal"
+        href="{{ href }}"
+        target="_blank"
+    >
+        {% if iconHref %}
+            <span class="inline-block mr-2">
+                <img
+                    class="h-7 w-7"
+                    src="{{ iconHref }}"
+                    alt="{{ content }}"
+                >
+            </span>
+        {% endif %}
+        <span class="inline-block">
+            {{ content|smartypants }}
+        </span>
+    </a>
+{% endmacro %}
+
 <div class="space-y-1">
     {{ _self.sidebarHeading('Subscribe') }}
-    {# {{ _self.href('itpc://www.stmarkreformed.com/media/messages/feed', 'Subscribe in iTunes') }} #}
-    {{ _self.href('/media/messages/feed', 'Via RSS Feed') }}
+    {{ _self.subscribe(
+        'https://podcasts.apple.com/us/podcast/messages-from-st-mark-reformed-church/id1619717042',
+        'Apple Podcasts',
+        '/assets/img/podcast/apple-podcsts.svg',
+    ) }}
+    {{ _self.subscribe(
+        'https://pca.st/zuihey9g',
+        'Pocket Casts',
+        '/assets/img/podcast/pocketcasts.svg',
+    ) }}
+    {{ _self.subscribe(
+        'https://overcast.fm/itunes1619717042',
+        'Overcast',
+        '/assets/img/podcast/overcast.svg',
+    ) }}
+    {{ _self.subscribe(
+        'https://castro.fm/itunes/1619717042',
+        'Castro',
+        '/assets/img/podcast/castro.svg',
+    ) }}
+    {{ _self.subscribe(
+        '/media/messages/feed',
+        'RSS Feed',
+        '/assets/img/podcast/rss.svg',
+    ) }}
 </div>
 
 {% if leaders|length > 0 %}
