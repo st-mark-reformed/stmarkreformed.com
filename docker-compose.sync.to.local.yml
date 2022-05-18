@@ -10,5 +10,5 @@ services:
     tty: true
     volumes:
       - .:/opt/project
-      - /Users/tj/.ssh/id_rsa:/tmp/.ssh/id_rsa
-      - /Users/tj/.ssh/id_rsa.pub:/tmp/.ssh/id_rsa.pub
+      - ./.ssh/id_rsa:/tmp/.ssh/id_rsa
+      - ./.ssh/id_rsa.pub:/tmp/.ssh/id_rsa.pub

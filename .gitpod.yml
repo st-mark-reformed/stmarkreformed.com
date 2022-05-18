@@ -1,0 +1,14 @@
+image:
+  file: .gitpod.Dockerfile
+
+ports:
+  - port: 44232
+    onOpen: open-browser
+
+tasks:
+  - init: |
+      composer install --no-interaction --no-ansi --no-progress;
+      yarn install;
+      yarn run build;
+      ./dev docker-build;
+      ./dev docker-up;
