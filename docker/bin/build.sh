@@ -31,6 +31,12 @@ BWhite="\033[1;37m"; # White
 # /END Handy Color Variables #
 ##############################
 
+TAG=${1};
+
+if [[ "${TAG}" = "" ]]; then
+    TAG="latest";
+fi
+
 set -e;
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )";
@@ -40,7 +46,7 @@ cd ${SCRIPT_DIR};
 printf "${Cyan}Building registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app${Reset}\n";
 
 docker build ../../ \
-    --tag registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app \
+    --tag registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app:"${TAG}" \
     --file ../application/Dockerfile
 
 printf "${Green}Finished registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app${Reset}\n\n";
@@ -48,7 +54,7 @@ printf "${Green}Finished registry.digitalocean.com/buzzingpixel/stmarkreformed.c
 printf "${Cyan}Building registry.digitalocean.com/buzzingpixel/stmarkreformed.com-db${Reset}\n";
 
 docker build ../../ \
-    --tag registry.digitalocean.com/buzzingpixel/stmarkreformed.com-db \
+    --tag registry.digitalocean.com/buzzingpixel/stmarkreformed.com-db:"${TAG}" \
     --file ../db/Dockerfile
 
 printf "${Green}Finished registry.digitalocean.com/buzzingpixel/stmarkreformed.com-db${Reset}\n\n";

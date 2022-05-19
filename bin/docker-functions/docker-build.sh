@@ -7,7 +7,7 @@ function docker-build-help() {
 function docker-build() {
     chmod +x docker/bin/*;
 
-    docker/bin/build.sh;
+    docker/bin/build.sh "${secondArg}";
 
     return 0;
 }
