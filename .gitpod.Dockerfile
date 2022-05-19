@@ -17,8 +17,3 @@ COPY .config/fish /home/gitpod/.config/fish
 # Set PHP version to 8.0
 RUN sudo update-alternatives --set php $(which php8.0)
 RUN sudo ln -sf $(which php8.0) /usr/bin/php80
-
-# Set up PHP requirements
-RUN sudo apt-get install -y \
-    php-curl \
-    php-zip

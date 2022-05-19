@@ -7,7 +7,9 @@ function docker-composer-install() {
         interactiveArgs='';
     fi
 
-    docker run ${interactiveArgs} \
+    docker run --rm \
+        ${interactiveArgs} \
+        --entrypoint "" \
         --name stmark-dev-composer-install \
         -v ${PWD}:/opt/project \
         -w /opt/project \
@@ -16,8 +18,6 @@ function docker-composer-install() {
         --env DISABLE_PHP_FPM=1 \
         --env DISABLE_NGINX=1 \
         registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app bash -c "composer install";
-
-    docker rm stmark-dev-composer-install >/dev/null 2>&1;
 
     return 0;
 }

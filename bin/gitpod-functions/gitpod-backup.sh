@@ -20,7 +20,17 @@ function gitpod-backup() {
 
     # Backup uploads
     cd /workspace/stmarkreformed.com/public;
-    zip -r /workspace/backup/uploads.zip uploads;
+    zip -r /workspace/backup/uploads.zip uploads -x uploads/audio/\*;
+
+    # Backup license key
+    cp /workspace/stmarkreformed.com/config/license.key /workspace/backup/license.key;
+
+    # Backup .ssh
+    cd /workspace/stmarkreformed.com;
+    zip -r /workspace/backup/.ssh.zip .ssh;
+
+    # Backup .env.local
+    cp /workspace/stmarkreformed.com/.env.local /workspace/backup/.env.local;
 
     return 0;
 }

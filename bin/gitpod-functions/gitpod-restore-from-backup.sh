@@ -15,6 +15,23 @@ function gitpod-restore-from-backup() {
 
     docker-down;
 
+    # Restore .env.local
+    touch /workspace/stmarkreformed.com/.env.local;
+    rm /workspace/stmarkreformed.com/.env.local;
+    cp /workspace/backup/.env.local /workspace/stmarkreformed.com/.env.local;
+
+    # Restore .ssh
+    rm -rf /workspace/stmarkreformed.com/.ssh;
+    cp /workspace/backup/.ssh.zip /workspace/stmarkreformed.com/.ssh.zip;
+    cd /workspace/stmarkreformed.com;
+    unzip .ssh.zip;
+    rm .ssh.zip;
+
+    # Restore license.key
+    touch /workspace/stmarkreformed.com/config/license.key;
+    rm /workspace/stmarkreformed.com/config/license.key;
+    cp /workspace/backup/license.key /workspace/stmarkreformed.com/config/license.key;
+
     # Restore uploads
     rm -rf /workspace/stmarkreformed.com/public/uploads;
     cp /workspace/backup/uploads.zip /workspace/stmarkreformed.com/public/uploads.zip;

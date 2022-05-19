@@ -55,10 +55,6 @@ services:
       - cluster.initial_master_nodes=stmark-elasticsearch
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
     volumes:
       - elasticsearch-data-volume:/usr/share/elasticsearch/data
     expose:

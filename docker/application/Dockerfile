@@ -1,9 +1,10 @@
+ARG TARGETPLATFORM=linux/amd64
+ARG BUILDPLATFORM=linux/amd64
+
 ##################
 # frontend-builder
 ##################
 FROM --platform=$BUILDPLATFORM node:16.10.0 AS frontend-builder
-ARG TARGETPLATFORM
-ARG BUILDPLATFORM
 RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM"
 
 # Set our workdir

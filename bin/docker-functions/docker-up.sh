@@ -7,6 +7,8 @@ function docker-up-help() {
 function docker-up() {
     docker compose ${composeFiles} -p stmark up -d;
 
+    docker exec stmark-app bash -c "chmod 0755 /opt/project";
+
     docker exec stmark-app bash -c "chmod -R 0777 /opt/project/config/project";
     docker exec stmark-app bash -c "chmod -R 0777 /opt/project/public/cpresources;";
     docker exec stmark-app bash -c "chmod -R 0777 /opt/project/public/imagecache;";
