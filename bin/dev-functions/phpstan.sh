@@ -15,7 +15,7 @@ function docker-phpstan() {
         --env ENABLE_XDEBUG=1 \
         --env DISABLE_PHP_FPM=1 \
         --env DISABLE_NGINX=1 \
-        registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app bash -c "XDEBUG_MODE=off php -d memory_limit=4G ./vendor/bin/phpstan analyse CraftFrontController.php public/index.php config src";
+        ghcr.io/st-mark-reformed/stmarkreformed.com-app bash -c "XDEBUG_MODE=off php -d memory_limit=4G ./vendor/bin/phpstan analyse CraftFrontController.php public/index.php config src";
 
     docker rm stmark-phpstan >/dev/null 2>&1;
 

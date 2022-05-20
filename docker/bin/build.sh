@@ -43,19 +43,19 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )";
 
 cd ${SCRIPT_DIR};
 
-printf "${Cyan}Building registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app${Reset}\n";
+printf "${Cyan}Building ghcr.io/st-mark-reformed/stmarkreformed.com-app${Reset}\n";
 
 docker build ../../ \
-    --tag registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app:"${TAG}" \
+    --tag ghcr.io/st-mark-reformed/stmarkreformed.com-app:"${TAG}" \
     --file ../application/Dockerfile
 
-printf "${Green}Finished registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app${Reset}\n\n";
+printf "${Green}Finished ghcr.io/st-mark-reformed/stmarkreformed.com-app${Reset}\n\n";
 
-printf "${Cyan}Building registry.digitalocean.com/buzzingpixel/stmarkreformed.com-db${Reset}\n";
+printf "${Cyan}Building ghcr.io/st-mark-reformed/stmarkreformed.com-db${Reset}\n";
 
 docker build ../../ \
-    --tag registry.digitalocean.com/buzzingpixel/stmarkreformed.com-db:"${TAG}" \
+    --tag ghcr.io/st-mark-reformed/stmarkreformed.com-db:"${TAG}" \
     --file ../db/Dockerfile
 
-printf "${Green}Finished registry.digitalocean.com/buzzingpixel/stmarkreformed.com-db${Reset}\n\n";
+printf "${Green}Finished ghcr.io/st-mark-reformed/stmarkreformed.com-db${Reset}\n\n";
 

@@ -15,7 +15,7 @@ function docker-php-cs-fixer-check() {
         --env ENABLE_XDEBUG=1 \
         --env DISABLE_PHP_FPM=1 \
         --env DISABLE_NGINX=1 \
-        registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app bash -c "XDEBUG_MODE=off ./vendor/bin/php-cs-fixer fix -v --dry-run --stop-on-violation --using-cache=no";
+        ghcr.io/st-mark-reformed/stmarkreformed.com-app bash -c "XDEBUG_MODE=off ./vendor/bin/php-cs-fixer fix -v --dry-run --stop-on-violation --using-cache=no";
 
     docker rm stmark-phpcsfixer >/dev/null 2>&1;
 
@@ -43,7 +43,7 @@ function docker-php-cs-fixer-fix() {
         --env ENABLE_XDEBUG=1 \
         --env DISABLE_PHP_FPM=1 \
         --env DISABLE_NGINX=1 \
-        registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app bash -c "XDEBUG_MODE=off ./vendor/bin/php-cs-fixer fix -v --using-cache=no";
+        ghcr.io/st-mark-reformed/stmarkreformed.com-app bash -c "XDEBUG_MODE=off ./vendor/bin/php-cs-fixer fix -v --using-cache=no";
 
     docker rm stmark-phpcsfixer >/dev/null 2>&1;
 

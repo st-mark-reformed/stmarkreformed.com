@@ -36,7 +36,7 @@ jobs:
         run: docker/bin/build.sh "$GITHUB_SHA";
 
       - name: Create code quality container
-        run: docker run -d --name stmark-code-quality -w /opt/project --env ENABLE_PHP_DEV_CONFIG=1 --env ENABLE_XDEBUG=1 --env DISABLE_PHP_FPM=1 --env DISABLE_NGINX=1 registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app:"$GITHUB_SHA"
+        run: docker run -d --name stmark-code-quality -w /opt/project --env ENABLE_PHP_DEV_CONFIG=1 --env ENABLE_XDEBUG=1 --env DISABLE_PHP_FPM=1 --env DISABLE_NGINX=1 ghcr.io/st-mark-reformed/stmarkreformed.com-app:"$GITHUB_SHA"
 
       - name: Install All Composer Dependencies
         run: docker exec stmark-code-quality bash -c "composer install --no-interaction --no-progress"
@@ -61,6 +61,15 @@ jobs:
 
       - name: Run stylelint
         run: docker run --name stmark-node-code-quality -v ${PWD}:/app -w /app node:16.10.0 bash -c 'yarn stylelint --allow-empty-input "assets/**/*.{css,pcss,html,twig}" "src/**/*.{css,pcss,html,twig}"' && docker rm -f stmark-node-code-quality &>/dev/null
+
+      - name: Log in to registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+
+      - name: Push app image
+        run: docker push ghcr.io/st-mark-reformed/stmarkreformed.com-app:"$GITHUB_SHA"
+
+      - name: Push db image
+        run: docker push ghcr.io/st-mark-reformed/stmarkreformed.com-db:"$GITHUB_SHA"
 
   ci-failed-slack-notification:
     name: CI Failed Slack Notification

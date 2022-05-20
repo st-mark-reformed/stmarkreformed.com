@@ -6,7 +6,7 @@ services:
       - .env
       - .env.local
     container_name: stmark-app
-    image: registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app
+    image: ghcr.io/st-mark-reformed/stmarkreformed.com-app
     environment:
       HOSTNAME: stmark-app
     expose:
@@ -19,7 +19,7 @@ services:
       - .env
       - .env.local
     container_name: stmark-db
-    image: registry.digitalocean.com/buzzingpixel/stmarkreformed.com-db
+    image: ghcr.io/st-mark-reformed/stmarkreformed.com-db
     environment:
       HOSTNAME: stmark-db
       MYSQL_ALLOW_EMPTY_PASSWORD: "no"

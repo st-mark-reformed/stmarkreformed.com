@@ -16,13 +16,13 @@ pipelineItems:
 
   - description: "Push Images to Registry"
     script: |
-      docker push registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app;
-      docker push registry.digitalocean.com/buzzingpixel/stmarkreformed.com-db;
+      docker push ghcr.io/st-mark-reformed/stmarkreformed.com-app;
+      docker push ghcr.io/st-mark-reformed/stmarkreformed.com-db;
 
   - description: "Pull Images"
     script: |
-      docker pull registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app;
-      docker pull registry.digitalocean.com/buzzingpixel/stmarkreformed.com-db;
+      docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-app;
+      docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-db;
     runOnServers:
       - buzzingpixel-do-buzzingpixel-docker
 
@@ -45,7 +45,7 @@ pipelineItems:
 
   - description: "Copy Files"
     script: |
-      docker run --name tmp registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app /bin/true;
+      docker run --name tmp ghcr.io/st-mark-reformed/stmarkreformed.com-app /bin/true;
       mkdir -p /root/stmarkreformed.com/docker/utility;
       docker cp tmp:/opt/project/docker/utility/prod.sh /root/stmarkreformed.com/docker/utility/prod.sh;
       docker cp tmp:/opt/project/.env /root/stmarkreformed.com/.env;

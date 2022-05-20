@@ -15,7 +15,7 @@ function docker-phpunit() {
         --env ENABLE_XDEBUG=1 \
         --env DISABLE_PHP_FPM=1 \
         --env DISABLE_NGINX=1 \
-        registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app bash -c "XDEBUG_MODE=coverage ./vendor/bin/phpunit";
+        ghcr.io/st-mark-reformed/stmarkreformed.com-app bash -c "XDEBUG_MODE=coverage ./vendor/bin/phpunit";
 
     docker rm stmark-phpunit >/dev/null 2>&1;
 

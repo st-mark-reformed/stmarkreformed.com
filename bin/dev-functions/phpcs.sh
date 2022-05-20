@@ -15,7 +15,7 @@ function docker-phpcs() {
         --env ENABLE_XDEBUG=1 \
         --env DISABLE_PHP_FPM=1 \
         --env DISABLE_NGINX=1 \
-        registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app bash -c "php -d memory_limit=4G ./vendor/bin/phpcs";
+        ghcr.io/st-mark-reformed/stmarkreformed.com-app bash -c "php -d memory_limit=4G ./vendor/bin/phpcs";
 
     docker rm stmark-phpcs >/dev/null 2>&1;
 
@@ -43,7 +43,7 @@ function docker-phpcbf() {
         --env ENABLE_XDEBUG=1 \
         --env DISABLE_PHP_FPM=1 \
         --env DISABLE_NGINX=1 \
-        registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app bash -c "php -d memory_limit=4G ./vendor/bin/phpcbf";
+        ghcr.io/st-mark-reformed/stmarkreformed.com-app bash -c "php -d memory_limit=4G ./vendor/bin/phpcbf";
 
     docker rm stmark-phpcs >/dev/null 2>&1;
 

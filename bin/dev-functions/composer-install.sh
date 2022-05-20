@@ -17,7 +17,7 @@ function docker-composer-install() {
         --env ENABLE_XDEBUG=1 \
         --env DISABLE_PHP_FPM=1 \
         --env DISABLE_NGINX=1 \
-        registry.digitalocean.com/buzzingpixel/stmarkreformed.com-app bash -c "composer install";
+        ghcr.io/st-mark-reformed/stmarkreformed.com-app bash -c "composer install";
 
     return 0;
 }
