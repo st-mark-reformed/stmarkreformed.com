@@ -46,7 +46,11 @@ cd ${SCRIPT_DIR};
 printf "${Cyan}Building ghcr.io/st-mark-reformed/stmarkreformed.com-app${Reset}\n";
 
 docker build ../../ \
+    --cache-from ghcr.io/st-mark-reformed/stmarkreformed.com-app:cache \
+    --build-arg BUILDKIT_INLINE_CACHE=1 \
     --tag ghcr.io/st-mark-reformed/stmarkreformed.com-app:"${TAG}" \
+    --tag ghcr.io/st-mark-reformed/stmarkreformed.com-app:latest \
+    --tag ghcr.io/st-mark-reformed/stmarkreformed.com-app:cache \
     --file ../application/Dockerfile
 
 printf "${Green}Finished ghcr.io/st-mark-reformed/stmarkreformed.com-app${Reset}\n\n";
@@ -54,7 +58,11 @@ printf "${Green}Finished ghcr.io/st-mark-reformed/stmarkreformed.com-app${Reset}
 printf "${Cyan}Building ghcr.io/st-mark-reformed/stmarkreformed.com-db${Reset}\n";
 
 docker build ../../ \
+    --cache-from ghcr.io/st-mark-reformed/stmarkreformed.com-db:cache \
+    --build-arg BUILDKIT_INLINE_CACHE=1 \
     --tag ghcr.io/st-mark-reformed/stmarkreformed.com-db:"${TAG}" \
+    --tag ghcr.io/st-mark-reformed/stmarkreformed.com-db:latest \
+    --tag ghcr.io/st-mark-reformed/stmarkreformed.com-db:cache \
     --file ../db/Dockerfile
 
 printf "${Green}Finished ghcr.io/st-mark-reformed/stmarkreformed.com-db${Reset}\n\n";
