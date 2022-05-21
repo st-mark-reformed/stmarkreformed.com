@@ -7,7 +7,8 @@ function docker-phpcs() {
         interactiveArgs='';
     fi
 
-    docker run ${interactiveArgs} \
+    docker run --rm ${interactiveArgs} \
+        --entrypoint "" \
         --name stmark-phpcs \
         -v ${PWD}:/opt/project \
         -w /opt/project \
@@ -16,8 +17,6 @@ function docker-phpcs() {
         --env DISABLE_PHP_FPM=1 \
         --env DISABLE_NGINX=1 \
         ghcr.io/st-mark-reformed/stmarkreformed.com-app bash -c "php -d memory_limit=4G ./vendor/bin/phpcs";
-
-    docker rm stmark-phpcs >/dev/null 2>&1;
 
     return 0;
 }
@@ -35,7 +34,8 @@ function docker-phpcbf() {
         interactiveArgs='';
     fi
 
-    docker run ${interactiveArgs} \
+    docker run --rm ${interactiveArgs} \
+        --entrypoint "" \
         --name stmark-phpcs \
         -v ${PWD}:/opt/project \
         -w /opt/project \
@@ -44,8 +44,6 @@ function docker-phpcbf() {
         --env DISABLE_PHP_FPM=1 \
         --env DISABLE_NGINX=1 \
         ghcr.io/st-mark-reformed/stmarkreformed.com-app bash -c "php -d memory_limit=4G ./vendor/bin/phpcbf";
-
-    docker rm stmark-phpcs >/dev/null 2>&1;
 
     return 0;
 }

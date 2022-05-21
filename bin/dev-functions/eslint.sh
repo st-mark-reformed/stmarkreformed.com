@@ -7,13 +7,11 @@ function docker-eslint() {
         interactiveArgs='';
     fi
 
-    docker run ${interactiveArgs} \
+    docker run --rm ${interactiveArgs} \
         --name stmark-eslint \
         -v ${PWD}:/app \
         -w /app \
         ${nodeDockerImage} bash -c 'yarn eslint --ext .js --ext .ts --ext .jsx --ext .tsx --ext .html --ext .vue --ext .mjs --ext .twig --no-error-on-unmatched-pattern assets src';
-
-    docker rm stmark-eslint >/dev/null 2>&1;
 
     return 0;
 }

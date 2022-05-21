@@ -7,7 +7,8 @@ function docker-phpunit() {
         interactiveArgs='';
     fi
 
-    docker run ${interactiveArgs} \
+    docker run --rm ${interactiveArgs} \
+        --entrypoint "" \
         --name stmark-phpunit \
         -v ${PWD}:/opt/project \
         -w /opt/project \
@@ -16,8 +17,6 @@ function docker-phpunit() {
         --env DISABLE_PHP_FPM=1 \
         --env DISABLE_NGINX=1 \
         ghcr.io/st-mark-reformed/stmarkreformed.com-app bash -c "XDEBUG_MODE=coverage ./vendor/bin/phpunit";
-
-    docker rm stmark-phpunit >/dev/null 2>&1;
 
     return 0;
 }

@@ -8,7 +8,6 @@ use Solspace\Calendar\Elements\Event;
 
 use function array_filter;
 use function array_map;
-use function array_values;
 use function count;
 
 class EventCollection
@@ -21,10 +20,26 @@ class EventCollection
      */
     public function __construct(array $events = [])
     {
-        $this->events = array_values(array_map(
-            static fn (Event $event) => $event,
-            $events
-        ));
+        foreach ($events as $event) {
+            if ($event->isMultiDay()) {
+                /** @phpstan-ignore-next-line */
+                $totalDays =  $event->startDate->diffInDays($event->endDate) + 1;
+
+                $startDateMinus1Day = (clone $event->startDate)->modify('-1 Day');
+
+                for ($i = 1; $i <= $totalDays; $i++) {
+                    $newEvent = clone $event;
+
+                    $newEvent->startDate = (clone $startDateMinus1Day)->modify('+' . $i . ' Days');
+
+                    $this->events[] = $newEvent;
+                }
+
+                continue;
+            }
+
+            $this->events[] = $event;
+        }
     }
 
     public function count(): int
@@ -42,10 +57,14 @@ class EventCollection
 
     public function filter(callable $callback): self
     {
-        return new self(array_filter(
+        $newSelf = new self();
+
+        $newSelf->events = array_filter(
             $this->events,
             $callback,
-        ));
+        );
+
+        return $newSelf;
     }
 
     /**

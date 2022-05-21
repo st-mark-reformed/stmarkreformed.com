@@ -97,15 +97,14 @@
                                     <ol class="mt-2">
                                         {% for event in day.events.events %}
                                             {# @var \Solspace\Calendar\Elements\Event event #}
-                                            <li class="mb-4">
+                                            <li class="mb-4{% if event.allDay %}{% if day.isActiveMonth %} bg-crimson{% else %} bg-lighter-red{% endif %} py-0.5 px-1.5{% endif %}">
                                                 <span class="group leading-tight">
-                                                    <p class="font-medium{% if day.isActiveMonth %} text-gray-900{% else %} text-gray-400{% endif %} leading-tight">
-                                                        <time
-                                                            datetime="2022-01-03T10:00"
-                                                            class="{% if day.isActiveMonth %} text-teal-600{% else %} text-gray-400{% endif %} inline-block font-bold"
-                                                        >
-                                                            {{ event.startDate.format('g:i A') }}:
-                                                        </time>
+                                                    <p class="font-medium{% if day.isActiveMonth %}{% if event.allDay %} text-white{% else %} text-gray-900{% endif %}{% else %}{% if event.allDay %} text-gray-300{% else %} text-gray-400{% endif %}{% endif %} leading-tight">
+                                                        {% if not event.isAllDay %}
+                                                            <time class="{% if day.isActiveMonth %} text-teal-600{% else %} text-gray-400{% endif %} inline-block font-bold">
+                                                                {{ event.startDate.format('g:i A') }}:
+                                                            </time>
+                                                        {% endif %}
                                                         {{ event.title|smartypants }}
                                                     </p>
                                                     {% if event.location %}
