@@ -9,8 +9,6 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Interfaces\RouteCollectorProxyInterface;
 
-use function mb_strlen;
-
 class GetIcsAction
 {
     public static function addRoute(
@@ -43,8 +41,7 @@ class GetIcsAction
                 'Cache-Control',
                 'must-revalidate, post-check=0, pre-check=0',
             )
-            ->withHeader('Pragma', 'public')
-            ->withHeader('Content-Length', (string) mb_strlen($exportString));
+            ->withHeader('Pragma', 'public');
 
         $response->getBody()->write($exportString);
 
