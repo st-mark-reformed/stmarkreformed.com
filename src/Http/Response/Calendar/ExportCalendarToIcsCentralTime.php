@@ -37,6 +37,23 @@ class ExportCalendarToIcsCentralTime extends AbstractExportCalendar
         $exportString .= "PRODID:-//Solspace/Calendar//EN\r\n";
         $exportString .= "VERSION:2.0\r\n";
         $exportString .= "CALSCALE:GREGORIAN\r\n";
+        $exportString .= "BEGIN:VTIMEZONE\r\n";
+        $exportString .= "TZID:US/Central\r\n";
+        $exportString .= "BEGIN:STANDARD\r\n";
+        $exportString .= "DTSTART:20071104T020000\r\n";
+        $exportString .= "RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\n";
+        $exportString .= "TZOFFSETFROM:-0500\r\n";
+        $exportString .= "TZOFFSETTO:-0600\r\n";
+        $exportString .= "TZNAME:CST\r\n";
+        $exportString .= "END:STANDARD\r\n";
+        $exportString .= "BEGIN:DAYLIGHT\r\n";
+        $exportString .= "DTSTART:20070311T020000\r\n";
+        $exportString .= "RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\n";
+        $exportString .= "TZOFFSETFROM:-0600\r\n";
+        $exportString .= "TZOFFSETTO:-0500\r\n";
+        $exportString .= "TZNAME:CDT\r\n";
+        $exportString .= "END:DAYLIGHT\r\n";
+        $exportString .= "END:VTIMEZONE\r\n";
 
         $this->now = Carbon::now(DateHelper::UTC);
 
