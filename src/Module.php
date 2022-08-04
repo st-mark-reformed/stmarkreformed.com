@@ -15,8 +15,15 @@ use App\Http\Utility\ClearStaticCache;
 use App\Messages\Events\ModifyElementQueueSetMessageSeriesLatestEntry;
 use App\Profiles\Events\ModifyElementQueueSetHasMessagesOnAllProfiles;
 use App\Templating\TwigControl\TwigControl;
+use BuzzingPixel\CraftScheduler\ContainerRetrieval\ContainerItem;
+use BuzzingPixel\CraftScheduler\ContainerRetrieval\RetrieveContainers;
+use BuzzingPixel\CraftScheduler\ContainerRetrieval\RetrieveContainersEvent;
+use BuzzingPixel\CraftScheduler\CraftSchedulerPlugin;
+use BuzzingPixel\CraftScheduler\ScheduleRetrieval\RetrieveSchedule;
+use BuzzingPixel\CraftScheduler\ScheduleRetrieval\SetDefaultContainerEvent;
 use BuzzingPixel\TwigDumper\TwigDumper;
 use Config\di\Container;
+use Config\Schedule;
 use Config\Twig;
 use Craft;
 use craft\base\Element;
@@ -296,6 +303,28 @@ class Module extends ModuleBase
                     ],
                 );
             }
+        );
+
+        /** @noinspection PhpUnhandledExceptionInspection */
+        $schedule = $di->get(Schedule::class);
+        assert($schedule instanceof Schedule);
+
+        Event::on(
+            RetrieveContainers::class,
+            RetrieveContainers::EVENT_RETRIEVE_CONTAINERS,
+            [$schedule, 'retrieveContainers'],
+        );
+
+        Event::on(
+            CraftSchedulerPlugin::class,
+            CraftSchedulerPlugin::EVEN_SET_DEFAULT_CONTAINER,
+            [$schedule, 'setDefaultContainer'],
+        );
+
+        Event::on(
+            RetrieveSchedule::class,
+            RetrieveSchedule::EVENT_RETRIEVE_SCHEDULE,
+            [$schedule, 'retrieve'],
         );
     }
 
