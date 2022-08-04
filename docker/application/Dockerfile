@@ -1,11 +1,7 @@
-ARG TARGETPLATFORM=linux/amd64
-ARG BUILDPLATFORM=linux/amd64
-
 ##################
 # frontend-builder
 ##################
-FROM --platform=$BUILDPLATFORM node:16.10.0 AS frontend-builder
-RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM"
+FROM node:16.10.0 AS frontend-builder
 
 # Set our workdir
 WORKDIR /opt/project
@@ -25,8 +21,9 @@ RUN yarn build-prod
 ###############
 FROM --platform=$BUILDPLATFORM php:8.0.13-fpm
 ARG TARGETPLATFORM
+ARG TARGETARCH
 ARG BUILDPLATFORM
-RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM"
+ARG BUILDARCH
 
 # Set our workdir
 WORKDIR /opt/project
@@ -46,9 +43,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ARG S6_VERSION=v1.22.1.0
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
-COPY docker/application/build-scripts /build-scripts
-RUN chmod +x /build-scripts/download-s6-overlay-to-tmp.sh && sleep 1 && /build-scripts/download-s6-overlay-to-tmp.sh $TARGETPLATFORM $S6_VERSION
-RUN tar xvfz /tmp/s6-overlay.tar.gz -C / && rm /tmp/s6-overlay.tar.gz
+RUN case ${TARGETARCH} in \
+        "amd64")  S6_ARCH=amd64  ;; \
+        "arm64")  S6_ARCH=aarch64  ;; \
+    esac \
+    && curl https://github.com/just-containers/s6-overlay/releases/download/${S6_VERSION}/s6-overlay-${S6_ARCH}.tar.gz -L -s --output /tmp/s6-overlay-${S6_ARCH}.tar.gz \
+    && tar xvfz /tmp/s6-overlay-${S6_ARCH}.tar.gz -C / && rm /tmp/s6-overlay-${S6_ARCH}.tar.gz
 
 #
 # Additional PHP extensions and configuration
