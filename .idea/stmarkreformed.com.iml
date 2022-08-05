@@ -197,6 +197,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/solspace/craft3-calendar" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/solspace/craft3-commons" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/morrislaptop/var-dumper-with-context" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/php-imap/php-imap" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -176,5 +176,10 @@ RUN apt-get update && apt-get install -my --force-yes --no-install-recommends \
     pngquant \
     gifsicle \
     webp \
+    libc-client-dev \
+    libkrb5-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl && \
+        docker-php-ext-install -j$(nproc) imap

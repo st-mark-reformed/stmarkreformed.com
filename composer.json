@@ -49,6 +49,7 @@
         "michelf/php-smartypants": "1.8.1",
         "percipioglobal/craft-colour-swatches": "^1.4",
         "php-di/php-di": "^6.3",
+        "php-imap/php-imap": "^2.0",
         "sebastianlenz/linkfield": "^1.0",
         "slim/flash": "^0.4.0",
         "solspace/craft3-calendar": "^3.3",
@@ -81,6 +82,11 @@
     },
     "config": {
         "bin-compat": "full",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true,
+            "craftcms/plugin-installer": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }
