@@ -1,0 +1,290 @@
+field: 30248cd6-91bb-4278-9492-1eb21d277a93 # Mailing Lists
+fieldLayouts:
+  cad73d71-887f-4a94-b393-70937ac7cb11:
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: 691add05-0331-436f-980f-b067995e711d # List Name
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 11e3e204-8d12-4c9d-9789-950eaccb5838 # List Address
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 9e47bbdf-1102-4329-a2ce-b810198e9dbd # Username
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: c1ab4174-e57c-4d7b-90cd-72458e5ea0a8 # Password
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 593c543a-76c0-49dc-a0d5-041f5a081933 # Server
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: a7bf4591-fef1-46d2-b396-8cdf242330de # Port
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: 846a3a05-9e44-44a2-b661-317660e335f2 # Connection Type
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+          -
+            fieldUid: fa16d2e1-2302-4c66-b45a-135616d7c308 # Subscribers
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Content
+        sortOrder: 1
+fields:
+  9e47bbdf-1102-4329-a2ce-b810198e9dbd: # Username
+    columnSuffix: null
+    contentColumnType: text
+    fieldGroup: null
+    handle: usernameField
+    instructions: ''
+    name: Username
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: null
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  11e3e204-8d12-4c9d-9789-950eaccb5838: # List Address
+    columnSuffix: null
+    contentColumnType: string
+    fieldGroup: null
+    handle: listAddress
+    instructions: ''
+    name: 'List Address'
+    searchable: false
+    settings:
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Email
+  593c543a-76c0-49dc-a0d5-041f5a081933: # Server
+    columnSuffix: null
+    contentColumnType: text
+    fieldGroup: null
+    handle: server
+    instructions: ''
+    name: Server
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: null
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  691add05-0331-436f-980f-b067995e711d: # List Name
+    columnSuffix: tjtatubm
+    contentColumnType: text
+    fieldGroup: null
+    handle: listName
+    instructions: ''
+    name: 'List Name'
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: null
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  846a3a05-9e44-44a2-b661-317660e335f2: # Connection Type
+    columnSuffix: null
+    contentColumnType: string
+    fieldGroup: null
+    handle: connectionType
+    instructions: ''
+    name: 'Connection Type'
+    searchable: false
+    settings:
+      optgroups: true
+      options:
+        -
+          __assoc__:
+            -
+              - label
+              - None
+            -
+              - value
+              - ''
+            -
+              - default
+              - ''
+        -
+          __assoc__:
+            -
+              - label
+              - SSL
+            -
+              - value
+              - ssl
+            -
+              - default
+              - ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Dropdown
+  a7bf4591-fef1-46d2-b396-8cdf242330de: # Port
+    columnSuffix: null
+    contentColumnType: integer(10)
+    fieldGroup: null
+    handle: port
+    instructions: ''
+    name: Port
+    searchable: false
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: 0
+      prefix: null
+      previewCurrency: ''
+      previewFormat: decimal
+      size: null
+      suffix: null
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+  c1ab4174-e57c-4d7b-90cd-72458e5ea0a8: # Password
+    columnSuffix: null
+    contentColumnType: text
+    fieldGroup: null
+    handle: password
+    instructions: ''
+    name: Password
+    searchable: false
+    settings:
+      byteLimit: null
+      charLimit: null
+      code: ''
+      columnType: null
+      initialRows: '4'
+      multiline: ''
+      placeholder: null
+      uiMode: normal
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  fa16d2e1-2302-4c66-b45a-135616d7c308: # Subscribers
+    columnSuffix: null
+    contentColumnType: text
+    fieldGroup: null
+    handle: subscribers
+    instructions: ''
+    name: Subscribers
+    searchable: false
+    settings:
+      addRowLabel: 'Add a row'
+      columnType: text
+      columns:
+        __assoc__:
+          -
+            - col1
+            -
+              __assoc__:
+                -
+                  - heading
+                  - Name
+                -
+                  - handle
+                  - name
+                -
+                  - width
+                  - ''
+                -
+                  - type
+                  - singleline
+          -
+            - col2
+            -
+              __assoc__:
+                -
+                  - heading
+                  - 'Email Address'
+                -
+                  - handle
+                  - emailAddress
+                -
+                  - width
+                  - ''
+                -
+                  - type
+                  - singleline
+      defaults:
+        -
+          __assoc__:
+            -
+              - col1
+              - ''
+            -
+              - col2
+              - ''
+      maxRows: ''
+      minRows: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Table

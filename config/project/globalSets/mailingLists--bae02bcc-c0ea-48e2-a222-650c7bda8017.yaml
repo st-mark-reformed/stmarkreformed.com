@@ -1,0 +1,19 @@
+fieldLayouts:
+  2b95d23a-2aad-4dcd-8900-0c5f4c6ba2a3:
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: 30248cd6-91bb-4278-9492-1eb21d277a93 # Mailing Lists
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: 'Mailing Lists'
+        sortOrder: 1
+handle: mailingLists
+name: 'Mailing Lists'
+sortOrder: 2

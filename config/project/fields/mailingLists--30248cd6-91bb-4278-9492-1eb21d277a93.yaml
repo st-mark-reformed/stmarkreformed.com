@@ -1,0 +1,71 @@
+columnSuffix: null
+contentColumnType: string
+fieldGroup: 2ebf7fd5-af76-4caa-ae1e-a867133c1e1f # Mailing Lists
+handle: mailingLists
+instructions: ''
+name: 'Mailing Lists'
+searchable: false
+settings:
+  columns:
+    __assoc__:
+      -
+        - 11e3e204-8d12-4c9d-9789-950eaccb5838 # List Address
+        -
+          __assoc__:
+            -
+              - width
+              - ''
+      -
+        - 9e47bbdf-1102-4329-a2ce-b810198e9dbd # Username
+        -
+          __assoc__:
+            -
+              - width
+              - ''
+      -
+        - c1ab4174-e57c-4d7b-90cd-72458e5ea0a8 # Password
+        -
+          __assoc__:
+            -
+              - width
+              - ''
+      -
+        - 593c543a-76c0-49dc-a0d5-041f5a081933 # Server
+        -
+          __assoc__:
+            -
+              - width
+              - ''
+      -
+        - a7bf4591-fef1-46d2-b396-8cdf242330de # Port
+        -
+          __assoc__:
+            -
+              - width
+              - ''
+      -
+        - 846a3a05-9e44-44a2-b661-317660e335f2 # Connection Type
+        -
+          __assoc__:
+            -
+              - width
+              - ''
+      -
+        - fa16d2e1-2302-4c66-b45a-135616d7c308 # Subscribers
+        -
+          __assoc__:
+            -
+              - width
+              - ''
+  contentTable: '{{%stc_mailinglists}}'
+  fieldLayout: matrix
+  maxRows: ''
+  minRows: ''
+  placeholderKey: null
+  propagationKeyFormat: null
+  propagationMethod: all
+  selectionLabel: ''
+  staticField: ''
+translationKeyFormat: null
+translationMethod: site
+type: verbb\supertable\fields\SuperTableField

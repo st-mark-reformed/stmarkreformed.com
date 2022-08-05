@@ -1,4 +1,4 @@
-dateModified: 1649943385
+dateModified: 1659711588
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -31,6 +31,7 @@ meta:
     1fd7bdfe-3297-4602-90a4-7bbb4671eac3: 'Message Text' # Message Text
     1fddf7ac-c47a-491d-961f-bf23c0cc3e91: 'Simple Cta' # Simple Cta
     2a87f914-8ca0-4ff5-816f-eeed96eae0ab: 'Title or Honorific' # Title or Honorific
+    2ebf7fd5-af76-4caa-ae1e-a867133c1e1f: 'Mailing Lists' # Mailing Lists
     3dc4707f-a219-4bde-9559-201300acd001: URL # URL
     4d7448ea-2070-48fa-985b-cbf73346b3e0: Leadership # Leadership
     5c3a6cb0-491a-482a-b498-e87d97460799: 'Content Disposition' # Content Disposition
@@ -55,6 +56,8 @@ meta:
     8f9ce4e3-aa79-49a5-9857-a5a0eb2396c6: Body # Body
     8f73d9f8-3435-4396-bb8f-e729910f2665: Gallery # Gallery
     9c3eb649-30d1-4de9-8679-4495fe2a2923: Resources # Resources
+    9e47bbdf-1102-4329-a2ce-b810198e9dbd: Username # Username
+    11e3e204-8d12-4c9d-9789-950eaccb5838: 'List Address' # List Address
     14b87d92-8527-4c88-b148-9be99799b28d: Content # Content
     16af453e-7756-4645-b749-cdee119c0d14: Address # Address
     16f9c03e-c104-4d75-84e9-479cd71b1d32: 'Gallery Showcase' # Gallery Showcase
@@ -95,8 +98,11 @@ meta:
     0363b404-b48e-4cdb-8a99-253db50b2d17: 'Select a series to display' # Select a series to display
     466eae26-271a-4bd0-af4c-355f3ed1d39a: Content # Content
     505b895d-c9b1-4296-99ae-d2bef20459c3: Zip # Zip
+    593c543a-76c0-49dc-a0d5-041f5a081933: Server # Server
+    691add05-0331-436f-980f-b067995e711d: 'List Name' # List Name
     714e71ca-d308-4ed3-8a66-351e750b7b70: 'Speaker (old, based on User)' # Speaker (old, based on User)
     819a94af-ec06-4468-87c9-d689e0010136: 'First Name' # First Name
+    846a3a05-9e44-44a2-b661-317660e335f2: 'Connection Type' # Connection Type
     922bdd2b-20e9-41d4-92bc-007b8452a18e: Slug # Slug
     926ff203-b918-45b0-b2a6-bfa4604b465f: 'Internal Message Series' # Internal Message Series
     1619a0e9-2a7f-4450-ad7b-9eb6f10a435d: 'Call To Action' # Call To Action
@@ -109,6 +115,7 @@ meta:
     7522d6a8-afc9-4759-9891-9a6b55c68ba8: 'Internal Messages' # Internal Messages
     8166c5cb-d63f-45c7-ae99-c33961a4cf3d: 'Facebook URL' # Facebook URL
     8944d860-7b65-43bb-b62e-9750d6416ebc: 'Internal Message Series' # Internal Message Series
+    30248cd6-91bb-4278-9492-1eb21d277a93: 'Mailing Lists' # Mailing Lists
     42896f14-4d1e-4a82-8219-53d7de7d33ce: 'Last Name' # Last Name
     51614c49-f9f5-4660-abc0-d551062072b8: 'Message Series' # Message Series
     63998a0f-586b-4b03-ba27-74b694bf10dd: 'Hymn of the Month Music' # Hymn of the Month Music
@@ -126,6 +133,7 @@ meta:
     96489851-57e6-4cdd-9f3c-d2e785615f32: Heading # Heading
     a2bb0b6e-19a3-4fdd-9dfd-1761676fe2b8: 'Leadership Listing' # Leadership Listing
     a3adb82d-453d-4ae5-89d5-0f9b818b8d60: Messages # Messages
+    a7bf4591-fef1-46d2-b396-8cdf242330de: Port # Port
     a9f088b8-989e-4f2b-81d0-3724c44b9447: Pre-Headline # Pre-Headline
     a3358e0d-ff29-44f7-be26-bfe1bad34889: 'Background Color' # Background Color
     a4487a6f-eaef-4592-8d8f-0c429f677f5d: Location # Location
@@ -146,7 +154,9 @@ meta:
     b4204049-2a69-459e-b105-94be12ec6081: URL # URL
     b4830095-9974-475a-9af6-aac12c7e626d: 'Hymns of the Month' # Hymns of the Month
     ba477ad1-a81e-4f6c-9976-f0f2af90b390: 'Leadership Listing Details' # Leadership Listing Details
+    bae02bcc-c0ea-48e2-a222-650c7bda8017: 'Mailing Lists' # Mailing Lists
     bdeb94af-1e71-4ccc-97b0-682301d10146: 'Stripe Payment Form' # Stripe Payment Form
+    c1ab4174-e57c-4d7b-90cd-72458e5ea0a8: Password # Password
     c4a6682d-42d5-4782-9217-84d3db36d3be: Profile # Profile
     c9e7c52c-9526-4153-8f74-d00efe20d1d2: 'Pastor''s Page' # Pastor's Page
     c66e62d9-2ca8-4489-8c97-3f4dca8ccb60: Common # Common
@@ -183,6 +193,7 @@ meta:
     efe1648a-3d7f-4a16-a249-8e6870078081: Body # Body
     f4d94e4a-9989-4cb2-b51b-e0c445006f6c: Profile # Profile
     f993b580-0e43-468a-9eab-ed72eef94d7a: 'Hymn of the Month Practice Tracks' # Hymn of the Month Practice Tracks
+    fa16d2e1-2302-4c66-b45a-135616d7c308: Subscribers # Subscribers
     fa85e855-64ff-434d-b40e-f4e6188f46dd: 'Internal Messages' # Internal Messages
     fab4b26c-20f2-4f6b-a4f9-93c660dfcd40: 'Sub Heading' # Sub Heading
     fb27befa-4657-425c-b961-eeace2f94dc4: 'Block Background Image' # Block Background Image
