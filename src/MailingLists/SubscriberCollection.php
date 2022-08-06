@@ -40,4 +40,17 @@ class SubscriberCollection
     {
         return array_map($callable, $this->items());
     }
+
+    public function hasEmailAddress(string $emailAddress): bool
+    {
+        foreach ($this->items as $subscriber) {
+            if ($emailAddress !== $subscriber->emailAddress()) {
+                continue;
+            }
+
+            return true;
+        }
+
+        return false;
+    }
 }

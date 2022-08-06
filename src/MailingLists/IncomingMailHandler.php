@@ -92,7 +92,19 @@ class IncomingMailHandler
         /** @phpstan-ignore-next-line */
         $craftMessage->setBcc($to);
 
-        $craftMessage->setReplyTo($mailingList->listAddress());
+        if (
+            $mailingList->subscribers()->hasEmailAddress(
+                $fromAddress,
+            )
+        ) {
+            /** @phpstan-ignore-next-line */
+            $craftMessage->setReplyTo([
+                $mailingList->listAddress() => $mailingList->listName(),
+            ]);
+        } else {
+            /** @phpstan-ignore-next-line */
+            $craftMessage->setReplyTo([$fromAddress => $fromName]);
+        }
 
         if (count($incomingMail->getAttachments()) > 0) {
             array_map(
