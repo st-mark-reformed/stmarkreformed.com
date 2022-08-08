@@ -34,6 +34,9 @@ class RetrievePeople
 
         $query->section('profiles');
 
+        // TODO: Test this
+        $query->orderBy('lastName ASC, firstName ASC');
+
         /** @phpstan-ignore-next-line */
         $query->leadershipPosition($position);
 
