@@ -57,7 +57,7 @@ class MonthRangeFactory
             'Mon' => $day->sub(new DateInterval('P1D')),
             'Tue' => $day->sub(new DateInterval('P2D')),
             'Wed' => $day->sub(new DateInterval('P3D')),
-            'Thur' => $day->sub(new DateInterval('P4D')),
+            'Thu' => $day->sub(new DateInterval('P4D')),
             'Fri' => $day->sub(new DateInterval('P5D')),
             'Sat' => $day->sub(new DateInterval('P6D')),
             default => $day,
@@ -71,7 +71,7 @@ class MonthRangeFactory
             'Mon' => $day->add(new DateInterval('P5D')),
             'Tue' => $day->add(new DateInterval('P4D')),
             'Wed' => $day->add(new DateInterval('P3D')),
-            'Thur' => $day->add(new DateInterval('P2D')),
+            'Thu' => $day->add(new DateInterval('P2D')),
             'Fri' => $day->add(new DateInterval('P1D')),
             default => $day,
         };
