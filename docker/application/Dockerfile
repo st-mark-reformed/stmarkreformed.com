@@ -1,7 +1,7 @@
 ##################
 # frontend-builder
 ##################
-FROM node:16.10.0 AS frontend-builder
+FROM --platform=$TARGETPLATFORM node:16.10.0 AS frontend-builder
 
 # Set our workdir
 WORKDIR /opt/project
@@ -19,7 +19,7 @@ RUN yarn build-prod
 ###############
 # php
 ###############
-FROM --platform=$BUILDPLATFORM php:8.0.13-fpm
+FROM --platform=$TARGETPLATFORM php:8.0.13-fpm
 ARG TARGETPLATFORM
 ARG TARGETARCH
 ARG BUILDPLATFORM
@@ -42,7 +42,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 #
 ARG S6_VERSION=v1.22.1.0
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
-
 RUN case ${TARGETARCH} in \
         "amd64")  S6_ARCH=amd64  ;; \
         "arm64")  S6_ARCH=aarch64  ;; \

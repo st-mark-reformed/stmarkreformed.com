@@ -27,7 +27,6 @@ return [
     'appId' => 'stmarkreformed',
     'backupOnUpdate' => (bool) getenv('BACKUP_DB_ON_UPDATE'),
     'cacheDuration' => 0,
-    'cacheMethod' => 'apc',
     'basePath' => $craftBasePath,
     'cpTrigger' => 'cms',
     'devMode' => $devMode,
