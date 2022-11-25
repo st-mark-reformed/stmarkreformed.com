@@ -21,7 +21,7 @@ $baseUrl = (bool) getenv('USE_HTTP_HOST_FOR_SITE_URL') ?
 
 return [
     'allowAdminChanges' => (bool) getenv('ALLOW_ADMIN_CHANGES'),
-    'resourceBaseUrl' => $baseUrl,
+    // 'resourceBaseUrl' => $baseUrl, // This is actually set correctly by default along with resourceBasePath
     'baseCpUrl' => $baseUrl,
     'allowUpdates' => false,
     'appId' => 'stmarkreformed',
