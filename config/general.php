@@ -21,7 +21,7 @@ $baseUrl = (bool) getenv('USE_HTTP_HOST_FOR_SITE_URL') ?
 
 return [
     'allowAdminChanges' => (bool) getenv('ALLOW_ADMIN_CHANGES'),
-    // 'resourceBaseUrl' => $baseUrl, // This is actually set correctly by default along with resourceBasePath
+    // 'resourceBaseUrl' => $baseUrl, // This is actually set correctly by default along with resourceBasePath when @web alias is set correctly
     'baseCpUrl' => $baseUrl,
     'allowUpdates' => false,
     'appId' => 'stmarkreformed',
@@ -58,6 +58,7 @@ return [
     ],
 
     'aliases' => [
+        '@web' => $baseUrl,
         '@webroot' => $craftBasePath . '/public',
     ],
 ];
