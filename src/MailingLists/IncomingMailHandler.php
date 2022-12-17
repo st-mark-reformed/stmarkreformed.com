@@ -15,6 +15,7 @@ use function array_keys;
 use function array_map;
 use function count;
 use function in_array;
+use function is_string;
 use function preg_match;
 use function preg_replace;
 
@@ -32,6 +33,10 @@ class IncomingMailHandler
         MailingList $mailingList,
         IncomingMail $incomingMail,
     ): void {
+        $subject = is_string($incomingMail->subject) ?
+            $incomingMail->subject :
+            '';
+
         $craftMessage = new CraftMessage();
 
         // Decorative header, not actually sent. Recipients of list will be
@@ -41,7 +46,7 @@ class IncomingMailHandler
             $mailingList->listAddress(),
         );
 
-        $craftMessage->setSubject($incomingMail->subject);
+        $craftMessage->setSubject($subject);
 
         $fromAddress = (string) $incomingMail->fromAddress;
 
@@ -114,9 +119,13 @@ class IncomingMailHandler
                     $craftMessage,
                     $incomingMail
                 ): void {
+                    $textHtml = is_string($incomingMail->textHtml) ?
+                        $incomingMail->textHtml :
+                        '';
+
                     preg_match(
                         '/src="cid:' . $attachment->id . '"/',
-                        $incomingMail->textHtml,
+                        $textHtml,
                         $matches,
                     );
 
@@ -144,11 +153,26 @@ class IncomingMailHandler
             );
         }
 
-        $craftMessage->setTextBody($incomingMail->textPlain);
+        if (
+            is_string($incomingMail->textPlain)
+            && $incomingMail->textPlain !== ''
+        ) {
+            $craftMessage->setTextBody($incomingMail->textPlain);
+        }
 
-        $craftMessage->setHtmlBody($incomingMail->textHtml);
+        if (
+            is_string($incomingMail->textHtml)
+            && $incomingMail->textHtml !== ''
+        ) {
+            $craftMessage->setHtmlBody($incomingMail->textHtml);
+        }
 
         if (! $this->craftMailer->send($craftMessage)) {
+            $mailbox->moveMail(
+                $incomingMail->id,
+                'Drafts',
+            );
+
             throw new Exception('Unable to send email');
         }
 

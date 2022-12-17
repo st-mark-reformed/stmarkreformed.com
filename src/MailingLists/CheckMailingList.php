@@ -22,6 +22,8 @@ class CheckMailingList
 
     /**
      * @throws Exception
+     *
+     * @phpstan-ignore-next-line
      */
     public function __invoke(MailingList $mailingList): void
     {
