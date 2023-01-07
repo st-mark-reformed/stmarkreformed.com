@@ -13,6 +13,7 @@ use craft\errors\InvalidFieldException;
 use yii\base\InvalidConfigException;
 
 use function array_map;
+use function strip_tags;
 
 class LatestNewsRetriever
 {
@@ -35,8 +36,10 @@ class LatestNewsRetriever
             fn (Entry $e) => new NewsItem(
                 title: (string) $e->title,
                 excerpt: $this->truncateFactory->make(300)->truncate(
-                    $this->extractBodyContent->fromElementWithEntryBuilder(
-                        element: $e
+                    strip_tags(
+                        $this->extractBodyContent->fromElementWithEntryBuilder(
+                            element: $e
+                        )
                     ),
                 ),
                 url: (string) $e->getUrl(),
