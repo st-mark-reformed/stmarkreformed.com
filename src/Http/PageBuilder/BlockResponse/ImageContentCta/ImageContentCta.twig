@@ -26,6 +26,7 @@
             srcset="{{ image1x }} 1x, {{ image2x }} 2x"
             {% endif %}
             alt="{{ contentModel.imageAltText }}"
+            loading="lazy"
         >
         {% if contentModel.showTealOverlayOnImage %}
             <div
