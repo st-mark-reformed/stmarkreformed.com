@@ -44,10 +44,10 @@ class MenuTwigExtension extends AbstractExtension
                         content: 'About',
                         href: '/about',
                     ),
-                    new MenuItem(
-                        content: 'Ministries',
-                        href: '/ministries',
-                    ),
+                    // new MenuItem(
+                    //     content: 'Ministries',
+                    //     href: '/ministries',
+                    // ),
                     new MenuItem(
                         content: 'Mission Statement',
                         href: '/about/mission-statement',
@@ -67,6 +67,10 @@ class MenuTwigExtension extends AbstractExtension
                     new MenuItem(
                         content: 'Membership',
                         href: '/about/membership',
+                    ),
+                    new MenuItem(
+                        content: 'Connections and Associations',
+                        href: '/about/connections',
                     ),
                 ],
             ),
