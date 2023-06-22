@@ -86,11 +86,10 @@ class MenuTwigExtension extends AbstractExtension
                         content: 'Galleries',
                         href: '/media/galleries',
                     ),
-                    new MenuItem(
-                        content: 'Resources',
-                        href: '/resources',
-                    ),
-
+                    // new MenuItem(
+                    //     content: 'Resources',
+                    //     href: '/resources',
+                    // ),
                     new MenuItem(
                         content: 'News',
                         href: '/news',
