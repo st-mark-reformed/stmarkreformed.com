@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "43d9f63756850001cf64df786cc2e987",
+    "content-hash": "deb6b0b1079b0f35789c37553fd3d33d",
     "packages": [
         {
             "name": "buzzingpixel/bp-cache",
@@ -2141,6 +2141,79 @@
                 "source": "https://github.com/elvanto/litemoji/tree/3.0.1"
             },
             "time": "2020-11-27T05:08:33+00:00"
+        },
+        {
+            "name": "embed/embed",
+            "version": "v3.4.18",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/oscarotero/Embed.git",
+                "reference": "fe379f61d3ecca7a0824c4bb3839ebe0a1819520"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/oscarotero/Embed/zipball/fe379f61d3ecca7a0824c4bb3839ebe0a1819520",
+                "reference": "fe379f61d3ecca7a0824c4bb3839ebe0a1819520",
+                "shasum": ""
+            },
+            "require": {
+                "composer/ca-bundle": "^1.0",
+                "ext-curl": "*",
+                "ext-dom": "*",
+                "ext-mbstring": "*",
+                "php": "^5.6|^7.0|^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.0",
+                "phpunit/phpunit": "^5.7|^6.0|^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Embed\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oscar Otero",
+                    "email": "oom@oscarotero.com",
+                    "homepage": "http://oscarotero.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP library to retrieve page info using oembed, opengraph, etc",
+            "homepage": "https://github.com/oscarotero/Embed",
+            "keywords": [
+                "embed",
+                "embedly",
+                "oembed",
+                "opengraph",
+                "twitter cards"
+            ],
+            "support": {
+                "email": "oom@oscarotero.com",
+                "issues": "https://github.com/oscarotero/Embed/issues",
+                "source": "https://github.com/oscarotero/Embed/tree/v3.4.18"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.me/oscarotero",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/oscarotero",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/misteroom",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2022-07-15T09:34:07+00:00"
         },
         {
             "name": "enshrined/svg-sanitize",
@@ -9459,6 +9532,75 @@
                 }
             ],
             "time": "2021-01-23T09:55:10+00:00"
+        },
+        {
+            "name": "wrav/oembed",
+            "version": "1.13.19",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wrav/oembed.git",
+                "reference": "5cf2244ab25bf234dbbf9b6d5633730b74a4e8ca"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wrav/oembed/zipball/5cf2244ab25bf234dbbf9b6d5633730b74a4e8ca",
+                "reference": "5cf2244ab25bf234dbbf9b6d5633730b74a4e8ca",
+                "shasum": ""
+            },
+            "require": {
+                "craftcms/cms": "^3.0.0-beta.23",
+                "embed/embed": "^3.3"
+            },
+            "type": "craft-plugin",
+            "extra": {
+                "name": "oEmbed",
+                "handle": "oembed",
+                "schemaVersion": "1.0.1",
+                "hasCpSettings": true,
+                "hasCpSection": false,
+                "changelogUrl": "https://raw.githubusercontent.com/wrav/oembed/master/CHANGELOG.md",
+                "components": {
+                    "oembedService": "wrav\\oembed\\services\\OembedService"
+                },
+                "class": "wrav\\oembed\\Oembed"
+            },
+            "autoload": {
+                "psr-4": {
+                    "wrav\\oembed\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "reganlawton",
+                    "homepage": "https://github.com/reganlawton"
+                }
+            ],
+            "description": "A simple plugin to extract media information from websites, like youtube videos, twitter statuses or blog articles.",
+            "keywords": [
+                "Craft",
+                "cms",
+                "craft-plugin",
+                "craftcms",
+                "facebook",
+                "gdpr",
+                "graphql",
+                "iframe",
+                "instagram",
+                "oembed",
+                "twitter",
+                "vimeo",
+                "youtube"
+            ],
+            "support": {
+                "docs": "https://github.com/wrav/oembed/blob/master/README.md",
+                "issues": "https://github.com/wrav/oembed/issues",
+                "source": "https://github.com/wrav/oembed/tree/1.13.19"
+            },
+            "time": "2022-11-01T21:37:33+00:00"
         },
         {
             "name": "yii2tech/ar-softdelete",

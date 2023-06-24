@@ -232,6 +232,8 @@
       <path value="$PROJECT_DIR$/vendor/solspace/craft3-commons" />
       <path value="$PROJECT_DIR$/vendor/morrislaptop/var-dumper-with-context" />
       <path value="$PROJECT_DIR$/vendor/php-imap/php-imap" />
+      <path value="$PROJECT_DIR$/vendor/embed/embed" />
+      <path value="$PROJECT_DIR$/vendor/wrav/oembed" />
     </include_path>
   </component>
   <component name="PhpProjectServersManager">

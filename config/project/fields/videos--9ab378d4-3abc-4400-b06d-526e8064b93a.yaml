@@ -1,0 +1,16 @@
+columnSuffix: hmztzpuj
+contentColumnType: string
+fieldGroup: 93012d1f-1633-417a-81d5-8f4b4e0ea023 # Galleries
+handle: videos
+instructions: ''
+name: Videos
+searchable: true
+settings:
+  contentTable: '{{%matrixcontent_videos}}'
+  maxBlocks: ''
+  minBlocks: ''
+  propagationKeyFormat: null
+  propagationMethod: all
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

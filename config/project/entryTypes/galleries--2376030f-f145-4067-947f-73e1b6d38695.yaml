@@ -4,38 +4,93 @@ fieldLayouts:
       -
         elements:
           -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            disabled: false
+            id: null
             instructions: null
             label: Title
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
             type: craft\fieldlayoutelements\EntryTitleField
+            warning: null
+            width: 100
+          -
+            fieldUid: 9ab378d4-3abc-4400-b06d-526e8064b93a # Videos
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: 8f73d9f8-3435-4396-bb8f-e729910f2665 # Gallery
+            instructions: null
+            label: null
             required: true
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: Publish
-        sortOrder: '1'
+        sortOrder: 1
       -
         elements:
           -
             fieldUid: 0bb8ab16-3c86-4ffb-86da-18c4e22a554e # Search Engine Indexing
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: a5663b9c-311e-405f-a780-b856c4cd8464 # SEO Title
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: b153d5f7-fd35-4731-9437-eb1333cdc3e2 # SEO Description
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
           -
             fieldUid: 98eceee6-f51c-4e12-b27e-8af4e80fb147 # Custom Share Image
+            instructions: null
+            label: null
             required: false
+            tip: null
             type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
         name: SEO
-        sortOrder: '2'
+        sortOrder: 2
 handle: galleries
-hasTitleField: '1'
+hasTitleField: true
 name: Galleries
 section: 65087f98-610e-4026-a91b-70bdef20426f # Galleries
-sortOrder: '1'
+sortOrder: 1
 titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: ''

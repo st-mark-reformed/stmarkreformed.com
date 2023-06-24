@@ -1,0 +1,34 @@
+field: 9ab378d4-3abc-4400-b06d-526e8064b93a # Videos
+fieldLayouts:
+  41338168-95d7-4b2e-baaf-87ada3460b1a:
+    tabs:
+      -
+        elements:
+          -
+            fieldUid: 0f1c7746-e184-4f7a-ada5-768295a3b140 # Video
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            warning: null
+            width: 100
+        name: Content
+        sortOrder: 1
+fields:
+  0f1c7746-e184-4f7a-ada5-768295a3b140: # Video
+    columnSuffix: wkanmacj
+    contentColumnType: text
+    fieldGroup: null
+    handle: video
+    instructions: ''
+    name: Video
+    searchable: true
+    settings:
+      url: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: wrav\oembed\fields\OembedField
+handle: video
+name: Video
+sortOrder: 1

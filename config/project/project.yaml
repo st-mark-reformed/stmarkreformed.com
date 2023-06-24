@@ -1,4 +1,4 @@
-dateModified: 1687622514
+dateModified: 1687635058
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -23,6 +23,8 @@ meta:
     0bfb38a0-09a7-4e91-89f8-eacb1cc78129: 'Basic Block' # Basic Block
     0d9de0c2-3e02-4799-905a-dc37c9ab8299: Subheading # Subheading
     0e14aaf7-e012-407f-a946-4531b9b59d3b: Globals # Globals
+    00f0f0fe-095e-4c18-8662-46025883d007: Video # Video
+    0f1c7746-e184-4f7a-ada5-768295a3b140: Video # Video
     1a0827bd-1b3c-4260-9328-30c8c7307478: Subheading # Subheading
     1de9d950-2b2b-4b09-957e-cc2396093495: Audio # Audio
     1df46fad-0886-4911-9132-137b6262c9ff: Heading # Heading
@@ -55,6 +57,7 @@ meta:
     8e41a4a3-46e9-41d1-bb64-46f3cd0979c0: 'Import Search String' # Import Search String
     8f9ce4e3-aa79-49a5-9857-a5a0eb2396c6: Body # Body
     8f73d9f8-3435-4396-bb8f-e729910f2665: Gallery # Gallery
+    9ab378d4-3abc-4400-b06d-526e8064b93a: Videos # Videos
     9c3eb649-30d1-4de9-8679-4495fe2a2923: Resources # Resources
     9e47bbdf-1102-4329-a2ce-b810198e9dbd: Username # Username
     11e3e204-8d12-4c9d-9789-950eaccb5838: 'List Address' # List Address
@@ -127,6 +130,7 @@ meta:
     302084e5-cc85-4e20-914e-49dd78f5e9a4: 'Call To Action' # Call To Action
     799005b5-502a-4951-bb7e-ae247d00979c: 'Hero Image' # Hero Image
     1552993d-4af8-4850-9dad-526ccca0fdaf: 'Latest News' # Latest News
+    2376030f-f145-4067-947f-73e1b6d38695: Galleries # Galleries
     8936057c-98bb-4ca4-82b0-ba17eb71b0c4: 'No top space' # No top space
     9541534e-7593-41ec-b0c8-5b12cecf235c: Body # Body
     67830663-1954-426b-8d89-89bcb764a68b: 'Background Image' # Background Image
@@ -327,6 +331,10 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 1.0.0
+  oembed:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.1
   redactor:
     edition: standard
     enabled: true

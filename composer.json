@@ -59,6 +59,7 @@
         "timostamm/text-truncation": "dev-master",
         "vaersaagod/matrixmate": "^1.2",
         "verbb/super-table": "^2.6",
+        "wrav/oembed": "^1",
         "yiisoft/yii2-redis": "^2.0"
     },
     "require-dev": {

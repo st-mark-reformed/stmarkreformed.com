@@ -9,7 +9,9 @@ use App\Http\Components\Link\Link;
 use App\Http\Entities\Meta;
 use App\Http\Shared\RouteParamsHandler;
 use App\Shared\FieldHandlers\Assets\AssetsFieldHandler;
+use App\Shared\FieldHandlers\Matrix\MatrixFieldHandler;
 use BuzzingPixel\SlimBridge\ElementSetRoute\RouteParams;
+use craft\elements\MatrixBlock;
 use craft\errors\InvalidFieldException;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -20,6 +22,8 @@ use Twig\Error\SyntaxError;
 use Twig\Markup;
 use yii\base\InvalidConfigException;
 
+use function array_map;
+
 class DisplayGalleryAction
 {
     public function __construct(
@@ -28,6 +32,7 @@ class DisplayGalleryAction
         private RouteParams $routeParams,
         private AssetsFieldHandler $assetsFieldHandler,
         private RouteParamsHandler $routeParamsHandler,
+        private MatrixFieldHandler $matrixFieldHandler,
         private ResponseFactoryInterface $responseFactory,
     ) {
     }
@@ -63,6 +68,20 @@ class DisplayGalleryAction
             ),
         ];
 
+        $videoMatrixItems = $this->matrixFieldHandler->getAll(
+            element: $entry,
+            field: 'videos',
+        );
+
+        $videos = new VideoItems(array_map(
+            static function (MatrixBlock $block): VideoItem {
+                return new VideoItem(
+                    $block->getFieldValue('video'),
+                );
+            },
+            $videoMatrixItems,
+        ));
+
         $items = GalleryItems::fromAssets(
             assets: $this->assetsFieldHandler->getAll(
                 element: $entry,
@@ -86,6 +105,7 @@ class DisplayGalleryAction
                     ),
                     'UTF-8',
                 ),
+                'videos' => $videos,
                 'items' => $items,
             ],
         ));
