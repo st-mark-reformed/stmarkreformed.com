@@ -17,6 +17,8 @@ class Leadership implements BlockResponseBuilderContract
 {
     private const POSITIONS = [
         'pastor',
+        'associatePastor',
+        'assistantPastor',
         'rulingElder',
         'elder',
         'deacon',
@@ -24,6 +26,8 @@ class Leadership implements BlockResponseBuilderContract
 
     private const POSITION_TITLES = [
         'pastor' => 'Pastor',
+        'associatePastor' => 'Associate Pastor',
+        'assistantPastor' => 'Assistant Pastor',
         'rulingElder' => 'Ruling Elder',
         'elder' => 'Elder',
         'deacon' => 'Deacon',
@@ -31,6 +35,8 @@ class Leadership implements BlockResponseBuilderContract
 
     private const POSITION_TITLES_PLURAL = [
         'pastor' => 'Pastors',
+        'associatePastor' => 'Associate Pastors',
+        'assistantPastor' => 'Assistant Pastors',
         'rulingElder' => 'Ruling Elders',
         'elder' => 'Elders',
         'deacon' => 'Deacons',

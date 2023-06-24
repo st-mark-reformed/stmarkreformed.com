@@ -1,66 +1,89 @@
+columnSuffix: null
 contentColumnType: string
 fieldGroup: c67a7c62-3fbd-43ac-86c6-32c299b87bfe # Users
 handle: leadershipPosition
 instructions: ''
 name: 'Leadership Position'
-searchable: '1'
+searchable: true
 settings:
   options:
     -
       __assoc__:
-        -
-          - default
-          - '1'
         -
           - label
           - None
         -
           - value
           - ''
-    -
-      __assoc__:
         -
           - default
-          - ''
+          - '1'
+    -
+      __assoc__:
         -
           - label
           - Pastor
         -
           - value
           - pastor
-    -
-      __assoc__:
         -
           - default
           - ''
+    -
+      __assoc__:
+        -
+          - label
+          - 'Associate Pastor'
+        -
+          - value
+          - associatePastor
+        -
+          - default
+          - ''
+    -
+      __assoc__:
+        -
+          - label
+          - 'Assistant Pastor'
+        -
+          - value
+          - assistantPastor
+        -
+          - default
+          - ''
+    -
+      __assoc__:
         -
           - label
           - Elder
         -
           - value
           - elder
-    -
-      __assoc__:
         -
           - default
           - ''
+    -
+      __assoc__:
         -
           - label
           - 'Ruling Elder'
         -
           - value
           - rulingElder
-    -
-      __assoc__:
         -
           - default
           - ''
+    -
+      __assoc__:
         -
           - label
           - Deacon
         -
           - value
           - deacon
+        -
+          - default
+          - ''
 translationKeyFormat: null
 translationMethod: none
 type: craft\fields\RadioButtons

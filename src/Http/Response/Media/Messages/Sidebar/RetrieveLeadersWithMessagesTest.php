@@ -191,6 +191,8 @@ class RetrieveLeadersWithMessagesTest extends TestCase
                         [
                             [
                                 'pastor',
+                                'assistantPastor',
+                                'associatePastor',
                                 'elder',
                                 'rulingElder',
                                 'deacon',

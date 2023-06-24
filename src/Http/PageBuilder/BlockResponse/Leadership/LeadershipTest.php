@@ -130,7 +130,7 @@ class LeadershipTest extends TestCase
 
         $sections = $contentModel->leadershipSections();
 
-        self::assertCount(3, $sections);
+        self::assertCount(5, $sections);
 
         self::assertSame(
             'Pastor',
@@ -140,24 +140,46 @@ class LeadershipTest extends TestCase
         self::assertCount(1, $sections[0]->people());
 
         self::assertSame(
-            'Ruling Elder',
+            'Associate Pastor',
             $sections[1]->sectionTitle(),
         );
 
         self::assertCount(1, $sections[1]->people());
 
         self::assertSame(
-            'Deacons',
+            'Assistant Pastor',
             $sections[2]->sectionTitle(),
         );
 
-        self::assertCount(2, $sections[2]->people());
+        self::assertCount(1, $sections[2]->people());
+
+        self::assertSame(
+            'Ruling Elder',
+            $sections[3]->sectionTitle(),
+        );
+
+        self::assertCount(1, $sections[3]->people());
+
+        self::assertSame(
+            'Deacons',
+            $sections[4]->sectionTitle(),
+        );
+
+        self::assertCount(2, $sections[4]->people());
 
         self::assertSame(
             [
                 [
                     'method' => 'retrieve',
                     'position' => 'pastor',
+                ],
+                [
+                    'method' => 'retrieve',
+                    'position' => 'associatePastor',
+                ],
+                [
+                    'method' => 'retrieve',
+                    'position' => 'assistantPastor',
                 ],
                 [
                     'method' => 'retrieve',

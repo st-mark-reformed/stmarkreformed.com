@@ -32,6 +32,8 @@ class RetrieveLeadersWithMessages
         /** @phpstan-ignore-next-line */
         $query->leadershipPosition([
             'pastor',
+            'assistantPastor',
+            'associatePastor',
             'elder',
             'rulingElder',
             'deacon',
