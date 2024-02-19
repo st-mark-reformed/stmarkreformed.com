@@ -1,4 +1,4 @@
-dateModified: 1687635058
+dateModified: 1708379969
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -135,6 +135,7 @@ meta:
     9541534e-7593-41ec-b0c8-5b12cecf235c: Body # Body
     67830663-1954-426b-8d89-89bcb764a68b: 'Background Image' # Background Image
     96489851-57e6-4cdd-9f3c-d2e785615f32: Heading # Heading
+    a0d89b25-7f52-4a9a-9cf2-b643368ffe62: Publication # Publication
     a2bb0b6e-19a3-4fdd-9dfd-1761676fe2b8: 'Leadership Listing' # Leadership Listing
     a3adb82d-453d-4ae5-89d5-0f9b818b8d60: Messages # Messages
     a7bf4591-fef1-46d2-b396-8cdf242330de: Port # Port
@@ -177,6 +178,7 @@ meta:
     dd0ea504-a9fc-46ce-82d3-77a382c44954: 'Background Color' # Background Color
     dd1bb219-b7c4-4a1d-97e5-80801d58ca98: 'Associated User Account' # Associated User Account
     df286b48-0507-4f99-9892-1f542903143c: Heading # Heading
+    e009a228-61cf-4d80-9cea-b789fca205ed: 'Men of the Mark' # Men of the Mark
     e2a3e24e-58ee-4326-8fc2-163003e8205b: 'Gallery Showcase Notes' # Gallery Showcase Notes
     e2b3f41d-b5fb-443c-988f-96c387bfa764: 'Number to Showcase' # Number to Showcase
     e4b39f1c-8120-4ef4-afaf-01d4f8d6e87f: 'Location Short' # Location Short
