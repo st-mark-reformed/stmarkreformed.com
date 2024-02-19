@@ -40,3 +40,4 @@ services:
 networks:
   web:
     name: traefik-dev_default
+    external: true
