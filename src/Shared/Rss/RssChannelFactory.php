@@ -19,7 +19,7 @@ class RssChannelFactory
     /**
      * @param string[] $keywords
      */
-    public function make(
+    public function makePodcastChannel(
         SimpleXMLElement $feed,
         string $publicFeedUrl,
         string $feedTitle,
@@ -140,6 +140,25 @@ class RssChannelFactory
             (new DateTimeImmutable())->format('Y') .
             ' St. Mark Reformed Church'
         );
+
+        return $channel;
+    }
+
+    public function makeBlogChannel(
+        SimpleXMLElement $feed,
+        string $title,
+        string $description,
+        string $link,
+    ): SimpleXMLElement {
+        $channel = $feed->addChild('channel');
+
+        $channel->addChild('title', $title);
+
+        $channel->addChild('description', $description);
+
+        $channel->addChild('link', $link);
+
+        $channel->addChild('language', 'en-us');
 
         return $channel;
     }

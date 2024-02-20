@@ -54,7 +54,7 @@ class DisplayPublicationEntryResponder
                 ),
                 'content' => new Markup(
                     $this->twig->render(
-                        '@app/Http/Response/Publications/Content.twig',
+                        '@app/Http/Response/Publications/DisplayPublicationEntry.twig',
                         [ 'content' => $content ],
                     ),
                     'UTF-8',

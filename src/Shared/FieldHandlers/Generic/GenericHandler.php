@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Shared\FieldHandlers\Generic;
 
 use craft\base\Element;
+use craft\elements\Entry;
 use craft\errors\InvalidFieldException;
+use DateTimeImmutable;
 use DateTimeInterface;
 use Twig\Markup;
 
@@ -86,5 +88,14 @@ class GenericHandler
         assert($value instanceof DateTimeInterface);
 
         return $value;
+    }
+
+    public function entryPostDate(Entry $entry): DateTimeImmutable
+    {
+        $date = $entry->postDate;
+
+        assert($date instanceof DateTimeInterface);
+
+        return DateTimeImmutable::createFromMutable($date);
     }
 }

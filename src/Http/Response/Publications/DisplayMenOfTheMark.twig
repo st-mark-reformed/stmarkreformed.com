@@ -1,0 +1,19 @@
+{# @var \App\Http\Response\Publications\Publications publications #}
+
+{% extends 'Http/_Infrastructure/_Layout.twig' %}
+
+{% block content %}
+    <div class="relative">
+        <div class="relative mx-auto px-4 pt-4 pb-12 sm:max-w-5xl sm:px-14 sm:pt-6 sm:pb-14 md:pt-10 md:pb-24">
+            <div class="mt-3 text-lg text-gray-600 prose max-w-none">
+                <p>{{ constant('\\App\\Http\\Response\\Publications\\MenOfTheMarkMeta::DESCRIPTION') }}</p>
+                <p>Below are the publications thus far. You may also wish to <a href="/publications/men-of-the-mark/rss">subscribe via RSS</a> in your favorite News/RSS reader.</p>
+                <ul>
+                    {% for publication in publications.items %}
+                        <li><p><a href="{{ publication.url }}">{{ publication.title }}</a></p></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

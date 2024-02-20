@@ -18,6 +18,8 @@ use App\Http\Response\Members\InternalMedia\InternalMediaAction;
 use App\Http\Response\Members\MembersIndexAction;
 use App\Http\Response\News\NewsList\PaginatedNewsListAction;
 use App\Http\Response\News\NewsList\PastorsPageListAction;
+use App\Http\Response\Publications\DisplayMenOfTheMarkListAction;
+use App\Http\Response\Publications\MenOfTheMarkFeedAction;
 use Config\Tinker;
 use Slim\App;
 
@@ -79,4 +81,8 @@ return static function (App $app): void {
     GetCalendarAction::addRoute(routeCollector: $app);
 
     GetIcsAction::addRoute(routeCollector: $app);
+
+    DisplayMenOfTheMarkListAction::addRoute($app);
+
+    MenOfTheMarkFeedAction::addRoute($app);
 };

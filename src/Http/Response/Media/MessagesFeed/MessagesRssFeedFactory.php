@@ -56,7 +56,7 @@ class MessagesRssFeedFactory
 
         $feed = $this->rssFeedFactory->makePodcastFeed();
 
-        $channel = $this->rssChannelFactory->make(
+        $channel = $this->rssChannelFactory->makePodcastChannel(
             feed: $feed,
             publicFeedUrl: $this->urlHelper->siteUrl(
                 '/media/messages/feed',

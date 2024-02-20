@@ -43,4 +43,20 @@ class RssFeedFactory
             LIBXML_NOERROR | LIBXML_ERR_NONE | LIBXML_ERR_FATAL
         );
     }
+
+    /**
+     * @throws Exception
+     */
+    public function makeBlogFeed(): SimpleXMLElement
+    {
+        $nameSpaces = ['xmlns:content="http://purl.org/rss/1.0/modules/content/"'];
+
+        return new SimpleXMLElement(
+            '<?xml version="1.0" encoding="UTF-8" ?>' .
+            '<rss version="2.0" ' .
+            implode(' ', $nameSpaces) .
+            ' />',
+            LIBXML_NOERROR | LIBXML_ERR_NONE | LIBXML_ERR_FATAL
+        );
+    }
 }
