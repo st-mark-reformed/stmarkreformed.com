@@ -8,5 +8,5 @@ namespace App\Http\Response\Publications;
 
 class MenOfTheMarkMeta
 {
-    public const DESCRIPTION = 'Men of the Mark is an infrequent newsletter ministry of St. Mark by Pastor Joe Thacker, providing resources to encourage and develop biblical, godly men.';
+    public const DESCRIPTION = 'Men of the Mark is an occasional newsletter ministry of St. Mark by Pastor Joe Thacker, providing resources to encourage and develop biblical, godly men.';
 }
