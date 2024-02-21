@@ -14,6 +14,8 @@ use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 use Twig\Markup;
 
+// phpcs:disable SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingTraversableTypeHintSpecification
+
 class DisplayPublicationEntryResponder
 {
     public function __construct(
@@ -26,6 +28,8 @@ class DisplayPublicationEntryResponder
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
+     *
+     * @phpstan-ignore-next-line
      */
     public function respond(
         Meta $meta,

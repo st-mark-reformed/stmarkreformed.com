@@ -8,7 +8,6 @@ use App\Shared\ElementQueryFactories\EntryQueryFactory;
 use App\Shared\FieldHandlers\Generic\GenericHandler;
 use craft\elements\Entry;
 
-use DateTimeImmutable;
 use function array_map;
 
 class FetchMenOfTheMark

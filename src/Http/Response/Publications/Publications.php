@@ -27,7 +27,7 @@ class Publications
         return $this->items[0];
     }
 
-    public function walk(callable $callback)
+    public function walk(callable $callback): void
     {
         array_map(
             $callback,
