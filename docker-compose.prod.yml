@@ -1,0 +1,158 @@
+version: '3.7'
+
+services:
+  utility:
+    deploy:
+      rollback_config:
+        order: start-first
+      update_config:
+        order: start-first
+    env_file:
+      - .env
+      - .env.local
+    image: ghcr.io/st-mark-reformed/stmarkreformed.com-utility
+    volumes:
+      - .:/var/www
+      - cp-resources-volume:/cp-resources-volume
+      - files-volume:/files-volume
+      - files-above-webroot-volume:/files-above-webroot-volume
+      - image-cache-volume:/image-cache-volume
+      - public-cache-volume:/public-cache-volume
+      - storage-volume:/storage-volume
+      - uploads-volume:/uploads-volume
+
+  app:
+    deploy:
+      rollback_config:
+        order: start-first
+      update_config:
+        order: start-first
+      labels:
+        ## Traefik config ##
+        - traefik.enable=true
+        - traefik.http.services.stmark_prod.loadbalancer.server.port=80
+        - traefik.docker.lbswarm=true
+
+        ## Redirect non-www to www
+        # WWW Redirect Middleware
+        - traefik.http.middlewares.stmark_www_redirect_regex.redirectregex.regex=^http(s?)://stmarkreformed.com/(.*)
+        - traefik.http.middlewares.stmark_www_redirect_regex.redirectregex.replacement=https://www.stmarkreformed.com/$${2}
+        - traefik.http.middlewares.stmark_www_redirect_regex.redirectregex.permanent=true
+        # Insecure redirect
+        - traefik.http.routers.stmark_www_redirect_router.entrypoints=web
+        - traefik.http.routers.stmark_www_redirect_router.rule=Host(`stmarkreformed.com`)
+        - traefik.http.routers.stmark_www_redirect_router.middlewares=stmark_www_redirect_regex
+        # Secure redirect
+        - traefik.http.routers.stmark_secure_www_redirect_router.entrypoints=websecure
+        - traefik.http.routers.stmark_secure_www_redirect_router.rule=Host(`stmarkreformed.com`)
+        - traefik.http.routers.stmark_secure_www_redirect_router.tls=true
+        - traefik.http.routers.stmark_secure_www_redirect_router.middlewares=stmark_www_redirect_regex
+        ## END Redirect non-www to www
+
+        - traefik.http.routers.stmark_prod.entrypoints=web
+        - traefik.http.routers.stmark_prod.rule=Host(`www.stmarkreformed.com`)
+        - traefik.http.routers.stmark_prod.middlewares=https-redirect
+        - traefik.http.routers.stmark_prod_secure.entrypoints=websecure
+        - traefik.http.routers.stmark_prod_secure.tls=true
+        - traefik.http.routers.stmark_prod_secure.rule=Host(`www.stmarkreformed.com`)
+        ## HSTS Settings
+        - traefik.http.middlewares.stmark_hsts.headers.stsincludesubdomains=true
+        - traefik.http.middlewares.stmark_hsts.headers.stspreload=true
+        - traefik.http.middlewares.stmark_hsts.headers.stsseconds=31536000
+        ## X-Content-Type-Options
+        - traefik.http.middlewares.stmark_x_content_type.headers.contentTypeNosniff=true
+        ## Set the middlewares for HSTS and X-Content-Type-Options
+        - traefik.http.routers.stmark_prod_secure.middlewares=stmark_hsts,stmark_x_content_type
+    env_file:
+      - .env
+      - .env.local
+    image: ghcr.io/st-mark-reformed/stmarkreformed.com-app
+    environment:
+      HOSTNAME: stmark-app
+    volumes:
+      - /root/certbot/var/www/letsencrypt:/var/www/letsencrypt
+      - cp-resources-volume:/var/www/public/cpresources
+      - files-volume:/var/www/public/files
+      - files-above-webroot-volume:/var/www/filesAboveWebroot
+      - image-cache-volume:/var/www/public/imagecache
+      - public-cache-volume:/var/www/public/cache
+      - storage-volume:/var/www/storage
+      - uploads-volume:/var/www/public/uploads
+      - ./license.key:/var/www/config/license.key
+    networks:
+      - traefik
+      - default
+
+  db:
+    deploy:
+      rollback_config:
+        order: start-first
+      update_config:
+        order: start-first
+    env_file:
+      - .env
+      - .env.local
+    image: ghcr.io/st-mark-reformed/stmarkreformed.com-db
+    environment:
+      HOSTNAME: stmark-db
+      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db-volume:/var/lib/mysql
+    networks:
+      traefik:
+      default:
+        aliases:
+          - stmark-db
+
+  redis:
+    container_name: stmark-redis
+    image: redis:alpine3.14
+    volumes:
+      - redis-volume:/data
+    networks:
+      default:
+        aliases:
+          - stmark-redis
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.14.0
+    container_name: stmark-elasticsearch
+    environment:
+      - cluster.name=es-docker-cluster
+      - node.name=stmark-elasticsearch
+      - cluster.initial_master_nodes=stmark-elasticsearch
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - elasticsearch-data-volume:/usr/share/elasticsearch/data
+    expose:
+      - "9200"
+    networks:
+      default:
+        aliases:
+          - stmark-elasticsearch
+
+networks:
+  traefik:
+    name: traefik
+    external: true
+
+volumes:
+  cp-resources-volume:
+  db-volume:
+  elasticsearch-data-volume:
+  files-volume:
+  files-above-webroot-volume:
+  image-cache-volume:
+  public-cache-volume:
+  redis-volume:
+  storage-volume:
+  uploads-volume:
