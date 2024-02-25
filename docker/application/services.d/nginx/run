@@ -1,6 +1,0 @@
-#!/usr/bin/with-contenv sh
-
-if [ "$DISABLE_NGINX" != "1" ]
-then
-    exec nginx
-fi
