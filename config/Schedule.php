@@ -11,6 +11,10 @@ use BuzzingPixel\CraftScheduler\ScheduleRetrieval\RetrieveScheduleEvent;
 use BuzzingPixel\CraftScheduler\ScheduleRetrieval\SetDefaultContainerEvent;
 use Psr\Container\ContainerInterface;
 
+use function getenv;
+
+// phpcs:disable SlevomatCodingStandard.ControlStructures.EarlyExit.EarlyExitNotUsed
+
 class Schedule
 {
     public function __construct(private ContainerInterface $di)
@@ -36,6 +40,8 @@ class Schedule
     {
         $schedule = $e->scheduleConfigItems();
 
-        CheckMailingLists::addSchedule($schedule);
+        if ((bool) getenv('ENABLE_MAILING_LIST_SCHEDULE')) {
+            CheckMailingLists::addSchedule($schedule);
+        }
     }
 }

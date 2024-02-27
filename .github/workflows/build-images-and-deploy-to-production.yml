@@ -30,6 +30,18 @@ jobs:
           --output type=docker
           .
 
+      - name: Build schedule-runner image
+        run: >
+          docker buildx build
+          --platform=linux/amd64
+          --build-arg BUILDKIT_INLINE_CACHE=1
+          --cache-from ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner
+          --file docker/schedule-runner/Dockerfile
+          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner
+          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner:"$GITHUB_SHA"
+          --output type=docker
+          .
+
       - name: Build db image
         run: >
           docker buildx build
@@ -90,13 +102,17 @@ jobs:
         run: docker run --name stmark-node-code-quality -v ${PWD}:/app -w /app node:16.10.0 bash -c 'yarn stylelint --allow-empty-input "assets/**/*.{css,pcss,html,twig}" "src/**/*.{css,pcss,html,twig}"' && docker rm -f stmark-node-code-quality &>/dev/null
 
       - name: Push app image
-        if: contains(github.ref, 'master')
+        if: contains(github.ref, 'new-server')
         run: docker push ghcr.io/st-mark-reformed/stmarkreformed.com-app
 
+      - name: Push schedule-runner image
+        if: contains(github.ref, 'new-server')
+        run: docker push ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner
+
       - name: Push db image latest tag
-        if: contains(github.ref, 'master')
+        if: contains(github.ref, 'new-server')
         run: docker push ghcr.io/st-mark-reformed/stmarkreformed.com-db
 
       - name: Push utility image latest tag
-        if: contains(github.ref, 'master')
+        if: contains(github.ref, 'new-server')
         run: docker push ghcr.io/st-mark-reformed/stmarkreformed.com-utility

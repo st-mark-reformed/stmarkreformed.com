@@ -83,6 +83,32 @@ services:
       - traefik
       - default
 
+  app-scheduled-task-runner:
+    deploy:
+      rollback_config:
+        order: start-first
+      update_config:
+        order: start-first
+    env_file:
+      - .env
+      - .env.local
+    image: ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner
+    container_name: app-scheduled-task-runner
+    environment:
+      - HOSTNAME=app-scheduled-task-runner
+    volumes:
+      - cp-resources-volume:/var/www/public/cpresources
+      - files-volume:/var/www/public/files
+      - files-above-webroot-volume:/var/www/filesAboveWebroot
+      - image-cache-volume:/var/www/public/imagecache
+      - public-cache-volume:/var/www/public/cache
+      - storage-volume:/var/www/storage
+      - uploads-volume:/var/www/public/uploads
+      - ./license.key:/var/www/config/license.key
+    healthcheck:
+      disable: true
+      test: "1"
+
   app-queue-consumer-1:
     deploy:
       rollback_config:
@@ -105,11 +131,8 @@ services:
       - uploads-volume:/var/www/public/uploads
       - ./license.key:/var/www/config/license.key
     healthcheck:
-      test: [ "CMD", "php", "/var/www/craft" ]
-      interval: 5s
-      timeout: 5s
-      start_period: 10s
-      retries: 10
+      disable: true
+      test: "1"
     entrypoint: >-
       /bin/bash -c
       "echo 'while /usr/local/bin/php /var/www/craft queue/run --interactive=0 2>&1; do sleep 0.2; done' > /runner.sh
@@ -138,11 +161,8 @@ services:
       - uploads-volume:/var/www/public/uploads
       - ./license.key:/var/www/config/license.key
     healthcheck:
-      test: [ "CMD", "php", "/var/www/craft" ]
-      interval: 5s
-      timeout: 5s
-      start_period: 10s
-      retries: 10
+      disable: true
+      test: "1"
     entrypoint: >-
       /bin/bash -c
       "echo 'while /usr/local/bin/php /var/www/craft queue/run --interactive=0 2>&1; do sleep 0.2; done' > /runner.sh
@@ -171,11 +191,8 @@ services:
       - uploads-volume:/var/www/public/uploads
       - ./license.key:/var/www/config/license.key
     healthcheck:
-      test: [ "CMD", "php", "/var/www/craft" ]
-      interval: 5s
-      timeout: 5s
-      start_period: 10s
-      retries: 10
+      disable: true
+      test: "1"
     entrypoint: >-
       /bin/bash -c
       "echo 'while /usr/local/bin/php /var/www/craft queue/run --interactive=0 2>&1; do sleep 0.2; done' > /runner.sh
@@ -204,11 +221,8 @@ services:
       - uploads-volume:/var/www/public/uploads
       - ./license.key:/var/www/config/license.key
     healthcheck:
-      test: [ "CMD", "php", "/var/www/craft" ]
-      interval: 5s
-      timeout: 5s
-      start_period: 10s
-      retries: 10
+      disable: true
+      test: "1"
     entrypoint: >-
       /bin/bash -c
       "echo 'while /usr/local/bin/php /var/www/craft queue/run --interactive=0 2>&1; do sleep 0.2; done' > /runner.sh

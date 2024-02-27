@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-if [[ ! -f "/root/stmarkreformed.com/disableSchedule" ]]; then
-    /usr/bin/docker exec -w /var/www stmark-app bash -c "XDEBUG_MODE=off php craft craft-scheduler/schedule/run --interactive=0";
-fi
+echo "Running Craft Schedule"
+
+/usr/local/bin/php -f /var/www/craft craft-scheduler/schedule/run --interactive=0
