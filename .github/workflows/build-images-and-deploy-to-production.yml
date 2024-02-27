@@ -210,8 +210,8 @@ jobs:
             sleep 10;
 
             docker run --rm \
-              --entrypoint ""
-              --name after-script-project-config
+              --entrypoint "" \
+              --name after-script-project-config \
               --env-file ./.env \
               ghcr.io/st-mark-reformed/stmarkreformed.com-app \
               bash -c "chmod +x craft-after-deploy-commands.sh && ./craft-after-deploy-commands.sh;";
