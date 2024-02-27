@@ -12,12 +12,6 @@
     ],
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@github.com:craftcms/ckeditor.git"
-        }
-    ],
     "require": {
         "php": ">=8.0.13",
         "ext-dom": "*",
@@ -27,7 +21,7 @@
         "ext-simplexml": "*",
         "buzzingpixel/bp-cache": "^1.0",
         "buzzingpixel/craft-scheduler": "^1.0",
-        "buzzingpixel/craft-slim-bridge": "^1.1.4",
+        "buzzingpixel/craft-slim-bridge": "^1.1.5",
         "buzzingpixel/minify-middleware": "^1.0",
         "buzzingpixel/static-cache-middleware": "^1.0",
         "buzzingpixel/twig-markdown": "^1.0",

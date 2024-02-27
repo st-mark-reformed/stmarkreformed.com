@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "deb6b0b1079b0f35789c37553fd3d33d",
+    "content-hash": "98596baf6d6a4f48664d258f799b4c76",
     "packages": [
         {
             "name": "buzzingpixel/bp-cache",
@@ -224,16 +224,16 @@
         },
         {
             "name": "buzzingpixel/craft-slim-bridge",
-            "version": "1.1.4",
+            "version": "1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/buzzingpixel/craft-slim-bridge.git",
-                "reference": "8afa7a8502dca1d13795bb4aa22f8d7023c76564"
+                "reference": "ed3c1e385cbf0a6fb0fe0af8cae36ebe812d4750"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/buzzingpixel/craft-slim-bridge/zipball/8afa7a8502dca1d13795bb4aa22f8d7023c76564",
-                "reference": "8afa7a8502dca1d13795bb4aa22f8d7023c76564",
+                "url": "https://api.github.com/repos/buzzingpixel/craft-slim-bridge/zipball/ed3c1e385cbf0a6fb0fe0af8cae36ebe812d4750",
+                "reference": "ed3c1e385cbf0a6fb0fe0af8cae36ebe812d4750",
                 "shasum": ""
             },
             "require": {
@@ -281,9 +281,9 @@
             "description": "Bridge for using Slim with Craft",
             "support": {
                 "issues": "https://github.com/buzzingpixel/craft-slim-bridge/issues",
-                "source": "https://github.com/buzzingpixel/craft-slim-bridge/tree/1.1.4"
+                "source": "https://github.com/buzzingpixel/craft-slim-bridge/tree/1.1.5"
             },
-            "time": "2023-06-22T01:07:15+00:00"
+            "time": "2024-02-27T05:57:41+00:00"
         },
         {
             "name": "buzzingpixel/minify-middleware",
