@@ -65,69 +65,6 @@ services:
       && chmod +x /runner.sh
       && /runner.sh"
 
-  app-queue-consumer-2:
-    restart: always
-    env_file:
-      - .env
-      - .env.local
-    image: ghcr.io/st-mark-reformed/stmarkreformed.com-app
-    container_name: app-queue-consumer-2
-    environment:
-      - ENABLE_PHP_DEV_CONFIG=1
-      - HOSTNAME=app-queue-consumer-2
-    volumes:
-      - .:/var/www:delegated
-    healthcheck:
-      disable: true
-      test: "1"
-    entrypoint: >-
-      /bin/bash -c
-      "echo 'while /usr/local/bin/php /var/www/craft queue/run --interactive=0 2>&1; do sleep 0.2; done' > /runner.sh
-      && chmod +x /runner.sh
-      && /runner.sh"
-
-  app-queue-consumer-3:
-    restart: always
-    env_file:
-      - .env
-      - .env.local
-    image: ghcr.io/st-mark-reformed/stmarkreformed.com-app
-    container_name: app-queue-consumer-3
-    environment:
-      - ENABLE_PHP_DEV_CONFIG=1
-      - HOSTNAME=app-queue-consumer-3
-    volumes:
-      - .:/var/www:delegated
-    healthcheck:
-      disable: true
-      test: "1"
-    entrypoint: >-
-      /bin/bash -c
-      "echo 'while /usr/local/bin/php /var/www/craft queue/run --interactive=0 2>&1; do sleep 0.2; done' > /runner.sh
-      && chmod +x /runner.sh
-      && /runner.sh"
-
-  app-queue-consumer-4:
-    restart: always
-    env_file:
-      - .env
-      - .env.local
-    image: ghcr.io/st-mark-reformed/stmarkreformed.com-app
-    container_name: app-queue-consumer-4
-    environment:
-      - ENABLE_PHP_DEV_CONFIG=1
-      - HOSTNAME=app-queue-consumer-4
-    volumes:
-      - .:/var/www:delegated
-    healthcheck:
-      disable: true
-      test: "1"
-    entrypoint: >-
-      /bin/bash -c
-      "echo 'while /usr/local/bin/php /var/www/craft queue/run --interactive=0 2>&1; do sleep 0.2; done' > /runner.sh
-      && chmod +x /runner.sh
-      && /runner.sh"
-
   db:
     restart: always
     env_file:

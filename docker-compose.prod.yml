@@ -93,7 +93,6 @@ services:
       - .env
       - .env.local
     image: ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner
-    container_name: app-scheduled-task-runner
     environment:
       - HOSTNAME=app-scheduled-task-runner
     volumes:
@@ -107,7 +106,6 @@ services:
       - ./license.key:/var/www/config/license.key
     healthcheck:
       disable: true
-      test: "1"
 
   app-queue-consumer-1:
     deploy:
@@ -132,97 +130,6 @@ services:
       - ./license.key:/var/www/config/license.key
     healthcheck:
       disable: true
-      test: "1"
-    entrypoint: >-
-      /bin/bash -c
-      "echo 'while /usr/local/bin/php /var/www/craft queue/run --interactive=0 2>&1; do sleep 0.2; done' > /runner.sh
-      && chmod +x /runner.sh
-      && /runner.sh"
-
-  app-queue-consumer-2:
-    deploy:
-      rollback_config:
-        order: start-first
-      update_config:
-        order: start-first
-    env_file:
-      - .env
-      - .env.local
-    image: ghcr.io/st-mark-reformed/stmarkreformed.com-app
-    environment:
-      - HOSTNAME=app-queue-consumer-2
-    volumes:
-      - cp-resources-volume:/var/www/public/cpresources
-      - files-volume:/var/www/public/files
-      - files-above-webroot-volume:/var/www/filesAboveWebroot
-      - image-cache-volume:/var/www/public/imagecache
-      - public-cache-volume:/var/www/public/cache
-      - storage-volume:/var/www/storage
-      - uploads-volume:/var/www/public/uploads
-      - ./license.key:/var/www/config/license.key
-    healthcheck:
-      disable: true
-      test: "1"
-    entrypoint: >-
-      /bin/bash -c
-      "echo 'while /usr/local/bin/php /var/www/craft queue/run --interactive=0 2>&1; do sleep 0.2; done' > /runner.sh
-      && chmod +x /runner.sh
-      && /runner.sh"
-
-  app-queue-consumer-3:
-    deploy:
-      rollback_config:
-        order: start-first
-      update_config:
-        order: start-first
-    env_file:
-      - .env
-      - .env.local
-    image: ghcr.io/st-mark-reformed/stmarkreformed.com-app
-    environment:
-      - HOSTNAME=app-queue-consumer-3
-    volumes:
-      - cp-resources-volume:/var/www/public/cpresources
-      - files-volume:/var/www/public/files
-      - files-above-webroot-volume:/var/www/filesAboveWebroot
-      - image-cache-volume:/var/www/public/imagecache
-      - public-cache-volume:/var/www/public/cache
-      - storage-volume:/var/www/storage
-      - uploads-volume:/var/www/public/uploads
-      - ./license.key:/var/www/config/license.key
-    healthcheck:
-      disable: true
-      test: "1"
-    entrypoint: >-
-      /bin/bash -c
-      "echo 'while /usr/local/bin/php /var/www/craft queue/run --interactive=0 2>&1; do sleep 0.2; done' > /runner.sh
-      && chmod +x /runner.sh
-      && /runner.sh"
-
-  app-queue-consumer-4:
-    deploy:
-      rollback_config:
-        order: start-first
-      update_config:
-        order: start-first
-    env_file:
-      - .env
-      - .env.local
-    image: ghcr.io/st-mark-reformed/stmarkreformed.com-app
-    environment:
-      - HOSTNAME=app-queue-consumer-4
-    volumes:
-      - cp-resources-volume:/var/www/public/cpresources
-      - files-volume:/var/www/public/files
-      - files-above-webroot-volume:/var/www/filesAboveWebroot
-      - image-cache-volume:/var/www/public/imagecache
-      - public-cache-volume:/var/www/public/cache
-      - storage-volume:/var/www/storage
-      - uploads-volume:/var/www/public/uploads
-      - ./license.key:/var/www/config/license.key
-    healthcheck:
-      disable: true
-      test: "1"
     entrypoint: >-
       /bin/bash -c
       "echo 'while /usr/local/bin/php /var/www/craft queue/run --interactive=0 2>&1; do sleep 0.2; done' > /runner.sh
@@ -255,7 +162,6 @@ services:
           - stmark-db
 
   redis:
-    container_name: stmark-redis
     image: redis:alpine3.14
     volumes:
       - redis-volume:/data
@@ -266,7 +172,6 @@ services:
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.14.0
-    container_name: stmark-elasticsearch
     environment:
       - cluster.name=es-docker-cluster
       - node.name=stmark-elasticsearch
@@ -279,8 +184,6 @@ services:
         hard: -1
     volumes:
       - elasticsearch-data-volume:/usr/share/elasticsearch/data
-    expose:
-      - "9200"
     networks:
       default:
         aliases:
