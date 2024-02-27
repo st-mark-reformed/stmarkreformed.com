@@ -38,7 +38,7 @@ return [
     'postCpLoginRedirect' => 'entries',
     'projectPath' => $craftBasePath,
     'rememberedUserSessionDuration' => 'P100Y', // 100 years
-    'runQueueAutomatically' => (bool) getenv('DISABLE_AUTOMATIC_QUEUE'),
+    'runQueueAutomatically' => false,
     'securityKey' => getenv('SECURITY_KEY'),
     'sendPoweredByHeader' => false,
     'timezone' => 'America/Chicago',

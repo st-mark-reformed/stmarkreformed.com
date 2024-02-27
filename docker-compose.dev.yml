@@ -28,6 +28,98 @@ services:
       - traefik
       - default
 
+  app-queue-consumer-1:
+    restart: always
+    env_file:
+      - .env
+      - .env.local
+    image: ghcr.io/st-mark-reformed/stmarkreformed.com-app
+    container_name: app-queue-consumer-1
+    environment:
+      - HOSTNAME=app-queue-consumer-1
+    volumes:
+      - .:/var/www:delegated
+    healthcheck:
+      test: [ "CMD", "php", "/var/www/craft" ]
+      interval: 5s
+      timeout: 5s
+      start_period: 10s
+      retries: 10
+    entrypoint: >-
+      /bin/bash -c
+      "echo 'while /usr/local/bin/php /var/www/craft queue/run --interactive=0 2>&1; do sleep 0.2; done' > /runner.sh
+      && chmod +x /runner.sh
+      && /runner.sh"
+
+  app-queue-consumer-2:
+    restart: always
+    env_file:
+      - .env
+      - .env.local
+    image: ghcr.io/st-mark-reformed/stmarkreformed.com-app
+    container_name: app-queue-consumer-2
+    environment:
+      - HOSTNAME=app-queue-consumer-2
+    volumes:
+      - .:/var/www:delegated
+    healthcheck:
+      test: [ "CMD", "php", "/var/www/craft" ]
+      interval: 5s
+      timeout: 5s
+      start_period: 10s
+      retries: 10
+    entrypoint: >-
+      /bin/bash -c
+      "echo 'while /usr/local/bin/php /var/www/craft queue/run --interactive=0 2>&1; do sleep 0.2; done' > /runner.sh
+      && chmod +x /runner.sh
+      && /runner.sh"
+
+  app-queue-consumer-3:
+    restart: always
+    env_file:
+      - .env
+      - .env.local
+    image: ghcr.io/st-mark-reformed/stmarkreformed.com-app
+    container_name: app-queue-consumer-3
+    environment:
+      - HOSTNAME=app-queue-consumer-3
+    volumes:
+      - .:/var/www:delegated
+    healthcheck:
+      test: [ "CMD", "php", "/var/www/craft" ]
+      interval: 5s
+      timeout: 5s
+      start_period: 10s
+      retries: 10
+    entrypoint: >-
+      /bin/bash -c
+      "echo 'while /usr/local/bin/php /var/www/craft queue/run --interactive=0 2>&1; do sleep 0.2; done' > /runner.sh
+      && chmod +x /runner.sh
+      && /runner.sh"
+
+  app-queue-consumer-4:
+    restart: always
+    env_file:
+      - .env
+      - .env.local
+    image: ghcr.io/st-mark-reformed/stmarkreformed.com-app
+    container_name: app-queue-consumer-4
+    environment:
+      - HOSTNAME=app-queue-consumer-4
+    volumes:
+      - .:/var/www:delegated
+    healthcheck:
+      test: [ "CMD", "php", "/var/www/craft" ]
+      interval: 5s
+      timeout: 5s
+      start_period: 10s
+      retries: 10
+    entrypoint: >-
+      /bin/bash -c
+      "echo 'while /usr/local/bin/php /var/www/craft queue/run --interactive=0 2>&1; do sleep 0.2; done' > /runner.sh
+      && chmod +x /runner.sh
+      && /runner.sh"
+
   db:
     restart: always
     env_file:
@@ -62,23 +154,24 @@ services:
         aliases:
           - stmark-redis
 
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.14.0
-    container_name: stmark-elasticsearch
-    environment:
-      - cluster.name=es-docker-cluster
-      - node.name=stmark-elasticsearch
-      - cluster.initial_master_nodes=stmark-elasticsearch
-      - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    volumes:
-      - elasticsearch-data-volume:/usr/share/elasticsearch/data
-    expose:
-      - "9200"
-    networks:
-      default:
-        aliases:
-          - stmark-elasticsearch
+## TODO: Try to get this working on dev again sometime
+#  elasticsearch:
+#    image: docker.elastic.co/elasticsearch/elasticsearch:7.14.0
+#    container_name: stmark-elasticsearch
+#    environment:
+#      - cluster.name=es-docker-cluster
+#      - node.name=stmark-elasticsearch
+#      - cluster.initial_master_nodes=stmark-elasticsearch
+#      - bootstrap.memory_lock=true
+#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+#    volumes:
+#      - elasticsearch-data-volume:/usr/share/elasticsearch/data
+#    expose:
+#      - "9200"
+#    networks:
+#      default:
+#        aliases:
+#          - stmark-elasticsearch
 
 volumes:
   db-volume:
