@@ -1,0 +1,102 @@
+name: Build images and deploy to production
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - new-server
+jobs:
+  build:
+    name: Build images and push to registry
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Create buildx context
+        run: docker buildx create --use
+
+      - name: Log in to registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+
+      - name: Build app image
+        run: >
+          docker buildx build
+          --platform=linux/amd64
+          --build-arg BUILDKIT_INLINE_CACHE=1
+          --cache-from ghcr.io/st-mark-reformed/stmarkreformed.com-app
+          --file docker/application/Dockerfile
+          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-app
+          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-app:"$GITHUB_SHA"
+          --output type=docker
+          .
+
+      - name: Build db image
+        run: >
+          docker buildx build
+          --platform=linux/amd64
+          --build-arg BUILDKIT_INLINE_CACHE=1
+          --cache-from ghcr.io/st-mark-reformed/stmarkreformed.com-db
+          --file docker/db/Dockerfile
+          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-db
+          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-db:"$GITHUB_SHA"
+          --output type=docker
+          .
+
+      - name: Build utility image
+        run: >
+          docker buildx build
+          --platform=linux/amd64
+          --build-arg BUILDKIT_INLINE_CACHE=1
+          --cache-from ghcr.io/st-mark-reformed/stmarkreformed.com-utility
+          --file docker/utility/Dockerfile
+          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-utility
+          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-utility:"$GITHUB_SHA"
+          --output type=docker
+          .
+
+      - name: Create code quality container
+        run: >
+          docker run -d
+          --name stmark-code-quality
+          -w /var/www
+          --env ENABLE_PHP_DEV_CONFIG=1
+          --env ENABLE_XDEBUG=1
+          --env DISABLE_PHP_FPM=1
+          --env DISABLE_NGINX=1
+          ghcr.io/st-mark-reformed/stmarkreformed.com-app:"$GITHUB_SHA"
+
+      - name: Install All Composer Dependencies
+        run: docker exec stmark-code-quality bash -c "composer install --no-interaction --no-progress"
+
+      - name: Run PHPUnit
+        run: docker exec stmark-code-quality bash -c "XDEBUG_MODE=coverage ./vendor/bin/phpunit"
+
+      # - name: Run PHPStan
+      #   run: docker exec stmark-code-quality bash -c "XDEBUG_MODE=off php -d memory_limit=4G ./vendor/bin/phpstan analyse CraftFrontController.php public/index.php config src --no-progress"
+
+      - name: Run PHPCS
+        run: docker exec stmark-code-quality bash -c "XDEBUG_MODE=off php -d memory_limit=4G ./vendor/bin/phpcs"
+
+      - name: Run php-cs-fixer
+        run: docker exec stmark-code-quality bash -c "XDEBUG_MODE=off ./vendor/bin/php-cs-fixer fix -v --using-cache=no"
+
+      - name: Install node dependencies
+        run: docker run --name stmark-node-code-quality -v ${PWD}:/app -w /app node:16.10.0 bash -c "yarn" && docker rm -f stmark-node-code-quality &>/dev/null
+
+      - name: Run eslint
+        run: docker run --name stmark-node-code-quality -v ${PWD}:/app -w /app node:16.10.0 bash -c 'yarn eslint --ext .js --ext .ts --ext .jsx --ext .tsx --ext .html --ext .vue --ext .mjs --ext .twig --no-error-on-unmatched-pattern assets src' && docker rm -f stmark-node-code-quality &>/dev/null
+
+      - name: Run stylelint
+        run: docker run --name stmark-node-code-quality -v ${PWD}:/app -w /app node:16.10.0 bash -c 'yarn stylelint --allow-empty-input "assets/**/*.{css,pcss,html,twig}" "src/**/*.{css,pcss,html,twig}"' && docker rm -f stmark-node-code-quality &>/dev/null
+
+      - name: Push app image
+        if: contains(github.ref, 'master')
+        run: docker push ghcr.io/st-mark-reformed/stmarkreformed.com-app
+
+      - name: Push db image latest tag
+        if: contains(github.ref, 'master')
+        run: docker push ghcr.io/st-mark-reformed/stmarkreformed.com-db
+
+      - name: Push utility image latest tag
+        if: contains(github.ref, 'master')
+        run: docker push ghcr.io/st-mark-reformed/stmarkreformed.com-utility
