@@ -3,12 +3,23 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - new-server
+      - master
 jobs:
   build:
     name: Build images and push to registry
     runs-on: ubuntu-latest
     steps:
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        if: always()
+        env:
+          SLACK_WEBHOOK: ${{ vars.CI_SLACK_WEBHOOK }}
+          SLACK_USERNAME: Github
+          SLACK_ICON: https://www.buzzingpixel.com/files/slack-notifications-icon.png
+          SLACK_COLOR: '#1B7FBA'
+          SLACK_TITLE: '🔵 stmarkreformed.com CI has started'
+          SLACK_FOOTER: '<https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}|View Run>'
+
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -102,17 +113,127 @@ jobs:
         run: docker run --name stmark-node-code-quality -v ${PWD}:/app -w /app node:16.10.0 bash -c 'yarn stylelint --allow-empty-input "assets/**/*.{css,pcss,html,twig}" "src/**/*.{css,pcss,html,twig}"' && docker rm -f stmark-node-code-quality &>/dev/null
 
       - name: Push app image
-        if: contains(github.ref, 'new-server')
+        if: contains(github.ref, 'master')
         run: docker push ghcr.io/st-mark-reformed/stmarkreformed.com-app
 
       - name: Push schedule-runner image
-        if: contains(github.ref, 'new-server')
+        if: contains(github.ref, 'master')
         run: docker push ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner
 
       - name: Push db image latest tag
-        if: contains(github.ref, 'new-server')
+        if: contains(github.ref, 'master')
         run: docker push ghcr.io/st-mark-reformed/stmarkreformed.com-db
 
       - name: Push utility image latest tag
-        if: contains(github.ref, 'new-server')
+        if: contains(github.ref, 'master')
         run: docker push ghcr.io/st-mark-reformed/stmarkreformed.com-utility
+
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        if: failure()
+        env:
+          SLACK_WEBHOOK: ${{ vars.CI_SLACK_WEBHOOK }}
+          SLACK_USERNAME: Github
+          SLACK_ICON: https://www.buzzingpixel.com/files/slack-notifications-icon.png
+          SLACK_COLOR: '#A94442'
+          SLACK_TITLE: '🔴 stmarkreformed.com CI has failed'
+          SLACK_FOOTER: '<https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}|View Run>'
+
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        if: success()
+        env:
+          SLACK_WEBHOOK: ${{ vars.CI_SLACK_WEBHOOK }}
+          SLACK_USERNAME: Github
+          SLACK_ICON: https://www.buzzingpixel.com/files/slack-notifications-icon.png
+          SLACK_COLOR: '#3B763D'
+          SLACK_TITLE: '🟢 stmarkreformed.com CI passed'
+          SLACK_FOOTER: '<https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}|View Run>'
+
+  deploy:
+    name: Deploy to production
+    runs-on: ubuntu-latest
+    needs: build
+    if: contains(github.ref, 'master')
+    steps:
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        if: success()
+        env:
+          SLACK_WEBHOOK: ${{ vars.CI_SLACK_WEBHOOK }}
+          SLACK_USERNAME: Github
+          SLACK_ICON: https://www.buzzingpixel.com/files/slack-notifications-icon.png
+          SLACK_COLOR: '#1B7FBA'
+          SLACK_TITLE: '🔵 stmarkreformed.com Github Deployment has started'
+          SLACK_FOOTER: '<https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}|View Run>'
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Copy Files
+        uses: appleboy/scp-action@master
+        with:
+          username: ${{ vars.PROD_DEPLOY_SSH_USER }}
+          host: ${{ vars.PROD_DEPLOY_SSH_HOST }}
+          key: ${{ secrets.PROD_DEPLOY_SSH_PRIVATE_KEY }}
+          source: ".env, docker-compose.prod.yml"
+          target: "/root/stmarkreformed.com"
+
+      - name: Log in to production server pull images, and deploy
+        uses: appleboy/ssh-action@master
+        with:
+          username: ${{ vars.PROD_DEPLOY_SSH_USER }}
+          host: ${{ vars.PROD_DEPLOY_SSH_HOST }}
+          key: ${{ secrets.PROD_DEPLOY_SSH_PRIVATE_KEY }}
+          script: |
+            cd /root/stmarkreformed.com;
+
+            # Log in to github docker registry
+            echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin;
+
+            # Pull Images
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-app;
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-db;
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-utility;
+
+            # Docker can be weird about .env, make sure local is concat into .env
+            cat /root/stmarkreformed.com/.env.local >> /root/stmarkreformed.com/.env;
+
+            # Deploy new images
+            docker stack deploy \
+              --compose-file docker-compose.prod.yml \
+              --prune \
+              --with-registry-auth \
+              --resolve-image always \
+              stmark;
+
+            sleep 10;
+
+            docker run --rm \
+              --entrypoint ""
+              --name after-script-project-config
+              --env-file ./.env \
+              ghcr.io/st-mark-reformed/stmarkreformed.com-app \
+              bash -c "chmod +x craft-after-deploy-commands.sh && ./craft-after-deploy-commands.sh;";
+
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        if: failure()
+        env:
+          SLACK_WEBHOOK: ${{ vars.CI_SLACK_WEBHOOK }}
+          SLACK_USERNAME: Github
+          SLACK_ICON: https://www.buzzingpixel.com/files/slack-notifications-icon.png
+          SLACK_COLOR: '#A94442'
+          SLACK_TITLE: '🔴 stmarkreformed.com Github Deployment has failed'
+          SLACK_FOOTER: '<https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}|View Run>'
+
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        if: success()
+        env:
+          SLACK_WEBHOOK: ${{ vars.CI_SLACK_WEBHOOK }}
+          SLACK_USERNAME: Github
+          SLACK_ICON: https://www.buzzingpixel.com/files/slack-notifications-icon.png
+          SLACK_COLOR: '#3B763D'
+          SLACK_TITLE: '🟢 stmarkreformed.com Github Deployment succeeded'
+          SLACK_FOOTER: '<https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}|View Run>'
