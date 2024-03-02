@@ -188,7 +188,7 @@ jobs:
           script: |
             cd /root/stmarkreformed.com;
 
-            INITIAL_APP_CONTAINER_ID=$(docker ps -f name=stmark-app --quiet);
+            INITIAL_APP_CONTAINER_ID=$(docker ps -f name=stmark_app.1 --quiet);
 
             # Log in to github docker registry
             echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin;
@@ -209,14 +209,14 @@ jobs:
               --resolve-image always \
               stmark;
 
-            APP_CONTAINER_ID=$(docker ps -f name=stmark-app --quiet);
+            APP_CONTAINER_ID=$(docker ps -f name=stmark_app.1 --quiet);
 
             while [[ -z $APP_CONTAINER_ID || $INITIAL_APP_CONTAINER_ID = $APP_CONTAINER_ID ]]; do
                 sleep 1;
-                APP_CONTAINER_ID=$(docker ps -f name=stmark-app --quiet);
+                APP_CONTAINER_ID=$(docker ps -f name=stmark_app.1 --quiet);
             done
 
-            sleep 5;
+            sleep 2;
 
             docker exec ${APP_CONTAINER_ID} bash -c "chmod +x craft-after-deploy-commands.sh && ./craft-after-deploy-commands.sh"
 
