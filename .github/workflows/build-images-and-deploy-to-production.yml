@@ -218,7 +218,7 @@ jobs:
 
             sleep 10;
 
-            docker exec ${APP_CONTAINER_ID} bash -c "chmod +x craft-after-deploy-commands.sh && ./craft-after-deploy-commands.sh";
+            docker exec "$APP_CONTAINER_ID" bash -c "chmod +x craft-after-deploy-commands.sh && ./craft-after-deploy-commands.sh";
 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
