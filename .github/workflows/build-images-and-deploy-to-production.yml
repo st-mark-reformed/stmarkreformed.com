@@ -214,7 +214,7 @@ jobs:
               --name after-script-project-config \
               --env-file ./.env \
               ghcr.io/st-mark-reformed/stmarkreformed.com-app \
-              bash -c "chmod +x craft-after-deploy-commands.sh && ./craft-after-deploy-commands.sh;";
+              bash -c "chmod +x craft-after-deploy-commands.sh && ./craft-after-deploy-commands.sh";
 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
