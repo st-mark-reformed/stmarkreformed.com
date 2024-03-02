@@ -188,6 +188,8 @@ jobs:
           script: |
             cd /root/stmarkreformed.com;
 
+            INITIAL_APP_CONTAINER_ID=$(docker ps -f name=stmark-app --quiet);
+
             # Log in to github docker registry
             echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin;
 
@@ -207,14 +209,16 @@ jobs:
               --resolve-image always \
               stmark;
 
-            sleep 10;
+            APP_CONTAINER_ID=$(docker ps -f name=stmark-app --quiet);
 
-            docker run --rm \
-              --entrypoint "" \
-              --name after-script-project-config \
-              --env-file ./.env \
-              ghcr.io/st-mark-reformed/stmarkreformed.com-app \
-              bash -c "chmod +x craft-after-deploy-commands.sh && ./craft-after-deploy-commands.sh";
+            while [[ -z $APP_CONTAINER_ID || $INITIAL_APP_CONTAINER_ID = $APP_CONTAINER_ID ]]; do
+                sleep 1;
+                APP_CONTAINER_ID=$(docker ps -f name=stmark-app --quiet);
+            done
+
+            sleep 5;
+
+            docker exec ${APP_CONTAINER_ID} bash -c "chmod +x craft-after-deploy-commands.sh && ./craft-after-deploy-commands.sh"
 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
