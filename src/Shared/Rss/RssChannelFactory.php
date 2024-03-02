@@ -149,6 +149,7 @@ class RssChannelFactory
         string $title,
         string $description,
         string $link,
+        string $feedUrl,
     ): SimpleXMLElement {
         $channel = $feed->addChild('channel');
 
@@ -159,6 +160,16 @@ class RssChannelFactory
         $channel->addChild('link', $link);
 
         $channel->addChild('language', 'en-us');
+
+        $atomLink = $channel->addChild(
+            'atom:link',
+            '',
+            'http://www.w3.org/2005/Atom',
+        );
+
+        $atomLink->addAttribute('href', $feedUrl);
+
+        $atomLink->addAttribute('rel', 'self');
 
         return $channel;
     }

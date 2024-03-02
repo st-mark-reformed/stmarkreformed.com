@@ -36,6 +36,9 @@ class MenOfTheMarkFeedFactory
             $this->urlHelper->siteUrl(
                 '/publications/men-of-the-mark',
             ),
+            $this->urlHelper->siteUrl(
+                '/publications/men-of-the-mark/rss',
+            ),
         );
 
         $publications->walk(
@@ -58,7 +61,7 @@ class MenOfTheMarkFeedFactory
                 );
 
                 $guid->addAttribute(
-                    'isPermalink',
+                    'isPermaLink',
                     'false',
                 );
 

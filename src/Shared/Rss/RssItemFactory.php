@@ -71,7 +71,7 @@ class RssItemFactory
         );
 
         $guid->addAttribute(
-            'isPermalink',
+            'isPermaLink',
             'false',
         );
 
