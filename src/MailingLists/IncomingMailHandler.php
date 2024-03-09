@@ -6,6 +6,7 @@ namespace App\MailingLists;
 
 use craft\mail\Mailer as CraftMailer;
 use craft\mail\Message as CraftMessage;
+use craft\models\MailSettings as CraftMailSettings;
 use Exception;
 use PhpImap\IncomingMail;
 use PhpImap\IncomingMailAttachment;
@@ -21,8 +22,12 @@ use function preg_replace;
 
 class IncomingMailHandler
 {
-    public function __construct(private CraftMailer $craftMailer)
-    {
+    /** @phpstan-ignore-next-line */
+    public function __construct(
+        private CraftMailer $craftMailer,
+        /** @phpstan-ignore-next-line */
+        private CraftMailSettings $craftMailSettings,
+    ) {
     }
 
     /**
@@ -52,8 +57,10 @@ class IncomingMailHandler
 
         $fromName = (string) $incomingMail->fromName;
 
-        /** @phpstan-ignore-next-line */
-        $craftMessage->setFrom([$fromAddress => $fromName]);
+        $craftMessage->setFrom(
+            /** @phpstan-ignore-next-line */
+            [(string) $this->craftMailSettings->fromEmail => $fromName],
+        );
 
         $to = [];
 
