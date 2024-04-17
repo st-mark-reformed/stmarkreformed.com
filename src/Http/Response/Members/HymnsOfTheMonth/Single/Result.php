@@ -21,6 +21,8 @@ class Result
         private ?string $musicSheetDownloadUrl,
         array $tracks,
     ) {
+        $this->tracks = [];
+
         array_map(
             function (Track $track): void {
                 $this->tracks[] = $track;
