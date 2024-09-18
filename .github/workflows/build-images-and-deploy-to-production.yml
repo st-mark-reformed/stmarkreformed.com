@@ -46,7 +46,6 @@ jobs:
           docker buildx build
           --platform=linux/amd64
           --build-arg BUILDKIT_INLINE_CACHE=1
-          --cache-from ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner
           --file docker/schedule-runner/Dockerfile
           --tag ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner
           --tag ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner:"$GITHUB_SHA"
