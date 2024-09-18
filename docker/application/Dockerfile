@@ -95,11 +95,11 @@ RUN docker-php-ext-configure gd --with-jpeg --with-freetype --with-xpm --with-we
 
 # Find at http://nginx.org/packages/mainline/debian/pool/nginx/n/nginx/
 # and http://nginx.org/packages/mainline/debian/pool/nginx/n/nginx-module-njs/
-ARG NGINX_VERSION=1.21.3
-ARG NJS_VERSION=0.6.2
+ARG NGINX_VERSION=1.25.4
+ARG NJS_VERSION=0.8.3
 ARG PKG_RELEASE=1~bullseye
 
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 \
+RUN curl -O https://nginx.org/keys/nginx_signing.key && apt-key add ./nginx_signing.key \
     && echo "deb http://nginx.org/packages/mainline/debian/ bullseye nginx" >> /etc/apt/sources.list \
     && apt-get update && apt-get install -y --no-install-recommends --no-install-suggests \
         ca-certificates \
