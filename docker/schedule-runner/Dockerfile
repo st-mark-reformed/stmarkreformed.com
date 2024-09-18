@@ -1,4 +1,5 @@
-FROM --platform=$TARGETPLATFORM ghcr.io/st-mark-reformed/stmarkreformed.com-app
+ARG APP_IMAGE=ghcr.io/st-mark-reformed/stmarkreformed.com-app
+FROM --platform=$TARGETPLATFORM $APP_IMAGE
 ARG TARGETPLATFORM
 ARG TARGETARCH
 ARG BUILDPLATFORM
