@@ -94,6 +94,10 @@ class MenuTwigExtension extends AbstractExtension
                         content: 'News',
                         href: '/news',
                     ),
+                    new MenuItem(
+                        content: 'Men of the Mark',
+                        href: '/publications/men-of-the-mark',
+                    ),
                 ],
             ),
             new MenuItem(
