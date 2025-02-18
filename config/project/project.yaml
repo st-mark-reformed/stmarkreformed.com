@@ -1,4 +1,4 @@
-dateModified: 1739844716
+dateModified: 1708379969
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -6,12 +6,12 @@ email:
   template: ''
   transportSettings:
     encryptionMethod: tls
-    host: smtp.mailersend.net
+    host: smtp.mandrillapp.com
     password: $SMTP_PASSWORD
     port: '587'
     timeout: '30'
     useAuthentication: '1'
-    username: MS_qKizPH@stmarkreformed.com
+    username: info@buzzingpixel.com
   transportType: craft\mail\transportadapters\Smtp
 graphql:
   publicToken:
