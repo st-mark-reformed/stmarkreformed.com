@@ -132,7 +132,7 @@ services:
       disable: true
     entrypoint: >-
       /bin/bash -c
-      "echo 'while /usr/local/bin/php /var/www/craft queue/run --interactive=0 2>&1; do sleep 0.2; done' > /runner.sh
+      "echo 'while /usr/local/bin/php /var/www/craft queue/run --interactive=0 2>&1; do sleep 2; done' > /runner.sh
       && chmod +x /runner.sh
       && /runner.sh"
 
