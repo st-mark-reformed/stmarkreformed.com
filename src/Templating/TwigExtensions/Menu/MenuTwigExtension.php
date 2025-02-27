@@ -8,6 +8,9 @@ use craft\elements\Entry;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
+use function array_filter;
+use function array_values;
+
 class MenuTwigExtension extends AbstractExtension
 {
     /**
@@ -106,7 +109,7 @@ class MenuTwigExtension extends AbstractExtension
                             href: '/publications/men-of-the-mark',
                         ),
                     ],
-                    function (MenuItem|null $item): bool {
+                    static function (MenuItem|null $item): bool {
                         return $item !== null;
                     }
                 )),
