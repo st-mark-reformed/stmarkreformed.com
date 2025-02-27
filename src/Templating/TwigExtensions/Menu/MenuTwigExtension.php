@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Templating\TwigExtensions\Menu;
 
+use craft\elements\Entry;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -31,6 +32,11 @@ class MenuTwigExtension extends AbstractExtension
      */
     public function mainMenu(): array
     {
+        $resourcesCount = (int) Entry::find()
+            ->section('resources')
+            ->limit(1)
+            ->count();
+
         return [
             new MenuItem(
                 content: 'Calendar',
@@ -77,28 +83,33 @@ class MenuTwigExtension extends AbstractExtension
             new MenuItem(
                 content: 'Media',
                 href: '/media/messages',
-                submenu: [
-                    new MenuItem(
-                        content: 'Messages',
-                        href: '/media/messages',
-                    ),
-                    new MenuItem(
-                        content: 'Galleries',
-                        href: '/media/galleries',
-                    ),
-                    // new MenuItem(
-                    //     content: 'Resources',
-                    //     href: '/resources',
-                    // ),
-                    new MenuItem(
-                        content: 'News',
-                        href: '/news',
-                    ),
-                    new MenuItem(
-                        content: 'Men of the Mark',
-                        href: '/publications/men-of-the-mark',
-                    ),
-                ],
+                submenu: array_values(array_filter(
+                    [
+                        new MenuItem(
+                            content: 'Messages',
+                            href: '/media/messages',
+                        ),
+                        new MenuItem(
+                            content: 'Galleries',
+                            href: '/media/galleries',
+                        ),
+                        $resourcesCount > 0 ? new MenuItem(
+                            content: 'Resources',
+                            href: '/resources',
+                        ) : null,
+                        new MenuItem(
+                            content: 'News',
+                            href: '/news',
+                        ),
+                        new MenuItem(
+                            content: 'Men of the Mark',
+                            href: '/publications/men-of-the-mark',
+                        ),
+                    ],
+                    function (MenuItem|null $item): bool {
+                        return $item !== null;
+                    }
+                )),
             ),
             new MenuItem(
                 content: 'Building Fund',
