@@ -1,4 +1,4 @@
-dateModified: 1739912854
+dateModified: 1745373176
 email:
   fromEmail: info@stmarkreformed.com
   fromName: 'St. Mark Reformed Church'
@@ -211,7 +211,7 @@ plugins:
   buttonbox:
     edition: standard
     enabled: true
-    schemaVersion: 1.0.0
+    schemaVersion: 2.0.0
   calendar:
     edition: pro
     enabled: true
@@ -361,5 +361,5 @@ system:
   edition: pro
   live: true
   name: 'St. Mark Reformed Church'
-  schemaVersion: 3.7.8
+  schemaVersion: 3.8.0.1
   timeZone: America/Chicago

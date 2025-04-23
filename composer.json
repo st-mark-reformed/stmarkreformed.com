@@ -2,7 +2,7 @@
     "name": "st-mark-reformed/stmarkreformed.com",
     "description": "St. Mark Reformed Church Website",
     "license": "proprietary",
-    "homepage": "http://stmarkreformed.com/",
+    "homepage": "https://stmarkreformed.com",
     "authors": [
         {
             "name": "TJ Draper",
@@ -29,7 +29,7 @@
         "buzzingpixel/twig-widont": "^1.0",
         "cocur/slugify": "^4.0.0",
         "craftcms/ckeditor": "1.1.2",
-        "craftcms/cms": "3.7.24",
+        "craftcms/cms": "^3.9.15",
         "craftcms/redactor": "2.8.8",
         "daverandom/resume": "^0.0.3",
         "doctrine/annotations": "^1.13",
@@ -48,10 +48,10 @@
         "slim/flash": "^0.4.0",
         "solspace/craft3-calendar": "^3.3",
         "spatie/image-optimizer": "^1.5",
-        "supercool/buttonbox": "^2.0",
         "tde/craftplugin-geoaddress": "1.0.13",
         "timostamm/text-truncation": "dev-master",
         "vaersaagod/matrixmate": "^1.2",
+        "verbb/buttonbox": "^3.0.0",
         "verbb/super-table": "^2.6",
         "wrav/oembed": "^1",
         "yiisoft/yii2-redis": "^2.0"
