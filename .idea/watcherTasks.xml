@@ -5,7 +5,7 @@
       <option name="arguments" value="stylelint --fix $FilePath$" />
       <option name="checkSyntaxErrors" value="true" />
       <option name="description" />
-      <option name="exitCodeBehavior" value="NEVER" />
+      <option name="exitCodeBehavior" value="ALWAYS" />
       <option name="fileExtension" value="*" />
       <option name="immediateSync" value="false" />
       <option name="name" value="Stylelint Fix" />
@@ -18,14 +18,14 @@
       <option name="runOnExternalChanges" value="false" />
       <option name="scopeName" value="Project Assets and Source css files" />
       <option name="trackOnlyRoot" value="false" />
-      <option name="workingDir" value="" />
+      <option name="workingDir" value="$PROJECT_DIR$/craft-cms" />
       <envs />
     </TaskOptions>
     <TaskOptions isEnabled="true">
       <option name="arguments" value="css" />
       <option name="checkSyntaxErrors" value="true" />
       <option name="description" />
-      <option name="exitCodeBehavior" value="ERROR" />
+      <option name="exitCodeBehavior" value="ALWAYS" />
       <option name="fileExtension" value="*" />
       <option name="immediateSync" value="false" />
       <option name="name" value="CSS Build" />
@@ -38,7 +38,7 @@
       <option name="runOnExternalChanges" value="false" />
       <option name="scopeName" value="Project Assets and Source css files" />
       <option name="trackOnlyRoot" value="false" />
-      <option name="workingDir" value="" />
+      <option name="workingDir" value="$PROJECT_DIR$/craft-cms" />
       <envs />
     </TaskOptions>
     <TaskOptions isEnabled="true">
@@ -58,7 +58,7 @@
       <option name="runOnExternalChanges" value="false" />
       <option name="scopeName" value="Project JS Files" />
       <option name="trackOnlyRoot" value="false" />
-      <option name="workingDir" value="" />
+      <option name="workingDir" value="$PROJECT_DIR$/craft-cms" />
       <envs />
     </TaskOptions>
   </component>

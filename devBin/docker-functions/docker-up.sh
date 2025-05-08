@@ -7,7 +7,7 @@ function docker-up-help() {
 function docker-up() {
     docker network create traefik-dev_default >/dev/null 2>&1;
 
-    docker compose -f docker-compose.dev.yml -p stmark up -d;
+    docker compose -f docker/docker-compose.dev.yml -p stmark up -d;
 
     docker exec stmark-app bash -c "chmod 0755 /var/www";
 

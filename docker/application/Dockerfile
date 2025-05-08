@@ -1,24 +1,20 @@
 ##################
 # frontend-builder
 ##################
-FROM --platform=$TARGETPLATFORM node:16.10.0 AS frontend-builder
+FROM node:16.10.0 AS frontend-builder
 
 # Set our workdir
 WORKDIR /var/www
 
-# Copy the application into the container
-COPY . /var/www
+COPY ./craft-cms /var/www
 
-# Install dependencies
-RUN yarn
-
-# Run the frontend build
-RUN yarn build-prod
+# Install dependencies and run the frontend build
+RUN cd assets && yarn && yarn build-prod
 
 ###################
 # application build
 ###################
-FROM --platform=$TARGETPLATFORM php:8.0.13-fpm
+FROM php:8.0.13-fpm
 ARG TARGETPLATFORM
 ARG TARGETARCH
 ARG BUILDPLATFORM
@@ -147,7 +143,7 @@ COPY ./docker/application/nginx/dhparam.pem /etc/nginx/ssl/dhparam.pem
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
 # Copy the application into the container
-COPY . /var/www
+COPY ./craft-cms /var/www
 
 # Install composer dependencies
 RUN composer install --no-interaction --no-ansi --no-progress --no-dev --optimize-autoloader
@@ -173,6 +169,7 @@ RUN apt-get update && apt-get install -my --force-yes --no-install-recommends \
     webp \
     libc-client-dev \
     libkrb5-dev \
+    vim \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 

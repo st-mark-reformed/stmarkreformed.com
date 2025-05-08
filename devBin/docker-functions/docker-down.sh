@@ -5,7 +5,7 @@ function docker-down-help {
 }
 
 function docker-down() {
-    docker compose -f docker-compose.dev.yml -p stmark down;
+    docker compose -f docker/docker-compose.dev.yml -p stmark down;
 
     return 0;
 }

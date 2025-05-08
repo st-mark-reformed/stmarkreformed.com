@@ -1,5 +1,3 @@
-version: '3.7'
-
 services:
   utility:
     deploy:
@@ -8,8 +6,8 @@ services:
       update_config:
         order: start-first
     env_file:
-      - .env
-      - .env.local
+      - application/.env
+      - application/.env.local
     image: ghcr.io/st-mark-reformed/stmarkreformed.com-utility
     volumes:
       - .:/var/www
@@ -64,8 +62,8 @@ services:
         ## Set the middlewares for HSTS and X-Content-Type-Options
         - traefik.http.routers.stmark_prod_secure.middlewares=stmark_hsts,stmark_x_content_type
     env_file:
-      - .env
-      - .env.local
+      - application/.env
+      - application/.env.local
     image: ghcr.io/st-mark-reformed/stmarkreformed.com-app
     environment:
       HOSTNAME: stmark-app
@@ -90,8 +88,8 @@ services:
       update_config:
         order: start-first
     env_file:
-      - .env
-      - .env.local
+      - application/.env
+      - application/.env.local
     image: ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner
     environment:
       - HOSTNAME=app-scheduled-task-runner
@@ -114,8 +112,8 @@ services:
       update_config:
         order: start-first
     env_file:
-      - .env
-      - .env.local
+      - application/.env
+      - application/.env.local
     image: ghcr.io/st-mark-reformed/stmarkreformed.com-app
     environment:
       - HOSTNAME=app-queue-consumer-1
@@ -143,16 +141,12 @@ services:
       update_config:
         order: start-first
     env_file:
-      - .env
-      - .env.local
+      - application/.env
+      - application/.env.local
     image: ghcr.io/st-mark-reformed/stmarkreformed.com-db
     environment:
       HOSTNAME: stmark-db
       MYSQL_ALLOW_EMPTY_PASSWORD: "no"
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
       - db-volume:/var/lib/mysql
     networks:

@@ -6,6 +6,10 @@ namespace Config;
 
 class Tinker
 {
+    public function __construct(
+    ) {
+    }
+
     public function __invoke(): void
     {
         echo 'here';

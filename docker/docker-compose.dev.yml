@@ -1,11 +1,9 @@
-version: '3.7'
-
 services:
   app:
     restart: always
     env_file:
-      - .env
-      - .env.local
+      - application/.env
+      - application/.env.local
     image: ghcr.io/st-mark-reformed/stmarkreformed.com-app
     container_name: stmark-app
     environment:
@@ -14,7 +12,7 @@ services:
     ports:
       - "44232:80"
     volumes:
-      - .:/var/www:delegated
+      - ../craft-cms:/var/www:delegated
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik-dev_default
@@ -31,15 +29,15 @@ services:
   app-scheduled-task-runner:
     restart: always
     env_file:
-      - .env
-      - .env.local
+      - application/.env
+      - application/.env.local
     image: ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner
     container_name: app-scheduled-task-runner
     environment:
       - ENABLE_PHP_DEV_CONFIG=1
       - HOSTNAME=app-scheduled-task-runner
     volumes:
-      - .:/var/www:delegated
+      - ../craft-cms:/var/www:delegated
     healthcheck:
       disable: true
       test: "1"
@@ -47,15 +45,15 @@ services:
   app-queue-consumer-1:
     restart: always
     env_file:
-      - .env
-      - .env.local
+      - application/.env
+      - application/.env.local
     image: ghcr.io/st-mark-reformed/stmarkreformed.com-app
     container_name: app-queue-consumer-1
     environment:
       - ENABLE_PHP_DEV_CONFIG=1
       - HOSTNAME=app-queue-consumer-1
     volumes:
-      - .:/var/www:delegated
+      - ../craft-cms:/var/www:delegated
     healthcheck:
       disable: true
       test: "1"
@@ -68,17 +66,13 @@ services:
   db:
     restart: always
     env_file:
-      - .env
-      - .env.local
+      - application/.env
+      - application/.env.local
     image: ghcr.io/st-mark-reformed/stmarkreformed.com-db
     container_name: stmark-db
     environment:
       HOSTNAME: stmark-db
       MYSQL_ALLOW_EMPTY_PASSWORD: "no"
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
       - "44230:3306"
     volumes:

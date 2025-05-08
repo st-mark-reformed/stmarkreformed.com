@@ -1,45 +1,15 @@
-#------------------------------------
-# Project
-#------------------------------------
-
-#...project custom ignores go here
 .env.local
-.phpunit.cache
-
-
-
-
-
-#------------------------------------
-# System
-#------------------------------------
-
 auth.json
 
 
-
-
-
-#------------------------------------
-# Tools
-#------------------------------------
-
+# Tooling
 .php_cs.cache
+.phpunit.cache
 .phpunit.result.cache
-/docker-compose.env.yml
 /*-workspace
-/node_modules
 /*.sublime-*
-/vendor/*
 
-
-
-
-
-#------------------------------------
 # System
-#------------------------------------
-
 .cache
 .DS_Store
 .tmp
@@ -55,13 +25,5 @@ error_log
 Thumbs.db
 Homestead.yaml
 *.vagrant
-
-
-
-
-
-#------------------------------------
-# Gitkeep
-#------------------------------------
 
 !.gitkeep
