@@ -132,7 +132,7 @@ services:
         ## X-Content-Type-Options
         - traefik.http.middlewares.stmark_api_x_content_type.headers.contentTypeNosniff=true
         ## Set the middlewares for HSTS and X-Content-Type-Options
-        - traefik.http.routers.stmark_prod_secure.middlewares=stmark_api_hsts,stmark_api_x_content_type
+        - traefik.http.routers.stmark_api_prod_secure.middlewares=stmark_api_hsts,stmark_api_x_content_type
     env_file:
       - application/.env
       - application/.env.local
