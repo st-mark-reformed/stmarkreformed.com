@@ -76,7 +76,7 @@ services:
       - public-cache-volume:/var/www/public/cache
       - storage-volume:/var/www/storage
       - uploads-volume:/var/www/public/uploads
-      - ./docker/application/license.key:/var/www/config/license.key
+      - ./application/license.key:/var/www/config/license.key
     networks:
       - traefik
       - default
@@ -101,7 +101,7 @@ services:
       - public-cache-volume:/var/www/public/cache
       - storage-volume:/var/www/storage
       - uploads-volume:/var/www/public/uploads
-      - ./license.key:/var/www/config/license.key
+      - ./application/license.key:/var/www/config/license.key
     healthcheck:
       disable: true
 
@@ -125,7 +125,7 @@ services:
       - public-cache-volume:/var/www/public/cache
       - storage-volume:/var/www/storage
       - uploads-volume:/var/www/public/uploads
-      - ./license.key:/var/www/config/license.key
+      - ./application/license.key:/var/www/config/license.key
     healthcheck:
       disable: true
     entrypoint: >-
