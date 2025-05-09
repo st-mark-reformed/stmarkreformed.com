@@ -74,31 +74,31 @@ jobs:
           key: ${{ secrets.PROD_DEPLOY_SSH_PRIVATE_KEY }}
           source: "docker/application/.env, docker/application/docker-compose.prod.yml"
           target: "/root/stmarkreformed.com"
-      - name: Log in to prod server, pull images, and deploy
-        uses: appleboy/ssh-action@master
-        with:
-          username: ${{ vars.PROD_DEPLOY_SSH_USER }}
-          host: ${{ vars.PROD_DEPLOY_SSH_HOST }}
-          key: ${{ secrets.PROD_DEPLOY_SSH_PRIVATE_KEY }}
-          script: |
-            cd /root/stmarkreformed.com;
-
-            # Log in to github docker registry
-            echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin;
-
-            # Pull Images
-            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-app;
-            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner;
-            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-db;
-            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-utility;
-
-            # Docker can be weird about .env, make sure local is concat into .env
-            cat /root/stmarkreformed.com/application/.env.local >> /root/stmarkreformed.com/application/.env;
-
-            # Deploy new images
-            docker stack deploy \
-              --compose-file docker-compose.prod.yml \
-              --prune \
-              --with-registry-auth \
-              --resolve-image always \
-              smrc;
+#      - name: Log in to prod server, pull images, and deploy
+#        uses: appleboy/ssh-action@master
+#        with:
+#          username: ${{ vars.PROD_DEPLOY_SSH_USER }}
+#          host: ${{ vars.PROD_DEPLOY_SSH_HOST }}
+#          key: ${{ secrets.PROD_DEPLOY_SSH_PRIVATE_KEY }}
+#          script: |
+#            cd /root/stmarkreformed.com;
+#
+#            # Log in to github docker registry
+#            echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin;
+#
+#            # Pull Images
+#            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-app;
+#            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner;
+#            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-db;
+#            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-utility;
+#
+#            # Docker can be weird about .env, make sure local is concat into .env
+#            cat /root/stmarkreformed.com/application/.env.local >> /root/stmarkreformed.com/application/.env;
+#
+#            # Deploy new images
+#            docker stack deploy \
+#              --compose-file docker-compose.prod.yml \
+#              --prune \
+#              --with-registry-auth \
+#              --resolve-image always \
+#              smrc;
