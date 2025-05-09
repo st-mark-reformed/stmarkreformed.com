@@ -102,10 +102,10 @@ services:
 
         - traefik.http.routers.stmark_api_prod.entrypoints=web
         - traefik.http.routers.stmark_api_prod.rule=Host(`api.stmarkreformed.com`)
-#        - traefik.http.routers.stmark_api_prod.middlewares=https-redirect
-#        - traefik.http.routers.stmark_api_prod_secure.entrypoints=websecure
-#        - traefik.http.routers.stmark_api_prod_secure.tls=true
-#        - traefik.http.routers.stmark_api_prod_secure.rule=Host(`api.stmarkreformed.com`)
+        - traefik.http.routers.stmark_api_prod.middlewares=https-redirect
+        - traefik.http.routers.stmark_api_prod_secure.entrypoints=websecure
+        - traefik.http.routers.stmark_api_prod_secure.tls=true
+        - traefik.http.routers.stmark_api_prod_secure.rule=Host(`api.stmarkreformed.com`)
         ## HSTS Settings
         - traefik.http.middlewares.stmark_api_hsts.headers.stsincludesubdomains=true
         - traefik.http.middlewares.stmark_api_hsts.headers.stspreload=true
