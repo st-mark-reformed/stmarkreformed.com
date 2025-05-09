@@ -19,7 +19,7 @@ services:
       - storage-volume:/storage-volume
       - uploads-volume:/uploads-volume
 
-  app:
+  proxy:
     deploy:
       rollback_config:
         order: start-first
@@ -62,6 +62,39 @@ services:
         ## Set the middlewares for HSTS and X-Content-Type-Options
         - traefik.http.routers.stmark_prod_secure.middlewares=stmark_hsts,stmark_x_content_type
     env_file:
+      - ./proxy/.env
+      - ./proxy/.env.local
+    image: ghcr.io/st-mark-reformed/stmarkreformed.com-proxy
+    environment:
+      HOSTNAME: stmark-proxy
+    networks:
+      traefik:
+      default:
+
+  web:
+    deploy:
+      rollback_config:
+        order: start-first
+      update_config:
+        order: start-first
+    env_file:
+      - ./web/.env
+      - ./web/.env.local
+    image: ghcr.io/st-mark-reformed/stmarkreformed.com-web
+    environment:
+      HOSTNAME: stmark-web
+      NODE_ENV: prod
+    networks:
+      traefik:
+      default:
+
+  app:
+    deploy:
+      rollback_config:
+        order: start-first
+      update_config:
+        order: start-first
+    env_file:
       - application/.env
       - application/.env.local
     image: ghcr.io/st-mark-reformed/stmarkreformed.com-app
@@ -78,8 +111,8 @@ services:
       - uploads-volume:/var/www/public/uploads
       - ./application/license.key:/var/www/config/license.key
     networks:
-      - traefik
-      - default
+      traefik:
+      default:
 
   app-scheduled-task-runner:
     deploy:
@@ -104,6 +137,7 @@ services:
       - ./application/license.key:/var/www/config/license.key
     healthcheck:
       disable: true
+      test: "1"
 
   app-queue-consumer-1:
     deploy:
@@ -128,6 +162,7 @@ services:
       - ./application/license.key:/var/www/config/license.key
     healthcheck:
       disable: true
+      test: "1"
     entrypoint: >-
       /bin/bash -c
       "echo 'while /usr/local/bin/php /var/www/craft queue/run --interactive=0 2>&1; do sleep 10; done' > /runner.sh

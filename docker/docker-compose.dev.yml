@@ -1,4 +1,58 @@
 services:
+  proxy:
+    restart: always
+    env_file:
+      - ./proxy/.env
+      - ./proxy/.env.local
+    image: ghcr.io/st-mark-reformed/stmarkreformed.com-proxy
+    container_name: stmark-proxy
+    environment:
+      HOSTNAME: stmark-proxy
+    expose:
+      - 80
+    networks:
+      traefik:
+      default:
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-dev_default
+      - traefik.http.routers.stmark_local.entrypoints=web
+      - traefik.http.routers.stmark_local.rule=Host(`stmark.localtest.me`)
+      - traefik.http.routers.stmark_local.middlewares=https-redirect
+      - traefik.http.routers.stmark_local-secure.entrypoints=websecure
+      - traefik.http.routers.stmark_local-secure.tls=true
+      - traefik.http.routers.stmark_local-secure.rule=Host(`stmark.localtest.me`)
+    volumes:
+      - ./proxy/default.conf:/etc/nginx/conf.d/default.conf
+
+  web:
+    stdin_open: true
+    env_file:
+      - ./web/.env
+      - ./web/.env.local
+    image: ghcr.io/st-mark-reformed/stmarkreformed.com-web
+    container_name: stmark-web
+    environment:
+      HOSTNAME: stmark-web
+      NODE_ENV: development
+    healthcheck:
+      disable: true
+      test: '0'
+    command:
+      - "npm"
+      - "run"
+      - "dev"
+    volumes:
+      - ./web/.bash_history:/root/.bash_history:delegated
+      - ../web:/app:delegated
+    expose:
+      - 80
+    networks:
+      traefik:
+      default:
+        aliases:
+          - internal_web_container
+
   app:
     restart: always
     env_file:
@@ -13,18 +67,11 @@ services:
       - "44232:80"
     volumes:
       - ../craft-cms:/var/www:delegated
-    labels:
-      - traefik.enable=true
-      - traefik.docker.network=traefik-dev_default
-      - traefik.http.routers.stmark_local.entrypoints=web
-      - traefik.http.routers.stmark_local.rule=Host(`stmark.localtest.me`)
-      - traefik.http.routers.stmark_local.middlewares=https-redirect
-      - traefik.http.routers.stmark_local-secure.entrypoints=websecure
-      - traefik.http.routers.stmark_local-secure.tls=true
-      - traefik.http.routers.stmark_local-secure.rule=Host(`stmark.localtest.me`)
     networks:
-      - traefik
-      - default
+      traefik:
+      default:
+        aliases:
+          - internal_craft_container
 
   app-scheduled-task-runner:
     restart: always

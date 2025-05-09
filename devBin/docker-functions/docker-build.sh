@@ -9,6 +9,26 @@ function docker-build() {
 
     WORK_DIR="$(cd "$(dirname "$0")" >/dev/null 2>&1 && pwd)";
 
+    # Run the proxy build
+    printf "${Cyan}Building ghcr.io/st-mark-reformed/stmarkreformed.com-proxy${Reset}\n";
+    DOCKER_BUILDKIT=1 docker build \
+        --build-arg BUILDKIT_INLINE_CACHE=1 \
+        --cache-from ghcr.io/st-mark-reformed/stmarkreformed.com-proxy \
+        --file docker/proxy/Dockerfile \
+        --tag ghcr.io/st-mark-reformed/stmarkreformed.com-proxy \
+        ${WORK_DIR};
+    printf "${Green}Finished building ghcr.io/st-mark-reformed/stmarkreformed.com-proxy${Reset}\n\n";
+
+    # Run the web build
+    printf "${Cyan}Building ghcr.io/st-mark-reformed/stmarkreformed.com-web${Reset}\n";
+    DOCKER_BUILDKIT=1 docker build \
+        --build-arg BUILDKIT_INLINE_CACHE=1 \
+        --cache-from ghcr.io/st-mark-reformed/stmarkreformed.com-web \
+        --file docker/web/Dockerfile \
+        --tag ghcr.io/st-mark-reformed/stmarkreformed.com-web \
+        ${WORK_DIR};
+    printf "${Green}Finished building ghcr.io/st-mark-reformed/stmarkreformed.com-web${Reset}\n\n";
+
     # Run the app build
     printf "${Cyan}Building ghcr.io/st-mark-reformed/stmarkreformed.com-app${Reset}\n";
     DOCKER_BUILDKIT=1 docker build \
