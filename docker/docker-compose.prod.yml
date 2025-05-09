@@ -135,9 +135,9 @@ services:
       - storage-volume:/var/www/storage
       - uploads-volume:/var/www/public/uploads
       - ./application/license.key:/var/www/config/license.key
+    # noinspection ComposeMissingKeys
     healthcheck:
       disable: true
-      test: "1"
 
   app-queue-consumer-1:
     deploy:
@@ -160,9 +160,9 @@ services:
       - storage-volume:/var/www/storage
       - uploads-volume:/var/www/public/uploads
       - ./application/license.key:/var/www/config/license.key
+    # noinspection ComposeMissingKeys
     healthcheck:
       disable: true
-      test: "1"
     entrypoint: >-
       /bin/bash -c
       "echo 'while /usr/local/bin/php /var/www/craft queue/run --interactive=0 2>&1; do sleep 10; done' > /runner.sh
