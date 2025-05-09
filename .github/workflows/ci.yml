@@ -15,6 +15,28 @@ jobs:
         run: docker buildx create --use
       - name: Log in to registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+      - name: Build proxy image
+        run: >
+          docker buildx build
+          --platform=linux/amd64
+          --file docker/proxy/Dockerfile
+          --cache-from ghcr.io/st-mark-reformed/stmarkreformed.com-proxy
+          --build-arg BUILDKIT_INLINE_CACHE=1
+          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-proxy
+          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-proxy:"$GITHUB_SHA"
+          --push
+          .
+      - name: Build web image
+        run: >
+          docker buildx build
+          --platform=linux/amd64
+          --file docker/web/Dockerfile
+          --cache-from ghcr.io/st-mark-reformed/stmarkreformed.com-web
+          --build-arg BUILDKIT_INLINE_CACHE=1
+          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-web
+          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-web:"$GITHUB_SHA"
+          --push
+          .
       - name: Build app image
         run: >
           docker buildx build
@@ -72,7 +94,7 @@ jobs:
           username: ${{ vars.PROD_DEPLOY_SSH_USER }}
           host: ${{ vars.PROD_DEPLOY_SSH_HOST }}
           key: ${{ secrets.PROD_DEPLOY_SSH_PRIVATE_KEY }}
-          source: "docker/application/.env, docker/docker-compose.prod.yml"
+          source: "docker/application/.env, docker/proxy/.env, docker/web/.env, docker/docker-compose.prod.yml"
           target: "/root/stmarkreformed.com"
       - name: Log in to prod server, pull images, and deploy
         uses: appleboy/ssh-action@master
@@ -87,12 +109,16 @@ jobs:
             echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin;
 
             # Pull Images
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-proxy;
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-web;
             docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-app;
             docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner;
             docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-db;
             docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-utility;
 
             # Docker can be weird about .env, make sure local is concat into .env
+            cat /root/stmarkreformed.com/docker/proxy/.env.local >> /root/stmarkreformed.com/docker/proxy/.env;
+            cat /root/stmarkreformed.com/docker/web/.env.local >> /root/stmarkreformed.com/docker/web/.env;
             cat /root/stmarkreformed.com/docker/application/.env.local >> /root/stmarkreformed.com/docker/application/.env;
 
             # Deploy new images
