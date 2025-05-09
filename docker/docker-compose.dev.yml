@@ -82,6 +82,9 @@ services:
       - traefik.http.routers.stmark_api_local-secure.entrypoints=websecure
       - traefik.http.routers.stmark_api_local-secure.tls=true
       - traefik.http.routers.stmark_api_local-secure.rule=Host(`api.stmark.localtest.me`)
+    healthcheck:
+      disable: true
+      test: "1"
 
   app:
     restart: always

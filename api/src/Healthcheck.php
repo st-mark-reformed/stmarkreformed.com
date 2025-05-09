@@ -20,6 +20,10 @@ readonly class Healthcheck
         );
     }
 
+    public function __construct()
+    {
+    }
+
     public function __invoke(
         ServerRequestInterface $request,
         ResponseInterface $response,

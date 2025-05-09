@@ -10,6 +10,7 @@ class RegisterBindings
 {
     public static function register(Bindings $bindings): void
     {
+        RegisterBindingsCache::register($bindings);
         RegisterBindingsClock::register($bindings);
     }
 }

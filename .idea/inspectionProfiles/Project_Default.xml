@@ -54,8 +54,13 @@
       <option name="myCustomValuesEnabled" value="true" />
     </inspection_tool>
     <inspection_tool class="PhpArrayShapeAttributeCanBeAddedInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
-    <inspection_tool class="PhpCSFixerValidationInspection" enabled="true" level="WEAK WARNING" enabled_by_default="false">
-      <scope name="StMark Files" level="WEAK WARNING" enabled="true">
+    <inspection_tool class="PhpCSFixerValidationInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false">
+      <scope name="StMark API PHP Files" level="WEAK WARNING" enabled="true">
+        <option name="CODING_STANDARD" value="Custom" />
+        <option name="CUSTOM_RULESET_PATH" value="$PROJECT_DIR$/.php-cs-fixer.php" />
+        <option name="ALLOW_RISKY_RULES" value="true" />
+      </scope>
+      <scope name="StMark Files" level="WEAK WARNING" enabled="false">
         <option name="CODING_STANDARD" value="Custom" />
         <option name="CUSTOM_RULESET_PATH" value="$PROJECT_DIR$/.php-cs-fixer.php" />
         <option name="ALLOW_RISKY_RULES" value="true" />
@@ -64,8 +69,14 @@
       <option name="CUSTOM_RULESET_PATH" value="$PROJECT_DIR$/.php-cs-fixer.php" />
       <option name="ALLOW_RISKY_RULES" value="true" />
     </inspection_tool>
-    <inspection_tool class="PhpCSValidationInspection" enabled="true" level="WEAK WARNING" enabled_by_default="false">
-      <scope name="StMark Files" level="WEAK WARNING" enabled="true">
+    <inspection_tool class="PhpCSValidationInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <scope name="StMark API PHP Files" level="WEAK WARNING" enabled="true">
+        <option name="CODING_STANDARD" value="Doctrine" />
+        <option name="SHOW_SNIFF_NAMES" value="true" />
+        <option name="INSTALLED_PATHS" value="$PROJECT_DIR$/vendor/doctrine/coding-standard/lib/Doctrine" />
+        <option name="EXTENSIONS" value="php" />
+      </scope>
+      <scope name="StMark Files" level="WEAK WARNING" enabled="false">
         <option name="CODING_STANDARD" value="Doctrine" />
         <option name="SHOW_SNIFF_NAMES" value="true" />
         <option name="INSTALLED_PATHS" value="$PROJECT_DIR$/vendor/doctrine/coding-standard/lib/Doctrine" />
@@ -85,8 +96,13 @@
     <inspection_tool class="PhpPureAttributeCanBeAddedInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
     <inspection_tool class="PhpReturnValueOfMethodIsNeverUsedInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
     <inspection_tool class="PhpSameParameterValueInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
-    <inspection_tool class="PhpStanGlobal" enabled="true" level="WEAK WARNING" enabled_by_default="false">
-      <scope name="StMark Files" level="WEAK WARNING" enabled="true">
+    <inspection_tool class="PhpStanGlobal" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <scope name="StMark API PHP Files" level="WEAK WARNING" enabled="true">
+        <option name="memoryLimit" value="4G" />
+        <option name="level" value="8" />
+        <option name="config" value="$PROJECT_DIR$/phpstan.neon" />
+      </scope>
+      <scope name="StMark Files" level="WEAK WARNING" enabled="false">
         <option name="memoryLimit" value="4G" />
         <option name="level" value="8" />
         <option name="config" value="$PROJECT_DIR$/phpstan.neon" />
