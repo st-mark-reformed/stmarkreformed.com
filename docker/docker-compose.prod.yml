@@ -94,6 +94,26 @@ services:
         order: start-first
       update_config:
         order: start-first
+      labels:
+        ## Traefik config ##
+        - traefik.enable=true
+        - traefik.http.services.stmark_api_prod.loadbalancer.server.port=80
+        - traefik.docker.lbswarm=true
+
+        - traefik.http.routers.stmark_api_prod.entrypoints=web
+        - traefik.http.routers.stmark_api_prod.rule=Host(`api.stmarkreformed.com`)
+#        - traefik.http.routers.stmark_api_prod.middlewares=https-redirect
+#        - traefik.http.routers.stmark_api_prod_secure.entrypoints=websecure
+#        - traefik.http.routers.stmark_api_prod_secure.tls=true
+#        - traefik.http.routers.stmark_api_prod_secure.rule=Host(`api.stmarkreformed.com`)
+        ## HSTS Settings
+        - traefik.http.middlewares.stmark_api_hsts.headers.stsincludesubdomains=true
+        - traefik.http.middlewares.stmark_api_hsts.headers.stspreload=true
+        - traefik.http.middlewares.stmark_api_hsts.headers.stsseconds=31536000
+        ## X-Content-Type-Options
+        - traefik.http.middlewares.stmark_api_x_content_type.headers.contentTypeNosniff=true
+        ## Set the middlewares for HSTS and X-Content-Type-Options
+        - traefik.http.routers.stmark_api_prod_secure.middlewares=stmark_api_hsts,stmark_api_x_content_type
     env_file:
       - api/.env
       - api/.env.local
@@ -113,26 +133,6 @@ services:
         order: start-first
       update_config:
         order: start-first
-      labels:
-        ## Traefik config ##
-        - traefik.enable=true
-        - traefik.http.services.stmark_api_prod.loadbalancer.server.port=80
-        - traefik.docker.lbswarm=true
-
-        - traefik.http.routers.stmark_api_prod.entrypoints=web
-        - traefik.http.routers.stmark_api_prod.rule=Host(`api.stmarkreformed.com`)
-        - traefik.http.routers.stmark_api_prod.middlewares=https-redirect
-        - traefik.http.routers.stmark_api_prod_secure.entrypoints=websecure
-        - traefik.http.routers.stmark_api_prod_secure.tls=true
-        - traefik.http.routers.stmark_api_prod_secure.rule=Host(`api.stmarkreformed.com`)
-        ## HSTS Settings
-        - traefik.http.middlewares.stmark_api_hsts.headers.stsincludesubdomains=true
-        - traefik.http.middlewares.stmark_api_hsts.headers.stspreload=true
-        - traefik.http.middlewares.stmark_api_hsts.headers.stsseconds=31536000
-        ## X-Content-Type-Options
-        - traefik.http.middlewares.stmark_api_x_content_type.headers.contentTypeNosniff=true
-        ## Set the middlewares for HSTS and X-Content-Type-Options
-        - traefik.http.routers.stmark_api_prod_secure.middlewares=stmark_api_hsts,stmark_api_x_content_type
     env_file:
       - application/.env
       - application/.env.local
