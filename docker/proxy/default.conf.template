@@ -1,0 +1,21 @@
+server {
+    listen 80;
+    listen [::]:80;
+    server_name localhost;
+
+    include /etc/nginx/conf.d/proxyheaders.conf;
+
+    location /_next {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
+    location /healthcheck {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
+
+    location / {
+        proxy_pass ${CRAFT_PROXY};
+        break;
+    }
+}
