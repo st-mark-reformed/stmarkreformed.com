@@ -1,0 +1,20 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Config\BootCliConfigFactory;
+use Config\BootConfigFactory;
+use Config\Dependencies\RegisterBindings;
+use Config\Events\EventSubscribers;
+use RxAnte\AppBootstrap\Boot;
+
+require __DIR__ . '/vendor/autoload.php';
+
+new Boot()
+    ->start(new BootConfigFactory()->create(true))
+    ->buildContainer([RegisterBindings::class, 'register'])
+    ->registerEventSubscribers([EventSubscribers::class, 'register'])
+    ->buildCliApplication(new BootCliConfigFactory()->create())
+    ->applyCommands()
+    ->runApplication();

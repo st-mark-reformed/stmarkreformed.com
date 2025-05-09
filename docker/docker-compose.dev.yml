@@ -56,6 +56,33 @@ services:
         aliases:
           - internal_web_container
 
+  api:
+    restart: always
+    env_file:
+      - api/.env
+      - api/.env.local
+    image: ghcr.io/st-mark-reformed/stmarkreformed.com-api
+    container_name: stmark-api
+    environment:
+      ENABLE_XDEBUG: 1
+      ENABLE_PHP_DEV_CONFIG: 1
+      HOSTNAME: stmark-app
+    volumes:
+      - ./api/.bash_history:/root/.bash_history:delegated
+      - ../api:/var/www:delegated
+    networks:
+      traefik:
+      default:
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-dev_default
+      - traefik.http.routers.stmark_api_local.entrypoints=web
+      - traefik.http.routers.stmark_api_local.rule=Host(`api.stmark.localtest.me`)
+      - traefik.http.routers.stmark_api_local.middlewares=https-redirect
+      - traefik.http.routers.stmark_api_local-secure.entrypoints=websecure
+      - traefik.http.routers.stmark_api_local-secure.tls=true
+      - traefik.http.routers.stmark_api_local-secure.rule=Host(`api.stmark.localtest.me`)
+
   app:
     restart: always
     env_file:

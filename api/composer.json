@@ -1,0 +1,33 @@
+{
+    "name": "stmarkreformed/stmarkreformed",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.4",
+        "ext-pdo": "*",
+        "ext-redis": "*",
+        "lcobucci/clock": "^3.3",
+        "rxante/php-app-bootstrap": "^1.0.1"
+    },
+    "require-dev": {
+        "buzzingpixel/symfony-var-dumper-decorator": "^1.0",
+        "filp/whoops": "^2.15",
+        "rxante/coding-standards": "^1.1.2",
+        "symfony/var-dumper": "^6.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Config\\": "config",
+            "App\\": "src",
+            "Public\\": "public",
+            "Storage\\": "storage"
+        }
+    },
+    "config": {
+        "bin-compat": "full",
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "pestphp/pest-plugin": true
+        }
+    }
+}

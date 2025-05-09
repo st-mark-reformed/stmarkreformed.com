@@ -1,0 +1,10 @@
+parameters:
+    paths:
+        - public/index.php
+        - config
+        - src
+        - tests
+        - cli
+
+includes:
+    - vendor/rxante/coding-standards/phpstan.neon

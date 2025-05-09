@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="LaravelPint">
+    <laravel_pint_settings>
+      <laravel_pint_by_interpreter asDefaultInterpreter="true" interpreter_id="d8261d97-1042-4b20-8a61-eb189b246d81">
+        <option name="timeout" value="30000" />
+      </laravel_pint_by_interpreter>
+    </laravel_pint_settings>
+  </component>
   <component name="MessDetector">
     <phpmd_settings>
       <MessDetectorConfiguration tool_path="$PROJECT_DIR$/vendor/bin/phpmd" />
+      <phpmd_by_interpreter asDefaultInterpreter="true" interpreter_id="d8261d97-1042-4b20-8a61-eb189b246d81" tool_path="/Volumes/Promenade/git/stmarkreformed.com/vendor/bin/phpmd" timeout="30000" />
     </phpmd_settings>
   </component>
   <component name="MessDetectorOptionsConfiguration">
@@ -24,14 +32,265 @@
   <component name="PhpCSFixer">
     <phpcsfixer_settings>
       <PhpCSFixerConfiguration standards="DoctrineAnnotation;PHP54Migration;PHP56Migration;PHP70Migration;PHP71Migration;PHP73Migration;PHP74Migration;PHP80Migration;PHPUnit30Migration;PHPUnit32Migration;PHPUnit35Migration;PHPUnit43Migration;PHPUnit48Migration;PHPUnit50Migration;PHPUnit52Migration;PHPUnit54Migration;PHPUnit55Migration;PHPUnit56Migration;PHPUnit57Migration;PHPUnit60Migration;PHPUnit75Migration;PHPUnit84Migration;PSR1;PSR12;PSR2;PhpCsFixer;Symfony" tool_path="$PROJECT_DIR$/bin-quality-tools/php-cs-fixer.sh" />
-      <phpcs_fixer_by_interpreter asDefaultInterpreter="true" interpreter_id="44635c57-dfc5-4db5-a3cf-199708cb9b4b" standards="DoctrineAnnotation;PHP54Migration;PHP56Migration;PHP70Migration;PHP71Migration;PHP73Migration;PHP74Migration;PHP80Migration;PHPUnit30Migration;PHPUnit32Migration;PHPUnit35Migration;PHPUnit43Migration;PHPUnit48Migration;PHPUnit50Migration;PHPUnit52Migration;PHPUnit54Migration;PHPUnit55Migration;PHPUnit56Migration;PHPUnit57Migration;PHPUnit60Migration;PHPUnit75Migration;PHPUnit84Migration;PSR1;PSR12;PSR2;PhpCsFixer;Symfony" tool_path="/Volumes/Promenade/git/stmarkreformed.com/bin-quality-tools/php-cs-fixer.sh" timeout="30000" />
+      <phpcs_fixer_by_interpreter asDefaultInterpreter="true" interpreter_id="d8261d97-1042-4b20-8a61-eb189b246d81" standards="DoctrineAnnotation;PHP54Migration;PHP56Migration;PHP70Migration;PHP71Migration;PHP73Migration;PHP74Migration;PHP80Migration;PHPUnit30Migration;PHPUnit32Migration;PHPUnit35Migration;PHPUnit43Migration;PHPUnit48Migration;PHPUnit50Migration;PHPUnit52Migration;PHPUnit54Migration;PHPUnit55Migration;PHPUnit56Migration;PHPUnit57Migration;PHPUnit60Migration;PHPUnit75Migration;PHPUnit84Migration;PSR1;PSR12;PSR2;PhpCsFixer;Symfony" tool_path="/Volumes/Promenade/git/stmarkreformed.com/bin-quality-tools/php-cs-fixer.sh" timeout="30000" />
     </phpcsfixer_settings>
   </component>
   <component name="PhpCodeSniffer">
     <phpcs_settings>
       <PhpCSConfiguration beautifier_path="$PROJECT_DIR$/vendor/bin/phpcbf" standards="Doctrine;MySource;PEAR;PSR1;PSR12;PSR2;SlevomatCodingStandard;Squiz;Zend" tool_path="$PROJECT_DIR$/bin-quality-tools/phpcs.sh" />
-      <phpcs_by_interpreter asDefaultInterpreter="true" interpreter_id="44635c57-dfc5-4db5-a3cf-199708cb9b4b" beautifier_path="$PROJECT_DIR$/vendor/bin/phpcbf" standards="Doctrine;MySource;PEAR;PSR1;PSR12;PSR2;SlevomatCodingStandard;Squiz;Zend" tool_path="/Volumes/Promenade/git/stmarkreformed.com/bin-quality-tools/phpcs.sh" timeout="30000" />
+      <phpcs_by_interpreter asDefaultInterpreter="true" interpreter_id="d8261d97-1042-4b20-8a61-eb189b246d81" beautifier_path="$PROJECT_DIR$/vendor/bin/phpcbf" standards="Doctrine;MySource;PEAR;PSR1;PSR12;PSR2;SlevomatCodingStandard;Squiz;Zend" tool_path="/Volumes/Promenade/git/stmarkreformed.com/bin-quality-tools/phpcs.sh" timeout="30000" />
     </phpcs_settings>
+  </component>
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/api/vendor/composer" />
+      <path value="$PROJECT_DIR$/api/vendor/bnf/phpstan-psr-container" />
+      <path value="$PROJECT_DIR$/api/vendor/fig/http-message-util" />
+      <path value="$PROJECT_DIR$/api/vendor/slim/csrf" />
+      <path value="$PROJECT_DIR$/api/vendor/slim/slim" />
+      <path value="$PROJECT_DIR$/api/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/api/vendor/filp/whoops" />
+      <path value="$PROJECT_DIR$/api/vendor/crell/fp" />
+      <path value="$PROJECT_DIR$/api/vendor/crell/attributeutils" />
+      <path value="$PROJECT_DIR$/api/vendor/slim/psr7" />
+      <path value="$PROJECT_DIR$/api/vendor/crell/tukio" />
+      <path value="$PROJECT_DIR$/api/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/api/vendor/psr/http-server-middleware" />
+      <path value="$PROJECT_DIR$/api/vendor/fig/event-dispatcher-util" />
+      <path value="$PROJECT_DIR$/api/vendor/psr/http-server-handler" />
+      <path value="$PROJECT_DIR$/api/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/api/vendor/psr/clock" />
+      <path value="$PROJECT_DIR$/api/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/api/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/api/vendor/phpstan/phpstan-mockery" />
+      <path value="$PROJECT_DIR$/api/vendor/phpstan/phpstan-strict-rules" />
+      <path value="$PROJECT_DIR$/api/vendor/phpstan/phpstan" />
+      <path value="$PROJECT_DIR$/api/vendor/phpstan/phpstan-deprecation-rules" />
+      <path value="$PROJECT_DIR$/api/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/api/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/api/vendor/phpstan/phpdoc-parser" />
+      <path value="$PROJECT_DIR$/api/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/api/vendor/php-di/invoker" />
+      <path value="$PROJECT_DIR$/api/vendor/php-di/php-di" />
+      <path value="$PROJECT_DIR$/api/vendor/crell/ordered-collection" />
+      <path value="$PROJECT_DIR$/api/vendor/nikic/fast-route" />
+      <path value="$PROJECT_DIR$/api/vendor/laravel/serializable-closure" />
+      <path value="$PROJECT_DIR$/api/vendor/mnapoli/silly" />
+      <path value="$PROJECT_DIR$/api/vendor/rxante/coding-standards" />
+      <path value="$PROJECT_DIR$/api/vendor/rxante/php-app-bootstrap" />
+      <path value="$PROJECT_DIR$/api/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/api/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/api/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/api/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/api/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/api/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/api/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/api/vendor/dealerdirect/phpcodesniffer-composer-installer" />
+      <path value="$PROJECT_DIR$/api/vendor/squizlabs/php_codesniffer" />
+      <path value="$PROJECT_DIR$/api/vendor/buzzingpixel/symfony-var-dumper-decorator" />
+      <path value="$PROJECT_DIR$/api/vendor/doctrine/coding-standard" />
+      <path value="$PROJECT_DIR$/api/vendor/jetbrains/phpstorm-attributes" />
+      <path value="$PROJECT_DIR$/api/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/api/vendor/lcobucci/clock" />
+      <path value="$PROJECT_DIR$/api/vendor/slevomat/coding-standard" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/spatie/image-optimizer" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/stripe/stripe-php" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/dolphiq/redirect" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/egulias/email-validator" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/php-di/invoker" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/php-di/phpdoc-reader" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/php-di/php-di" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/pimple/pimple" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/laminas/laminas-servicemanager" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/laminas/laminas-escaper" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/laminas/laminas-stdlib" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/michelf/php-smartypants" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/elvanto/litemoji" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/ezimuel/guzzlestreams" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/ezimuel/ringphp" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/laminas/laminas-feed" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/phpspec/prophecy" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/phpstan/phpstan" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/phpstan/phpstan-deprecation-rules" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/monolog/monolog" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/myclabs/php-enum" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/phpstan/phpstan-strict-rules" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/phpstan/phpdoc-parser" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/rlanvin/php-rrule" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/symfony/polyfill-iconv" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/symfony/property-access" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/symfony/options-resolver" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/symfony/property-info" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/symfony/stopwatch" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/yiisoft/yii2-debug" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/yiisoft/yii2" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/yiisoft/yii2-swiftmailer" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/yiisoft/yii2-queue" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/webonyx/graphql-php" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/yiisoft/yii2-composer" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/yiisoft/yii2-redis" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/craftcms/redactor" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/craftcms/plugin-installer" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/doctrine/coding-standard" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/craftcms/ckeditor" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/craftcms/cms" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/craftcms/server-check" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/solspace/craft3-commons" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/solspace/craft3-calendar" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/creocoder/yii2-nested-sets" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/enshrined/svg-sanitize" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/lucidtaz/yii2-whoops" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/php-imap/php-imap" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/slevomat/coding-standard" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/phpoffice/phpspreadsheet" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/maennchen/zipstream-php" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/markbaker/complex" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/markbaker/matrix" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/squizlabs/php_codesniffer" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/timostamm/text-truncation" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/hassankhan/config" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/mikehaertl/php-shellcommand" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/vaersaagod/matrixmate" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/daverandom/resume" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/buzzingpixel/corbomite-di" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/buzzingpixel/bp-cache" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/buzzingpixel/craft-scheduler" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/buzzingpixel/twig-dumper" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/codedungeon/php-cli-colors" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/codedungeon/phpunit-result-printer" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/swiftmailer/swiftmailer" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/tubalmartin/cssmin" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/buzzingpixel/twig-widont" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/buzzingpixel/corbomite-config-collector" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/buzzingpixel/twig-smartypants" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/dealerdirect/phpcodesniffer-composer-installer" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/buzzingpixel/static-cache-middleware" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/buzzingpixel/twig-markdown" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/buzzingpixel/minify-middleware" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/buzzingpixel/craft-slim-bridge" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/php-cs-fixer/diff" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/elasticsearch/elasticsearch" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/justinrainbow/json-schema" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/marcusschwarz/lesserphp" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/friendsofphp/php-cs-fixer" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/intervention/httpauth" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/lewisjenkins/craft-range-slider" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/morrislaptop/var-dumper-with-context" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/sebastianlenz/linkfield" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/percipioglobal/craft-colour-swatches" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/doublesecretagency/craft-inventory" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/pixelandtonic/imagine" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/composer" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/2bj/phanybar" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/fig/http-message-util" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/psr/http-client" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/psr/http-server-handler" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/psr/http-server-middleware" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/filp/whoops" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/opis/closure" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/seld/cli-prompt" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/seld/phar-utils" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/tde/craftplugin-geoaddress" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/cebe/markdown" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/twig/twig" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/voku/urlify" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/voku/arrayy" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/voku/email-check" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/seld/jsonlint" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/slim/flash" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/slim/slim" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/slim/psr7" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/voku/portable-utf8" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/wrav/oembed" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/cocur/slugify" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/embed/embed" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/voku/stringy" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/voku/stop-words" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/voku/portable-ascii" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/voku/anti-xss" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/verbb/buttonbox" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/verbb/base" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/defuse/php-encryption" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/enupal/stripe" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/nikic/fast-route" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/react/promise" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/verbb/super-table" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/mrclay/minify" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/mrclay/props-dic" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/mrclay/jsmin-php" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/nesbot/carbon" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/ezyang/htmlpurifier" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/gumlet/php-image-resize" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/league/mime-type-detection" />
+      <path value="$PROJECT_DIR$/craft-cms/vendor/league/flysystem" />
+    </include_path>
   </component>
   <component name="PhpProjectServersManager">
     <servers>
@@ -42,11 +301,11 @@
       </server>
     </servers>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.4" />
   <component name="PhpStan">
     <PhpStan_settings>
       <PhpStanConfiguration tool_path="$PROJECT_DIR$/bin-quality-tools/phpstan.sh" />
-      <phpstan_by_interpreter asDefaultInterpreter="true" interpreter_id="44635c57-dfc5-4db5-a3cf-199708cb9b4b" tool_path="$PROJECT_DIR$/bin-quality-tools/phpstan.sh" timeout="60000" />
+      <phpstan_by_interpreter asDefaultInterpreter="true" interpreter_id="d8261d97-1042-4b20-8a61-eb189b246d81" tool_path="$PROJECT_DIR$/bin-quality-tools/phpstan.sh" timeout="60000" />
     </PhpStan_settings>
   </component>
   <component name="PhpStanOptionsConfiguration">
@@ -57,13 +316,14 @@
   </component>
   <component name="PhpUnit">
     <phpunit_settings>
-      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" />
+      <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/craft-cms/phpunit.xml" custom_loader_path="$PROJECT_DIR$/craft-cms/vendor/autoload.php" use_configuration_file="true" />
+      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" phpunit_phar_path="" />
     </phpunit_settings>
   </component>
   <component name="Psalm">
     <Psalm_settings>
       <PsalmConfiguration tool_path="$PROJECT_DIR$/vendor/bin/psalm" />
-      <psalm_fixer_by_interpreter asDefaultInterpreter="true" interpreter_id="44635c57-dfc5-4db5-a3cf-199708cb9b4b" tool_path="$PROJECT_DIR$/vendor/bin/psalm" timeout="60000" />
+      <psalm_fixer_by_interpreter asDefaultInterpreter="true" interpreter_id="d8261d97-1042-4b20-8a61-eb189b246d81" tool_path="$PROJECT_DIR$/vendor/bin/psalm" timeout="60000" />
     </Psalm_settings>
   </component>
   <component name="PsalmOptionsConfiguration">

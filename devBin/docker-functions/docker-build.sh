@@ -29,6 +29,16 @@ function docker-build() {
         ${WORK_DIR};
     printf "${Green}Finished building ghcr.io/st-mark-reformed/stmarkreformed.com-web${Reset}\n\n";
 
+    # Run the api build
+    printf "${Cyan}Building ghcr.io/st-mark-reformed/stmarkreformed.com-api${Reset}\n";
+    DOCKER_BUILDKIT=1 docker build \
+        --build-arg BUILDKIT_INLINE_CACHE=1 \
+        --cache-from ghcr.io/st-mark-reformed/stmarkreformed.com-api \
+        --file docker/api/Dockerfile \
+        --tag ghcr.io/st-mark-reformed/stmarkreformed.com-api \
+        ${WORK_DIR};
+    printf "${Green}Finished building ghcr.io/st-mark-reformed/stmarkreformed.com-api${Reset}\n\n";
+
     # Run the app build
     printf "${Cyan}Building ghcr.io/st-mark-reformed/stmarkreformed.com-app${Reset}\n";
     DOCKER_BUILDKIT=1 docker build \

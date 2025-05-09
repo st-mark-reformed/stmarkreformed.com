@@ -37,6 +37,17 @@ jobs:
           --tag ghcr.io/st-mark-reformed/stmarkreformed.com-web:"$GITHUB_SHA"
           --push
           .
+      - name: Build api image
+        run: >
+          docker buildx build
+          --platform=linux/amd64
+          --file docker/api/Dockerfile
+          --cache-from ghcr.io/st-mark-reformed/stmarkreformed.com-api
+          --build-arg BUILDKIT_INLINE_CACHE=1
+          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-api
+          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-api:"$GITHUB_SHA"
+          --push
+          .
       - name: Build app image
         run: >
           docker buildx build
@@ -94,7 +105,7 @@ jobs:
           username: ${{ vars.PROD_DEPLOY_SSH_USER }}
           host: ${{ vars.PROD_DEPLOY_SSH_HOST }}
           key: ${{ secrets.PROD_DEPLOY_SSH_PRIVATE_KEY }}
-          source: "docker/application/.env, docker/proxy/.env, docker/web/.env, docker/docker-compose.prod.yml"
+          source: "docker/application/.env, docker/proxy/.env, docker/web/.env, docker/api/.env, docker/docker-compose.prod.yml"
           target: "/root/stmarkreformed.com"
       - name: Log in to prod server, pull images, and deploy
         uses: appleboy/ssh-action@master
@@ -111,6 +122,7 @@ jobs:
             # Pull Images
             docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-proxy;
             docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-web;
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-api;
             docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-app;
             docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner;
             docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-db;
@@ -119,6 +131,7 @@ jobs:
             # Docker can be weird about .env, make sure local is concat into .env
             cat /root/stmarkreformed.com/docker/proxy/.env.local >> /root/stmarkreformed.com/docker/proxy/.env;
             cat /root/stmarkreformed.com/docker/web/.env.local >> /root/stmarkreformed.com/docker/web/.env;
+            cat /root/stmarkreformed.com/docker/api/.env.local >> /root/stmarkreformed.com/docker/api/.env;
             cat /root/stmarkreformed.com/docker/application/.env.local >> /root/stmarkreformed.com/docker/application/.env;
 
             # Deploy new images
