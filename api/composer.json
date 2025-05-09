@@ -6,6 +6,8 @@
         "php": "^8.4",
         "ext-pdo": "*",
         "ext-redis": "*",
+        "buzzingpixel/php-queue": "^2.0",
+        "buzzingpixel/php-scheduler": "^1.1",
         "hyperf/guzzle": "^3.1",
         "johngrogg/ics-parser": "^3.4",
         "lcobucci/clock": "^3.3",

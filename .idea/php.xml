@@ -303,6 +303,13 @@
       <path value="$PROJECT_DIR$/api/vendor/johngrogg/ics-parser" />
       <path value="$PROJECT_DIR$/api/vendor/spatie/php-cloneable" />
       <path value="$PROJECT_DIR$/api/vendor/rxante/dateimmutable" />
+      <path value="$PROJECT_DIR$/api/vendor/laminas/laminas-escaper" />
+      <path value="$PROJECT_DIR$/api/vendor/buzzingpixel/php-queue" />
+      <path value="$PROJECT_DIR$/api/vendor/buzzingpixel/php-template-engine" />
+      <path value="$PROJECT_DIR$/api/vendor/brick/math" />
+      <path value="$PROJECT_DIR$/api/vendor/ramsey/collection" />
+      <path value="$PROJECT_DIR$/api/vendor/ramsey/uuid" />
+      <path value="$PROJECT_DIR$/api/vendor/buzzingpixel/php-scheduler" />
     </include_path>
   </component>
   <component name="PhpProjectServersManager">

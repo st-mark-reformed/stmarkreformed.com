@@ -261,8 +261,15 @@
       <excludeFolder url="file://$MODULE_DIR$/craft-cms/vendor/yiisoft/yii2-queue" />
       <excludeFolder url="file://$MODULE_DIR$/craft-cms/vendor/yiisoft/yii2-redis" />
       <excludeFolder url="file://$MODULE_DIR$/craft-cms/vendor/yiisoft/yii2-swiftmailer" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/brick/math" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/buzzingpixel/php-queue" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/buzzingpixel/php-scheduler" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/buzzingpixel/php-template-engine" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/johngrogg/ics-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/laminas/laminas-escaper" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/psr/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/ramsey/collection" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/ramsey/uuid" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/rxante/dateimmutable" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/spatie/php-cloneable" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/symfony/cache" />
