@@ -76,7 +76,7 @@ services:
       - public-cache-volume:/var/www/public/cache
       - storage-volume:/var/www/storage
       - uploads-volume:/var/www/public/uploads
-      - ./license.key:/var/www/config/license.key
+      - ./docker/application/license.key:/var/www/config/license.key
     networks:
       - traefik
       - default
