@@ -17,6 +17,10 @@ use function serialize;
 
 readonly class CacheRemoteIcsFile
 {
+    public const string JOB_HANDLE = 'cache-remote-ics-file';
+
+    public const string JOB_NAME = 'Cache Remote ICS File';
+
     public const string ICS_SOURCE = 'https://calendar.google.com/calendar/ical/fb2c50190df2dd072a90e748dacf8d91db65b1d2729b48e5460fc5b219f253dd%40group.calendar.google.com/public/basic.ics';
 
     private DateTimeImmutable $oneYearAgo;
