@@ -36,6 +36,16 @@ jobs:
           --tag ghcr.io/st-mark-reformed/stmarkreformed.com-api-queue-consumer:"$GITHUB_SHA"
           --push
           .
+      - name: Build api-schedule-runner image
+        run: >
+          docker buildx build
+          --platform=linux/amd64
+          --file docker/api-schedule-runner/Dockerfile
+          --build-arg API_IMAGE=ghcr.io/st-mark-reformed/stmarkreformed.com-api:"$GITHUB_SHA"
+          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-api-schedule-runner
+          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-api-schedule-runner:"$GITHUB_SHA"
+          --push
+          .
       - name: Build app image
         run: >
           docker buildx build
