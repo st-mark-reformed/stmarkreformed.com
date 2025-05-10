@@ -153,6 +153,22 @@ services:
       traefik:
       default:
 
+  api-queue-consumer-1:
+    deploy:
+      rollback_config:
+        order: start-first
+      update_config:
+        order: start-first
+    env_file:
+      - api/.env
+      - api/.env.local
+    image: ghcr.io/st-mark-reformed/stmarkreformed.com-api-queue-consumer
+    environment:
+      HOSTNAME: api-queue-consumer-1
+    volumes:
+      - /root/certbot/var/www/letsencrypt:/var/www/letsencrypt
+      - api-storage-volume:/var/www/storage
+
   app-scheduled-task-runner:
     deploy:
       rollback_config:

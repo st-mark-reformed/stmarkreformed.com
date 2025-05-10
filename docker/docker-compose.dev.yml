@@ -86,6 +86,21 @@ services:
       disable: true
       test: "1"
 
+  api-queue-consumer-1:
+    restart: always
+    env_file:
+      - ./api/.env
+      - ./api/.env.local
+    image: ghcr.io/st-mark-reformed/stmarkreformed.com-api-queue-consumer
+    container_name: api-queue-consumer-1
+    environment:
+      HOSTNAME: api-queue-consumer-1
+      ENABLE_XDEBUG: 0
+      ENABLE_PHP_DEV_CONFIG: 0
+    volumes:
+      - ./api/.bash_history:/root/.bash_history:delegated
+      - ../api:/var/www:delegated
+
   app:
     restart: always
     env_file:

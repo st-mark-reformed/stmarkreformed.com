@@ -15,28 +15,6 @@ jobs:
         run: docker buildx create --use
       - name: Log in to registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
-      - name: Build proxy image
-        run: >
-          docker buildx build
-          --platform=linux/amd64
-          --file docker/proxy/Dockerfile
-          --cache-from ghcr.io/st-mark-reformed/stmarkreformed.com-proxy
-          --build-arg BUILDKIT_INLINE_CACHE=1
-          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-proxy
-          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-proxy:"$GITHUB_SHA"
-          --push
-          .
-      - name: Build web image
-        run: >
-          docker buildx build
-          --platform=linux/amd64
-          --file docker/web/Dockerfile
-          --cache-from ghcr.io/st-mark-reformed/stmarkreformed.com-web
-          --build-arg BUILDKIT_INLINE_CACHE=1
-          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-web
-          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-web:"$GITHUB_SHA"
-          --push
-          .
       - name: Build api image
         run: >
           docker buildx build
@@ -46,6 +24,16 @@ jobs:
           --build-arg BUILDKIT_INLINE_CACHE=1
           --tag ghcr.io/st-mark-reformed/stmarkreformed.com-api
           --tag ghcr.io/st-mark-reformed/stmarkreformed.com-api:"$GITHUB_SHA"
+          --push
+          .
+      - name: Build api-queue-consumer image
+        run: >
+          docker buildx build
+          --platform=linux/amd64
+          --file docker/api-queue-consumer/Dockerfile
+          --build-arg API_IMAGE=ghcr.io/st-mark-reformed/stmarkreformed.com-api:"$GITHUB_SHA"
+          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-api-queue-consumer
+          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-api-queue-consumer:"$GITHUB_SHA"
           --push
           .
       - name: Build app image
@@ -59,17 +47,6 @@ jobs:
           --tag ghcr.io/st-mark-reformed/stmarkreformed.com-app:"$GITHUB_SHA"
           --push
           .
-      - name: Build schedule-runner image
-        run: >
-          docker buildx build
-          --platform=linux/amd64
-          --file docker/schedule-runner/Dockerfile
-          --build-arg BUILDKIT_INLINE_CACHE=1
-          --build-arg APP_IMAGE=ghcr.io/st-mark-reformed/stmarkreformed.com-app:"$GITHUB_SHA"
-          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner
-          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner:"$GITHUB_SHA"
-          --push
-          .
       - name: Build db image
         run: >
           docker buildx build
@@ -81,6 +58,28 @@ jobs:
           --tag ghcr.io/st-mark-reformed/stmarkreformed.com-db:"$GITHUB_SHA"
           --push
           .
+      - name: Build proxy image
+        run: >
+          docker buildx build
+          --platform=linux/amd64
+          --file docker/proxy/Dockerfile
+          --cache-from ghcr.io/st-mark-reformed/stmarkreformed.com-proxy
+          --build-arg BUILDKIT_INLINE_CACHE=1
+          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-proxy
+          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-proxy:"$GITHUB_SHA"
+          --push
+          .
+      - name: Build schedule-runner image
+        run: >
+          docker buildx build
+          --platform=linux/amd64
+          --file docker/schedule-runner/Dockerfile
+          --build-arg BUILDKIT_INLINE_CACHE=1
+          --build-arg APP_IMAGE=ghcr.io/st-mark-reformed/stmarkreformed.com-app:"$GITHUB_SHA"
+          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner
+          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner:"$GITHUB_SHA"
+          --push
+          .
       - name: Build utility image
         run: >
           docker buildx build
@@ -90,6 +89,17 @@ jobs:
           --build-arg BUILDKIT_INLINE_CACHE=1
           --tag ghcr.io/st-mark-reformed/stmarkreformed.com-utility
           --tag ghcr.io/st-mark-reformed/stmarkreformed.com-utility:"$GITHUB_SHA"
+          --push
+          .
+      - name: Build web image
+        run: >
+          docker buildx build
+          --platform=linux/amd64
+          --file docker/web/Dockerfile
+          --cache-from ghcr.io/st-mark-reformed/stmarkreformed.com-web
+          --build-arg BUILDKIT_INLINE_CACHE=1
+          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-web
+          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-web:"$GITHUB_SHA"
           --push
           .
   deploy:
@@ -120,19 +130,20 @@ jobs:
             echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin;
 
             # Pull Images
-            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-proxy;
-            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-web;
             docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-api;
+            docker pulll ghcr.io/st-mark-reformed/stmarkreformed.com-api-queue-consumer;
             docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-app;
-            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner;
             docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-db;
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-proxy;
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner;
             docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-utility;
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-web;
 
             # Docker can be weird about .env, make sure local is concat into .env
-            cat /root/stmarkreformed.com/docker/proxy/.env.local >> /root/stmarkreformed.com/docker/proxy/.env;
-            cat /root/stmarkreformed.com/docker/web/.env.local >> /root/stmarkreformed.com/docker/web/.env;
             cat /root/stmarkreformed.com/docker/api/.env.local >> /root/stmarkreformed.com/docker/api/.env;
             cat /root/stmarkreformed.com/docker/application/.env.local >> /root/stmarkreformed.com/docker/application/.env;
+            cat /root/stmarkreformed.com/docker/proxy/.env.local >> /root/stmarkreformed.com/docker/proxy/.env;
+            cat /root/stmarkreformed.com/docker/web/.env.local >> /root/stmarkreformed.com/docker/web/.env;
 
             # Deploy new images
             docker stack deploy \
