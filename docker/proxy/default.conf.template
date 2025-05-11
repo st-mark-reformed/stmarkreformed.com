@@ -5,11 +5,29 @@ server {
 
     include /etc/nginx/conf.d/proxyheaders.conf;
 
+    location /_next/webpack-hmr {
+         proxy_pass ${WEB_PROXY}/_next/webpack-hmr;
+         proxy_http_version 1.1;
+         proxy_set_header Upgrade $http_upgrade;
+         proxy_set_header Connection "upgrade";
+     }
+    location /__nextjs_font {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
     location /_next {
         proxy_pass ${WEB_PROXY};
         break;
     }
+    location /images {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
     location /healthcheck {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
+    location /calendar {
         proxy_pass ${WEB_PROXY};
         break;
     }

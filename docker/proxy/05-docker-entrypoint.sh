@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 set -eu
-envsubst < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf
+envsubst '\$WEB_PROXY `$CRAFT_PROXY' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf
 exec "$@"

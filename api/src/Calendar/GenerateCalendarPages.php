@@ -25,7 +25,7 @@ readonly class GenerateCalendarPages
 
     public const string JOB_NAME = 'Generate Calendar Pages';
 
-    private const string BASE_URI = 'calender';
+    private const string BASE_URI = 'calendar';
 
     /** @var string[] */
     private array $monthRange;

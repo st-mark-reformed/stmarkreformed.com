@@ -1,0 +1,79 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/aspect-ratio";
+@plugin "@tailwindcss/forms";
+@config "./tailwind.config.js";
+
+:root {
+    --color-gold: #f5c4c0;
+    --color-crimson-lightened-3: #eeadad;
+    --color-crimson-lightened-2: #da7f8e;
+    --color-crimson-lightened-1: #ca4b5f;
+    --color-crimson: #c31132;
+    --color-crimson-dark: #a41130;
+    --color-goldenrod: #df9c17;
+    --color-saddle-brown-lightened-3: #a89354;
+    --color-saddle-brown-lightened-2: #9b7e15;
+    --color-saddle-brown-lightened-1: #8b6e15;
+    --color-saddle-brown: #7b6014;
+    --color-bronze-lightened-2: #594b08;
+    --color-bronze-lightened-1: #493a08;
+    --color-bronze: #392c08;
+    --color-lightest-red: #eeadad;
+    --color-lighter-red: #ee908f;
+    --color-light-red: #ca5153;
+    --color-red: #870f12;
+    --color-dark-red: #540a0c;
+}
+
+@theme {
+    --color-gold: var(--color-gold);
+    --color-crimson-lightened-3: var(--color-crimson-lightened-3);
+    --color-crimson-lightened-2: var(--color-crimson-lightened-2);
+    --color-crimson-lightened-1: var(--color-crimson-lightened-1);
+    --color-crimson: var(--color-crimson);
+    --color-crimson-dark: var(--color-crimson-dark);
+    --color-goldenrod: var(--color-goldenrod);
+    --color-saddle-brown-lightened-3: var(--color-saddle-brown-lightened-3);
+    --color-saddle-brown-lightened-2: var(--color-saddle-brown-lightened-2);
+    --color-saddle-brown-lightened-1: var(--color-saddle-brown-lightened-1);
+    --color-saddle-brown: var(--color-saddle-brown);
+    --color-bronze-lightened-2: var(--color-bronze-lightened-2);
+    --color-bronze-lightened-1: var(--color-bronze-lightened-1);
+    --color-bronze: var(--color-bronze);
+    --color-lightest-red: var(--color-lightest-red);
+    --color-lighter-red: var(--color-lighter-red);
+    --color-light-red: var(--color-light-red);
+    --color-red: var(--color-red);
+    --color-dark-red: var(--color-dark-red);
+}
+
+.loader {
+    -webkit-animation: spinner 1.5s linear infinite;
+    animation: spinner 1.5s linear infinite;
+}
+
+
+@-webkit-keyframes spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.react-select-control input {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
