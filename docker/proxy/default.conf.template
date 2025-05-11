@@ -3,6 +3,9 @@ server {
     listen [::]:80;
     server_name localhost;
 
+    # Allow large file uploads
+    client_max_body_size 500m;
+
     include /etc/nginx/conf.d/proxyheaders.conf;
 
     location /_next {
