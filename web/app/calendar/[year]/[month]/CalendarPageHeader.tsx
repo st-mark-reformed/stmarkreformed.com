@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/16/solid';
 import React from 'react';
 import typography from '../../../typography/typography';
+import SubscribeButtonClientSide from './SubscribeButtonClientSide';
 
 export default function CalendarPageHeader (
     {
@@ -24,7 +25,7 @@ export default function CalendarPageHeader (
 ) {
     return (
         <header
-            className="relative z-20 sm:flex items-center justify-between border-b border-gray-200 py-4 lg:flex-none"
+            className="relative z-50 sm:flex items-center justify-between border-b border-gray-200 py-4 lg:flex-none"
         >
             <h1 className="mb-4 sm:mb-0 text-lg font-semibold text-gray-900">
                 <time
@@ -36,7 +37,8 @@ export default function CalendarPageHeader (
             </h1>
             <div className="flex items-center">
                 <div className="mr-4 items-center flex">
-                    <div className="relative">
+                    <SubscribeButtonClientSide icsUrl={icsUrl} />
+                    {/* <div className="relative">
                         <Link
                             href={icsUrl}
                             type="button"
@@ -46,7 +48,7 @@ export default function CalendarPageHeader (
                         >
                             Subscribe
                         </Link>
-                    </div>
+                    </div> */}
                 </div>
                 {(() => (
                     <div className="mr-4 items-center flex">

@@ -9,6 +9,7 @@ import GetPageData from './GetPageData';
 import { CalendarPageParams } from './CalendarPageParams';
 import CalendarDayHeading from './CalendarDayHeading';
 import typography from '../../../typography/typography';
+import { ConfigOptions, getConfigString } from '../../../ServerSideRunTimeConfig';
 
 function calcPrevParams (currentParams: CalendarPageParams): CalendarPageParams {
     let yearInt = parseInt(currentParams.year, 10);
@@ -128,7 +129,7 @@ export default async function CalendarYearMonthPage (
                     <CalendarPageHeader
                         monthString={monthString}
                         dateHeading={dateHeading}
-                        icsUrl="/calendar/ics"
+                        icsUrl={`${getConfigString(ConfigOptions.BASE_URL)}/calendar/ics`}
                         currentMonthLink={currentMonthLink}
                         prevMonthLink={prevMonthLink}
                         nextMonthLink={nextMonthLink}
