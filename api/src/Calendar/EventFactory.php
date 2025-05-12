@@ -9,6 +9,7 @@ use DateTimeImmutable;
 use Psr\Clock\ClockInterface;
 
 use function assert;
+use function mb_strlen;
 
 // phpcs:disable Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 
@@ -22,19 +23,36 @@ readonly class EventFactory
 
     public function createFromICalEvent(\ICal\Event $event): Event
     {
-        $startDate = DateTimeImmutable::createFromFormat(
-            'Ymd\THis',
-            $event->dtstart_tz,
-            $this->systemTimezone,
-        );
-        assert($startDate instanceof DateTimeImmutable);
+        // All day event
+        if (mb_strlen($event->dtstart) < 9) {
+            $startDate = DateTimeImmutable::createFromFormat(
+                'Ymd\THis',
+                $event->dtstart . 'T000000',
+                $this->systemTimezone,
+            );
+            assert($startDate instanceof DateTimeImmutable);
 
-        $endDate = DateTimeImmutable::createFromFormat(
-            'Ymd\THis',
-            $event->dtend_tz,
-            $this->systemTimezone,
-        );
-        assert($endDate instanceof DateTimeImmutable);
+            $endDate = DateTimeImmutable::createFromFormat(
+                'Ymd\THis',
+                $event->dtend . 'T000000',
+                $this->systemTimezone,
+            );
+            assert($endDate instanceof DateTimeImmutable);
+        } else {
+            $startDate = DateTimeImmutable::createFromFormat(
+                'Ymd\THis',
+                $event->dtstart_tz,
+                $this->systemTimezone,
+            );
+            assert($startDate instanceof DateTimeImmutable);
+
+            $endDate = DateTimeImmutable::createFromFormat(
+                'Ymd\THis',
+                $event->dtend_tz,
+                $this->systemTimezone,
+            );
+            assert($endDate instanceof DateTimeImmutable);
+        }
 
         return new Event(
             uid: $event->uid,

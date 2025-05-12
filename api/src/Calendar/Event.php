@@ -47,7 +47,13 @@ readonly class Event
 
         $this->isMultiDay = $this->totalDays > 1;
 
-        if ($totalDaysPreProcess > 0) {
+        $diffInSeconds = $endDate->getTimestamp() - $startDate->getTimestamp();
+
+        $totalHours = $diffInSeconds / 3600;
+
+        if ($totalHours > 12) {
+            $this->isAllDay = true;
+        } elseif ($totalDaysPreProcess > 0) {
             $this->isAllDay = true;
         } else {
             $this->isAllDay = false;

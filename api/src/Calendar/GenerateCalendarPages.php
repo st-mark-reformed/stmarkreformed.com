@@ -88,7 +88,7 @@ readonly class GenerateCalendarPages
             $month . '-01',
         );
 
-        $eventsForMonth = $this->eventRepository->getEventsForMonth(
+        $eventsForMonth = $this->eventRepository->getEventsForMonthPadded(
             $month,
         );
 
