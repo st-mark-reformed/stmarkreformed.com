@@ -309,7 +309,7 @@ export default async function CalendarYearMonthPage (
 
                         return (
                             <div className="py-10 sm:px-6 lg:hidden">
-                                <ol className="divide-y divide-gray-100 overflow-hidden rounded-lg bg-white text-sm shadow ring-1 ring-black ring-opacity-5">
+                                <ol className="divide-y divide-gray-100 overflow-hidden rounded-lg bg-white text-sm shadow">
                                     {monthEventsList.map((event) => {
                                         const startDate = new Date(event.startDate);
 
