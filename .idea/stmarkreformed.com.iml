@@ -9,6 +9,7 @@
       <sourceFolder url="file://$MODULE_DIR$/craft-cms/config" isTestSource="false" packagePrefix="Config\" />
       <sourceFolder url="file://$MODULE_DIR$/craft-cms/src" isTestSource="false" packagePrefix="App\" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/devCliSrc" isTestSource="false" packagePrefix="Cli\" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/bnf/phpstan-psr-container" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/buzzingpixel/symfony-var-dumper-decorator" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/composer" />

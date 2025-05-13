@@ -92,7 +92,7 @@ services:
       - ./api/.env
       - ./api/.env.local
     image: ghcr.io/st-mark-reformed/stmarkreformed.com-api-queue-consumer
-    container_name: api-queue-consumer-1
+    container_name: stmark-api-queue-consumer-1
     environment:
       HOSTNAME: api-queue-consumer-1
       ENABLE_XDEBUG: 0
@@ -107,7 +107,7 @@ services:
       - ./api/.env
       - ./api/.env.local
     image: ghcr.io/st-mark-reformed/stmarkreformed.com-api-schedule-runner
-    container_name: api-schedule-runner
+    container_name: stmark-api-schedule-runner
     environment:
       HOSTNAME: api-schedule-runner
       ENABLE_XDEBUG: 0
@@ -142,7 +142,7 @@ services:
       - application/.env
       - application/.env.local
     image: ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner
-    container_name: app-scheduled-task-runner
+    container_name: stmark-app-scheduled-task-runner
     environment:
       - ENABLE_PHP_DEV_CONFIG=1
       - HOSTNAME=app-scheduled-task-runner
@@ -158,7 +158,7 @@ services:
       - application/.env
       - application/.env.local
     image: ghcr.io/st-mark-reformed/stmarkreformed.com-app
-    container_name: app-queue-consumer-1
+    container_name: stmark-app-queue-consumer-1
     environment:
       - ENABLE_PHP_DEV_CONFIG=1
       - HOSTNAME=app-queue-consumer-1

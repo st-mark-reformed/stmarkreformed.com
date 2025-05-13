@@ -1,66 +1,49 @@
-#!/usr/bin/env bash
+#!/usr/bin/env php84
+<?php
 
-COMPOSE_DOCKER_CLI_BUILD=1
-DOCKER_BUILDKIT=1
+declare(strict_types=1);
 
-#########################
-# Handy Color Variables #
-#########################
+$devCliSrcPath = __DIR__ . '/devCliSrc';
 
-# Reset
-Reset="\033[0m"; # Text Reset
+require_once $devCliSrcPath . '/Console.php';
 
-# Regular Colors
-Black="\033[0;30m"; # Black
-Red="\033[0;31m"; # Red
-Green="\033[0;32m"; # Green
-Yellow="\033[0;33m"; # Yellow
-Blue="\033[0;34m"; # Blue
-Purple="\033[0;35m"; # Purple
-Cyan="\033[0;36m"; # Cyan
-White="\033[0;37m"; # White
+$composerLockHashCachePath = $devCliSrcPath . '/composerLockHashCache';
+$composerLockFilePath = $devCliSrcPath . '/composer.lock';
+$vendorAutoLoad = $devCliSrcPath . '/vendor/autoload.php';
 
-# Bold
-BBlack="\033[1;30m"; # Black
-BRed="\033[1;31m"; # Red
-BGreen="\033[1;32m"; # Green
-BYellow="\033[1;33m"; # Yellow
-BBlue="\033[1;34m"; # Blue
-BPurple="\033[1;35m"; # Purple
-BCyan="\033[1;36m"; # Cyan
-BWhite="\033[1;37m"; # White
+if (!file_exists($composerLockHashCachePath)) {
+    touch($composerLockHashCachePath);
+}
 
-##############################
-# /END Handy Color Variables #
-##############################
+$composerLockHash = md5_file($composerLockFilePath);
+$composerLockHashCache = trim(
+    (string) file_get_contents($composerLockHashCachePath)
+);
 
-# Arguments
-cmd="${1}";
-allArgs="${@}";
-allArgsExceptFirst="${@:2}";
-secondArg="${2}";
+if (
+    !file_exists($vendorAutoLoad) ||
+    $composerLockHash !== $composerLockHashCache
+) {
+    Console::writeLn(
+        'The CLI dependencies have not been installed, installing now…' . PHP_EOL,
+        ConsoleForegroundColors::yellow
+    );
 
-# Ensure .env.local exists
-if [[ ! -f ".env.local" ]]; then
-    touch .env.local;
-fi
+    shell_exec('cd ' . $devCliSrcPath . ' && composer install');
 
-# Source all of our executable files — these should contain functions that can be run
-for f in $(find devBin -name '*.sh'); do
-    chmod +x ${f};
-    source ${f};
-done
+    file_put_contents(
+        $composerLockHashCachePath,
+        $composerLockHash
+    );
 
-# If no command/function name to run was provided, list out the functions available
-if [[ -z "${cmd}" || ${secondArg} == "help" ]]; then
-    source devBin/.help;
-    exit 0;
-fi
+    echo PHP_EOL;
+    echo PHP_EOL;
 
-if _function_exists "${cmd}"; then
-    # Run the specified function (${cmd}) and pass it any arguments specified (${allArgsExceptFirst})
-    ${cmd} "${allArgsExceptFirst}";
-    exit;
-fi
+    Console::writeLn(
+        'CLI dependencies have now been installed.' . PHP_EOL,
+        ConsoleForegroundColors::green
+    );
+    echo PHP_EOL;
+}
 
-printf "${Red}The specified command does not exist\n${Reset}";
+require $devCliSrcPath . '/cli.php';

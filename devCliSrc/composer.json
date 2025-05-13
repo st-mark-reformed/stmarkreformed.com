@@ -1,0 +1,23 @@
+{
+    "name": "smrc/cli",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.4",
+        "rxante/php-app-bootstrap": "^1.0",
+        "symfony/process": "^7.2",
+        "symfony/var-dumper": "^7.2",
+        "rxante/coding-standards": "^1.1",
+        "composer/class-map-generator": "^1.6",
+        "mistralys/version-parser": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cli\\": "./"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
+}
