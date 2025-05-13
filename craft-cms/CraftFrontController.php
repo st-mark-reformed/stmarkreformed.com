@@ -22,10 +22,10 @@ const CRAFT_VENDOR_PATH = CRAFT_BASE_PATH . '/vendor';
 require_once CRAFT_VENDOR_PATH . '/autoload.php';
 
 if (! file_exists(CRAFT_BASE_PATH . '/config/license.key')) {
+    $msg = 'License file missing. Please place the license.key file at `config/license.key`';
+    echo $msg;
     /** @noinspection PhpUnhandledExceptionInspection */
-    throw new Exception(
-        'Please place the license.key file at `config/license.key`'
-    );
+    throw new Exception($msg);
 }
 
 $env = getenv('ENVIRONMENT');
