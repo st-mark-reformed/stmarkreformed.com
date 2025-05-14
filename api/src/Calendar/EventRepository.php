@@ -6,6 +6,7 @@ namespace App\Calendar;
 
 use DateInterval;
 use DateTimeImmutable;
+use Psr\Clock\ClockInterface;
 use Redis;
 
 use function assert;
@@ -15,8 +16,10 @@ use function unserialize;
 
 readonly class EventRepository
 {
-    public function __construct(private Redis $redis)
-    {
+    public function __construct(
+        private Redis $redis,
+        private ClockInterface $clock,
+    ) {
     }
 
     private function getAllEventsFromCache(): EventCollection
@@ -78,5 +81,44 @@ readonly class EventRepository
                 return $event->startDate->format('Y-m') === $month;
             },
         );
+    }
+
+    public function getUpcomingEvents(int $limit = 8): EventCollection
+    {
+        $from = $this->clock->now()->sub(
+            new DateInterval('PT8H'),
+        );
+
+        $eventHashStore = [];
+
+        return $this->getAllEventsFromCache()
+            ->filter(
+                static function (Event $event) use (
+                    $from,
+                    &$eventHashStore,
+                ): bool {
+                    $startTimestamp = $event->startDate->getTimestamp();
+
+                    $isInTimeframe = $startTimestamp > $from->getTimestamp();
+
+                    if (! $isInTimeframe) {
+                        return false;
+                    }
+
+                    if (
+                        in_array(
+                            $event->uid,
+                            $eventHashStore,
+                        )
+                    ) {
+                        return false;
+                    }
+
+                    $eventHashStore[] = $event->uid;
+
+                    return true;
+                },
+            )
+            ->fromLimit($limit);
     }
 }

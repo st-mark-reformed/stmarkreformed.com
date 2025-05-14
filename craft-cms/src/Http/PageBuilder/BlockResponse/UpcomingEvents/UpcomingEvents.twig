@@ -26,13 +26,13 @@
                         <li class="col-span-1 flex shadow rounded-md">
                             <div class="flex-shrink-0 flex items-center justify-center w-16 bg-crimson-dark text-white text-sm font-medium rounded-l-md text-center">
                                 <div>
-                                    {% if not event.multiDay %}
+                                    {% if not event.isMultiDay %}
                                         {{ event.startDate.format('D') }}
                                         <br>
                                     {% endif %}
                                     {{ event.startDate.format('M') }}
                                     {{ event.startDate.format('j') }}
-                                    {% if event.multiDay %}
+                                    {% if event.isMultiDay %}
                                         <div class="text-sm italic">
                                             through
                                         </div>
@@ -43,17 +43,17 @@
                             </div>
                             <div class="flex-1 flex items-center justify-between border-t border-r border-b border-gray-200 bg-white rounded-r-md truncate">
                                 <div class="flex-1 px-4 py-2 text-sm truncate">
-                                    {% if not event.allDay %}
+                                    {% if not event.isAllDay %}
                                         <p class="text-teal-600 font-bold truncate">
                                             {{ event.startDate.format('g:i A') }}
                                         </p>
                                     {% endif %}
                                     <p class="text-gray-900 font-medium truncate">
-                                        {{ event.title|smartypants }}
+                                        {{ event.summary|smartypants }}
                                     </p>
-                                    {% if event.locationShort %}
+                                    {% if event.location %}
                                         <p class="text-gray-500 truncate">
-                                            {{ event.locationShort|smartypants }}
+                                            {{ event.location|smartypants }}
                                         </p>
                                     {% endif %}
                                 </div>

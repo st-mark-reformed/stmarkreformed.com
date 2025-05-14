@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\PageBuilder\BlockResponse\UpcomingEvents\Entities;
 
+use App\Http\PageBuilder\BlockResponse\UpcomingEvents\UpcomingEvent;
 use Solspace\Calendar\Elements\Event;
 
 use function array_map;
@@ -11,11 +12,11 @@ use function array_values;
 
 class UpcomingEventsContentModel
 {
-    /** @var Event[] */
+    /** @var UpcomingEvent[] */
     private array $events;
 
     /**
-     * @param Event[] $events
+     * @param UpcomingEvent[] $events
      */
     public function __construct(
         private string $heading,
@@ -23,7 +24,7 @@ class UpcomingEventsContentModel
         array $events,
     ) {
         $this->events = array_values(array_map(
-            static fn (Event $e) => $e,
+            static fn (UpcomingEvent $e) => $e,
             $events,
         ));
     }
@@ -44,7 +45,7 @@ class UpcomingEventsContentModel
     }
 
     /**
-     * @return Event[]
+     * @return UpcomingEvent[]
      */
     public function events(): array
     {
