@@ -3,6 +3,7 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import { ClockIcon } from '@heroicons/react/16/solid';
+import { Metadata } from 'next';
 import Layout from '../../../layout/Layout';
 import CalendarPageHeader from './CalendarPageHeader';
 import GetPageData from './GetPageData';
@@ -10,6 +11,7 @@ import { CalendarPageParams } from './CalendarPageParams';
 import CalendarDayHeading from './CalendarDayHeading';
 import typography from '../../../typography/typography';
 import { ConfigOptions, getConfigString } from '../../../ServerSideRunTimeConfig';
+import { createPageTitle } from '../../../createPageTitle';
 
 function calcPrevParams (currentParams: CalendarPageParams): CalendarPageParams {
     let yearInt = parseInt(currentParams.year, 10);
@@ -40,6 +42,29 @@ function calcNextParams (currentParams: CalendarPageParams): CalendarPageParams 
     return {
         year: yearInt.toString(),
         month: monthInt.toString().padStart(2, '0'),
+    };
+}
+
+export async function generateMetadata (
+    {
+        params,
+    }: {
+        params: Promise<CalendarPageParams>;
+    },
+): Promise<Metadata> {
+    const paramsResolved = await params;
+
+    const pageData = await GetPageData(paramsResolved);
+
+    if (pageData === null) {
+        notFound();
+    }
+
+    return {
+        title: createPageTitle([
+            pageData.dateHeading,
+            'Calendar',
+        ]),
     };
 }
 
