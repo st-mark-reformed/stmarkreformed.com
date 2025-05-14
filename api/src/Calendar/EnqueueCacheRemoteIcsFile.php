@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Calendar;
 
 use BuzzingPixel\Queue\QueueHandler;
-use BuzzingPixel\Queue\QueueItemWithKey;
 
 use function array_filter;
 use function count;
@@ -27,8 +26,8 @@ readonly class EnqueueCacheRemoteIcsFile
             count(array_filter(
                 $this->queueHandler->getEnqueuedItems()->asArray(),
                 static fn (
-                    QueueItemWithKey $q,
-                ) => $q->handle === CacheRemoteIcsFile::JOB_HANDLE,
+                    array $q,
+                ) => $q['handle'] === CacheRemoteIcsFile::JOB_HANDLE,
             )) > 0
         ) {
             return;
