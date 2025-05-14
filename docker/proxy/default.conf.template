@@ -30,7 +30,7 @@ server {
         proxy_pass ${WEB_PROXY};
         break;
     }
-    location /calendar {
+    location /calendar-test {
         proxy_pass ${WEB_PROXY};
         break;
     }
