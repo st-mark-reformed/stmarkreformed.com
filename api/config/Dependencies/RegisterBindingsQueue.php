@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Config\Dependencies;
 
 use BuzzingPixel\Queue\Framework\QueueConsumeNextSymfonyCommand;
+use BuzzingPixel\Queue\Http\Routes\RoutesFactory;
 use BuzzingPixel\Queue\QueueHandler;
 use BuzzingPixel\Queue\RedisDriver\RedisQueueHandler;
 use RxAnte\AppBootstrap\Dependencies\Bindings;
@@ -25,6 +26,12 @@ readonly class RegisterBindingsQueue
                     'name',
                     'queue:consume-next',
                 ),
+        );
+
+        $bindings->addBinding(
+            RoutesFactory::class,
+            $bindings->autowire(RoutesFactory::class)
+                ->constructorParameter('routePrefix', '/queue'),
         );
     }
 }

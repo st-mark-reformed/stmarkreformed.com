@@ -14,4 +14,6 @@ enum RuntimeConfigOptions
     case REDIS_HOST;
 
     case LOG_HANDLER_FACTORIES;
+
+    case ENABLE_QUEUE_MANAGEMENT_ROUTES;
 }
