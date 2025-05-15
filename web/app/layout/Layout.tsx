@@ -3,6 +3,7 @@
 import React, { ReactNode } from 'react';
 import Nav from './Nav';
 import Hero, { HeroType } from './HeroType';
+import Footer from './Footer';
 
 export default async function Layout (
     {
@@ -76,7 +77,7 @@ export default async function Layout (
                         <main className="relative z-10">
                             {children}
                         </main>
-                        {/* <Footer menu={menu} /> */}
+                        <Footer />
                     </div>
                 </div>
             </div>
