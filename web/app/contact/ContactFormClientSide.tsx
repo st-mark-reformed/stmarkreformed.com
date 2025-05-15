@@ -31,7 +31,7 @@ export default function ContactFormClientSide () {
             });
 
             if (result.success) {
-                router.push('/contact-test/thanks');
+                router.push('/contact/thanks');
 
                 return null;
             }
@@ -159,6 +159,7 @@ export default function ContactFormClientSide () {
                                 'focus:ring-2',
                                 'focus:ring-offset-2',
                                 'sm:w-auto',
+                                'cursor-pointer',
                             ];
 
                             if (isPending) {

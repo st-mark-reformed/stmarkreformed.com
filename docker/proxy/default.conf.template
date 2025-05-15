@@ -34,7 +34,7 @@ server {
         proxy_pass ${WEB_PROXY};
         break;
     }
-    location /contact-test {
+    location /contact {
         proxy_pass ${WEB_PROXY};
         break;
     }
