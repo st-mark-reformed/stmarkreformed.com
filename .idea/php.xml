@@ -310,6 +310,7 @@
       <path value="$PROJECT_DIR$/api/vendor/ramsey/collection" />
       <path value="$PROJECT_DIR$/api/vendor/ramsey/uuid" />
       <path value="$PROJECT_DIR$/api/vendor/buzzingpixel/php-scheduler" />
+      <path value="$PROJECT_DIR$/api/vendor/monolog/monolog" />
     </include_path>
   </component>
   <component name="PhpProjectServersManager">

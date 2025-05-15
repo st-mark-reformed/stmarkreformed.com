@@ -66,7 +66,7 @@ services:
     environment:
       ENABLE_XDEBUG: 1
       ENABLE_PHP_DEV_CONFIG: 1
-      HOSTNAME: stmark-app
+      HOSTNAME: stmark-api
     volumes:
       - ./api/.bash_history:/root/.bash_history:delegated
       - ../api:/var/www:delegated
