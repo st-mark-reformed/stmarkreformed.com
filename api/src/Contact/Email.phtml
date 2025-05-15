@@ -1,0 +1,21 @@
+<?php
+use App\Contact\ContactFormData;
+use BuzzingPixel\Templating\TemplateEngine;
+
+/** @phpstan-ignore-next-line */
+assert($this instanceof TemplateEngine);
+
+$data = $data ?? null;
+assert($data instanceof ContactFormData);
+?>
+
+<p>
+    <strong>Name:</strong> <?=$this->html($data->name)?><br>
+    <strong>Email Address:</strong> <?=$this->html($data->emailAddress)?>
+</p>
+<p>
+    <strong>Message:</strong>
+</p>
+<p>
+    <?=nl2br($this->html($data->message))?>
+</p>

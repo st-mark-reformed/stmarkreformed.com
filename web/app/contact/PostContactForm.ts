@@ -37,6 +37,7 @@ export default async function PostContactForm (
             return {
                 success: false,
                 message: json.message || 'An unknown error occurred',
+                errors: json.errors || [],
             };
         }
 

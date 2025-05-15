@@ -1,13 +1,19 @@
 'use client';
 
 import React, {
-    ChangeEvent, ReactNode, useActionState, useState,
+    ChangeEvent,
+    ReactNode,
+    useActionState,
+    useState,
 } from 'react';
+import { useRouter } from 'next/navigation';
 import PostContactForm from './PostContactForm';
 import Alert from '../Alert';
 import { FormValues } from './FormValues';
 
 export default function ContactFormClientSide () {
+    const router = useRouter();
+
     const [error, submitAction, isPending] = useActionState(
         async (previousState: ReactNode | null, formData: FormData) => {
             const aPassword = formData.get('aPassword') as string;
@@ -25,6 +31,8 @@ export default function ContactFormClientSide () {
             });
 
             if (result.success) {
+                router.push('/contact/thanks');
+
                 return null;
             }
 

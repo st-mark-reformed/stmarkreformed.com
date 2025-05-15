@@ -203,7 +203,7 @@ services:
         aliases:
           - stmark-redis
 
-## TODO: Try to get this working on dev again sometime
+  ## TODO: Try to get this working on dev again sometime
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.14.0
     container_name: stmark-elasticsearch
@@ -222,9 +222,40 @@ services:
         aliases:
           - stmark-elasticsearch
 
+  mailhog:
+    container_name: smrc-mailhog
+    image: 'mailhog/mailhog:latest'
+    user: root
+    expose:
+      - 49194
+    ports:
+      - "49194:49194"
+    environment:
+      - MH_API_BIND_ADDR=0.0.0.0:49194
+      - MH_UI_BIND_ADDR=0.0.0.0:49194
+    networks:
+      default:
+        aliases:
+          - smrc-mailhog
+    command: ["-storage=maildir", "-maildir-path=/maildir"]
+    volumes:
+      - mailhog_volume:/maildir
+    labels:
+      - traefik.enable=true
+      - traefik.port=49194
+      - traefik.docker.network=traefik-dev_default
+      - traefik.http.routers.stmark_mailhog.entrypoints=web
+      - traefik.http.routers.stmark_mailhog.rule=Host(`mailhog.stmark.localtest.me`)
+      - traefik.http.routers.stmark_mailhog.middlewares=https-redirect
+      - traefik.http.routers.stmark_mailhog-secure.entrypoints=websecure
+      - traefik.http.routers.stmark_mailhog-secure.tls=true
+      - traefik.http.routers.stmark_mailhog-secure.rule=Host(`mailhog.stmark.localtest.me`)
+      - traefik.http.services.stmark_mailhog-secure.loadbalancer.server.port=49194
+
 volumes:
   db-volume:
   elasticsearch-data-volume:
+  mailhog_volume:
   redis-volume:
 
 networks:

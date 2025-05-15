@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Config\Events;
 
+use App\Contact\PostContactAction;
 use App\Healthcheck;
 use BuzzingPixel\Queue\Http\Routes\Route;
 use BuzzingPixel\Queue\Http\Routes\RoutesFactory as QueueRoutesFactory;
@@ -18,6 +19,7 @@ readonly class ApplyRoutes
     public function onDispatch(ApplyRoutesEvent $routes): void
     {
         Healthcheck::applyRoute($routes);
+        PostContactAction::applyRoute($routes);
 
         $config = $routes->getContainer()->get(RuntimeConfig::class);
 
