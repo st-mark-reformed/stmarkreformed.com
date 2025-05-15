@@ -31,7 +31,7 @@ export default function ContactFormClientSide () {
             });
 
             if (result.success) {
-                router.push('/contact/thanks');
+                router.push('/contact-test/thanks');
 
                 return null;
             }
