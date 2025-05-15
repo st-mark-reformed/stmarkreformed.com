@@ -36,7 +36,7 @@ readonly class EnqueueGenerateUpcomingEvents
         $this->queueHandler->enqueueJob(
             GenerateUpcomingEvents::JOB_HANDLE,
             GenerateUpcomingEvents::JOB_NAME,
-            GenerateCalendarPages::class,
+            GenerateUpcomingEvents::class,
         );
     }
 }
