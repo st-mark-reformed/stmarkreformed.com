@@ -126,6 +126,8 @@ services:
     networks:
       traefik:
       default:
+        aliases:
+          - stmark-api
 
   api-queue-consumer-1:
     deploy:
