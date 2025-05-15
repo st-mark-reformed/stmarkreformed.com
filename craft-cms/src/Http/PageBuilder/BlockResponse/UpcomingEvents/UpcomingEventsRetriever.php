@@ -36,6 +36,10 @@ class UpcomingEventsRetriever
                 'calendar_data:calendar:upcoming_events',
             );
 
+            if ($upcomingEventsCache === false) {
+                return [];
+            }
+
             $upcomingEventsCacheDecoded = json_decode(
                 $upcomingEventsCache,
                 true
@@ -70,7 +74,7 @@ class UpcomingEventsRetriever
                 },
                 $upcomingEventsCacheDecoded,
             );
-        } catch (Throwable) {
+        } catch (Throwable $e) {
             return [];
         }
 
