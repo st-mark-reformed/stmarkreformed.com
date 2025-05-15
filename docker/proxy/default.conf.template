@@ -34,6 +34,10 @@ server {
         proxy_pass ${WEB_PROXY};
         break;
     }
+    location /contact {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
 
     location / {
         proxy_pass ${CRAFT_PROXY};

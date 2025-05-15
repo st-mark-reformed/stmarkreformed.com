@@ -6,6 +6,7 @@ import fs from 'fs';
  */
 export enum ConfigOptions {
     BASE_URL,
+    API_URL,
     REDIS_HOST,
 }
 
