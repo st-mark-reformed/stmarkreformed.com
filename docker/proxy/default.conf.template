@@ -38,6 +38,10 @@ server {
         proxy_pass ${WEB_PROXY};
         break;
     }
+    location /about {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
 
     location / {
         proxy_pass ${CRAFT_PROXY};

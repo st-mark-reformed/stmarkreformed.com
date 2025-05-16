@@ -17,11 +17,6 @@ export const MainMenu: MenuItems = [
         link: '/about',
         children: [
             {
-                name: 'About',
-                link: '#about',
-                children: [],
-            },
-            {
                 name: 'Mission Statement',
                 link: '/about/mission-statement',
                 children: [],
