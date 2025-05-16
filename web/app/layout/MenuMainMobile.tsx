@@ -6,7 +6,7 @@ export default function MenuMainMobile () {
     return (
         <div className="px-2 space-y-1">
             {MainMenu.map((menuItem) => (
-                <>
+                <div key={menuItem.link}>
                     {(() => {
                         if (!menuItem.link) {
                             return (
@@ -35,7 +35,7 @@ export default function MenuMainMobile () {
                             {subMenuItem.name}
                         </Link>
                     ))}
-                </>
+                </div>
             ))}
         </div>
     );
