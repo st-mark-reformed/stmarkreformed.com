@@ -88,13 +88,13 @@ readonly class GenerateCalendarPages
             $month . '-01',
         );
 
-        $eventsForMonth = $this->eventRepository->getEventsForMonthPadded(
+        $eventsForMonthPadded = $this->eventRepository->getEventsForMonthPadded(
             $month,
         );
 
         $monthDays = $this->monthDayFactory->create(
             $month,
-            $eventsForMonth,
+            $eventsForMonthPadded,
         );
 
         $pageCachePath = implode('/', [
@@ -116,7 +116,9 @@ readonly class GenerateCalendarPages
                     'monthRows' => $monthDays->rows(),
                     'monthString' => $month,
                     'dateHeading' => $monthDate->format('F Y'),
-                    'monthEventsList' => $eventsForMonth->asScalarArray(),
+                    'monthEventsList' => $this->eventRepository->getEventsForMonth(
+                        $month,
+                    )->asScalarArray(),
                 ],
             )),
         );
