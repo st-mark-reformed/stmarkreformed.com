@@ -50,7 +50,7 @@ export const MainMenu: MenuItems = [
     },
     {
         name: 'Media',
-        link: '/media',
+        link: '',
         children: [
             {
                 name: 'Messages',
