@@ -42,6 +42,10 @@ server {
         proxy_pass ${WEB_PROXY};
         break;
     }
+    location /members-test {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
 
     location / {
         proxy_pass ${CRAFT_PROXY};

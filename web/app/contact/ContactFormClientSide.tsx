@@ -163,15 +163,13 @@ export default function ContactFormClientSide () {
                             ];
 
                             if (isPending) {
-                                classes.push(...[
-                                    'bg-gray-400',
-                                ]);
+                                classes.push('bg-gray-400');
                             } else {
-                                classes.push(...[
+                                classes.push(
                                     'bg-crimson',
                                     'hover:bg-crimson-dark',
                                     'focus:ring-crimson-dark',
-                                ]);
+                                );
                             }
 
                             return classes.join(' ');

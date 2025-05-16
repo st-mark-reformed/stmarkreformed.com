@@ -1,13 +1,12 @@
 import fs from 'fs';
 
-/**
- * Due to legacy reasons, some variables are lower_snake_case. All new variables
- * should match our standards as UPPER_SNAKE_CASE
- */
 export enum ConfigOptions {
     BASE_URL,
     API_URL,
     REDIS_HOST,
+    MEMBER_EMAIL_ADDRESS,
+    HASHED_MEMBER_PASSWORD,
+    ENCRYPTION_KEY,
 }
 
 function getConfigValue (
