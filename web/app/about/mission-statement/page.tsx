@@ -7,6 +7,8 @@ import NavItems from '../NavItems';
 import SectionWithH2Heading from '../../typography/SectionWithH2Heading';
 import InlineButtonLinks from '../../typography/InlineButtonLinks';
 
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = {
     title: createPageTitle([
         'Mission Statement',

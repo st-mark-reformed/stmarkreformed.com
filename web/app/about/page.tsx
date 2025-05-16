@@ -5,6 +5,8 @@ import { createPageTitle } from '../createPageTitle';
 import SidebarInnerLayout from '../layout/SidebarInnerLayout';
 import NavItems from './NavItems';
 
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = {
     title: createPageTitle('About'),
 };

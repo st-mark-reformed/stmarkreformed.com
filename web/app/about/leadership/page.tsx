@@ -7,6 +7,8 @@ import NavItems from '../NavItems';
 import Profile from './Profile';
 import ProfileSection from './ProfileSection';
 
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = {
     title: createPageTitle([
         'Leadership',

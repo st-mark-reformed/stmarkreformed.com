@@ -7,6 +7,8 @@ import NavItems from '../NavItems';
 import SectionWithH2Heading from '../../typography/SectionWithH2Heading';
 import Links from './Links';
 
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = {
     title: createPageTitle([
         'Connections and Associations',

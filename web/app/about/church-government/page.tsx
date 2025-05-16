@@ -6,6 +6,8 @@ import SidebarInnerLayout from '../../layout/SidebarInnerLayout';
 import NavItems from '../NavItems';
 import SectionWithH2Heading from '../../typography/SectionWithH2Heading';
 
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = {
     title: createPageTitle([
         'Church Government',
