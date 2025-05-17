@@ -1,9 +1,37 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 import GetPageData from './GetPageData';
 import MemberLayout from '../../MemberLayout';
 import EntryDisplay from '../EntryDisplay';
 import Breadcrumbs from '../../../Breadcrumbs';
+import { createPageTitle } from '../../../createPageTitle';
+
+export async function generateMetadata (
+    {
+        params,
+    }: {
+        params: Promise<{
+            slug: string;
+        }>;
+    },
+): Promise<Metadata> {
+    const paramsResolved = await params;
+
+    const pageData = await GetPageData(paramsResolved.slug);
+
+    if (pageData === null) {
+        notFound();
+    }
+
+    return {
+        title: createPageTitle([
+            pageData.entry.title,
+            'Internal Media',
+            'Members Area',
+        ]),
+    };
+}
 
 export default async function Page (
     {
