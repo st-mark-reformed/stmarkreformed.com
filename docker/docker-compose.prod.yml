@@ -84,6 +84,8 @@ services:
     environment:
       HOSTNAME: stmark-web
       NODE_ENV: prod
+    volumes:
+      - files-above-webroot-volume:/app/filesAboveWebroot
     networks:
       traefik:
       default:

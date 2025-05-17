@@ -1,7 +1,14 @@
 import React from 'react';
-import Layout from '../layout/Layout';
-import HasValidTokenFromCookies from './MemberTokenRepository';
+import { redirect } from 'next/navigation';
+import { Metadata } from 'next';
+import { HasValidTokenFromCookies } from './MemberTokenRepository';
 import LoginPage from './LoginPage';
+import { ConfigOptions, getConfigString } from '../ServerSideRunTimeConfig';
+import { createPageTitle } from '../createPageTitle';
+
+export const metadata: Metadata = {
+    title: createPageTitle('Members Area'),
+};
 
 export default async function MembersPage () {
     const hasValidToken = await HasValidTokenFromCookies();
@@ -10,9 +17,7 @@ export default async function MembersPage () {
         return <LoginPage />;
     }
 
-    return (
-        <Layout>
-            TODO
-        </Layout>
-    );
+    redirect(`${getConfigString(ConfigOptions.BASE_URL)}/members-test/internal-media`);
+
+    return <></>;
 }

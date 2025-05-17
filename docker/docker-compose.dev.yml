@@ -48,6 +48,7 @@ services:
     volumes:
       - ./web/.bash_history:/root/.bash_history:delegated
       - ../web:/app:delegated
+      - ../craft-cms/filesAboveWebroot:/app/filesAboveWebroot
     expose:
       - 80
     networks:

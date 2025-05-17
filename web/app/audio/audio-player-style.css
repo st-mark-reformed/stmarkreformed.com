@@ -1,0 +1,67 @@
+.rhap_main-controls-button,
+.rhap_repeat-button,
+.rhap_volume-button {
+    color: var(--color-crimson);
+}
+
+.rhap_download-progress,
+.rhap_volume-bar {
+    background-color: var(--color-crimson-lightened-3);
+}
+
+.rhap_progress-indicator,
+.rhap_progress-filled,
+.rhap_volume-indicator,
+.rhap_volume-filled {
+    background-color: var(--color-crimson);
+}
+
+.rhap_container {
+    box-shadow: 2px 2px 6px 1px rgba(0, 0, 0, 0.15);
+}
+
+.rhap_container .align-middle {
+    vertical-align: middle;
+}
+
+.rhap_forward-button,
+.rhap_rewind-button {
+    width: 50px;
+    height: 28px;
+    margin-top: -14px;
+}
+
+.rhap_additional-controls,
+.rhap_volume-controls {
+    display: none;
+}
+
+.rhap_main-controls {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.rhap_progress-section {
+    position: relative;
+}
+
+.rhap_time {
+    position: absolute;
+    top: -34px;
+}
+
+.rhap_current-time {
+    left: 0;
+}
+
+.rhap_total-time {
+    right: 0;
+}
+
+.rhap_progress-container {
+    margin: 0;
+}
+
+.rhap_time {
+    font-size: 12px;
+}

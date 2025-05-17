@@ -85,3 +85,7 @@
     box-shadow: none !important;
     outline: none !important;
 }
+
+.text-xxs {
+    font-size: 0.60rem;
+}

@@ -1,12 +1,11 @@
 import crypto from 'crypto';
 import { cookies } from 'next/headers';
+import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 import { ConfigOptions, getConfigString } from '../ServerSideRunTimeConfig';
 
-export default async function HasValidTokenFromCookies () {
-    const cookieStore = await cookies();
-
-    const memberToken = cookieStore.get('member');
-
+export async function TokenCookieIsValid (
+    memberToken: RequestCookie | undefined,
+): Promise<boolean> {
     if (memberToken === undefined) {
         return false;
     }
@@ -36,4 +35,10 @@ export default async function HasValidTokenFromCookies () {
     } catch (error) {
         return false;
     }
+}
+
+export async function HasValidTokenFromCookies (): Promise<boolean> {
+    const cookieStore = await cookies();
+
+    return TokenCookieIsValid(cookieStore.get('member'));
 }
