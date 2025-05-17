@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Config;
 
+use App\Http\Response\Members\InternalMedia\EnqueueGenerateInternalMediaPagesForRedis;
 use App\MailingLists\CheckMailingLists;
 use BuzzingPixel\CraftScheduler\ContainerRetrieval\ContainerItem;
 use BuzzingPixel\CraftScheduler\ContainerRetrieval\RetrieveContainersEvent;
@@ -39,6 +40,10 @@ class Schedule
     public function retrieve(RetrieveScheduleEvent $e): void
     {
         $schedule = $e->scheduleConfigItems();
+
+        EnqueueGenerateInternalMediaPagesForRedis::addSchedule(
+            $schedule
+        );
 
         if ((bool) getenv('ENABLE_MAILING_LIST_SCHEDULE')) {
             CheckMailingLists::addSchedule($schedule);

@@ -11,6 +11,7 @@ use App\Craft\Commands\ProfilesConsoleController;
 use App\Craft\ElementSaveClearStaticCache;
 use App\Craft\SetMessageEntrySlug\SetMessageEntrySlugFactory;
 use App\ElasticSearch\Events\ModifyElementQueueIndexAllMessages;
+use App\Http\Response\Members\InternalMedia\CraftEvents\SetUpInternalAudioEvents;
 use App\Http\Utility\ClearStaticCache;
 use App\Messages\Events\ModifyElementQueueSetMessageSeriesLatestEntry;
 use App\Profiles\Events\ModifyElementQueueSetHasMessagesOnAllProfiles;
@@ -323,6 +324,14 @@ class Module extends ModuleBase
             RetrieveSchedule::EVENT_RETRIEVE_SCHEDULE,
             [$schedule, 'retrieve'],
         );
+
+        $setUpInternalAudioEvents = $di->get(
+            SetUpInternalAudioEvents::class,
+        );
+
+        assert($setUpInternalAudioEvents instanceof SetUpInternalAudioEvents);
+
+        $setUpInternalAudioEvents->setUp();
     }
 
     private function mapControllers(): void

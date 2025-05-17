@@ -15,9 +15,11 @@ use function assert;
  */
 class IndexAllMessagesQueueJob extends BaseJob
 {
+    const DESCRIPTION = 'Index all messages';
+
     protected function defaultDescription(): string
     {
-        return 'Index all messages';
+        return self::DESCRIPTION;
     }
 
     /**

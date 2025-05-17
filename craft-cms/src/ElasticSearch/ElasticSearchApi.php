@@ -38,6 +38,18 @@ class ElasticSearchApi
 
     public function queueIndexAllMessages(): void
     {
+        $queueItems = $this->queue->getJobInfo();
+
+        foreach ($queueItems as $queueItem) {
+            $desc = $queueItem['description'] ?? '';
+
+            if ($desc !== IndexAllMessagesQueueJob::DESCRIPTION::DESCRIPTION) {
+                continue;
+            }
+
+            return;
+        }
+
         $this->queue->push(new IndexAllMessagesQueueJob());
     }
 }
