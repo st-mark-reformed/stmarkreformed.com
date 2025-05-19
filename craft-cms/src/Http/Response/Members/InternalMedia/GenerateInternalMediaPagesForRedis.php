@@ -6,8 +6,10 @@ namespace App\Http\Response\Members\InternalMedia;
 
 use App\Http\Pagination\Pagination;
 use App\Shared\ElementQueryFactories\EntryQueryFactory;
+use craft\elements\Category;
 use craft\elements\Entry;
 use Redis;
+use Throwable;
 
 class GenerateInternalMediaPagesForRedis
 {
@@ -28,6 +30,8 @@ class GenerateInternalMediaPagesForRedis
     private array $pageSlugKeys = [];
 
     private array $byIds = [];
+
+    private array $seriesIds = [];
 
     public function generate(): void
     {
@@ -77,6 +81,10 @@ class GenerateInternalMediaPagesForRedis
         foreach ($this->byIds as $id => $slug) {
             $this->generateByPages($id,  $slug);
         }
+
+        foreach ($this->seriesIds as $id => $slug) {
+            $this->generateSeriesPages($id, $slug);
+        }
     }
 
     private function createJsonArrayFromEntry (Entry $entry): array
@@ -99,6 +107,12 @@ class GenerateInternalMediaPagesForRedis
         $series = $entry->internalMessageSeries->one();
 
         if ($series !== null) {
+            $id = $series->id;
+
+            if (! isset($this->seriesIds[$id])) {
+                $this->seriesIds[$id] = $series->slug;
+            }
+
             $series = [
                 'title' => $series->title,
                 'slug' => $series->slug,
@@ -203,7 +217,7 @@ class GenerateInternalMediaPagesForRedis
     private function generateByPage(
         Pagination $pagination,
         int $profileId,
-    ) {
+    ): void {
         $results = $this->retrieveMedia->retrieve(
             pagination: $pagination,
             profileId: $profileId,
@@ -233,6 +247,80 @@ class GenerateInternalMediaPagesForRedis
                 'entries' => $entries,
                 'byName' => $byProfile->fullNameHonorific(),
                 'bySlug' => $byProfile->slug,
+            ]),
+        );
+    }
+
+    private function generateSeriesPages(
+        int $seriesId,
+        string $slug
+    ) {
+        $totalResults = (int) $this->entryQueryFactory->make()
+            ->section('internalMessages')
+            ->internalMessageSeries($seriesId)
+            ->count();
+
+        $pagination = (new Pagination())
+            ->withPerPage(val: self::PER_PAGE)
+            ->withCurrentPage(val: 1)
+            ->withTotalResults($totalResults);
+
+        $totalPages = $pagination->totalPages();
+
+        $generatedKeys = [];
+
+        for ($page = 1; $page <= $totalPages; $page++) {
+            $generatedKeys[] = 'members:internal_media:series:' . $slug . ':' . $page;
+            $this->generateSeriesPage(
+                $pagination->withCurrentPage($page),
+                $seriesId,
+            );
+        }
+
+        $existingPageKeys = $this->redis->keys(
+            'members:internal_media:series:' . $slug . ':*'
+        );
+
+        foreach ($existingPageKeys as $key) {
+            if (!in_array($key, $generatedKeys, true)) {
+                $this->redis->del($key);
+            }
+        }
+    }
+
+    private function generateSeriesPage(
+        Pagination $pagination,
+        int $seriesId,
+    ): void {
+        $results = $this->retrieveMedia->retrieve(
+            pagination: $pagination,
+            seriesId: $seriesId,
+        );
+
+        $first = $results->first();
+
+        $series = $first->internalMessageSeries->one();
+        assert($series instanceof Category);
+
+        $entries = $results->mapItems(function (Entry $entry) {
+            return $this->createJsonArrayFromEntry($entry);
+        });
+
+        $this->redis->set(
+            'members:internal_media:series:' . $series->slug . ':' . $pagination->currentPage(),
+            json_encode([
+                'currentPage' => $pagination->currentPage(),
+                'perPage' => $pagination->perPage(),
+                'totalResults' => $pagination->totalResults(),
+                'totalPages' => $pagination->totalPages(),
+                'pagesArray' => $pagination->pagesArray(),
+                'prevPageLink' => $pagination->prevPageLink(),
+                'nextPageLink' => $pagination->nextPageLink(),
+                'firstPageLink' => $pagination->firstPageLink(),
+                'lastPageLink' => $pagination->lastPageLink(),
+                'entries' => $entries,
+                'seriesName' => $series->title,
+                'seriesSlug' => $series->slug,
             ]),
         );
     }

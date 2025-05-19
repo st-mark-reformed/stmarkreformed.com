@@ -18,6 +18,7 @@ class RetrieveMedia
     public function retrieve(
         Pagination $pagination,
         int|null $profileId = null,
+        int|null $seriesId = null,
     ): MediaResults {
         $perPage = $pagination->perPage();
 
@@ -29,6 +30,10 @@ class RetrieveMedia
 
         if ($profileId !== null) {
             $query->profile($profileId);
+        }
+
+        if ($seriesId !== null) {
+            $query->internalMessageSeries($seriesId);
         }
 
         $totalResults = (int) $query->count();
