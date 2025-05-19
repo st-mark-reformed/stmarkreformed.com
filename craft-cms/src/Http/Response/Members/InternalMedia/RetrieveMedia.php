@@ -15,8 +15,10 @@ class RetrieveMedia
     {
     }
 
-    public function retrieve(Pagination $pagination): MediaResults
-    {
+    public function retrieve(
+        Pagination $pagination,
+        int|null $profileId = null,
+    ): MediaResults {
         $perPage = $pagination->perPage();
 
         $currentPage = $pagination->currentPage();
@@ -24,6 +26,10 @@ class RetrieveMedia
         $query = $this->entryQueryFactory->make();
 
         $query->section('internalMessages');
+
+        if ($profileId !== null) {
+            $query->profile($profileId);
+        }
 
         $totalResults = (int) $query->count();
 

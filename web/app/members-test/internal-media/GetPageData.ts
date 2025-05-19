@@ -2,7 +2,7 @@ import { cache } from 'react';
 import getRedisClient from '../../cache/RedisClient';
 import { Entry } from './Entry';
 
-interface ReturnType {
+export interface BaseInternalMediaReturnType {
     currentPage: number;
     perPage: number;
     totalResults: number;
@@ -21,7 +21,7 @@ interface ReturnType {
 
 const GetPageData = cache(async (
     pageNum: number,
-): Promise<null | ReturnType> => {
+): Promise<null | BaseInternalMediaReturnType> => {
     const redis = getRedisClient();
 
     const redisPageData = await redis.get(

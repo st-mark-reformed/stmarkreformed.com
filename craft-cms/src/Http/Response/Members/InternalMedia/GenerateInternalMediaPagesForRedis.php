@@ -27,9 +27,12 @@ class GenerateInternalMediaPagesForRedis
 
     private array $pageSlugKeys = [];
 
+    private array $byIds = [];
+
     public function generate(): void
     {
         $this->pageSlugKeys = [];
+        $this->byIds = [];
 
         $totalResults = (int) $this->entryQueryFactory->make()
             ->section('internalMessages')
@@ -70,6 +73,10 @@ class GenerateInternalMediaPagesForRedis
                 $this->redis->del($key);
             }
         }
+
+        foreach ($this->byIds as $id => $slug) {
+            $this->generateByPages($id,  $slug);
+        }
     }
 
     private function createJsonArrayFromEntry (Entry $entry): array
@@ -77,6 +84,12 @@ class GenerateInternalMediaPagesForRedis
         $by = $entry->profile->one();
 
         if ($by !== null) {
+            $id = $by->id;
+
+            if (! isset($this->byIds[$id])) {
+                $this->byIds[$id] = $by->slug;
+            }
+
             $by = [
                 'title' => $by->fullNameHonorific(),
                 'slug' => $by->slug,
@@ -146,6 +159,80 @@ class GenerateInternalMediaPagesForRedis
                 'firstPageLink' => $pagination->firstPageLink(),
                 'lastPageLink' => $pagination->lastPageLink(),
                 'entries' => $entries,
+            ]),
+        );
+    }
+
+    private function generateByPages(
+        int $profileId,
+        string $slug,
+    ): void {
+        $totalResults = (int) $this->entryQueryFactory->make()
+            ->section('internalMessages')
+            ->profile($profileId)
+            ->count();
+
+        $pagination = (new Pagination())
+            ->withPerPage(val: self::PER_PAGE)
+            ->withCurrentPage(val: 1)
+            ->withTotalResults($totalResults);
+
+        $totalPages = $pagination->totalPages();
+
+        $generatedKeys = [];
+
+        for ($page = 1; $page <= $totalPages; $page++) {
+            $generatedKeys[] = 'members:internal_media:by:' . $slug . ':' . $page;
+            $this->generateByPage(
+                $pagination->withCurrentPage($page),
+                $profileId,
+            );
+        }
+
+        $existingPageKeys = $this->redis->keys(
+            'members:internal_media:by:' . $slug . ':*'
+        );
+
+        foreach ($existingPageKeys as $key) {
+            if (!in_array($key, $generatedKeys, true)) {
+                $this->redis->del($key);
+            }
+        }
+    }
+
+    private function generateByPage(
+        Pagination $pagination,
+        int $profileId,
+    ) {
+        $results = $this->retrieveMedia->retrieve(
+            pagination: $pagination,
+            profileId: $profileId,
+        );
+
+        $first = $results->first();
+
+        $byProfile = $first->profile->one();
+        assert($byProfile instanceof Entry);
+
+        $entries = $results->mapItems(function (Entry $entry) {
+            return $this->createJsonArrayFromEntry($entry);
+        });
+
+        $this->redis->set(
+            'members:internal_media:by:' . $byProfile->slug . ':' . $pagination->currentPage(),
+            json_encode([
+                'currentPage' => $pagination->currentPage(),
+                'perPage' => $pagination->perPage(),
+                'totalResults' => $pagination->totalResults(),
+                'totalPages' => $pagination->totalPages(),
+                'pagesArray' => $pagination->pagesArray(),
+                'prevPageLink' => $pagination->prevPageLink(),
+                'nextPageLink' => $pagination->nextPageLink(),
+                'firstPageLink' => $pagination->firstPageLink(),
+                'lastPageLink' => $pagination->lastPageLink(),
+                'entries' => $entries,
+                'byName' => $byProfile->fullNameHonorific(),
+                'bySlug' => $byProfile->slug,
             ]),
         );
     }

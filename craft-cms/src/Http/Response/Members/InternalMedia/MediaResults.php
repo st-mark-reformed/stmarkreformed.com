@@ -29,6 +29,11 @@ class MediaResults
         );
     }
 
+    public function first(): Entry
+    {
+        return $this->items[0];
+    }
+
     public function hasEntries(): bool
     {
         return $this->hasEntries;
