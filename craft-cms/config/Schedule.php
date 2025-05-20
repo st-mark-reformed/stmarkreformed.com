@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Config;
 
+use App\Http\Response\Members\HymnsOfTheMonth\EnqueueGenerateHymnsOfTheMonthPageForRedis;
 use App\Http\Response\Members\InternalMedia\EnqueueGenerateInternalMediaPagesForRedis;
 use App\MailingLists\CheckMailingLists;
 use BuzzingPixel\CraftScheduler\ContainerRetrieval\ContainerItem;
@@ -43,6 +44,10 @@ class Schedule
 
         EnqueueGenerateInternalMediaPagesForRedis::addSchedule(
             $schedule
+        );
+
+        EnqueueGenerateHymnsOfTheMonthPageForRedis::addSchedule(
+            $schedule,
         );
 
         if ((bool) getenv('ENABLE_MAILING_LIST_SCHEDULE')) {

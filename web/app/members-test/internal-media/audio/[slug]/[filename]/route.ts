@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import { TokenCookieIsValid } from '../../../../MemberTokenRepository';
+import GetMimeType from '../../../../../audio/GetMimeType';
 
 export async function GET (
     request: NextRequest,
@@ -49,9 +50,7 @@ export async function GET (
     try {
         const stats = fs.statSync(filePath);
         const fileSize = stats.size;
-        const mimeType = paramsResolved.filename.endsWith('.mp3')
-            ? 'audio/mpeg'
-            : 'application/octet-stream';
+        const mimeType = GetMimeType(paramsResolved.filename);
 
         const range = request.headers.get('range');
 

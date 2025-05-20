@@ -19,7 +19,7 @@ class GenerateInternalMediaPagesForRedisQueueJob extends BaseJob
     public function execute($queue)
     {
         $generator = Container::get()->get(
-            GenerateInternalMediaPagesForRedis::class
+            GenerateInternalMediaPagesForRedis::class,
         );
 
         assert($generator instanceof GenerateInternalMediaPagesForRedis);

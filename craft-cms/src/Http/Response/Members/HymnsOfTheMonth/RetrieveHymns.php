@@ -6,6 +6,7 @@ namespace App\Http\Response\Members\HymnsOfTheMonth;
 
 use App\Shared\ElementQueryFactories\EntryQueryFactory;
 use App\Shared\FieldHandlers\Generic\GenericHandler;
+use craft\elements\Asset;
 use craft\elements\Entry;
 use craft\errors\InvalidFieldException;
 
@@ -33,17 +34,37 @@ class RetrieveHymns
 
         $entries = $query->all();
 
-        $text = 'Resources and tools for learning the hymn of the month: ';
-
         $results = array_map(
-            fn (Entry $entry) => new HymnItem(
-                href: (string) $entry->getUrl(),
-                title: (string) $entry->title,
-                content: $text . $this->genericHandler->getString(
+            function (Entry $entry) {
+                $text = 'Resources and tools for learning the hymn of the month: ';
+
+                $hymnPsalmName = $this->genericHandler->getString(
                     element: $entry,
                     field: 'hymnPsalmName',
-                ),
-            ),
+                );
+
+                $musicSheet = $entry->hymnOfTheMonthMusic->one();
+
+                $practiceTracks = $entry->hymnOfTheMonthPracticeTracks->all();
+
+                return new HymnItem(
+                    href: (string) $entry->getUrl(),
+                    title: (string) $entry->title,
+                    slug: (string) $entry->slug,
+                    hymnPsalmName: $hymnPsalmName,
+                    content: $text . $hymnPsalmName,
+                    musicSheetFilePath: $musicSheet?->path,
+                    practiceTracks: array_map(
+                        function (Asset $practiceTrack): HymnItemPracticeTrack {
+                            return new HymnItemPracticeTrack(
+                                title: $practiceTrack->title,
+                                path: $practiceTrack->path,
+                            );
+                        },
+                        $practiceTracks,
+                    ),
+                );
+            },
             $entries,
         );
 

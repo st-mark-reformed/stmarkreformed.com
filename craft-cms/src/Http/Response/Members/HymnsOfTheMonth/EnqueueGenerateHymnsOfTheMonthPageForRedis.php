@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Response\Members\InternalMedia;
+namespace App\Http\Response\Members\HymnsOfTheMonth;
 
 use BuzzingPixel\CraftScheduler\Frequency;
 use BuzzingPixel\CraftScheduler\ScheduleRetrieval\ScheduleConfigItem;
 use BuzzingPixel\CraftScheduler\ScheduleRetrieval\ScheduleConfigItemCollection;
 use craft\queue\Queue;
 
-class EnqueueGenerateInternalMediaPagesForRedis
+readonly class EnqueueGenerateHymnsOfTheMonthPageForRedis
 {
 
     public static function addSchedule(
@@ -37,7 +37,7 @@ class EnqueueGenerateInternalMediaPagesForRedis
         foreach ($queueItems as $queueItem) {
             $desc = $queueItem['description'] ?? '';
 
-            if ($desc !== GenerateInternalMediaPagesForRedisQueueJob::DESCRIPTION) {
+            if ($desc !== GenerateHymnsOfTheMonthPageForRedisQueueJob::DESCRIPTION) {
                 continue;
             }
 
@@ -45,7 +45,7 @@ class EnqueueGenerateInternalMediaPagesForRedis
         }
 
         $this->queue->push(
-            new GenerateInternalMediaPagesForRedisQueueJob()
+            new GenerateHymnsOfTheMonthPageForRedisQueueJob()
         );
     }
 }
