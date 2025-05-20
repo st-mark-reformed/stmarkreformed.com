@@ -5,6 +5,8 @@ import MembersInternalMediaSeriesPage from './MembersInternalMediaSeriesPage';
 import GetPageData from './GetPageData';
 import { createPageTitle } from '../../../../createPageTitle';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata (
     {
         params,

@@ -3,6 +3,8 @@ import { Metadata } from 'next';
 import MembersInternalMediaPage from './MembersInternalMediaPage';
 import { createPageTitle } from '../../createPageTitle';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
     title: createPageTitle([
         'Internal Media',

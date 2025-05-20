@@ -10,6 +10,8 @@ import { createPageTitle } from '../../../createPageTitle';
 import Breadcrumbs from '../../../Breadcrumbs';
 import typography from '../../../typography/typography';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata (
     {
         params,

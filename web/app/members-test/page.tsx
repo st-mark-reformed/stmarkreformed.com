@@ -6,6 +6,8 @@ import LoginPage from './LoginPage';
 import { ConfigOptions, getConfigString } from '../ServerSideRunTimeConfig';
 import { createPageTitle } from '../createPageTitle';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
     title: createPageTitle('Members Area'),
 };

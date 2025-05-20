@@ -9,6 +9,8 @@ import GetPageData from './GetPageData';
 import MemberLayout from '../MemberLayout';
 import typography from '../../typography/typography';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
     title: createPageTitle([
         'Hymns of the Month',
