@@ -9,7 +9,7 @@ use BuzzingPixel\CraftScheduler\ScheduleRetrieval\ScheduleConfigItem;
 use BuzzingPixel\CraftScheduler\ScheduleRetrieval\ScheduleConfigItemCollection;
 use craft\queue\Queue;
 
-readonly class EnqueueGenerateHymnsOfTheMonthPageForRedis
+class EnqueueGenerateHymnsOfTheMonthPageForRedis
 {
 
     public static function addSchedule(
