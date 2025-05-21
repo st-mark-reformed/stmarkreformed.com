@@ -2,11 +2,11 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import GetPageData from './GetPageData';
 import Pagination from '../../../../Pagination/Pagination';
+import Breadcrumbs from '../../../../Breadcrumbs';
 import MemberLayout from '../../../MemberLayout';
 import EntryDisplay from '../../EntryDisplay';
-import Breadcrumbs from '../../../../Breadcrumbs';
 
-export default async function MembersInternalMediaByPage (
+export default async function MembersInternalMediaSeriesPage (
     {
         slug,
         pageNum,
@@ -25,7 +25,7 @@ export default async function MembersInternalMediaByPage (
 
     const pagination = (
         <Pagination
-            baseUrl={`/members-test/internal-media/by/${slug}`}
+            baseUrl={`/members/internal-media/series/${slug}`}
             currentPage={pageData.currentPage}
             totalPages={pageData.totalPages}
         />
@@ -36,9 +36,9 @@ export default async function MembersInternalMediaByPage (
             <Breadcrumbs
                 breadcrumbs={[{
                     value: 'Internal Media',
-                    href: '/members-test/internal-media',
+                    href: '/members/internal-media',
                 }]}
-                currentBreadcrumb={{ value: `by ${pageData.byName}` }}
+                currentBreadcrumb={{ value: `series: ${pageData.seriesName}` }}
             />
             <div className="px-8 pt-4">{pagination}</div>
         </>
@@ -46,8 +46,8 @@ export default async function MembersInternalMediaByPage (
 
     return (
         <MemberLayout
-            heroHeading={`Internal Media by ${pageData.byName}`}
-            activeNavHref="/members-test/internal-media"
+            heroHeading={`Internal Media Series: ${pageData.seriesName}`}
+            activeNavHref="/members/internal-media"
             topOfBodyContent={topOfBodyContent}
             bottomOfBodyContent={<div className="px-8 pb-4">{pagination}</div>}
         >

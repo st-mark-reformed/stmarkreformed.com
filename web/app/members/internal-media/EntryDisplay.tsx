@@ -16,19 +16,19 @@ export default function EntryDisplay (
     let byUrl = null;
 
     if (entry.by?.slug) {
-        byUrl = `/members-test/internal-media/by/${entry.by.slug}`;
+        byUrl = `/members/internal-media/by/${entry.by.slug}`;
     }
 
     let seriesUrl = null;
 
     if (entry.series?.slug) {
-        seriesUrl = `/members-test/internal-media/series/${entry.series.slug}`;
+        seriesUrl = `/members/internal-media/series/${entry.series.slug}`;
     }
 
     let permalink = null;
 
     if (showPermalink) {
-        permalink = `/members-test/internal-media/${entry.slug}`;
+        permalink = `/members/internal-media/${entry.slug}`;
     }
 
     return (
@@ -41,7 +41,7 @@ export default function EntryDisplay (
             seriesUrl={seriesUrl}
             text={entry.text}
             permalink={permalink}
-            audioUrl={`/members-test/internal-media/audio/${entry.slug}/${entry.audioFileName}`}
+            audioUrl={`/members/internal-media/audio/${entry.slug}/${entry.audioFileName}`}
             showBorder={showBorder}
         />
     );

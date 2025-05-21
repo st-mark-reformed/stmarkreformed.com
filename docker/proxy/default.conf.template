@@ -42,7 +42,7 @@ server {
         proxy_pass ${WEB_PROXY};
         break;
     }
-    location /members-test {
+    location /members {
         proxy_pass ${WEB_PROXY};
         break;
     }

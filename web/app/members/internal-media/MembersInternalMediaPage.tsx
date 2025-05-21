@@ -22,7 +22,7 @@ export default async function MembersInternalMediaPage (
 
     const pagination = (
         <Pagination
-            baseUrl="/members-test/internal-media"
+            baseUrl="/members/internal-media"
             currentPage={pageData.currentPage}
             totalPages={pageData.totalPages}
         />
@@ -31,7 +31,7 @@ export default async function MembersInternalMediaPage (
     return (
         <MemberLayout
             heroHeading="Internal Media"
-            activeNavHref="/members-test/internal-media"
+            activeNavHref="/members/internal-media"
             topOfBodyContent={<div className="px-8 pt-4">{pagination}</div>}
             bottomOfBodyContent={<div className="px-8 pb-4">{pagination}</div>}
         >

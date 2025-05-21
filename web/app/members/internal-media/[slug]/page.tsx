@@ -55,12 +55,12 @@ export default async function Page (
     return (
         <MemberLayout
             heroHeading="Internal Media"
-            activeNavHref="/members-test/internal-media"
+            activeNavHref="/members/internal-media"
             topOfBodyContent={(
                 <Breadcrumbs
                     breadcrumbs={[{
                         value: 'Internal Media',
-                        href: '/members-test/internal-media',
+                        href: '/members/internal-media',
                     }]}
                     currentBreadcrumb={{ value: pageData.entry.title }}
                 />

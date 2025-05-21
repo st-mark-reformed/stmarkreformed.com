@@ -58,12 +58,12 @@ export default async function Page (
     return (
         <MemberLayout
             heroHeading={`Hymn of the Month: ${pageData.entry.title}`}
-            activeNavHref="/members-test/hymns-of-the-month"
+            activeNavHref="/members/hymns-of-the-month"
             topOfBodyContent={(
                 <Breadcrumbs
                     breadcrumbs={[{
                         value: 'Hymns of the Month',
-                        href: '/members-test/hymns-of-the-month',
+                        href: '/members/hymns-of-the-month',
                     }]}
                     currentBreadcrumb={{ value: pageData.entry.title }}
                 />
@@ -100,7 +100,7 @@ export default async function Page (
                                     <div className="mt-3 flex text-base max-w-prose mx-auto lg:max-w-none">
                                         <div className="rounded-md shadow">
                                             <Link
-                                                href={`/members-test/hymns-of-the-month/download/${pageData.entry.musicSheetFilePath}`}
+                                                href={`/members/hymns-of-the-month/download/${pageData.entry.musicSheetFilePath}`}
                                                 className="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-crimson hover:bg-crimson-dark not-prose"
                                                 download
                                             >
@@ -132,7 +132,7 @@ export default async function Page (
                                     >
                                         <div className="rounded-md shadow">
                                             <Link
-                                                href={`/members-test/hymns-of-the-month/download/${track.path}`}
+                                                href={`/members/hymns-of-the-month/download/${track.path}`}
                                                 className="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-crimson hover:bg-crimson-dark not-prose"
                                                 download
                                             >

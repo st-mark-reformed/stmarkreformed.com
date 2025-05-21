@@ -19,7 +19,7 @@ export default async function MembersPage () {
         return <LoginPage />;
     }
 
-    redirect(`${getConfigString(ConfigOptions.BASE_URL)}/members-test/internal-media`);
+    redirect(`${getConfigString(ConfigOptions.BASE_URL)}/members/internal-media`);
 
     return <></>;
 }

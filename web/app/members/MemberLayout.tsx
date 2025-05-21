@@ -29,13 +29,13 @@ export default function MemberLayout (
                     nav={[
                         {
                             content: 'Internal Media',
-                            href: '/members-test/internal-media',
-                            isActive: activeNavHref === '/members-test/internal-media',
+                            href: '/members/internal-media',
+                            isActive: activeNavHref === '/members/internal-media',
                         },
                         {
                             content: 'Hymns of the Month',
-                            href: '/members-test/hymns-of-the-month',
-                            isActive: activeNavHref === '/members-test/hymns-of-the-month',
+                            href: '/members/hymns-of-the-month',
+                            isActive: activeNavHref === '/members/hymns-of-the-month',
                         },
                     ]}
                 >

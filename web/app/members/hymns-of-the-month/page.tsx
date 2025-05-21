@@ -24,14 +24,14 @@ export default async function Page () {
     return (
         <MemberLayout
             heroHeading="Hymns of the Month"
-            activeNavHref="/members-test/hymns-of-the-month"
+            activeNavHref="/members/hymns-of-the-month"
         >
             <div className="shadow max-w-3xl mx-auto xl:ml-20 2xl:ml-24">
                 <ul className="mt-2 divide-y divide-gray-200 overflow-hidden shadow not-prose">
                     {pageData.entries.map((hymnItem) => (
                         <li key={hymnItem.slug} className="not-prose">
                             <Link
-                                href={`/members-test/hymns-of-the-month/${hymnItem.slug}`}
+                                href={`/members/hymns-of-the-month/${hymnItem.slug}`}
                                 className="block px-4 py-4 bg-white hover:bg-gray-50 not-prose"
                             >
                                 <span className="flex items-center space-x-4">
