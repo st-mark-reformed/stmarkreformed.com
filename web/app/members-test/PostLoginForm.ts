@@ -1,6 +1,5 @@
 'use server';
 
-import bcrypt from 'bcrypt';
 import crypto from 'crypto';
 import { cookies } from 'next/headers';
 import { FormValues } from './FormValues';
@@ -9,18 +8,9 @@ import { ConfigOptions, getConfigString } from '../ServerSideRunTimeConfig';
 export default async function PostLoginForm (formValues: FormValues): Promise<{
     isValid: boolean;
 }> {
-    // Create password:
-    // const tmp = await bcrypt.hash(
-    //     'PASSWORD HERE',
-    //     10,
-    // );
-
     if (
         formValues.email !== getConfigString(ConfigOptions.MEMBER_EMAIL_ADDRESS)
-        || !await bcrypt.compare(
-            formValues.password,
-            getConfigString(ConfigOptions.HASHED_MEMBER_PASSWORD),
-        )
+        || formValues.password !== getConfigString(ConfigOptions.MEMBER_PASSWORD)
     ) {
         return { isValid: false };
     }

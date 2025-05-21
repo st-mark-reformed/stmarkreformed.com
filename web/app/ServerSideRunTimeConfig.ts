@@ -5,7 +5,7 @@ export enum ConfigOptions {
     API_URL,
     REDIS_HOST,
     MEMBER_EMAIL_ADDRESS,
-    HASHED_MEMBER_PASSWORD,
+    MEMBER_PASSWORD,
     ENCRYPTION_KEY,
 }
 
