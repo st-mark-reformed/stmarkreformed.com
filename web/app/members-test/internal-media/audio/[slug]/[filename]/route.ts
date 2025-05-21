@@ -14,9 +14,11 @@ export async function GET (
         }>;
     },
 ) {
-    const tokenCookieIsValid = TokenCookieIsValid(
+    const tokenCookieIsValid = await TokenCookieIsValid(
         request.cookies.get('member'),
     );
+
+    console.log(tokenCookieIsValid);
 
     if (!tokenCookieIsValid) {
         return NextResponse.json(
