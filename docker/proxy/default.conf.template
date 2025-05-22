@@ -18,6 +18,10 @@ server {
         proxy_pass ${WEB_PROXY};
         break;
     }
+    location /__nextjs_source-map {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
     location /_next {
         proxy_pass ${WEB_PROXY};
         break;
@@ -48,6 +52,10 @@ server {
     }
 
     location / {
+        if ($args ~* ^_rsc) {
+            return 404;
+        }
+
         proxy_pass ${CRAFT_PROXY};
         break;
     }

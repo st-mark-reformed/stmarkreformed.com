@@ -118,6 +118,8 @@ services:
       - ../api:/var/www:delegated
 
   app:
+    cap_add:
+      - SYS_PTRACE
     restart: always
     env_file:
       - application/.env
