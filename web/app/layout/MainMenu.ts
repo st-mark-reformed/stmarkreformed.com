@@ -80,11 +80,6 @@ export const MainMenu: MenuItems = [
         ],
     },
     {
-        name: 'Building Fund',
-        link: '/building-fund',
-        children: [],
-    },
-    {
         name: 'Contact',
         link: '/contact',
         children: [],

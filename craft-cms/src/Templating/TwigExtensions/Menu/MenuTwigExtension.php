@@ -115,10 +115,6 @@ class MenuTwigExtension extends AbstractExtension
                 )),
             ),
             new MenuItem(
-                content: 'Building Fund',
-                href: '/building-fund',
-            ),
-            new MenuItem(
                 content: 'Contact',
                 href: '/contact',
             ),
