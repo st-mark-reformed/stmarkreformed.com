@@ -50,6 +50,10 @@ server {
         proxy_pass ${WEB_PROXY};
         break;
     }
+    location /media/galleries-test {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
 
     location / {
         if ($args ~* ^_rsc) {
