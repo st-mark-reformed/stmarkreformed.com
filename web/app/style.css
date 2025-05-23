@@ -46,6 +46,8 @@
     --color-light-red: var(--color-light-red);
     --color-red: var(--color-red);
     --color-dark-red: var(--color-dark-red);
+
+    --breakpoint-3xl: 120rem;
 }
 
 .loader {
