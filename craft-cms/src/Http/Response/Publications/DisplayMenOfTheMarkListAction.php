@@ -28,6 +28,7 @@ class DisplayMenOfTheMarkListAction
         private TwigEnvironment $twig,
         private HeroFactory $heroFactory,
         private FetchMenOfTheMark $fetchMenOfTheMark,
+        private GenerateMenOfTheMarkPagesForRedis $generateMenOfTheMarkPagesForRedis,
     ) {
     }
 
@@ -35,6 +36,8 @@ class DisplayMenOfTheMarkListAction
         ServerRequestInterface $request,
         ResponseInterface $response,
     ): ResponseInterface {
+        $this->generateMenOfTheMarkPagesForRedis->generate();
+
         $pageName = 'Men of the Mark Publications';
 
         $response->getBody()->write($this->twig->render(

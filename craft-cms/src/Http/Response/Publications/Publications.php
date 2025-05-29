@@ -29,9 +29,11 @@ class Publications
 
     public function walk(callable $callback): void
     {
-        array_map(
-            $callback,
-            $this->items,
-        );
+        array_map($callback, $this->items);
+    }
+
+    public function mapItems(callable $callback): array
+    {
+        return array_map($callback, $this->items);
     }
 }

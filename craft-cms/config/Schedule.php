@@ -6,6 +6,7 @@ namespace Config;
 
 use App\Http\Response\Members\HymnsOfTheMonth\EnqueueGenerateHymnsOfTheMonthPageForRedis;
 use App\Http\Response\Members\InternalMedia\EnqueueGenerateInternalMediaPagesForRedis;
+use App\Http\Response\Publications\EnqueueGenerateMenOfTheMarkPagesForRedis;
 use App\MailingLists\CheckMailingLists;
 use BuzzingPixel\CraftScheduler\ContainerRetrieval\ContainerItem;
 use BuzzingPixel\CraftScheduler\ContainerRetrieval\RetrieveContainersEvent;
@@ -47,6 +48,10 @@ class Schedule
         );
 
         EnqueueGenerateHymnsOfTheMonthPageForRedis::addSchedule(
+            $schedule,
+        );
+
+        EnqueueGenerateMenOfTheMarkPagesForRedis::addSchedule(
             $schedule,
         );
 

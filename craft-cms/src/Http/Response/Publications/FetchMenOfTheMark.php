@@ -29,6 +29,7 @@ class FetchMenOfTheMark
             array_map(
                 fn (Entry $entry) => new Publication(
                     (string) $entry->title,
+                    (string) $entry->slug,
                     (string) $entry->getUrl(),
                     $this->fieldHandler->getString(
                         $entry,

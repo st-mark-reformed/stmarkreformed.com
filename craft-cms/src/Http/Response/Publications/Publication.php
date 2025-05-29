@@ -10,6 +10,7 @@ class Publication
 {
     public function __construct(
         public string $title,
+        public string $slug,
         public string $url,
         public string $bodyHtml,
         public DateTimeInterface $publicationDate,
