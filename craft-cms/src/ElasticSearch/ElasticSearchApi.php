@@ -43,7 +43,7 @@ class ElasticSearchApi
         foreach ($queueItems as $queueItem) {
             $desc = $queueItem['description'] ?? '';
 
-            if ($desc !== IndexAllMessagesQueueJob::DESCRIPTION::DESCRIPTION) {
+            if ($desc !== IndexAllMessagesQueueJob::DESCRIPTION) {
                 continue;
             }
 
