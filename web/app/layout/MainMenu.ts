@@ -1,6 +1,7 @@
 export type MenuItemType = {
     name: string;
     link: string;
+    footerLink?: string;
     children: MenuItemType[];
 };
 
@@ -51,6 +52,7 @@ export const MainMenu: MenuItems = [
     {
         name: 'Media',
         link: '',
+        footerLink: '/media/messages',
         children: [
             {
                 name: 'Messages',

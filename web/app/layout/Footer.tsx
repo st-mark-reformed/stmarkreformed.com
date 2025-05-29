@@ -13,7 +13,7 @@ export default function Footer () {
                             className="px-5 py-2"
                         >
                             <Link
-                                href={menuItem.link}
+                                href={menuItem.footerLink || menuItem.link}
                                 className="text-base font-bold text-gray-100 hover:text-goldenrod"
                             >
                                 {menuItem.name}
