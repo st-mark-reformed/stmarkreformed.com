@@ -50,7 +50,7 @@ server {
         proxy_pass ${WEB_PROXY};
         break;
     }
-    location /media/galleries-test {
+    location /media/galleries {
         proxy_pass ${WEB_PROXY};
         break;
     }

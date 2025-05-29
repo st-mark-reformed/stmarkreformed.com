@@ -58,12 +58,12 @@ export const MainMenu: MenuItems = [
                 children: [],
             },
             {
-                name: 'Resources',
+                name: 'Galleries',
                 link: '/media/galleries',
                 children: [],
             },
             {
-                name: 'Galleries',
+                name: 'Resources',
                 link: '/resources',
                 children: [],
             },
