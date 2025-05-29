@@ -17,6 +17,7 @@
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-h5-audio-player": "3.10.0-rc.1",
+        "rss": "^1.2.2",
         "sleep-promise": "^9.1.0",
         "smartypants": "^0.2.2",
         "string-remove-widows": "^4.0.25",
@@ -30,6 +31,7 @@
         "@types/node": "^20.9.1",
         "@types/react": "^18.2.37",
         "@types/react-dom": "^18.2.16",
+        "@types/rss": "^0.0.32",
         "eslint-config-rxante-coding-standards": "^2.0.1",
         "postcss": "^8.5.3",
         "tailwindcss": "^4.0.15",
@@ -39,6 +41,9 @@
     "pnpm": {
         "onlyBuiltDependencies": [
             "sharp"
+        ],
+        "ignoredBuiltDependencies": [
+            "bcrypt"
         ]
     }
 }
