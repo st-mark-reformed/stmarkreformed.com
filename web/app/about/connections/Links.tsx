@@ -17,7 +17,7 @@ export default function Links (
     return (
         <>
             {links.map((link) => (
-                <p>
+                <p key={link.href}>
                     <Link
                         className="font-bold"
                         href={link.href}
