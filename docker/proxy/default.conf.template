@@ -54,6 +54,10 @@ server {
         proxy_pass ${WEB_PROXY};
         break;
     }
+    location /publications/men-of-the-mark-test {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
 
     location / {
         if ($args ~* ^_rsc) {
