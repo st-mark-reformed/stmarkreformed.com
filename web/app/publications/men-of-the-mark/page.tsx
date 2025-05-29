@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: createPageTitle(MenOfTheMarkMetaData.title),
     alternates: {
         types: {
-            'application/rss+xml': '/publications/men-of-the-mark-test/rss',
+            'application/rss+xml': '/publications/men-of-the-mark/rss',
         },
     },
 };
@@ -31,14 +31,14 @@ export default async function Page () {
                 <div className="relative mx-auto px-4 pt-4 pb-12 sm:max-w-5xl sm:px-14 sm:pt-6 sm:pb-14 md:pt-10 md:pb-24">
                     <div className="mt-3 text-lg text-gray-600 prose max-w-none">
                         <p>{MenOfTheMarkMetaData.description}</p>
-                        <p>Below are the publications thus far. You may also wish to <Link className="font-bold" href="/publications/men-of-the-mark-test/rss">subscribe via RSS</Link> in your favorite News/RSS reader.</p>
+                        <p>Below are the publications thus far. You may also wish to <Link className="font-bold" href="/publications/men-of-the-mark/rss">subscribe via RSS</Link> in your favorite News/RSS reader.</p>
                         <ul>
                             {entries.map((entry) => (
                                 <li key={entry.uid}>
                                     <p>
                                         <Link
                                             className="font-bold"
-                                            href={`/publications/men-of-the-mark-test/${entry.slug}`}
+                                            href={`/publications/men-of-the-mark/${entry.slug}`}
                                         >
                                             {entry.title}
                                         </Link>

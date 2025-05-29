@@ -14,8 +14,8 @@ export async function GET () {
         title: MenOfTheMarkMetaData.title,
         description: MenOfTheMarkMetaData.description,
         generator: 'stmarkreformed.com',
-        feed_url: `${siteUrl}/publications/men-of-the-mark-test/rss`,
-        site_url: `${siteUrl}/publications/men-of-the-mark-test`,
+        feed_url: `${siteUrl}/publications/men-of-the-mark/rss`,
+        site_url: `${siteUrl}/publications/men-of-the-mark`,
         copyright: new Date().getFullYear().toString(),
         language: 'en',
     });
@@ -25,7 +25,7 @@ export async function GET () {
             title: entry.title,
             guid: entry.uid,
             description: entry.bodyHtml,
-            url: `${siteUrl}/publications/men-of-the-mark-test/${entry.slug}`,
+            url: `${siteUrl}/publications/men-of-the-mark/${entry.slug}`,
             date: new Date(entry.publicationDate).toUTCString().replace(
                 'GMT',
                 '-0600',

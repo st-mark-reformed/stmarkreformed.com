@@ -36,7 +36,7 @@ export async function generateMetadata (
         ]),
         alternates: {
             types: {
-                'application/rss+xml': '/publications/men-of-the-mark-test/rss',
+                'application/rss+xml': '/publications/men-of-the-mark/rss',
             },
         },
     };
@@ -64,7 +64,7 @@ export default async function Page (
             <Breadcrumbs
                 breadcrumbs={[{
                     value: 'Men of the Mark',
-                    href: '/publications/men-of-the-mark-test',
+                    href: '/publications/men-of-the-mark',
                 }]}
                 currentBreadcrumb={{ value: entry.title }}
             />

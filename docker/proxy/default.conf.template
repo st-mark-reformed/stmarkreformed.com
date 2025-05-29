@@ -54,7 +54,7 @@ server {
         proxy_pass ${WEB_PROXY};
         break;
     }
-    location /publications/men-of-the-mark-test {
+    location /publications/men-of-the-mark {
         proxy_pass ${WEB_PROXY};
         break;
     }
