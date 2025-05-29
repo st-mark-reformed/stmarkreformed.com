@@ -71,7 +71,7 @@ export default async function Page (
                         <Breadcrumbs
                             breadcrumbs={[{
                                 value: 'All Galleries',
-                                href: '/media/galleries-test',
+                                href: '/media/galleries',
                             }]}
                             currentBreadcrumb={{ value: entry.title }}
                         />

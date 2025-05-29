@@ -19,7 +19,7 @@ export default function GalleryIndexPage (
 
     const pagination = (
         <Pagination
-            baseUrl="/media/galleries-test"
+            baseUrl="/media/galleries"
             currentPage={pageNum}
             totalPages={totalPages}
             className="pb-2"

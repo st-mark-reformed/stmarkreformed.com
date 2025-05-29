@@ -3,7 +3,7 @@ import AllIndex from '../source/AllIndex';
 
 export default function FindAllGalleryEntries (): Array<GalleryEntryFull> {
     return AllIndex.map((entry) => {
-        const href = `/media/galleries-test/${entry.slug}`;
+        const href = `/media/galleries/${entry.slug}`;
 
         const pictureUrlBase = `/images/galleries/${entry.slug}`;
 
