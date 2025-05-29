@@ -86,7 +86,7 @@ services:
       NODE_ENV: prod
     volumes:
       - files-above-webroot-volume:/app/filesAboveWebroot
-      - web-public-images-galleries-volume:/app/public/images
+      - web-public-images-galleries-volume:/app/public/images/galleries
     networks:
       traefik:
       default:
