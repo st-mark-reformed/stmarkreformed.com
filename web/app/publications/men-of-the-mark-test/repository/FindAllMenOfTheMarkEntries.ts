@@ -13,7 +13,7 @@ const FindAllMenOfTheMarkEntries = cache(async (): Promise<ReturnType> => {
         'publications:men_of_the_mark:index',
     ) as string;
 
-    return JSON.parse(redisPageData);
+    return JSON.parse(redisPageData) ?? { entries: [] };
 });
 
 export default FindAllMenOfTheMarkEntries;
