@@ -20,7 +20,7 @@ export default async function NewsIndexPage (
 
     const pagination = (
         <Pagination
-            baseUrl="/news-test"
+            baseUrl="/news"
             currentPage={newsItemResults.currentPage}
             totalPages={newsItemResults.totalPages}
         />

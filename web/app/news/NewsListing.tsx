@@ -1,6 +1,7 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable react/no-danger */
 import React from 'react';
+import Link from 'next/link';
 import { NewsItem } from './repository/NewsItem';
 import typography from '../typography/typography';
 
@@ -11,7 +12,7 @@ export default function NewsListing (
         entry: NewsItem;
     },
 ) {
-    const href = `/news-test/${entry.slug}`;
+    const href = `/news/${entry.slug}`;
 
     return (
         <article className="flex flex-col items-start justify-between border border-gray-200 p-3 sm:p-6 shadow-md rounded-lg">
@@ -22,7 +23,7 @@ export default function NewsListing (
             </div>
             <div className="group relative mb-3">
                 <h3 className="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
-                    <a
+                    <Link
                         href={href}
                         dangerouslySetInnerHTML={{
                             __html: typography(entry.title),
@@ -36,12 +37,12 @@ export default function NewsListing (
                     }}
                 />
             </div>
-            <a
+            <Link
                 href={href}
                 className="mt-auto w-full rounded-md bg-crimson px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-crimson-dark text-center"
             >
                 Read Entry
-            </a>
+            </Link>
         </article>
     );
 }

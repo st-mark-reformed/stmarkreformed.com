@@ -36,7 +36,7 @@ export default async function Page (
             <Breadcrumbs
                 breadcrumbs={[{
                     value: 'All News',
-                    href: '/news-test',
+                    href: '/news',
                 }]}
                 currentBreadcrumb={{ value: entry.title }}
             />

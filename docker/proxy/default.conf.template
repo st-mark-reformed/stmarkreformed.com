@@ -58,7 +58,7 @@ server {
         proxy_pass ${WEB_PROXY};
         break;
     }
-    location /news-test {
+    location /news {
         proxy_pass ${WEB_PROXY};
         break;
     }
