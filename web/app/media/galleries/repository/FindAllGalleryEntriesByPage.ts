@@ -3,13 +3,15 @@ import FindAllGalleryEntries from './FindAllGalleryEntries';
 
 const perPage = 12;
 
+interface ReturnType {
+    totalResults: number;
+    totalPages: number;
+    entries: Array<GalleryEntryFull>;
+}
+
 export default function FindAllGalleryEntriesByPage (
     pageNum: number,
-): {
-        totalResults: number;
-        totalPages: number;
-        entries: Array<GalleryEntryFull>;
-    } {
+): ReturnType {
     const allGalleries = FindAllGalleryEntries();
     const totalResults = allGalleries.length;
     const totalPages = Math.ceil(totalResults / perPage);
