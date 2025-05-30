@@ -30,7 +30,7 @@ export default function NewsListing (
                     />
                 </h3>
                 <div
-                    className="mt-5 line-clamp-6 text-sm/6 text-gray-600"
+                    className="mt-5 line-clamp-6 text-sm/6 text-gray-600 listing-hide-elements"
                     dangerouslySetInnerHTML={{
                         __html: typography(entry.bodyOnlyContent),
                     }}

@@ -66,9 +66,7 @@ export default async function Page (
                 />
             )}
         >
-            <EntryDisplay
-                entry={pageData.entry}
-            />
+            <EntryDisplay entry={pageData.entry} />
         </MemberLayout>
     );
 }

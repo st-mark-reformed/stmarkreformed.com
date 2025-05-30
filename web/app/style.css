@@ -91,3 +91,13 @@
 .text-xxs {
     font-size: 0.60rem;
 }
+
+.listing-hide-elements figure,
+.listing-hide-elements img,
+.listing-hide-elements iframe {
+    display: none;
+}
+
+.prose h2 + h3 {
+  margin-top: -2rem;
+}

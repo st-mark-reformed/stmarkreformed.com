@@ -7,9 +7,7 @@ const FindNewsItemsByPage = cache(async (
 ): Promise<null | NewsItemsReturn> => {
     const redis = getRedisClient();
 
-    const redisPageData = await redis.get(
-        `news:page:${pageNum}`,
-    );
+    const redisPageData = await redis.get(`news:page:${pageNum}`);
 
     if (!redisPageData) {
         return null;
