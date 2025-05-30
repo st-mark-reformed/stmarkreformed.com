@@ -80,6 +80,7 @@ class GenerateNewsPagesForRedis
             'slug' => $newsItem->slug(),
             'excerpt' => $newsItem->excerpt(),
             'content' => $newsItem->content(),
+            'bodyOnlyContent' => $newsItem->bodyOnlyContent(),
             'readableDate' => $newsItem->readableDate(),
         ];
     }

@@ -11,6 +11,7 @@ class NewsItem
         private string $slug,
         private string $excerpt,
         private string $content,
+        private string $bodyOnlyContent,
         private string $url,
         private string $readableDate,
     ) {
@@ -34,6 +35,11 @@ class NewsItem
     public function content(): string
     {
         return $this->content;
+    }
+
+    public function bodyOnlyContent(): string
+    {
+        return $this->bodyOnlyContent;
     }
 
     public function url(): string

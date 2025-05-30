@@ -60,6 +60,9 @@ class RetrieveNewsItems
                     ),
                 ),
                 content: $this->compileResponse->fromEntry($entry),
+                bodyOnlyContent: $this->extractBodyContent->fromElementWithEntryBuilder(
+                    $entry,
+                ),
                 url: (string) $entry->getUrl(),
                 /** @phpstan-ignore-next-line */
                 readableDate: $entry->postDate->format('F jS, Y'),
