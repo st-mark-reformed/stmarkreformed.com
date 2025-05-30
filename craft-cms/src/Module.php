@@ -11,7 +11,10 @@ use App\Craft\Commands\ProfilesConsoleController;
 use App\Craft\ElementSaveClearStaticCache;
 use App\Craft\SetMessageEntrySlug\SetMessageEntrySlugFactory;
 use App\ElasticSearch\Events\ModifyElementQueueIndexAllMessages;
+use App\Http\Response\Members\InternalMedia\CraftEvents\SetUpHymnsOfTheMonthEvents;
 use App\Http\Response\Members\InternalMedia\CraftEvents\SetUpInternalAudioEvents;
+use App\Http\Response\Members\InternalMedia\CraftEvents\SetUpMenOfTheMarkEvents;
+use App\Http\Response\Members\InternalMedia\CraftEvents\SetUpNewsEvents;
 use App\Http\Utility\ClearStaticCache;
 use App\Messages\Events\ModifyElementQueueSetMessageSeriesLatestEntry;
 use App\Profiles\Events\ModifyElementQueueSetHasMessagesOnAllProfiles;
@@ -325,13 +328,33 @@ class Module extends ModuleBase
             [$schedule, 'retrieve'],
         );
 
-        $setUpInternalAudioEvents = $di->get(
-            SetUpInternalAudioEvents::class,
-        );
-
+        /**
+         * SetUpInternalAudioEvents
+         */
+        $setUpInternalAudioEvents = $di->get(SetUpInternalAudioEvents::class);
         assert($setUpInternalAudioEvents instanceof SetUpInternalAudioEvents);
-
         $setUpInternalAudioEvents->setUp();
+
+        /**
+         * SetUpHymnsOfTheMonthEvents
+         */
+        $setUpHymnsOfTheMonthEvents = $di->get(SetUpHymnsOfTheMonthEvents::class);
+        assert($setUpHymnsOfTheMonthEvents instanceof SetUpHymnsOfTheMonthEvents);
+        $setUpHymnsOfTheMonthEvents->setUp();
+
+        /**
+         * SetUpNewsEvents
+         */
+        $setUpNewsEvents = $di->get(SetUpNewsEvents::class);
+        assert($setUpNewsEvents instanceof SetUpNewsEvents);
+        $setUpNewsEvents->setUp();
+
+        /**
+         * SetUpMenOfTheMarkEvents
+         */
+        $setUpMenOfTheMarkEvents = $di->get(SetUpMenOfTheMarkEvents::class);
+        assert($setUpMenOfTheMarkEvents instanceof SetUpMenOfTheMarkEvents);
+        $setUpMenOfTheMarkEvents->setUp();
     }
 
     private function mapControllers(): void
