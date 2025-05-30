@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Response\News\NewsList;
 
 use App\Http\Pagination\Pagination;
+use App\Http\Response\News\GenerateNewsPagesForRedis;
 use App\Http\Response\News\NewsList\Response\PaginatedNewsListResponderFactory;
 use App\Http\Shared\PageNumberFactory;
 use craft\errors\InvalidFieldException;

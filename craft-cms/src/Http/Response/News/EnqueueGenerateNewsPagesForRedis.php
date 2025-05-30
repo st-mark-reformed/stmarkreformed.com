@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Response\Members\InternalMedia;
+namespace App\Http\Response\News;
 
 use BuzzingPixel\CraftScheduler\Frequency;
 use BuzzingPixel\CraftScheduler\ScheduleRetrieval\ScheduleConfigItem;
 use BuzzingPixel\CraftScheduler\ScheduleRetrieval\ScheduleConfigItemCollection;
 use craft\queue\Queue;
 
-class EnqueueGenerateInternalMediaPagesForRedis
+class EnqueueGenerateNewsPagesForRedis
 {
     public static function addSchedule(
         ScheduleConfigItemCollection $schedule,
@@ -36,15 +36,13 @@ class EnqueueGenerateInternalMediaPagesForRedis
         foreach ($queueItems as $queueItem) {
             $desc = $queueItem['description'] ?? '';
 
-            if ($desc !== GenerateInternalMediaPagesForRedisQueueJob::DESCRIPTION) {
+            if ($desc !== GenerateNewsPagesForRedisQueueJob::DESCRIPTION) {
                 continue;
             }
 
             return;
         }
 
-        $this->queue->push(
-            new GenerateInternalMediaPagesForRedisQueueJob()
-        );
+        $this->queue->push(new GenerateNewsPagesForRedisQueueJob());
     }
 }

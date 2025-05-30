@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Response\News\NewsList;
 
 use App\Http\Pagination\Pagination;
+use App\Http\Response\News\NewsItem\CompileResponse;
 use App\Shared\ElementQueryFactories\EntryQueryFactory;
 use App\Shared\FieldHandlers\EntryBuilder\ExtractBodyContent;
 use App\Shared\Utility\TruncateFactory;
@@ -19,6 +20,7 @@ class RetrieveNewsItems
 {
     public function __construct(
         private TruncateFactory $truncateFactory,
+        private CompileResponse $compileResponse,
         private EntryQueryFactory $entryQueryFactory,
         private ExtractBodyContent $extractBodyContent,
     ) {
@@ -51,11 +53,13 @@ class RetrieveNewsItems
         $items = array_map(
             fn (Entry $entry) => new NewsItem(
                 title: (string) $entry->title,
+                slug: (string) $entry->slug,
                 excerpt: $this->truncateFactory->make(300)->truncate(
                     $this->extractBodyContent->fromElementWithEntryBuilder(
                         element: $entry
                     ),
                 ),
+                content: $this->compileResponse->fromEntry($entry),
                 url: (string) $entry->getUrl(),
                 /** @phpstan-ignore-next-line */
                 readableDate: $entry->postDate->format('F jS, Y'),

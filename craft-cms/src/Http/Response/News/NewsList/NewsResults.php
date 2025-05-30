@@ -50,4 +50,12 @@ class NewsResults
     {
         return count($this->items());
     }
+
+    /**
+     * @return mixed[]
+     */
+    public function mapItems(callable $callable): array
+    {
+        return array_map($callable, $this->items());
+    }
 }

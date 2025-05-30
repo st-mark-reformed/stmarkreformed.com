@@ -37,6 +37,7 @@ class GenerateInternalMediaPagesForRedis
     {
         $this->pageSlugKeys = [];
         $this->byIds = [];
+        $this->seriesIds = [];
 
         $totalResults = (int) $this->entryQueryFactory->make()
             ->section('internalMessages')
@@ -148,7 +149,6 @@ class GenerateInternalMediaPagesForRedis
                 $key = 'members:internal_media:slug:' . $entry['slug'];
 
                 $this->pageSlugKeys[] = $key;
-
 
                 $this->redis->set(
                     $key,
