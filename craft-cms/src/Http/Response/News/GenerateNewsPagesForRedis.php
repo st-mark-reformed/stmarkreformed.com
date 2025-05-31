@@ -5,9 +5,17 @@ declare(strict_types=1);
 namespace App\Http\Response\News;
 
 use App\Http\Pagination\Pagination;
+use App\Http\Response\News\NewsItem\CompileResponse;
 use App\Http\Response\News\NewsList\NewsItem;
+use App\Http\Response\News\NewsList\NewsResults;
 use App\Http\Response\News\NewsList\RetrieveNewsItems;
 use App\Shared\ElementQueryFactories\EntryQueryFactory;
+use App\Shared\FieldHandlers\EntryBuilder\ExtractBodyContent;
+use App\Shared\Utility\TruncateFactory;
+use craft\elements\Entry;
+use DateInterval;
+use DateTimeImmutable;
+use Psr\Clock\ClockInterface;
 use Redis;
 
 class GenerateNewsPagesForRedis
@@ -16,8 +24,11 @@ class GenerateNewsPagesForRedis
 
     public function __construct(
         private Redis $redis,
+        private CompileResponse $compileResponse,
+        private TruncateFactory $truncateFactory,
         private EntryQueryFactory $entryQueryFactory,
         private RetrieveNewsItems $retrieveNewsItems,
+        private ExtractBodyContent $extractBodyContent,
     ) {
     }
 
@@ -51,6 +62,8 @@ class GenerateNewsPagesForRedis
                 $pagination->withCurrentPage($page)
             );
         }
+
+        $this->generateFutureEntriesPages();
 
         $existingPageKeys = $this->redis->keys(
             'news:page:*'
@@ -123,6 +136,63 @@ class GenerateNewsPagesForRedis
                 'lastPageLink' => $pagination->lastPageLink(),
                 'entries' => $entries,
             ]),
+        );
+    }
+
+    private function generateFutureEntriesPages(): void
+    {
+        $query = $this->entryQueryFactory->make();
+
+        $query->status('pending');
+
+        $query->section('news');
+
+        $results = $query->all();
+
+        $items = array_map(
+            fn (Entry $entry) => new NewsItem(
+                title: (string) $entry->title,
+                slug: (string) $entry->slug,
+                excerpt: $this->truncateFactory->make(300)->truncate(
+                    $this->extractBodyContent->fromElementWithEntryBuilder(
+                        element: $entry
+                    ),
+                ),
+                content: $this->compileResponse->fromEntry($entry),
+                bodyOnlyContent: $this->extractBodyContent->fromElementWithEntryBuilder(
+                    $entry,
+                ),
+                url: (string) $entry->getUrl(),
+                /** @phpstan-ignore-next-line */
+                readableDate: $entry->postDate->format('F jS, Y'),
+            ),
+            $results,
+        );
+
+        $newsResults = new NewsResults(
+            hasEntries: count($results) > 0,
+            totalResults: count($results),
+            incomingItems: $items,
+        );
+
+        $entries = $newsResults->mapItems(function (NewsItem $newsItem) {
+            return $this->createJsonArrayFromNewsItem($newsItem);
+        });
+
+        array_map(
+            function (array $entry) {
+                $key = 'news:slug:' . $entry['slug'];
+
+                $this->pageSlugKeys[] = $key;
+
+                $this->redis->set(
+                    $key,
+                    json_encode([
+                        'entry' => $entry,
+                    ]),
+                );
+            },
+            $entries,
         );
     }
 }
