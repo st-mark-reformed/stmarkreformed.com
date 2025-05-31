@@ -13,9 +13,7 @@ use App\Shared\ElementQueryFactories\EntryQueryFactory;
 use App\Shared\FieldHandlers\EntryBuilder\ExtractBodyContent;
 use App\Shared\Utility\TruncateFactory;
 use craft\elements\Entry;
-use DateInterval;
-use DateTimeImmutable;
-use Psr\Clock\ClockInterface;
+use DateTimeInterface;
 use Redis;
 
 class GenerateNewsPagesForRedis
@@ -89,12 +87,16 @@ class GenerateNewsPagesForRedis
     private function createJsonArrayFromNewsItem (NewsItem $newsItem): array
     {
         return [
+            'uid' => $newsItem->uid(),
             'title' => $newsItem->title(),
             'slug' => $newsItem->slug(),
             'excerpt' => $newsItem->excerpt(),
             'content' => $newsItem->content(),
             'bodyOnlyContent' => $newsItem->bodyOnlyContent(),
             'readableDate' => $newsItem->readableDate(),
+            'postDate' => $newsItem->postDate()->format(
+                DateTimeInterface::RFC2822,
+            ),
         ];
     }
 
@@ -151,6 +153,7 @@ class GenerateNewsPagesForRedis
 
         $items = array_map(
             fn (Entry $entry) => new NewsItem(
+                uid: (string) $entry->uid,
                 title: (string) $entry->title,
                 slug: (string) $entry->slug,
                 excerpt: $this->truncateFactory->make(300)->truncate(
@@ -165,6 +168,7 @@ class GenerateNewsPagesForRedis
                 url: (string) $entry->getUrl(),
                 /** @phpstan-ignore-next-line */
                 readableDate: $entry->postDate->format('F jS, Y'),
+                postDate: $entry->postDate,
             ),
             $results,
         );

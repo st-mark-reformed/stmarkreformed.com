@@ -52,6 +52,7 @@ class RetrieveNewsItems
 
         $items = array_map(
             fn (Entry $entry) => new NewsItem(
+                uid: (string) $entry->uid,
                 title: (string) $entry->title,
                 slug: (string) $entry->slug,
                 excerpt: $this->truncateFactory->make(300)->truncate(
@@ -66,6 +67,7 @@ class RetrieveNewsItems
                 url: (string) $entry->getUrl(),
                 /** @phpstan-ignore-next-line */
                 readableDate: $entry->postDate->format('F jS, Y'),
+                postDate: $entry->postDate,
             ),
             $results,
         );

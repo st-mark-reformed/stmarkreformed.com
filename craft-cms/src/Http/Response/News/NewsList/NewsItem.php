@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace App\Http\Response\News\NewsList;
 
+use DateTimeInterface;
+
 class NewsItem
 {
     public function __construct(
+        private string $uid,
         private string $title,
         private string $slug,
         private string $excerpt,
@@ -14,7 +17,13 @@ class NewsItem
         private string $bodyOnlyContent,
         private string $url,
         private string $readableDate,
+        private DateTimeInterface $postDate,
     ) {
+    }
+
+    public function uid(): string
+    {
+        return $this->uid;
     }
 
     public function title(): string
@@ -50,5 +59,10 @@ class NewsItem
     public function readableDate(): string
     {
         return $this->readableDate;
+    }
+
+    public function postDate(): DateTimeInterface
+    {
+        return $this->postDate;
     }
 }

@@ -7,6 +7,11 @@ export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
     title: createPageTitle('News'),
+    alternates: {
+        types: {
+            'application/rss+xml': '/news/rss',
+        },
+    },
 };
 
 export default async function Page () {

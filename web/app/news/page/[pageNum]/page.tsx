@@ -22,6 +22,11 @@ export async function generateMetadata (
             `Page ${pageNum}`,
             'News',
         ]),
+        alternates: {
+            types: {
+                'application/rss+xml': '/news/rss',
+            },
+        },
     };
 }
 
