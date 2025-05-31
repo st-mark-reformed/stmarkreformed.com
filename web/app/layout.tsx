@@ -16,6 +16,13 @@ export const metadata: Metadata = {
         shortcut: '/favicon.ico',
     },
     assets: [],
+    openGraph: {
+        images: [
+            {
+                url: 'https://www.stmarkreformed.com/share.png',
+            },
+        ],
+    },
 };
 
 const openSansI300Init = Open_Sans({
