@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Response\Members\InternalMedia\CraftEvents;
+namespace App\Http\Response\Members\HymnsOfTheMonth\CraftEvents;
 
-use App\Http\Response\Publications\EnqueueGenerateMenOfTheMarkPagesForRedis;
+use App\Http\Response\Members\HymnsOfTheMonth\EnqueueGenerateHymnsOfTheMonthPageForRedis;
 use craft\base\Element;
 use yii\base\Event;
 
-class SetUpMenOfTheMarkEvents
+class SetUpHymnsOfTheMonthEvents
 {
     public function __construct(
-        private EnqueueGenerateMenOfTheMarkPagesForRedis $enqueue,
+        private EnqueueGenerateHymnsOfTheMonthPageForRedis $enqueue,
     ) {
     }
 

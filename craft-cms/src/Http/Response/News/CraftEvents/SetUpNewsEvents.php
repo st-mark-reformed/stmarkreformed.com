@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Response\Members\InternalMedia\CraftEvents;
+namespace App\Http\Response\News\CraftEvents;
 
 use App\Http\Response\News\EnqueueGenerateNewsPagesForRedis;
 use craft\base\Element;

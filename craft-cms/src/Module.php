@@ -11,10 +11,12 @@ use App\Craft\Commands\ProfilesConsoleController;
 use App\Craft\ElementSaveClearStaticCache;
 use App\Craft\SetMessageEntrySlug\SetMessageEntrySlugFactory;
 use App\ElasticSearch\Events\ModifyElementQueueIndexAllMessages;
-use App\Http\Response\Members\InternalMedia\CraftEvents\SetUpHymnsOfTheMonthEvents;
+use App\Http\Response\Media\Resources\CraftEvents\SetUpResourcesEvents;
+use App\Http\Response\Media\Resources\GenerateResourcePagesForRedis;
+use App\Http\Response\Members\HymnsOfTheMonth\CraftEvents\SetUpHymnsOfTheMonthEvents;
 use App\Http\Response\Members\InternalMedia\CraftEvents\SetUpInternalAudioEvents;
-use App\Http\Response\Members\InternalMedia\CraftEvents\SetUpMenOfTheMarkEvents;
-use App\Http\Response\Members\InternalMedia\CraftEvents\SetUpNewsEvents;
+use App\Http\Response\Publications\CraftEvents\SetUpMenOfTheMarkEvents;
+use App\Http\Response\News\CraftEvents\SetUpNewsEvents;
 use App\Http\Utility\ClearStaticCache;
 use App\Messages\Events\ModifyElementQueueSetMessageSeriesLatestEntry;
 use App\Profiles\Events\ModifyElementQueueSetHasMessagesOnAllProfiles;
@@ -355,6 +357,13 @@ class Module extends ModuleBase
         $setUpMenOfTheMarkEvents = $di->get(SetUpMenOfTheMarkEvents::class);
         assert($setUpMenOfTheMarkEvents instanceof SetUpMenOfTheMarkEvents);
         $setUpMenOfTheMarkEvents->setUp();
+
+        /**
+         * SetUpResourcesEvents
+         */
+        $setUpResourceEvents = $di->get(SetUpResourcesEvents::class);
+        assert($setUpResourceEvents instanceof SetUpResourcesEvents);
+        $setUpResourceEvents->setUp();
     }
 
     private function mapControllers(): void
