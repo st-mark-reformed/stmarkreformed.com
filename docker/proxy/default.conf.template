@@ -62,6 +62,10 @@ server {
         proxy_pass ${WEB_PROXY};
         break;
     }
+    location /resources-test {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
 
     location / {
         if ($args ~* ^_rsc) {
