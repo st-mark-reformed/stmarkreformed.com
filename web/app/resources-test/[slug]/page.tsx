@@ -4,7 +4,7 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { DocumentArrowDownIcon } from '@heroicons/react/24/outline';
+import { ArrowDownTrayIcon, DocumentArrowDownIcon } from '@heroicons/react/24/outline';
 import FindResourceItemBySlug from '../repository/FindResourceItemBySlug';
 import { createPageTitle } from '../../createPageTitle';
 import Layout from '../../layout/Layout';
@@ -101,7 +101,7 @@ export default async function Page (
                                             <DocumentArrowDownIcon />
                                         </span>
                                         <span className="block">
-                                            {download.filename}
+                                            Download &ldquo;<span className="font-semibold">{download.filename}</span>&rdquo; <span className="-mt-1 align-middle inline-block w-4 h-4"><ArrowDownTrayIcon /></span>
                                         </span>
                                     </Link>
                                 ))}
