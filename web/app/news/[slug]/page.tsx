@@ -8,7 +8,6 @@ import FindNewsItemBySlug from '../repository/FindNewsItemBySlug';
 import Breadcrumbs from '../../Breadcrumbs';
 import typography from '../../typography/typography';
 import { createPageTitle } from '../../createPageTitle';
-import MenOfTheMarkMetaData from '../../publications/men-of-the-mark/MenOfTheMarkMetaData';
 
 export const dynamic = 'force-dynamic';
 
