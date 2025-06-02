@@ -13,7 +13,7 @@ export default function ResourceListing (
         entry: ResourceItem;
     },
 ) {
-    const href = `/resources-test/${entry.slug}`;
+    const href = `/resources/${entry.slug}`;
 
     return (
         <article className="flex flex-col items-start justify-between border border-gray-200 p-3 sm:p-6 shadow-md rounded-lg">

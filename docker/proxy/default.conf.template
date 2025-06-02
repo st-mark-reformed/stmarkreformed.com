@@ -62,7 +62,7 @@ server {
         proxy_pass ${WEB_PROXY};
         break;
     }
-    location /resources-test {
+    location /resources {
         proxy_pass ${WEB_PROXY};
         break;
     }

@@ -63,7 +63,7 @@ export default async function Page (
             <Breadcrumbs
                 breadcrumbs={[{
                     value: 'All Resources',
-                    href: '/resources-test',
+                    href: '/resources',
                 }]}
                 currentBreadcrumb={{ value: entry.title }}
             />

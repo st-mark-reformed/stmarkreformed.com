@@ -20,7 +20,7 @@ export default async function ResourcesIndexPage (
 
     const pagination = (
         <Pagination
-            baseUrl="/resources-test"
+            baseUrl="/resources"
             currentPage={resourceItemResults.currentPage}
             totalPages={resourceItemResults.totalPages}
         />
