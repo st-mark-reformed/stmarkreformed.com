@@ -1,6 +1,6 @@
-import { NavSection } from '../layout/SidebarInnerLayout';
+import { SidebarNavSection } from '../layout/SidebarNavSection';
 
-export default function NavItems (activeUri: string): Array<NavSection> {
+export default function NavItems (activeUri: string): Array<SidebarNavSection> {
     return [{
         id: 'AboutNav',
         nav: [
