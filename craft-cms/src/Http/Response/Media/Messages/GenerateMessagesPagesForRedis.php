@@ -2,22 +2,23 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Response\Members\InternalMedia;
+namespace App\Http\Response\Media\Messages;
 
 use App\Http\Pagination\Pagination;
+use App\Messages\MessagesApi;
+use App\Messages\RetrieveMessages\MessageRetrievalParams;
 use App\Shared\ElementQueryFactories\EntryQueryFactory;
 use craft\elements\Category;
 use craft\elements\Entry;
 use Redis;
-use Throwable;
 
-class GenerateInternalMediaPagesForRedis
+class GenerateMessagesPagesForRedis
 {
     private const PER_PAGE = 25;
 
     public function __construct(
         private Redis $redis,
-        private RetrieveMedia $retrieveMedia,
+        private MessagesApi $messagesApi,
         private EntryQueryFactory $entryQueryFactory,
     ) {
     }
@@ -40,7 +41,7 @@ class GenerateInternalMediaPagesForRedis
         $this->seriesIds = [];
 
         $totalResults = (int) $this->entryQueryFactory->make()
-            ->section('internalMessages')
+            ->section('messages')
             ->count();
 
         $pagination = (new Pagination())
@@ -53,15 +54,13 @@ class GenerateInternalMediaPagesForRedis
         $generatedKeys = [];
 
         for ($page = 1; $page <= $totalPages; $page++) {
-            $generatedKeys[] = 'members:internal_media:page:' . $page;
+            $generatedKeys[] = 'messages:page:' . $page;
             $this->generatePage(
                 $pagination->withCurrentPage($page)
             );
         }
 
-        $existingPageKeys = $this->redis->keys(
-            'members:internal_media:page:*'
-        );
+        $existingPageKeys = $this->redis->keys('messages:page:*');
 
         foreach ($existingPageKeys as $key) {
             if (
@@ -76,7 +75,7 @@ class GenerateInternalMediaPagesForRedis
         }
 
         $existingSlugKeys = $this->redis->keys(
-            'members:internal_media:slug:*'
+            'messages:slug:*'
         );
 
         foreach ($existingSlugKeys as $key) {
@@ -117,7 +116,7 @@ class GenerateInternalMediaPagesForRedis
             ];
         }
 
-        $series = $entry->internalMessageSeries->one();
+        $series = $entry->messageSeries->one();
 
         if ($series !== null) {
             $id = $series->id;
@@ -132,7 +131,7 @@ class GenerateInternalMediaPagesForRedis
             ];
         }
 
-        $audioFile = $entry->internalAudio->one();
+        $audioFile = $entry->audio->one();
 
         $audioFileName = $audioFile?->filename;
 
@@ -150,15 +149,22 @@ class GenerateInternalMediaPagesForRedis
 
     private function generatePage(Pagination $pagination): void
     {
-        $results = $this->retrieveMedia->retrieve(pagination: $pagination);
+        $currentPage = $pagination->currentPage();
 
-        $entries = $results->mapItems(function (Entry $entry) {
+        $results = $this->messagesApi->retrieveMessages(
+            new MessageRetrievalParams(
+                limit: self::PER_PAGE,
+                offset: ($currentPage * self::PER_PAGE) - self::PER_PAGE,
+            ),
+        );
+
+        $entries = $results->map(function (Entry $entry) {
             return $this->createJsonArrayFromEntry($entry);
         });
 
         array_map(
             function (array $entry) {
-                $key = 'members:internal_media:slug:' . $entry['slug'];
+                $key = 'messages:slug:' . $entry['slug'];
 
                 $this->pageSlugKeys[] = $key;
 
@@ -173,7 +179,7 @@ class GenerateInternalMediaPagesForRedis
         );
 
         $this->redis->set(
-            'members:internal_media:page:' . $pagination->currentPage(),
+            'messages:page:' . $pagination->currentPage(),
             json_encode([
                 'currentPage' => $pagination->currentPage(),
                 'perPage' => $pagination->perPage(),
@@ -190,11 +196,11 @@ class GenerateInternalMediaPagesForRedis
     }
 
     private function generateByPages(
-        int $profileId,
-        string $slug,
+        int    $profileId,
+        string $profileSlug,
     ): void {
         $totalResults = (int) $this->entryQueryFactory->make()
-            ->section('internalMessages')
+            ->section('messages')
             ->profile($profileId)
             ->count();
 
@@ -208,15 +214,15 @@ class GenerateInternalMediaPagesForRedis
         $generatedKeys = [];
 
         for ($page = 1; $page <= $totalPages; $page++) {
-            $generatedKeys[] = 'members:internal_media:by:' . $slug . ':' . $page;
+            $generatedKeys[] = 'messages:by:' . $profileSlug . ':' . $page;
             $this->generateByPage(
                 $pagination->withCurrentPage($page),
-                $profileId,
+                $profileSlug,
             );
         }
 
         $existingPageKeys = $this->redis->keys(
-            'members:internal_media:by:' . $slug . ':*'
+            'messages:by:' . $profileSlug . ':*'
         );
 
         foreach ($existingPageKeys as $key) {
@@ -234,11 +240,16 @@ class GenerateInternalMediaPagesForRedis
 
     private function generateByPage(
         Pagination $pagination,
-        int $profileId,
+        string $profileSlug,
     ): void {
-        $results = $this->retrieveMedia->retrieve(
-            pagination: $pagination,
-            profileId: $profileId,
+        $currentPage = $pagination->currentPage();
+
+        $results = $this->messagesApi->retrieveMessages(
+            new MessageRetrievalParams(
+                limit: self::PER_PAGE,
+                offset: ($currentPage * self::PER_PAGE) - self::PER_PAGE,
+                by: [$profileSlug],
+            ),
         );
 
         $first = $results->first();
@@ -246,12 +257,12 @@ class GenerateInternalMediaPagesForRedis
         $byProfile = $first->profile->one();
         assert($byProfile instanceof Entry);
 
-        $entries = $results->mapItems(function (Entry $entry) {
+        $entries = $results->map(function (Entry $entry) {
             return $this->createJsonArrayFromEntry($entry);
         });
 
         $this->redis->set(
-            'members:internal_media:by:' . $byProfile->slug . ':' . $pagination->currentPage(),
+            'messages:by:' . $byProfile->slug . ':' . $currentPage,
             json_encode([
                 'currentPage' => $pagination->currentPage(),
                 'perPage' => $pagination->perPage(),
@@ -271,11 +282,11 @@ class GenerateInternalMediaPagesForRedis
 
     private function generateSeriesPages(
         int $seriesId,
-        string $slug
-    ) {
+        string $seriesSlug
+    ): void {
         $totalResults = (int) $this->entryQueryFactory->make()
-            ->section('internalMessages')
-            ->internalMessageSeries($seriesId)
+            ->section('messages')
+            ->messageSeries($seriesId)
             ->count();
 
         $pagination = (new Pagination())
@@ -288,15 +299,15 @@ class GenerateInternalMediaPagesForRedis
         $generatedKeys = [];
 
         for ($page = 1; $page <= $totalPages; $page++) {
-            $generatedKeys[] = 'members:internal_media:series:' . $slug . ':' . $page;
+            $generatedKeys[] = 'messages:series:' . $seriesSlug . ':' . $page;
             $this->generateSeriesPage(
                 $pagination->withCurrentPage($page),
-                $seriesId,
+                $seriesSlug,
             );
         }
 
         $existingPageKeys = $this->redis->keys(
-            'members:internal_media:series:' . $slug . ':*'
+            'messages:series:' . $seriesSlug . ':*'
         );
 
         foreach ($existingPageKeys as $key) {
@@ -314,24 +325,29 @@ class GenerateInternalMediaPagesForRedis
 
     private function generateSeriesPage(
         Pagination $pagination,
-        int $seriesId,
+        string $seriesSlug,
     ): void {
-        $results = $this->retrieveMedia->retrieve(
-            pagination: $pagination,
-            seriesId: $seriesId,
+        $currentPage = $pagination->currentPage();
+
+        $results = $this->messagesApi->retrieveMessages(
+            new MessageRetrievalParams(
+                limit: self::PER_PAGE,
+                offset: ($currentPage * self::PER_PAGE) - self::PER_PAGE,
+                series: [$seriesSlug],
+            ),
         );
 
         $first = $results->first();
 
-        $series = $first->internalMessageSeries->one();
+        $series = $first->messageSeries->one();
         assert($series instanceof Category);
 
-        $entries = $results->mapItems(function (Entry $entry) {
+        $entries = $results->map(function (Entry $entry) {
             return $this->createJsonArrayFromEntry($entry);
         });
 
         $this->redis->set(
-            'members:internal_media:series:' . $series->slug . ':' . $pagination->currentPage(),
+            'messages:series:' . $series->slug . ':' . $currentPage,
             json_encode([
                 'currentPage' => $pagination->currentPage(),
                 'perPage' => $pagination->perPage(),

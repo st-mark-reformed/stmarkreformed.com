@@ -11,6 +11,7 @@ use App\Craft\Commands\ProfilesConsoleController;
 use App\Craft\ElementSaveClearStaticCache;
 use App\Craft\SetMessageEntrySlug\SetMessageEntrySlugFactory;
 use App\ElasticSearch\Events\ModifyElementQueueIndexAllMessages;
+use App\Http\Response\Media\Messages\CraftEvents\SetUpMessagesEvents;
 use App\Http\Response\Media\Resources\CraftEvents\SetUpResourcesEvents;
 use App\Http\Response\Media\Resources\GenerateResourcePagesForRedis;
 use App\Http\Response\Members\HymnsOfTheMonth\CraftEvents\SetUpHymnsOfTheMonthEvents;
@@ -364,6 +365,13 @@ class Module extends ModuleBase
         $setUpResourceEvents = $di->get(SetUpResourcesEvents::class);
         assert($setUpResourceEvents instanceof SetUpResourcesEvents);
         $setUpResourceEvents->setUp();
+
+        /**
+         * SetUpMessagesEvents
+         */
+        $setUpMessagesEvents = $di->get(SetUpMessagesEvents::class);
+        assert($setUpMessagesEvents instanceof SetUpMessagesEvents);
+        $setUpMessagesEvents->setUp();
     }
 
     private function mapControllers(): void

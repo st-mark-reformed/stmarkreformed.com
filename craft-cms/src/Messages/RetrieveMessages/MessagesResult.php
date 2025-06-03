@@ -57,4 +57,9 @@ class MessagesResult
             $this->messages(),
         );
     }
+
+    public function first(): Entry
+    {
+        return $this->messages()[0];
+    }
 }

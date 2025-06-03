@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Config;
 
+use App\Http\Response\Media\Messages\EnqueueGenerateMessagesPagesForRedis;
 use App\Http\Response\Media\Resources\EnqueueGenerateResourcePagesForRedis;
 use App\Http\Response\Members\HymnsOfTheMonth\EnqueueGenerateHymnsOfTheMonthPageForRedis;
 use App\Http\Response\Members\InternalMedia\EnqueueGenerateInternalMediaPagesForRedis;
@@ -67,7 +68,11 @@ class Schedule
         );
 
         EnqueueGenerateResourcePagesForRedis::addSchedule(
-            $schedule
+            $schedule,
+        );
+
+        EnqueueGenerateMessagesPagesForRedis::addSchedule(
+            $schedule,
         );
 
         if ((bool) getenv('ENABLE_MAILING_LIST_SCHEDULE')) {
