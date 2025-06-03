@@ -82,6 +82,10 @@ server {
         proxy_pass ${WEB_PROXY};
         break;
     }
+    location /media/messages-test {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
 
     location / {
         if ($args ~* ^_rsc) {

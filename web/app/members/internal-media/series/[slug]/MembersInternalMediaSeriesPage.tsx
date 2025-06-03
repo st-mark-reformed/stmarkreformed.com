@@ -4,7 +4,7 @@ import GetPageData from './GetPageData';
 import Pagination from '../../../../Pagination/Pagination';
 import Breadcrumbs from '../../../../Breadcrumbs';
 import MemberLayout from '../../../MemberLayout';
-import EntryDisplay from '../../EntryDisplay';
+import EntryDisplay from '../../../../media/messages-test/EntryDisplay';
 
 export default async function MembersInternalMediaSeriesPage (
     {
@@ -54,9 +54,11 @@ export default async function MembersInternalMediaSeriesPage (
             {pageData.entries.map((entry, i) => (
                 <EntryDisplay
                     key={`${entry.slug}-${entry.postDate}`}
+                    baseUri="/members/internal-media"
                     entry={entry}
                     showBorder={(i + 1) < totalEntries}
                     showPermalink
+                    useInternalAudioUrlScheme
                 />
             ))}
         </MemberLayout>

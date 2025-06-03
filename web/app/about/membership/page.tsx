@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default function MembershipPage () {
     return (
         <Layout hero={{ heroHeading: 'Membership' }}>
-            <SidebarInnerLayout nav={NavItems('/about/membership')}>
+            <SidebarInnerLayout navSections={NavItems('/about/membership')}>
                 <p>Membership in our local expression of Christ’s Church is constituted by a profession of faith, sealed in baptism. Baptism is the rite of initiation into the covenant of grace and the catholic Church; the one baptized maintains good standing in the Church by walking in faith, by the grace of&nbsp;God.</p>
                 <p>Membership vows&nbsp;include:</p>
                 <ol>

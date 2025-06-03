@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default function LiturgyAndSacramentsPage () {
     return (
         <Layout hero={{ heroHeading: 'Liturgy and Sacraments' }}>
-            <SidebarInnerLayout nav={NavItems('/about/liturgy-and-sacraments')}>
+            <SidebarInnerLayout navSections={NavItems('/about/liturgy-and-sacraments')}>
                 <SectionWithH2Heading heading="The Covenantal Form of Worship">
                     <p>The Lord’s Day (Sunday) worship service at SMRC follows the Bible’s covenant renewal pattern of
                         Calling, Confession/Cleansing, Consecration, Communion, and Commissioning. Every worship service

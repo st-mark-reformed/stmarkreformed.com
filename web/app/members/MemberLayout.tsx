@@ -23,19 +23,24 @@ export default function MemberLayout (
             <Layout hero={{ heroHeading }}>
                 <SidebarInnerLayout
                     reducedPadding
-                    navHeading="Members Area"
                     topOfBodyContent={topOfBodyContent}
                     bottomOfBodyContent={bottomOfBodyContent}
-                    nav={[
+                    navSections={[
                         {
-                            content: 'Internal Media',
-                            href: '/members/internal-media',
-                            isActive: activeNavHref === '/members/internal-media',
-                        },
-                        {
-                            content: 'Hymns of the Month',
-                            href: '/members/hymns-of-the-month',
-                            isActive: activeNavHref === '/members/hymns-of-the-month',
+                            id: 'MemberNav',
+                            heading: 'Members Area',
+                            nav: [
+                                {
+                                    content: 'Internal Media',
+                                    href: '/members/internal-media',
+                                    isActive: activeNavHref === '/members/internal-media',
+                                },
+                                {
+                                    content: 'Hymns of the Month',
+                                    href: '/members/hymns-of-the-month',
+                                    isActive: activeNavHref === '/members/hymns-of-the-month',
+                                },
+                            ],
                         },
                     ]}
                 >

@@ -1,5 +1,5 @@
 import { cache } from 'react';
-import { Entry } from '../Entry';
+import { Entry } from '../../../audio/Entry';
 import getRedisClient from '../../../cache/RedisClient';
 
 interface ReturnType {

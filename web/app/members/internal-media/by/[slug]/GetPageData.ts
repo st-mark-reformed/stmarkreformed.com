@@ -1,8 +1,8 @@
 import { cache } from 'react';
-import { BaseInternalMediaReturnType } from '../../GetPageData';
 import getRedisClient from '../../../../cache/RedisClient';
+import { MessagesPageData } from '../../../../audio/MessagesPageData';
 
-interface ByReturnType extends BaseInternalMediaReturnType {
+interface ByReturnType extends MessagesPageData {
     byName: string;
     bySlug: string;
 }

@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 export default function LeadershipPage () {
     return (
         <Layout hero={{ heroHeading: 'Church Officers' }}>
-            <SidebarInnerLayout nav={NavItems('/about/leadership')}>
+            <SidebarInnerLayout navSections={NavItems('/about/leadership')}>
                 <div className="mx-auto max-w-3xl">
                     <ProfileSection headline="Pastor">
                         <Profile

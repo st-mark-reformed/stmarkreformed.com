@@ -1,24 +1,17 @@
 import React, { ReactNode } from 'react';
-import Link from 'next/link';
-
-export interface SidebarLink {
-    content: string | ReactNode;
-    href: string;
-    isActive: boolean;
-}
+import SidebarInnerLayoutNavSection from './SidebarInnerLayoutNavSection';
+import { SidebarNavSection } from './SidebarNavSection';
 
 export default function SidebarInnerLayout (
     {
-        nav,
         children,
-        navHeading = null,
+        navSections = [],
         reducedPadding = false,
         topOfBodyContent = null,
         bottomOfBodyContent = null,
     }: {
-        nav?: Array<SidebarLink>;
         children: ReactNode;
-        navHeading?: string | null;
+        navSections?: Array<SidebarNavSection>;
         reducedPadding?: boolean;
         topOfBodyContent?: ReactNode | string | null;
         bottomOfBodyContent?: ReactNode | string | null;
@@ -56,64 +49,14 @@ export default function SidebarInnerLayout (
                 <div className="md:flex md:flex-shrink-0 bg-crimson">
                     <div className="mx-auto w-64 flex flex-col">
                         <div className="pt-5 pb-4 flex flex-col flex-grow overflow-y-auto">
-                            <div className="flex-grow flex flex-col">
-                                {(() => {
-                                    if (!nav) {
-                                        return null;
-                                    }
-
-                                    return (
-                                        <nav className="flex-1 px-2 space-y-1">
-                                            {(() => {
-                                                if (!navHeading) {
-                                                    return null;
-                                                }
-
-                                                return (
-                                                    <span
-                                                        className="text-white group rounded-md py-2 px-2 flex items-center text-lg font-bold uppercase"
-                                                    >
-                                                        {navHeading}
-                                                    </span>
-                                                );
-                                            })()}
-                                            {nav.map((item, i) => {
-                                                const classes = [
-                                                    'text-white',
-                                                    'group',
-                                                    'rounded-md',
-                                                    'py-2',
-                                                    'px-2',
-                                                    'flex',
-                                                    'items-center',
-                                                    'text-base',
-                                                ];
-
-                                                if (i === 0 && navHeading === null) {
-                                                    classes.push('font-bold');
-                                                } else {
-                                                    classes.push('font-normal');
-                                                }
-
-                                                if (item.isActive) {
-                                                    classes.push('bg-bronze');
-                                                } else {
-                                                    classes.push('hover:bg-bronze');
-                                                }
-
-                                                return (
-                                                    <Link
-                                                        key={item.href}
-                                                        href={item.href}
-                                                        className={classes.join(' ')}
-                                                    >
-                                                        {item.content}
-                                                    </Link>
-                                                );
-                                            })}
-                                        </nav>
-                                    );
-                                })()}
+                            <div>
+                                {navSections.map((navSection, index) => (
+                                    <SidebarInnerLayoutNavSection
+                                        key={navSection.id}
+                                        navSection={navSection}
+                                        addTopMargin={index > 0}
+                                    />
+                                ))}
                             </div>
                         </div>
                     </div>

@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import GetPageData from './GetPageData';
 import MemberLayout from '../../MemberLayout';
-import EntryDisplay from '../EntryDisplay';
+import EntryDisplay from '../../../media/messages-test/EntryDisplay';
 import Breadcrumbs from '../../../Breadcrumbs';
 import { createPageTitle } from '../../../createPageTitle';
 
@@ -66,7 +66,11 @@ export default async function Page (
                 />
             )}
         >
-            <EntryDisplay entry={pageData.entry} />
+            <EntryDisplay
+                baseUri="/members/internal-media"
+                entry={pageData.entry}
+                useInternalAudioUrlScheme
+            />
         </MemberLayout>
     );
 }

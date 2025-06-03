@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default function ChurchGovernmentPage () {
     return (
         <Layout hero={{ heroHeading: 'Church Government' }}>
-            <SidebarInnerLayout nav={NavItems('/about/church-government')}>
+            <SidebarInnerLayout navSections={NavItems('/about/church-government')}>
                 <SectionWithH2Heading heading="Pastor">
                     <p>The pastor (Minister of the Word) is an ordinary and perpetual officer in the Church (Eph. 4: 11; 1 Tim. 3:1-7; Tit. 1:5- 9). The pastorate is especially the new covenant counterpart to the old covenant priesthood, even as each local congregation is a miniature fulfillment of the typology of the old covenant temple. The pastor is the primary servant-priest among and towards the royal priesthood of the whole congregation, with the goal of presenting the people in Christ as an acceptable offering to the Father, sanctified by the Holy Spirit (Rom. 15:16). It especially belongs to the pastoral&nbsp;office:</p>
                     <ul>

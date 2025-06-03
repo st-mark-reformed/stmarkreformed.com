@@ -1,14 +1,14 @@
 import { cache } from 'react';
-import getRedisClient from '../../cache/RedisClient';
-import { MessagesPageData } from '../../audio/MessagesPageData';
+import getRedisClient from '../../../cache/RedisClient';
+import { MessagesPageData } from '../../../audio/MessagesPageData';
 
-const GetPageData = cache(async (
+const FindAllMessagesByPage = cache(async (
     pageNum: number,
 ): Promise<null | MessagesPageData> => {
     const redis = getRedisClient();
 
     const redisPageData = await redis.get(
-        `members:internal_media:page:${pageNum}`,
+        `messages:page:${pageNum}`,
     );
 
     if (!redisPageData) {
@@ -18,4 +18,4 @@ const GetPageData = cache(async (
     return JSON.parse(redisPageData);
 });
 
-export default GetPageData;
+export default FindAllMessagesByPage;

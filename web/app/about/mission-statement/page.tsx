@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 export default function MissionStatementPage () {
     return (
         <Layout hero={{ heroHeading: 'Mission Statement' }}>
-            <SidebarInnerLayout nav={NavItems('/about/mission-statement')}>
+            <SidebarInnerLayout navSections={NavItems('/about/mission-statement')}>
                 <SectionWithH2Heading heading="St. Mark is committed to:">
                     <ul>
                         <li>Worship that is robust, reverent, and joyful through the preaching of the Word, right

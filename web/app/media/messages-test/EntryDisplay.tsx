@@ -1,34 +1,44 @@
 import React from 'react';
-import { Entry } from './Entry';
+import { Entry } from '../../audio/Entry';
 import AudioListing from '../../audio/AudioListing';
 
 export default function EntryDisplay (
     {
+        baseUri,
         entry,
         showBorder = false,
         showPermalink = false,
+        useInternalAudioUrlScheme = false,
     }: {
+        baseUri: string;
         entry: Entry;
         showBorder?: boolean;
         showPermalink?: boolean;
+        useInternalAudioUrlScheme?: boolean;
     },
 ) {
     let byUrl = null;
 
     if (entry.by?.slug) {
-        byUrl = `/members/internal-media/by/${entry.by.slug}`;
+        byUrl = `${baseUri}/by/${entry.by.slug}`;
     }
 
     let seriesUrl = null;
 
     if (entry.series?.slug) {
-        seriesUrl = `/members/internal-media/series/${entry.series.slug}`;
+        seriesUrl = `${baseUri}/series/${entry.series.slug}`;
     }
 
     let permalink = null;
 
     if (showPermalink) {
-        permalink = `/members/internal-media/${entry.slug}`;
+        permalink = `${baseUri}/${entry.slug}`;
+    }
+
+    let audioUrl = `/uploads/audio/${entry.audioFileName}`;
+
+    if (useInternalAudioUrlScheme) {
+        audioUrl = `${baseUri}/audio/${entry.slug}/${entry.audioFileName}`;
     }
 
     return (
@@ -41,7 +51,7 @@ export default function EntryDisplay (
             seriesUrl={seriesUrl}
             text={entry.text}
             permalink={permalink}
-            audioUrl={`/members/internal-media/audio/${entry.slug}/${entry.audioFileName}`}
+            audioUrl={audioUrl}
             showBorder={showBorder}
         />
     );

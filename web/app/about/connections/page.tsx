@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 export default function ConnectionsPage () {
     return (
         <Layout hero={{ heroHeading: 'Connections and Associations' }}>
-            <SidebarInnerLayout nav={NavItems('/about/connections')}>
+            <SidebarInnerLayout navSections={NavItems('/about/connections')}>
                 <SectionWithH2Heading heading="Ministries and Affiliations">
                     <p>The following is a list of links to ministries we know and&nbsp;love:</p>
                     <Links links={[
