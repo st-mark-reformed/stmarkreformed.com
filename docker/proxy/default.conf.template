@@ -74,6 +74,10 @@ server {
         proxy_pass ${WEB_PROXY};
         break;
     }
+    location /crec-mandatory-medical-procedures {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
 
     location / {
         if ($args ~* ^_rsc) {
