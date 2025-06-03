@@ -62,7 +62,7 @@ server {
         proxy_pass ${WEB_PROXY};
         break;
     }
-    location /pastors-page-test {
+    location /pastors-page {
         proxy_pass ${WEB_PROXY};
         break;
     }

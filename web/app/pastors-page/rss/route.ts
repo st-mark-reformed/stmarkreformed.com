@@ -10,8 +10,8 @@ export async function GET () {
     const feed = new RSS({
         title: "Pastor's Page",
         generator: 'stmarkreformed.com',
-        feed_url: `${siteUrl}/pastors-page-test/rss`,
-        site_url: `${siteUrl}/pastors-page-test`,
+        feed_url: `${siteUrl}/pastors-page/rss`,
+        site_url: `${siteUrl}/pastors-page`,
         copyright: new Date().getFullYear().toString(),
         language: 'en',
     });
@@ -21,7 +21,7 @@ export async function GET () {
             title: entry.title,
             guid: entry.uid,
             description: entry.content,
-            url: `${siteUrl}/pastors-page-test/${entry.slug}`,
+            url: `${siteUrl}/pastors-page/${entry.slug}`,
             date: new Date(entry.postDate).toUTCString(),
         });
     });

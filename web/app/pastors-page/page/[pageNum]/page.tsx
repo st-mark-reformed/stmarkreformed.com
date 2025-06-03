@@ -24,7 +24,7 @@ export async function generateMetadata (
         ]),
         alternates: {
             types: {
-                'application/rss+xml': '/pastors-page-test/rss',
+                'application/rss+xml': '/pastors-page/rss',
             },
         },
     };
@@ -56,7 +56,7 @@ export default async function Page (
     return (
         <NewsIndexPage
             sectionHandle="pastorsPage"
-            baseUri="/pastors-page-test"
+            baseUri="/pastors-page"
             heading="Pastor's Page"
             pageNum={pageNumInt}
         />
