@@ -66,6 +66,14 @@ server {
         proxy_pass ${WEB_PROXY};
         break;
     }
+    location /files {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
+    location /mandatory-medical-procedures {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
 
     location / {
         if ($args ~* ^_rsc) {
