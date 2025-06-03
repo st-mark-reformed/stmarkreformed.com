@@ -7,6 +7,7 @@ namespace App\Http\Response\Media\Messages;
 use App\Http\Pagination\Pagination;
 use App\Messages\MessagesApi;
 use App\Messages\RetrieveMessages\MessageRetrievalParams;
+use App\Shared\ElementQueryFactories\CategoryQueryFactory;
 use App\Shared\ElementQueryFactories\EntryQueryFactory;
 use craft\elements\Category;
 use craft\elements\Entry;
@@ -19,6 +20,7 @@ class GenerateMessagesPagesForRedis
     public function __construct(
         private Redis $redis,
         private MessagesApi $messagesApi,
+        private CategoryQueryFactory $queryFactory,
         private EntryQueryFactory $entryQueryFactory,
     ) {
     }
@@ -97,6 +99,8 @@ class GenerateMessagesPagesForRedis
         foreach ($this->seriesIds as $id => $slug) {
             $this->generateSeriesPages($id, $slug);
         }
+
+        $this->generateMostRecentSeries();
     }
 
     private function createJsonArrayFromEntry (Entry $entry): array
@@ -362,6 +366,33 @@ class GenerateMessagesPagesForRedis
                 'seriesName' => $series->title,
                 'seriesSlug' => $series->slug,
             ]),
+        );
+    }
+
+    private function generateMostRecentSeries(): void
+    {
+        $query = $this->queryFactory->make();
+
+        $query->group('messageSeries');
+
+        $query->orderBy('latestEntryAt desc');
+
+        $query->limit(6);
+
+        /** @phpstan-ignore-next-line */
+        $query->excludeFromFeatured(false);
+
+        $results = array_map(
+            static fn (Category $c) => [
+                'title' => $c->title,
+                'slug' => $c->slug,
+            ],
+            $query->all(),
+        );
+
+        $this->redis->set(
+            'messages:most_recent_series',
+            json_encode($results),
         );
     }
 }
