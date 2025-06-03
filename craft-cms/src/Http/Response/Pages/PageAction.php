@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Response\Pages;
 
+use App\Http\Response\News\GenerateNewsPagesForRedis;
+use App\Http\Response\News\GeneratePastorsPagesForRedis;
 use App\Http\Response\Pages\RenderPage\RenderPageFactory;
 use App\Http\Shared\RouteParamsHandler;
 use App\Shared\FieldHandlers\Generic\GenericHandler;

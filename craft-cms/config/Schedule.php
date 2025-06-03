@@ -8,6 +8,7 @@ use App\Http\Response\Media\Resources\EnqueueGenerateResourcePagesForRedis;
 use App\Http\Response\Members\HymnsOfTheMonth\EnqueueGenerateHymnsOfTheMonthPageForRedis;
 use App\Http\Response\Members\InternalMedia\EnqueueGenerateInternalMediaPagesForRedis;
 use App\Http\Response\News\EnqueueGenerateNewsPagesForRedis;
+use App\Http\Response\News\EnqueueGeneratePastorsPagesForRedis;
 use App\Http\Response\Publications\EnqueueGenerateMenOfTheMarkPagesForRedis;
 use App\MailingLists\CheckMailingLists;
 use BuzzingPixel\CraftScheduler\ContainerRetrieval\ContainerItem;
@@ -58,6 +59,10 @@ class Schedule
         );
 
         EnqueueGenerateNewsPagesForRedis::addSchedule(
+            $schedule,
+        );
+
+        EnqueueGeneratePastorsPagesForRedis::addSchedule(
             $schedule,
         );
 
