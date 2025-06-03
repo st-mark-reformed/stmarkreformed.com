@@ -1,8 +1,13 @@
 import FindNewsItemsByPage from './FindNewsItemsByPage';
 import { NewsItem } from './NewsItem';
 
-export default async function FindAllNewsItems (): Promise<Array<NewsItem>> {
-    const firstPageData = await FindNewsItemsByPage(1);
+export default async function FindAllNewsItems (
+    sectionHandle: string,
+): Promise<Array<NewsItem>> {
+    const firstPageData = await FindNewsItemsByPage(
+        sectionHandle,
+        1,
+    );
 
     if (!firstPageData) {
         return [];
@@ -15,7 +20,10 @@ export default async function FindAllNewsItems (): Promise<Array<NewsItem>> {
     // eslint-disable-next-line no-plusplus
     for (let pageNum = 2; pageNum <= totalPages; pageNum++) {
         // eslint-disable-next-line no-await-in-loop
-        const pageData = await FindNewsItemsByPage(pageNum);
+        const pageData = await FindNewsItemsByPage(
+            sectionHandle,
+            pageNum,
+        );
 
         if (pageData && pageData.entries.length > 0) {
             allItems = [...allItems, ...pageData.entries];

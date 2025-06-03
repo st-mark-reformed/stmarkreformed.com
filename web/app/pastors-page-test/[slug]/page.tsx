@@ -4,10 +4,10 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Layout from '../../layout/Layout';
-import FindNewsItemBySlug from '../repository/FindNewsItemBySlug';
 import Breadcrumbs from '../../Breadcrumbs';
 import typography from '../../typography/typography';
 import { createPageTitle } from '../../createPageTitle';
+import FindNewsItemBySlug from '../../news/repository/FindNewsItemBySlug';
 
 export const dynamic = 'force-dynamic';
 
@@ -22,7 +22,7 @@ export async function generateMetadata (
 ): Promise<Metadata> {
     const { slug } = await params;
 
-    const entry = await FindNewsItemBySlug('news', slug);
+    const entry = await FindNewsItemBySlug('pastorsPage', slug);
 
     if (!entry) {
         notFound();
@@ -31,11 +31,11 @@ export async function generateMetadata (
     return {
         title: createPageTitle([
             `${entry.title}`,
-            'News',
+            "Pastor's Page",
         ]),
         alternates: {
             types: {
-                'application/rss+xml': '/news/rss',
+                'application/rss+xml': '/pastors-page-test/rss',
             },
         },
     };
@@ -52,7 +52,7 @@ export default async function Page (
 ) {
     const { slug } = await params;
 
-    const entry = await FindNewsItemBySlug('news', slug);
+    const entry = await FindNewsItemBySlug('pastorsPage', slug);
 
     if (entry === null) {
         notFound();
@@ -67,8 +67,8 @@ export default async function Page (
         >
             <Breadcrumbs
                 breadcrumbs={[{
-                    value: 'All News',
-                    href: '/news',
+                    value: 'All Pastor’s Page Items',
+                    href: '/pastors-page-test',
                 }]}
                 currentBreadcrumb={{ value: entry.title }}
             />

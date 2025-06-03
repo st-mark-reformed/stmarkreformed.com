@@ -7,12 +7,21 @@ import NewsListing from './NewsListing';
 
 export default async function NewsIndexPage (
     {
+        sectionHandle,
+        baseUri,
+        heading,
         pageNum,
     }: {
+        sectionHandle: string;
+        baseUri: string;
+        heading: string;
         pageNum: number;
     },
 ) {
-    const newsItemResults = await FindNewsItemsByPage(pageNum);
+    const newsItemResults = await FindNewsItemsByPage(
+        sectionHandle,
+        pageNum,
+    );
 
     if (newsItemResults === null) {
         notFound();
@@ -20,14 +29,14 @@ export default async function NewsIndexPage (
 
     const pagination = (
         <Pagination
-            baseUrl="/news"
+            baseUrl={baseUri}
             currentPage={newsItemResults.currentPage}
             totalPages={newsItemResults.totalPages}
         />
     );
 
     return (
-        <Layout hero={{ heroHeading: 'News' }}>
+        <Layout hero={{ heroHeading: heading }}>
             <div className="bg-white py-12">
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
                     {pagination}
@@ -36,6 +45,7 @@ export default async function NewsIndexPage (
                             <NewsListing
                                 key={`${entry.slug}-${entry.readableDate}`}
                                 entry={entry}
+                                baseUri={baseUri}
                             />
                         ))}
                     </div>

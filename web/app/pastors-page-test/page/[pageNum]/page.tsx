@@ -2,7 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { createPageTitle } from '../../../createPageTitle';
-import NewsIndexPage from '../../NewsIndexPage';
+import NewsIndexPage from '../../../news/NewsIndexPage';
 
 export const dynamic = 'force-dynamic';
 
@@ -20,11 +20,11 @@ export async function generateMetadata (
     return {
         title: createPageTitle([
             `Page ${pageNum}`,
-            'News',
+            "Pastor's Page",
         ]),
         alternates: {
             types: {
-                'application/rss+xml': '/news/rss',
+                'application/rss+xml': '/pastors-page-test/rss',
             },
         },
     };
@@ -55,9 +55,9 @@ export default async function Page (
 
     return (
         <NewsIndexPage
-            sectionHandle="news"
-            baseUri="/news"
-            heading="News"
+            sectionHandle="pastorsPage"
+            baseUri="/pastors-page-test"
+            heading="Pastor's Page"
             pageNum={pageNumInt}
         />
     );

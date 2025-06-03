@@ -3,11 +3,14 @@ import getRedisClient from '../../cache/RedisClient';
 import { NewsItem } from './NewsItem';
 
 const FindNewsItemBySlug = cache(async (
+    sectionHandle: string,
     slug: string,
 ): Promise<null | NewsItem> => {
     const redis = getRedisClient();
 
-    const redisPageData = await redis.get(`news:slug:${slug}`);
+    const redisPageData = await redis.get(
+        `${sectionHandle}:slug:${slug}`,
+    );
 
     if (!redisPageData) {
         return null;

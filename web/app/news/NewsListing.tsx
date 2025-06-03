@@ -8,11 +8,13 @@ import typography from '../typography/typography';
 export default function NewsListing (
     {
         entry,
+        baseUri,
     }: {
         entry: NewsItem;
+        baseUri: string;
     },
 ) {
-    const href = `/news/${entry.slug}`;
+    const href = `${baseUri}/${entry.slug}`;
 
     return (
         <article className="flex flex-col items-start justify-between border border-gray-200 p-3 sm:p-6 shadow-md rounded-lg">

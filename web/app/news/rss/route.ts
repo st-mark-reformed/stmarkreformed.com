@@ -3,7 +3,7 @@ import { ConfigOptions, getConfigString } from '../../ServerSideRunTimeConfig';
 import FindAllNewsItems from '../repository/FindAllNewsItems';
 
 export async function GET () {
-    const entries = await FindAllNewsItems();
+    const entries = await FindAllNewsItems('news');
 
     const siteUrl = getConfigString(ConfigOptions.BASE_URL);
 

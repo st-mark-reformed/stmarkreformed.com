@@ -62,6 +62,10 @@ server {
         proxy_pass ${WEB_PROXY};
         break;
     }
+    location /pastors-page-test {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
     location /resources {
         proxy_pass ${WEB_PROXY};
         break;
