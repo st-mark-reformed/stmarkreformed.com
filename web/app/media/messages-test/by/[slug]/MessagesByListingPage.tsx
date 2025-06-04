@@ -6,7 +6,7 @@ import Breadcrumbs from '../../../../Breadcrumbs';
 import MessagesLayout from '../../MessagesLayout';
 import EntryDisplay from '../../EntryDisplay';
 
-export default async function MessagesListingByPage (
+export default async function MessagesByListingPage (
     {
         slug,
         pageNum,

@@ -2,8 +2,8 @@ import React from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { createPageTitle } from '../../../../../../createPageTitle';
-import MessagesByListingPage from '../../MessagesByListingPage';
-import FindAllMessagesBySpeakerByPage from '../../../../repository/FindAllMessagesBySpeakerByPage';
+import FindAllMessagesBySeriesByPage from '../../../../repository/FindAllMessagesBySeriesByPage';
+import MessagesSeriesListingPage from '../../MessagesSeriesListingPage';
 
 export async function generateMetadata (
     {
@@ -17,7 +17,7 @@ export async function generateMetadata (
 ): Promise<Metadata> {
     const { slug, pageNum } = await params;
 
-    const pageData = await FindAllMessagesBySpeakerByPage(slug, 1);
+    const pageData = await FindAllMessagesBySeriesByPage(slug, 1);
 
     if (pageData === null) {
         notFound();
@@ -26,7 +26,7 @@ export async function generateMetadata (
     return {
         title: createPageTitle([
             `Page ${pageNum}`,
-            `Media by ${pageData.byName}`,
+            `Series: ${pageData.seriesName}`,
             'Messages',
         ]),
     };
@@ -57,7 +57,7 @@ export default async function Page (
     }
 
     return (
-        <MessagesByListingPage
+        <MessagesSeriesListingPage
             slug={slug}
             pageNum={pageNumInt}
         />
