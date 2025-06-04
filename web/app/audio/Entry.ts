@@ -14,4 +14,5 @@ export interface Entry {
         slug: string;
     };
     audioFileName: string | null;
+    audioFileSize: number | null;
 }

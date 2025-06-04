@@ -134,8 +134,6 @@ class GenerateInternalMediaPagesForRedis
 
         $audioFile = $entry->internalAudio->one();
 
-        $audioFileName = $audioFile?->filename;
-
         return [
             'uid' => $entry->uid,
             'title' => $entry->title,
@@ -145,7 +143,8 @@ class GenerateInternalMediaPagesForRedis
             'by' => $by,
             'text' => $entry->messageText,
             'series' => $series,
-            'audioFileName' => $audioFileName,
+            'audioFileName' => $audioFile?->filename,
+            'audioFileSize' => $audioFile?->size,
         ];
     }
 
