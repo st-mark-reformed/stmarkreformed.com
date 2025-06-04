@@ -76,9 +76,9 @@ export default async function MessagesLayout (
                         heading: 'Messages by',
                         nav: [
                             {
-                                href: '/media/messages-test/by/joe-thakcer',
+                                href: '/media/messages-test/by/joe-thacker',
                                 content: 'Rev. Joe Thacker (Pastor)',
-                                isActive: pathname?.startsWith('/media/messages-test/by/joe-thakcer'),
+                                isActive: pathname?.startsWith('/media/messages-test/by/joe-thacker'),
                             },
                             {
                                 href: '/media/messages-test/by/burke-shade',
