@@ -26,6 +26,7 @@ export default function CustomAudioPlayer (
                 volume={1}
                 autoPlay={false}
                 src={audioUrl}
+                preload="metadata"
                 layout="stacked-reverse"
                 progressJumpSteps={{
                     backward: 30000,
