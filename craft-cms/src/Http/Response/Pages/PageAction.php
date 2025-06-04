@@ -22,7 +22,6 @@ class PageAction
         private RenderPageFactory $renderPageFactory,
         private RouteParamsHandler $routeParamsHandler,
         private ResponseFactoryInterface $responseFactory,
-        private GenerateMessagesPagesForRedis $generateMessagesPagesForRedis,
     ) {
     }
 
@@ -32,7 +31,6 @@ class PageAction
      */
     public function __invoke(): ResponseInterface
     {
-        $this->generateMessagesPagesForRedis->generate();
         $entry = $this->routeParamsHandler->getEntry(
             routeParams: $this->routeParams
         );

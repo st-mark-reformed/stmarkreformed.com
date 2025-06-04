@@ -140,6 +140,7 @@ class GenerateMessagesPagesForRedis
         $audioFileName = $audioFile?->filename;
 
         return [
+            'uid' => $entry->uid,
             'title' => $entry->title,
             'slug' => $entry->slug,
             'postDate' => $entry->postDate->format('Y-m-d H:i:s'),

@@ -1,4 +1,5 @@
 export interface Entry {
+    uid: string;
     title: string;
     slug: string;
     postDate: string;
