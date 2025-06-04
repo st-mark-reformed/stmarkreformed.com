@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Response\Pages;
 
+use App\Http\Response\Media\Messages\GenerateMessagesPagesForRedis;
 use App\Http\Response\Pages\RenderPage\RenderPageFactory;
 use App\Http\Shared\RouteParamsHandler;
 use App\Shared\FieldHandlers\Generic\GenericHandler;
@@ -21,6 +22,7 @@ class PageAction
         private RenderPageFactory $renderPageFactory,
         private RouteParamsHandler $routeParamsHandler,
         private ResponseFactoryInterface $responseFactory,
+        private GenerateMessagesPagesForRedis $generateMessagesPagesForRedis,
     ) {
     }
 
@@ -30,6 +32,7 @@ class PageAction
      */
     public function __invoke(): ResponseInterface
     {
+        $this->generateMessagesPagesForRedis->generate();
         $entry = $this->routeParamsHandler->getEntry(
             routeParams: $this->routeParams
         );

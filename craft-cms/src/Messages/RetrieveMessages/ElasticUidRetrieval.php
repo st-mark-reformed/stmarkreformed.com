@@ -31,7 +31,7 @@ class ElasticUidRetrieval
                 $queries[] = [
                     'simple_query_string' => [
                         'fields' => ['speakerSlug'],
-                        'query' => $by,
+                        'query' => '"' . $by . '"',
                     ],
                 ];
             }
@@ -42,7 +42,7 @@ class ElasticUidRetrieval
                 $queries[] = [
                     'simple_query_string' => [
                         'fields' => ['messageSeriesSlug'],
-                        'query' => $series,
+                        'query' => '"' . $series . '"',
                     ],
                 ];
             }
