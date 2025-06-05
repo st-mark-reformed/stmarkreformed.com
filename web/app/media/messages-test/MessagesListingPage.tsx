@@ -1,19 +1,24 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
-import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import FindAllMessagesByPage from './repository/FindAllMessagesByPage';
 import Pagination from '../../Pagination/Pagination';
 import MessagesLayout from './MessagesLayout';
 import EntryDisplay from './EntryDisplay';
 import SearchForm from './search/SearchForm';
+import { MessagesSearchParamsParent } from './search/MessagesSearchParams';
+import Breadcrumbs from '../../Breadcrumbs';
 
 export default async function MessagesListingPage (
     {
         pageNum,
+        messagesSearchParams,
     }: {
         pageNum: number;
+        messagesSearchParams: MessagesSearchParamsParent;
     },
 ) {
+    const { hasAnyParams } = messagesSearchParams;
+
     const pageData = await FindAllMessagesByPage(pageNum);
 
     if (pageData === null) {
@@ -31,10 +36,27 @@ export default async function MessagesListingPage (
     );
 
     const topOfBodyContent = (
-        <div className="px-8 pt-4 relative">
-            <SearchForm />
-            {pagination}
-        </div>
+        <>
+            {(() => {
+                if (!hasAnyParams) {
+                    return null;
+                }
+
+                return (
+                    <Breadcrumbs
+                        breadcrumbs={[{
+                            value: 'Messages',
+                            href: '/media/messages-test',
+                        }]}
+                        currentBreadcrumb={{ value: 'Search Results' }}
+                    />
+                );
+            })()}
+            <div className="px-8 pt-4 relative">
+                <SearchForm />
+                {pagination}
+            </div>
+        </>
     );
 
     return (

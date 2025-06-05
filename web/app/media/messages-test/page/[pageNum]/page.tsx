@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { createPageTitle } from '../../../../createPageTitle';
 import MessagesListingPage from '../../MessagesListingPage';
+import { createMessagesSearchParamsFromRaw, RawSearchParams } from '../../search/MessagesSearchParams';
 
 export const dynamic = 'force-dynamic';
 
@@ -28,12 +29,16 @@ export async function generateMetadata (
 export default async function Page (
     {
         params,
+        searchParams,
     }: {
         params: Promise<{
             pageNum: string;
         }>;
+        searchParams: Promise<RawSearchParams>;
     },
 ) {
+    const rawParams = await searchParams;
+
     const { pageNum } = await params;
 
     const isNumeric = /^\d+$/.test(pageNum);
@@ -48,5 +53,10 @@ export default async function Page (
         notFound();
     }
 
-    return <MessagesListingPage pageNum={pageNumInt} />;
+    return (
+        <MessagesListingPage
+            pageNum={pageNumInt}
+            messagesSearchParams={createMessagesSearchParamsFromRaw(rawParams)}
+        />
+    );
 }

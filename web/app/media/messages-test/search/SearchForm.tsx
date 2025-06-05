@@ -9,7 +9,7 @@ import useMessagesSearchParams from './useMessagesSearchParams';
 export default function SearchForm () {
     const { hasAnyParams } = useMessagesSearchParams();
 
-    const [formIsVisible, setFormIsVisible] = useState(hasAnyParams);
+    const [formIsVisible, setFormIsVisible] = useState(false);
 
     return (
         <>

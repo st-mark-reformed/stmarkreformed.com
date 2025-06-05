@@ -1,6 +1,6 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable @typescript-eslint/naming-convention */
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import { XMarkIcon } from '@heroicons/react/16/solid';
 import Link from 'next/link';
@@ -17,6 +17,10 @@ export default function SearchFormData (
 ) {
     const { hasAnyParams, params } = useMessagesSearchParams();
 
+    const [applyButtonDisabled, setApplyButtonDisabled] = useState(
+        true,
+    );
+
     const {
         scripture_reference,
         title,
@@ -25,19 +29,23 @@ export default function SearchFormData (
     } = params;
 
     return (
-        <form className={(() => {
-            const classes = [
-                'max-w-6xl mx-auto space-y-4 overflow-hidden transition-all duration-400 ease-in-out',
-            ];
+        <form
+            onChange={() => {
+                setApplyButtonDisabled(false);
+            }}
+            className={(() => {
+                const classes = [
+                    'max-w-6xl mx-auto space-y-4 overflow-hidden transition-all duration-400 ease-in-out',
+                ];
 
-            if (formIsShown) {
-                classes.push('max-h-[800px] sm:max-h-[400px] opacity-100');
-            } else {
-                classes.push('max-h-0 opacity-0');
-            }
+                if (formIsShown) {
+                    classes.push('max-h-[800px] sm:max-h-[400px] opacity-100');
+                } else {
+                    classes.push('max-h-0 opacity-0');
+                }
 
-            return classes.join(' ');
-        })()}
+                return classes.join(' ');
+            })()}
         >
             <div className="my-6 grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6">
                 {/* By */}
@@ -160,7 +168,20 @@ export default function SearchFormData (
                 })()}
                 <button
                     type="submit"
-                    className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-crimson hover:bg-crimson-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-crimson-dark cursor-pointer"
+                    className={(() => {
+                        const classes = [
+                            'ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2',
+                        ];
+
+                        if (applyButtonDisabled) {
+                            classes.push('bg-gray-300');
+                        } else {
+                            classes.push('text-white bg-crimson hover:bg-crimson-dark focus:ring-crimson-dark cursor-pointer');
+                        }
+
+                        return classes.join(' ');
+                    })()}
+                    disabled={applyButtonDisabled}
                 >
                     Apply Search
                     <span className="inline-block w-4 h-4 mt-0.5 ml-1 align-middle">

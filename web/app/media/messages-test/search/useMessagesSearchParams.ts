@@ -1,12 +1,7 @@
 import { useSearchParams } from 'next/navigation';
-import { MessagesSearchParams } from './MessagesSearchParams';
+import { MessagesSearchParams, MessagesSearchParamsParent } from './MessagesSearchParams';
 
-interface ReturnType {
-    hasAnyParams: boolean;
-    params: MessagesSearchParams;
-}
-
-export default function useMessagesSearchParams (): ReturnType {
+export default function useMessagesSearchParams (): MessagesSearchParamsParent {
     const searchParams = useSearchParams();
 
     const params: MessagesSearchParams = {
