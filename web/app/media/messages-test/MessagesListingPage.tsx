@@ -1,9 +1,11 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import FindAllMessagesByPage from './repository/FindAllMessagesByPage';
 import Pagination from '../../Pagination/Pagination';
 import MessagesLayout from './MessagesLayout';
 import EntryDisplay from './EntryDisplay';
+import SearchForm from './search/SearchForm';
 
 export default async function MessagesListingPage (
     {
@@ -28,10 +30,17 @@ export default async function MessagesListingPage (
         />
     );
 
+    const topOfBodyContent = (
+        <div className="px-8 pt-4 relative">
+            <SearchForm />
+            {pagination}
+        </div>
+    );
+
     return (
         <MessagesLayout
             heroHeading="Messages"
-            topOfBodyContent={<div className="px-8 pt-4">{pagination}</div>}
+            topOfBodyContent={topOfBodyContent}
             bottomOfBodyContent={<div className="px-8 pb-4">{pagination}</div>}
         >
             {pageData.entries.map((entry, i) => (
