@@ -1,6 +1,6 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable react/no-danger */
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, ReactNode, SetStateAction } from 'react';
 
 import {
     Description,
@@ -19,12 +19,12 @@ export default function ToggleWithLabel (
     }: {
         enabled: boolean;
         setEnabled: (enabled: boolean) => void | Dispatch<SetStateAction<boolean>>;
-        label: string;
+        label: string | ReactNode;
         description?: string;
     },
 ) {
     return (
-        // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
         <div
             className="inline-block cursor-pointer select-none"
             onClick={() => setEnabled(!enabled)}
@@ -32,11 +32,19 @@ export default function ToggleWithLabel (
             <Field className="flex items-center justify-between gap-x-3">
                 <span className="flex grow flex-col">
                     <Label as="span" passive className="text-sm/6 font-bold text-gray-700">
-                        <span
-                            dangerouslySetInnerHTML={{
-                                __html: typography(label),
-                            }}
-                        />
+                        {(() => {
+                            if (typeof label === 'string') {
+                                return (
+                                    <span
+                                        dangerouslySetInnerHTML={{
+                                            __html: typography(label),
+                                        }}
+                                    />
+                                );
+                            }
+
+                            return <>{label}</>;
+                        })()}
                     </Label>
                     {(() => {
                         if (!description) {

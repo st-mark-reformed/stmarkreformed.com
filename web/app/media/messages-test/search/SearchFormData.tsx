@@ -1,16 +1,21 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable @typescript-eslint/naming-convention */
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
+import { XMarkIcon } from '@heroicons/react/16/solid';
+import Link from 'next/link';
 import useMessagesSearchParams from './useMessagesSearchParams';
 
 export default function SearchFormData (
     {
         formIsShown,
+        setFormIsShown,
     }: {
         formIsShown: boolean;
+        setFormIsShown: (enabled: boolean) => void | Dispatch<SetStateAction<boolean>>;
     },
 ) {
-    const { params } = useMessagesSearchParams();
+    const { hasAnyParams, params } = useMessagesSearchParams();
 
     const {
         scripture_reference,
@@ -133,19 +138,34 @@ export default function SearchFormData (
                 </div>
             </div>
             <div className="flex justify-end mb-2">
-                {/* {% if params.hasSearchParams %} */}
-                <button
-                    type="button"
-                    className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-crimson cursor-pointer"
-                >
-                    Reset
-                </button>
-                {/* {% endif %} */}
+                {(() => {
+                    if (!hasAnyParams) {
+                        return null;
+                    }
+
+                    return (
+                        <Link
+                            href="/media/messages-test"
+                            className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-crimson cursor-pointer"
+                            onClick={() => {
+                                setFormIsShown(false);
+                            }}
+                        >
+                            Clear Search
+                            <span className="inline-block w-5 h-5 mb-0.5 ml-1 align-middle">
+                                <XMarkIcon />
+                            </span>
+                        </Link>
+                    );
+                })()}
                 <button
                     type="submit"
                     className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-crimson hover:bg-crimson-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-crimson-dark cursor-pointer"
                 >
                     Apply Search
+                    <span className="inline-block w-4 h-4 mt-0.5 ml-1 align-middle">
+                        <MagnifyingGlassIcon />
+                    </span>
                 </button>
             </div>
         </form>
