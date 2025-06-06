@@ -8,9 +8,11 @@ import React, {
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import { XMarkIcon } from '@heroicons/react/16/solid';
 import { useRouter } from 'next/navigation';
+import Select from 'react-select';
 import useMessagesSearchParams from './useMessagesSearchParams';
 import { ByOptions } from '../repository/FindAllByOptions';
 import { MessagesSearchParams } from './MessagesSearchParams';
+import RenderOnMount from '../../../RenderOnMount';
 
 export default function SearchFormData (
     {
@@ -82,7 +84,7 @@ export default function SearchFormData (
             onChange={() => setApplyButtonDisabled(false)}
             className={(() => {
                 const classes = [
-                    'max-w-6xl mx-auto space-y-4 overflow-hidden transition-all duration-400 ease-in-out',
+                    'max-w-6xl mx-auto space-y-4 transition-all duration-400 ease-in-out',
                 ];
 
                 if (formIsShown) {
@@ -101,46 +103,58 @@ export default function SearchFormData (
                         By
                     </label>
                     <div className="mt-1">
-                        <select
-                            id="by"
-                            name="by[]"
-                            className="block focus:ring-crimson focus:border-crimson w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                            value={formInputs.by || []}
-                            onChange={(e) => {
-                                const selectedValues = Array.from(e.target.selectedOptions).map((option) => option.value);
+                        <RenderOnMount>
+                            <Select
+                                classNames={{
+                                    container: () => ('react-select-control shadow-sm'),
+                                }}
+                                options={[
+                                    {
+                                        label: 'St. Mark Leadership',
+                                        options: Object.entries(byOptions.leadership).map(([slug, name]) => ({
+                                            value: slug,
+                                            label: name,
+                                        })),
+                                    },
+                                    {
+                                        label: 'Other Speakers',
+                                        options: Object.entries(byOptions.others).map(([slug, name]) => ({
+                                            value: slug,
+                                            label: name,
+                                        })),
+                                    },
+                                ]}
+                                value={(() => {
+                                    // @ts-expect-error TS7034
+                                    const selected = [];
 
-                                setFormInputs({
-                                    ...formInputs,
-                                    by: selectedValues,
-                                });
-                            }}
-                            multiple
-                        >
-                            {(() => {
-                                if (!byOptions) {
-                                    return null;
-                                }
+                                    const all = Object.entries(byOptions.leadership).concat(Object.entries(byOptions.others));
 
-                                return (
-                                    <>
-                                        <optgroup label="St. Mark Leadership">
-                                            {Object.entries(byOptions.leadership).map(([slug, name]) => (
-                                                <option key={slug} value={slug}>
-                                                    {name}
-                                                </option>
-                                            ))}
-                                        </optgroup>
-                                        <optgroup label="Other Speakers">
-                                            {Object.entries(byOptions.others).map(([slug, name]) => (
-                                                <option key={slug} value={slug}>
-                                                    {name}
-                                                </option>
-                                            ))}
-                                        </optgroup>
-                                    </>
-                                );
-                            })()}
-                        </select>
+                                    all.forEach(([slug, name]) => {
+                                        if (!formInputs.by.includes(slug)) {
+                                            return;
+                                        }
+
+                                        selected.push({
+                                            value: slug,
+                                            label: name,
+                                        });
+                                    });
+
+                                    // @ts-expect-error TS7005
+                                    return selected;
+                                })()}
+                                onChange={(values) => {
+                                    setApplyButtonDisabled(false);
+
+                                    setFormInputs({
+                                        ...formInputs,
+                                        by: values.map((val) => val.value),
+                                    });
+                                }}
+                                isMulti
+                            />
+                        </RenderOnMount>
                     </div>
                 </div>
                 {/* Series */}
@@ -149,27 +163,44 @@ export default function SearchFormData (
                         Series
                     </label>
                     <div className="mt-1">
-                        <select
-                            id="series"
-                            name="series[]"
-                            className="block focus:ring-crimson focus:border-crimson w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                            value={formInputs.series || []}
-                            onChange={(e) => {
-                                const selectedValues = Array.from(e.target.selectedOptions).map((option) => option.value);
+                        <RenderOnMount>
+                            <Select
+                                classNames={{
+                                    container: () => ('react-select-control shadow-sm'),
+                                }}
+                                options={Object.entries(seriesOptions).map(([slug, name]) => ({
+                                    value: slug,
+                                    label: name,
+                                }))}
+                                value={(() => {
+                                    // @ts-expect-error TS7034
+                                    const selected = [];
 
-                                setFormInputs({
-                                    ...formInputs,
-                                    series: selectedValues,
-                                });
-                            }}
-                            multiple
-                        >
-                            {Object.entries(seriesOptions).map(([slug, name]) => (
-                                <option key={slug} value={slug}>
-                                    {name}
-                                </option>
-                            ))}
-                        </select>
+                                    Object.entries(seriesOptions).forEach(([slug, name]) => {
+                                        if (!formInputs.series.includes(slug)) {
+                                            return;
+                                        }
+
+                                        selected.push({
+                                            value: slug,
+                                            label: name,
+                                        });
+                                    });
+
+                                    // @ts-expect-error TS7005
+                                    return selected;
+                                })()}
+                                onChange={(values) => {
+                                    setApplyButtonDisabled(false);
+
+                                    setFormInputs({
+                                        ...formInputs,
+                                        series: values.map((val) => val.value),
+                                    });
+                                }}
+                                isMulti
+                            />
+                        </RenderOnMount>
                     </div>
                 </div>
                 {/* Scripture Reference */}

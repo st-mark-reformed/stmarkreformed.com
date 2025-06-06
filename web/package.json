@@ -17,6 +17,7 @@
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-h5-audio-player": "3.10.0-rc.1",
+        "react-select": "^5.10.1",
         "rss": "^1.2.2",
         "sleep-promise": "^9.1.0",
         "smartypants": "^0.2.2",
