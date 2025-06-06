@@ -28,8 +28,6 @@ export async function GET (
 
     const paramsResolved = await params;
 
-    // console.log(paramsResolved.filepath.join('/'));
-
     const fullFilePath = [
         '',
         'app',

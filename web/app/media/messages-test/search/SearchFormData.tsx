@@ -1,9 +1,12 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable @typescript-eslint/naming-convention */
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, {
+    Dispatch, SetStateAction, useActionState, useState,
+} from 'react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import { XMarkIcon } from '@heroicons/react/16/solid';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import useMessagesSearchParams from './useMessagesSearchParams';
 
 export default function SearchFormData (
@@ -15,6 +18,8 @@ export default function SearchFormData (
         setFormIsShown: (enabled: boolean) => void | Dispatch<SetStateAction<boolean>>;
     },
 ) {
+    const router = useRouter();
+
     const { hasAnyParams, params } = useMessagesSearchParams();
 
     const [applyButtonDisabled, setApplyButtonDisabled] = useState(
@@ -22,17 +27,78 @@ export default function SearchFormData (
     );
 
     const {
+        by,
+        series,
         scripture_reference,
         title,
         date_range_start,
         date_range_end,
     } = params;
 
+    const [, formAction] = useActionState(
+        (prevState: void, formData: FormData) => {
+            const formBy = formData.getAll('by[]').filter(
+                (byItem) => typeof byItem === 'string',
+            );
+
+            const formSeries = formData.getAll('series[]').filter(
+                (seriesItem) => typeof seriesItem === 'string',
+            );
+
+            const formScripture = formData.get('scripture_reference');
+
+            const formTitle = formData.get('title');
+
+            const formDateStart = formData.get('date_range_start');
+
+            const formDateEnd = formData.get('date_range_end');
+
+            const url = new URL(window.location.href.split('?')[0]);
+
+            formBy.forEach((byItem: string) => {
+                url.searchParams.append('by[]', byItem);
+            });
+
+            formSeries.forEach((seriesItem) => {
+                url.searchParams.append('series[]', seriesItem);
+            });
+
+            if (typeof formScripture === 'string' && formScripture) {
+                url.searchParams.append(
+                    'scripture_reference',
+                    formScripture,
+                );
+            }
+
+            if (typeof formTitle === 'string' && formTitle) {
+                url.searchParams.append('title', formTitle);
+            }
+
+            if (typeof formDateStart === 'string' && formDateStart) {
+                url.searchParams.append(
+                    'date_range_start',
+                    formDateStart,
+                );
+            }
+
+            if (typeof formDateEnd === 'string' && formDateEnd) {
+                url.searchParams.append(
+                    'date_range_end',
+                    formDateEnd,
+                );
+            }
+
+            router.push(url.toString());
+
+            return prevState;
+        },
+        undefined,
+    );
+
     return (
         <form
-            onChange={() => {
-                setApplyButtonDisabled(false);
-            }}
+            action={formAction}
+            onChange={() => setApplyButtonDisabled(false)}
             className={(() => {
                 const classes = [
                     'max-w-6xl mx-auto space-y-4 overflow-hidden transition-all duration-400 ease-in-out',
@@ -62,6 +128,7 @@ export default function SearchFormData (
                         >
                             <optgroup label="TODO">
                                 <option>Some Option</option>
+                                <option>Another Option</option>
                             </optgroup>
                         </select>
                     </div>
@@ -138,7 +205,7 @@ export default function SearchFormData (
                         <input
                             type="date"
                             id="date_range_end"
-                            name="date_range_start"
+                            name="date_range_end"
                             className="shadow-sm focus:ring-crimson focus:border-crimson block w-full sm:text-sm border-gray-300 rounded-md"
                             defaultValue={date_range_end}
                         />
@@ -170,13 +237,13 @@ export default function SearchFormData (
                     type="submit"
                     className={(() => {
                         const classes = [
-                            'ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2',
+                            'ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md focus:outline-none',
                         ];
 
                         if (applyButtonDisabled) {
                             classes.push('bg-gray-300');
                         } else {
-                            classes.push('text-white bg-crimson hover:bg-crimson-dark focus:ring-crimson-dark cursor-pointer');
+                            classes.push('text-white bg-crimson hover:bg-crimson-dark cursor-pointer');
                         }
 
                         return classes.join(' ');

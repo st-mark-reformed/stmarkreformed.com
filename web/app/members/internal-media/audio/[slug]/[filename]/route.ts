@@ -18,8 +18,6 @@ export async function GET (
         request.cookies.get('member'),
     );
 
-    console.log(tokenCookieIsValid);
-
     if (!tokenCookieIsValid) {
         return NextResponse.json(
             {
