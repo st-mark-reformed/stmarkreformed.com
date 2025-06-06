@@ -12,6 +12,7 @@ export default function CreatePages (
         currentPage = 1,
         totalPages = 1,
         pad = 2,
+        queryString = '',
     }: PaginationParams,
 ) {
     if (totalPages < 2) {
@@ -43,7 +44,7 @@ export default function CreatePages (
     for (let pageNum = lowerRange; pageNum <= upperRange; pageNum += 1) {
         pages.push({
             label: pageNum.toString(),
-            href: pageNum === 1 ? baseUrl : `${baseUrl}/page/${pageNum}`,
+            href: pageNum === 1 ? `${baseUrl}${queryString}` : `${baseUrl}/page/${pageNum}${queryString}`,
             isActive: pageNum === currentPage,
         });
     }

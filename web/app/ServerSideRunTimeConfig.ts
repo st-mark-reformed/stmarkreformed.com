@@ -3,6 +3,7 @@ import fs from 'fs';
 export enum ConfigOptions {
     BASE_URL,
     API_URL,
+    APP_API_URL,
     REDIS_HOST,
     MEMBER_EMAIL_ADDRESS,
     MEMBER_PASSWORD,

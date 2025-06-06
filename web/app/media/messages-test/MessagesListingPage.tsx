@@ -1,5 +1,6 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
+import { headers } from 'next/headers';
 import FindAllMessagesByPage from './repository/FindAllMessagesByPage';
 import Pagination from '../../Pagination/Pagination';
 import MessagesLayout from './MessagesLayout';
@@ -9,6 +10,7 @@ import { MessagesSearchParamsParent } from './search/MessagesSearchParams';
 import Breadcrumbs from '../../Breadcrumbs';
 import FindAllByOptions from './repository/FindAllByOptions';
 import FindAllSeriesOptions from './repository/FindAllSeriesOptions';
+import SearchMessagesByPage from './repository/SearchMessagesByPage';
 
 export default async function MessagesListingPage (
     {
@@ -19,9 +21,18 @@ export default async function MessagesListingPage (
         messagesSearchParams: MessagesSearchParamsParent;
     },
 ) {
+    const headersList = await headers();
+    const queryString = headersList.get('middleware-search-params');
+
     const { hasAnyParams } = messagesSearchParams;
 
-    const pageData = await FindAllMessagesByPage(pageNum);
+    const pageData = messagesSearchParams.hasAnyParams
+        ? await SearchMessagesByPage(pageNum, messagesSearchParams)
+        : await FindAllMessagesByPage(pageNum);
+
+    if (hasAnyParams && !pageData) {
+        return <>TODOD</>;
+    }
 
     if (pageData === null) {
         notFound();
@@ -38,6 +49,7 @@ export default async function MessagesListingPage (
             baseUrl="/media/messages-test"
             currentPage={pageData.currentPage}
             totalPages={pageData.totalPages}
+            queryString={queryString || ''}
         />
     );
 

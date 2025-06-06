@@ -10,12 +10,15 @@ export default function Pagination (
         totalPages = 1,
         pad = 2,
         className = '',
-    }: PaginationParams & {
-        className?: string | undefined;
-    },
+        queryString,
+    }: PaginationParams,
 ) {
     if (totalPages < 2) {
         return null;
+    }
+
+    if (queryString && !queryString.startsWith('?')) {
+        queryString = `?${queryString}`;
     }
 
     const prevPage = currentPage <= 1 ? null : currentPage - 1;
@@ -26,24 +29,24 @@ export default function Pagination (
         }
 
         if (prevPage < 2) {
-            return baseUrl;
+            return `${baseUrl}${queryString}`;
         }
 
-        return `${baseUrl}/page/${prevPage}`;
+        return `${baseUrl}/page/${prevPage}${queryString}`;
     })();
 
     const nextPage = currentPage >= totalPages ? null : currentPage + 1;
 
-    const nextPageLink = !nextPage ? null : `${baseUrl}/page/${nextPage}`;
+    const nextPageLink = !nextPage ? null : `${baseUrl}/page/${nextPage}${queryString}`;
 
-    const firstPageLink = currentPage <= (pad + 1) ? null : `${baseUrl}`;
+    const firstPageLink = currentPage <= (pad + 1) ? null : `${baseUrl}${queryString}`;
 
     const lastPageLink = (() => {
         if (currentPage + pad >= totalPages) {
             return null;
         }
 
-        return `${baseUrl}/page/${totalPages}`;
+        return `${baseUrl}/page/${totalPages}${queryString}`;
     })();
 
     const pages = CreatePages({
@@ -51,6 +54,7 @@ export default function Pagination (
         currentPage,
         totalPages,
         pad,
+        queryString,
     });
 
     return (

@@ -23,11 +23,17 @@ export function createMessagesSearchParamsFromRaw (
     rawParams: RawSearchParams,
 ): MessagesSearchParamsParent {
     let by = rawParams['by[]'];
+    if (typeof by === 'string') {
+        by = [by];
+    }
     if (!Array.isArray(by)) {
         by = [];
     }
 
     let series = rawParams['series[]'];
+    if (typeof series === 'string') {
+        series = [series];
+    }
     if (!Array.isArray(series)) {
         series = [];
     }

@@ -49,7 +49,7 @@ export default function SearchFormData (
                 });
 
                 formInputs.series.forEach((seriesItem) => {
-                    url.searchParams.append('by[]', seriesItem);
+                    url.searchParams.append('series[]', seriesItem);
                 });
 
                 if (formInputs.scripture_reference) {

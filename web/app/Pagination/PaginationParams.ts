@@ -3,4 +3,6 @@ export type PaginationParams = {
     currentPage?: number;
     totalPages?: number;
     pad?: number;
+    className?: string | undefined;
+    queryString?: string;
 };
