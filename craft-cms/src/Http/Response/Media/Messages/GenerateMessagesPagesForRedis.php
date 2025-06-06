@@ -107,7 +107,7 @@ class GenerateMessagesPagesForRedis
         $this->generateSeriesOptions();
     }
 
-    private function createJsonArrayFromEntry (Entry $entry): array
+    public function createJsonArrayFromEntry (Entry $entry): array
     {
         $by = $entry->profile->one();
 

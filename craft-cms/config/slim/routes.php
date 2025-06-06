@@ -8,6 +8,7 @@ use App\Http\Response\Calendar\GetCalendarIndexAction;
 use App\Http\Response\Calendar\GetIcsAction;
 use App\Http\Response\LogIn\PostLogInAction;
 use App\Http\Response\Media\Galleries\PaginatedGalleriesListAction;
+use App\Http\Response\Media\Messages\ApiPaginatedMessagesSearchAction;
 use App\Http\Response\Media\Messages\PaginatedMessagesListAction;
 use App\Http\Response\Media\MessagesFeed\MessagesFeedAction;
 use App\Http\Response\Media\Resources\PaginatedResourcesListAction;
@@ -49,6 +50,8 @@ return static function (App $app): void {
     if ((bool) getenv('DEV_MODE')) {
         $app->get('/tinker', Tinker::class);
     }
+
+    ApiPaginatedMessagesSearchAction::addRoute($app);
 
     PostSubmissionAction::addRoute(routeCollector: $app);
 
