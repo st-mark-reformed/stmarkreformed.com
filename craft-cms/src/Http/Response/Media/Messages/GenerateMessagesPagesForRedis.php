@@ -20,8 +20,8 @@ class GenerateMessagesPagesForRedis
     public function __construct(
         private Redis $redis,
         private MessagesApi $messagesApi,
-        private CategoryQueryFactory $queryFactory,
         private EntryQueryFactory $entryQueryFactory,
+        private CategoryQueryFactory $categoryQueryFactory,
     ) {
     }
 
@@ -101,6 +101,10 @@ class GenerateMessagesPagesForRedis
         }
 
         $this->generateMostRecentSeries();
+
+        $this->generateByOptions();
+
+        $this->generateSeriesOptions();
     }
 
     private function createJsonArrayFromEntry (Entry $entry): array
@@ -371,7 +375,7 @@ class GenerateMessagesPagesForRedis
 
     private function generateMostRecentSeries(): void
     {
-        $query = $this->queryFactory->make();
+        $query = $this->categoryQueryFactory->make();
 
         $query->group('messageSeries');
 
@@ -393,6 +397,67 @@ class GenerateMessagesPagesForRedis
         $this->redis->set(
             'messages:most_recent_series',
             json_encode($results),
+        );
+    }
+
+    private function generateByOptions(): void
+    {
+        $query = $this->entryQueryFactory->make();
+
+        $query->section('profiles');
+
+        $query->id(array_keys($this->byIds));
+
+        $allProfiles = $query->all();
+
+        $leadership = [];
+
+        $others = [];
+
+        foreach ($allProfiles as $profile) {
+            if ($profile->leadershipPosition->value === null) {
+                $others[$profile->slug] = $profile->fullNameHonorific();
+
+                continue;
+            }
+
+            $leadership[$profile->slug] = $profile->fullNameHonorific();
+        }
+
+        ksort($leadership);
+
+        ksort($others);
+
+        $this->redis->set(
+            'messages:by_options',
+            json_encode([
+                'leadership' => $leadership,
+                'others' => $others,
+            ]),
+        );
+    }
+
+    private function generateSeriesOptions(): void
+    {
+        $query = $this->categoryQueryFactory->make();
+
+        $query->group('messageSeries');
+
+        $query->id(array_keys($this->seriesIds));
+
+        $allSeries = $query->all();
+
+        $series = [];
+
+        foreach ($allSeries as $category) {
+            $series[$category->slug] = $category->title;
+        }
+
+        ksort($series);
+
+        $this->redis->set(
+            'messages:series_options',
+            json_encode($series),
         );
     }
 }

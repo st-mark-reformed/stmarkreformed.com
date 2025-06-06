@@ -5,8 +5,17 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import SearchFormData from './SearchFormData';
 import ToggleWithLabel from '../../../components/Toggle/ToggleWithLabel';
 import useMessagesSearchParams from './useMessagesSearchParams';
+import { ByOptions } from '../repository/FindAllByOptions';
 
-export default function SearchForm () {
+export default function SearchForm (
+    {
+        byOptions,
+        seriesOptions,
+    }: {
+        byOptions: ByOptions;
+        seriesOptions: Record<string, string>;
+    },
+) {
     const { hasAnyParams } = useMessagesSearchParams();
 
     const [formIsVisible, setFormIsVisible] = useState(false);
@@ -44,6 +53,8 @@ export default function SearchForm () {
             <SearchFormData
                 formIsShown={formIsVisible || hasAnyParams}
                 setFormIsShown={setFormIsVisible}
+                byOptions={byOptions}
+                seriesOptions={seriesOptions}
             />
         </>
     );

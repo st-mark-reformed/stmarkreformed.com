@@ -1,21 +1,28 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable @typescript-eslint/naming-convention */
 import React, {
-    Dispatch, SetStateAction, useActionState, useState,
+    Dispatch,
+    SetStateAction,
+    useState,
 } from 'react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import { XMarkIcon } from '@heroicons/react/16/solid';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import useMessagesSearchParams from './useMessagesSearchParams';
+import { ByOptions } from '../repository/FindAllByOptions';
+import { MessagesSearchParams } from './MessagesSearchParams';
 
 export default function SearchFormData (
     {
         formIsShown,
         setFormIsShown,
+        byOptions,
+        seriesOptions,
     }: {
         formIsShown: boolean;
         setFormIsShown: (enabled: boolean) => void | Dispatch<SetStateAction<boolean>>;
+        byOptions: ByOptions;
+        seriesOptions: Record<string, string>;
     },
 ) {
     const router = useRouter();
@@ -26,78 +33,52 @@ export default function SearchFormData (
         true,
     );
 
-    const {
-        by,
-        series,
-        scripture_reference,
-        title,
-        date_range_start,
-        date_range_end,
-    } = params;
-
-    const [, formAction] = useActionState(
-        (prevState: void, formData: FormData) => {
-            const formBy = formData.getAll('by[]').filter(
-                (byItem) => typeof byItem === 'string',
-            );
-
-            const formSeries = formData.getAll('series[]').filter(
-                (seriesItem) => typeof seriesItem === 'string',
-            );
-
-            const formScripture = formData.get('scripture_reference');
-
-            const formTitle = formData.get('title');
-
-            const formDateStart = formData.get('date_range_start');
-
-            const formDateEnd = formData.get('date_range_end');
-
-            const url = new URL(window.location.href.split('?')[0]);
-
-            formBy.forEach((byItem: string) => {
-                url.searchParams.append('by[]', byItem);
-            });
-
-            formSeries.forEach((seriesItem) => {
-                url.searchParams.append('series[]', seriesItem);
-            });
-
-            if (typeof formScripture === 'string' && formScripture) {
-                url.searchParams.append(
-                    'scripture_reference',
-                    formScripture,
-                );
-            }
-
-            if (typeof formTitle === 'string' && formTitle) {
-                url.searchParams.append('title', formTitle);
-            }
-
-            if (typeof formDateStart === 'string' && formDateStart) {
-                url.searchParams.append(
-                    'date_range_start',
-                    formDateStart,
-                );
-            }
-
-            if (typeof formDateEnd === 'string' && formDateEnd) {
-                url.searchParams.append(
-                    'date_range_end',
-                    formDateEnd,
-                );
-            }
-
-            router.push(url.toString());
-
-            return prevState;
-        },
-        undefined,
-    );
+    const [formInputs, setFormInputs] = useState<MessagesSearchParams>(params);
 
     return (
         <form
-            action={formAction}
+            onSubmit={(e) => {
+                e.preventDefault();
+
+                const url = new URL(window.location.href.split('?')[0]);
+
+                formInputs.by.forEach((byItem) => {
+                    url.searchParams.append('by[]', byItem);
+                });
+
+                formInputs.series.forEach((seriesItem) => {
+                    url.searchParams.append('by[]', seriesItem);
+                });
+
+                if (formInputs.scripture_reference) {
+                    url.searchParams.append(
+                        'scripture_reference',
+                        formInputs.scripture_reference,
+                    );
+                }
+
+                if (formInputs.title) {
+                    url.searchParams.append('title', formInputs.title);
+                }
+
+                if (formInputs.date_range_start) {
+                    url.searchParams.append(
+                        'date_range_start',
+                        formInputs.date_range_start,
+                    );
+                }
+
+                if (formInputs.date_range_end) {
+                    url.searchParams.append(
+                        'date_range_end',
+                        formInputs.date_range_end,
+                    );
+                }
+
+                setApplyButtonDisabled(true);
+
+                router.push(url.toString());
+            }}
             onChange={() => setApplyButtonDisabled(false)}
             className={(() => {
                 const classes = [
@@ -124,12 +105,41 @@ export default function SearchFormData (
                             id="by"
                             name="by[]"
                             className="block focus:ring-crimson focus:border-crimson w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                            value={formInputs.by || []}
+                            onChange={(e) => {
+                                const selectedValues = Array.from(e.target.selectedOptions).map((option) => option.value);
+
+                                setFormInputs({
+                                    ...formInputs,
+                                    by: selectedValues,
+                                });
+                            }}
                             multiple
                         >
-                            <optgroup label="TODO">
-                                <option>Some Option</option>
-                                <option>Another Option</option>
-                            </optgroup>
+                            {(() => {
+                                if (!byOptions) {
+                                    return null;
+                                }
+
+                                return (
+                                    <>
+                                        <optgroup label="St. Mark Leadership">
+                                            {Object.entries(byOptions.leadership).map(([slug, name]) => (
+                                                <option key={slug} value={slug}>
+                                                    {name}
+                                                </option>
+                                            ))}
+                                        </optgroup>
+                                        <optgroup label="Other Speakers">
+                                            {Object.entries(byOptions.others).map(([slug, name]) => (
+                                                <option key={slug} value={slug}>
+                                                    {name}
+                                                </option>
+                                            ))}
+                                        </optgroup>
+                                    </>
+                                );
+                            })()}
                         </select>
                     </div>
                 </div>
@@ -143,11 +153,22 @@ export default function SearchFormData (
                             id="series"
                             name="series[]"
                             className="block focus:ring-crimson focus:border-crimson w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                            value={formInputs.series || []}
+                            onChange={(e) => {
+                                const selectedValues = Array.from(e.target.selectedOptions).map((option) => option.value);
+
+                                setFormInputs({
+                                    ...formInputs,
+                                    series: selectedValues,
+                                });
+                            }}
                             multiple
                         >
-                            <optgroup label="TODO">
-                                <option>Some Option</option>
-                            </optgroup>
+                            {Object.entries(seriesOptions).map(([slug, name]) => (
+                                <option key={slug} value={slug}>
+                                    {name}
+                                </option>
+                            ))}
                         </select>
                     </div>
                 </div>
@@ -162,7 +183,13 @@ export default function SearchFormData (
                             id="scripture_reference"
                             name="scripture_reference"
                             className="shadow-sm focus:ring-crimson focus:border-crimson block w-full sm:text-sm border-gray-300 rounded-md"
-                            defaultValue={scripture_reference}
+                            value={formInputs.scripture_reference}
+                            onChange={(e) => {
+                                setFormInputs({
+                                    ...formInputs,
+                                    scripture_reference: e.currentTarget.value,
+                                });
+                            }}
                         />
                     </div>
                 </div>
@@ -177,7 +204,13 @@ export default function SearchFormData (
                             id="title"
                             name="title"
                             className="shadow-sm focus:ring-crimson focus:border-crimson block w-full sm:text-sm border-gray-300 rounded-md"
-                            defaultValue={title}
+                            value={formInputs.title}
+                            onChange={(e) => {
+                                setFormInputs({
+                                    ...formInputs,
+                                    title: e.currentTarget.value,
+                                });
+                            }}
                         />
                     </div>
                 </div>
@@ -192,7 +225,13 @@ export default function SearchFormData (
                             id="date_range_start"
                             name="date_range_start"
                             className="shadow-sm focus:ring-crimson focus:border-crimson block w-full sm:text-sm border-gray-300 rounded-md"
-                            defaultValue={date_range_start}
+                            value={formInputs.date_range_start}
+                            onChange={(e) => {
+                                setFormInputs({
+                                    ...formInputs,
+                                    date_range_start: e.currentTarget.value,
+                                });
+                            }}
                         />
                     </div>
                 </div>
@@ -207,7 +246,13 @@ export default function SearchFormData (
                             id="date_range_end"
                             name="date_range_end"
                             className="shadow-sm focus:ring-crimson focus:border-crimson block w-full sm:text-sm border-gray-300 rounded-md"
-                            defaultValue={date_range_end}
+                            value={formInputs.date_range_end}
+                            onChange={(e) => {
+                                setFormInputs({
+                                    ...formInputs,
+                                    date_range_end: e.currentTarget.value,
+                                });
+                            }}
                         />
                     </div>
                 </div>
@@ -219,18 +264,31 @@ export default function SearchFormData (
                     }
 
                     return (
-                        <Link
-                            href="/media/messages-test"
+                        <button
+                            type="button"
                             className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-crimson cursor-pointer"
                             onClick={() => {
                                 setFormIsShown(false);
+
+                                setFormInputs({
+                                    by: [],
+                                    series: [],
+                                    scripture_reference: '',
+                                    title: '',
+                                    date_range_start: '',
+                                    date_range_end: '',
+                                });
+
+                                router.push(
+                                    window.location.href.split('?')[0],
+                                );
                             }}
                         >
                             Clear Search
                             <span className="inline-block w-5 h-5 mb-0.5 ml-1 align-middle">
                                 <XMarkIcon />
                             </span>
-                        </Link>
+                        </button>
                     );
                 })()}
                 <button

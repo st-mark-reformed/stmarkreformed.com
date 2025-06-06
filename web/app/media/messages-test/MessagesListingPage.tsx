@@ -7,6 +7,8 @@ import EntryDisplay from './EntryDisplay';
 import SearchForm from './search/SearchForm';
 import { MessagesSearchParamsParent } from './search/MessagesSearchParams';
 import Breadcrumbs from '../../Breadcrumbs';
+import FindAllByOptions from './repository/FindAllByOptions';
+import FindAllSeriesOptions from './repository/FindAllSeriesOptions';
 
 export default async function MessagesListingPage (
     {
@@ -24,6 +26,10 @@ export default async function MessagesListingPage (
     if (pageData === null) {
         notFound();
     }
+
+    const byOptions = await FindAllByOptions();
+
+    const seriesOptions = await FindAllSeriesOptions();
 
     const totalEntries = pageData.entries.length;
 
@@ -53,7 +59,7 @@ export default async function MessagesListingPage (
                 );
             })()}
             <div className="px-8 pt-4 relative">
-                <SearchForm />
+                <SearchForm byOptions={byOptions} seriesOptions={seriesOptions} />
                 {pagination}
             </div>
         </>
