@@ -63,7 +63,7 @@ export default async function MessagesLayout (
                                 />,
                             },
                             {
-                                href: '/media/messages-test/feed',
+                                href: '/media/messages/feed',
                                 content: <SidebarSubscribeLink
                                     content="RSS Feed"
                                     iconHref="/images/podcast/rss.svg"
@@ -76,14 +76,14 @@ export default async function MessagesLayout (
                         heading: 'Messages by',
                         nav: [
                             {
-                                href: '/media/messages-test/by/joe-thacker',
+                                href: '/media/messages/by/joe-thacker',
                                 content: 'Rev. Joe Thacker (Pastor)',
-                                isActive: pathname?.startsWith('/media/messages-test/by/joe-thacker'),
+                                isActive: pathname?.startsWith('/media/messages/by/joe-thacker'),
                             },
                             {
-                                href: '/media/messages-test/by/burke-shade',
+                                href: '/media/messages/by/burke-shade',
                                 content: 'Rev. Burke Shade (Associate Pastor)',
-                                isActive: pathname?.startsWith('/media/messages-test/by/burke-shade'),
+                                isActive: pathname?.startsWith('/media/messages/by/burke-shade'),
                             },
                         ],
                     },
@@ -91,9 +91,9 @@ export default async function MessagesLayout (
                         id: 'most-recent-series',
                         heading: 'Most recent series',
                         nav: recentSeries.map((series) => ({
-                            href: `/media/messages-test/series/${series.slug}`,
+                            href: `/media/messages/series/${series.slug}`,
                             content: series.title,
-                            isActive: pathname?.startsWith(`/media/messages-test/series/${series.slug}`),
+                            isActive: pathname?.startsWith(`/media/messages/series/${series.slug}`),
                         })),
                     },
                 ]}

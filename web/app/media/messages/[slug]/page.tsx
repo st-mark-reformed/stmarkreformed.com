@@ -58,14 +58,14 @@ export default async function Page (
                 <Breadcrumbs
                     breadcrumbs={[{
                         value: 'Messages',
-                        href: '/media/messages-test',
+                        href: '/media/messages',
                     }]}
                     currentBreadcrumb={{ value: pageData.entry.title }}
                 />
             )}
         >
             <EntryDisplay
-                baseUri="/media/messages-test"
+                baseUri="/media/messages"
                 entry={pageData.entry}
             />
         </MessagesLayout>

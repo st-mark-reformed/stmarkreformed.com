@@ -2,7 +2,7 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import GetPageData from './GetPageData';
 import MemberLayout from '../MemberLayout';
-import EntryDisplay from '../../media/messages-test/EntryDisplay';
+import EntryDisplay from '../../media/messages/EntryDisplay';
 import Pagination from '../../Pagination/Pagination';
 
 export default async function MembersInternalMediaPage (

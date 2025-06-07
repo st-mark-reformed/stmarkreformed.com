@@ -1,12 +1,12 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
+import FindAllMessagesBySpeakerByPage from '../../repository/FindAllMessagesBySpeakerByPage';
 import Pagination from '../../../../Pagination/Pagination';
 import Breadcrumbs from '../../../../Breadcrumbs';
-import FindAllMessagesBySeriesByPage from '../../repository/FindAllMessagesBySeriesByPage';
 import MessagesLayout from '../../MessagesLayout';
 import EntryDisplay from '../../EntryDisplay';
 
-export default async function MessagesSeriesListingPage (
+export default async function MessagesByListingPage (
     {
         slug,
         pageNum,
@@ -15,7 +15,7 @@ export default async function MessagesSeriesListingPage (
         pageNum: number;
     },
 ) {
-    const pageData = await FindAllMessagesBySeriesByPage(slug, pageNum);
+    const pageData = await FindAllMessagesBySpeakerByPage(slug, pageNum);
 
     if (pageData === null) {
         notFound();
@@ -25,7 +25,7 @@ export default async function MessagesSeriesListingPage (
 
     const pagination = (
         <Pagination
-            baseUrl={`/media/messages-test/series/${slug}`}
+            baseUrl={`/media/messages/by/${slug}`}
             currentPage={pageData.currentPage}
             totalPages={pageData.totalPages}
         />
@@ -36,9 +36,9 @@ export default async function MessagesSeriesListingPage (
             <Breadcrumbs
                 breadcrumbs={[{
                     value: 'Messages',
-                    href: '/media/messages-test',
+                    href: '/media/messages',
                 }]}
-                currentBreadcrumb={{ value: `series: ${pageData.seriesName}` }}
+                currentBreadcrumb={{ value: `by ${pageData.byName}` }}
             />
             <div className="px-8 pt-4">{pagination}</div>
         </>
@@ -46,14 +46,14 @@ export default async function MessagesSeriesListingPage (
 
     return (
         <MessagesLayout
-            heroHeading={`Messages Series: ${pageData.seriesName}`}
+            heroHeading={`Messages by ${pageData.byName}`}
             topOfBodyContent={topOfBodyContent}
             bottomOfBodyContent={<div className="px-8 pb-4">{pagination}</div>}
         >
             {pageData.entries.map((entry, i) => (
                 <EntryDisplay
                     key={`${entry.slug}-${entry.postDate}`}
-                    baseUri="/media/messages-test"
+                    baseUri="/media/messages"
                     entry={entry}
                     showBorder={(i + 1) < totalEntries}
                     showPermalink

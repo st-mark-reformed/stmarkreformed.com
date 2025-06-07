@@ -4,7 +4,7 @@ import GetPageData from './GetPageData';
 import Pagination from '../../../../Pagination/Pagination';
 import Breadcrumbs from '../../../../Breadcrumbs';
 import MemberLayout from '../../../MemberLayout';
-import EntryDisplay from '../../../../media/messages-test/EntryDisplay';
+import EntryDisplay from '../../../../media/messages/EntryDisplay';
 
 export default async function MembersInternalMediaSeriesPage (
     {

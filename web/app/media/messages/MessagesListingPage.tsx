@@ -46,7 +46,7 @@ export default async function MessagesListingPage (
 
     const pagination = (
         <Pagination
-            baseUrl="/media/messages-test"
+            baseUrl="/media/messages"
             currentPage={pageData.currentPage}
             totalPages={pageData.totalPages}
             queryString={queryString || ''}
@@ -64,7 +64,7 @@ export default async function MessagesListingPage (
                     <Breadcrumbs
                         breadcrumbs={[{
                             value: 'Messages',
-                            href: '/media/messages-test',
+                            href: '/media/messages',
                         }]}
                         currentBreadcrumb={{ value: 'Search Results' }}
                     />
@@ -86,7 +86,7 @@ export default async function MessagesListingPage (
             {pageData.entries.map((entry, i) => (
                 <EntryDisplay
                     key={`${entry.slug}-${entry.postDate}`}
-                    baseUri="/media/messages-test"
+                    baseUri="/media/messages"
                     entry={entry}
                     showBorder={(i + 1) < totalEntries}
                     showPermalink
