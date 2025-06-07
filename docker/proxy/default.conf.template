@@ -86,6 +86,34 @@ server {
         proxy_pass ${WEB_PROXY};
         break;
     }
+    location /talent-show {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
+    location /sms {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
+    location /pyles {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
+    location /prayer-list {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
+    location /pancakes {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
+    location /media/galleries/twelfth-night-january-2020 {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
+    location /blake-purcell {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
 
     location / {
         if ($args ~* ^_rsc) {
