@@ -5,7 +5,7 @@
 @config "./tailwind.config.js";
 
 :root {
-    --color-gold: #f5c4c0;
+    --color-gold: #f3c213;
     --color-crimson-lightened-3: #eeadad;
     --color-crimson-lightened-2: #da7f8e;
     --color-crimson-lightened-1: #ca4b5f;
@@ -62,6 +62,14 @@
 
 .prose a:not(.not-prose):hover {
     color: var(--color-crimson-dark);
+}
+
+.prose-over-dark a:not(.not-prose) {
+    color: #fff;
+}
+
+.prose-over-dark a:not(.not-prose):hover {
+    color: var(--color-gray-200);
 }
 
 @-webkit-keyframes spinner {
