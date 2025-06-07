@@ -2,7 +2,7 @@
 /* eslint-disable react/no-danger */
 import React, { ReactNode } from 'react';
 import Nav from './Nav';
-import Hero, { HeroType } from './HeroType';
+import Hero, { HeroType } from './Hero';
 import Footer from './Footer';
 
 export default async function Layout (

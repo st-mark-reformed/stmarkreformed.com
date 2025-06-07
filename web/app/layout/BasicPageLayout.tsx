@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { HeroType } from './HeroType';
+import { HeroType } from './Hero';
 import Layout from './Layout';
 
 export default function BasicPageLayout (
