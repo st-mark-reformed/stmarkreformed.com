@@ -178,7 +178,7 @@ export default function AudioListing (
                 return (
                     <div className="text-center mt-2">
                         <Link
-                            className="text-tjd-red-500 hover:text-tjd-red-600"
+                            className="text-crimson hover:text-crimson-dark underline"
                             href={permalink}
                         >
                             Permalink ›

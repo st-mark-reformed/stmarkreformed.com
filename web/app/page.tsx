@@ -4,6 +4,7 @@ import Layout from './layout/Layout';
 import ImageContentCta from './PageComponents/ImageContentCta';
 import UpcomingEvents from './PageComponents/UpcomingEvents/UpcomingEvents';
 import LatestGalleries from './PageComponents/LatestGalleries/LatestGalleries';
+import LatestSermon from './PageComponents/LatestSermon';
 
 export const dynamic = 'force-static';
 
@@ -54,6 +55,7 @@ export default async function Page () {
                 heading="A picture is worth a thousand words"
                 subHeading="Take a look at the life of St. Mark through a few of our smiling faces and latest events"
             />
+            <LatestSermon />
         </Layout>
     );
 }
