@@ -17,7 +17,7 @@ export default function NewsListing (
     const href = `${baseUri}/${entry.slug}`;
 
     return (
-        <article className="flex flex-col items-start justify-between border border-gray-200 p-3 sm:p-6 shadow-md rounded-lg">
+        <article className="flex flex-col items-start justify-between border border-gray-200 p-3 sm:p-6 shadow-md rounded-lg bg-white">
             <div className="flex items-center gap-x-4 text-xs">
                 <div className="text-gray-500">
                     {entry.readableDate}

@@ -2,25 +2,29 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import FindAllGalleryEntries from '../../media/galleries/repository/FindAllGalleryEntries';
-import typography from '../../typography/typography';
-import GalleryListingItem from '../../media/galleries/GalleryListingItem';
+import FindNewsItemsByPage from '../news/repository/FindNewsItemsByPage';
+import typography from '../typography/typography';
+import NewsListing from '../news/NewsListing';
 
-export interface LatestGalleriesConfig {
+export interface LatestNewsConfig {
     heading?: string;
     subHeading?: string;
 }
 
-export default function LatestGalleries (
+export default async function LatestNews (
     {
-        heading = 'Latest Galleries',
+        heading = 'The Latest News at St. Mark',
         subHeading,
-    }: LatestGalleriesConfig,
+    }: LatestNewsConfig,
 ) {
-    const entries = FindAllGalleryEntries().slice(0, 3);
+    const newsPageData = await FindNewsItemsByPage(
+        'news',
+        1,
+    );
 
-    if (entries.length < 1) {
+    const entries = newsPageData?.entries.slice(0, 3);
+
+    if (!entries || entries.length < 1) {
         return null;
     }
 
@@ -69,14 +73,20 @@ export default function LatestGalleries (
                     );
                 })()}
                 <div className="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
-                    {entries.map((entry) => <GalleryListingItem key={entry.slug} entry={entry} />)}
+                    {entries.map((entry) => (
+                        <NewsListing
+                            key={`${entry.slug}-${entry.readableDate}`}
+                            entry={entry}
+                            baseUri="/news"
+                        />
+                    ))}
                 </div>
                 <div className="text-center mt-16">
                     <Link
-                        href="/media/galleries"
+                        href="/news"
                         className="shadow-lg inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-md text-white bg-goldenrod hover:bg-saddle-brown-lightened-2"
                     >
-                        View all galleries
+                        View all news
                     </Link>
                 </div>
             </div>

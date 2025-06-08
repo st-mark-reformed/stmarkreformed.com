@@ -3,8 +3,9 @@ import Link from 'next/link';
 import Layout from './layout/Layout';
 import ImageContentCta from './PageComponents/ImageContentCta';
 import UpcomingEvents from './PageComponents/UpcomingEvents/UpcomingEvents';
-import LatestGalleries from './PageComponents/LatestGalleries/LatestGalleries';
+import LatestGalleries from './PageComponents/LatestGalleries';
 import LatestSermon from './PageComponents/LatestSermon';
+import LatestNews from './PageComponents/LatestNews';
 
 export const dynamic = 'force-static';
 
@@ -56,6 +57,7 @@ export default async function Page () {
                 subHeading="Take a look at the life of St. Mark through a few of our smiling faces and latest events"
             />
             <LatestSermon />
+            <LatestNews />
         </Layout>
     );
 }

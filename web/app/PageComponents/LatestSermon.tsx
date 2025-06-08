@@ -16,8 +16,6 @@ export default async function LatestSermon () {
 
     const entry = entries[0];
 
-    console.log(entry);
-
     return (
         <div className="bg-saddle-brown relative overflow-hidden">
             <div
