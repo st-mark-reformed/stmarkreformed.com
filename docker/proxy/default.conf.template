@@ -114,6 +114,10 @@ server {
         proxy_pass ${WEB_PROXY};
         break;
     }
+    location /home-test {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
 
     location / {
         if ($args ~* ^_rsc) {
