@@ -7,7 +7,7 @@ import LatestGalleries from '../PageComponents/LatestGalleries';
 import LatestSermon from '../PageComponents/LatestSermon';
 import LatestNews from '../PageComponents/LatestNews';
 
-export const dynamic = 'force-static';
+export const dynamic = 'force-dynamic';
 
 export default async function Page () {
     return (
