@@ -7,8 +7,10 @@ namespace App\Calendar;
 use App\Calendar\Month\MonthDayFactory;
 use Config\SystemTimezone;
 use DateInterval;
+use DateTimeImmutable;
 use Psr\Clock\ClockInterface;
 use Redis;
+use RxAnte\AppBootstrap\Cli\ApplyCliCommandsEvent;
 use RxAnte\DateImmutable;
 
 use function array_map;
@@ -30,6 +32,16 @@ readonly class GenerateCalendarPages
     /** @var string[] */
     private array $monthRange;
 
+    private DateTimeImmutable $today;
+
+    public static function addCommand(ApplyCliCommandsEvent $commands): void
+    {
+        $commands->addCommand(
+            'calendar:generate-pages',
+            self::class,
+        );
+    }
+
     public function __construct(
         ClockInterface $clock,
         private Redis $redis,
@@ -37,11 +49,13 @@ readonly class GenerateCalendarPages
         private EventRepository $eventRepository,
         private MonthDayFactory $monthDayFactory,
     ) {
-        $today = $clock->now()->setTimezone($this->systemTimezone);
+        $this->today = $clock->now()->setTimezone(
+            $this->systemTimezone,
+        );
 
         $oneYear      = new DateInterval('P1Y');
-        $oneYearAgo   = $today->sub($oneYear);
-        $oneYearAhead = $today->add($oneYear);
+        $oneYearAgo   = $this->today->sub($oneYear);
+        $oneYearAhead = $this->today->add($oneYear);
 
         $monthRange  = [];
         $currentDate = $oneYearAgo;

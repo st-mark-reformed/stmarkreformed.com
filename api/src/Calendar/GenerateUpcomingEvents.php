@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Calendar;
 
 use Redis;
+use RxAnte\AppBootstrap\Cli\ApplyCliCommandsEvent;
 
 use function json_encode;
 
@@ -13,6 +14,14 @@ readonly class GenerateUpcomingEvents
     public const string JOB_HANDLE = 'generate-upcoming-events';
 
     public const string JOB_NAME = 'Generate Upcoming Events';
+
+    public static function addCommand(ApplyCliCommandsEvent $commands): void
+    {
+        $commands->addCommand(
+            'calendar:generate-upcoming',
+            self::class,
+        );
+    }
 
     public function __construct(
         private Redis $redis,
