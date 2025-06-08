@@ -109,6 +109,7 @@ readonly class EventRepository
                         in_array(
                             $event->uid,
                             $eventHashStore,
+                            true,
                         )
                     ) {
                         return false;

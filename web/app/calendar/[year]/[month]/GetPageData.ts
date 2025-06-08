@@ -1,19 +1,7 @@
 import { cache } from 'react';
 import getRedisClient from '../../../cache/RedisClient';
 import { CalendarPageParams } from './CalendarPageParams';
-
-interface Event {
-    uid: string;
-    summary: string;
-    description: string;
-    location: string;
-    isInPast: boolean;
-    startDate: string;
-    endDate: string;
-    isMultiDay: boolean;
-    isAllDay: boolean;
-    totalDays: number;
-}
+import { CalendarEvent } from '../../CalendarEvent';
 
 interface Day {
     isInPast: boolean;
@@ -23,7 +11,7 @@ interface Day {
     year: number;
     month: number;
     day: number;
-    events: Array<Event>;
+    events: Array<CalendarEvent>;
 }
 
 interface ReturnType {
@@ -32,7 +20,7 @@ interface ReturnType {
     monthRows: number;
     monthString: string;
     dateHeading: string;
-    monthEventsList: Array<Event>;
+    monthEventsList: Array<CalendarEvent>;
 }
 
 const GetPageData = cache(async (

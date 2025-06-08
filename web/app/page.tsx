@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Layout from './layout/Layout';
 import ImageContentCta from './PageComponents/ImageContentCta';
+import UpcomingEvents from './PageComponents/UpcomingEvents/UpcomingEvents';
 
 export const dynamic = 'force-static';
 
@@ -47,6 +48,7 @@ export default async function Page () {
                     newWindow: true,
                 }}
             />
+            <UpcomingEvents />
         </Layout>
     );
 }
