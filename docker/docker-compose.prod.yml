@@ -125,6 +125,7 @@ services:
       HOSTNAME: stmark-api
     volumes:
       - /root/certbot/var/www/letsencrypt:/var/www/letsencrypt
+      - /root/stmarkreformed.com/docker/api/signing-certificate.cert:/var/www/storage/auth/signing-certificate.cert
       - api-storage-volume:/var/www/storage
     networks:
       traefik:

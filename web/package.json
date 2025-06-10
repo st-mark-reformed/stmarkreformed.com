@@ -1,5 +1,5 @@
 {
-    "name": "sermons_tjdraper_com",
+    "name": "smrc_web",
     "private": true,
     "scripts": {
         "dev": "NODE_OPTIONS='--inspect' next dev",
@@ -19,6 +19,7 @@
         "react-h5-audio-player": "3.10.0-rc.1",
         "react-select": "^5.10.1",
         "rss": "^1.2.2",
+        "rxante-oauth": "^1.6.0",
         "sleep-promise": "^9.1.0",
         "smartypants": "^0.2.2",
         "string-remove-widows": "^4.0.25",

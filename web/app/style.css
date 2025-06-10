@@ -51,25 +51,9 @@
 }
 
 .loader {
+    border-top-color: #4CA8CB;
     -webkit-animation: spinner 1.5s linear infinite;
     animation: spinner 1.5s linear infinite;
-}
-
-.prose a:not(.not-prose) {
-    color: var(--color-crimson);
-    text-decoration: underline;
-}
-
-.prose a:not(.not-prose):hover {
-    color: var(--color-crimson-dark);
-}
-
-.prose-over-dark a:not(.not-prose) {
-    color: #fff;
-}
-
-.prose-over-dark a:not(.not-prose):hover {
-    color: var(--color-gray-200);
 }
 
 @-webkit-keyframes spinner {
@@ -88,6 +72,23 @@
     100% {
         transform: rotate(360deg);
     }
+}
+
+.prose a:not(.not-prose) {
+    color: var(--color-crimson);
+    text-decoration: underline;
+}
+
+.prose a:not(.not-prose):hover {
+    color: var(--color-crimson-dark);
+}
+
+.prose-over-dark a:not(.not-prose) {
+    color: #fff;
+}
+
+.prose-over-dark a:not(.not-prose):hover {
+    color: var(--color-gray-200);
 }
 
 .react-select-control input {

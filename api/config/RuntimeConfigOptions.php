@@ -25,4 +25,10 @@ enum RuntimeConfigOptions
     case SYSTEM_EMAIL_FROM_ADDRESS;
     case SYSTEM_EMAIL_FROM_NAME;
     case CONTACT_FORM_RECIPIENTS;
+
+    case AUTH0_USER_INFO_URL;
+    case AUTH0_WELL_KNOWN_URL;
+    case AUTH0_CLIENT_ID;
+    case AUTH0_CLIENT_SECRET;
+    case AUTH0_CALLBACK_DOMAIN;
 }

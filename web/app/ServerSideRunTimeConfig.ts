@@ -1,6 +1,7 @@
 import fs from 'fs';
 
 export enum ConfigOptions {
+    DEV_MODE,
     BASE_URL,
     API_URL,
     APP_API_URL,
@@ -8,6 +9,10 @@ export enum ConfigOptions {
     MEMBER_EMAIL_ADDRESS,
     MEMBER_PASSWORD,
     ENCRYPTION_KEY,
+    NEXTAUTH_SECRET,
+    NEXTAUTH_WELL_KNOWN_URL,
+    NEXTAUTH_CLIENT_ID,
+    NEXTAUTH_CLIENT_SECRET,
 }
 
 function getConfigValue (

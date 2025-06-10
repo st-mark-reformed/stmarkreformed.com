@@ -520,6 +520,10 @@
       <path value="$PROJECT_DIR$/api/vendor/symfony/mime" />
       <path value="$PROJECT_DIR$/api/vendor/symfony/event-dispatcher-contracts" />
       <path value="$PROJECT_DIR$/api/vendor/soundasleep/html2text" />
+      <path value="$PROJECT_DIR$/api/vendor/dflydev/fig-cookies" />
+      <path value="$PROJECT_DIR$/api/vendor/league/oauth2-client" />
+      <path value="$PROJECT_DIR$/api/vendor/firebase/php-jwt" />
+      <path value="$PROJECT_DIR$/api/vendor/rxante/oauth" />
     </include_path>
   </component>
   <component name="PhpProjectServersManager">

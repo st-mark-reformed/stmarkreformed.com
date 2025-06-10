@@ -285,6 +285,10 @@
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/symfony/mailer" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/symfony/mime" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/symfony/polyfill-intl-idn" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/dflydev/fig-cookies" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/firebase/php-jwt" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/league/oauth2-client" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/rxante/oauth" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -118,6 +118,14 @@ server {
         proxy_pass ${WEB_PROXY};
         break;
     }
+    location /cms/entries/messages-test {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
+    location /api {
+        proxy_pass ${WEB_PROXY};
+        break;
+    }
 
     location / {
         if ($args ~* ^_rsc) {
