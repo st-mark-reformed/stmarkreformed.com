@@ -5,13 +5,13 @@ import Link from 'next/link';
 import { HomeIcon } from '@heroicons/react/20/solid';
 import smartypants from 'smartypants';
 
-export type CurrentBreadcrumbItem = {
+export interface CurrentBreadcrumbItem {
     value: string;
-};
+}
 
-export type BreadcrumbItem = CurrentBreadcrumbItem & {
+export interface BreadcrumbItem extends CurrentBreadcrumbItem {
     href: string;
-};
+}
 
 export type BreadcrumbItems = Array<BreadcrumbItem>;
 
