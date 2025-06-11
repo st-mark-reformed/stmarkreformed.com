@@ -31,4 +31,15 @@ enum RuntimeConfigOptions
     case AUTH0_CLIENT_ID;
     case AUTH0_CLIENT_SECRET;
     case AUTH0_CALLBACK_DOMAIN;
+
+    case API_DB_HOST;
+    case API_DB_NAME;
+    case API_DB_USER;
+    case API_DB_PASSWORD;
+    case API_DB_PORT;
+
+    case ROOT_DB_HOST;
+    case ROOT_DB_USER;
+    case ROOT_DB_PASSWORD;
+    case ROOT_DB_PORT;
 }

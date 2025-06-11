@@ -15,7 +15,7 @@ readonly class GenerateUpcomingEvents
 
     public const string JOB_NAME = 'Generate Upcoming Events';
 
-    public static function addCommand(ApplyCliCommandsEvent $commands): void
+    public static function register(ApplyCliCommandsEvent $commands): void
     {
         $commands->addCommand(
             'calendar:generate-upcoming',

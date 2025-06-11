@@ -34,7 +34,7 @@ readonly class GenerateCalendarPages
 
     private DateTimeImmutable $today;
 
-    public static function addCommand(ApplyCliCommandsEvent $commands): void
+    public static function register(ApplyCliCommandsEvent $commands): void
     {
         $commands->addCommand(
             'calendar:generate-pages',

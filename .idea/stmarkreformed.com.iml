@@ -289,6 +289,16 @@
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/firebase/php-jwt" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/league/oauth2-client" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/rxante/oauth" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/cakephp/chronos" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/cakephp/core" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/cakephp/database" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/cakephp/datasource" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/cakephp/utility" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/league/container" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/psr/simple-cache" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/robmorgan/phinx" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/symfony/config" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/symfony/filesystem" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -1,0 +1,17 @@
+<?php
+
+/** @noinspection PhpIllegalPsrClassPathInspection */
+
+declare(strict_types=1);
+
+use $useClassName;
+
+// phpcs:disable Squiz.Classes.ClassFileName.NoMatch
+// phpcs:disable PSR1.Classes.ClassDeclaration.MissingNamespace
+
+class $className extends $baseClassName
+{
+    public function change(): void
+    {
+    }
+}
