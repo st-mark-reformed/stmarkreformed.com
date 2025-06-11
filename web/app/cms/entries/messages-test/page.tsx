@@ -1,6 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { PlusIcon } from '@heroicons/react/16/solid';
+import { DocumentIcon } from '@heroicons/react/24/outline';
 import CmsLayout from '../../layout/CmsLayout';
 import { createPageTitle } from '../../../createPageTitle';
 import PageHeader from '../../layout/PageHeader';
@@ -23,6 +24,17 @@ export default async function Page () {
                     title="Messages"
                     buttons={[
                         {
+                            id: 'fileManager',
+                            type: 'secondary',
+                            content: (
+                                <>
+                                    <DocumentIcon className="h-5 w-5 mr-1" />
+                                    File Manager
+                                </>
+                            ),
+                            href: '/cms/entries/messages-test/file-manager',
+                        },
+                        {
                             id: 'newEntry',
                             type: 'primary',
                             content: (
@@ -31,7 +43,7 @@ export default async function Page () {
                                     New Entry
                                 </>
                             ),
-                            href: '#newEntry',
+                            href: '/cms/entries/messages-test/new-entry',
                         },
                     ]}
                 />
@@ -39,7 +51,7 @@ export default async function Page () {
             <EmptyState
                 itemNameSingular="Entry"
                 itemNamePlural="Entries"
-                buttonHref="#newEntry"
+                buttonHref="/cms/entries/messages-test/new-entry"
             />
         </CmsLayout>
     );
