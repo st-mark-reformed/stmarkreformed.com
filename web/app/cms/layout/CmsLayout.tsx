@@ -1,7 +1,9 @@
 import React, { ReactNode, Suspense } from 'react';
+import { RequestResponse } from 'rxante-oauth/src/Request/RequestResponse';
 import Sidebar from './Sidebar/Sidebar';
 import Breadcrumbs, { BreadcrumbItems, CurrentBreadcrumbItem } from '../../Breadcrumbs';
 import PartialPageLoading from '../../PartialPageLoading';
+import FullPageError from '../../FullPageError';
 
 export enum InnerMaxWidth {
     xsmall = 'max-w-3xl',
@@ -16,6 +18,7 @@ export default async function CmsLayout (
         children,
         breadcrumbs,
         innerMaxWidth = InnerMaxWidth.medium,
+        apiResponse,
     }: {
         children: ReactNode;
         breadcrumbs?: {
@@ -23,8 +26,20 @@ export default async function CmsLayout (
             currentBreadcrumb: CurrentBreadcrumbItem;
         };
         innerMaxWidth?: InnerMaxWidth;
+        apiResponse?: RequestResponse;
     },
 ) {
+    if (apiResponse !== undefined && apiResponse.status === 403) {
+        return (
+            <FullPageError
+                statusCode={403}
+                heading="Access Denied"
+                // @ts-expect-error TS2339
+                errorMessage={apiResponse.json?.message}
+            />
+        );
+    }
+
     return (
         <div>
             <Sidebar />

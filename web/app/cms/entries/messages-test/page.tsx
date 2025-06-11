@@ -6,6 +6,7 @@ import CmsLayout from '../../layout/CmsLayout';
 import { createPageTitle } from '../../../createPageTitle';
 import PageHeader from '../../layout/PageHeader';
 import EmptyState from '../../layout/EmptyState';
+import { RequestFactory } from '../../../api/request/RequestFactory';
 
 export async function generateMetadata (): Promise<Metadata> {
     return {
@@ -17,8 +18,14 @@ export async function generateMetadata (): Promise<Metadata> {
 }
 
 export default async function Page () {
+    // For now, just make sure we're logged in
+    const apiResponse = await RequestFactory().makeWithSignInRedirect({
+        uri: '/userinfo',
+        cacheSeconds: 0,
+    });
+
     return (
-        <CmsLayout>
+        <CmsLayout apiResponse={apiResponse}>
             <div className="mb-4 ">
                 <PageHeader
                     title="Messages"
