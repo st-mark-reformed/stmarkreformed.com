@@ -19,7 +19,17 @@ export async function generateMetadata (): Promise<Metadata> {
 
 export default async function Page () {
     return (
-        <CmsLayout>
+        <CmsLayout
+            breadcrumbs={{
+                breadcrumbs: [
+                    {
+                        value: 'CMS',
+                        href: '/cms',
+                    },
+                ],
+                currentBreadcrumb: { value: 'Messages' },
+            }}
+        >
             <div className="mb-4 ">
                 <PageHeader
                     title="Messages"

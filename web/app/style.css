@@ -4,6 +4,12 @@
 @plugin "@tailwindcss/forms";
 @config "./tailwind.config.js";
 
+@source '../node_modules/react-tailwindcss-datepicker';
+
+.opacity-1 {
+     opacity: 100%;
+ }
+
 :root {
     --color-gold: #f3c213;
     --color-crimson-lightened-3: #eeadad;

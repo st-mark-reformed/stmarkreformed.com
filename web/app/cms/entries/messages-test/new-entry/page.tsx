@@ -23,7 +23,21 @@ export default async function Page () {
     });
 
     return (
-        <CmsLayout>
+        <CmsLayout
+            breadcrumbs={{
+                breadcrumbs: [
+                    {
+                        value: 'CMS',
+                        href: '/cms',
+                    },
+                    {
+                        value: 'Messages',
+                        href: '/cms/entries/messages-test',
+                    },
+                ],
+                currentBreadcrumb: { value: 'Create' },
+            }}
+        >
             <ApiResponseGate apiResponse={apiResponse}>
                 <PageInner />
             </ApiResponseGate>
