@@ -2,6 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 import CmsLayout from '../../../layout/CmsLayout';
 import { createPageTitle } from '../../../../createPageTitle';
+import PageInner from './PageInner';
 
 export async function generateMetadata (): Promise<Metadata> {
     return {
@@ -14,9 +15,5 @@ export async function generateMetadata (): Promise<Metadata> {
 }
 
 export default async function Page () {
-    return (
-        <CmsLayout>
-            TODO
-        </CmsLayout>
-    );
+    return <CmsLayout><PageInner /></CmsLayout>;
 }

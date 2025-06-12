@@ -25,7 +25,7 @@ export function PageHeaderButton (
     buttonConfig.type = buttonConfig.type || 'primary';
 
     const classes = [
-        'inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm',
+        'inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm cursor-pointer',
     ];
 
     if (useMarginLeft) {
