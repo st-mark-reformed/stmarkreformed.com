@@ -1,16 +1,18 @@
 import React from 'react';
 import Link from 'next/link';
 
+export interface ErrorParams {
+    statusCode?: number;
+    heading?: string;
+    errorMessage?: string;
+}
+
 export default function FullPageError (
     {
         statusCode = 500,
         heading = 'An Error Occurred',
         errorMessage = 'It looks like something went wrong 😞',
-    }: {
-        statusCode?: number;
-        heading?: string;
-        errorMessage?: string;
-    },
+    }: ErrorParams,
 ) {
     return (
         <div className="bg-white min-h-full px-4 py-16 sm:px-6 sm:py-24 md:py-32 lg:py-48 md:grid md:place-items-center lg:px-8">
