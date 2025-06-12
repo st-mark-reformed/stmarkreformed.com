@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Config\Events;
 
 use App\Contact\PostContactAction;
-use App\GetUserInfoAction;
+use App\HasCmsAccessAction;
 use App\Healthcheck;
 use BuzzingPixel\Queue\Http\Routes\Route;
 use BuzzingPixel\Queue\Http\Routes\RoutesFactory as QueueRoutesFactory;
@@ -21,7 +21,7 @@ readonly class ApplyRoutes
     {
         Healthcheck::applyRoute($routes);
         PostContactAction::applyRoute($routes);
-        GetUserInfoAction::applyRoute($routes);
+        HasCmsAccessAction::applyRoute($routes);
 
         $config = $routes->getContainer()->get(RuntimeConfig::class);
 

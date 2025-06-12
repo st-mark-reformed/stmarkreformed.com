@@ -3,6 +3,8 @@ import { Metadata } from 'next';
 import CmsLayout from '../../../layout/CmsLayout';
 import { createPageTitle } from '../../../../createPageTitle';
 import PageInner from './PageInner';
+import { RequestFactory } from '../../../../api/request/RequestFactory';
+import ApiResponseGate from '../../../ApiResponseGate';
 
 export async function generateMetadata (): Promise<Metadata> {
     return {
@@ -15,5 +17,16 @@ export async function generateMetadata (): Promise<Metadata> {
 }
 
 export default async function Page () {
-    return <CmsLayout><PageInner /></CmsLayout>;
+    const apiResponse = await RequestFactory().makeWithSignInRedirect({
+        uri: '/has-cms-access',
+        cacheSeconds: 0,
+    });
+
+    return (
+        <CmsLayout>
+            <ApiResponseGate apiResponse={apiResponse}>
+                <PageInner />
+            </ApiResponseGate>
+        </CmsLayout>
+    );
 }

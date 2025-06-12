@@ -6,7 +6,7 @@ import ApiResponseGate from '../../ApiResponseGate';
 export default async function PageInner () {
     // For now, just make sure we're logged in
     const apiResponse = await RequestFactory().makeWithSignInRedirect({
-        uri: '/userinfo',
+        uri: '/has-cms-access',
         cacheSeconds: 0,
     });
 

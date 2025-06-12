@@ -12,11 +12,11 @@ use RxAnte\OAuth\RequireOauthTokenHeaderMiddleware;
 
 use function json_encode;
 
-readonly class GetUserInfoAction
+readonly class HasCmsAccessAction
 {
     public static function applyRoute(ApplyRoutesEvent $routes): void
     {
-        $routes->get('/userinfo', self::class)
+        $routes->get('/has-cms-access', self::class)
             ->add(RequireCmsAccessRoleMiddleware::class)
             ->add(RequireOauthTokenHeaderMiddleware::class);
     }
