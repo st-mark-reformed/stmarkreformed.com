@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Config\Dependencies;
 
+use App\Authentication\SMRCAuthHook;
 use Config\RuntimeConfig;
 use Config\RuntimeConfigOptions;
 use Config\SigningCertificate;
 use League\OAuth2\Client\Provider\AbstractProvider;
 use Psr\Container\ContainerInterface;
 use RxAnte\AppBootstrap\Dependencies\Bindings;
+use RxAnte\OAuth\CustomAuthenticationHookFactory;
 use RxAnte\OAuth\Handlers\Auth0\Auth0Config;
 use RxAnte\OAuth\Handlers\Auth0\Auth0LeagueOauthProviderConfig;
 use RxAnte\OAuth\Handlers\Auth0\Auth0LeagueOauthProviderFactory;
@@ -111,6 +113,18 @@ readonly class RegisterBindingsAuthentication
             $bindings->resolveFromContainer(
                 GetRefreshedAccessTokenFromAuth0::class,
             ),
+        );
+
+        $bindings->addBinding(
+            CustomAuthenticationHookFactory::class,
+            static function (ContainerInterface $container): CustomAuthenticationHookFactory {
+                $smrcAuthHook = $container->get(SMRCAuthHook::class);
+                assert($smrcAuthHook instanceof SMRCAuthHook);
+
+                return new CustomAuthenticationHookFactory(
+                    $smrcAuthHook,
+                );
+            },
         );
     }
 }

@@ -24,6 +24,8 @@ export default async function Page () {
         cacheSeconds: 0,
     });
 
+    console.log(apiResponse);
+
     return (
         <CmsLayout apiResponse={apiResponse}>
             <div className="mb-4 ">

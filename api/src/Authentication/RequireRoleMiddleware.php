@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Authentication;
 
 use App\Authentication\User\User\Role;
+use App\Authentication\User\User\User;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use RxAnte\OAuth\UserInfo\OauthUserInfo;
 
 use function assert;
 use function implode;
@@ -28,10 +28,10 @@ readonly abstract class RequireRoleMiddleware implements MiddlewareInterface
         RequestHandlerInterface $handler,
         Role $role,
     ): ResponseInterface {
-        $userInfo = $request->getAttribute('oauthUserInfo');
-        assert($userInfo instanceof OauthUserInfo);
+        $user = $request->getAttribute('user');
+        assert($user instanceof User);
 
-        if (! $userInfo->hasRole($role->humanReadable())) {
+        if (! $user->roles->hasRole($role)) {
             return $this->sendAccessDenied($role);
         }
 
