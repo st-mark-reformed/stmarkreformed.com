@@ -4,6 +4,7 @@ import Sidebar from './Sidebar/Sidebar';
 import Breadcrumbs, { BreadcrumbItems, CurrentBreadcrumbItem } from '../../Breadcrumbs';
 import PartialPageLoading from '../../PartialPageLoading';
 import FullPageError from '../../FullPageError';
+import { TokenRepositoryFactory } from '../../api/auth/TokenRepositoryFactory';
 
 export enum InnerMaxWidth {
     xsmall = 'max-w-3xl',
@@ -18,7 +19,6 @@ export default async function CmsLayout (
         children,
         breadcrumbs,
         innerMaxWidth = InnerMaxWidth.medium,
-        apiResponse,
     }: {
         children: ReactNode;
         breadcrumbs?: {
@@ -26,16 +26,16 @@ export default async function CmsLayout (
             currentBreadcrumb: CurrentBreadcrumbItem;
         };
         innerMaxWidth?: InnerMaxWidth;
-        apiResponse?: RequestResponse;
     },
 ) {
-    if (apiResponse !== undefined && apiResponse.status === 403) {
+    const token = await TokenRepositoryFactory().findTokenFromCookies();
+
+    if (token === null) {
         return (
             <FullPageError
                 statusCode={403}
                 heading="Access Denied"
-                // @ts-expect-error TS2339
-                errorMessage={apiResponse.json?.message}
+                errorMessage="You are not logged in"
             />
         );
     }
