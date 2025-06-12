@@ -6,6 +6,7 @@
         "php": "^8.4",
         "ext-pdo": "*",
         "ext-redis": "*",
+        "beberlei/assert": "^3.3",
         "buzzingpixel/php-queue": "^2.0",
         "buzzingpixel/php-scheduler": "^1.1",
         "buzzingpixel/php-template-engine": "^1.0",

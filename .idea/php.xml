@@ -534,6 +534,7 @@
       <path value="$PROJECT_DIR$/api/vendor/cakephp/datasource" />
       <path value="$PROJECT_DIR$/api/vendor/cakephp/database" />
       <path value="$PROJECT_DIR$/api/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/api/vendor/beberlei/assert" />
     </include_path>
   </component>
   <component name="PhpProjectServersManager">

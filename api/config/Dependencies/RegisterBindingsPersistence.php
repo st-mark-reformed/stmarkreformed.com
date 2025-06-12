@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Config\Dependencies;
 
+use App\Persistence\ApiPdo;
+use App\Persistence\ApiPdoFactory;
 use App\Persistence\RootPdo;
 use App\Persistence\RootPdoFactory;
 use PDO;
@@ -31,6 +33,13 @@ readonly class RegisterBindingsPersistence
                 assert($factory instanceof RootPdoFactory);
 
                 return $factory->create();
+            },
+        );
+
+        $bindings->addBinding(
+            ApiPdo::class,
+            static function (ContainerInterface $container): ApiPdo {
+                return $container->get(ApiPdoFactory::class)->create();
             },
         );
     }

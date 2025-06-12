@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Authentication;
 
+use App\Authentication\User\User\Role;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

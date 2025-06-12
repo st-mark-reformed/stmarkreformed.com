@@ -289,6 +289,7 @@
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/firebase/php-jwt" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/league/oauth2-client" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/rxante/oauth" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/beberlei/assert" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/cakephp/chronos" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/cakephp/core" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/cakephp/database" />
