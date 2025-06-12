@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Authentication\User;
 
-use App\Cli\CliQuestion;
 use App\Persistence\ResultConsoleResponder;
 use RxAnte\AppBootstrap\Cli\ApplyCliCommandsEvent;
 use Symfony\Component\Console\Output\ConsoleOutput;
@@ -20,24 +19,18 @@ readonly class ReactivateUserCommand
     }
 
     public function __construct(
-        private CliQuestion $question,
         private ConsoleOutput $output,
         private UserRepository $repository,
         private ResultConsoleResponder $responder,
+        private CliFindUserByEmail $findUserByEmail,
     ) {
     }
 
     public function __invoke(): void
     {
-        $email = $this->question->ask('Email: ', true);
-
-        $user = $this->repository->findByEmail($email);
+        $user = $this->findUserByEmail->find();
 
         if ($user === null) {
-            $this->output->writeln(
-                '<fg=red>User could not be found 😞</>',
-            );
-
             return;
         }
 

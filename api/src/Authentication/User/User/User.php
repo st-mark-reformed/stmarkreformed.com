@@ -50,8 +50,18 @@ readonly class User
         $this->errorMessages = $errorMessages;
     }
 
+    public function withAddedRole(Role $role): User
+    {
+        return $this->with(roles: $this->roles->withAddedRole($role));
+    }
+
     public function withIsActive(bool $isActive): User
     {
         return $this->with(isActive: $isActive);
+    }
+
+    public function withRemovedRole(Role $role): User
+    {
+        return $this->with(roles: $this->roles->withRemovedRole($role));
     }
 }

@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Config\Events;
 
+use App\Authentication\User\AddUserRoleCommand;
 use App\Authentication\User\CreateUserCommand;
 use App\Authentication\User\DeactivateUserCommand;
 use App\Authentication\User\ListUsersCommand;
 use App\Authentication\User\ReactivateUserCommand;
+use App\Authentication\User\RemoveUserRoleCommand;
 use App\Calendar\GenerateCalendarPages;
 use App\Calendar\GenerateUpcomingEvents;
 use App\Persistence\CreateDatabaseAndUserCommand;
@@ -36,6 +38,8 @@ readonly class ApplyCommands
         ListUsersCommand::register($commands);
         DeactivateUserCommand::register($commands);
         ReactivateUserCommand::register($commands);
+        AddUserRoleCommand::register($commands);
+        RemoveUserRoleCommand::register($commands);
 
         $commands->addSymfonyCommand(
             QueueConsumeNextSymfonyCommand::class,
