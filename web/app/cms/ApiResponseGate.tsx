@@ -8,7 +8,7 @@ export default async function ApiResponseGate (
         apiResponse,
     }: {
         children: ReactNode;
-        apiResponse: RequestResponse;
+        apiResponse?: RequestResponse;
     },
 ) {
     if (apiResponse !== undefined && apiResponse.status === 403) {
@@ -20,6 +20,10 @@ export default async function ApiResponseGate (
         };
 
         throw new Error(`access_denied|${JSON.stringify(accessDefined)}`);
+    }
+
+    if (apiResponse !== undefined && apiResponse.status !== 200) {
+        throw new Error(`API Error: ${JSON.stringify(apiResponse.json)}`);
     }
 
     return <>{children}</>;

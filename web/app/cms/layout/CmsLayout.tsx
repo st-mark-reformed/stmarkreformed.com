@@ -5,6 +5,7 @@ import Breadcrumbs, { BreadcrumbItems, CurrentBreadcrumbItem } from '../../Bread
 import PartialPageLoading from '../../PartialPageLoading';
 import FullPageError from '../../FullPageError';
 import { TokenRepositoryFactory } from '../../api/auth/TokenRepositoryFactory';
+import { RequestFactory } from '../../api/request/RequestFactory';
 
 export enum InnerMaxWidth {
     xsmall = 'max-w-3xl',
@@ -31,13 +32,11 @@ export default async function CmsLayout (
     const token = await TokenRepositoryFactory().findTokenFromCookies();
 
     if (token === null) {
-        return (
-            <FullPageError
-                statusCode={403}
-                heading="Access Denied"
-                errorMessage="You are not logged in"
-            />
-        );
+        // This will see that we don't have a token and trigger a redirect
+        await RequestFactory().makeWithSignInRedirect({
+            uri: '/has-cms-access',
+            cacheSeconds: 0,
+        });
     }
 
     return (
