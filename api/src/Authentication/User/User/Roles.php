@@ -7,6 +7,8 @@ namespace App\Authentication\User\User;
 use function array_map;
 use function json_encode;
 
+// phpcs:disable SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingTraversableTypeHintSpecification
+
 readonly class Roles
 {
     public bool $isValid;
@@ -44,5 +46,11 @@ readonly class Roles
             static fn (Role $r) => $r->name,
             $this->roles,
         ));
+    }
+
+    /** @phpstan-ignore-next-line */
+    public function mapToArray(callable $callback): array
+    {
+        return array_map($callback, $this->roles);
     }
 }
