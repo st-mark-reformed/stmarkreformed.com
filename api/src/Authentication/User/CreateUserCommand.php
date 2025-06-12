@@ -8,8 +8,8 @@ use App\Authentication\User\User\Email;
 use App\Authentication\User\User\Role;
 use App\Authentication\User\User\Roles;
 use App\Cli\CliQuestion;
+use App\Persistence\ResultConsoleResponder;
 use RxAnte\AppBootstrap\Cli\ApplyCliCommandsEvent;
-use Symfony\Component\Console\Output\ConsoleOutput;
 
 use function array_filter;
 use function array_map;
@@ -25,8 +25,8 @@ readonly class CreateUserCommand
 
     public function __construct(
         private CliQuestion $question,
-        private ConsoleOutput $output,
         private UserRepository $repository,
+        private ResultConsoleResponder $responder,
     ) {
     }
 
@@ -63,29 +63,12 @@ readonly class CreateUserCommand
             true,
         );
 
-        $result = $this->repository->createAndPersistUser($user);
+        $result = $this->repository->createAndPersist($user);
 
-        if ($result->success) {
-            $this->output->writeln(
-                '<fg=green>User Created 👍</>',
-            );
-
-            return;
-        }
-
-        $this->output->writeln(
-            '<fg=red>User could not be created 😞</>',
-        );
-
-        array_map(
-            function (string $msg): void {
-                $this->output->writeln(implode('', [
-                    '<fg=red>',
-                    $msg,
-                    '</>',
-                ]));
-            },
-            $result->messages,
+        $this->responder->respond(
+            $result,
+            'User Created 👍',
+            'User could not be created 😞',
         );
     }
 }

@@ -17,7 +17,7 @@ use function json_decode;
 
 // phpcs:disable Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 
-readonly class UserTransformer
+readonly class Transformer
 {
     public function createRecord(User $fromUser): UserRecord
     {

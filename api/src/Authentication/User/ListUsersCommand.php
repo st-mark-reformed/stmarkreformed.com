@@ -30,7 +30,7 @@ readonly class ListUsersCommand
         $table = new Table($this->output);
         $table->setHeaders(['ID', 'Email', 'Roles', 'Is Active']);
 
-        $rows = $this->repository->findAllUsers()->mapToArray(
+        $rows = $this->repository->findAll()->mapToArray(
             static function (User $user): array {
                 return [
                     $user->id->toString(),

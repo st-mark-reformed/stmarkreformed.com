@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Config\Events;
 
 use App\Authentication\User\CreateUserCommand;
+use App\Authentication\User\DeactivateUserCommand;
 use App\Authentication\User\ListUsersCommand;
+use App\Authentication\User\ReactivateUserCommand;
 use App\Calendar\GenerateCalendarPages;
 use App\Calendar\GenerateUpcomingEvents;
 use App\Persistence\CreateDatabaseAndUserCommand;
@@ -32,6 +34,8 @@ readonly class ApplyCommands
         MigrateCreateCommand::register($commands);
         CreateUserCommand::register($commands);
         ListUsersCommand::register($commands);
+        DeactivateUserCommand::register($commands);
+        ReactivateUserCommand::register($commands);
 
         $commands->addSymfonyCommand(
             QueueConsumeNextSymfonyCommand::class,

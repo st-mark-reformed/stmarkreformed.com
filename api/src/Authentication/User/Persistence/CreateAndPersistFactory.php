@@ -8,10 +8,10 @@ use App\Authentication\User\User\User;
 use App\Persistence\PersistNewRecord;
 use App\Persistence\Result;
 
-readonly class CreateAndPersistUserFactory
+readonly class CreateAndPersistFactory
 {
     public function __construct(
-        private UserTransformer $transformer,
+        private Transformer $transformer,
         private PersistNewRecord $persistNewRecord,
     ) {
     }

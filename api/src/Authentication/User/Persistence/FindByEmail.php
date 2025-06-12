@@ -7,15 +7,16 @@ namespace App\Authentication\User\Persistence;
 use App\Persistence\ApiPdo;
 use PDO;
 
+use function assert;
 use function implode;
 
-readonly class FindAllUsers
+readonly class FindByEmail
 {
     public function __construct(private ApiPdo $pdo)
     {
     }
 
-    public function find(): UserRecords
+    public function find(string $email): UserRecord|null
     {
         $columns = implode(', ', UserRecord::getColumns());
 
@@ -25,15 +26,21 @@ readonly class FindAllUsers
                 $columns,
                 'FROM',
                 UserRecord::getTableName(),
-                'ORDER BY email ASC',
+                'WHERE email = :email',
             ]),
         );
 
-        $statement->execute();
+        $statement->execute(['email' => $email]);
 
-        return new UserRecords($statement->fetchAll(
+        $statement->setFetchMode(
             PDO::FETCH_CLASS,
             UserRecord::class,
-        ));
+        );
+
+        $record = $statement->fetch();
+
+        assert($record instanceof UserRecord || $record === false);
+
+        return $record !== false ? $record : null;
     }
 }

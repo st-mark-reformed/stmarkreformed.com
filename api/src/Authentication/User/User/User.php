@@ -6,9 +6,12 @@ namespace App\Authentication\User\User;
 
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+use Spatie\Cloneable\Cloneable;
 
 readonly class User
 {
+    use Cloneable;
+
     public bool $isValid;
 
     /** @var string[] */
@@ -45,5 +48,10 @@ readonly class User
         $this->isValid = $isValid;
 
         $this->errorMessages = $errorMessages;
+    }
+
+    public function withIsActive(bool $isActive): User
+    {
+        return $this->with(isActive: $isActive);
     }
 }
