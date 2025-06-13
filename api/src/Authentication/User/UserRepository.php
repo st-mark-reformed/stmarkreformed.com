@@ -29,6 +29,11 @@ readonly class UserRepository
         return $this->createAndPersistFactory->create($user);
     }
 
+    public function persist(User $user): Result
+    {
+        return $this->persist->persist($user);
+    }
+
     public function findAll(): Users
     {
         return $this->transformer->createUsers(
@@ -43,10 +48,5 @@ readonly class UserRepository
         return $record !== null ?
             $this->transformer->createUser($record) :
             null;
-    }
-
-    public function persist(User $user): Result
-    {
-        return $this->persist->persist($user);
     }
 }
