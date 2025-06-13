@@ -4,7 +4,7 @@
 
 declare(strict_types=1);
 
-use App\Profiles\ProfilesTable;
+use App\Profiles\Persistence\ProfilesTable;
 use Phinx\Migration\AbstractMigration;
 
 // phpcs:disable Squiz.Classes.ClassFileName.NoMatch

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Profiles;
+namespace App\Profiles\Persistence;
 
 use Phinx\Db\Adapter\AdapterInterface;
 use Phinx\Db\Table;
