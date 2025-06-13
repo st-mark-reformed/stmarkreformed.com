@@ -4,6 +4,9 @@
 @plugin "@tailwindcss/forms";
 @config "./tailwind.config.js";
 
+/* Disable dark mode */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @source '../node_modules/react-tailwindcss-datepicker';
 
 .opacity-1 {

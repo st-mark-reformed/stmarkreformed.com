@@ -6,12 +6,15 @@ import PageHeader from '../../../layout/PageHeader';
 import Toggle from '../../../inputs/Toggle';
 import CustomDateTimePicker from '../../../inputs/CustomDateTimePicker';
 import TextInput from '../../../inputs/TextInput';
+import SingleFileUploader from '../../../inputs/SingleFileUploader';
+import { AudioUploadFileTypes } from '../../../inputs/AudioUploadFileTypes';
 
 interface FormData {
     date: Date | null;
     published: boolean;
     title: string;
     text: string;
+    audioFile: string;
 }
 
 export default function PageInner () {
@@ -20,6 +23,7 @@ export default function PageInner () {
         date: new Date(),
         title: '',
         text: '',
+        audioFile: '',
     });
 
     const setPublished = (val: boolean) => {
@@ -36,6 +40,10 @@ export default function PageInner () {
 
     const setText = (val: string) => {
         setFormData({ ...formData, text: val });
+    };
+
+    const setAudioFile = (val: string) => {
+        setFormData({ ...formData, audioFile: val });
     };
 
     return (
@@ -97,6 +105,15 @@ export default function PageInner () {
                         }}
                     />
                 </div>
+                <SingleFileUploader
+                    label="Audio File"
+                    name="audio_file"
+                    value={formData.audioFile}
+                    fileTypes={AudioUploadFileTypes}
+                    setValue={(key: string, val: string) => {
+                        setAudioFile(val);
+                    }}
+                />
             </div>
         </>
     );

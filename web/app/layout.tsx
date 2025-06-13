@@ -79,9 +79,7 @@ export default async function RootLayout (
     return (
         <html
             lang="en"
-            className={(() => [
-                'h-full',
-            ].join(' '))()}
+            className="h-full"
         >
             <body className="h-full">
                 {children}
