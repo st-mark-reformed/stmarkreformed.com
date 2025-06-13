@@ -1,13 +1,15 @@
-import React, { Suspense } from 'react';
 import { Metadata } from 'next';
-import CmsLayout from '../../layout/CmsLayout';
+import React from 'react';
 import { createPageTitle } from '../../../createPageTitle';
+import { RequestFactory } from '../../../api/request/RequestFactory';
+import CmsLayout from '../../layout/CmsLayout';
+import ApiResponseGate from '../../ApiResponseGate';
 import PageInner from './PageInner';
-import PartialPageLoading from '../../../PartialPageLoading';
 
 export async function generateMetadata (): Promise<Metadata> {
     return {
         title: createPageTitle([
+            'New Profile',
             'Messages',
             'CMS',
         ]),
@@ -15,6 +17,11 @@ export async function generateMetadata (): Promise<Metadata> {
 }
 
 export default async function Page () {
+    const apiResponse = await RequestFactory().makeWithSignInRedirect({
+        uri: '/has-cms-access',
+        cacheSeconds: 0,
+    });
+
     return (
         <CmsLayout
             breadcrumbs={{
@@ -23,13 +30,17 @@ export default async function Page () {
                         value: 'CMS',
                         href: '/cms',
                     },
+                    {
+                        value: 'Profiles',
+                        href: '/cms/profiles',
+                    },
                 ],
-                currentBreadcrumb: { value: 'Messages' },
+                currentBreadcrumb: { value: 'New' },
             }}
         >
-            <Suspense fallback={<PartialPageLoading />}>
+            <ApiResponseGate apiResponse={apiResponse}>
                 <PageInner />
-            </Suspense>
+            </ApiResponseGate>
         </CmsLayout>
     );
 }

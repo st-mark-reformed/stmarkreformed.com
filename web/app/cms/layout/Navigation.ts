@@ -6,6 +6,7 @@ import {
 } from 'react';
 import {
     MicrophoneIcon,
+    UserIcon,
 } from '@heroicons/react/24/outline';
 import { usePathname } from 'next/navigation';
 
@@ -51,6 +52,12 @@ export default function Navigation (): Array<NavigationItem> {
             name: 'Messages',
             href: '/cms/entries/messages-test',
             icon: MicrophoneIcon,
+            currentPathname,
+        }),
+        createItem({
+            name: 'Profiles',
+            href: '/cms/profiles',
+            icon: UserIcon,
             currentPathname,
         }),
     ];

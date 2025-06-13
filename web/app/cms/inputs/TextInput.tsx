@@ -14,7 +14,7 @@ export default function TextInput (
         name: string;
         value: string;
         setValue: (key: string, val: string) => void;
-        type?: 'text' | 'date' | 'time' | 'datetime-local' | 'number';
+        type?: 'text' | 'date' | 'time' | 'datetime-local' | 'number' | 'email';
         min?: number;
         max?: number;
     },

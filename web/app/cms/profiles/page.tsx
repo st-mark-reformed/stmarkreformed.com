@@ -1,14 +1,14 @@
-import React, { Suspense } from 'react';
 import { Metadata } from 'next';
-import CmsLayout from '../../layout/CmsLayout';
-import { createPageTitle } from '../../../createPageTitle';
+import React, { Suspense } from 'react';
+import { createPageTitle } from '../../createPageTitle';
+import CmsLayout from '../layout/CmsLayout';
+import PartialPageLoading from '../../PartialPageLoading';
 import PageInner from './PageInner';
-import PartialPageLoading from '../../../PartialPageLoading';
 
 export async function generateMetadata (): Promise<Metadata> {
     return {
         title: createPageTitle([
-            'Messages',
+            'Profiles',
             'CMS',
         ]),
     };
@@ -24,7 +24,7 @@ export default async function Page () {
                         href: '/cms',
                     },
                 ],
-                currentBreadcrumb: { value: 'Messages' },
+                currentBreadcrumb: { value: 'Profiles' },
             }}
         >
             <Suspense fallback={<PartialPageLoading />}>
