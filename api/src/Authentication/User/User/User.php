@@ -37,12 +37,12 @@ readonly class User
 
         if (! $email->isValid) {
             $isValid         = false;
-            $errorMessages[] = $this->email->errorMessage;
+            $errorMessages[] = $email->errorMessage;
         }
 
         if (! $roles->isValid) {
             $isValid         = false;
-            $errorMessages[] = $this->roles->errorMessage;
+            $errorMessages[] = $roles->errorMessage;
         }
 
         $this->isValid = $isValid;
