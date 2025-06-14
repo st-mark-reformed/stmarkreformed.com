@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Profiles\Profile;
 
-use RuntimeException;
-
 enum LeadershipPosition
 {
     case NONE;
@@ -15,6 +13,8 @@ enum LeadershipPosition
     case ELDER;
     case RULING_ELDER;
     case DEACON;
+
+    case INVALID;
 
     public static function createFromString(string $position): LeadershipPosition
     {
@@ -34,9 +34,7 @@ enum LeadershipPosition
             $elder->name => $elder,
             $rulingElder->name => $rulingElder,
             $deacon->name => $deacon,
-            default => throw new RuntimeException(
-                $position . ' is an invalid Leadership Position',
-            ),
+            default => LeadershipPosition::INVALID,
         };
     }
 
@@ -59,9 +57,7 @@ enum LeadershipPosition
             $elder->humanReadable() => $elder,
             $rulingElder->humanReadable() => $rulingElder,
             $deacon->humanReadable() => $deacon,
-            default => throw new RuntimeException(
-                $value . ' is an invalid Leadership Position',
-            ),
+            default => LeadershipPosition::INVALID,
         };
     }
 
@@ -75,6 +71,7 @@ enum LeadershipPosition
             LeadershipPosition::ELDER => 'Elder',
             LeadershipPosition::RULING_ELDER => 'Ruling Elder',
             LeadershipPosition::DEACON => 'Deacon',
+            LeadershipPosition::INVALID => 'Invalid',
         };
     }
 }

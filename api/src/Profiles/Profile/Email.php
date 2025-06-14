@@ -15,6 +15,14 @@ readonly class Email
 
     public function __construct(public string $address)
     {
+        if ($address === '') {
+            $this->isValid = true;
+
+            $this->errorMessage = '';
+
+            return;
+        }
+
         $errorMessage = '';
 
         try {

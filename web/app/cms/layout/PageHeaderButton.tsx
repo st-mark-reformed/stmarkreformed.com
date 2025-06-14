@@ -7,6 +7,7 @@ export type PageHeaderButtonConfig = {
     content: string | ReactElement;
     href?: string;
     onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
+    disabled?: boolean;
 };
 
 export function PageHeaderButton (
@@ -32,7 +33,9 @@ export function PageHeaderButton (
         classes.push('ml-3');
     }
 
-    if (buttonConfig.type === 'primary') {
+    if (buttonConfig.disabled) {
+        classes.push('bg-gray-400');
+    } else if (buttonConfig.type === 'primary') {
         classes.push('bg-cyan-600 hover:bg-cyan-500');
     } else if (buttonConfig.type === 'secondary') {
         classes.push('bg-white/10 hover:bg-white/20');
@@ -44,6 +47,7 @@ export function PageHeaderButton (
                 type="button"
                 onClick={buttonConfig.onClick}
                 className={classes.join(' ')}
+                disabled={buttonConfig.disabled}
             >
                 {buttonConfig.content}
             </button>
@@ -61,5 +65,13 @@ export function PageHeaderButton (
         );
     }
 
-    return null;
+    return (
+        <button
+            type="submit"
+            className={classes.join(' ')}
+            disabled={buttonConfig.disabled}
+        >
+            {buttonConfig.content}
+        </button>
+    );
 }

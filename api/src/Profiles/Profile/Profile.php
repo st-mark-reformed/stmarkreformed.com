@@ -62,6 +62,11 @@ readonly class Profile
             $errorMessages[] = $email->errorMessage;
         }
 
+        if ($leadershipPosition === LeadershipPosition::INVALID) {
+            $isValid         = false;
+            $errorMessages[] = 'Leadership Position must be a valid value';
+        }
+
         $this->isValid = $isValid;
 
         $this->errorMessages = $errorMessages;

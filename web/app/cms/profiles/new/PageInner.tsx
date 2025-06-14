@@ -1,32 +1,24 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useActionState, useState } from 'react';
 import { CheckIcon } from '@heroicons/react/20/solid';
+import { useRouter } from 'next/navigation';
 import PageHeader from '../../layout/PageHeader';
 import TextInput from '../../inputs/TextInput';
 import RadioPanel from '../../inputs/RadioPanel';
-
-const LeadershipPosition = {
-    pastor: 'Pastor',
-    associatePastor: 'Associate Pastor',
-    assistantPastor: 'Assistant Pastor',
-    elder: 'Elder',
-    rulingElder: 'Ruling Elder',
-    deacon: 'Deacon',
-};
-
-type LeadershipPositionType = typeof LeadershipPosition[keyof typeof LeadershipPosition] | '';
-
-interface FormData {
-    firstName: string;
-    lastName: string;
-    titleOrHonorific: string;
-    email: string;
-    leadershipPosition: LeadershipPositionType;
-}
+import PostFormData from './PostFormData';
+import ButtonLoader from '../../inputs/ButtonLoader';
+import Message from '../../messaging/Message';
+import {
+    LeadershipPosition,
+    LeadershipPositionType,
+    NewProfileFormData,
+} from './NewProfileFormData';
 
 export default function PageInner () {
-    const [formData, setFormData] = useState<FormData>({
+    const router = useRouter();
+
+    const [formData, setFormData] = useState<NewProfileFormData>({
         firstName: '',
         lastName: '',
         titleOrHonorific: '',
@@ -54,8 +46,30 @@ export default function PageInner () {
         setFormData({ ...formData, leadershipPosition: val });
     };
 
+    const [error, submitAction, isPending] = useActionState(
+        async () => {
+            const response = await PostFormData(formData);
+
+            if (response.success) {
+                router.push('/cms/profiles');
+
+                return null;
+            }
+
+            return (
+                <Message
+                    type="error"
+                    heading="Your submission ran into errors"
+                    body={response.messages}
+                    padBottom
+                />
+            );
+        },
+        null,
+    );
+
     return (
-        <>
+        <form action={submitAction}>
             <div className="mb-4 ">
                 <PageHeader
                     title="Create New Profile"
@@ -63,17 +77,18 @@ export default function PageInner () {
                         {
                             id: 'newEntry',
                             type: 'primary',
+                            disabled: isPending,
                             content: (
                                 <>
-                                    <CheckIcon className="h-5 w-5 mr-1" />
+                                    {isPending ? <ButtonLoader /> : <CheckIcon className="h-5 w-5 mr-1" />}
                                     Submit
                                 </>
                             ),
-                            onClick: () => {},
                         },
                     ]}
                 />
             </div>
+            {error}
             <div className="space-y-8">
                 <div className="align-top grid gap-4 sm:grid-cols-2 space-y-8">
                     <TextInput
@@ -129,6 +144,6 @@ export default function PageInner () {
                     />
                 </div>
             </div>
-        </>
+        </form>
     );
 }
