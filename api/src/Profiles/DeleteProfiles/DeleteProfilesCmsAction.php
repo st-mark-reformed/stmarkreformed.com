@@ -13,7 +13,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use RxAnte\AppBootstrap\Http\ApplyRoutesEvent;
 use RxAnte\OAuth\RequireOauthTokenHeaderMiddleware;
 
-readonly class DeleteProfilesAction
+readonly class DeleteProfilesCmsAction
 {
     public static function applyRoute(ApplyRoutesEvent $routes): void
     {

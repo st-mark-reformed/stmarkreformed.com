@@ -1,28 +1,40 @@
 import { Metadata } from 'next';
 import React from 'react';
 import { createPageTitle } from '../../../createPageTitle';
-import { RequestFactory } from '../../../api/request/RequestFactory';
-import CmsLayout from '../../layout/CmsLayout';
 import ApiResponseGate from '../../ApiResponseGate';
-import PageInner from './PageInner';
+import CmsLayout from '../../layout/CmsLayout';
+import { RequestFactory } from '../../../api/request/RequestFactory';
 
 export const dynamic = 'force-dynamic';
 
 export async function generateMetadata (): Promise<Metadata> {
     return {
         title: createPageTitle([
-            'New Profile',
+            'Edit Profile',
             'Messages',
             'CMS',
         ]),
     };
 }
 
-export default async function Page () {
+export default async function Page (
+    {
+        params,
+    }: {
+        params: Promise<{
+            id: string;
+        }>;
+    },
+) {
+    const { id } = await params;
+
     const apiResponse = await RequestFactory().makeWithSignInRedirect({
-        uri: '/has-cms-access',
+        uri: `/cms/profiles/${id}`,
         cacheSeconds: 0,
     });
+
+    // TODO
+    console.log(apiResponse);
 
     return (
         <CmsLayout
@@ -37,11 +49,11 @@ export default async function Page () {
                         href: '/cms/profiles',
                     },
                 ],
-                currentBreadcrumb: { value: 'New' },
+                currentBreadcrumb: { value: 'Edit' },
             }}
         >
             <ApiResponseGate apiResponse={apiResponse}>
-                <PageInner />
+                TODO
             </ApiResponseGate>
         </CmsLayout>
     );

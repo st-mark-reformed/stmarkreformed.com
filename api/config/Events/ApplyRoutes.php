@@ -7,8 +7,9 @@ namespace Config\Events;
 use App\Contact\PostContactAction;
 use App\HasCmsAccessAction;
 use App\Healthcheck;
-use App\Profiles\DeleteProfiles\DeleteProfilesAction;
+use App\Profiles\DeleteProfiles\DeleteProfilesCmsAction;
 use App\Profiles\GetAllProfilesCmsAction;
+use App\Profiles\GetProfileCmsAction;
 use App\Profiles\PostNewProfile\PostCreateProfileCmsAction;
 use BuzzingPixel\Queue\Http\Routes\Route;
 use BuzzingPixel\Queue\Http\Routes\RoutesFactory as QueueRoutesFactory;
@@ -27,7 +28,8 @@ readonly class ApplyRoutes
         HasCmsAccessAction::applyRoute($routes);
         PostCreateProfileCmsAction::applyRoute($routes);
         GetAllProfilesCmsAction::applyRoute($routes);
-        DeleteProfilesAction::applyRoute($routes);
+        DeleteProfilesCmsAction::applyRoute($routes);
+        GetProfileCmsAction::applyRoute($routes);
 
         $config = $routes->getContainer()->get(RuntimeConfig::class);
 

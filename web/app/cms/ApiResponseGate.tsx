@@ -1,5 +1,6 @@
 import { RequestResponse } from 'rxante-oauth/src/Request/RequestResponse';
 import React, { ReactNode } from 'react';
+import { notFound } from 'next/navigation';
 import { ErrorParams } from '../FullPageError';
 
 export default async function ApiResponseGate (
@@ -20,6 +21,10 @@ export default async function ApiResponseGate (
         };
 
         throw new Error(`access_denied|${JSON.stringify(accessDefined)}`);
+    }
+
+    if (apiResponse !== undefined && apiResponse.status === 404) {
+        notFound();
     }
 
     if (apiResponse !== undefined && apiResponse.status !== 200) {

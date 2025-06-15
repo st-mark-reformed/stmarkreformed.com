@@ -5,6 +5,8 @@ import CmsLayout from '../layout/CmsLayout';
 import PartialPageLoading from '../../PartialPageLoading';
 import PageInner from './PageInner';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata (): Promise<Metadata> {
     return {
         title: createPageTitle([
