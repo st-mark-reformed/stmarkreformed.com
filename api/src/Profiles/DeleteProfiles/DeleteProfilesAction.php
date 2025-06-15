@@ -1,0 +1,44 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Profiles\DeleteProfiles;
+
+use App\Authentication\RequireCmsAccessRoleMiddleware;
+use App\Persistence\ResultResponder;
+use App\Persistence\UuidCollectionFactory;
+use App\Profiles\ProfileRepository;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use RxAnte\AppBootstrap\Http\ApplyRoutesEvent;
+use RxAnte\OAuth\RequireOauthTokenHeaderMiddleware;
+
+readonly class DeleteProfilesAction
+{
+    public static function applyRoute(ApplyRoutesEvent $routes): void
+    {
+        $routes->delete('/cms/profiles', self::class)
+            ->add(RequireCmsAccessRoleMiddleware::class)
+            ->add(RequireOauthTokenHeaderMiddleware::class);
+    }
+
+    public function __construct(
+        private ResultResponder $responder,
+        private ProfileRepository $repository,
+        private UuidCollectionFactory $requestDataFactory,
+    ) {
+    }
+
+    public function __invoke(
+        ServerRequestInterface $request,
+        ResponseInterface $response,
+    ): ResponseInterface {
+        $ids = $this->requestDataFactory->fromServerRequest(
+            $request,
+        );
+
+        $result = $this->repository->deleteIds($ids);
+
+        return $this->responder->respond($result);
+    }
+}
