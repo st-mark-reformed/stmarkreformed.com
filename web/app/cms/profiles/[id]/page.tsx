@@ -4,6 +4,9 @@ import { createPageTitle } from '../../../createPageTitle';
 import ApiResponseGate from '../../ApiResponseGate';
 import CmsLayout from '../../layout/CmsLayout';
 import { RequestFactory } from '../../../api/request/RequestFactory';
+import EditProfileForm from '../EditProfile/EditProfileForm';
+import { Profile } from '../Profile';
+import { getLeadershipPositionKeyByValue } from '../EditProfile/ProfileFormData';
 
 export const dynamic = 'force-dynamic';
 
@@ -33,8 +36,9 @@ export default async function Page (
         cacheSeconds: 0,
     });
 
-    // TODO
-    console.log(apiResponse);
+    const profile = apiResponse.json as unknown as Profile & {
+        id: string;
+    };
 
     return (
         <CmsLayout
@@ -53,7 +57,15 @@ export default async function Page (
             }}
         >
             <ApiResponseGate apiResponse={apiResponse}>
-                TODO
+                <EditProfileForm
+                    id={profile.id}
+                    initialFormData={{
+                        ...profile,
+                        leadershipPosition: getLeadershipPositionKeyByValue(
+                            profile.leadershipPosition,
+                        ),
+                    }}
+                />
             </ApiResponseGate>
         </CmsLayout>
     );

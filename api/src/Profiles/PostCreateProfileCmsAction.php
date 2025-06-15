@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Profiles\PostNewProfile;
+namespace App\Profiles;
 
 use App\Authentication\RequireCmsAccessRoleMiddleware;
 use App\Persistence\ResultResponder;
-use App\Profiles\ProfileRepository;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use RxAnte\AppBootstrap\Http\ApplyRoutesEvent;
@@ -24,7 +23,7 @@ readonly class PostCreateProfileCmsAction
     public function __construct(
         private ResultResponder $responder,
         private ProfileRepository $repository,
-        private NewProfileEntityFactory $newProfileEntityFactory,
+        private ProfileEntityFactory $newProfileEntityFactory,
     ) {
     }
 

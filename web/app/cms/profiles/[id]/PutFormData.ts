@@ -6,12 +6,13 @@ import { ProfileFormData } from '../EditProfile/ProfileFormData';
 import { RequestFactory } from '../../../api/request/RequestFactory';
 import { Result } from '../../../api/request/Result';
 
-export default async function PostFormData (
+export default async function PutFormData (
+    id: string,
     formData: ProfileFormData,
-): Promise<Result> {
+) {
     const response = await RequestFactory().makeWithToken({
-        uri: '/cms/profiles',
-        method: RequestMethods.POST,
+        uri: `/cms/profiles/${id}`,
+        method: RequestMethods.PUT,
         payload: formData,
         cacheSeconds: 0,
     });

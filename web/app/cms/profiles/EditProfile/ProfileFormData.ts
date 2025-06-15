@@ -9,10 +9,14 @@ export const LeadershipPosition = {
 
 export type LeadershipPositionType = typeof LeadershipPosition[keyof typeof LeadershipPosition] | '';
 
-export interface NewProfileFormData {
+export interface ProfileFormData {
     firstName: string;
     lastName: string;
     titleOrHonorific: string;
     email: string;
     leadershipPosition: LeadershipPositionType;
+}
+
+export function getLeadershipPositionKeyByValue (value: string): string {
+    return Object.entries(LeadershipPosition).find(([, v]) => v === value)?.[0] || '';
 }

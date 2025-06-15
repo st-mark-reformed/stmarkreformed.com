@@ -1,7 +1,7 @@
 'use server';
 
 import RequestMethods from 'rxante-oauth/dist/Request/RequestMethods';
-import { revalidateTag } from 'next/cache';
+import { revalidatePath } from 'next/cache';
 import { RequestFactory } from '../../api/request/RequestFactory';
 import { Result } from '../../api/request/Result';
 
@@ -13,7 +13,7 @@ export default async function DeleteProfiles (ids: Array<string>) {
         cacheSeconds: 0,
     });
 
-    revalidateTag('/cms/profiles');
+    revalidatePath('/cms/profiles');
 
     return response.json as unknown as Result;
 }

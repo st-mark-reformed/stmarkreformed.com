@@ -4,7 +4,7 @@ import { createPageTitle } from '../../../createPageTitle';
 import { RequestFactory } from '../../../api/request/RequestFactory';
 import CmsLayout from '../../layout/CmsLayout';
 import ApiResponseGate from '../../ApiResponseGate';
-import PageInner from './PageInner';
+import EditProfileForm from '../EditProfile/EditProfileForm';
 
 export const dynamic = 'force-dynamic';
 
@@ -41,7 +41,7 @@ export default async function Page () {
             }}
         >
             <ApiResponseGate apiResponse={apiResponse}>
-                <PageInner />
+                <EditProfileForm />
             </ApiResponseGate>
         </CmsLayout>
     );

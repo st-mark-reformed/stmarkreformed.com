@@ -10,7 +10,8 @@ use App\Healthcheck;
 use App\Profiles\DeleteProfiles\DeleteProfilesCmsAction;
 use App\Profiles\GetAllProfilesCmsAction;
 use App\Profiles\GetProfileCmsAction;
-use App\Profiles\PostNewProfile\PostCreateProfileCmsAction;
+use App\Profiles\PostCreateProfileCmsAction;
+use App\Profiles\PutProfileCmsAction;
 use BuzzingPixel\Queue\Http\Routes\Route;
 use BuzzingPixel\Queue\Http\Routes\RoutesFactory as QueueRoutesFactory;
 use Config\RuntimeConfig;
@@ -30,6 +31,7 @@ readonly class ApplyRoutes
         GetAllProfilesCmsAction::applyRoute($routes);
         DeleteProfilesCmsAction::applyRoute($routes);
         GetProfileCmsAction::applyRoute($routes);
+        PutProfileCmsAction::applyRoute($routes);
 
         $config = $routes->getContainer()->get(RuntimeConfig::class);
 

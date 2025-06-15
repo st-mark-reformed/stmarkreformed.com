@@ -8,7 +8,6 @@ export default async function PageInner () {
     const apiResponse = await RequestFactory().makeWithSignInRedirect({
         uri: '/cms/profiles',
         cacheSeconds: 0,
-        cacheTags: ['/cms/profiles'],
     });
 
     const profiles = apiResponse.json as unknown as Array<Profile>;

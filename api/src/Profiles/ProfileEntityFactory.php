@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Profiles\PostNewProfile;
+namespace App\Profiles;
 
 use App\Profiles\Profile\Email;
 use App\Profiles\Profile\FirstName;
@@ -13,7 +13,7 @@ use Psr\Http\Message\ServerRequestInterface;
 
 use function is_array;
 
-readonly class NewProfileEntityFactory
+readonly class ProfileEntityFactory
 {
     public function fromServerRequest(ServerRequestInterface $request): Profile
     {

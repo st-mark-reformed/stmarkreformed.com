@@ -1,30 +1,35 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import React, { useActionState, useState } from 'react';
 import { CheckIcon } from '@heroicons/react/20/solid';
-import { useRouter } from 'next/navigation';
+import { LeadershipPosition, LeadershipPositionType, ProfileFormData } from './ProfileFormData';
+import PostFormData from '../new/PostFormData';
+import Message from '../../messaging/Message';
+import PutFormData from '../[id]/PutFormData';
 import PageHeader from '../../layout/PageHeader';
+import ButtonLoader from '../../inputs/ButtonLoader';
 import TextInput from '../../inputs/TextInput';
 import RadioPanel from '../../inputs/RadioPanel';
-import PostFormData from './PostFormData';
-import ButtonLoader from '../../inputs/ButtonLoader';
-import Message from '../../messaging/Message';
-import {
-    LeadershipPosition,
-    LeadershipPositionType,
-    NewProfileFormData,
-} from './NewProfileFormData';
 
-export default function PageInner () {
+export default function EditProfileForm (
+    {
+        id,
+        initialFormData = {
+            firstName: '',
+            lastName: '',
+            titleOrHonorific: '',
+            email: '',
+            leadershipPosition: '',
+        },
+    }: {
+        id?: string;
+        initialFormData?: ProfileFormData;
+    },
+) {
     const router = useRouter();
 
-    const [formData, setFormData] = useState<NewProfileFormData>({
-        firstName: '',
-        lastName: '',
-        titleOrHonorific: '',
-        email: '',
-        leadershipPosition: '',
-    });
+    const [formData, setFormData] = useState<ProfileFormData>(initialFormData);
 
     const setFirstName = (val: string) => {
         setFormData({ ...formData, firstName: val });
@@ -46,14 +51,27 @@ export default function PageInner () {
         setFormData({ ...formData, leadershipPosition: val });
     };
 
-    const [error, submitAction, isPending] = useActionState(
+    const [message, submitAction, isPending] = useActionState(
         async () => {
-            const response = await PostFormData(formData);
+            const response = id
+                ? await PutFormData(id, formData)
+                : await PostFormData(formData);
 
             if (response.success) {
-                router.push('/cms/profiles');
+                if (!id) {
+                    router.push('/cms/profiles');
 
-                return null;
+                    return null;
+                }
+
+                return (
+                    <Message
+                        type="success"
+                        heading="Success!"
+                        body={['Your edit was submitted successfully!']}
+                        padBottom
+                    />
+                );
             }
 
             return (
@@ -72,10 +90,10 @@ export default function PageInner () {
         <form action={submitAction}>
             <div className="mb-4 ">
                 <PageHeader
-                    title="Create New Profile"
+                    title={id ? 'Edit Profile' : 'Create New Profile'}
                     buttons={[
                         {
-                            id: 'newEntry',
+                            id: 'submit',
                             type: 'primary',
                             disabled: isPending,
                             content: (
@@ -88,7 +106,7 @@ export default function PageInner () {
                     ]}
                 />
             </div>
-            {error}
+            {message}
             <div className="space-y-8">
                 <div className="align-top grid gap-4 sm:grid-cols-2 space-y-8">
                     <TextInput

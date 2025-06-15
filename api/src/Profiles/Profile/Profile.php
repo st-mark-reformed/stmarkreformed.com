@@ -112,4 +112,14 @@ readonly class Profile
             'fullNameWithHonorificAndPosition' => $this->fullNameWithHonorificAndPosition,
         ];
     }
+
+    public function withId(UuidInterface $id): Profile
+    {
+        return $this->with(id: $id);
+    }
+
+    public function withIdFromString(string $id): Profile
+    {
+        return $this->withId(Uuid::fromString($id));
+    }
 }
