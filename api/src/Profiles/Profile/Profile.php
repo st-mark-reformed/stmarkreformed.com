@@ -95,4 +95,21 @@ readonly class Profile
             $titleOrHonorific . ' ' . $fullNameWithPosition,
         );
     }
+
+    /** @return scalar[] */
+    public function asScalar(): array
+    {
+        return [
+            'id' => $this->id->toString(),
+            'firstName' => $this->firstName->firstName,
+            'lastName' => $this->lastName->lastName,
+            'titleOrHonorific' => $this->titleOrHonorific,
+            'email' => $this->email->address,
+            'leadershipPosition' => $this->leadershipPosition->humanReadable(),
+            'fullName' => $this->fullName,
+            'fullNameWithPosition' => $this->fullNameWithPosition,
+            'fullNameWithHonorific' => $this->fullNameWithHonorific,
+            'fullNameWithHonorificAndPosition' => $this->fullNameWithHonorificAndPosition,
+        ];
+    }
 }

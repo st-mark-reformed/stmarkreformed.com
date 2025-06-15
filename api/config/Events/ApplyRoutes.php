@@ -7,7 +7,8 @@ namespace Config\Events;
 use App\Contact\PostContactAction;
 use App\HasCmsAccessAction;
 use App\Healthcheck;
-use App\Profiles\PostNewProfile\PostCreateProfileAction;
+use App\Profiles\GetAllProfilesCmsAction;
+use App\Profiles\PostNewProfile\PostCreateProfileCmsAction;
 use BuzzingPixel\Queue\Http\Routes\Route;
 use BuzzingPixel\Queue\Http\Routes\RoutesFactory as QueueRoutesFactory;
 use Config\RuntimeConfig;
@@ -23,7 +24,8 @@ readonly class ApplyRoutes
         Healthcheck::applyRoute($routes);
         PostContactAction::applyRoute($routes);
         HasCmsAccessAction::applyRoute($routes);
-        PostCreateProfileAction::applyRoute($routes);
+        PostCreateProfileCmsAction::applyRoute($routes);
+        GetAllProfilesCmsAction::applyRoute($routes);
 
         $config = $routes->getContainer()->get(RuntimeConfig::class);
 

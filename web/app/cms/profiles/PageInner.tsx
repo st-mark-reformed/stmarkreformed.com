@@ -1,44 +1,21 @@
 import React from 'react';
-import { PlusIcon } from '@heroicons/react/16/solid';
 import { RequestFactory } from '../../api/request/RequestFactory';
 import ApiResponseGate from '../ApiResponseGate';
-import PageHeader from '../layout/PageHeader';
-import EmptyState from '../layout/EmptyState';
+import { Profile } from './Profile';
+import PageInnerClientSide from './PageInnerClientSide';
 
 export default async function PageInner () {
-    // For now, just make sure we're logged in
     const apiResponse = await RequestFactory().makeWithSignInRedirect({
-        uri: '/has-cms-access',
+        uri: '/cms/profiles',
         cacheSeconds: 0,
+        cacheTags: ['/cms/profiles'],
     });
 
-    const newHref = '/cms/profiles/new';
+    const profiles = apiResponse.json as unknown as Array<Profile>;
 
     return (
         <ApiResponseGate apiResponse={apiResponse}>
-            <div className="mb-4 ">
-                <PageHeader
-                    title="Profiles"
-                    buttons={[
-                        {
-                            id: 'newProfile',
-                            type: 'primary',
-                            content: (
-                                <>
-                                    <PlusIcon className="h-5 w-5 mr-1" />
-                                    New Profile
-                                </>
-                            ),
-                            href: newHref,
-                        },
-                    ]}
-                />
-            </div>
-            <EmptyState
-                itemNameSingular="Profile"
-                itemNamePlural="Profiles"
-                buttonHref={newHref}
-            />
+            <PageInnerClientSide profiles={profiles} />
         </ApiResponseGate>
     );
 }
