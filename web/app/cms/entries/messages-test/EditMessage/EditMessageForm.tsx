@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useActionState, useState } from 'react';
+import React, { useActionState, useEffect, useState } from 'react';
 import { CheckIcon } from '@heroicons/react/20/solid';
 import { useRouter } from 'next/navigation';
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import PageHeader from '../../../layout/PageHeader';
 import Toggle from '../../../inputs/Toggle';
 import CustomDateTimePicker from '../../../inputs/CustomDateTimePicker';
@@ -12,6 +13,7 @@ import { AudioUploadFileTypes } from '../../../inputs/AudioUploadFileTypes';
 import { MessageFormData } from './MessageFormData';
 import Message from '../../../messaging/Message';
 import ButtonLoader from '../../../inputs/ButtonLoader';
+import SelectProfile from '../../../inputs/SelectProfile';
 
 export default function EditMessageForm (
     {
@@ -21,6 +23,7 @@ export default function EditMessageForm (
             date: new Date(),
             title: '',
             text: '',
+            speakerId: '',
             audioFile: '',
         },
     }: {
@@ -46,6 +49,10 @@ export default function EditMessageForm (
 
     const setText = (val: string) => {
         setFormData({ ...formData, text: val });
+    };
+
+    const setSpeakerId = (val: string) => {
+        setFormData({ ...formData, speakerId: val });
     };
 
     const setAudioFile = (val: string) => {
@@ -149,6 +156,14 @@ export default function EditMessageForm (
                         value={formData.text}
                         setValue={(key, val) => {
                             setText(val);
+                        }}
+                    />
+                    <SelectProfile
+                        label="Speaker"
+                        name="speaker"
+                        value={formData.speakerId}
+                        setValue={(val) => {
+                            setSpeakerId(val);
                         }}
                     />
                 </div>
