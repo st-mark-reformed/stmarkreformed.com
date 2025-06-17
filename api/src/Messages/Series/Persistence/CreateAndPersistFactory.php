@@ -11,6 +11,7 @@ use App\Persistence\Result;
 readonly class CreateAndPersistFactory
 {
     public function __construct(
+        private FindBySlug $findBySlug,
         private Transformer $transformer,
         private PersistNewRecord $persistNewRecord,
     ) {
@@ -25,7 +26,14 @@ readonly class CreateAndPersistFactory
             );
         }
 
-        // TODO: Validate series is unique
+        $existingSlug = $this->findBySlug->find($messageSeries->slug);
+
+        if ($existingSlug !== null) {
+            return new Result(
+                false,
+                ['Specified slug already exists. Message slug must be unique'],
+            );
+        }
 
         $record = $this->transformer->createRecord($messageSeries);
 
