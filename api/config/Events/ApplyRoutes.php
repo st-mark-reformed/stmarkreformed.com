@@ -9,6 +9,7 @@ use App\HasCmsAccessAction;
 use App\Healthcheck;
 use App\Messages\Series\DeleteMessageSeriesCmsAction;
 use App\Messages\Series\GetAllMessageSeriesCmsAction;
+use App\Messages\Series\GetMessageSeriesCmsAction;
 use App\Messages\Series\PostCreateMessageSeriesCmsAction;
 use App\Profiles\DeleteProfilesCmsAction;
 use App\Profiles\GetAllProfilesCmsAction;
@@ -38,6 +39,7 @@ readonly class ApplyRoutes
         PostCreateMessageSeriesCmsAction::applyRoute($routes);
         GetAllMessageSeriesCmsAction::applyRoute($routes);
         DeleteMessageSeriesCmsAction::applyRoute($routes);
+        GetMessageSeriesCmsAction::applyRoute($routes);
 
         $config = $routes->getContainer()->get(RuntimeConfig::class);
 

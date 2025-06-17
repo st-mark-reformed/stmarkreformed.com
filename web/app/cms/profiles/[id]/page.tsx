@@ -14,7 +14,7 @@ export async function generateMetadata (): Promise<Metadata> {
     return {
         title: createPageTitle([
             'Edit Profile',
-            'Messages',
+            'Profiles',
             'CMS',
         ]),
     };

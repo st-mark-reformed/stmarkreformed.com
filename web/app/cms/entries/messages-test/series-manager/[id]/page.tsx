@@ -1,17 +1,18 @@
-import React from 'react';
 import { Metadata } from 'next';
+import React from 'react';
+import { createPageTitle } from '../../../../../createPageTitle';
 import { RequestFactory } from '../../../../../api/request/RequestFactory';
+import { MessageSeries } from '../MessageSeries';
 import CmsLayout from '../../../../layout/CmsLayout';
 import ApiResponseGate from '../../../../ApiResponseGate';
 import EditSeriesForm from '../EditSeries/EditSeriesForm';
-import { createPageTitle } from '../../../../../createPageTitle';
 
 export const dynamic = 'force-dynamic';
 
 export async function generateMetadata (): Promise<Metadata> {
     return {
         title: createPageTitle([
-            'New Series',
+            'Edit Series',
             'Series Manager',
             'Messages',
             'CMS',
@@ -19,11 +20,25 @@ export async function generateMetadata (): Promise<Metadata> {
     };
 }
 
-export default async function Page () {
+export default async function Page (
+    {
+        params,
+    }: {
+        params: Promise<{
+            id: string;
+        }>;
+    },
+) {
+    const { id } = await params;
+
     const apiResponse = await RequestFactory().makeWithSignInRedirect({
-        uri: '/has-cms-access',
+        uri: `/cms/entries/messages/series/${id}`,
         cacheSeconds: 0,
     });
+
+    const series = apiResponse.json as unknown as MessageSeries & {
+        id: string;
+    };
 
     return (
         <CmsLayout
@@ -42,11 +57,14 @@ export default async function Page () {
                         href: '/cms/entries/messages-test/series-manager',
                     },
                 ],
-                currentBreadcrumb: { value: 'New' },
+                currentBreadcrumb: { value: 'Edit' },
             }}
         >
             <ApiResponseGate apiResponse={apiResponse}>
-                <EditSeriesForm />
+                <EditSeriesForm
+                    id={series.id}
+                    initialFormData={series}
+                />
             </ApiResponseGate>
         </CmsLayout>
     );

@@ -10,15 +10,18 @@ use App\Messages\Series\MessageSeries\Slug;
 use App\Messages\Series\Persistence\CreateAndPersistFactory;
 use App\Messages\Series\Persistence\DeleteIds;
 use App\Messages\Series\Persistence\FindAll;
+use App\Messages\Series\Persistence\FindById;
 use App\Messages\Series\Persistence\FindBySlug;
 use App\Messages\Series\Persistence\Transformer;
 use App\Persistence\Result;
 use App\Persistence\UuidCollection;
+use Ramsey\Uuid\UuidInterface;
 
 readonly class MessageSeriesRepository
 {
     public function __construct(
         private FindAll $findAll,
+        private FindById $findById,
         private DeleteIds $deleteIds,
         private FindBySlug $findBySlug,
         private Transformer $transformer,
@@ -38,6 +41,17 @@ readonly class MessageSeriesRepository
         return $this->transformer->createMessageSeriesCollection(
             $this->findAll->find(),
         );
+    }
+
+    public function findById(UuidInterface $id): MessageSeries|null
+    {
+        $record = $this->findById->find($id);
+
+        if ($record === null) {
+            return null;
+        }
+
+        return $this->transformer->createMessageSeries($record);
     }
 
     public function findBySlug(Slug $slug): MessageSeries|null
