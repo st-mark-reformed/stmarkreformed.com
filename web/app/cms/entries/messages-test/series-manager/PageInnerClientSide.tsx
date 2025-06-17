@@ -11,6 +11,7 @@ import RenderOnMount from '../../../../RenderOnMount';
 import Message from '../../../messaging/Message';
 import ConfirmDeleteOverlay from '../../../ConfirmDeleteOverlay';
 import MessageSeriesListingItem from './MessageSeriesListingItem';
+import DeleteMessageSeries from './DeleteMessageSeries';
 
 export default function PageInnerClientSide (
     {
@@ -40,7 +41,6 @@ export default function PageInnerClientSide (
 
     return (
         <>
-            {/* TODO: Overlay */}
             <RenderOnMount>
                 {(() => {
                     if (overlay === 'confirmDelete') {
@@ -53,20 +53,19 @@ export default function PageInnerClientSide (
                                 proceed={() => {
                                     setIsDeleting(true);
 
-                                    // TODO: Implement DeleteMessageSeries
-                                    // DeleteMessageSeries(selectedIds).then((response) => {
-                                    //     closeOverlay();
-                                    //
-                                    //     setIsDeleting(false);
-                                    //
-                                    //     if (response.success) {
-                                    //         setSelectedIds([]);
-                                    //
-                                    //         return;
-                                    //     }
-                                    //
-                                    //     setErrorMessages(response.messages || ['An unknown error occurred']);
-                                    // });
+                                    DeleteMessageSeries(selectedIds).then((response) => {
+                                        closeOverlay();
+
+                                        setIsDeleting(false);
+
+                                        if (response.success) {
+                                            setSelectedIds([]);
+
+                                            return;
+                                        }
+
+                                        setErrorMessages(response.messages || ['An unknown error occurred']);
+                                    });
                                 }}
                             />,
                             document.body,

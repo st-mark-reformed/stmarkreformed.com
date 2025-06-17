@@ -2,29 +2,31 @@
 
 declare(strict_types=1);
 
-namespace App\Profiles\DeleteProfiles;
+namespace App\Messages\Series;
 
 use App\Authentication\RequireCmsAccessRoleMiddleware;
 use App\Persistence\ResultResponder;
 use App\Persistence\UuidCollectionFactory;
-use App\Profiles\ProfileRepository;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use RxAnte\AppBootstrap\Http\ApplyRoutesEvent;
 use RxAnte\OAuth\RequireOauthTokenHeaderMiddleware;
 
-readonly class DeleteProfilesCmsAction
+readonly class DeleteMessageSeriesCmsAction
 {
     public static function applyRoute(ApplyRoutesEvent $routes): void
     {
-        $routes->delete('/cms/profiles', self::class)
+        $routes->delete(
+            '/cms/entries/messages/series',
+            self::class,
+        )
             ->add(RequireCmsAccessRoleMiddleware::class)
             ->add(RequireOauthTokenHeaderMiddleware::class);
     }
 
     public function __construct(
         private ResultResponder $responder,
-        private ProfileRepository $repository,
+        private MessageSeriesRepository $repository,
         private UuidCollectionFactory $requestDataFactory,
     ) {
     }

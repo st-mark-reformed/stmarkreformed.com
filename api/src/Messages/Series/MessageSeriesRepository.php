@@ -8,15 +8,18 @@ use App\Messages\Series\MessageSeries\MessageSeries;
 use App\Messages\Series\MessageSeries\MessageSeriesCollection;
 use App\Messages\Series\MessageSeries\Slug;
 use App\Messages\Series\Persistence\CreateAndPersistFactory;
+use App\Messages\Series\Persistence\DeleteIds;
 use App\Messages\Series\Persistence\FindAll;
 use App\Messages\Series\Persistence\FindBySlug;
 use App\Messages\Series\Persistence\Transformer;
 use App\Persistence\Result;
+use App\Persistence\UuidCollection;
 
 readonly class MessageSeriesRepository
 {
     public function __construct(
         private FindAll $findAll,
+        private DeleteIds $deleteIds,
         private FindBySlug $findBySlug,
         private Transformer $transformer,
         private CreateAndPersistFactory $createAndPersistFactory,
@@ -46,5 +49,10 @@ readonly class MessageSeriesRepository
         }
 
         return $this->transformer->createMessageSeries($record);
+    }
+
+    public function deleteIds(UuidCollection $ids): Result
+    {
+        return $this->deleteIds->delete($ids);
     }
 }
