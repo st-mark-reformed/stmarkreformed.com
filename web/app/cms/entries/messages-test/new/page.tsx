@@ -5,6 +5,7 @@ import { createPageTitle } from '../../../../createPageTitle';
 import PageInner from './PageInner';
 import { RequestFactory } from '../../../../api/request/RequestFactory';
 import ApiResponseGate from '../../../ApiResponseGate';
+import EditMessageForm from '../EditMessage/EditMessageForm';
 
 export async function generateMetadata (): Promise<Metadata> {
     return {
@@ -39,7 +40,7 @@ export default async function Page () {
             }}
         >
             <ApiResponseGate apiResponse={apiResponse}>
-                <PageInner />
+                <EditMessageForm />
             </ApiResponseGate>
         </CmsLayout>
     );

@@ -1,30 +1,36 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useActionState, useState } from 'react';
 import { CheckIcon } from '@heroicons/react/20/solid';
+import { useRouter } from 'next/navigation';
 import PageHeader from '../../../layout/PageHeader';
 import Toggle from '../../../inputs/Toggle';
 import CustomDateTimePicker from '../../../inputs/CustomDateTimePicker';
 import TextInput from '../../../inputs/TextInput';
 import SingleFileUploader from '../../../inputs/SingleFileUploader';
 import { AudioUploadFileTypes } from '../../../inputs/AudioUploadFileTypes';
+import { MessageFormData } from './MessageFormData';
+import Message from '../../../messaging/Message';
+import ButtonLoader from '../../../inputs/ButtonLoader';
 
-interface FormData {
-    date: Date | null;
-    published: boolean;
-    title: string;
-    text: string;
-    audioFile: string;
-}
+export default function EditMessageForm (
+    {
+        id,
+        initialFormData = {
+            published: true,
+            date: new Date(),
+            title: '',
+            text: '',
+            audioFile: '',
+        },
+    }: {
+        id?: string;
+        initialFormData?: MessageFormData;
+    },
+) {
+    const router = useRouter();
 
-export default function PageInner () {
-    const [formData, setFormData] = useState<FormData>({
-        published: true,
-        date: new Date(),
-        title: '',
-        text: '',
-        audioFile: '',
-    });
+    const [formData, setFormData] = useState<MessageFormData>(initialFormData);
 
     const setPublished = (val: boolean) => {
         setFormData({ ...formData, published: val });
@@ -46,26 +52,66 @@ export default function PageInner () {
         setFormData({ ...formData, audioFile: val });
     };
 
+    const [message, submitAction, isPending] = useActionState(
+        async () => {
+            const response = {
+                success: false,
+                messages: ['TODO: Implement submitAction'],
+            };
+            // const response = id
+            //     ? await PutFormData(id, formData)
+            //     : await PostFormData(formData);
+
+            if (response.success) {
+                if (!id) {
+                    router.push('/cms/entries/messages-test');
+
+                    return null;
+                }
+
+                return (
+                    <Message
+                        type="success"
+                        heading="Success!"
+                        body={['Your edit was submitted successfully!']}
+                        padBottom
+                    />
+                );
+            }
+
+            return (
+                <Message
+                    type="error"
+                    heading="Your submission ran into errors"
+                    body={response.messages}
+                    padBottom
+                />
+            );
+        },
+        null,
+    );
+
     return (
-        <>
+        <form action={submitAction}>
             <div className="mb-4 ">
                 <PageHeader
-                    title="Create New Message"
+                    title={id ? 'Edit Message' : 'Create New Message'}
                     buttons={[
                         {
-                            id: 'newEntry',
+                            id: 'submit',
                             type: 'primary',
+                            disabled: isPending,
                             content: (
                                 <>
-                                    <CheckIcon className="h-5 w-5 mr-1" />
+                                    {isPending ? <ButtonLoader /> : <CheckIcon className="h-5 w-5 mr-1" />}
                                     Submit
                                 </>
                             ),
-                            onClick: () => {},
                         },
                     ]}
                 />
             </div>
+            {message}
             <div className="space-y-8">
                 <div className="align-top grid gap-4 sm:grid-cols-4">
                     <Toggle
@@ -97,7 +143,8 @@ export default function PageInner () {
                         }}
                     />
                     <TextInput
-                        label="Text (Scripture Reference)"
+                        label="Text"
+                        labelParenthetical="Scripture Reference"
                         name="text"
                         value={formData.text}
                         setValue={(key, val) => {
@@ -115,6 +162,6 @@ export default function PageInner () {
                     }}
                 />
             </div>
-        </>
+        </form>
     );
 }
