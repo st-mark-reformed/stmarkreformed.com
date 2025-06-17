@@ -16,7 +16,7 @@ readonly class PostCreateMessageSeriesCmsAction
     public static function applyRoute(ApplyRoutesEvent $routes): void
     {
         $routes->post(
-            '/cms/entries/messages/series-manager',
+            '/cms/entries/messages/series',
             self::class,
         )
             ->add(RequireCmsAccessRoleMiddleware::class)

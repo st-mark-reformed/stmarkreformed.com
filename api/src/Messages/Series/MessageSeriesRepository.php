@@ -12,6 +12,7 @@ use App\Messages\Series\Persistence\DeleteIds;
 use App\Messages\Series\Persistence\FindAll;
 use App\Messages\Series\Persistence\FindById;
 use App\Messages\Series\Persistence\FindBySlug;
+use App\Messages\Series\Persistence\PersistFactory;
 use App\Messages\Series\Persistence\Transformer;
 use App\Persistence\Result;
 use App\Persistence\UuidCollection;
@@ -25,6 +26,7 @@ readonly class MessageSeriesRepository
         private DeleteIds $deleteIds,
         private FindBySlug $findBySlug,
         private Transformer $transformer,
+        private PersistFactory $persistFactory,
         private CreateAndPersistFactory $createAndPersistFactory,
     ) {
     }
@@ -34,6 +36,11 @@ readonly class MessageSeriesRepository
         return $this->createAndPersistFactory->create(
             $messageSeries,
         );
+    }
+
+    public function persist(MessageSeries $messageSeries): Result
+    {
+        return $this->persistFactory->persist($messageSeries);
     }
 
     public function findAll(): MessageSeriesCollection

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Profiles;
+namespace App\Messages\Series;
 
 use App\Authentication\RequireCmsAccessRoleMiddleware;
 use App\Persistence\ResultResponder;
@@ -16,19 +16,22 @@ use Throwable;
 use function assert;
 use function is_string;
 
-readonly class PutProfileCmsAction
+readonly class PutMessageSeriesCmsAction
 {
     public static function applyRoute(ApplyRoutesEvent $routes): void
     {
-        $routes->put('/cms/profiles/{id}', self::class)
+        $routes->put(
+            '/cms/entries/messages/series/{id}',
+            self::class,
+        )
             ->add(RequireCmsAccessRoleMiddleware::class)
             ->add(RequireOauthTokenHeaderMiddleware::class);
     }
 
     public function __construct(
         private ResultResponder $responder,
-        private ProfileRepository $repository,
-        private ProfileEntityFactory $entityFactory,
+        private MessageSeriesRepository $repository,
+        private MessageSeriesEntityFactory $entityFactory,
     ) {
     }
 
@@ -45,20 +48,20 @@ readonly class PutProfileCmsAction
             $id = Uuid::uuid6();
         }
 
-        $profile = $this->repository->findById($id);
+        $series = $this->repository->findById($id);
 
-        if ($profile === null) {
+        if ($series === null) {
             return $response->withStatus(404)->withHeader(
                 'Content-type',
                 'application/json',
             );
         }
 
-        $updatedProfile = $this->entityFactory->fromServerRequest(
+        $updatedSeries = $this->entityFactory->fromServerRequest(
             $request,
         )->withId($id);
 
-        $result = $this->repository->persist($updatedProfile);
+        $result = $this->repository->persist($updatedSeries);
 
         return $this->responder->respond($result);
     }

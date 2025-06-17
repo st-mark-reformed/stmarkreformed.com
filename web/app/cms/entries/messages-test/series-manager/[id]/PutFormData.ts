@@ -11,7 +11,7 @@ export default async function PutFormData (
     formData: SeriesFormData,
 ) {
     const response = await RequestFactory().makeWithToken({
-        uri: `/cms/entries/messages/series-manager/${id}`,
+        uri: `/cms/entries/messages/series/${id}`,
         method: RequestMethods.PUT,
         payload: formData,
         cacheSeconds: 0,

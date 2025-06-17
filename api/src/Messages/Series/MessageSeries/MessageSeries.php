@@ -58,4 +58,14 @@ readonly class MessageSeries
             'slug' => $this->slug->slug,
         ];
     }
+
+    public function withId(UuidInterface $id): MessageSeries
+    {
+        return $this->with(id: $id);
+    }
+
+    public function withIdFromString(string $id): MessageSeries
+    {
+        return $this->withId(Uuid::fromString($id));
+    }
 }

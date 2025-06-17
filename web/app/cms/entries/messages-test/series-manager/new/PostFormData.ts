@@ -10,7 +10,7 @@ export default async function PostFormData (
     formData: SeriesFormData,
 ): Promise<Result> {
     const response = await RequestFactory().makeWithToken({
-        uri: '/cms/entries/messages/series-manager',
+        uri: '/cms/entries/messages/series',
         method: RequestMethods.POST,
         payload: formData,
         cacheSeconds: 0,

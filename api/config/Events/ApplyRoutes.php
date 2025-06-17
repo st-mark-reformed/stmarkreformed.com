@@ -11,6 +11,7 @@ use App\Messages\Series\DeleteMessageSeriesCmsAction;
 use App\Messages\Series\GetAllMessageSeriesCmsAction;
 use App\Messages\Series\GetMessageSeriesCmsAction;
 use App\Messages\Series\PostCreateMessageSeriesCmsAction;
+use App\Messages\Series\PutMessageSeriesCmsAction;
 use App\Profiles\DeleteProfilesCmsAction;
 use App\Profiles\GetAllProfilesCmsAction;
 use App\Profiles\GetProfileCmsAction;
@@ -40,6 +41,7 @@ readonly class ApplyRoutes
         GetAllMessageSeriesCmsAction::applyRoute($routes);
         DeleteMessageSeriesCmsAction::applyRoute($routes);
         GetMessageSeriesCmsAction::applyRoute($routes);
+        PutMessageSeriesCmsAction::applyRoute($routes);
 
         $config = $routes->getContainer()->get(RuntimeConfig::class);
 
