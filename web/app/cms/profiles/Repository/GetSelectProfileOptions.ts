@@ -10,7 +10,7 @@ export interface Option {
 
 export type Options = Array<Option>;
 
-export default async function GetSelectProfileOptionsProfile (): Promise<Options | null> {
+export default async function GetSelectProfileOptions (): Promise<Options | null> {
     const apiResponse = await RequestFactory().makeWithToken({
         uri: '/cms/profiles',
         cacheSeconds: 0,

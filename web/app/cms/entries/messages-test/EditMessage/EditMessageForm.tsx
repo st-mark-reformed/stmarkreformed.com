@@ -14,6 +14,7 @@ import { MessageFormData } from './MessageFormData';
 import Message from '../../../messaging/Message';
 import ButtonLoader from '../../../inputs/ButtonLoader';
 import SelectProfile from '../../../inputs/SelectProfile';
+import SelectSeries from './SelectSeries';
 
 export default function EditMessageForm (
     {
@@ -24,6 +25,7 @@ export default function EditMessageForm (
             title: '',
             text: '',
             speakerId: '',
+            seriesId: '',
             audioFile: '',
         },
     }: {
@@ -53,6 +55,10 @@ export default function EditMessageForm (
 
     const setSpeakerId = (val: string) => {
         setFormData({ ...formData, speakerId: val });
+    };
+
+    const setSeriesId = (val: string) => {
+        setFormData({ ...formData, seriesId: val });
     };
 
     const setAudioFile = (val: string) => {
@@ -162,9 +168,11 @@ export default function EditMessageForm (
                         label="Speaker"
                         name="speaker"
                         value={formData.speakerId}
-                        setValue={(val) => {
-                            setSpeakerId(val);
-                        }}
+                        setValue={setSpeakerId}
+                    />
+                    <SelectSeries
+                        value={formData.seriesId}
+                        setValue={setSeriesId}
                     />
                 </div>
                 <SingleFileUploader

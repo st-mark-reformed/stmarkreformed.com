@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import Select from 'react-select/base';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
-import GetSelectProfileOptions, { Options } from '../profiles/Repository/GetSelectProfileOptions';
-import InputLoading from './InputLoading';
+import Select from 'react-select/base';
+import { Options } from '../../../profiles/Repository/GetSelectProfileOptions';
+import GetSeriesSelectOptions from '../series-manager/Repository/GetSeriesSelectOptions';
+import InputLoading from '../../../inputs/InputLoading';
 
-export default function SelectProfile (
+export default function SelectSeries (
     {
-        label,
-        name,
+        label = 'Series',
+        name = 'seriesId',
         value,
         setValue,
     }: {
-        label: string;
-        name: string;
+        label?: string;
+        name?: string;
         value: string;
         setValue: (val: string) => void;
     },
@@ -26,7 +27,7 @@ export default function SelectProfile (
     );
 
     useEffect(() => {
-        GetSelectProfileOptions()
+        GetSeriesSelectOptions()
             .then((loadedOptions) => {
                 setOptions(loadedOptions);
             })

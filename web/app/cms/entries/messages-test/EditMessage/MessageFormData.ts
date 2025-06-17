@@ -4,5 +4,6 @@ export interface MessageFormData {
     title: string;
     text: string;
     speakerId: string;
+    seriesId: string;
     audioFile: string;
 }
