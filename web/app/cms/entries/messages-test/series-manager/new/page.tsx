@@ -1,18 +1,19 @@
-import { Metadata } from 'next';
 import React from 'react';
-import { createPageTitle } from '../../../createPageTitle';
-import { RequestFactory } from '../../../api/request/RequestFactory';
-import CmsLayout from '../../layout/CmsLayout';
-import ApiResponseGate from '../../ApiResponseGate';
-import EditProfileForm from '../EditProfile/EditProfileForm';
+import { Metadata } from 'next';
+import { RequestFactory } from '../../../../../api/request/RequestFactory';
+import CmsLayout from '../../../../layout/CmsLayout';
+import ApiResponseGate from '../../../../ApiResponseGate';
+import EditSeriesForm from '../EditSeries/EditSeriesForm';
+import { createPageTitle } from '../../../../../createPageTitle';
 
 export const dynamic = 'force-dynamic';
 
 export async function generateMetadata (): Promise<Metadata> {
     return {
         title: createPageTitle([
-            'New Profile',
-            'Profiles',
+            'New Series',
+            'Series Manager',
+            'Messages',
             'CMS',
         ]),
     };
@@ -41,7 +42,7 @@ export default async function Page () {
             }}
         >
             <ApiResponseGate apiResponse={apiResponse}>
-                <EditProfileForm />
+                <EditSeriesForm />
             </ApiResponseGate>
         </CmsLayout>
     );

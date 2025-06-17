@@ -3,6 +3,7 @@ import React from 'react';
 export default function TextInput (
     {
         label,
+        labelParenthetical,
         name,
         value,
         setValue,
@@ -11,6 +12,7 @@ export default function TextInput (
         max,
     }: {
         label: string;
+        labelParenthetical?: string;
         name: string;
         value: string;
         setValue: (key: string, val: string) => void;
@@ -44,7 +46,21 @@ export default function TextInput (
                 htmlFor={name}
                 className="block text-sm font-semibold leading-6 text-gray-900"
             >
-                {label}
+                <span className="inline-block align-middle">{label}</span>
+                {(() => {
+                    if (!labelParenthetical) {
+                        return null;
+                    }
+
+                    return (
+                        <>
+                            {' '}
+                            <span className="text-xxs font-normal inline-block align-middle text-gray-600">
+                                ({labelParenthetical})
+                            </span>
+                        </>
+                    );
+                })()}
             </label>
             <div className="mt-2">
                 <input
