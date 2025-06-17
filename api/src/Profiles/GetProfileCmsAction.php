@@ -39,7 +39,7 @@ readonly class GetProfileCmsAction
         try {
             $id = Uuid::fromString($idString);
         } catch (Throwable) {
-            $id = Uuid::uuid7();
+            $id = Uuid::uuid6();
         }
 
         $profile = $this->repository->findById($id);

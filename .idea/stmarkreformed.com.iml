@@ -300,6 +300,7 @@
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/robmorgan/phinx" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/symfony/config" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/symfony/filesystem" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/cocur/slugify" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
