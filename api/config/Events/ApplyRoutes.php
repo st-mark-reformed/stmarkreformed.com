@@ -7,6 +7,7 @@ namespace Config\Events;
 use App\Contact\PostContactAction;
 use App\HasCmsAccessAction;
 use App\Healthcheck;
+use App\Messages\Series\GetAllMessageSeriesCmsAction;
 use App\Messages\Series\PostCreateMessageSeriesCmsAction;
 use App\Profiles\DeleteProfiles\DeleteProfilesCmsAction;
 use App\Profiles\GetAllProfilesCmsAction;
@@ -34,6 +35,7 @@ readonly class ApplyRoutes
         GetProfileCmsAction::applyRoute($routes);
         PutProfileCmsAction::applyRoute($routes);
         PostCreateMessageSeriesCmsAction::applyRoute($routes);
+        GetAllMessageSeriesCmsAction::applyRoute($routes);
 
         $config = $routes->getContainer()->get(RuntimeConfig::class);
 

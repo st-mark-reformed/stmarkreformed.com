@@ -25,6 +25,8 @@ readonly class CreateAndPersistFactory
             );
         }
 
+        // TODO: Validate series is unique
+
         $record = $this->transformer->createRecord($messageSeries);
 
         return $this->persistNewRecord->persist($record);
