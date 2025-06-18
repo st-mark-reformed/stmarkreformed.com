@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Messages\FileManager;
 
+use App\Messages\FileManager\Internal\FindAllFiles;
+use App\Messages\FileManager\Internal\SaveBase64FileToDisk;
 use SplFileInfo;
 use Symfony\Component\Filesystem\Filesystem;
 
@@ -13,6 +15,7 @@ readonly class FileRepository
 
     public function __construct(
         private Filesystem $filesystem,
+        private FindAllFiles $findAllFiles,
         private SaveBase64FileToDisk $saveBase64FileToDisk,
     ) {
     }
@@ -36,6 +39,11 @@ readonly class FileRepository
     public function fileExists(string $fileName): bool
     {
         return $this->findFileByName($fileName) !== null;
+    }
+
+    public function findAllFiles(): Files
+    {
+        return $this->findAllFiles->find();
     }
 
     public function saveBase64FileToDisk(
