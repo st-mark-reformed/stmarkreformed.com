@@ -11,6 +11,8 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Spatie\Cloneable\Cloneable;
 
+use function array_merge;
+
 readonly class Message
 {
     use Cloneable;
@@ -24,7 +26,7 @@ readonly class Message
 
     public function __construct(
         public bool $isPublished,
-        public DateTimeImmutable $date,
+        public DateTimeImmutable|null $date,
         public Title $title,
         public string $text,
         public Profile|null $speaker,
@@ -49,6 +51,11 @@ readonly class Message
         $isValid = true;
 
         $errorMessages = [];
+
+        if ($date === null) {
+            $isValid         = false;
+            $errorMessages[] = 'A date is required.';
+        }
 
         if (! $title->isValid) {
             $isValid         = false;
@@ -76,8 +83,8 @@ readonly class Message
         return [
             'id' => $this->id->toString(),
             'isPublished' => $this->isPublished,
-            'date' => $this->date->format('Y-m-d H:i:s'),
-            'dateDisplay' => $this->date->format('F j, Y'),
+            'date' => $this->date?->format('Y-m-d H:i:s'),
+            'dateDisplay' => $this->date?->format('F j, Y'),
             'title' => $this->title->title,
             'text' => $this->text,
             'speaker' => $this->speaker?->asScalar(),
@@ -94,5 +101,13 @@ readonly class Message
     public function withIdFromString(string $id): Message
     {
         return $this->withId(Uuid::fromString($id));
+    }
+
+    public function withErrorMessage(string $message): Message
+    {
+        return $this->with(isValid: false)->with(errorMessages: array_merge(
+            $this->errorMessages,
+            [$message],
+        ));
     }
 }

@@ -20,6 +20,11 @@ module.exports = {
     },
     poweredByHeader: false,
     reactStrictMode: true,
+    experimental: {
+        serverActions: {
+            bodySizeLimit: '500mb',
+        },
+    },
     async redirects () {
         return [
             {

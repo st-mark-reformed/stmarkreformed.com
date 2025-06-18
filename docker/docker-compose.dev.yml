@@ -71,6 +71,7 @@ services:
     volumes:
       - ./api/.bash_history:/root/.bash_history:delegated
       - ../api:/var/www:delegated
+      - ../craft-cms/public/uploads/audio:/uploads/audio
     networks:
       traefik:
       default:

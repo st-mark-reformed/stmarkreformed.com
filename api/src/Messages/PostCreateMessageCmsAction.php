@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Profiles;
+namespace App\Messages;
 
 use App\Authentication\RequireCmsAccessRoleMiddleware;
 use App\Persistence\ResultResponder;
@@ -11,29 +11,29 @@ use Psr\Http\Message\ServerRequestInterface;
 use RxAnte\AppBootstrap\Http\ApplyRoutesEvent;
 use RxAnte\OAuth\RequireOauthTokenHeaderMiddleware;
 
-readonly class PostCreateProfileCmsAction
+readonly class PostCreateMessageCmsAction
 {
     public static function applyRoute(ApplyRoutesEvent $routes): void
     {
-        $routes->post('/cms/profiles', self::class)
+        $routes->post('/cms/entries/messages', self::class)
             ->add(RequireCmsAccessRoleMiddleware::class)
             ->add(RequireOauthTokenHeaderMiddleware::class);
     }
 
     public function __construct(
         private ResultResponder $responder,
-        private ProfileRepository $repository,
-        private ProfileEntityFactory $profileEntityFactory,
+        private MessageRepository $repository,
+        private MessageEntityFactory $entityFactory,
     ) {
     }
 
     public function __invoke(ServerRequestInterface $request): ResponseInterface
     {
-        $newProfile = $this->profileEntityFactory->fromServerRequest(
+        $newMessage = $this->entityFactory->fromServerRequest(
             $request,
         );
 
-        $result = $this->repository->createAndPersist($newProfile);
+        $result = $this->repository->createAndPersist($newMessage);
 
         return $this->responder->respond($result);
     }

@@ -1,9 +1,8 @@
 'use client';
 
-import React, { useActionState, useEffect, useState } from 'react';
+import React, { useActionState, useState } from 'react';
 import { CheckIcon } from '@heroicons/react/20/solid';
 import { useRouter } from 'next/navigation';
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import PageHeader from '../../../layout/PageHeader';
 import Toggle from '../../../inputs/Toggle';
 import CustomDateTimePicker from '../../../inputs/CustomDateTimePicker';
@@ -15,6 +14,8 @@ import Message from '../../../messaging/Message';
 import ButtonLoader from '../../../inputs/ButtonLoader';
 import SelectProfile from '../../../inputs/SelectProfile';
 import SelectSeries from './SelectSeries';
+import PutFormData from '../[id]/PutFormData';
+import PostFormData from '../new/PostFormData';
 
 export default function EditMessageForm (
     {
@@ -67,13 +68,9 @@ export default function EditMessageForm (
 
     const [message, submitAction, isPending] = useActionState(
         async () => {
-            const response = {
-                success: false,
-                messages: ['TODO: Implement submitAction'],
-            };
-            // const response = id
-            //     ? await PutFormData(id, formData)
-            //     : await PostFormData(formData);
+            const response = id
+                ? await PutFormData(id, formData)
+                : await PostFormData(formData);
 
             if (response.success) {
                 if (!id) {

@@ -41,11 +41,11 @@ readonly class MessagesTable
         )->addColumn(
             'speaker_profile_id',
             AdapterInterface::PHINX_TYPE_UUID,
-            ['null' => false, 'default' => ''],
+            ['null' => true, 'default' => null],
         )->addColumn(
             'series_id',
             AdapterInterface::PHINX_TYPE_UUID,
-            ['null' => false, 'default' => ''],
+            ['null' => true, 'default' => null],
         )->addColumn(
             'audio_file_name',
             AdapterInterface::PHINX_TYPE_STRING,

@@ -24,15 +24,15 @@ class MessageRecord extends Record
 
     public bool $is_published = false;
 
-    public string $date = '';
+    public string|null $date = null;
 
     public string $title = '';
 
     public string $text = '';
 
-    public string $speaker_profile_id = '';
+    public string|null $speaker_profile_id = null;
 
-    public string $series_id = '';
+    public string|null $series_id = null;
 
     public string $audio_file_name = '';
 }
