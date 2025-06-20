@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useActionState, useState } from 'react';
+import React, { useActionState, useEffect, useState } from 'react';
 import { CheckIcon } from '@heroicons/react/20/solid';
 import { useRouter } from 'next/navigation';
 import PageHeader from '../../../layout/PageHeader';
@@ -16,6 +16,7 @@ import SelectProfile from '../../../inputs/SelectProfile';
 import SelectSeries from './SelectSeries';
 import PutFormData from '../[id]/PutFormData';
 import PostFormData from '../new/PostFormData';
+import GetSelectFileNames from '../file-manager/Repository/GetSelectFileNames';
 
 export default function EditMessageForm (
     {
@@ -101,6 +102,18 @@ export default function EditMessageForm (
         null,
     );
 
+    const [existingFiles, setExistingFiles] = useState<Array<string>>([]);
+
+    useEffect(() => {
+        GetSelectFileNames().then((fileNames) => {
+            if (fileNames === null) {
+                return;
+            }
+
+            setExistingFiles(fileNames);
+        });
+    }, []);
+
     return (
         <form action={submitAction}>
             <div className="mb-4 ">
@@ -177,6 +190,7 @@ export default function EditMessageForm (
                     name="audio_file"
                     value={formData.audioFile}
                     fileTypes={AudioUploadFileTypes}
+                    filePickerFileNames={existingFiles}
                     setValue={(key: string, val: string) => {
                         setAudioFile(val);
                     }}

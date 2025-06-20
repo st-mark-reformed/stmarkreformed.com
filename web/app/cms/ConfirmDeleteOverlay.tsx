@@ -34,9 +34,7 @@ export default function ConfirmDeleteOverlay (
                 }}
             >
                 <div className="px-4 py-5 sm:p-6 min-w-96">
-                    <h3
-                        className="text-base font-semibold leading-6 text-gray-900"
-                    >
+                    <h3 className="text-base font-semibold leading-6 text-gray-900">
                         {heading}
                     </h3>
                     <div className="mt-2 text-left">

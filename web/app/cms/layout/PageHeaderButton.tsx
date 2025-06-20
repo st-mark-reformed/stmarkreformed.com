@@ -1,14 +1,14 @@
 import React, { MouseEvent, ReactElement } from 'react';
 import Link from 'next/link';
 
-export type PageHeaderButtonConfig = {
+export interface PageHeaderButtonConfig {
     id: string;
     type?: 'primary' | 'secondary';
     content: string | ReactElement;
     href?: string;
     onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
     disabled?: boolean;
-};
+}
 
 export function PageHeaderButton (
     {
