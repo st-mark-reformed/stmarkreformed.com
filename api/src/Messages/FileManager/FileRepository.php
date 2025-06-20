@@ -4,41 +4,33 @@ declare(strict_types=1);
 
 namespace App\Messages\FileManager;
 
+use App\Messages\FileManager\Internal\DeleteNames;
+use App\Messages\FileManager\Internal\FileFinder;
 use App\Messages\FileManager\Internal\FindAllFiles;
 use App\Messages\FileManager\Internal\SaveBase64FileToDisk;
+use App\Persistence\Result;
 use SplFileInfo;
-use Symfony\Component\Filesystem\Filesystem;
 
 readonly class FileRepository
 {
     public const string BASE_PATH = '/uploads/audio/';
 
     public function __construct(
-        private Filesystem $filesystem,
+        private FileFinder $fileFinder,
+        private DeleteNames $deleteNames,
         private FindAllFiles $findAllFiles,
         private SaveBase64FileToDisk $saveBase64FileToDisk,
     ) {
     }
 
-    private function createFilePath(string $fileName): string
-    {
-        return self::BASE_PATH . $fileName;
-    }
-
     public function findFileByName(string $fileName): SplFileInfo|null
     {
-        $filePath = $this->createFilePath($fileName);
-
-        if (! $this->filesystem->exists($filePath)) {
-            return null;
-        }
-
-        return new SplFileInfo($filePath);
+        return $this->fileFinder->findFileByName($fileName);
     }
 
     public function fileExists(string $fileName): bool
     {
-        return $this->findFileByName($fileName) !== null;
+        return $this->fileFinder->fileExists($fileName);
     }
 
     public function findAllFiles(): Files
@@ -51,8 +43,13 @@ readonly class FileRepository
         string $base64Data,
     ): void {
         $this->saveBase64FileToDisk->save(
-            $this->createFilePath($fileName),
+            $this->fileFinder->createFilePath($fileName),
             $base64Data,
         );
+    }
+
+    public function deleteNames(FileNameCollection $fileNames): Result
+    {
+        return $this->deleteNames->delete($fileNames);
     }
 }

@@ -2,24 +2,21 @@
 
 import React, { useState } from 'react';
 import { MinusCircleIcon } from '@heroicons/react/24/outline';
-import { PlusIcon, TrashIcon } from '@heroicons/react/16/solid';
+import { TrashIcon } from '@heroicons/react/16/solid';
 import { createPortal } from 'react-dom';
 import PageHeader from '../../../layout/PageHeader';
-import EmptyState from '../../../layout/EmptyState';
-import { MessageSeries } from './MessageSeries';
-import RenderOnMount from '../../../../RenderOnMount';
 import Message from '../../../messaging/Message';
+import { File } from './File';
+import FileListingItem from './FileListingItem';
 import ConfirmDeleteOverlay from '../../../ConfirmDeleteOverlay';
-import MessageSeriesListingItem from './MessageSeriesListingItem';
-import DeleteMessageSeries from './DeleteMessageSeries';
+import RenderOnMount from '../../../../RenderOnMount';
+import DeleteFiles from './DeleteFiles';
 
 export default function PageInnerClientSide (
     {
-        messageSeries,
+        files,
     }: {
-        messageSeries: Array<MessageSeries & {
-            id: string;
-        }>;
+        files: Array<File>;
     },
 ) {
     const [overlay, setOverlay] = useState<
@@ -33,13 +30,11 @@ export default function PageInnerClientSide (
 
     const [isDeleting, setIsDeleting] = useState(false);
 
-    const [selectedIds, setSelectedIds] = useState<Array<string>>([]);
+    const [selectedNames, setSelectedNames] = useState<Array<string>>([]);
 
     const [errorMessages, setErrorMessages] = useState<Array<string>>([]);
 
-    const hasSelected = selectedIds.length > 0;
-
-    const newHref = '/cms/entries/messages-test/series-manager/new';
+    const hasSelected = selectedNames.length > 0;
 
     return (
         <>
@@ -50,18 +45,18 @@ export default function PageInnerClientSide (
                             <ConfirmDeleteOverlay
                                 closeOverlay={closeOverlay}
                                 isDeleting={isDeleting}
-                                heading="Delete Selected Series?"
-                                body="This is a non-recoverable action, and has the potential to break relationships with sermon series. Do you wish to proceed?"
+                                heading="Delete Selected Files?"
+                                body="This is a non-recoverable action, and has the potential to break relationships with sermons. Do you wish to proceed?"
                                 proceed={() => {
                                     setIsDeleting(true);
 
-                                    DeleteMessageSeries(selectedIds).then((response) => {
+                                    DeleteFiles(selectedNames).then((response) => {
                                         closeOverlay();
 
                                         setIsDeleting(false);
 
                                         if (response.success) {
-                                            setSelectedIds([]);
+                                            setSelectedNames([]);
 
                                             return;
                                         }
@@ -79,7 +74,7 @@ export default function PageInnerClientSide (
             </RenderOnMount>
             <div className="mb-4 ">
                 <PageHeader
-                    title="Message Series"
+                    title="Message File Manager"
                     buttons={(() => {
                         if (hasSelected) {
                             return [
@@ -92,7 +87,7 @@ export default function PageInnerClientSide (
                                             Deselect All
                                         </>
                                     ),
-                                    onClick: () => setSelectedIds([]),
+                                    onClick: () => setSelectedNames([]),
                                 },
                                 {
                                     id: 'deleteSelected',
@@ -108,17 +103,7 @@ export default function PageInnerClientSide (
                             ];
                         }
 
-                        return [{
-                            id: 'newProfile',
-                            type: 'primary',
-                            content: (
-                                <>
-                                    <PlusIcon className="h-5 w-5 mr-1" />
-                                    New Series
-                                </>
-                            ),
-                            href: newHref,
-                        }];
+                        return [];
                     })()}
                 />
             </div>
@@ -136,26 +121,13 @@ export default function PageInnerClientSide (
                 body={errorMessages}
                 padBottom
             />
-            {(() => {
-                if (messageSeries.length > 0) {
-                    return null;
-                }
-
-                return (
-                    <EmptyState
-                        itemNameSingular="Series"
-                        itemNamePlural="Series"
-                        buttonHref={newHref}
-                    />
-                );
-            })()}
             <ul className="divide-y divide-gray-100 overflow-hidden bg-white shadow-sm ring-1 ring-gray-900/5 rounded-xl">
-                {messageSeries.map((series) => (
-                    <MessageSeriesListingItem
-                        key={series.id}
-                        series={series}
-                        selectedIds={selectedIds}
-                        setSelectedIds={setSelectedIds}
+                {files.map((file) => (
+                    <FileListingItem
+                        key={file.filename}
+                        file={file}
+                        selectedNames={selectedNames}
+                        setSelectedNames={setSelectedNames}
                     />
                 ))}
             </ul>

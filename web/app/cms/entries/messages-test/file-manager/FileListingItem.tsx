@@ -1,22 +1,21 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import Link from 'next/link';
-import { PencilIcon } from '@heroicons/react/24/solid';
-import { MessageSeries } from './MessageSeries';
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/16/solid';
+import { ArrowDownOnSquareIcon } from '@heroicons/react/24/outline';
+import { File } from './File';
 
-export default function MessageSeriesListingItem (
+export default function FileListingItem (
     {
-        series,
-        selectedIds,
-        setSelectedIds,
+        file,
+        selectedNames,
+        setSelectedNames,
     }: {
-        series: MessageSeries & {
-            id: string;
-        };
-        selectedIds: Array<string>;
-        setSelectedIds: Dispatch<SetStateAction<Array<string>>>;
+        file: File;
+        selectedNames: Array<string>;
+        setSelectedNames: Dispatch<SetStateAction<Array<string>>>;
     },
 ) {
-    const isSelected = selectedIds.indexOf(series.id) > -1;
+    const isSelected = selectedNames.indexOf(file.filename) > -1;
 
     return (
         // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
@@ -37,27 +36,27 @@ export default function MessageSeriesListingItem (
                     return;
                 }
 
-                const newSelectedIds = [...selectedIds];
+                const newSelectedNames = [...selectedNames];
 
                 if (isSelected) {
-                    newSelectedIds.splice(
-                        selectedIds.indexOf(series.id),
+                    newSelectedNames.splice(
+                        selectedNames.indexOf(file.filename),
                         1,
                     );
                 } else {
-                    newSelectedIds.push(series.id);
+                    newSelectedNames.push(file.filename);
                 }
 
-                setSelectedIds(newSelectedIds);
+                setSelectedNames(newSelectedNames);
             }}
         >
             <div className="flex min-w-0 gap-x-4 pl-0">
                 <div className="min-w-0 flex-auto">
                     <p className="text-sm font-semibold leading-6 text-gray-900">
-                        {series.title}
+                        {file.filename}
                     </p>
                     <p className="text-xs font-extralight leading-6 text-gray-900">
-                        {series.slug}
+                        {file.size}
                     </p>
                 </div>
             </div>
@@ -66,12 +65,23 @@ export default function MessageSeriesListingItem (
                     <div className="text-sm leading-6 text-gray-900">
                         <Link
                             data-prevent-select
-                            href={`/cms/entries/messages-test/series-manager/${series.id}`}
+                            href={`/uploads/audio/${file.filename}`}
                             className="rounded bg-cyan-600 px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-cyan-700 ml-4"
+                            download
                         >
-                            <PencilIcon className="h-3 w-3 text-white inline -mt-0.5" />
+                            <ArrowDownOnSquareIcon className="h-3 w-3 text-white inline -mt-0.5" />
                             {' '}
-                            Edit
+                            Download File
+                        </Link>
+                        <Link
+                            data-prevent-select
+                            href={`/uploads/audio/${file.filename}`}
+                            className="rounded bg-cyan-600 px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-cyan-700 ml-4"
+                            target="_blank"
+                        >
+                            <ArrowTopRightOnSquareIcon className="h-3 w-3 text-white inline -mt-0.5" />
+                            {' '}
+                            Open File
                         </Link>
                         <input
                             type="checkbox"

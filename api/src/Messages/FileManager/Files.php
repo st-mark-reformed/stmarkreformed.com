@@ -11,7 +11,7 @@ use function array_values;
 
 readonly class Files
 {
-    /** @param SplFileInfo[] $files */
+    /** @var SplFileInfo[] $files */
     public array $files;
 
     /** @param SplFileInfo[] $files */
@@ -33,9 +33,9 @@ readonly class Files
                 'basename' => $i->getBasename(
                     '.' . $i->getExtension(),
                 ),
+                'extension' => $i->getExtension(),
                 'directory' => $i->getPath(),
                 'size' => $i->getSize(),
-                'extension' => $i->getExtension(),
             ],
             $this->files,
         );
