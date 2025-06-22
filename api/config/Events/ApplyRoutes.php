@@ -9,6 +9,7 @@ use App\HasCmsAccessAction;
 use App\Healthcheck;
 use App\Messages\FileManager\DeleteFilesCmsAction;
 use App\Messages\FileManager\ListAllFilesCmsAction;
+use App\Messages\GetAllMessagesCmsAction;
 use App\Messages\PostCreateMessageCmsAction;
 use App\Messages\Series\DeleteMessageSeriesCmsAction;
 use App\Messages\Series\GetAllMessageSeriesCmsAction;
@@ -48,6 +49,7 @@ readonly class ApplyRoutes
         PostCreateMessageCmsAction::applyRoute($routes);
         ListAllFilesCmsAction::applyRoute($routes);
         DeleteFilesCmsAction::applyRoute($routes);
+        GetAllMessagesCmsAction::applyRoute($routes);
 
         $config = $routes->getContainer()->get(RuntimeConfig::class);
 

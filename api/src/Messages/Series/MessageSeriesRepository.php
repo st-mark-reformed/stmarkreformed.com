@@ -11,12 +11,16 @@ use App\Messages\Series\Persistence\CreateAndPersistFactory;
 use App\Messages\Series\Persistence\DeleteIds;
 use App\Messages\Series\Persistence\FindAll;
 use App\Messages\Series\Persistence\FindById;
+use App\Messages\Series\Persistence\FindByIds;
 use App\Messages\Series\Persistence\FindBySlug;
 use App\Messages\Series\Persistence\PersistFactory;
 use App\Messages\Series\Persistence\Transformer;
 use App\Persistence\Result;
 use App\Persistence\UuidCollection;
+use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+
+use function is_string;
 
 readonly class MessageSeriesRepository
 {
@@ -24,6 +28,7 @@ readonly class MessageSeriesRepository
         private FindAll $findAll,
         private FindById $findById,
         private DeleteIds $deleteIds,
+        private FindByIds $findByIds,
         private FindBySlug $findBySlug,
         private Transformer $transformer,
         private PersistFactory $persistFactory,
@@ -50,8 +55,20 @@ readonly class MessageSeriesRepository
         );
     }
 
-    public function findById(UuidInterface $id): MessageSeries|null
+    /** @param string[] $ids */
+    public function findByIds(array $ids): MessageSeriesCollection
     {
+        return $this->transformer->createMessageSeriesCollection(
+            $this->findByIds->find($ids),
+        );
+    }
+
+    public function findById(UuidInterface|string $id): MessageSeries|null
+    {
+        if (is_string($id)) {
+            $id = Uuid::fromString($id);
+        }
+
         $record = $this->findById->find($id);
 
         if ($record === null) {
