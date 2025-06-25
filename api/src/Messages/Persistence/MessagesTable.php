@@ -35,6 +35,10 @@ readonly class MessagesTable
             AdapterInterface::PHINX_TYPE_STRING,
             ['null' => false, 'default' => ''],
         )->addColumn(
+            'slug',
+            AdapterInterface::PHINX_TYPE_STRING,
+            ['null' => false, 'default' => ''],
+        )->addColumn(
             'text',
             AdapterInterface::PHINX_TYPE_STRING,
             ['null' => false, 'default' => ''],
@@ -54,6 +58,7 @@ readonly class MessagesTable
             ->addIndex(['is_published'])
             ->addIndex(['date'])
             ->addIndex(['title'])
+            ->addIndex(['slug'])
             ->addIndex(['text'])
             ->addIndex(['speaker_profile_id'])
             ->addIndex(['series_id'])

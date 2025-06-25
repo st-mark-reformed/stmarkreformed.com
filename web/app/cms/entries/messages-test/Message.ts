@@ -7,6 +7,7 @@ export interface Message {
     date: string | null;
     dateDisplay: string | null;
     title: string;
+    slug: string;
     text: string;
     speaker: Profile | null;
     series: MessageSeries | null;

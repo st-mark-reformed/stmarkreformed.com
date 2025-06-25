@@ -28,6 +28,7 @@ readonly class Message
         public bool $isPublished,
         public DateTimeImmutable|null $date,
         public Title $title,
+        public Slug $slug,
         public string $text,
         public Profile|null $speaker,
         public MessageSeries|null $series,
@@ -62,6 +63,11 @@ readonly class Message
             $errorMessages[] = $title->errorMessage;
         }
 
+        if (! $slug->isValid) {
+            $isValid         = false;
+            $errorMessages[] = $slug->errorMessage;
+        }
+
         if (! $audioFileName->isValid) {
             $isValid         = false;
             $errorMessages[] = $audioFileName->errorMessage;
@@ -86,6 +92,7 @@ readonly class Message
             'date' => $this->date?->format('Y-m-d H:i:s'),
             'dateDisplay' => $this->date?->format('F j, Y'),
             'title' => $this->title->title,
+            'slug' => $this->slug->slug,
             'text' => $this->text,
             'speaker' => $this->speaker?->asScalar(),
             'series' => $this->series?->asScalar(),

@@ -28,6 +28,8 @@ class MessageRecord extends Record
 
     public string $title = '';
 
+    public string $slug = '';
+
     public string $text = '';
 
     public string|null $speaker_profile_id = null;

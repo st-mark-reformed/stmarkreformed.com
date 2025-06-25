@@ -7,6 +7,7 @@ namespace App\Messages\Persistence;
 use App\Messages\Message\AudioFileName;
 use App\Messages\Message\Message;
 use App\Messages\Message\Messages;
+use App\Messages\Message\Slug;
 use App\Messages\Message\Title;
 use App\Messages\Series\MessageSeries\MessageSeriesCollection;
 use App\Messages\Series\MessageSeriesRepository;
@@ -48,6 +49,8 @@ class Transformer
         $record->date = $fromMessage->date?->format('Y-m-d H:i:s');
 
         $record->title = $fromMessage->title->title;
+
+        $record->slug = $fromMessage->slug->slug;
 
         $record->text = $fromMessage->text;
 
@@ -121,6 +124,7 @@ class Transformer
             isPublished: $fromRecord->is_published,
             date: $date,
             title: new Title($fromRecord->title),
+            slug: new Slug($fromRecord->slug),
             text: $fromRecord->text,
             speaker: $speaker,
             series: $series,

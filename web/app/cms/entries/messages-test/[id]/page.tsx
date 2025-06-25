@@ -67,6 +67,7 @@ export default async function Page (
                         published: message.isPublished,
                         date,
                         title: message.title,
+                        slug: message.slug,
                         text: message.text,
                         speakerId: message.speaker?.id || '',
                         seriesId: message.series?.id || '',

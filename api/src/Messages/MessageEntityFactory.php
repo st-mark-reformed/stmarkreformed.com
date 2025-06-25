@@ -6,9 +6,11 @@ namespace App\Messages;
 
 use App\Messages\Message\AudioFileName;
 use App\Messages\Message\Message;
+use App\Messages\Message\Slug;
 use App\Messages\Message\Title;
 use App\Messages\Series\MessageSeriesRepository;
 use App\Profiles\ProfileRepository;
+use Cocur\Slugify\Slugify;
 use DateTimeImmutable;
 use DateTimeZone;
 use Psr\Http\Message\ServerRequestInterface;
@@ -47,6 +49,14 @@ readonly class MessageEntityFactory
             );
         }
 
+        $title = $submittedData['title'] ?? '';
+
+        $slug = $submittedData['slug'] ?? '';
+
+        if ($slug === '') {
+            $slug = Slugify::create()->slugify($title);
+        }
+
         try {
             $speakerId = Uuid::fromString(
                 $submittedData['speakerId'] ?? '',
@@ -70,9 +80,8 @@ readonly class MessageEntityFactory
         return new Message(
             isPublished: $isPublished,
             date: $date,
-            title: new Title(
-                $submittedData['title'] ?? '',
-            ),
+            title: new Title($title),
+            slug: new Slug($slug),
             text: $submittedData['text'] ?? '',
             speaker: $speaker,
             series: $series,

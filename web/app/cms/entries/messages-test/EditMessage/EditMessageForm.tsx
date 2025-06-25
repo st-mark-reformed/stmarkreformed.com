@@ -25,6 +25,7 @@ export default function EditMessageForm (
             published: true,
             date: new Date(),
             title: '',
+            slug: '',
             text: '',
             speakerId: '',
             seriesId: '',
@@ -49,6 +50,10 @@ export default function EditMessageForm (
 
     const setTitle = (val: string) => {
         setFormData({ ...formData, title: val });
+    };
+
+    const setSlug = (val: string) => {
+        setFormData({ ...formData, slug: val });
     };
 
     const setText = (val: string) => {
@@ -114,6 +119,12 @@ export default function EditMessageForm (
         });
     }, []);
 
+    useEffect(() => {
+        if (initialFormData.slug && !formData.slug) {
+            setSlug(initialFormData.slug);
+        }
+    }, [formData.slug, initialFormData.slug, setSlug]);
+
     return (
         <form action={submitAction}>
             <div className="mb-4 ">
@@ -165,6 +176,17 @@ export default function EditMessageForm (
                             setTitle(val);
                         }}
                     />
+                    <TextInput
+                        label="Slug"
+                        name="slug"
+                        labelParenthetical="Leave blank to auto-generate from title on submit"
+                        value={formData.slug}
+                        setValue={(key, val) => {
+                            setSlug(val);
+                        }}
+                    />
+                </div>
+                <div className="align-top grid gap-4 sm:grid-cols-3">
                     <TextInput
                         label="Text"
                         labelParenthetical="Scripture Reference"
