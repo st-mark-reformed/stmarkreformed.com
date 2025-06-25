@@ -1,10 +1,6 @@
 import React from 'react';
-import { DocumentIcon, TagIcon } from '@heroicons/react/24/outline';
-import { PlusIcon } from '@heroicons/react/16/solid';
 import { RequestFactory } from '../../../api/request/RequestFactory';
-import EmptyState from '../../layout/EmptyState';
 import ApiResponseGate from '../../ApiResponseGate';
-import PageHeader from '../../layout/PageHeader';
 import { Message } from './Message';
 import PageInnerClientSide from './PageInnerClientSide';
 

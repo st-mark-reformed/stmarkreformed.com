@@ -7,6 +7,7 @@ namespace Config\Events;
 use App\Contact\PostContactAction;
 use App\HasCmsAccessAction;
 use App\Healthcheck;
+use App\Messages\DeleteMessagesCmsAction;
 use App\Messages\FileManager\DeleteFilesCmsAction;
 use App\Messages\FileManager\ListAllFilesCmsAction;
 use App\Messages\GetAllMessagesCmsAction;
@@ -54,6 +55,7 @@ readonly class ApplyRoutes
         GetAllMessagesCmsAction::applyRoute($routes);
         GetMessageCmsAction::applyRoute($routes);
         PutMessageCmsAction::applyRoute($routes);
+        DeleteMessagesCmsAction::applyRoute($routes);
 
         $config = $routes->getContainer()->get(RuntimeConfig::class);
 

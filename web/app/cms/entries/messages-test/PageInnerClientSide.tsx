@@ -11,6 +11,7 @@ import PageHeader from '../../layout/PageHeader';
 import EmptyState from '../../layout/EmptyState';
 import MessageDisplay from '../../messaging/Message';
 import MessageListingItem from './MessageListingItem';
+import DeleteMessages from './DeleteMessages';
 
 export default function PageInnerClientSide (
     {
@@ -54,20 +55,19 @@ export default function PageInnerClientSide (
                                 proceed={() => {
                                     setIsDeleting(true);
 
-                                    // TODO
-                                    // DeleteMessage(selectedIds).then((response) => {
-                                    //     closeOverlay();
-                                    //
-                                    //     setIsDeleting(false);
-                                    //
-                                    //     if (response.success) {
-                                    //         setSelectedIds([]);
-                                    //
-                                    //         return;
-                                    //     }
-                                    //
-                                    //     setErrorMessages(response.messages || ['An unknown error occurred']);
-                                    // });
+                                    DeleteMessages(selectedIds).then((response) => {
+                                        closeOverlay();
+
+                                        setIsDeleting(false);
+
+                                        if (response.success) {
+                                            setSelectedIds([]);
+
+                                            return;
+                                        }
+
+                                        setErrorMessages(response.messages || ['An unknown error occurred']);
+                                    });
                                 }}
                             />,
                             document.body,
