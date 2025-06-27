@@ -8,6 +8,8 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Spatie\Cloneable\Cloneable;
 
+use function array_merge;
+
 readonly class MessageSeries
 {
     use Cloneable;
@@ -67,5 +69,13 @@ readonly class MessageSeries
     public function withIdFromString(string $id): MessageSeries
     {
         return $this->withId(Uuid::fromString($id));
+    }
+
+    public function withErrorMessage(string $message): MessageSeries
+    {
+        return $this->with(isValid: false)->with(errorMessages: array_merge(
+            $this->errorMessages,
+            [$message],
+        ));
     }
 }

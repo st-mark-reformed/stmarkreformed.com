@@ -6,6 +6,7 @@ namespace App\Messages\Series\Persistence;
 
 use App\Messages\Series\MessageSeries\MessageSeries;
 use App\Persistence\PersistNewRecord;
+use App\Persistence\PersistRecord;
 use App\Persistence\Result;
 
 readonly class CreateAndPersistFactory
@@ -13,30 +14,56 @@ readonly class CreateAndPersistFactory
     public function __construct(
         private FindBySlug $findBySlug,
         private Transformer $transformer,
+        private PersistRecord $persistRecord,
         private PersistNewRecord $persistNewRecord,
     ) {
     }
 
-    public function create(MessageSeries $messageSeries): Result
+    public function create(MessageSeries $series): Result
     {
-        if (! $messageSeries->isValid) {
+        $series = $this->validate($series);
+
+        if (! $series->isValid) {
             return new Result(
                 false,
-                $messageSeries->errorMessages,
+                $series->errorMessages,
             );
         }
 
-        $existingSlug = $this->findBySlug->find($messageSeries->slug);
-
-        if ($existingSlug !== null) {
-            return new Result(
-                false,
-                ['Specified slug already exists. Message slug must be unique'],
-            );
-        }
-
-        $record = $this->transformer->createRecord($messageSeries);
+        $record = $this->transformer->createRecord($series);
 
         return $this->persistNewRecord->persist($record);
+    }
+
+    public function persist(MessageSeries $series): Result
+    {
+        $series = $this->validate($series);
+
+        if (! $series->isValid) {
+            return new Result(
+                false,
+                $series->errorMessages,
+            );
+        }
+
+        $profileRecord = $this->transformer->createRecord($series);
+
+        return $this->persistRecord->persist($profileRecord);
+    }
+
+    private function validate(MessageSeries $series): MessageSeries
+    {
+        $existingSlug = $this->findBySlug->find(
+            $series->slug,
+            $series->id,
+        );
+
+        if ($existingSlug !== null) {
+            $series = $series->withErrorMessage(
+                'Specified slug already exists. Series slug must be unique',
+            );
+        }
+
+        return $series;
     }
 }

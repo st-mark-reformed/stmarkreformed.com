@@ -13,7 +13,6 @@ use App\Messages\Series\Persistence\FindAll;
 use App\Messages\Series\Persistence\FindById;
 use App\Messages\Series\Persistence\FindByIds;
 use App\Messages\Series\Persistence\FindBySlug;
-use App\Messages\Series\Persistence\PersistFactory;
 use App\Messages\Series\Persistence\Transformer;
 use App\Persistence\Result;
 use App\Persistence\UuidCollection;
@@ -31,7 +30,6 @@ readonly class MessageSeriesRepository
         private FindByIds $findByIds,
         private FindBySlug $findBySlug,
         private Transformer $transformer,
-        private PersistFactory $persistFactory,
         private CreateAndPersistFactory $createAndPersistFactory,
     ) {
     }
@@ -45,7 +43,7 @@ readonly class MessageSeriesRepository
 
     public function persist(MessageSeries $messageSeries): Result
     {
-        return $this->persistFactory->persist($messageSeries);
+        return $this->createAndPersistFactory->persist($messageSeries);
     }
 
     public function findAll(): MessageSeriesCollection
@@ -78,9 +76,15 @@ readonly class MessageSeriesRepository
         return $this->transformer->createMessageSeries($record);
     }
 
-    public function findBySlug(Slug $slug): MessageSeries|null
-    {
-        $record = $this->findBySlug->find($slug);
+    public function findBySlug(
+        Slug $slug,
+        UuidInterface|string|null $excludeId = null,
+    ): MessageSeries|null {
+        if (is_string($excludeId)) {
+            $excludeId = Uuid::fromString($excludeId);
+        }
+
+        $record = $this->findBySlug->find($slug, $excludeId);
 
         if ($record === null) {
             return null;

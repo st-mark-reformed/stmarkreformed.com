@@ -7,6 +7,7 @@ namespace App\Messages\Series\Persistence;
 use App\Messages\Series\MessageSeries\Slug;
 use App\Persistence\ApiPdo;
 use PDO;
+use Ramsey\Uuid\UuidInterface;
 
 use function assert;
 use function implode;
@@ -17,24 +18,36 @@ readonly class FindBySlug
     {
     }
 
-    public function find(Slug $slug): MessageSeriesRecord|null
-    {
+    public function find(
+        Slug $slug,
+        UuidInterface|null $excludeId = null,
+    ): MessageSeriesRecord|null {
         $columns = implode(
             ', ',
             MessageSeriesRecord::getColumns(),
         );
 
+        $query = [
+            'SELECT',
+            $columns,
+            'FROM',
+            MessageSeriesRecord::getTableName(),
+            'WHERE slug = :slug',
+        ];
+
+        $params = ['slug' => $slug->slug];
+
+        if ($excludeId !== null) {
+            $query[] = 'AND id != :id';
+
+            $params['id'] = $excludeId->toString();
+        }
+
         $statement = $this->pdo->prepare(
-            implode(' ', [
-                'SELECT',
-                $columns,
-                'FROM',
-                MessageSeriesRecord::getTableName(),
-                'WHERE slug = :slug',
-            ]),
+            implode(' ', $query),
         );
 
-        $statement->execute(['slug' => $slug->slug]);
+        $statement->execute($params);
 
         $statement->setFetchMode(
             PDO::FETCH_CLASS,
