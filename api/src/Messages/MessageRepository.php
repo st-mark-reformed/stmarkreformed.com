@@ -6,11 +6,12 @@ namespace App\Messages;
 
 use App\Messages\Message\Message;
 use App\Messages\Message\Messages;
+use App\Messages\Message\Slug;
 use App\Messages\Persistence\CreateAndPersistFactory;
 use App\Messages\Persistence\DeleteIds;
 use App\Messages\Persistence\FindAll;
 use App\Messages\Persistence\FindById;
-use App\Messages\Persistence\PersistFactory;
+use App\Messages\Persistence\FindBySlug;
 use App\Messages\Persistence\Transformer;
 use App\Persistence\Result;
 use App\Persistence\UuidCollection;
@@ -25,8 +26,8 @@ readonly class MessageRepository
         private FindAll $findAll,
         private FindById $findById,
         private DeleteIds $deleteIds,
+        private FindBySlug $findBySlug,
         private Transformer $transformer,
-        private PersistFactory $persistFactory,
         private CreateAndPersistFactory $createAndPersistFactory,
     ) {
     }
@@ -38,7 +39,7 @@ readonly class MessageRepository
 
     public function persist(Message $message): Result
     {
-        return $this->persistFactory->persist($message);
+        return $this->createAndPersistFactory->persist($message);
     }
 
     public function findAll(): Messages
@@ -55,6 +56,23 @@ readonly class MessageRepository
         }
 
         $record = $this->findById->find($id);
+
+        if ($record === null) {
+            return null;
+        }
+
+        return $this->transformer->createMessage($record);
+    }
+
+    public function findBySlug(
+        Slug $slug,
+        UuidInterface|string|null $excludeId = null,
+    ): Message|null {
+        if (is_string($excludeId)) {
+            $excludeId = Uuid::fromString($excludeId);
+        }
+
+        $record = $this->findBySlug->find($slug, $excludeId);
 
         if ($record === null) {
             return null;

@@ -34,7 +34,7 @@ readonly class PersistFactory
         ) {
             return new Result(
                 false,
-                ['Specified slug already exists. Message slug must be unique'],
+                ['Specified slug already exists. Series slug must be unique'],
             );
         }
 
