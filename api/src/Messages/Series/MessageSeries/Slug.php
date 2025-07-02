@@ -7,10 +7,6 @@ namespace App\Messages\Series\MessageSeries;
 use Assert\Assertion;
 use Throwable;
 
-use function array_map;
-use function explode;
-use function is_numeric;
-
 readonly class Slug
 {
     public bool $isValid;
@@ -32,20 +28,10 @@ readonly class Slug
 
         if ($slug !== '') {
             try {
-                $split = explode('-', $slug);
-
-                array_map(
-                    static function ($splitSeg): void {
-                        if (is_numeric($splitSeg)) {
-                            return;
-                        }
-
-                        Assertion::alnum(
-                            $splitSeg,
-                            'Slug must be alphanumeric with dashes',
-                        );
-                    },
-                    $split,
+                Assertion::regex(
+                    $slug,
+                    '/^[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*$/',
+                    'Slug must be alphanumeric with dash separators',
                 );
             } catch (Throwable $e) {
                 $errorMessage = $e->getMessage();
