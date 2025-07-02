@@ -12,6 +12,7 @@ use App\Authentication\User\ReactivateUserCommand;
 use App\Authentication\User\RemoveUserRoleCommand;
 use App\Calendar\GenerateCalendarPages;
 use App\Calendar\GenerateUpcomingEvents;
+use App\Messages\ImportFromCraft\ImportMessagesFromCraftCommand;
 use App\Persistence\CreateDatabaseAndUserCommand;
 use App\Persistence\Migrate\MigrateCreateCommand;
 use App\Persistence\Migrate\MigrateDownCommand;
@@ -40,6 +41,8 @@ readonly class ApplyCommands
         ReactivateUserCommand::register($commands);
         AddUserRoleCommand::register($commands);
         RemoveUserRoleCommand::register($commands);
+
+        ImportMessagesFromCraftCommand::register($commands);
 
         $commands->addSymfonyCommand(
             QueueConsumeNextSymfonyCommand::class,

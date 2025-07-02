@@ -77,9 +77,13 @@ readonly class MessageSeriesRepository
     }
 
     public function findBySlug(
-        Slug $slug,
+        Slug|string $slug,
         UuidInterface|string|null $excludeId = null,
     ): MessageSeries|null {
+        if (is_string($slug)) {
+            $slug = new Slug($slug);
+        }
+
         if (is_string($excludeId)) {
             $excludeId = Uuid::fromString($excludeId);
         }

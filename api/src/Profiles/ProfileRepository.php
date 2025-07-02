@@ -9,6 +9,7 @@ use App\Persistence\UuidCollection;
 use App\Profiles\Persistence\CreateAndPersistFactory;
 use App\Profiles\Persistence\DeleteIds;
 use App\Profiles\Persistence\FindAll;
+use App\Profiles\Persistence\FindByFullNameWithHonorific;
 use App\Profiles\Persistence\FindById;
 use App\Profiles\Persistence\FindByIds;
 use App\Profiles\Persistence\PersistFactory;
@@ -18,6 +19,8 @@ use App\Profiles\Profile\Profiles;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
+use function count;
+use function explode;
 use function is_string;
 
 readonly class ProfileRepository
@@ -30,6 +33,7 @@ readonly class ProfileRepository
         private Transformer $transformer,
         private PersistFactory $persistFactory,
         private CreateAndPersistFactory $createAndPersistFactory,
+        private FindByFullNameWithHonorific $findByFullNameWithHonorific,
     ) {
     }
 
@@ -65,6 +69,38 @@ readonly class ProfileRepository
         }
 
         $record = $this->findById->find($id);
+
+        if ($record === null) {
+            return null;
+        }
+
+        return $this->transformer->createProfile($record);
+    }
+
+    public function findByFullNameWithHonorific(string $name): Profile|null
+    {
+        $honorific = '';
+        $firstName = '';
+        $lastName  = '';
+
+        $parts = explode(' ', $name);
+
+        if (count($parts) === 1) {
+            $firstName = $parts[0];
+        } elseif (count($parts) === 2) {
+            $firstName = $parts[0];
+            $lastName  = $parts[1];
+        } elseif (count($parts) === 3) {
+            $honorific = $parts[0];
+            $firstName = $parts[1];
+            $lastName  = $parts[2];
+        }
+
+        $record = $this->findByFullNameWithHonorific->find(
+            $honorific,
+            $firstName,
+            $lastName,
+        );
 
         if ($record === null) {
             return null;
