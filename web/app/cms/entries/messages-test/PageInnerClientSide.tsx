@@ -12,14 +12,16 @@ import EmptyState from '../../layout/EmptyState';
 import MessageDisplay from '../../messaging/Message';
 import MessageListingItem from './MessageListingItem';
 import DeleteMessages from './DeleteMessages';
+import { ApiJsonResponse } from './MessageListingPage';
+import Pagination from '../../../Pagination/Pagination';
 
 export default function PageInnerClientSide (
     {
         unpublishedMessages,
-        publishedMessages,
+        pageData,
     }: {
         unpublishedMessages: Array<Message>;
-        publishedMessages: Array<Message>;
+        pageData: ApiJsonResponse;
     },
 ) {
     const [overlay, setOverlay] = useState<
@@ -40,6 +42,14 @@ export default function PageInnerClientSide (
     const hasSelected = selectedIds.length > 0;
 
     const newHref = '/cms/entries/messages-test/new';
+
+    const pagination = (
+        <Pagination
+            baseUrl="/cms/entries/messages-test"
+            currentPage={pageData.currentPage}
+            totalPages={pageData.totalPages}
+        />
+    );
 
     return (
         <>
@@ -160,8 +170,11 @@ export default function PageInnerClientSide (
                 body={errorMessages}
                 padBottom
             />
+            <div className="pb-4">
+                {pagination}
+            </div>
             {(() => {
-                if (unpublishedMessages.length > 0 || publishedMessages.length > 0) {
+                if (unpublishedMessages.length > 0 || pageData.messages.length > 0) {
                     return null;
                 }
 
@@ -197,13 +210,13 @@ export default function PageInnerClientSide (
                 );
             })()}
             {(() => {
-                if (publishedMessages.length < 1) {
+                if (pageData.messages.length < 1) {
                     return null;
                 }
 
                 return (
                     <ul className="divide-y divide-gray-100 overflow-hidden bg-white shadow-sm ring-1 ring-gray-900/5 rounded-xl">
-                        {publishedMessages.map((message) => (
+                        {pageData.messages.map((message) => (
                             <MessageListingItem
                                 key={message.id}
                                 message={message}
@@ -214,6 +227,9 @@ export default function PageInnerClientSide (
                     </ul>
                 );
             })()}
+            <div className="pt-4">
+                {pagination}
+            </div>
         </>
     );
 }

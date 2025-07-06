@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Messages\Message;
 
 use function array_map;
+use function count;
 
 // phpcs:disable SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingTraversableTypeHintSpecification
 
@@ -25,11 +26,15 @@ readonly class Messages
         return array_map($callback, $this->messages);
     }
 
-    /** @return array<array-key, array<scalar>> */
     public function asScalar(): array
     {
         return $this->mapToArray(
-            static fn (Message $profile) => $profile->asScalar(),
+            static fn (Message $message) => $message->asScalar(),
         );
+    }
+
+    public function count(): int
+    {
+        return count($this->messages);
     }
 }

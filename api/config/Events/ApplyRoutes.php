@@ -12,6 +12,8 @@ use App\Messages\FileManager\DeleteFilesCmsAction;
 use App\Messages\FileManager\ListAllFilesCmsAction;
 use App\Messages\GetAllMessagesCmsAction;
 use App\Messages\GetMessageCmsAction;
+use App\Messages\GetMessagesByPageCmsAction;
+use App\Messages\GetUnpublishedMessagesCmsAction;
 use App\Messages\PostCreateMessageCmsAction;
 use App\Messages\PutMessageCmsAction;
 use App\Messages\Series\DeleteMessageSeriesCmsAction;
@@ -53,6 +55,8 @@ readonly class ApplyRoutes
         ListAllFilesCmsAction::applyRoute($routes);
         DeleteFilesCmsAction::applyRoute($routes);
         GetAllMessagesCmsAction::applyRoute($routes);
+        GetUnpublishedMessagesCmsAction::applyRoute($routes);
+        GetMessagesByPageCmsAction::applyRoute($routes);
         GetMessageCmsAction::applyRoute($routes);
         PutMessageCmsAction::applyRoute($routes);
         DeleteMessagesCmsAction::applyRoute($routes);

@@ -31,7 +31,7 @@ export default async function MessagesListingPage (
         : await FindAllMessagesByPage(pageNum);
 
     if (hasAnyParams && !pageData) {
-        return <>TODOD</>;
+        return <></>;
     }
 
     if (pageData === null) {
@@ -72,6 +72,17 @@ export default async function MessagesListingPage (
             })()}
             <div className="px-8 pt-4 relative">
                 <SearchForm byOptions={byOptions} seriesOptions={seriesOptions} />
+                {(() => {
+                    if (hasAnyParams && pageData.totalResults < 1) {
+                        return (
+                            <div className="mt-6 text-center border border-gray-200 rounded-xl p-8">
+                                <h3 className="my-2 text-sm font-semibold text-gray-900">No search results found</h3>
+                            </div>
+                        );
+                    }
+
+                    return null;
+                })()}
                 {pagination}
             </div>
         </>

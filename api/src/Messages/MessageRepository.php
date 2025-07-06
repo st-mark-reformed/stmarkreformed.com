@@ -10,6 +10,7 @@ use App\Messages\Message\Slug;
 use App\Messages\Persistence\CreateAndPersistFactory;
 use App\Messages\Persistence\DeleteIds;
 use App\Messages\Persistence\FindAll;
+use App\Messages\Persistence\FindAllByLimit;
 use App\Messages\Persistence\FindById;
 use App\Messages\Persistence\FindBySlug;
 use App\Messages\Persistence\Transformer;
@@ -28,6 +29,7 @@ readonly class MessageRepository
         private DeleteIds $deleteIds,
         private FindBySlug $findBySlug,
         private Transformer $transformer,
+        private FindAllByLimit $findAllByLimit,
         private CreateAndPersistFactory $createAndPersistFactory,
     ) {
     }
@@ -42,10 +44,32 @@ readonly class MessageRepository
         return $this->createAndPersistFactory->persist($message);
     }
 
-    public function findAll(): Messages
-    {
+    public function findAll(
+        PublishStatusOption $publishStatus = PublishStatusOption::ALL,
+    ): Messages {
         return $this->transformer->createMessages(
-            $this->findAll->find(),
+            $this->findAll->find($publishStatus),
+        );
+    }
+
+    public function findAllByLimit(
+        int $offset = 0,
+        int $limit = 25,
+        PublishStatusOption $publishStatus = PublishStatusOption::ALL,
+    ): FindByLimitResults {
+        $recordResults = $this->findAllByLimit->find(
+            offset: $offset,
+            limit: $limit,
+            publishStatus: $publishStatus,
+        );
+
+        return new FindByLimitResults(
+            $recordResults->limit,
+            $recordResults->offset,
+            $recordResults->absoluteTotalResults,
+            $this->transformer->createMessages(
+                $recordResults->records,
+            ),
         );
     }
 

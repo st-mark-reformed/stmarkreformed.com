@@ -10,7 +10,7 @@ export default function Pagination (
         totalPages = 1,
         pad = 2,
         className = '',
-        queryString,
+        queryString = '',
     }: PaginationParams,
 ) {
     if (totalPages < 2) {
