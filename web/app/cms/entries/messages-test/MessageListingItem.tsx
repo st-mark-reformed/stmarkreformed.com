@@ -49,7 +49,7 @@ export default function MessageListingItem (
                 setSelectedIds(newSelectedIds);
             }}
         >
-            <div className="flex min-w-0 gap-x-4 pl-0">
+            <div className="flex min-w-0 gap-x-4 pl-0 flex-1">
                 <div className="min-w-0 flex-auto">
                     <p className="text-sm font-semibold leading-6 text-gray-900">
                         {message.title || message.id}
@@ -93,28 +93,30 @@ export default function MessageListingItem (
                     })()}
                 </div>
             </div>
-            {(() => {
-                if (!message.speaker) {
-                    return null;
-                }
+            <div className="hidden sm:flex gap-x-6 w-96">
+                {(() => {
+                    if (!message.speaker) {
+                        return <div className="w-1/2" />;
+                    }
 
-                return (
-                    <span className="text-gray-600 text-sm hidden sm:block">
-                        by: {message.speaker.fullNameWithHonorific}
-                    </span>
-                );
-            })()}
-            {(() => {
-                if (!message.series) {
-                    return null;
-                }
+                    return (
+                        <div className="text-gray-600 text-sm w-1/2 truncate">
+                            by: {message.speaker.fullNameWithHonorific}
+                        </div>
+                    );
+                })()}
+                {(() => {
+                    if (!message.series) {
+                        return <div className="w-1/2" />;
+                    }
 
-                return (
-                    <span className="text-gray-600 text-sm hidden sm:block">
-                        series: {message.series.title}
-                    </span>
-                );
-            })()}
+                    return (
+                        <div className="text-gray-600 text-sm w-1/2 truncate">
+                            series: {message.series.title}
+                        </div>
+                    );
+                })()}
+            </div>
             <div className="flex shrink-0 items-center gap-x-4">
                 <div className="sm:flex sm:flex-col sm:items-end">
                     <div className="text-sm leading-6 text-gray-900">
