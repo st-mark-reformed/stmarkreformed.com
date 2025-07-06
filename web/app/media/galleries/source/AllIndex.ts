@@ -42,8 +42,10 @@ import CarolingAtElmcroftDecember2018 from './CarolingAtElmcroftDecember2018';
 import ShroveTuesdayPancakeFeastAndTalentShowFebruary2018 from './ShroveTuesdayPancakeFeastAndTalentShowFebruary2018';
 import ShroveTuesdayPancakeFeastAndTalentShowFebruary2017 from './ShroveTuesdayPancakeFeastAndTalentShowFebruary2017';
 import ShroveTuesdayPancakeFeastAndTalentShowFebruary2016 from './ShroveTuesdayPancakeFeastAndTalentShowFebruary2016';
+import JaxonBaptism from './JaxonBaptism';
 
 const AllIndex: Array<GalleryEntry> = [
+    JaxonBaptism,
     BryantBaptism,
     GarnerBaptism,
     EmilyKernodleBridalShower,
