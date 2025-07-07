@@ -16,6 +16,7 @@ export default function EditProfileForm (
     {
         id,
         initialFormData = {
+            slug: '',
             firstName: '',
             lastName: '',
             titleOrHonorific: '',
@@ -30,6 +31,10 @@ export default function EditProfileForm (
     const router = useRouter();
 
     const [formData, setFormData] = useState<ProfileFormData>(initialFormData);
+
+    const setSlug = (val: string) => {
+        setFormData({ ...formData, slug: val });
+    };
 
     const setFirstName = (val: string) => {
         setFormData({ ...formData, firstName: val });
@@ -108,39 +113,38 @@ export default function EditProfileForm (
             </div>
             {message}
             <div className="space-y-8">
+                <TextInput
+                    label="Slug"
+                    labelParenthetical="Leave blank to auto-generate from name on submit"
+                    name="slug"
+                    value={formData.slug}
+                    setValue={(key, val) => setSlug(val)}
+                />
                 <div className="align-top grid gap-4 sm:grid-cols-2 space-y-8">
                     <TextInput
                         label="First Name"
                         name="firstName"
                         value={formData.firstName}
-                        setValue={(key, val) => {
-                            setFirstName(val);
-                        }}
+                        setValue={(key, val) => setFirstName(val)}
                     />
                     <TextInput
                         label="Last Name"
                         name="lastName"
                         value={formData.lastName}
-                        setValue={(key, val) => {
-                            setLastName(val);
-                        }}
+                        setValue={(key, val) => setLastName(val)}
                     />
                     <TextInput
                         label="Title or Honorific"
                         name="titleOrHonorific"
                         value={formData.titleOrHonorific}
-                        setValue={(key, val) => {
-                            setTitleOrHonorific(val);
-                        }}
+                        setValue={(key, val) => setTitleOrHonorific(val)}
                     />
                     <TextInput
                         label="Email"
                         name="email"
                         type="email"
                         value={formData.email}
-                        setValue={(key, val) => {
-                            setEmail(val);
-                        }}
+                        setValue={(key, val) => setEmail(val)}
                     />
                     <RadioPanel
                         label="Leadership Position"

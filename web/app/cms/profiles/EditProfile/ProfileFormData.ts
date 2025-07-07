@@ -10,6 +10,7 @@ export const LeadershipPosition = {
 export type LeadershipPositionType = typeof LeadershipPosition[keyof typeof LeadershipPosition] | '';
 
 export interface ProfileFormData {
+    slug: string;
     firstName: string;
     lastName: string;
     titleOrHonorific: string;

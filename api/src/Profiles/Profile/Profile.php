@@ -8,6 +8,7 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Spatie\Cloneable\Cloneable;
 
+use function array_merge;
 use function trim;
 
 readonly class Profile
@@ -30,6 +31,7 @@ readonly class Profile
     public string $fullNameWithHonorificAndPosition;
 
     public function __construct(
+        public Slug $slug,
         public FirstName $firstName,
         public LastName $lastName,
         public string $titleOrHonorific,
@@ -46,6 +48,11 @@ readonly class Profile
         $isValid = true;
 
         $errorMessages = [];
+
+        if (! $slug->isValid) {
+            $isValid         = false;
+            $errorMessages[] = $slug->errorMessage;
+        }
 
         if (! $firstName->isValid) {
             $isValid         = false;
@@ -101,6 +108,7 @@ readonly class Profile
     {
         return [
             'id' => $this->id->toString(),
+            'slug' => $this->slug->slug,
             'firstName' => $this->firstName->firstName,
             'lastName' => $this->lastName->lastName,
             'titleOrHonorific' => $this->titleOrHonorific,
@@ -121,5 +129,13 @@ readonly class Profile
     public function withIdFromString(string $id): Profile
     {
         return $this->withId(Uuid::fromString($id));
+    }
+
+    public function withErrorMessage(string $message): Profile
+    {
+        return $this->with(isValid: false)->with(errorMessages: array_merge(
+            $this->errorMessages,
+            [$message],
+        ));
     }
 }

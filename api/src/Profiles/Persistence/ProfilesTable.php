@@ -24,6 +24,10 @@ readonly class ProfilesTable
             'id',
             AdapterInterface::PHINX_TYPE_UUID,
         )->addColumn(
+            'slug',
+            AdapterInterface::PHINX_TYPE_STRING,
+            ['null' => false, 'default' => ''],
+        )->addColumn(
             'first_name',
             AdapterInterface::PHINX_TYPE_STRING,
             ['null' => false, 'default' => ''],

@@ -12,10 +12,11 @@ use App\Profiles\Persistence\FindAll;
 use App\Profiles\Persistence\FindByFullNameWithHonorific;
 use App\Profiles\Persistence\FindById;
 use App\Profiles\Persistence\FindByIds;
-use App\Profiles\Persistence\PersistFactory;
+use App\Profiles\Persistence\FindBySlug;
 use App\Profiles\Persistence\Transformer;
 use App\Profiles\Profile\Profile;
 use App\Profiles\Profile\Profiles;
+use App\Profiles\Profile\Slug;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
@@ -30,8 +31,8 @@ readonly class ProfileRepository
         private FindById $findById,
         private DeleteIds $deleteIds,
         private FindByIds $findByIds,
+        private FindBySlug $findBySlug,
         private Transformer $transformer,
-        private PersistFactory $persistFactory,
         private CreateAndPersistFactory $createAndPersistFactory,
         private FindByFullNameWithHonorific $findByFullNameWithHonorific,
     ) {
@@ -44,7 +45,7 @@ readonly class ProfileRepository
 
     public function persist(Profile $profile): Result
     {
-        return $this->persistFactory->persist($profile);
+        return $this->createAndPersistFactory->persist($profile);
     }
 
     public function findAll(): Profiles
@@ -69,6 +70,23 @@ readonly class ProfileRepository
         }
 
         $record = $this->findById->find($id);
+
+        if ($record === null) {
+            return null;
+        }
+
+        return $this->transformer->createProfile($record);
+    }
+
+    public function findBySlug(
+        Slug $slug,
+        UuidInterface|string|null $excludeId = null,
+    ): Profile|null {
+        if (is_string($excludeId)) {
+            $excludeId = Uuid::fromString($excludeId);
+        }
+
+        $record = $this->findBySlug->find($slug, $excludeId);
 
         if ($record === null) {
             return null;

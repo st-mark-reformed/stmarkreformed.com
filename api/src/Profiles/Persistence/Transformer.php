@@ -10,6 +10,7 @@ use App\Profiles\Profile\LastName;
 use App\Profiles\Profile\LeadershipPosition;
 use App\Profiles\Profile\Profile;
 use App\Profiles\Profile\Profiles;
+use App\Profiles\Profile\Slug;
 use Ramsey\Uuid\Uuid;
 
 // phpcs:disable Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
@@ -21,6 +22,8 @@ readonly class Transformer
         $record = new ProfileRecord();
 
         $record->id = $fromProfile->id->toString();
+
+        $record->slug = $fromProfile->slug->slug;
 
         $record->first_name = $fromProfile->firstName->firstName;
 
@@ -38,14 +41,15 @@ readonly class Transformer
     public function createProfile(ProfileRecord $fromRecord): Profile
     {
         return new Profile(
-            new FirstName($fromRecord->first_name),
-            new LastName($fromRecord->last_name),
-            $fromRecord->title_or_honorific,
-            new Email($fromRecord->email),
-            LeadershipPosition::createFromString(
+            slug: new Slug($fromRecord->slug),
+            firstName: new FirstName($fromRecord->first_name),
+            lastName: new LastName($fromRecord->last_name),
+            titleOrHonorific: $fromRecord->title_or_honorific,
+            email: new Email($fromRecord->email),
+            leadershipPosition: LeadershipPosition::createFromString(
                 $fromRecord->leadership_position,
             ),
-            Uuid::fromString($fromRecord->id),
+            id: Uuid::fromString($fromRecord->id),
         );
     }
 
