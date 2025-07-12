@@ -17,6 +17,10 @@ use function json_encode;
 
 class GenerateMessagesPagesForRedis
 {
+    public const string JOB_HANDLE = 'generate-messages-pages-for-redis';
+
+    public const string JOB_NAME = 'Generate Messages Pages For Redis';
+
     private const int PER_PAGE = 25;
 
     public function __construct(
