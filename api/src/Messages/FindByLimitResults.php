@@ -7,6 +7,8 @@ namespace App\Messages;
 use App\Messages\Message\Messages;
 use App\Pagination;
 
+// phpcs:disable SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingTraversableTypeHintSpecification
+
 readonly class FindByLimitResults
 {
     public function __construct(
@@ -17,6 +19,7 @@ readonly class FindByLimitResults
     ) {
     }
 
+    /** @phpstan-ignore-next-line */
     public function asScalarWithPageData(int $currentPage): array
     {
         $pagination = (new Pagination())

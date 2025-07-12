@@ -41,10 +41,10 @@ readonly class Profiles
 
     public function filter(callable $callback): Profiles
     {
-        return new Profiles(array_filter(
+        return new Profiles(array_values(array_filter(
             $this->profiles,
             $callback,
-        ));
+        )));
     }
 
     public function findFirst(): Profile|null

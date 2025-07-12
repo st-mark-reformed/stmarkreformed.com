@@ -19,6 +19,8 @@ use Ramsey\Uuid\Uuid;
 use Throwable;
 
 use function array_filter;
+use function array_unique;
+use function array_values;
 use function count;
 
 // phpcs:disable Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
@@ -137,7 +139,7 @@ class Transformer
 
     public function createMessages(MessageRecords $fromRecords): Messages
     {
-        $speakerIds = array_filter(
+        $speakerIds = array_values(array_unique(array_filter(
             $fromRecords->mapToArray(
                 static fn (MessageRecord $r) => $r->speaker_profile_id,
             ),
@@ -148,7 +150,7 @@ class Transformer
 
                 return $this->possibleSpeakers->findById($id) === null;
             },
-        );
+        )));
 
         if (count($speakerIds) > 0) {
             $this->possibleSpeakers = $this->possibleSpeakers->withAddedProfiles(
@@ -156,7 +158,7 @@ class Transformer
             );
         }
 
-        $seriesIds = array_filter(
+        $seriesIds = array_values(array_unique(array_filter(
             $fromRecords->mapToArray(
                 static fn (MessageRecord $r) => $r->series_id,
             ),
@@ -167,7 +169,7 @@ class Transformer
 
                 return $this->possibleSeries->findById($id) === null;
             },
-        );
+        )));
 
         if (count($seriesIds) > 0) {
             $this->possibleSeries = $this->possibleSeries->withAddedSeriesCollection(

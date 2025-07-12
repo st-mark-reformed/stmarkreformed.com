@@ -7,6 +7,7 @@ namespace App\Messages\Series\MessageSeries;
 use function array_filter;
 use function array_map;
 use function array_merge;
+use function array_values;
 
 // phpcs:disable SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingTraversableTypeHintSpecification
 
@@ -37,10 +38,10 @@ readonly class MessageSeriesCollection
 
     public function filter(callable $callback): MessageSeriesCollection
     {
-        return new MessageSeriesCollection(array_filter(
+        return new MessageSeriesCollection(array_values(array_filter(
             $this->messageSeries,
             $callback,
-        ));
+        )));
     }
 
     public function findFirst(): MessageSeries|null
@@ -51,7 +52,7 @@ readonly class MessageSeriesCollection
     public function findById(string $id): MessageSeries|null
     {
         return $this->filter(
-            static fn (MessageSeries $p) => $p->id->toString() === $id,
+            static fn (MessageSeries $s) => $s->id->toString() === $id,
         )->findFirst();
     }
 

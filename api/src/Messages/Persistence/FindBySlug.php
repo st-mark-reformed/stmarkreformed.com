@@ -22,10 +22,7 @@ readonly class FindBySlug
         Slug $slug,
         UuidInterface|null $excludeId = null,
     ): MessageRecord|null {
-        $columns = implode(
-            ', ',
-            MessageRecord::getColumns(),
-        );
+        $columns = implode(', ', MessageRecord::getColumns());
 
         $query = [
             'SELECT',
