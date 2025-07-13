@@ -9,11 +9,18 @@ use App\Messages\MessageRepository;
 use App\Messages\PublishStatusOption;
 use App\Messages\Series\MessageSeries\MessageSeries;
 use App\Pagination;
+use App\Profiles\Profile\LeadershipPosition;
 use App\Profiles\Profile\Profile;
 use Redis;
 
+use function array_map;
+use function array_values;
+use function count;
 use function in_array;
 use function json_encode;
+use function ksort;
+
+// phpcs:disable SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingTraversableTypeHintSpecification
 
 class GenerateMessagesPagesForRedis
 {
@@ -34,10 +41,13 @@ class GenerateMessagesPagesForRedis
         $this->generate();
     }
 
+    /** @phpstan-ignore-next-line */
     private array $pageSlugKeys = [];
 
+    /** @phpstan-ignore-next-line */
     private array $byIds = [];
 
+    /** @phpstan-ignore-next-line */
     private array $seriesIds = [];
 
     public function generate(): void
@@ -46,8 +56,7 @@ class GenerateMessagesPagesForRedis
         $this->byIds        = [];
         $this->seriesIds    = [];
 
-        // Prime the memo
-        $this->repository->findAll();
+        $this->generateMostRecentSeries();
 
         $results = $this->repository->findAllByLimit(
             limit: self::PER_PAGE,
@@ -101,6 +110,10 @@ class GenerateMessagesPagesForRedis
 
             $this->redis->del($key);
         }
+
+        $this->generateByOptions();
+
+        $this->generateSeriesOptions();
     }
 
     private function generatePage(Pagination $pagination): void
@@ -201,7 +214,7 @@ class GenerateMessagesPagesForRedis
             $this->redis->del($key);
         }
 
-        $this->byIds[$speaker->id->toString()] = $speaker->id->toString();
+        $this->byIds[$speaker->id->toString()] = $speaker;
     }
 
     private function generateByPage(
@@ -288,7 +301,7 @@ class GenerateMessagesPagesForRedis
             $this->redis->del($key);
         }
 
-        $this->seriesIds[$series->id->toString()] = $series->id->toString();
+        $this->seriesIds[$series->id->toString()] = $series;
     }
 
     private function generateSeriesPage(
@@ -320,6 +333,88 @@ class GenerateMessagesPagesForRedis
                 'seriesName' => $series->title->title,
                 'seriesSlug' => $series->slug->slug,
             ]),
+        );
+    }
+
+    private function generateMostRecentSeries(): void
+    {
+        $allMessages = $this->repository->findAll();
+
+        $mostRecentSeries = [];
+
+        foreach ($allMessages->messages as $message) {
+            if (! $message->isPublished) {
+                continue;
+            }
+
+            if ($message->series === null) {
+                continue;
+            }
+
+            if (isset($mostRecentSeries[$message->series->slug->slug])) {
+                continue;
+            }
+
+            $mostRecentSeries[$message->series->slug->slug] = $message->series;
+
+            if (count($mostRecentSeries) < 6) {
+                continue;
+            }
+
+            break;
+        }
+
+        $this->redis->set(
+            'api-messages:most_recent_series',
+            json_encode(array_map(
+                static fn (MessageSeries $s) => $s->asScalar(),
+                array_values($mostRecentSeries),
+            )),
+        );
+    }
+
+    private function generateByOptions(): void
+    {
+        $leadership = [];
+
+        $others = [];
+
+        foreach ($this->byIds as $profile) {
+            if ($profile->leadershipPosition === LeadershipPosition::NONE) {
+                $others[$profile->slug->slug] = $profile->fullNameWithHonorific;
+
+                continue;
+            }
+
+            $leadership[$profile->slug->slug] = $profile->fullNameWithHonorific;
+        }
+
+        ksort($leadership);
+
+        ksort($others);
+
+        $this->redis->set(
+            'api-messages:by_options',
+            json_encode([
+                'leadership' => $leadership,
+                'others' => $others,
+            ]),
+        );
+    }
+
+    private function generateSeriesOptions(): void
+    {
+        $allSeries = [];
+
+        foreach ($this->seriesIds as $series) {
+            $allSeries[$series->slug->slug] = $series->title->title;
+        }
+
+        ksort($allSeries);
+
+        $this->redis->set(
+            'api-messages:series_options',
+            json_encode($allSeries),
         );
     }
 }
