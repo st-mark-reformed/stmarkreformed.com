@@ -25,7 +25,7 @@ export default async function Page () {
             }
         >
             <ImageContentCta
-                image="/images/home/tca-map-image.png"
+                image="/images/home/bfp-map-image.png"
                 preHeading="Join us for Covenant Renewal Worship"
                 heading="Sundays at 11:00 am"
                 content={(
