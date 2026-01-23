@@ -8,8 +8,6 @@ import { ConfigOptions, getConfigString } from '../ServerSideRunTimeConfig';
 export default async function PostLoginForm (formValues: FormValues): Promise<{
     isValid: boolean;
 }> {
-    console.log('here');
-
     if (
         formValues.email !== getConfigString(ConfigOptions.MEMBER_EMAIL_ADDRESS)
         || formValues.password !== getConfigString(ConfigOptions.MEMBER_PASSWORD)
