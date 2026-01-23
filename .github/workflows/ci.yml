@@ -114,7 +114,7 @@ jobs:
           .
   deploy:
     name: Deploy to production
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: build
     steps:
       - name: Checkout
