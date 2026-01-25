@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { InformationCircleIcon } from '@heroicons/react/20/solid';
 import Layout from './layout/Layout';
 import ImageContentCta from './PageComponents/ImageContentCta';
 import UpcomingEvents from './PageComponents/UpcomingEvents/UpcomingEvents';
@@ -24,6 +25,16 @@ export default async function Page () {
                 }
             }
         >
+            <div className="bg-crimson-lightened-4 text-center border-b-4 border-t-4 border-crimson-dark">
+                <div className="mx-auto max-w-5xl px-6 py-20">
+                    <div className="shrink-0 inline-block mx-auto">
+                        <InformationCircleIcon aria-hidden="true" className="size-8 text-crimson-dark" />
+                    </div>
+                    <h2 className="font-semibold tracking-tight text-balance text-crimson-dark text-4xl leading-snug">
+                        Services canceled for 1/25/2026 due to inclement weather and dangerous road conditions
+                    </h2>
+                </div>
+            </div>
             <ImageContentCta
                 image="/images/home/bfp-map-image.png"
                 preHeading="Join us for Covenant Renewal Worship"

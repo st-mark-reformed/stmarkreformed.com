@@ -6,6 +6,7 @@
 
 :root {
     --color-gold: #f3c213;
+    --color-crimson-lightened-4: #fcf2f2;
     --color-crimson-lightened-3: #eeadad;
     --color-crimson-lightened-2: #da7f8e;
     --color-crimson-lightened-1: #ca4b5f;
@@ -28,6 +29,7 @@
 
 @theme {
     --color-gold: var(--color-gold);
+    --color-crimson-lightened-4: var(--color-crimson-lightened-4);
     --color-crimson-lightened-3: var(--color-crimson-lightened-3);
     --color-crimson-lightened-2: var(--color-crimson-lightened-2);
     --color-crimson-lightened-1: var(--color-crimson-lightened-1);
