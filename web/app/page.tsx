@@ -25,7 +25,7 @@ export default async function Page () {
                 }
             }
         >
-            <div className="bg-crimson-lightened-4 text-center border-b-4 border-t-4 border-crimson-dark">
+            {/* <div className="bg-crimson-lightened-4 text-center border-b-4 border-t-4 border-crimson-dark">
                 <div className="mx-auto max-w-5xl px-6 py-20">
                     <div className="shrink-0 inline-block mx-auto">
                         <InformationCircleIcon aria-hidden="true" className="size-8 text-crimson-dark" />
@@ -34,7 +34,7 @@ export default async function Page () {
                         Services canceled for 1/25/2026 due to inclement weather and dangerous road conditions
                     </h2>
                 </div>
-            </div>
+            </div> */}
             <ImageContentCta
                 image="/images/home/bfp-map-image.png"
                 preHeading="Join us for Covenant Renewal Worship"
