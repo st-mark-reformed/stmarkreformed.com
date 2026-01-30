@@ -69,7 +69,7 @@ export default function LeadershipPage () {
                             }}
                             name="TJ Draper"
                         >
-                            <p>TJ is a family man and a software engineer. He is father to four amazing children and has been married to their mother, the love of his life, since&nbsp;2005.</p>
+                            <p>TJ is a family man and a software engineer. He is thankful to be father to four children and has been married to their mother, the love of his life, since&nbsp;2005.</p>
                             <p>TJ grew up in a Christian home where he learned the importance of God’s word and of his need for a savior and as an adult has discovered a love and passion for Christ’s Church, which was the impetus for accepting the nomination and call to be a deacon at St.&nbsp;Mark.</p>
                         </Profile>
                         <Profile
