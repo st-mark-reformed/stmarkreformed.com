@@ -415,7 +415,9 @@ class GenerateMessagesPagesForRedis
         $others = [];
 
         foreach ($allProfiles as $profile) {
-            if ($profile->leadershipPosition->value === null) {
+            $pos = $profile->leadershipPosition->value;
+
+            if ($pos === null || $pos === '') {
                 $others[$profile->slug] = $profile->fullNameHonorific();
 
                 continue;
