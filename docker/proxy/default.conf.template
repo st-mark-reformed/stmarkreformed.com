@@ -14,117 +14,149 @@ server {
          proxy_set_header Upgrade $http_upgrade;
          proxy_set_header Connection "upgrade";
      }
-    location /__nextjs_font {
-        proxy_pass ${WEB_PROXY};
+
+    location /cms {
+        proxy_pass ${CRAFT_PROXY};
         break;
     }
-    location /__nextjs_source-map {
-        proxy_pass ${WEB_PROXY};
+
+    location /assets {
+        proxy_pass ${CRAFT_PROXY};
         break;
     }
-    location /_next {
-        proxy_pass ${WEB_PROXY};
+
+    location /cache {
+        proxy_pass ${CRAFT_PROXY};
         break;
     }
-    location /images {
-        proxy_pass ${WEB_PROXY};
+
+    location /cpresources {
+        proxy_pass ${CRAFT_PROXY};
         break;
     }
-    location /healthcheck {
-        proxy_pass ${WEB_PROXY};
-        break;
-    }
-    location /calendar {
-        proxy_pass ${WEB_PROXY};
-        break;
-    }
-    location /contact {
-        proxy_pass ${WEB_PROXY};
-        break;
-    }
-    location /about {
-        proxy_pass ${WEB_PROXY};
-        break;
-    }
-    location /members {
-        proxy_pass ${WEB_PROXY};
-        break;
-    }
-    location /media/galleries {
-        proxy_pass ${WEB_PROXY};
-        break;
-    }
-    location /publications/men-of-the-mark {
-        proxy_pass ${WEB_PROXY};
-        break;
-    }
-    location /news {
-        proxy_pass ${WEB_PROXY};
-        break;
-    }
-    location /pastors-page {
-        proxy_pass ${WEB_PROXY};
-        break;
-    }
-    location /resources {
-        proxy_pass ${WEB_PROXY};
-        break;
-    }
+
     location /files {
-        proxy_pass ${WEB_PROXY};
+        proxy_pass ${CRAFT_PROXY};
         break;
     }
-    location /mandatory-medical-procedures {
-        proxy_pass ${WEB_PROXY};
+
+    location /imagecache {
+        proxy_pass ${CRAFT_PROXY};
         break;
     }
-    location /crec-mandatory-medical-procedures {
-        proxy_pass ${WEB_PROXY};
+
+    location /uploads {
+        proxy_pass ${CRAFT_PROXY};
         break;
     }
-    location /media/messages {
-        proxy_pass ${WEB_PROXY};
+
+    location /apple-touch-icon-57x57.png {
+        proxy_pass ${CRAFT_PROXY};
         break;
     }
-    location /talent-show {
-        proxy_pass ${WEB_PROXY};
+
+    location /apple-touch-icon-60x60.png {
+        proxy_pass ${CRAFT_PROXY};
         break;
     }
-    location /sms {
-        proxy_pass ${WEB_PROXY};
+
+    location /apple-touch-icon-72x72.png {
+        proxy_pass ${CRAFT_PROXY};
         break;
     }
-    location /pyles {
-        proxy_pass ${WEB_PROXY};
+
+    location /apple-touch-icon-76x76.png {
+        proxy_pass ${CRAFT_PROXY};
         break;
     }
-    location /prayer-list {
-        proxy_pass ${WEB_PROXY};
+
+    location /apple-touch-icon-114x114.png {
+        proxy_pass ${CRAFT_PROXY};
         break;
     }
-    location /pancakes {
-        proxy_pass ${WEB_PROXY};
+
+    location /apple-touch-icon-120x120.png {
+        proxy_pass ${CRAFT_PROXY};
         break;
     }
-    location /media/galleries/twelfth-night-january-2020 {
-        proxy_pass ${WEB_PROXY};
+
+    location /apple-touch-icon-144x144.png {
+        proxy_pass ${CRAFT_PROXY};
         break;
     }
-    location /blake-purcell {
-        proxy_pass ${WEB_PROXY};
+
+    location /apple-touch-icon-152x152.png {
+        proxy_pass ${CRAFT_PROXY};
         break;
     }
-    location = / {
-        proxy_pass ${WEB_PROXY};
+
+    location /favicon.ico {
+        proxy_pass ${CRAFT_PROXY};
+        break;
+    }
+
+    location /favicon-16x16.png {
+        proxy_pass ${CRAFT_PROXY};
+        break;
+    }
+
+    location /favicon-32x32.png {
+        proxy_pass ${CRAFT_PROXY};
+        break;
+    }
+
+    location /favicon-96x96.png {
+        proxy_pass ${CRAFT_PROXY};
+        break;
+    }
+
+    location /favicon-128.png {
+        proxy_pass ${CRAFT_PROXY};
+        break;
+    }
+
+    location /favicon-196x196.png {
+        proxy_pass ${CRAFT_PROXY};
+        break;
+    }
+
+    location /index.php {
+        proxy_pass ${CRAFT_PROXY};
+        break;
+    }
+
+    location /mstile-70x70.png {
+        proxy_pass ${CRAFT_PROXY};
+        break;
+    }
+
+    location /mstile-144x144.png {
+        proxy_pass ${CRAFT_PROXY};
+        break;
+    }
+
+    location /mstile-150x150.png {
+        proxy_pass ${CRAFT_PROXY};
+        break;
+    }
+
+    location /mstile-310x150.png {
+        proxy_pass ${CRAFT_PROXY};
+        break;
+    }
+
+    location /mstile-310x310.png {
+        proxy_pass ${CRAFT_PROXY};
+        break;
+    }
+
+    location /share.png {
+        proxy_pass ${CRAFT_PROXY};
         break;
     }
 
     location / {
-        if ($args ~* ^_rsc) {
-            return 404;
-        }
-
-        proxy_pass ${CRAFT_PROXY};
+        proxy_pass ${WEB_PROXY};
         break;
     }
 }
