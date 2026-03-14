@@ -129,6 +129,7 @@ services:
     environment:
       ENABLE_PHP_DEV_CONFIG: 1
       HOSTNAME: stmark-app
+      ENABLE_XDEBUG: 0
     ports:
       - "44232:80"
     volumes:

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Config;
 
+use App\ElasticSearch\Queue\EnqueueIndexAllMessages;
 use App\Http\Response\Media\Messages\EnqueueGenerateMessagesPagesForRedis;
 use App\Http\Response\Media\Resources\EnqueueGenerateResourcePagesForRedis;
 use App\Http\Response\Members\HymnsOfTheMonth\EnqueueGenerateHymnsOfTheMonthPageForRedis;
@@ -46,6 +47,8 @@ class Schedule
     public function retrieve(RetrieveScheduleEvent $e): void
     {
         $schedule = $e->scheduleConfigItems();
+
+        EnqueueIndexAllMessages::addSchedule($schedule);
 
         EnqueueGenerateInternalMediaPagesForRedis::addSchedule(
             $schedule
