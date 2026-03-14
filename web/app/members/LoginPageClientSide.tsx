@@ -13,19 +13,37 @@ export default function LoginPageClientSide () {
 
     const [error, submitAction, isPending] = useActionState(
         async (previousState: ReactNode | null, formData: FormData) => {
+            // eslint-disable-next-line no-console
+            console.log('actionState: logging form submission');
+
             const email = formData.get('email') as string;
             const password = formData.get('password') as string;
+
+            // eslint-disable-next-line no-console
+            console.log('actionState: form submission email:', email);
+
+            // eslint-disable-next-line no-console
+            console.log('actionState: form submission password:', password);
 
             const result = await PostLoginForm({
                 email,
                 password,
             });
 
+            // eslint-disable-next-line no-console
+            console.log('actionState: form submission result:', result);
+
             if (result.isValid) {
+                // eslint-disable-next-line no-console
+                console.log('actionState: form submission result: success');
+
                 router.refresh();
 
                 return null;
             }
+
+            // eslint-disable-next-line no-console
+            console.log('actionState: form submission result: error');
 
             return (
                 <div className="pb-2">
@@ -43,6 +61,9 @@ export default function LoginPageClientSide () {
         email: '',
         password: '',
     });
+
+    // eslint-disable-next-line no-console
+    console.log('LoginPageClientSide: formValues:', formValues);
 
     const setFormValue = (
         event: ChangeEvent<HTMLInputElement>,
