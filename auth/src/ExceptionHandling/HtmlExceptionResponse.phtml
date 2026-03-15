@@ -1,0 +1,22 @@
+<?php
+
+use BuzzingPixel\Templating\TemplateEngine;
+
+assert($this instanceof TemplateEngine);
+$errorCode = $errorCode ?? '500';
+$pageTitle = $pageTitle ?? 'An Error Occurred';
+$errorDescription = $errorDescription ?? null;
+$portalUrl = $portalUrl ?? '';
+?>
+
+<p class="text-base font-semibold text-crimson">
+    <?= $this->html($errorCode) ?>
+</p>
+<h1 class="t-5 text-4xl font-semibold tracking-tight text-balance text-crimson">
+    <?= $this->html($pageTitle) ?>
+</h1>
+<?php if ($errorDescription !== null): ?>
+    <p class="mt-6 text-base font-medium text-pretty text-rx-gray-500">
+        <?= $this->html($errorDescription) ?>
+    </p>
+<?php endif; ?>

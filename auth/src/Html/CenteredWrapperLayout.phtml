@@ -1,0 +1,30 @@
+<?php
+
+use App\Html\HtmlPath;
+use BuzzingPixel\Templating\TemplateEngine;
+
+assert($this instanceof TemplateEngine);
+
+$this->extends(HtmlPath::HTML_LAYOUT);
+
+global $wrapperWidth;
+$wrapperWidth = $wrapperWidth ?? 'max-w-xl';
+?>
+
+<main class="grid min-h-full place-items-center px-6 py-6 lg:px-8">
+    <div class="<?=implode(' ', [
+        'text-center bg-white p-20 rounded-3xl shadow-2xl w-full',
+        $wrapperWidth,
+    ])?>">
+        <div
+            class="mx-auto mb-5"
+            style="width: 70px"
+        >
+            <img
+                src="/images/logo/logo-website-header.png"
+                alt="St. Mark Reformed Church"
+            >
+        </div>
+        <?= $this->getSection('layoutContent') ?>
+    </div>
+</main>
