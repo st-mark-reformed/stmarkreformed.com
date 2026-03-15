@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Project PHP Files" pattern="file[SMRC - CraftCMS]:config//*.php||file[SMRC - CraftCMS]:migrations//*.php||file:public/index.php||file[SMRC - CraftCMS]:src//*.php||file:craft" />
+</component>

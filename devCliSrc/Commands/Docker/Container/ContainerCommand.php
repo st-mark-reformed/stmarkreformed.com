@@ -20,7 +20,7 @@ readonly class ContainerCommand
             $class,
         )
             ->descriptions(
-                'Stops the Docker environment (use --help to see arguments)',
+                'Runs commands in the ' . $container . ' container',
                 ['input' => 'If this argument is provided, instead of dropping you into the container shell, the provided command will be run in the container'],
             );
     }

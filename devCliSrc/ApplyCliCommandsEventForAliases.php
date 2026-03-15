@@ -16,12 +16,16 @@ readonly class ApplyCliCommandsEventForAliases extends ApplyCliCommandsEvent
 {
     public stdClass $expression;
 
+    /** @phpstan-ignore-next-line */
     public function __construct()
     {
         $this->expression = new stdClass();
     }
 
-    /** @inheritDoc */
+    /**
+     * @inheritDoc
+     * @phpstan-ignore-next-line
+     */
     public function addCommand(
         string $expression,
         callable|array|string $callable,
@@ -30,6 +34,7 @@ readonly class ApplyCliCommandsEventForAliases extends ApplyCliCommandsEvent
         $this->expression->expression = $expression;
 
         return new class extends Command {
+            /** @phpstan-ignore-next-line */
             public function descriptions(
                 $description,
                 array $argumentAndOptionDescriptions = [],
@@ -37,6 +42,7 @@ readonly class ApplyCliCommandsEventForAliases extends ApplyCliCommandsEvent
                 return $this;
             }
 
+            /** @phpstan-ignore-next-line */
             public function defaults(array $defaults = [])
             {
                 return $this;

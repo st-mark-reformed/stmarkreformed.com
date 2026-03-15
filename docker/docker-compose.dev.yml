@@ -65,7 +65,7 @@ services:
     image: ghcr.io/st-mark-reformed/stmarkreformed.com-api
     container_name: stmark-api
     environment:
-      ENABLE_XDEBUG: 1
+      ENABLE_XDEBUG: 0
       ENABLE_PHP_DEV_CONFIG: 1
       HOSTNAME: stmark-api
     volumes:

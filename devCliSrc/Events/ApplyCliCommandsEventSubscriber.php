@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Cli\Events;
+
 use Cli\Commands\Docker\Build\BuildCommand;
 use Cli\Commands\Docker\Container\ContainerApiCommand;
 use Cli\Commands\Docker\Container\ContainerApiQueueConsumerCommand;
@@ -35,7 +36,8 @@ readonly class ApplyCliCommandsEventSubscriber
         $property->setAccessible(true);
         $app = $property->getValue($commands);
         assert($app instanceof Application);
-        $container      = $app->getContainer();
+        $container = $app->getContainer();
+        /** @phpstan-ignore-next-line */
         $versionHandler = $container->get(PhpVersionHandler::class);
         assert($versionHandler instanceof PhpVersionHandler);
         $versionHandler->warnIfWrongVersion();

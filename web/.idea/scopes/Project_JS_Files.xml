@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Project JS Files" pattern="(file[SMRC - Web]:*//*.js||file[SMRC - Web]:*//*.jsx||file[SMRC - Web]:*//*.ts||file[SMRC - Web]:*//*.tsx||file[SMRC - Web]:*.js||file[SMRC - Web]:*.jsx||file[SMRC - Web]:*.ts||file[SMRC - Web]:*.tsx)&amp;&amp;!file[SMRC - Web]:.next//*&amp;&amp;!file[SMRC - Web]:.pnpm-store//*&amp;&amp;!file[SMRC - Web]:node_modules//*" />
+</component>

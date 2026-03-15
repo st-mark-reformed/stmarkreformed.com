@@ -42,6 +42,7 @@ enum DockerImage
                 }
 
                 try {
+                    /** @phpstan-ignore-next-line */
                     return constant(self::class . '::' . $image);
                 } catch (Throwable) {
                     throw new RuntimeException(
@@ -55,7 +56,8 @@ enum DockerImage
 
     public function getDashCaseName(): string
     {
-        return match($this->name) {
+        /** @phpstan-ignore-next-line */
+        return match ($this->name) {
             'apiQueueConsumer' => 'api-queue-consumer',
             'apiScheduleRunner' => 'api-schedule-runner',
             'appScheduleRunner' => 'app-schedule-runner',
@@ -73,7 +75,8 @@ enum DockerImage
 
     public function dockerfilePath(): string
     {
-        $dir = match($this->name) {
+        /** @phpstan-ignore-next-line */
+        $dir = match ($this->name) {
             'app' => 'application',
             'appScheduleRunner' => 'schedule-runner',
             default => $this->getDashCaseName(),

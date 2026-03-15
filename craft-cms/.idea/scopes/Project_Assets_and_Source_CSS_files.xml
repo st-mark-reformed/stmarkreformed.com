@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Project Assets and Source CSS files" pattern="file[SMRC - CraftCMS]:assets//*.css||file[SMRC - CraftCMS]:assets//*.pcss||file[SMRC - CraftCMS]:assets//*.html||file[SMRC - CraftCMS]:assets//*.twig||file[SMRC - CraftCMS]:src//*.css||file[SMRC - CraftCMS]:src//*.pcss||file[SMRC - CraftCMS]:src//*.html||file[SMRC - CraftCMS]:src//*.twig" />
+</component>
