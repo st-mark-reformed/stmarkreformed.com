@@ -2,7 +2,14 @@
 
 declare(strict_types=1);
 
-$dbName = (string) getenv('SMRC_AUTH_DB_NAME');
+use Config\RuntimeConfigOptions;
+use RxAnte\AppBootstrap\RuntimeConfig;
+
+$config = new RuntimeConfig();
+
+$dbName = $config->getString(
+    RuntimeConfigOptions::SMRC_AUTH_DB_NAME,
+);
 
 return [
     'paths' => [
@@ -13,10 +20,16 @@ return [
         'default_database' => $dbName,
         $dbName => [
             'adapter' => 'mysql',
-            'host' => (string) getenv('SMRC_AUTH_DB_HOST'),
+            'host' => $config->getString(
+                RuntimeConfigOptions::SMRC_AUTH_DB_HOST,
+            ),
             'name' => $dbName,
-            'user' => (string) getenv('SMRC_AUTH_DB_USER'),
-            'pass' =>  (string) getenv('SMRC_AUTH_DB_PASSWORD'),
+            'user' => $config->getString(
+                RuntimeConfigOptions::SMRC_AUTH_DB_USER,
+            ),
+            'pass' =>  $config->getString(
+                RuntimeConfigOptions::SMRC_AUTH_DB_PASSWORD,
+            ),
             'port' => '3306',
         ],
     ],

@@ -10,7 +10,7 @@ use Psr\Container\ContainerInterface;
 use RxAnte\AppBootstrap\Dependencies\Bindings;
 use RxAnte\AppBootstrap\RuntimeConfig;
 
-readonly class RegisterBindingsCookies
+readonly class CookieBindings
 {
     public function __invoke(Bindings $bindings): void
     {
