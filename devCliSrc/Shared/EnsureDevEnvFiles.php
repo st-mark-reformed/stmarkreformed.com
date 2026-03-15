@@ -24,6 +24,14 @@ readonly class EnsureDevEnvFiles
             'docker/api/.env.local',
         ));
 
+        // Auth
+        touch($this->path->pathFromProjectRoot(
+            'docker/auth/.bash_history',
+        ));
+        touch($this->path->pathFromProjectRoot(
+            'docker/auth/.env.local',
+        ));
+
         // App
         touch($this->path->pathFromProjectRoot(
             'docker/application/.env.local',

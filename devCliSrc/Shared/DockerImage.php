@@ -23,6 +23,7 @@ enum DockerImage
     case proxy;
     case utility;
     case web;
+    case auth;
 
     /**
      * @param array<array-key, string|DockerImage>|null $images

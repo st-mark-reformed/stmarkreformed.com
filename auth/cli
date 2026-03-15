@@ -1,0 +1,18 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Config\BootConfigFactory;
+use Config\ConfigPath;
+use RxAnte\AppBootstrap\Boot;
+
+require __DIR__ . '/vendor/autoload.php';
+
+new Boot()
+    ->start(config: new BootConfigFactory()->create(true))
+    ->buildContainer(register: ConfigPath::DEPENDENCIES)
+    ->registerEventSubscribers(register: ConfigPath::EVENTS)
+    ->buildCliApplication()
+    ->applyCommands()
+    ->runApplication();

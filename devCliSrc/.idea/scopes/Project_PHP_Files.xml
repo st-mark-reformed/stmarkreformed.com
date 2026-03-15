@@ -1,3 +1,3 @@
 <component name="DependencyValidationManager">
-  <scope name="Project PHP Files" pattern="file[devCliSrc]:*//*.php&amp;&amp;!file[devCliSrc]:vendor//*||file[devCliSrc]:*.php" />
+  <scope name="Project PHP Files" pattern="file[devCliSrc]:*//*.php&amp;&amp;!file[devCliSrc]:vendor//*||file[SMRC - Dev CLI]:*.php" />
 </component>

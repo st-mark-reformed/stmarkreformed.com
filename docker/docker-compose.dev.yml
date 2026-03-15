@@ -117,6 +117,36 @@ services:
       - ./api/.bash_history:/root/.bash_history:delegated
       - ../api:/var/www:delegated
 
+  auth:
+    restart: always
+    env_file:
+      - auth/.env
+      - auth/.env.local
+    image: ghcr.io/st-mark-reformed/stmarkreformed.com-auth
+    container_name: stmark-auth
+    environment:
+      ENABLE_XDEBUG: 0
+      ENABLE_PHP_DEV_CONFIG: 1
+      HOSTNAME: stmark-auth
+    volumes:
+      - ./auth/.bash_history:/root/.bash_history:delegated
+      - ../auth:/var/www:delegated
+    networks:
+      traefik:
+      default:
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-dev_default
+      - traefik.http.routers.stmark_auth_local.entrypoints=web
+      - traefik.http.routers.stmark_auth_local.rule=Host(`auth.stmark.localtest.me`)
+      - traefik.http.routers.stmark_auth_local.middlewares=https-redirect
+      - traefik.http.routers.stmark_auth_local-secure.entrypoints=websecure
+      - traefik.http.routers.stmark_auth_local-secure.tls=true
+      - traefik.http.routers.stmark_auth_local-secure.rule=Host(`auth.stmark.localtest.me`)
+    healthcheck:
+      disable: true
+      test: "1"
+
   app:
     cap_add:
       - SYS_PTRACE
