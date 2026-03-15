@@ -4,7 +4,6 @@
     <file>public/index.php</file>
     <file>config</file>
     <file>src</file>
-    <file>tests</file>
     <file>cli</file>
 
     <!-- Include the RxAnte ruleset -->

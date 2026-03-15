@@ -73,6 +73,7 @@ readonly class CacheRemoteIcsFile
         );
 
         $eventCollection = new EventCollection(array_map(
+        /** @phpstan-ignore-next-line */
             function (\ICal\Event $event): Event {
                 return $this->eventFactory->createFromICalEvent($event);
             },

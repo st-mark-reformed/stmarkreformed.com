@@ -23,7 +23,7 @@
     "require-dev": {
         "buzzingpixel/symfony-var-dumper-decorator": "^1.0",
         "filp/whoops": "^2.15",
-        "rxante/coding-standards": "^1.1.2",
+        "rxante/coding-standards": "^2",
         "symfony/var-dumper": "^6.4"
     },
     "autoload": {

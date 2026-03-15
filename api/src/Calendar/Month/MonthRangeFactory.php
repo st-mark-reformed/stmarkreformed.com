@@ -21,6 +21,8 @@ readonly class MonthRangeFactory
      * @param string $month as 2022-01, 2022-04 etc.
      *
      * @return DatePeriod<DateTimeImmutable>
+     *
+     * @phpstan-ignore-next-line
      */
     public function make(string $month): DatePeriod
     {

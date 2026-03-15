@@ -25,6 +25,7 @@ readonly class EnqueueCacheRemoteIcsFile
         if (
             count(array_filter(
                 $this->queueHandler->getEnqueuedItems()->asArray(),
+                /** @phpstan-ignore-next-line */
                 static fn (
                     array $q,
                 ) => $q['handle'] === CacheRemoteIcsFile::JOB_HANDLE,

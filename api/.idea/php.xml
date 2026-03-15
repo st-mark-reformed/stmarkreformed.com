@@ -94,11 +94,16 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
       <path value="$PROJECT_DIR$/vendor/symfony/service-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/string" />
       <path value="$PROJECT_DIR$/vendor/symfony/var-dumper" />
       <path value="$PROJECT_DIR$/vendor/symfony/var-exporter" />
+      <path value="$PROJECT_DIR$/vendor/hyperf/engine" />
+      <path value="$PROJECT_DIR$/vendor/hyperf/coroutine" />
+      <path value="$PROJECT_DIR$/vendor/hyperf/engine-contract" />
+      <path value="$PROJECT_DIR$/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/vendor/hyperf/context" />
+      <path value="$PROJECT_DIR$/vendor/hyperf/contract" />
     </include_path>
   </component>
   <component name="PhpProjectServersManager">

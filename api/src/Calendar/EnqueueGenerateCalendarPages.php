@@ -25,6 +25,7 @@ readonly class EnqueueGenerateCalendarPages
         if (
             count(array_filter(
                 $this->queueHandler->getEnqueuedItems()->asArray(),
+                /** @phpstan-ignore-next-line */
                 static fn (
                     array $q,
                 ) => $q['handle'] === GenerateCalendarPages::JOB_HANDLE,

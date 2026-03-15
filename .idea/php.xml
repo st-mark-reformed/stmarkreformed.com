@@ -537,6 +537,11 @@
       <path value="$PROJECT_DIR$/api/vendor/beberlei/assert" />
       <path value="$PROJECT_DIR$/api/vendor/cocur/slugify" />
       <path value="$PROJECT_DIR$/api/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/api/vendor/hyperf/engine" />
+      <path value="$PROJECT_DIR$/api/vendor/hyperf/coroutine" />
+      <path value="$PROJECT_DIR$/api/vendor/hyperf/engine-contract" />
+      <path value="$PROJECT_DIR$/api/vendor/hyperf/context" />
+      <path value="$PROJECT_DIR$/api/vendor/hyperf/contract" />
     </include_path>
   </component>
   <component name="PhpProjectServersManager">

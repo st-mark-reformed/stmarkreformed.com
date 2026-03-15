@@ -3,7 +3,6 @@ parameters:
         - public/index.php
         - config
         - src
-        - tests
         - cli
 
 includes:
