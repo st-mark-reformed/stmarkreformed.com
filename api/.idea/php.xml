@@ -128,6 +128,11 @@
     <option name="memoryLimit" value="4G" />
     <option name="transferred" value="true" />
   </component>
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" />
+    </phpunit_settings>
+  </component>
   <component name="Psalm">
     <Psalm_settings>
       <psalm_fixer_by_interpreter asDefaultInterpreter="true" interpreter_id="d8261d97-1042-4b20-8a61-eb189b246d81" timeout="60000" />
