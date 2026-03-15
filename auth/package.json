@@ -1,0 +1,8 @@
+{
+    "name": "rxante_auth",
+    "version": "dev-smrc-auth",
+    "dependencies": {
+        "@tailwindcss/cli": "^4.1.11",
+        "tailwindcss": "^4.1.11"
+    }
+}
