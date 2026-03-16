@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace App\User\Persistence;
 
-use App\Persistence\Record;
-
 // phpcs:disable Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 
-class UserRecord extends Record
+class UserRoleCompositeRecord
 {
     public const string TABLE_NAME = 'users';
 
@@ -28,6 +26,5 @@ class UserRecord extends Record
 
     public string $password_hash = '';
 
-    /** @var string[] */
-    public array $roles = [];
+    public string|null $role = '';
 }

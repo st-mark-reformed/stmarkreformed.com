@@ -17,6 +17,7 @@ readonly class User
         public UuidInterface $id = new EmptyUuid(),
         public UserEmail $email = new UserEmail(),
         public string $passwordHash = '',
+        public UserRoles $roles = new UserRoles(),
     ) {
         $this->isValid = ! $id instanceof EmptyUuid && $email->isValid;
     }
