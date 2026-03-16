@@ -14,6 +14,11 @@ class BootMiddlewareConfigFactory
     {
         $runtimeConfig = new RuntimeConfig();
 
+        // return new BootHttpMiddlewareConfig(
+        //     useProductionErrorMiddleware: true,
+        //     customProductionErrorMiddlewareHandler: SlimErrorHandler::class,
+        // );
+
         return new BootHttpMiddlewareConfig(
             useProductionErrorMiddleware: $runtimeConfig->getBoolean(
                 RuntimeConfigOptions::USE_PRODUCTION_ERROR_MIDDLEWARE,

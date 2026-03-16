@@ -13,6 +13,11 @@ class BootConfigFactory
     {
         $runtimeConfig = new RuntimeConfig();
 
+        // return new BootConfig(
+        //     isCli: $isCli,
+        //     useWhoopsErrorHandling: false,
+        // );
+
         return new BootConfig(
             isCli: $isCli,
             useWhoopsErrorHandling: $runtimeConfig->getBoolean(
