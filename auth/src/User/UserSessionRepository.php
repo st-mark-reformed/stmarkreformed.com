@@ -86,4 +86,19 @@ readonly class UserSessionRepository
 
         return $session;
     }
+
+    public function deleteSessionFromCookies(): void
+    {
+        $cookie = $this->cookies->find(CookieName::logged_in_session);
+
+        if ($cookie === null) {
+            return;
+        }
+
+        $this->cachePool->deleteItem(
+            $this->getSessionKey($cookie->value),
+        );
+
+        $this->cookies->delete($cookie);
+    }
 }

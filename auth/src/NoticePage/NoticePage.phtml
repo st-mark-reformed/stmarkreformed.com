@@ -1,0 +1,29 @@
+<?php
+
+use BuzzingPixel\Templating\TemplateEngine;
+
+assert($this instanceof TemplateEngine);
+$pageTitle = $pageTitle ?? '';
+$message = $message ?? null;
+$buttonText = $buttonText ?? null;
+$buttonUrl = $buttonUrl ?? null;
+?>
+
+<h1 class="text-4xl font-semibold tracking-tight text-balance text-rx-light-blue-600">
+    <?= $this->html($pageTitle) ?>
+</h1>
+<?php if ($message !== null): ?>
+    <p class="mt-6 text-base font-medium text-pretty text-rx-gray-500">
+        <?= $this->html($message) ?>
+    </p>
+<?php endif; ?>
+<?php if ($buttonText !== null && $buttonUrl !== null): ?>
+    <div class="mt-10 flex items-center justify-center gap-x-6">
+        <a
+            href="<?= $buttonUrl ?>"
+            class="rounded-lg bg-crimson hover:bg-crimson-dark px-3.5 py-3 text-sm font-semibold text-white shadow-xs"
+        >
+            <?= $this->html($buttonText) ?>
+        </a>
+    </div>
+<?php endif; ?>

@@ -22,6 +22,7 @@ readonly class GetIndexAction
         private AppUrlFactory $appUrlFactory,
         private UserSessionRepository $userSessionRepository,
         private GetLogInActionHandler $getLogInActionHandler,
+        private TemplateEngineFactory $templateEngineFactory,
     ) {
     }
 
@@ -37,7 +38,12 @@ readonly class GetIndexAction
             );
         }
 
-        $response->getBody()->write('TODO: Show the index page');
+        $response->getBody()->write(
+            $this->templateEngineFactory->create()
+                ->templatePath(__DIR__ . '/Index.phtml')
+                ->addVar('userEmail', $session->user->email->email)
+                ->render(),
+        );
 
         return $response;
     }
