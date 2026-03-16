@@ -1,0 +1,84 @@
+<?php
+/** @noinspection PhpUndefinedVariableInspection */
+
+use App\Html\HtmlFormInputConfig;
+use App\Html\HtmlFormInputType;
+
+assert($input instanceof HtmlFormInputConfig);
+
+$inputClasses = ['block w-full rounded-lg px-3 py-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 sm:text-sm/6'];
+
+if ($input->type === HtmlFormInputType::readonly) {
+    $inputClasses[] = 'bg-rx-gray-100';
+} else {
+    $inputClasses[] = 'bg-white focus:outline-2 focus:-outline-offset-2 focus:outline-rx-light-blue-500';
+}
+
+$wrapperClasses = ['mt-2'];
+
+if ($input->rightSideButton) {
+    $inputClasses[] = 'flex-1';
+    $wrapperClasses[] = 'flex gap-2';
+}
+?>
+
+<div>
+    <label
+        for="<?=$input->name?>"
+        class="block text-sm/6 font-medium text-rx-gray-500"
+    >
+        <?=$input->label?>
+    </label>
+    <div class="<?=implode(' ', $wrapperClasses)?>">
+        <input
+            type="<?=$input->type->name?>"
+            id="<?=$input->name?>"
+            name="<?=$input->name?>"
+            class="<?=implode(' ', $inputClasses)?>"
+            value="<?=$this->html($input->value)?>"
+            <?php if ($input->required): ?>
+            required
+            <?php endif; ?>
+            <?php if ($input->type === HtmlFormInputType::readonly): ?>
+            readonly
+            <?php endif; ?>
+        />
+        <?php if ($input->rightSideButton): ?>
+            <?php
+                $commonClasses = 'inline-flex items-center justify-center rounded-lg px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 whitespace-nowrap';
+                $activeClasses = 'bg-rx-light-blue-500 hover:bg-rx-light-blue-300 cursor-pointer';
+                $inactiveClasses = 'text-rx-gray-300 bg-rx-gray-500 cursor-default';
+            ?>
+            <a
+                href="<?=$input->rightSideButton->href?>"
+                id="htmlFormInputTextRightSideButton"
+                class="<?=implode(' ', [
+                    $commonClasses,
+                    $activeClasses,
+                ])?>"
+                data-common-classes="<?=$commonClasses?>"
+                data-active-classes="<?=$activeClasses?>"
+                data-inactive-classes="<?=$inactiveClasses?>"
+            >
+                <?=$input->rightSideButton->content?>
+            </a>
+            <script>
+                function htmlFormInputTextRightSideButtonSetup () {
+                    /** @type {HTMLElement} */
+                    const button = document.getElementById(
+                        'htmlFormInputTextRightSideButton',
+                    );
+
+                    button.addEventListener('click', function () {
+                        button.className = [
+                            button.dataset.commonClasses,
+                            button.dataset.inactiveClasses,
+                        ].join(' ');
+                    });
+                }
+
+                htmlFormInputTextRightSideButtonSetup();
+            </script>
+        <?php endif; ?>
+    </div>
+</div>

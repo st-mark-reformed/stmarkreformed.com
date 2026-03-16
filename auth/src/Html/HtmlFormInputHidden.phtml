@@ -1,0 +1,14 @@
+<?php
+/** @noinspection PhpUndefinedVariableInspection */
+
+use App\Html\HtmlFormInputConfig;
+
+assert($input instanceof HtmlFormInputConfig);
+?>
+
+<input
+    type="hidden"
+    id="<?=$input->name?>"
+    name="<?=$input->name?>"
+    value="<?=$this->html($input->value)?>"
+/>
