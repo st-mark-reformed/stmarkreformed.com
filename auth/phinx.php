@@ -17,7 +17,7 @@ return [
     ],
     'environments' => [
         'default_migration_table' => 'migrations',
-        'default_database' => $dbName,
+        'default_environment' => $dbName,
         $dbName => [
             'adapter' => 'mysql',
             'host' => $config->getString(
