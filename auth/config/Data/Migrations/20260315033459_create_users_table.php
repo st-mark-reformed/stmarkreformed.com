@@ -27,6 +27,9 @@ class CreateUsersTable extends AbstractMigration
             'email',
             AdapterInterface::PHINX_TYPE_STRING,
             ['null' => false, 'default' => ''],
+        )->addIndex(
+            ['email'],
+            ['unique' => true],
         )->addColumn(
             'password_hash',
             AdapterInterface::PHINX_TYPE_STRING,
