@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace App\User;
 
+use App\Cookies\Cookie;
 use App\Cookies\CookieName;
 use App\Cookies\Cookies;
+use DateInterval;
 use Psr\Cache\CacheItemPoolInterface;
+use Psr\Clock\ClockInterface;
+use Ramsey\Uuid\UuidFactoryInterface;
 
 use function implode;
 
@@ -14,7 +18,9 @@ readonly class UserSessionRepository
 {
     public function __construct(
         private Cookies $cookies,
+        private ClockInterface $clock,
         private CacheItemPoolInterface $cachePool,
+        private UuidFactoryInterface $uuidFactory,
     ) {
     }
 
@@ -48,5 +54,36 @@ readonly class UserSessionRepository
         }
 
         return $cachedSession;
+    }
+
+    public function createPersistentSession(User $user): UserSession
+    {
+        $session = new UserSession(
+            id: $this->uuidFactory->uuid4(),
+            expires: $this->clock->now()->add(
+                new DateInterval('P1Y'),
+            ),
+            user: $user,
+        );
+
+        $key = $this->getSessionKey($session->id->toString());
+
+        $success = $this->cachePool->save(
+            $this->cachePool->getItem($key)
+                ->set($session)
+                ->expiresAt($session->expires),
+        );
+
+        $this->cookies->save(new Cookie(
+            name: CookieName::logged_in_session,
+            value: $session->id->toString(),
+            expire: $session->expires,
+        ));
+
+        if (! $success) {
+            throw new UnableToSaveSession();
+        }
+
+        return $session;
     }
 }

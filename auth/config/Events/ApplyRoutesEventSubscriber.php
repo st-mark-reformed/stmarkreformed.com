@@ -6,13 +6,15 @@ namespace Config\Events;
 
 use App\GetIndexAction;
 use App\Healthcheck;
+use App\LogIn\PostLogInAction;
 use RxAnte\AppBootstrap\Http\ApplyRoutesEvent;
 
 class ApplyRoutesEventSubscriber
 {
     public function onDispatch(ApplyRoutesEvent $routes): void
     {
-        Healthcheck::applyRoute($routes);
-        GetIndexAction::applyRoute($routes);
+        Healthcheck::applyRoute(routes: $routes);
+        GetIndexAction::applyRoute(routes: $routes);
+        PostLogInAction::applyRoute(routes: $routes);
     }
 }

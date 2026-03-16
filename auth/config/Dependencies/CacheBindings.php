@@ -12,7 +12,7 @@ use RxAnte\AppBootstrap\Dependencies\Bindings;
 use RxAnte\AppBootstrap\RuntimeConfig;
 use Symfony\Component\Cache\Adapter\RedisAdapter;
 
-readonly class Cache
+readonly class CacheBindings
 {
     public function __invoke(Bindings $bindings): void
     {

@@ -8,7 +8,7 @@ use App\Oauth\OauthPrivateKey;
 use App\Oauth\OauthPublicKey;
 use RxAnte\AppBootstrap\Dependencies\Bindings;
 
-class Auth
+readonly class AuthBindings
 {
     public function __invoke(Bindings $bindings): void
     {

@@ -7,6 +7,8 @@ namespace App\User;
 use App\EmptyUuid;
 use Ramsey\Uuid\UuidInterface;
 
+use function password_verify;
+
 readonly class User
 {
     public bool $isValid;
@@ -17,5 +19,10 @@ readonly class User
         public string $passwordHash = '',
     ) {
         $this->isValid = ! $id instanceof EmptyUuid && $email->isValid;
+    }
+
+    public function isPasswordValid(string $password): bool
+    {
+        return password_verify($password, $this->passwordHash);
     }
 }
