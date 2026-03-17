@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\User\Persistence;
 
 use App\Persistence\AuthPdo;
-use App\User\CreateUserResult;
 use App\User\NewUser;
+use App\User\Result;
 use App\User\UserRole;
 use Exception;
 use Ramsey\Uuid\UuidFactoryInterface;
@@ -24,12 +24,13 @@ readonly class CreateUser
 {
     public function __construct(
         private AuthPdo $pdo,
+        private InsertUserRole $insertUserRole,
         private FindUserByEmail $findUserByEmail,
         private UuidFactoryInterface $uuidFactory,
     ) {
     }
 
-    public function create(NewUser $newUser): CreateUserResult
+    public function create(NewUser $newUser): Result
     {
         $pre = $this->preValidate($newUser);
 
@@ -51,7 +52,7 @@ readonly class CreateUser
 
             $result = $statement->execute([
                 'id' => $id->toString(),
-                'email' => $newUser->email->email,
+                'email' => $newUser->email->toString(),
                 'password_hash' => $this->createPasswordHash($newUser),
             ]);
 
@@ -63,38 +64,38 @@ readonly class CreateUser
 
             $this->pdo->commit();
 
-            return new CreateUserResult();
+            return new Result();
         } catch (Throwable) {
             $this->pdo->rollBack();
 
-            return new CreateUserResult(
+            return new Result(
                 success: false,
                 errors: ['An unexpected error occurred. Please try again later.'],
             );
         }
     }
 
-    private function preValidate(NewUser $newUser): CreateUserResult
+    private function preValidate(NewUser $newUser): Result
     {
         if (count($newUser->getValidationMessages()) > 0) {
-            return new CreateUserResult(
+            return new Result(
                 success: false,
                 errors: $newUser->getValidationMessages(),
             );
         }
 
         $existingUser = $this->findUserByEmail->find(
-            email: $newUser->email->email,
+            email: $newUser->email->toString(),
         );
 
         if ($existingUser->isValid()) {
-            return new CreateUserResult(
+            return new Result(
                 success: false,
                 errors: ['That user already exists.'],
             );
         }
 
-        return new CreateUserResult();
+        return new Result();
     }
 
     private function createPasswordHash(NewUser $newUser): string
@@ -113,27 +114,8 @@ readonly class CreateUser
     {
         $newUser->roles->walk(
             function (UserRole $role) use ($id): void {
-                $this->insertRole(id: $id, role: $role);
+                $this->insertUserRole->insert(id: $id, role: $role);
             },
         );
-    }
-
-    private function insertRole(UuidInterface $id, UserRole $role): void
-    {
-        $statement = $this->pdo->prepare(implode(' ', [
-            'INSERT INTO user_roles (user_id, role)',
-            'VALUES (:user_id, :role)',
-        ]));
-
-        $result = $statement->execute([
-            'user_id' => $id,
-            'role' => $role->name,
-        ]);
-
-        if ($result) {
-            return;
-        }
-
-        throw new Exception('Failed to insert role');
     }
 }

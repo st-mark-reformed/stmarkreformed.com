@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\User;
 
-readonly class CreateUserResult
+readonly class Result
 {
     /** @param string[] $errors */
     public function __construct(

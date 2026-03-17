@@ -11,15 +11,10 @@ use App\User\UserRepository;
 use App\User\UserRole;
 use App\User\UserRoles;
 use RxAnte\AppBootstrap\Cli\ApplyCliCommandsEvent;
-use Symfony\Component\Console\Output\ConsoleOutputInterface;
 
-use function array_filter;
 use function array_map;
 use function constant;
-use function count;
-use function explode;
 use function implode;
-use function trim;
 
 readonly class CreateNewUserCommand
 {
@@ -49,8 +44,9 @@ readonly class CreateNewUserCommand
 
     public function __construct(
         private CliQuestion $question,
+        private CliCollectRole $collectRole,
         private UserRepository $userRepository,
-        private ConsoleOutputInterface $output,
+        private CliResultHandler $cliResultHandler,
     ) {
     }
 
@@ -71,23 +67,7 @@ readonly class CreateNewUserCommand
             );
         }
 
-        if (count($role) < 1) {
-            $role = array_map(
-                static fn (string $r) => trim($r),
-                array_filter(
-                    explode(',', $this->question->ask(
-                        'Role(s) ' . implode(
-                            ', ',
-                            array_map(
-                                static fn (UserRole $r) => $r->name,
-                                UserRole::cases(),
-                            ),
-                        ) . ': ',
-                    )),
-                    static fn (string $r) => $r !== '',
-                ),
-            );
-        }
+        $role = $this->collectRole->collect($role);
 
         $result = $this->userRepository->createUser(new NewUser(
             email: new UserEmail($email),
@@ -101,27 +81,10 @@ readonly class CreateNewUserCommand
             )),
         ));
 
-        if ($result->success) {
-            $this->output->writeln(
-                '<fg=green>User created successfully</>',
-            );
-
-            return 0;
-        }
-
-        $this->output->writeln(
-            '<fg=red;options=bold>Unable to create user:</>',
+        return $this->cliResultHandler->handleResult(
+            result: $result,
+            successMessage: 'User created successfully',
+            errorMessage: 'Unable to create user:',
         );
-
-        array_map(
-            function (string $error): void {
-                $this->output->writeln(
-                    '<fg=red>' . $error . '</>',
-                );
-            },
-            $result->errors,
-        );
-
-        return 1;
     }
 }

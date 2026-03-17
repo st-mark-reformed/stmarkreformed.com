@@ -8,6 +8,7 @@ use App\Persistence\AuthPdo;
 use PDO;
 
 use function array_map;
+use function array_values;
 use function count;
 use function implode;
 
@@ -19,9 +20,16 @@ readonly class FindUserByEmail
     {
     }
 
-    public function find(string $email): UserRecord
-    {
-        $statement = $this->pdo->prepare(implode(' ', [
+    /** @param string[] $excludeIds */
+    public function find(
+        string $email,
+        array $excludeIds = [],
+    ): UserRecord {
+        $excludeIds = array_values($excludeIds);
+
+        $params = ['email' => $email];
+
+        $sql = [
             'SELECT',
             implode(', ', [
                 'users.id',
@@ -32,9 +40,21 @@ readonly class FindUserByEmail
             'FROM users',
             'LEFT JOIN user_roles ON user_roles.user_id = users.id',
             'WHERE users.email = :email',
-        ]));
+        ];
 
-        $statement->execute(['email' => $email]);
+        foreach ($excludeIds as $index => $id) {
+            $pkey = 'id' . $index;
+
+            $params[$pkey] = $id;
+
+            $sql[] = 'AND id != :' . $pkey;
+        }
+
+        $statement = $this->pdo->prepare(
+            implode(' ', $sql),
+        );
+
+        $statement->execute($params);
 
         $rows = array_map(
             /** @phpstan-ignore-next-line */

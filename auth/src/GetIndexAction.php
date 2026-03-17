@@ -41,7 +41,7 @@ readonly class GetIndexAction
         $response->getBody()->write(
             $this->templateEngineFactory->create()
                 ->templatePath(__DIR__ . '/Index.phtml')
-                ->addVar('userEmail', $session->user->email->email)
+                ->addVar('userEmail', $session->user->email->toString())
                 ->render(),
         );
 

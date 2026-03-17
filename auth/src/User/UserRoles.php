@@ -4,17 +4,42 @@ declare(strict_types=1);
 
 namespace App\User;
 
+use function array_filter;
+use function array_find;
 use function array_map;
+use function array_values;
 use function count;
 
 readonly class UserRoles
 {
+    /** @var UserRole[] */
+    public array $roles;
+
     /** @param UserRole[] $roles */
-    public function __construct(public array $roles = [])
+    public function __construct(array $roles = [])
     {
-        array_map(
-            static fn (UserRole $role) => $role,
-            $roles,
+        $alreadyUsed = [];
+
+        $this->roles = array_filter(
+            array_values(array_map(
+                static fn (UserRole $role) => $role,
+                $roles,
+            )),
+            static function (
+                UserRole $role,
+            ) use (&$alreadyUsed): bool {
+                $used = array_find(
+                    $alreadyUsed,
+                    static function (UserRole $usedRole) use ($role): bool {
+                        return $usedRole->name === $role->name;
+                    },
+                );
+
+                /** @phpstan-ignore-next-line */
+                $alreadyUsed[] = $role;
+
+                return $used === null;
+            },
         );
     }
 
@@ -23,8 +48,32 @@ readonly class UserRoles
         return count($this->roles);
     }
 
+    public function find(callable $callback): UserRole|null
+    {
+        return array_find($this->roles, $callback);
+    }
+
+    public function filter(callable $callback): self
+    {
+        return new self(array_filter(
+            $this->roles,
+            $callback,
+        ));
+    }
+
     public function walk(callable $callback): void
     {
         array_map($callback, $this->roles);
+    }
+
+    public function withAddedRole(UserRole $role): self
+    {
+        return new self(roles: [...$this->roles, $role]);
+    }
+
+    /** @param UserRole[] $roles */
+    public function withAddedRoles(array $roles): self
+    {
+        return new self(roles: [...$this->roles, ...$roles]);
     }
 }
