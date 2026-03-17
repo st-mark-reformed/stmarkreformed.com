@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\User;
 
 use function array_map;
+use function count;
 
 readonly class UserRoles
 {
@@ -15,6 +16,11 @@ readonly class UserRoles
             static fn (UserRole $role) => $role,
             $roles,
         );
+    }
+
+    public function count(): int
+    {
+        return count($this->roles);
     }
 
     public function walk(callable $callback): void
