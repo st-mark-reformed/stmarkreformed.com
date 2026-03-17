@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\User\Persistence;
 
 use App\Persistence\Record;
+use Ramsey\Uuid\Uuid;
+use Throwable;
 
 // phpcs:disable Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 
@@ -30,4 +32,15 @@ class UserRecord extends Record
 
     /** @var string[] */
     public array $roles = [];
+
+    public function isValid(): bool
+    {
+        try {
+            Uuid::fromString($this->id);
+
+            return true;
+        } catch (Throwable) {
+            return false;
+        }
+    }
 }

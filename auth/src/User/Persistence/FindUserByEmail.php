@@ -58,6 +58,10 @@ readonly class FindUserByEmail
         $record->password_hash = $rows[0]->password_hash;
 
         foreach ($rows as $row) {
+            if ($row->role === null) {
+                continue;
+            }
+
             $record->roles[] = (string) $row->role;
         }
 

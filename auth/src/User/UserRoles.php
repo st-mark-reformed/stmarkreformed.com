@@ -16,4 +16,9 @@ readonly class UserRoles
             $roles,
         );
     }
+
+    public function walk(callable $callback): void
+    {
+        array_map($callback, $this->roles);
+    }
 }
