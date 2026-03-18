@@ -8,7 +8,10 @@ use App\EmptyUuid;
 use Ramsey\Uuid\UuidInterface;
 use Spatie\Cloneable\Cloneable;
 
+use function password_hash;
 use function password_verify;
+
+use const PASSWORD_DEFAULT;
 
 readonly class User
 {
@@ -60,5 +63,13 @@ readonly class User
     public function withRemovedRoles(array $roles): self
     {
         return $this->with(roles: $this->roles->withRemovedRoles(roles: $roles));
+    }
+
+    public function withNewPassword(string $password): self
+    {
+        return $this->with(passwordHash: password_hash(
+            $password,
+            PASSWORD_DEFAULT,
+        ));
     }
 }

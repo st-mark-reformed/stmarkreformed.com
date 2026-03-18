@@ -6,6 +6,5 @@ namespace App\User;
 
 enum UserRole
 {
-    case ADMIN;
     case EDIT_MESSAGES;
 }

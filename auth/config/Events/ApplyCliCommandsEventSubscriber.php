@@ -13,6 +13,7 @@ use App\User\CLI\CreateNewUserCommand;
 use App\User\CLI\DeleteUserCommand;
 use App\User\CLI\ListUserRolesCommand;
 use App\User\CLI\RemoveUserRolesCommand;
+use App\User\CLI\SetUserPasswordCommand;
 use RxAnte\AppBootstrap\Cli\ApplyCliCommandsEvent;
 
 class ApplyCliCommandsEventSubscriber
@@ -29,5 +30,6 @@ class ApplyCliCommandsEventSubscriber
         AddUserRolesCommand::register(commands: $commands);
         RemoveUserRolesCommand::register(commands: $commands);
         DeleteUserCommand::register(commands: $commands);
+        SetUserPasswordCommand::register(commands: $commands);
     }
 }
