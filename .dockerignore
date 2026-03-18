@@ -1,5 +1,12 @@
 .git
 .DS_Store
+
+api/vendor
+
+auth/.pnpm-store
+auth/node_modules
+auth/vendor
+
 craft-cms/config/license.key
 craft-cms/filesAboveWebroot/*
 craft-cms/node_modules/*
