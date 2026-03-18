@@ -139,10 +139,10 @@ services:
       - traefik.docker.network=traefik-dev_default
       - traefik.http.routers.stmark_auth_local.entrypoints=web
       - traefik.http.routers.stmark_auth_local.rule=Host(`auth.stmark.localtest.me`)
-      - traefik.http.routers.stmark_auth_local.middlewares=https-redirect
-      - traefik.http.routers.stmark_auth_local-secure.entrypoints=websecure
-      - traefik.http.routers.stmark_auth_local-secure.tls=true
-      - traefik.http.routers.stmark_auth_local-secure.rule=Host(`auth.stmark.localtest.me`)
+#      - traefik.http.routers.stmark_auth_local.middlewares=https-redirect
+#      - traefik.http.routers.stmark_auth_local-secure.entrypoints=websecure
+#      - traefik.http.routers.stmark_auth_local-secure.tls=true
+#      - traefik.http.routers.stmark_auth_local-secure.rule=Host(`auth.stmark.localtest.me`)
     healthcheck:
       disable: true
       test: "1"
