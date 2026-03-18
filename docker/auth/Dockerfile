@@ -90,15 +90,15 @@ COPY --from=composer:2.8.6 /usr/bin/composer /usr/bin/composer
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 # Custom php config
-COPY docker/api/php/php-fpm.conf /usr/local/etc/php-fpm.d/zzz-custom.conf
-COPY docker/api/php/php.ini $PHP_INI_DIR/conf.d/
+COPY docker/auth/php/php-fpm.conf /usr/local/etc/php-fpm.d/zzz-custom.conf
+COPY docker/auth/php/php.ini $PHP_INI_DIR/conf.d/
 
 # Install xdebug
 RUN pecl install xdebug-3.4.2
-COPY docker/api/php/xdebug.ini $PHP_INI_DIR/disabled/
+COPY docker/auth/php/xdebug.ini $PHP_INI_DIR/disabled/
 
 # Custom nginx config
-COPY docker/api/nginx /etc/nginx/imported
+COPY docker/auth/nginx /etc/nginx/imported
 RUN cp /etc/nginx/imported/nginx.conf /etc/nginx/nginx.conf \
     && cp /etc/nginx/imported/default.conf /etc/nginx/conf.d/default.conf
 
@@ -106,15 +106,15 @@ RUN cp /etc/nginx/imported/nginx.conf /etc/nginx/nginx.conf \
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
 # Container configuration
-COPY docker/api/cont-init.d /etc/cont-init.d/
-COPY docker/api/services.d /etc/services.d/
+COPY docker/auth/cont-init.d /etc/cont-init.d/
+COPY docker/auth/services.d /etc/services.d/
 
 # Update bash profile
 COPY ./docker/.profile /root/.profile
 COPY ./docker/.profile /root/.bashrc
 
 # Copy the application into the container
-COPY api /var/www
+COPY auth /var/www
 
 # Install composer dependencies
 RUN composer install --no-interaction --no-ansi --no-progress --optimize-autoloader --no-dev
