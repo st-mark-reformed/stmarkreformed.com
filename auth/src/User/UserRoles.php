@@ -76,4 +76,34 @@ readonly class UserRoles
     {
         return new self(roles: [...$this->roles, ...$roles]);
     }
+
+    public function withRemovedRole(UserRole $role): self
+    {
+        return new self(roles: array_filter(
+            $this->roles,
+            static function (UserRole $existing) use ($role): bool {
+                return $existing->name !== $role->name;
+            },
+        ));
+    }
+
+    /** @param UserRole[] $roles */
+    public function withRemovedRoles(array $roles): self
+    {
+        $newRoles = array_filter(
+            $this->roles,
+            static function (UserRole $existingRole) use ($roles): bool {
+                $isKeeper = array_find(
+                    $roles,
+                    static fn (
+                        UserRole $keepRole,
+                    ) => $keepRole->name === $existingRole->name,
+                );
+
+                return $isKeeper === null;
+            },
+        );
+
+        return new self(roles: $newRoles);
+    }
 }

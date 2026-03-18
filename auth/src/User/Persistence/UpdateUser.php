@@ -9,9 +9,12 @@ use App\User\Result;
 use App\User\User;
 use App\User\UserRole;
 use Exception;
+use Ramsey\Uuid\UuidInterface;
 use Throwable;
 
+use function array_filter;
 use function array_find;
+use function array_map;
 use function count;
 use function implode;
 
@@ -58,8 +61,13 @@ readonly class UpdateUser
                 email: $user->email->toString(),
             );
 
-            $this->updateUserRoles(
-                existingUserRecord:  $existingRecord,
+            $this->addUserRoles(
+                existingUserRecord: $existingRecord,
+                updatedUser: $user,
+            );
+
+            $this->removeUserRoles(
+                existingUserRecord: $existingRecord,
                 updatedUser: $user,
             );
 
@@ -100,7 +108,7 @@ readonly class UpdateUser
         return new Result();
     }
 
-    private function updateUserRoles(
+    private function addUserRoles(
         UserRecord $existingUserRecord,
         User $updatedUser,
     ): void {
@@ -123,7 +131,46 @@ readonly class UpdateUser
                 );
             },
         );
+    }
 
-        // TODO: Delete roles in the DB that are not on the user
+    private function removeUserRoles(
+        UserRecord $existingUserRecord,
+        User $updatedUser,
+    ): void {
+        $neededRemovedRolesStrings = array_filter(
+            $existingUserRecord->roles,
+            static function (
+                string $roleString,
+            ) use ($updatedUser): bool {
+                $isStillPresent = $updatedUser->roles->find(
+                    static function (
+                        UserRole $r,
+                    ) use ($roleString): bool {
+                        return $r->name === $roleString;
+                    },
+                );
+
+                return $isStillPresent === null;
+            },
+        );
+
+        array_map(
+            function (string $role) use ($updatedUser): void {
+                $this->removeUserRole(id: $updatedUser->id, role: $role);
+            },
+            $neededRemovedRolesStrings,
+        );
+    }
+
+    private function removeUserRole(UuidInterface $id, string $role): void
+    {
+        $statement = $this->pdo->prepare(
+            'DELETE FROM user_roles WHERE user_id = :id AND role = :role',
+        );
+
+        $statement->execute([
+            'id' => $id->toString(),
+            'role' => $role,
+        ]);
     }
 }

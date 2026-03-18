@@ -11,6 +11,7 @@ use App\Persistence\Migrations\MigrateUpCommand;
 use App\User\CLI\AddUserRolesCommand;
 use App\User\CLI\CreateNewUserCommand;
 use App\User\CLI\ListUserRolesCommand;
+use App\User\CLI\RemoveUserRolesCommand;
 use RxAnte\AppBootstrap\Cli\ApplyCliCommandsEvent;
 
 class ApplyCliCommandsEventSubscriber
@@ -25,5 +26,6 @@ class ApplyCliCommandsEventSubscriber
         CreateNewUserCommand::register(commands: $commands);
         ListUserRolesCommand::register(commands: $commands);
         AddUserRolesCommand::register(commands: $commands);
+        RemoveUserRolesCommand::register(commands: $commands);
     }
 }

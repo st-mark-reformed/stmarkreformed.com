@@ -25,7 +25,7 @@ readonly class InsertUserRole
         ]));
 
         $result = $statement->execute([
-            'user_id' => $id,
+            'user_id' => $id->toString(),
             'role' => $role->name,
         ]);
 

@@ -11,15 +11,15 @@ use RxAnte\AppBootstrap\Cli\ApplyCliCommandsEvent;
 use function array_map;
 use function constant;
 
-readonly class AddUserRolesCommand
+readonly class RemoveUserRolesCommand
 {
     public static function register(ApplyCliCommandsEvent $commands): void
     {
         $commands->addCommand(
-            'user:add-roles [-e|--email=] [-r|--role=]*',
+            'user:remove-roles [-e|--email=] [-r|--role=]*',
             self::class,
         )->descriptions(
-            'Add roles to a user',
+            'Remove roles from a user',
             ['--email' => 'Specify the email of the user'],
         )->defaults(['email' => null]);
     }
@@ -45,7 +45,7 @@ readonly class AddUserRolesCommand
 
         $role = $this->collectRole->collect($role);
 
-        $updatedUser = $listResult->user->withAddedRoles(array_map(
+        $updatedUser = $listResult->user->withRemovedRoles(array_map(
             static fn (
                 string $role,
                 /** @phpstan-ignore-next-line */
@@ -57,8 +57,8 @@ readonly class AddUserRolesCommand
 
         return $this->cliResultHandler->handleResult(
             result: $result,
-            successMessage: 'Roles added successfully',
-            errorMessage: 'Unable to add roles to user:',
+            successMessage: 'Roles removed successfully',
+            errorMessage: 'Unable to remove roles from user:',
         );
     }
 }

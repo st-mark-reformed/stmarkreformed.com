@@ -42,12 +42,23 @@ readonly class User
 
     public function withAddedRole(UserRole $role): self
     {
-        return $this->with(roles: $this->roles->withAddedRole($role));
+        return $this->with(roles: $this->roles->withAddedRole(role: $role));
     }
 
     /** @param UserRole[] $roles */
     public function withAddedRoles(array $roles): self
     {
-        return $this->with(roles: $this->roles->withAddedRoles($roles));
+        return $this->with(roles: $this->roles->withAddedRoles(roles: $roles));
+    }
+
+    public function withRemovedRole(UserRole $role): self
+    {
+        return $this->with(roles: $this->roles->withRemovedRole(role: $role));
+    }
+
+    /** @param UserRole[] $roles */
+    public function withRemovedRoles(array $roles): self
+    {
+        return $this->with(roles: $this->roles->withRemovedRoles(roles: $roles));
     }
 }
