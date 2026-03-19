@@ -7,6 +7,7 @@ const buildDate = date.toUTCString();
  * @type {import('next').NextConfig}
  */
 module.exports = {
+    devIndicators: false,
     env: {
         BUILD_YEAR: date.getFullYear().toString(),
         BUILD_DATE: buildDate,
