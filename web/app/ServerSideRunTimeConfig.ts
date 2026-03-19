@@ -1,13 +1,25 @@
 import fs from 'fs';
 
 export enum ConfigOptions {
+    // App
     BASE_URL,
+    ENCRYPTION_KEY,
+
+    // API
     API_URL,
     APP_API_URL,
+
+    // Cache
     REDIS_HOST,
+
+    // Members
     MEMBER_EMAIL_ADDRESS,
     MEMBER_PASSWORD,
-    ENCRYPTION_KEY,
+
+    // Auth
+    AUTH_WELL_KNOWN_URL,
+    AUTH_CLIENT_ID,
+    AUTH_CLIENT_SECRET,
 }
 
 function getConfigValue (
