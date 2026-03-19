@@ -143,6 +143,9 @@ services:
       - traefik.http.routers.stmark_auth_local-secure.entrypoints=websecure
       - traefik.http.routers.stmark_auth_local-secure.tls=true
       - traefik.http.routers.stmark_auth_local-secure.rule=Host(`auth.stmark.localtest.me`)
+    secrets:
+      - RSA_PRIVATE_KEY
+      - RSA_PUBLIC_KEY
     healthcheck:
       disable: true
       test: "1"
@@ -296,3 +299,9 @@ networks:
   traefik:
     name: traefik-dev_default
     external: true
+
+secrets:
+  RSA_PRIVATE_KEY:
+    file: secrets/RSA_PRIVATE_KEY
+  RSA_PUBLIC_KEY:
+    file: secrets/RSA_PUBLIC_KEY

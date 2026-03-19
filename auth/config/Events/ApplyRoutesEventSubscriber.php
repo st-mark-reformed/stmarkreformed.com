@@ -10,6 +10,8 @@ use App\Healthcheck;
 use App\LogIn\PostLogInAction;
 use App\LogOut\GetLogOutLanding;
 use App\LogOut\LogOutAction;
+use App\Oauth\Authorize\GetAuthorizeAction;
+use App\Oauth\PostTokenAction;
 use RxAnte\AppBootstrap\Http\ApplyRoutesEvent;
 
 class ApplyRoutesEventSubscriber
@@ -22,5 +24,7 @@ class ApplyRoutesEventSubscriber
         LogOutAction::applyRoute(routes: $routes);
         GetLogOutLanding::applyRoute(routes: $routes);
         GetWellKnownOpenIdConfiguration::applyRoute(routes: $routes);
+        GetAuthorizeAction::applyRoute(routes: $routes);
+        PostTokenAction::applyRoute(routes: $routes);
     }
 }

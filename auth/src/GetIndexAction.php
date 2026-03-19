@@ -34,7 +34,7 @@ readonly class GetIndexAction
 
         if ($session === null) {
             return $this->getLogInActionHandler->renderAndCreateResponse(
-                $this->appUrlFactory->create()->asString(),
+                redirectUrl: $this->appUrlFactory->create()->asString(),
             );
         }
 

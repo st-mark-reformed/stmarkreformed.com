@@ -20,6 +20,10 @@ enum RuntimeConfigOptions
     // Oauth
     // Created from ./vendor/bin/generate-defuse-key
     case OAUTH_ENCRYPTION_KEY;
+    case RSA_PRIVATE_KEY;
+    case RSA_PUBLIC_KEY;
+    case SMRC_CLIENT_REDIRECT_URI;
+    case SMRC_CLIENT_SECRET;
 
     // Auth DB
     case SMRC_AUTH_DB_HOST;

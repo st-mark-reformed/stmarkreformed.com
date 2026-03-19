@@ -8,7 +8,7 @@ export async function AuthCodeGrantApiFactory () {
         tokenRepository: TokenRepositoryFactory(),
         appUrl: getConfigString(ConfigOptions.BASE_URL),
         wellKnownUrl: getConfigString(ConfigOptions.AUTH_WELL_KNOWN_URL),
-        clientId: getConfigString(ConfigOptions.AUTH_CLIENT_ID),
+        clientId: 'y8BwEVCNZpCJbWgit3LL6ctMaevF42dJ',
         clientSecret: getConfigString(ConfigOptions.AUTH_CLIENT_SECRET),
         callbackUri: '/api/auth/callback',
         redis: getRedisClient(),
