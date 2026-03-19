@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Config\Events;
 
 use App\GetIndexAction;
+use App\GetWellKnownOpenIdConfiguration;
 use App\Healthcheck;
 use App\LogIn\PostLogInAction;
 use App\LogOut\GetLogOutLanding;
@@ -20,5 +21,6 @@ class ApplyRoutesEventSubscriber
         PostLogInAction::applyRoute(routes: $routes);
         LogOutAction::applyRoute(routes: $routes);
         GetLogOutLanding::applyRoute(routes: $routes);
+        GetWellKnownOpenIdConfiguration::applyRoute(routes: $routes);
     }
 }
