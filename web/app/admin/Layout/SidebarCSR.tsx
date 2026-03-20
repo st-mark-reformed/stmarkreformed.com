@@ -12,6 +12,7 @@ import {
     XMarkIcon,
 } from '@heroicons/react/24/outline';
 import Image from 'next/image';
+import Link from 'next/link';
 import NavItem from './NavItem';
 import NavItemIconRenderer from './NavItemIconRenderer';
 
@@ -63,7 +64,7 @@ export default function SidebarCSR (
                                         <ul className="-mx-2 space-y-1">
                                             {navigation.map((item) => (
                                                 <li key={item.name}>
-                                                    <a
+                                                    <Link
                                                         href={item.href}
                                                         className={(() => {
                                                             const classes = ['group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold'];
@@ -79,7 +80,7 @@ export default function SidebarCSR (
                                                     >
                                                         <NavItemIconRenderer item={item} />
                                                         {item.name}
-                                                    </a>
+                                                    </Link>
                                                 </li>
                                             ))}
                                         </ul>

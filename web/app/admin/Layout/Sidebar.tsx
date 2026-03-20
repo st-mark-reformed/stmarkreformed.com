@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import SidebarCSR from './SidebarCSR';
 import NavItem from './NavItem';
 import NavItemIconRenderer from './NavItemIconRenderer';
@@ -8,7 +9,7 @@ export default async function Sidebar (
     {
         activeNav = null,
     }: {
-        activeNav: null | 'Messages' | 'Profiles';
+        activeNav: null | 'messages' | 'profiles';
     },
 ) {
     const navigation: NavItem[] = [
@@ -16,13 +17,13 @@ export default async function Sidebar (
             name: 'Messages',
             href: '/admin/messages',
             icon: 'Microphone',
-            current: activeNav === 'Messages',
+            current: activeNav === 'messages',
         },
         {
             name: 'Profiles',
             href: '/admin/profiles',
             icon: 'Users',
-            current: activeNav === 'Profiles',
+            current: activeNav === 'profiles',
         },
     ];
 
@@ -50,7 +51,7 @@ export default async function Sidebar (
                                         <ul className="-mx-2 space-y-1">
                                             {navigation.map((item) => (
                                                 <li key={item.name}>
-                                                    <a
+                                                    <Link
                                                         href={item.href}
                                                         className={(() => {
                                                             const classes = ['group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold'];
@@ -66,7 +67,7 @@ export default async function Sidebar (
                                                     >
                                                         <NavItemIconRenderer item={item} />
                                                         {item.name}
-                                                    </a>
+                                                    </Link>
                                                 </li>
                                             ))}
                                         </ul>
