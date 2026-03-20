@@ -18,6 +18,7 @@ export enum ConfigOptions {
 
     // Auth
     AUTH_WELL_KNOWN_URL,
+    AUTH_SIGN_OUT_REDIRECT_URL,
     AUTH_CLIENT_SECRET,
 }
 
