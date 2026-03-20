@@ -1,5 +1,6 @@
 import React from 'react';
 import RequestFactory from '../../api/request/RequestFactory';
+import AdminLayout from '../Layout/AdminLayout';
 
 export default async function MessagesPage () {
     const tmp = await RequestFactory().makeWithSignInRedirect({
@@ -8,5 +9,9 @@ export default async function MessagesPage () {
 
     console.log(tmp);
 
-    return <>TODO</>;
+    return (
+        <AdminLayout activeNav="messages">
+            TODO
+        </AdminLayout>
+    );
 }
