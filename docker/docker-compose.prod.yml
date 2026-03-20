@@ -128,6 +128,9 @@ services:
     volumes:
       - /root/certbot/var/www/letsencrypt:/var/www/letsencrypt
       - api-storage-volume:/var/www/storage
+    secrets:
+      - RSA_PRIVATE_KEY
+      - RSA_PUBLIC_KEY
     networks:
       traefik:
       default:
@@ -149,6 +152,9 @@ services:
     volumes:
       - /root/certbot/var/www/letsencrypt:/var/www/letsencrypt
       - api-storage-volume:/var/www/storage
+    secrets:
+      - RSA_PRIVATE_KEY
+      - RSA_PUBLIC_KEY
 
   api-schedule-runner:
     deploy:
@@ -165,6 +171,9 @@ services:
     volumes:
       - /root/certbot/var/www/letsencrypt:/var/www/letsencrypt
       - api-storage-volume:/var/www/storage
+    secrets:
+      - RSA_PRIVATE_KEY
+      - RSA_PUBLIC_KEY
 
   auth:
     deploy:
@@ -200,6 +209,9 @@ services:
       HOSTNAME: stmark-auth
     volumes:
       - /root/certbot/var/www/letsencrypt:/var/www/letsencrypt
+    secrets:
+      - RSA_PRIVATE_KEY
+      - RSA_PUBLIC_KEY
     networks:
       traefik:
       default:
@@ -354,3 +366,9 @@ volumes:
   uploads-volume:
   api-storage-volume:
   web-public-images-galleries-volume:
+
+secrets:
+  RSA_PRIVATE_KEY:
+    file: secrets/RSA_PRIVATE_KEY
+  RSA_PUBLIC_KEY:
+    file: secrets/RSA_PUBLIC_KEY

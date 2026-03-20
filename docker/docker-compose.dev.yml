@@ -83,6 +83,9 @@ services:
       - traefik.http.routers.stmark_api_local-secure.entrypoints=websecure
       - traefik.http.routers.stmark_api_local-secure.tls=true
       - traefik.http.routers.stmark_api_local-secure.rule=Host(`api.stmark.localtest.me`)
+    secrets:
+      - RSA_PRIVATE_KEY
+      - RSA_PUBLIC_KEY
     healthcheck:
       disable: true
       test: "1"
@@ -101,6 +104,9 @@ services:
     volumes:
       - ./api/.bash_history:/root/.bash_history:delegated
       - ../api:/var/www:delegated
+    secrets:
+      - RSA_PRIVATE_KEY
+      - RSA_PUBLIC_KEY
 
   api-schedule-runner:
     restart: always
@@ -116,6 +122,9 @@ services:
     volumes:
       - ./api/.bash_history:/root/.bash_history:delegated
       - ../api:/var/www:delegated
+    secrets:
+      - RSA_PRIVATE_KEY
+      - RSA_PUBLIC_KEY
 
   auth:
     restart: always
