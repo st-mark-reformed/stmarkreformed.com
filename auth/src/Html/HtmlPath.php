@@ -13,4 +13,6 @@ readonly class HtmlPath
     public const string HTML_FORM_LAYOUT = self::PATH . '/HtmlFormLayout.phtml';
 
     public const string CENTERED_WRAPPER_LAYOUT = self::PATH . '/CenteredWrapperLayout.phtml';
+
+    public const string BUTTON_ROWS = self::PATH . '/ButtonRows.phtml';
 }

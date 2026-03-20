@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace App\Url;
 
+use Stringable;
+
 use function array_keys;
 use function array_map;
 use function count;
 use function http_build_query;
 use function implode;
 
-readonly class Url
+readonly class Url implements Stringable
 {
     /** @param array<string, string> $query */
     public function __construct(

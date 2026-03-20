@@ -2,12 +2,17 @@
 
 declare(strict_types=1);
 
+use App\Html\ButtonRows;
+use App\Html\HtmlPath;
 use BuzzingPixel\Templating\TemplateEngine;
 
 assert($this instanceof TemplateEngine);
 
 $userEmail = $userEmail ?? '';
 assert(is_string($userEmail));
+
+/** @var ButtonRows $buttonRows */
+$buttonRows = $buttonRows ?? new ButtonRows();
 ?>
 
 <div class="flex flex-col justify-center">
@@ -19,14 +24,9 @@ assert(is_string($userEmail));
             <p class="mt-1 text-lg text-center font-extralight text-pretty text-rx-gray-500 sm:text-xl/8">
                 as <span class="font-bold"><?= $userEmail ?></span>
             </p>
-            <div class="mt-10 flex items-center justify-center gap-x-6">
-                <a
-                    href="/log-out"
-                    class="rounded-lg bg-crimson hover:bg-crimson-dark px-3.5 py-3 text-sm font-semibold text-white shadow-xs"
-                >
-                    Log Out
-                </a>
-            </div>
+            <?=$this->partial(HtmlPath::BUTTON_ROWS, [
+                'buttonRows' => $buttonRows,
+            ])?>
         </div>
     </div>
 </div>

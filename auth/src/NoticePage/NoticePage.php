@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\NoticePage;
 
+use App\Html\ButtonRows;
 use App\TemplateEngineFactory;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -19,8 +20,7 @@ readonly class NoticePage
     public function generateHttpResponse(
         string $pageTitle,
         string|null $message = null,
-        string|null $buttonText = null,
-        string|null $buttonUrl = null,
+        ButtonRows $buttonRows = new ButtonRows(),
     ): ResponseInterface {
         $response = $this->responseFactory->createResponse();
 
@@ -29,8 +29,7 @@ readonly class NoticePage
                 ->templatePath(__DIR__ . '/NoticePage.phtml')
                 ->addVar('pageTitle', $pageTitle)
                 ->addVar('message', $message)
-                ->addVar('buttonText', $buttonText)
-                ->addVar('buttonUrl', $buttonUrl)
+                ->addVar('buttonRows', $buttonRows)
                 ->render(),
         );
 

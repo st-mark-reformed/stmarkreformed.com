@@ -10,6 +10,7 @@ enum RuntimeConfigOptions
     case USE_PRODUCTION_ERROR_MIDDLEWARE;
 
     case APP_URL;
+    case FE_URL;
 
     // Cache
     case REDIS_HOST;

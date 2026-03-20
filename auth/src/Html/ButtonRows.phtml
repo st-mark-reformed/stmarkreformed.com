@@ -1,0 +1,42 @@
+<?php
+
+declare(strict_types=1);
+
+use App\Html\ButtonRows;
+use BuzzingPixel\Templating\TemplateEngine;
+
+assert($this instanceof TemplateEngine);
+/** @var ButtonRows $buttonRows */
+$buttonRows = $buttonRows ?? new ButtonRows();
+?>
+
+<?php foreach ($buttonRows->rows as $index => $row): ?>
+    <?php
+        $classes = [
+            'flex flex-wrap items-center justify-center gap-x-3',
+        ];
+
+        if ($index === 0) {
+            $classes[] = 'mt-10';
+        } else {
+            $classes[] = 'mt-1';
+        }
+    ?>
+    <div class="<?= implode(' ', $classes) ?>">
+        <?php foreach ($row->buttons as $button): ?>
+            <a
+                href="<?= $button->href ?>"
+                class="rounded-lg bg-crimson hover:bg-crimson-dark px-3.5 py-3 text-sm font-semibold text-white shadow-xs my-1"
+            >
+                <?= $this->html($button->content) ?>
+                <?php if ($button->glyph !== null): ?>
+                    <span class="inline-block align-middle ml-1" style="margin-top: -5px">
+                        <?=$this->partial($button->glyph->value, [
+                            'class' => 'size-4 inline-block align-middle',
+                        ])?>
+                    </span>
+                <?php endif; ?>
+            </a>
+        <?php endforeach; ?>
+    </div>
+<?php endforeach; ?>
