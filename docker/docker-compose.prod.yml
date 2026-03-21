@@ -314,6 +314,11 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: "no"
     volumes:
       - db-volume:/var/lib/mysql
+    ports:
+      - target: 3306
+        published: 3306
+        protocol: tcp
+        mode: host
     networks:
       traefik:
       default:
