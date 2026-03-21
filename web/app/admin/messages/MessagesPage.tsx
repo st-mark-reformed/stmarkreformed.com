@@ -9,7 +9,9 @@ export default async function MessagesPage () {
 
     return (
         <>
-            <PageTitle />
+            <PageTitle>
+                Messages
+            </PageTitle>
             TODO Messages
         </>
     );
