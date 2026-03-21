@@ -4,6 +4,7 @@ import Link from 'next/link';
 import SidebarCSR from './SidebarCSR';
 import NavItem from './NavItem';
 import NavItemIconRenderer from './NavItemIconRenderer';
+import GetUserInfo from '../../api/auth/GetUserInfo';
 
 export default async function Sidebar (
     {
@@ -12,24 +13,34 @@ export default async function Sidebar (
         activeNav: null | 'messages' | 'profiles';
     },
 ) {
-    const navigation: NavItem[] = [
-        {
+    const userinfo = await GetUserInfo();
+
+    const navigation: NavItem[] = [];
+
+    if (userinfo.roles.includes('EDIT_MESSAGES')) {
+        navigation.push({
             name: 'Messages',
             href: '/admin/messages',
             icon: 'Microphone',
             current: activeNav === 'messages',
-        },
-        {
+        });
+    }
+
+    if (userinfo.roles.includes('EDIT_PROFILES')) {
+        navigation.push({
             name: 'Profiles',
             href: '/admin/profiles',
             icon: 'Users',
             current: activeNav === 'profiles',
-        },
-    ];
+        });
+    }
 
     return (
         <>
-            <SidebarCSR navigation={navigation} />
+            <SidebarCSR
+                navigation={navigation}
+                loggedInAs={userinfo.email}
+            />
             <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col dark:bg-gray-800">
                 <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 dark:border-white/10 dark:bg-black/10">
                     <div className="flex h-16 shrink-0 items-center">
@@ -76,7 +87,7 @@ export default async function Sidebar (
                             </li>
                             <li className="-mx-6 mt-auto">
                                 <span className="flex items-center gap-x-2 px-6 py-3 text-sm/6 text-gray-900 dark:text-white">
-                                    Logged in as <span className="font-semibold text-gray-700 dark:text-gray-100">Tom Cook</span>
+                                    Logged in as <span className="font-semibold text-gray-700 dark:text-gray-100">{userinfo.email}</span>
                                 </span>
                                 <span className="flex items-center gap-x-2 px-6 pb-3 text-sm/6 text-gray-900 dark:text-white">
                                     <a

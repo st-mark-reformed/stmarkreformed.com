@@ -7,6 +7,7 @@ export enum ConfigOptions {
 
     // API
     API_URL,
+    AUTH_URL,
     APP_API_URL,
 
     // Cache

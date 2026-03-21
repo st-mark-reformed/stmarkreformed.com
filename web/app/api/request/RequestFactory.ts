@@ -7,12 +7,14 @@ import TokenRepositoryFactory from '../auth/TokenRepositoryFactory';
 import getRedisClient from '../../cache/RedisClient';
 import { ConfigOptions, getConfigString } from '../../ServerSideRunTimeConfig';
 
-export default function RequestFactory () {
+export default function RequestFactory (server: 'api' | 'auth' = 'api') {
     const tokenRepository = TokenRepositoryFactory();
 
     return BaseRequestFactory({
         appUrl: getConfigString(ConfigOptions.BASE_URL),
-        requestBaseUrl: getConfigString(ConfigOptions.API_URL),
+        requestBaseUrl: server === 'api'
+            ? getConfigString(ConfigOptions.API_URL)
+            : getConfigString(ConfigOptions.AUTH_URL),
         tokenRepository,
         refreshAccessToken: RefreshAccessTokenFactory({
             tokenRepository,
