@@ -12,6 +12,7 @@ use App\LogOut\GetLogOutLanding;
 use App\LogOut\LogOutAction;
 use App\Oauth\Authorize\GetAuthorizeAction;
 use App\Oauth\PostTokenAction;
+use App\User\GetUserInfoAction;
 use RxAnte\AppBootstrap\Http\ApplyRoutesEvent;
 
 class ApplyRoutesEventSubscriber
@@ -26,5 +27,6 @@ class ApplyRoutesEventSubscriber
         GetWellKnownOpenIdConfiguration::applyRoute(routes: $routes);
         GetAuthorizeAction::applyRoute(routes: $routes);
         PostTokenAction::applyRoute(routes: $routes);
+        GetUserInfoAction::applyRoute(routes: $routes);
     }
 }

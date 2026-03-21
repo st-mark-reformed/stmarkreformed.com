@@ -20,6 +20,7 @@ use League\OAuth2\Server\Repositories\AuthCodeRepositoryInterface;
 use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
 use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
 use League\OAuth2\Server\Repositories\ScopeRepositoryInterface;
+use League\OAuth2\Server\ResourceServer;
 use Psr\Container\ContainerInterface;
 use RxAnte\AppBootstrap\Dependencies\Bindings;
 use RxAnte\AppBootstrap\RuntimeConfig;
@@ -87,6 +88,18 @@ readonly class AuthBindings
         $bindings->addBinding(
             RefreshTokenRepositoryInterface::class,
             $bindings->resolveFromContainer(RefreshTokenRepository::class),
+        );
+
+        $bindings->addBinding(
+            ResourceServer::class,
+            static function (ContainerInterface $di): ResourceServer {
+                return new ResourceServer(
+                    $di->get(
+                        AccessTokenRepositoryInterface::class,
+                    ),
+                    $di->get(OauthPublicKey::class),
+                );
+            },
         );
     }
 }

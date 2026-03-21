@@ -48,6 +48,15 @@ readonly class UserRoles
         return count($this->roles);
     }
 
+    /** @return string[] */
+    public function asArray(): array
+    {
+        return array_map(
+            static fn (UserRole $role): string => $role->name,
+            $this->roles,
+        );
+    }
+
     public function find(callable $callback): UserRole|null
     {
         return array_find($this->roles, $callback);

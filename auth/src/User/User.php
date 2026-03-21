@@ -28,6 +28,26 @@ readonly class User
         $this->isValid = ! $id instanceof EmptyUuid && $email->isValid;
     }
 
+    /**
+     * @return array{
+     *     id: string,
+     *     sub: string,
+     *     email: string,
+     *     name: string,
+     *     roles: string[],
+     * }
+     */
+    public function asArray(): array
+    {
+        return [
+            'id' => $this->id->toString(),
+            'sub' => $this->id->toString(),
+            'email' => $this->email->toString(),
+            'name' => $this->email->toString(),
+            'roles' => $this->roles->asArray(),
+        ];
+    }
+
     /** @return string[] */
     public function getValidationMessages(): array
     {
