@@ -1,6 +1,7 @@
-import { ReactNode } from 'react';
+import React, { ReactNode, Suspense } from 'react';
 import { Metadata } from 'next';
 import { createPageTitle } from '../createPageTitle';
+import FullPageLoading from '../FullPageLoading';
 
 export const metadata: Metadata = {
     title: createPageTitle('Admin'),
@@ -17,5 +18,9 @@ export const dynamic = 'force-dynamic';
 export default async function Layout (
     { children }: { children: ReactNode },
 ) {
-    return children;
+    return (
+        <Suspense fallback={<FullPageLoading />}>
+            {children}
+        </Suspense>
+    );
 }

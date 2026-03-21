@@ -1,5 +1,6 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, Suspense } from 'react';
 import Sidebar from './Sidebar';
+import PartialPageLoading from '../../PartialPageLoading';
 
 export default async function AdminLayout (
     {
@@ -12,11 +13,13 @@ export default async function AdminLayout (
 ) {
     return (
         <>
-            <div>
+            <div className="min-h-full bg-gray-50 dark:bg-gray-900">
                 <Sidebar activeNav={activeNav} />
                 <main className="py-10 lg:pl-72">
-                    <div className="px-4 sm:px-6 lg:px-8">
-                        {children}
+                    <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+                        <Suspense fallback={<PartialPageLoading />}>
+                            {children}
+                        </Suspense>
                     </div>
                 </main>
             </div>

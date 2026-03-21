@@ -1,11 +1,11 @@
 import React from 'react';
 import AdminLayout from '../Layout/AdminLayout';
-import MessagesPage from './MessagesPage';
+import ProfilesPage from './ProfilesPage';
 
 export default async function Page () {
     return (
-        <AdminLayout activeNav="messages">
-            <MessagesPage />
+        <AdminLayout activeNav="profiles">
+            <ProfilesPage />
         </AdminLayout>
     );
 }
