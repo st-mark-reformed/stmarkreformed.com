@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Config;
 
 use RxAnte\AppBootstrap\BootConfig;
+use RxAnte\AppBootstrap\RuntimeConfig;
 
 readonly class BootConfigFactory
 {

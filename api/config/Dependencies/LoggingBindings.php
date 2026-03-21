@@ -12,9 +12,9 @@ use RxAnte\AppBootstrap\Dependencies\Bindings;
 
 use function assert;
 
-readonly class RegisterBindingsLogging
+readonly class LoggingBindings
 {
-    public static function register(Bindings $bindings): void
+    public function __invoke(Bindings $bindings): void
     {
         $bindings->addBinding(
             IntrospectionProcessor::class,

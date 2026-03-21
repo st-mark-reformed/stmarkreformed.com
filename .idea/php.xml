@@ -531,6 +531,14 @@
       <path value="$PROJECT_DIR$/api/vendor/hyperf/engine-contract" />
       <path value="$PROJECT_DIR$/api/vendor/hyperf/context" />
       <path value="$PROJECT_DIR$/api/vendor/hyperf/contract" />
+      <path value="$PROJECT_DIR$/api/vendor/lcobucci/jwt" />
+      <path value="$PROJECT_DIR$/api/vendor/league/oauth2-client" />
+      <path value="$PROJECT_DIR$/api/vendor/defuse/php-encryption" />
+      <path value="$PROJECT_DIR$/api/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/api/vendor/league/event" />
+      <path value="$PROJECT_DIR$/api/vendor/league/uri" />
+      <path value="$PROJECT_DIR$/api/vendor/league/uri-interfaces" />
+      <path value="$PROJECT_DIR$/api/vendor/league/oauth2-server" />
     </include_path>
   </component>
   <component name="PhpProjectServersManager">

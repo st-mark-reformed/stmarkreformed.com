@@ -19,6 +19,11 @@ readonly class GetWellKnownOpenIdConfiguration
             '/.well-known/openid-configuration',
             self::class,
         );
+
+        $routes->get(
+            '/well-known/openid-configuration',
+            self::class,
+        );
     }
 
     public function __construct(private AppUrlFactory $appUrlFactory)

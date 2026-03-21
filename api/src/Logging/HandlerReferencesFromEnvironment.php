@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Logging;
 
 use App\Logging\HandlerFactories\HandlerFactory;
-use Config\RuntimeConfig;
 use Config\RuntimeConfigOptions;
+use RxAnte\AppBootstrap\RuntimeConfig;
 
 use function array_map;
 use function explode;

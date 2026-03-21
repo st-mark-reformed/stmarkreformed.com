@@ -10,9 +10,9 @@ use BuzzingPixel\Queue\QueueHandler;
 use BuzzingPixel\Queue\RedisDriver\RedisQueueHandler;
 use RxAnte\AppBootstrap\Dependencies\Bindings;
 
-readonly class RegisterBindingsQueue
+readonly class QueueBindings
 {
-    public static function register(Bindings $bindings): void
+    public function __invoke(Bindings $bindings): void
     {
         $bindings->addBinding(
             QueueHandler::class,

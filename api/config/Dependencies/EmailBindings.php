@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Config\Dependencies;
 
 use Config\ContactFormRecipients;
-use Config\RuntimeConfig;
 use Config\RuntimeConfigOptions;
 use Config\SystemFromAddress;
 use Psr\Container\ContainerInterface;
 use RxAnte\AppBootstrap\Dependencies\Bindings;
+use RxAnte\AppBootstrap\RuntimeConfig;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mailer\Transport;
@@ -19,9 +19,9 @@ use Symfony\Component\Mime\Address;
 use function assert;
 use function implode;
 
-readonly class RegisterBindingsEmail
+readonly class EmailBindings
 {
-    public static function register(Bindings $bindings): void
+    public function __invoke(Bindings $bindings): void
     {
         $runtimeConfig = new RuntimeConfig();
 

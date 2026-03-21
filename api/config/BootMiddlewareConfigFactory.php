@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Config;
 
 use RxAnte\AppBootstrap\Http\BootHttpMiddlewareConfig;
+use RxAnte\AppBootstrap\RuntimeConfig;
 
 class BootMiddlewareConfigFactory
 {

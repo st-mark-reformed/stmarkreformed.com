@@ -8,9 +8,9 @@ use Lcobucci\Clock\SystemClock;
 use Psr\Clock\ClockInterface;
 use RxAnte\AppBootstrap\Dependencies\Bindings;
 
-readonly class RegisterBindingsClock
+readonly class ClockBindings
 {
-    public static function register(Bindings $bindings): void
+    public function __invoke(Bindings $bindings): void
     {
         $bindings->addBinding(
             ClockInterface::class,

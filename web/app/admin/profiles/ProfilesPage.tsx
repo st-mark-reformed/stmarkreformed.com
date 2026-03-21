@@ -55,8 +55,11 @@ const people = [
 
 export default async function ProfilesPage () {
     const tmp = await RequestFactory().makeWithSignInRedirect({
-        uri: '/healthcheck/659f105793f58',
+        uri: '/admin/profiles',
+        cacheSeconds: 0,
     });
+
+    console.log(tmp);
 
     return (
         <>

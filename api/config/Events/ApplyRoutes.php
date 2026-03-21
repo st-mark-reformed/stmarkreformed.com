@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace Config\Events;
 
+use App\Admin\Profiles\GetAdminProfilesListAction;
 use App\Contact\PostContactAction;
 use App\Healthcheck;
 use BuzzingPixel\Queue\Http\Routes\Route;
 use BuzzingPixel\Queue\Http\Routes\RoutesFactory as QueueRoutesFactory;
-use Config\RuntimeConfig;
 use Config\RuntimeConfigOptions;
 use RxAnte\AppBootstrap\Http\ApplyRoutesEvent;
+use RxAnte\AppBootstrap\RuntimeConfig;
 
 use function assert;
 
@@ -18,8 +19,9 @@ readonly class ApplyRoutes
 {
     public function onDispatch(ApplyRoutesEvent $routes): void
     {
-        Healthcheck::applyRoute($routes);
-        PostContactAction::applyRoute($routes);
+        Healthcheck::applyRoute(routes: $routes);
+        PostContactAction::applyRoute(routes: $routes);
+        GetAdminProfilesListAction::applyRoute(routes: $routes);
 
         $config = $routes->getContainer()->get(RuntimeConfig::class);
 

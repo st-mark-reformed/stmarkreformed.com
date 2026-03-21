@@ -17,6 +17,10 @@ enum RuntimeConfigOptions
 
     case ENABLE_QUEUE_MANAGEMENT_ROUTES;
 
+    case RSA_PUBLIC_KEY;
+
+    case AUTH_WELL_KNOWN_URL;
+
     // Email
     case SMTP_USER;
     case SMTP_PASSWORD;

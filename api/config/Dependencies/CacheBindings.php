@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Config\Dependencies;
 
-use Config\RuntimeConfig;
 use Config\RuntimeConfigOptions;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Container\ContainerInterface;
 use Redis;
 use RxAnte\AppBootstrap\Dependencies\Bindings;
+use RxAnte\AppBootstrap\RuntimeConfig;
 use Symfony\Component\Cache\Adapter\RedisAdapter;
 
-readonly class RegisterBindingsCache
+readonly class CacheBindings
 {
-    public static function register(Bindings $bindings): void
+    public function __invoke(Bindings $bindings): void
     {
         $bindings->addBinding(
             CacheItemPoolInterface::class,

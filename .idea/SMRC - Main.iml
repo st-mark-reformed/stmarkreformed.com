@@ -293,6 +293,14 @@
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/hyperf/coroutine" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/hyperf/engine" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/hyperf/engine-contract" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/defuse/php-encryption" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/lcobucci/jwt" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/league/event" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/league/oauth2-client" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/league/oauth2-server" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/league/uri" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/league/uri-interfaces" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/paragonie/random_compat" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

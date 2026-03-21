@@ -10,9 +10,9 @@ use BuzzingPixel\Scheduler\ScheduleHandler;
 use Config\ScheduleFactory;
 use RxAnte\AppBootstrap\Dependencies\Bindings;
 
-readonly class RegisterBindingsScheduler
+readonly class SchedulerBindings
 {
-    public static function register(Bindings $bindings): void
+    public function __invoke(Bindings $bindings): void
     {
         $bindings->addBinding(
             \BuzzingPixel\Scheduler\ScheduleFactory::class,
