@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import { InformationCircleIcon } from '@heroicons/react/20/solid';
 import Layout from './layout/Layout';
 import ImageContentCta from './PageComponents/ImageContentCta';
 import UpcomingEvents from './PageComponents/UpcomingEvents/UpcomingEvents';
