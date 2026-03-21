@@ -29,4 +29,10 @@ enum RuntimeConfigOptions
     case SYSTEM_EMAIL_FROM_ADDRESS;
     case SYSTEM_EMAIL_FROM_NAME;
     case CONTACT_FORM_RECIPIENTS;
+
+    // Auth
+    case SMRC_API_DB_HOST;
+    case SMRC_API_DB_NAME;
+    case SMRC_API_DB_USER;
+    case SMRC_API_DB_PASSWORD;
 }

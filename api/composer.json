@@ -13,6 +13,7 @@
         "johngrogg/ics-parser": "^3.4",
         "lcobucci/clock": "^3.3",
         "monolog/monolog": "^3.9",
+        "robmorgan/phinx": "^0.16.11",
         "rxante/dateimmutable": "^1.0",
         "rxante/oauth": "^2.4",
         "rxante/php-app-bootstrap": "^1.0.1",
