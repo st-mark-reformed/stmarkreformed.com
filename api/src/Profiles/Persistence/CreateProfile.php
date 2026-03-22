@@ -34,7 +34,7 @@ readonly class CreateProfile
             'first_name' => $newProfile->firstName,
             'last_name' => $newProfile->lastName,
             'email' => $newProfile->email->toString(),
-            'leadership_position' => $newProfile->leadershipPosition->name,
+            'leadership_position' => $newProfile->leadershipPosition->value(),
             'bio' => $newProfile->bio,
             'has_messages' => $newProfile->hasMessages ? '1' : '0',
         ];
