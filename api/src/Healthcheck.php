@@ -32,9 +32,6 @@ readonly class Healthcheck
             ['status' => 'OK'],
         ));
 
-        return $response->withHeader(
-            'Content-type',
-            'application/json',
-        );
+        return $response->withHeader('Content-type', 'application/json');
     }
 }
