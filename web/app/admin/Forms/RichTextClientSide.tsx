@@ -22,11 +22,13 @@ import 'ckeditor5/ckeditor5.css';
 export default function RichTextClientSide (
     {
         name,
+        defaultValue = '',
     }: {
         name: string;
+        defaultValue?: string;
     },
 ) {
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState(defaultValue);
 
     return (
         <div className="prose max-w-none">
