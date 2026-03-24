@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Config\Events;
 
 use App\Admin\Profiles\GetAdminProfilesListAction;
+use App\Admin\Profiles\GetLeadershipPositionsAction;
 use App\Contact\PostContactAction;
 use App\Healthcheck;
 use BuzzingPixel\Queue\Http\Routes\Route;
@@ -22,6 +23,7 @@ readonly class ApplyRoutes
         Healthcheck::applyRoute(routes: $routes);
         PostContactAction::applyRoute(routes: $routes);
         GetAdminProfilesListAction::applyRoute(routes: $routes);
+        GetLeadershipPositionsAction::applyRoute(routes: $routes);
 
         $config = $routes->getContainer()->get(RuntimeConfig::class);
 
