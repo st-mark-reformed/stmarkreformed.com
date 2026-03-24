@@ -86,7 +86,7 @@ export default function Alert ({
 
                                     return (
                                         <ul className={`${content ? 'mt-2 ' : ''}list-disc list-inside`}>
-                                            {contentList.map((item, index) => (
+                                            {contentList.map((item) => (
                                                 <li key={item}>{item}</li>
                                             ))}
                                         </ul>

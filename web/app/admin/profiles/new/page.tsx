@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import AdminLayout from '../../Layout/AdminLayout';
 import { createPageTitle } from '../../../createPageTitle';
 import CreateNewProfilePage from './CreateNewProfilePage';
+import HasEditProfilesRoleGuard from '../HasEditProfilesRoleGuard/HasEditProfilesRoleGuard';
 
 export const metadata: Metadata = {
     title: createPageTitle([
@@ -12,10 +13,12 @@ export const metadata: Metadata = {
     ]),
 };
 
-export default function Page () {
+export default async function Page () {
     return (
         <AdminLayout activeNav="profiles">
-            <CreateNewProfilePage />
+            <HasEditProfilesRoleGuard>
+                <CreateNewProfilePage />
+            </HasEditProfilesRoleGuard>
         </AdminLayout>
     );
 }

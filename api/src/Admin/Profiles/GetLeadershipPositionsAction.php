@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Admin\Profiles;
 
-use App\Auth\RequireEditProfilesRoleMiddleware;
 use App\Profiles\ProfileLeadershipPosition;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -20,7 +19,7 @@ readonly class GetLeadershipPositionsAction
         $routes->get(
             '/admin/profiles/leadership-positions',
             self::class,
-        )->add(RequireEditProfilesRoleMiddleware::class);
+        );
     }
 
     public function __invoke(
