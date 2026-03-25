@@ -8,10 +8,12 @@ import Form from '../../Forms/Form';
 import TextInput from '../../Forms/TextInput';
 import LeadershipPositionRadioButtons from './LeadershipPositionRadioButtons';
 import RichText from '../../Forms/RichText';
-import SubmitFormAction, { SubmitFormActionState } from './SubmitFormAction';
+import SubmitFormAction, { SubmitFormActionState } from './SubmitForm/SubmitFormAction';
+import Alert from '../../../Alert';
 
 const initialState: SubmitFormActionState = {
     ok: true,
+    success: false,
     values: {
         titleOrHonorific: '',
         email: '',
@@ -24,6 +26,7 @@ const initialState: SubmitFormActionState = {
 
 export default function CreateNewProfilePage () {
     const [state, formAction] = useActionState(SubmitFormAction, initialState);
+
     const formRef = useRef<HTMLFormElement>(null);
 
     return (
@@ -56,11 +59,33 @@ export default function CreateNewProfilePage () {
             >
                 Create New Profile
             </PageTitle>
+            {(() => {
+                if (state.ok) {
+                    return null;
+                }
+
+                let headline;
+
+                if (Object.keys(state.errors).length > 1) {
+                    headline = 'There were errors with the submission';
+                } else {
+                    headline = 'There was an error with the submission';
+                }
+
+                return (
+                    <Alert
+                        headline={headline}
+                        contentList={Object.values(state.errors)}
+                        type="error"
+                    />
+                );
+            })()}
             <Form ref={formRef} action={formAction}>
                 <TextInput
                     label="Title/Honorific"
                     name="titleOrHonorific"
                     defaultValue={state.values.titleOrHonorific}
+                    // TODO: Errors
                 />
                 <TextInput
                     label="Email"

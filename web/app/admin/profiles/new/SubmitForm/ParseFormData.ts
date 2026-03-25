@@ -1,22 +1,6 @@
-'use server';
+import { Values } from './Values';
 
-type Values = {
-    titleOrHonorific: string;
-    email: string;
-    firstName: string;
-    lastName: string;
-    leadershipPosition: string;
-    bio: string;
-};
-
-export type SubmitFormActionState =
-    | { ok: true; values: Values }
-    | { ok: false; values: Values; errors: Record<string, string> };
-
-export default async function SubmitFormAction (
-    prevState: SubmitFormActionState,
-    formData: FormData,
-) {
+export default function ParseFormData (formData: FormData): Values {
     const titleOrHonorificValue = formData.get('titleOrHonorific');
     const titleOrHonorific = typeof titleOrHonorificValue === 'string'
         ? titleOrHonorificValue
@@ -40,17 +24,11 @@ export default async function SubmitFormAction (
     const bio = typeof bioValue === 'string' ? bioValue : '';
 
     return {
-        ok: false,
-        values: {
-            titleOrHonorific,
-            email,
-            firstName,
-            lastName,
-            leadershipPosition,
-            bio,
-        },
-        errors: {
-            email: 'Email is required',
-        },
+        titleOrHonorific,
+        email,
+        firstName,
+        lastName,
+        leadershipPosition,
+        bio,
     };
 }
