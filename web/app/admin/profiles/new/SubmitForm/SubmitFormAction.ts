@@ -1,7 +1,10 @@
 'use server';
 
+import RequestMethods from 'rxante-oauth/dist/Request/RequestMethods';
+import { redirect } from 'next/navigation';
 import { Values } from './Values';
 import ParseFormData from './ParseFormData';
+import RequestFactory from '../../../../api/request/RequestFactory';
 
 export type SubmitFormActionState =
     | {
@@ -16,6 +19,11 @@ export type SubmitFormActionState =
         errors: Record<string, string>;
     };
 
+interface ApiResponseJson {
+    success: boolean;
+    errors: Record<string, string>;
+}
+
 export default async function SubmitFormAction (
     prevState: SubmitFormActionState,
     formData: FormData,
@@ -29,9 +37,29 @@ export default async function SubmitFormAction (
         bio,
     } = ParseFormData(formData);
 
+    const response = await RequestFactory().makeWithToken({
+        uri: '/admin/profiles/new',
+        method: RequestMethods.POST,
+        cacheSeconds: 0,
+        payload: {
+            titleOrHonorific,
+            email,
+            firstName,
+            lastName,
+            leadershipPosition,
+            bio,
+        },
+    });
+
+    const responseJson = response.json as unknown as ApiResponseJson;
+
+    if (responseJson.success) {
+        redirect('/admin/profiles');
+    }
+
     return {
-        ok: false,
-        success: false,
+        ok: responseJson.success,
+        success: responseJson.success,
         values: {
             titleOrHonorific,
             email,
@@ -40,11 +68,6 @@ export default async function SubmitFormAction (
             leadershipPosition,
             bio,
         },
-        errors: {
-            email: 'Email is required',
-            firstName: 'First name is required',
-            leadershipPosition: 'Testing 123',
-            bio: 'Testing asdf 321',
-        },
+        errors: responseJson.errors,
     };
 }

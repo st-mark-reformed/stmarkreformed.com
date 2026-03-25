@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Admin\Profiles;
+namespace App\Profiles\Admin;
 
 use App\Profiles\ProfileLeadershipPosition;
 use Psr\Http\Message\ResponseInterface;

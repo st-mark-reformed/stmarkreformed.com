@@ -96,17 +96,17 @@ export default function CreateNewProfilePage () {
                     );
                 })()}
                 <TextInput
-                    label="Title/Honorific"
-                    name="titleOrHonorific"
-                    defaultValue={state.values.titleOrHonorific}
-                    error={state.ok ? undefined : state.errors.titleOrHonorific}
-                />
-                <TextInput
                     label="Email"
                     name="email"
                     type="email"
                     defaultValue={state.values.email}
                     error={state.ok ? undefined : state.errors.email}
+                />
+                <TextInput
+                    label="Title/Honorific"
+                    name="titleOrHonorific"
+                    defaultValue={state.values.titleOrHonorific}
+                    error={state.ok ? undefined : state.errors.titleOrHonorific}
                 />
                 <TextInput
                     label="First Name"

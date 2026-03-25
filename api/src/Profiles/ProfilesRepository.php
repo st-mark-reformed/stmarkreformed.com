@@ -8,7 +8,7 @@ use App\Profiles\Persistence\CreateProfile;
 use App\Profiles\Persistence\DeleteProfile;
 use App\Profiles\Persistence\FindAll;
 use App\Profiles\Persistence\Transformer;
-use App\Result;
+use App\Result\Result;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Profiles\Persistence;
 
 use App\Persistence\ApiPdo;
-use App\Result;
+use App\Result\Result;
 use Ramsey\Uuid\UuidInterface;
 
 readonly class DeleteProfile

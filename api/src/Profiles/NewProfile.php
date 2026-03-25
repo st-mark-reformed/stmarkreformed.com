@@ -25,15 +25,15 @@ readonly class NewProfile
         $messages = [];
 
         if ($this->firstName === '') {
-            $messages[] = 'A first name is required.';
+            $messages['firstName'] = 'A first name is required.';
         }
 
         if ($this->lastName === '') {
-            $messages[] = 'A last name is required.';
+            $messages['lastName'] = 'A last name is required.';
         }
 
         if (! $this->email->isValid) {
-            $messages[] = 'If an email address is provided, it must be valid.';
+            $messages['email'] = 'If an email address is provided, it must be valid.';
         }
 
         $this->isValid = count($messages) < 1;

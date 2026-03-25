@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Config\Events;
 
-use App\Admin\Profiles\GetAdminProfilesListAction;
-use App\Admin\Profiles\GetLeadershipPositionsAction;
-use App\Admin\Profiles\GetVerifyProfilesRoleAction;
 use App\Contact\PostContactAction;
 use App\Healthcheck;
+use App\Profiles\Admin\GetLeadershipPositionsAction;
+use App\Profiles\Admin\GetProfilesListAction;
+use App\Profiles\Admin\GetVerifyProfilesRoleAction;
+use App\Profiles\Admin\NewProfile\PostNewProfileAction;
 use BuzzingPixel\Queue\Http\Routes\Route;
 use BuzzingPixel\Queue\Http\Routes\RoutesFactory as QueueRoutesFactory;
 use Config\RuntimeConfigOptions;
@@ -23,9 +24,10 @@ readonly class ApplyRoutes
     {
         Healthcheck::applyRoute(routes: $routes);
         PostContactAction::applyRoute(routes: $routes);
-        GetAdminProfilesListAction::applyRoute(routes: $routes);
+        GetProfilesListAction::applyRoute(routes: $routes);
         GetLeadershipPositionsAction::applyRoute(routes: $routes);
         GetVerifyProfilesRoleAction::applyRoute(routes: $routes);
+        PostNewProfileAction::applyRoute(routes: $routes);
 
         $config = $routes->getContainer()->get(RuntimeConfig::class);
 

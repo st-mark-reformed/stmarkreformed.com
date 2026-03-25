@@ -28,6 +28,15 @@ enum ProfileLeadershipPosition
         };
     }
 
+    public static function fromStringSafe(string $type): ProfileLeadershipPosition
+    {
+        try {
+            return self::fromString(type: $type);
+        } catch (Throwable) {
+            return self::none;
+        }
+    }
+
     public static function fromString(string $type): ProfileLeadershipPosition
     {
         if ($type === '') {

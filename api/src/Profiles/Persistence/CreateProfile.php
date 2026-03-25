@@ -6,7 +6,7 @@ namespace App\Profiles\Persistence;
 
 use App\Persistence\ApiPdo;
 use App\Profiles\NewProfile;
-use App\Result;
+use App\Result\Result;
 use Ramsey\Uuid\UuidFactoryInterface;
 use Ramsey\Uuid\UuidInterface;
 
@@ -24,6 +24,13 @@ readonly class CreateProfile
 
     public function create(NewProfile $newProfile): Result
     {
+        if (! $newProfile->isValid) {
+            return new Result(
+                success: false,
+                errors: $newProfile->validationMessages,
+            );
+        }
+
         /** @phpstan-ignore-next-line */
         $id = $this->uuidFactory->uuid7();
         assert($id instanceof UuidInterface);
