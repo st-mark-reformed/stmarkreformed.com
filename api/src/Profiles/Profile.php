@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Profiles;
 
+use App\EmptyUuid;
 use Ramsey\Uuid\UuidInterface;
 
 use function trim;
@@ -15,7 +16,7 @@ readonly class Profile
     public string $fullNameWithHonorific;
 
     public function __construct(
-        public UuidInterface $id,
+        public UuidInterface $id = new EmptyUuid(),
         public string $titleOrHonorific = '',
         public string $firstName = '',
         public string $lastName = '',
@@ -41,6 +42,7 @@ readonly class Profile
      *     fullNameWithHonorific: string,
      *     email: string,
      *     leadershipPosition: string,
+     *     leadershipPositionHumanReadable: string,
      *     bio: string,
      *     hasMessages: bool,
      * }

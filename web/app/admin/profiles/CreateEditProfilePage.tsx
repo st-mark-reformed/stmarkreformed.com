@@ -1,33 +1,47 @@
-'use client';
-
 import React, { useActionState, useRef } from 'react';
-import Breadcrumbs from '../../Breadcrumbs';
-import PageTitle, { Button } from '../../PageTitle';
-import Form from '../../Forms/Form';
-import TextInput from '../../Forms/TextInput';
-import LeadershipPositionRadioButtons from './LeadershipPositionRadioButtons';
-import RichText from '../../Forms/RichText';
-import CreateNewProfileSubmitFormAction from './CreateNewProfileSubmitFormAction';
-import Alert from '../../../Alert';
-import FormButtons from '../../Forms/FormButtons';
-import { CreateEditProfileSubmitActionState } from '../CreateEditProfileSubmitActionState';
+import { CreateEditProfileValues } from './CreateEditProfileValues';
+import { CreateEditProfileSubmitActionState } from './CreateEditProfileSubmitActionState';
+import PageTitle, { Button } from '../PageTitle';
+import Breadcrumbs from '../Breadcrumbs';
+import Alert from '../../Alert';
+import TextInput from '../Forms/TextInput';
+import LeadershipPositionRadioButtons from './new/LeadershipPositionRadioButtons';
+import RichText from '../Forms/RichText';
+import FormButtons from '../Forms/FormButtons';
+import Form from '../Forms/Form';
+import CreateNewProfileSubmitFormAction from './new/CreateNewProfileSubmitFormAction';
+import EditProfileSubmitFormAction from './edit/[profileId]/EditProfileSubmitFormAction';
 
-const initialState: CreateEditProfileSubmitActionState = {
-    ok: true,
-    success: false,
-    values: {
-        titleOrHonorific: '',
-        email: '',
-        firstName: '',
-        lastName: '',
-        leadershipPosition: '',
-        bio: '',
+export default function CreateEditProfilePage (
+    {
+        pageTitle,
+        submitFormAction,
+        initialValues = {
+            titleOrHonorific: '',
+            email: '',
+            firstName: '',
+            lastName: '',
+            leadershipPosition: '',
+            bio: '',
+        },
+        profileId = '',
+    }: {
+        pageTitle: string;
+        submitFormAction: 'new' | 'edit';
+        initialValues?: CreateEditProfileValues;
+        profileId?: string;
     },
-};
+) {
+    const initialState: CreateEditProfileSubmitActionState = {
+        ok: true,
+        success: false,
+        values: initialValues,
+    };
 
-export default function CreateNewProfilePage () {
     const [state, formAction, isPending] = useActionState(
-        CreateNewProfileSubmitFormAction,
+        submitFormAction === 'edit'
+            ? EditProfileSubmitFormAction
+            : CreateNewProfileSubmitFormAction,
         initialState,
     );
 
@@ -74,7 +88,7 @@ export default function CreateNewProfilePage () {
                 }
             />
             <PageTitle buttons={buttons}>
-                Create New Profile
+                {pageTitle}
             </PageTitle>
             <Form ref={formRef} action={formAction}>
                 {(() => {
@@ -98,6 +112,7 @@ export default function CreateNewProfilePage () {
                         />
                     );
                 })()}
+                <input type="hidden" name="profileId" value={profileId} />
                 <TextInput
                     label="Email"
                     name="email"

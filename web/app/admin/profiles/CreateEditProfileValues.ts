@@ -1,4 +1,4 @@
-export type Values = {
+export type CreateEditProfileValues = {
     titleOrHonorific: string;
     email: string;
     firstName: string;

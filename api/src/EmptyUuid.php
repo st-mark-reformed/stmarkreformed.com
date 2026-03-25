@@ -9,105 +9,112 @@ use Ramsey\Uuid\Converter\NumberConverterInterface;
 use Ramsey\Uuid\Fields\FieldsInterface;
 use Ramsey\Uuid\Type\Hexadecimal;
 use Ramsey\Uuid\Type\Integer as IntegerObject;
+use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
-use RuntimeException;
 
 // phpcs:disable SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingTraversableTypeHintSpecification
 // phpcs:disable SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingTraversableTypeHintSpecification
 
 readonly class EmptyUuid implements UuidInterface
 {
-    /** @inheritDoc */
-    public function serialize()
+    private UuidInterface $uuid;
+
+    public function __construct()
     {
-        throw new RuntimeException('Not implemented');
+        $this->uuid = Uuid::fromString(
+            '00000000-0000-0000-0000-000000000000',
+        );
     }
 
-    /** @inheritDoc */
-    public function unserialize(string $data)
+    public function serialize(): string
     {
-        throw new RuntimeException('Not implemented');
+        return $this->uuid->serialize();
+    }
+
+    public function unserialize(string $data): void
+    {
+        $this->uuid->unserialize($data);
     }
 
     public function getNumberConverter(): NumberConverterInterface
     {
-        throw new RuntimeException('Not implemented');
+        return $this->uuid->getNumberConverter();
     }
 
     /** @inheritDoc */
     public function getFieldsHex(): array
     {
-        return [];
+        return $this->uuid->getFieldsHex();
     }
 
     public function getClockSeqHiAndReservedHex(): string
     {
-        return '';
+        return $this->uuid->getClockSeqHiAndReservedHex();
     }
 
     public function getClockSeqLowHex(): string
     {
-        return '';
+        return $this->uuid->getClockSeqLowHex();
     }
 
     public function getClockSequenceHex(): string
     {
-        return '';
+        return $this->uuid->getClockSequenceHex();
     }
 
     public function getDateTime(): DateTimeInterface
     {
-        throw new RuntimeException('Not implemented');
+        return $this->uuid->getDateTime();
     }
 
     public function getLeastSignificantBitsHex(): string
     {
-        return '';
+        return $this->uuid->getLeastSignificantBitsHex();
     }
 
     public function getMostSignificantBitsHex(): string
     {
-        return '';
+        return $this->uuid->getMostSignificantBitsHex();
     }
 
     public function getNodeHex(): string
     {
-        return '';
+        return $this->uuid->getNodeHex();
     }
 
     public function getTimeHiAndVersionHex(): string
     {
-        return '';
+        return $this->uuid->getTimeHiAndVersionHex();
     }
 
     public function getTimeLowHex(): string
     {
-        return '';
+        return $this->uuid->getTimeLowHex();
     }
 
     public function getTimeMidHex(): string
     {
-        return '';
+        return $this->uuid->getTimeMidHex();
     }
 
     public function getTimestampHex(): string
     {
-        return '';
+        return $this->uuid->getTimestampHex();
     }
 
     public function getVariant(): int|null
     {
-        return null;
+        return $this->uuid->getVariant();
     }
 
     public function getVersion(): int|null
     {
-        return null;
+        return $this->uuid->getVersion();
     }
 
     public function compareTo(UuidInterface $other): int
     {
-        return 0;
+        return $this->uuid->compareTo($other);
     }
 
     public function equals(object|null $other): bool
@@ -117,54 +124,53 @@ readonly class EmptyUuid implements UuidInterface
 
     public function getBytes(): string
     {
-        throw new RuntimeException('Not implemented');
+        return $this->uuid->getBytes();
     }
 
     public function getFields(): FieldsInterface
     {
-        throw new RuntimeException('Not implemented');
+        return $this->uuid->getFields();
     }
 
     public function getHex(): Hexadecimal
     {
-        throw new RuntimeException('Not implemented');
+        return $this->uuid->getHex();
     }
 
     public function getInteger(): IntegerObject
     {
-        throw new RuntimeException('Not implemented');
+        return $this->uuid->getInteger();
     }
 
     public function getUrn(): string
     {
-        return '';
+        return $this->uuid->getUrn();
     }
 
     public function toString(): string
     {
-        /** @phpstan-ignore-next-line */
-        return '';
+        return $this->uuid->toString();
     }
 
     public function __toString(): string
     {
-        /** @phpstan-ignore-next-line */
-        return '';
+        return $this->uuid->toString();
     }
 
     public function jsonSerialize(): mixed
     {
-        return '';
+        return $this->uuid->jsonSerialize();
     }
 
     public function __serialize(): array
     {
-        throw new RuntimeException('Not implemented');
+        /** @phpstan-ignore-next-line */
+        return $this->uuid->__serialize();
     }
 
     /** @phpstan-ignore-next-line */
     public function __unserialize(array $data): void
     {
-        throw new RuntimeException('Not implemented');
+        $this->uuid->__unserialize($data);
     }
 }

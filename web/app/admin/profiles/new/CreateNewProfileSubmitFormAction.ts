@@ -2,32 +2,15 @@
 
 import RequestMethods from 'rxante-oauth/dist/Request/RequestMethods';
 import { redirect } from 'next/navigation';
-import { Values } from './Values';
-import ParseFormData from './ParseFormData';
-import RequestFactory from '../../../../api/request/RequestFactory';
+import RequestFactory from '../../../api/request/RequestFactory';
+import { CreateEditProfileSubmitActionState } from '../CreateEditProfileSubmitActionState';
+import { ApiResponseJson } from '../../../api/request/ApiResponseJson';
+import CreateEditProfileParseFormData from '../CreateEditProfileParseFormData';
 
-export type SubmitFormActionState =
-    | {
-        ok: true;
-        success: boolean;
-        values: Values;
-    }
-    | {
-        ok: false;
-        success: boolean;
-        values: Values;
-        errors: Record<string, string>;
-    };
-
-interface ApiResponseJson {
-    success: boolean;
-    errors: Record<string, string>;
-}
-
-export default async function SubmitFormAction (
-    prevState: SubmitFormActionState,
+export default async function CreateNewProfileSubmitFormAction (
+    prevState: CreateEditProfileSubmitActionState,
     formData: FormData,
-) {
+): Promise<CreateEditProfileSubmitActionState> {
     const {
         titleOrHonorific,
         email,
@@ -35,7 +18,7 @@ export default async function SubmitFormAction (
         lastName,
         leadershipPosition,
         bio,
-    } = ParseFormData(formData);
+    } = CreateEditProfileParseFormData(formData);
 
     const response = await RequestFactory().makeWithToken({
         uri: '/admin/profiles/new',
@@ -68,6 +51,6 @@ export default async function SubmitFormAction (
             leadershipPosition,
             bio,
         },
-        errors: responseJson.errors,
+        errors: responseJson.errors || { error: 'An unknown error occurred' },
     };
 }

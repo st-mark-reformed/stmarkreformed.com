@@ -43,13 +43,13 @@ export default async function ProfilesPage () {
                                 <div className="flex min-w-0 gap-x-4">
                                     <div className="min-w-0 flex-auto">
                                         <p className="text-sm/6 font-semibold text-gray-900 dark:text-white">
-                                            <a href={`/admin/profiles/${profile.id}`}>
+                                            <a href={`/admin/profiles/edit/${profile.id}`}>
                                                 <span className="absolute inset-x-0 -top-px bottom-0" />
                                                 {profile.fullNameWithHonorific}
                                             </a>
                                         </p>
                                         <p className="mt-1 flex text-xs/5 text-gray-500 dark:text-gray-400">
-                                            <span className="relative truncate hover:underline">
+                                            <span className="truncate">
                                                 {profile.leadershipPositionHumanReadable}
                                             </span>
                                         </p>

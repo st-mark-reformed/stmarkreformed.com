@@ -1,6 +1,8 @@
-import { Values } from './Values';
+import { CreateEditProfileValues } from './CreateEditProfileValues';
 
-export default function ParseFormData (formData: FormData): Values {
+export default function CreateEditProfileParseFormData (
+    formData: FormData,
+): CreateEditProfileValues {
     const titleOrHonorificValue = formData.get('titleOrHonorific');
     const titleOrHonorific = typeof titleOrHonorificValue === 'string'
         ? titleOrHonorificValue
