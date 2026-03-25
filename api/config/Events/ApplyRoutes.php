@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Config\Events;
 
 use App\Contact\PostContactAction;
+use App\GetKeepAliveAction;
 use App\Healthcheck;
 use App\Profiles\Admin\GetLeadershipPositionsAction;
 use App\Profiles\Admin\GetProfilesListAction;
@@ -28,6 +29,7 @@ readonly class ApplyRoutes
         GetLeadershipPositionsAction::applyRoute(routes: $routes);
         GetVerifyProfilesRoleAction::applyRoute(routes: $routes);
         PostNewProfileAction::applyRoute(routes: $routes);
+        GetKeepAliveAction::applyRoute(routes: $routes);
 
         $config = $routes->getContainer()->get(RuntimeConfig::class);
 

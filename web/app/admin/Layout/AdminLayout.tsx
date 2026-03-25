@@ -1,6 +1,8 @@
 import React, { ReactNode, Suspense } from 'react';
 import Sidebar from './Sidebar';
 import PartialPageLoading from '../../PartialPageLoading';
+import RequestFactory from '../../api/request/RequestFactory';
+import KeepAlive from '../../KeepAlive';
 
 export default async function AdminLayout (
     {
@@ -11,6 +13,11 @@ export default async function AdminLayout (
         activeNav: null | 'messages' | 'profiles';
     },
 ) {
+    await RequestFactory().makeWithSignInRedirect({
+        uri: '/keep-alive',
+        cacheSeconds: 0,
+    });
+
     return (
         <>
             <div className="min-h-full bg-gray-50 dark:bg-gray-900">
@@ -23,6 +30,7 @@ export default async function AdminLayout (
                     </div>
                 </main>
             </div>
+            <KeepAlive />
         </>
     );
 }
