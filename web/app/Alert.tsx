@@ -54,7 +54,7 @@ export default function Alert ({
     };
 
     return (
-        <div className={`${wrapperBackgroundClass} p-4 shadow sm:rounded-lg`}>
+        <div className={`${wrapperBackgroundClass} p-4 shadow sm:rounded-lg col-span-full`}>
             <div className="flex">
                 <div className="flex-shrink-0">{renderIcon()}</div>
                 <div className="ml-3">
