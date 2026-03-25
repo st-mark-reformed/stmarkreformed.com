@@ -13,15 +13,17 @@ export default function TableRadioButtons (
         name,
         colSpan = undefined,
         options,
+        error = undefined,
     }: {
         label: string;
         name: string;
         colSpan?: number | 'full' | undefined;
         options: Option[];
+        error?: string | undefined;
     },
 ) {
     return (
-        <InputWrapper label={label} name={name} colSpan={colSpan}>
+        <InputWrapper label={label} name={name} colSpan={colSpan} error={error}>
             <fieldset
                 aria-label={label}
                 className="relative -space-y-px rounded-md bg-white dark:bg-gray-800/50"

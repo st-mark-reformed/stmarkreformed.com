@@ -20,15 +20,17 @@ export default function RichText (
         name,
         colSpan = undefined,
         defaultValue = '',
+        error = undefined,
     }: {
         label: string;
         name: string;
         colSpan?: number | 'full' | undefined;
         defaultValue?: string;
+        error?: string | undefined;
     },
 ) {
     return (
-        <InputWrapper label={label} name={name} colSpan={colSpan}>
+        <InputWrapper label={label} name={name} colSpan={colSpan} error={error}>
             <RichTextClientSide name={name} defaultValue={defaultValue} />
         </InputWrapper>
     );

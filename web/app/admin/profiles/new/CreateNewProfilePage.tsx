@@ -85,33 +85,38 @@ export default function CreateNewProfilePage () {
                     label="Title/Honorific"
                     name="titleOrHonorific"
                     defaultValue={state.values.titleOrHonorific}
-                    // TODO: Errors
+                    error={state.ok ? undefined : state.errors.titleOrHonorific}
                 />
                 <TextInput
                     label="Email"
                     name="email"
                     type="email"
                     defaultValue={state.values.email}
+                    error={state.ok ? undefined : state.errors.email}
                 />
                 <TextInput
                     label="First Name"
                     name="firstName"
                     autoComplete="first-name"
                     defaultValue={state.values.firstName}
+                    error={state.ok ? undefined : state.errors.firstName}
                 />
                 <TextInput
                     label="Last Name"
                     name="lastName"
                     autoComplete="last-name"
                     defaultValue={state.values.lastName}
+                    error={state.ok ? undefined : state.errors.lastName}
                 />
                 <LeadershipPositionRadioButtons
                     defaultValue={state.values.leadershipPosition}
+                    error={state.ok ? undefined : state.errors.leadershipPosition}
                 />
                 <RichText
                     label="Bio"
                     name="bio"
                     defaultValue={state.values.bio}
+                    error={state.ok ? undefined : state.errors.bio}
                 />
                 <div className="mt-6 flex items-center justify-end gap-x-3 col-span-full border-t-2 border-gray-200 pt-6 dark:border-gray-500">
                     <Link

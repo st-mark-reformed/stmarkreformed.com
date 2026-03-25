@@ -6,11 +6,13 @@ export default function InputWrapper (
         label,
         name,
         colSpan = undefined,
+        error = undefined,
     }: {
         children: ReactNode;
         label: string;
         name: string;
         colSpan?: number | 'full' | undefined;
+        error?: string | undefined;
     },
 ) {
     return (
@@ -48,8 +50,27 @@ export default function InputWrapper (
                 htmlFor={name}
                 className="block text-sm/6 font-medium text-gray-900 dark:text-white"
             >
-                {label}
+                {label} {(() => {
+                    if (!error) {
+                        return null;
+                    }
+
+                    return (
+                        <span className="text-crimson font-bold">*</span>
+                    );
+                })()}
             </label>
+            {(() => {
+                if (!error) {
+                    return null;
+                }
+
+                return (
+                    <div className="mt-0.5 text-md text-crimson">
+                        {error}
+                    </div>
+                );
+            })()}
             <div className="mt-2">
                 {children}
             </div>

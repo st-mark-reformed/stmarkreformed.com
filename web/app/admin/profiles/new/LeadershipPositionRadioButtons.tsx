@@ -6,8 +6,10 @@ import { LeadershipPositionOption } from '../leadership-position-options/GetLead
 export default function LeadershipPositionRadioButtons (
     {
         defaultValue = undefined,
+        error = undefined,
     }: {
         defaultValue?: string | undefined;
+        error?: string | undefined;
     },
 ) {
     const [
@@ -15,7 +17,7 @@ export default function LeadershipPositionRadioButtons (
         setPositions,
     ] = useState<LeadershipPositionOption[] | null>(null);
 
-    const [error, setError] = useState<string | null>(null);
+    const [loadingError, setLoadingError] = useState<string | null>(null);
 
     useEffect(() => {
         let cancelled = false;
@@ -44,7 +46,7 @@ export default function LeadershipPositionRadioButtons (
                 if (cancelled) {
                     return;
                 }
-                setError(
+                setLoadingError(
                     error_ instanceof Error
                         ? error_.message
                         : 'Something went wrong',
@@ -59,8 +61,8 @@ export default function LeadershipPositionRadioButtons (
         };
     }, []);
 
-    if (error) {
-        return <p className="text-sm text-red-600">{error}</p>;
+    if (loadingError) {
+        return <p className="text-sm text-red-600">{loadingError}</p>;
     }
 
     if (!positions) {
@@ -69,6 +71,7 @@ export default function LeadershipPositionRadioButtons (
 
     return (
         <TableRadioButtons
+            error={error}
             label="Leadership Position"
             name="leadershipPosition"
             options={positions.map((position, index) => {

@@ -43,7 +43,8 @@ export default async function SubmitFormAction (
         errors: {
             email: 'Email is required',
             firstName: 'First name is required',
-            lastName: 'Last name is required',
+            leadershipPosition: 'Testing 123',
+            bio: 'Testing asdf 321',
         },
     };
 }
