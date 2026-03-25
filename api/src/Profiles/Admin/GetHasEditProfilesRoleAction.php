@@ -9,7 +9,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use RxAnte\AppBootstrap\Http\ApplyRoutesEvent;
 
-readonly class GetVerifyProfilesRoleAction
+readonly class GetHasEditProfilesRoleAction
 {
     public static function applyRoute(ApplyRoutesEvent $routes): void
     {

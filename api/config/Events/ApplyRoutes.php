@@ -7,10 +7,11 @@ namespace Config\Events;
 use App\Contact\PostContactAction;
 use App\GetKeepAliveAction;
 use App\Healthcheck;
+use App\Messages\Admin\GetHasEditMessagesRoleAction;
 use App\Profiles\Admin\EditProfile\GetEditProfileAction;
+use App\Profiles\Admin\GetHasEditProfilesRoleAction;
 use App\Profiles\Admin\GetLeadershipPositionsAction;
 use App\Profiles\Admin\GetProfilesListAction;
-use App\Profiles\Admin\GetVerifyProfilesRoleAction;
 use App\Profiles\Admin\NewProfile\PostNewProfileAction;
 use BuzzingPixel\Queue\Http\Routes\Route;
 use BuzzingPixel\Queue\Http\Routes\RoutesFactory as QueueRoutesFactory;
@@ -28,10 +29,11 @@ readonly class ApplyRoutes
         PostContactAction::applyRoute(routes: $routes);
         GetProfilesListAction::applyRoute(routes: $routes);
         GetLeadershipPositionsAction::applyRoute(routes: $routes);
-        GetVerifyProfilesRoleAction::applyRoute(routes: $routes);
+        GetHasEditProfilesRoleAction::applyRoute(routes: $routes);
         PostNewProfileAction::applyRoute(routes: $routes);
         GetKeepAliveAction::applyRoute(routes: $routes);
         GetEditProfileAction::applyRoute(routes: $routes);
+        GetHasEditMessagesRoleAction::applyRoute(routes: $routes);
 
         $config = $routes->getContainer()->get(RuntimeConfig::class);
 

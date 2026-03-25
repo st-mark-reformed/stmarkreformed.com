@@ -1,18 +1,29 @@
 import React from 'react';
-import RequestFactory from '../../api/request/RequestFactory';
 import PageTitle from '../PageTitle';
+import Breadcrumbs from '../Breadcrumbs';
 
 export default async function MessagesPage () {
-    const tmp = await RequestFactory().makeWithSignInRedirect({
-        uri: '/healthcheck/659f105793f58',
-    });
-
     return (
         <>
-            <PageTitle>
+            <Breadcrumbs />
+            <PageTitle
+                buttons={[
+                    {
+                        type: 'primary',
+                        content: 'New Message',
+                        glyph: 'plus',
+                        href: '/admin/messages/new',
+                    },
+                ]}
+            >
                 Messages
             </PageTitle>
-            TODO Messages
+            {/* TODO Messages */}
+            <div className="text-center">
+                <p className="text-sm/6 text-gray-500 dark:text-gray-400">
+                    No messages found.
+                </p>
+            </div>
         </>
     );
 }
