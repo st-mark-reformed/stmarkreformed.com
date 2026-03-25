@@ -1,9 +1,8 @@
 'use client';
 
 import React, { useActionState, useRef } from 'react';
-import Link from 'next/link';
 import Breadcrumbs from '../../Breadcrumbs';
-import PageTitle from '../../PageTitle';
+import PageTitle, { Button } from '../../PageTitle';
 import Form from '../../Forms/Form';
 import TextInput from '../../Forms/TextInput';
 import LeadershipPositionRadioButtons from './LeadershipPositionRadioButtons';
@@ -26,9 +25,37 @@ const initialState: SubmitFormActionState = {
 };
 
 export default function CreateNewProfilePage () {
-    const [state, formAction] = useActionState(SubmitFormAction, initialState);
+    const [state, formAction, isPending] = useActionState(SubmitFormAction, initialState);
 
     const formRef = useRef<HTMLFormElement>(null);
+
+    const buttons: Button[] = [
+        {
+            content: 'Cancel',
+            href: '/admin/profiles',
+            type: 'secondary',
+        },
+    ];
+
+    if (isPending) {
+        buttons.push({
+            content: 'Submitting…',
+            glyph: 'check',
+            href: 'title-submit-button',
+            type: 'pending',
+            onClick: () => {},
+        });
+    } else {
+        buttons.push({
+            content: 'Submit',
+            glyph: 'check',
+            href: 'title-submit-button',
+            type: 'primary',
+            onClick: () => {
+                formRef.current?.requestSubmit();
+            },
+        });
+    }
 
     return (
         <>
@@ -42,21 +69,7 @@ export default function CreateNewProfilePage () {
             }
             />
             <PageTitle
-                buttons={[
-                    {
-                        content: 'Cancel',
-                        href: '/admin/profiles',
-                        type: 'secondary',
-                    },
-                    {
-                        content: 'Submit',
-                        href: 'title-submit-button',
-                        type: 'primary',
-                        onClick: () => {
-                            formRef.current?.requestSubmit();
-                        },
-                    },
-                ]}
+                buttons={buttons}
             >
                 Create New Profile
             </PageTitle>

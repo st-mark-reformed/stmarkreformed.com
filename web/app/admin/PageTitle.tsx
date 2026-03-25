@@ -1,15 +1,15 @@
 import React, { ReactNode } from 'react';
 import Link from 'next/link';
 import { PencilIcon } from '@heroicons/react/24/solid';
-import { PlusIcon } from '@heroicons/react/16/solid';
+import { CheckIcon, PlusIcon } from '@heroicons/react/16/solid';
 
-interface Button {
+export interface Button {
     content: string;
     href: string;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
     onClickButtonType?: 'submit' | 'reset' | 'button' | undefined;
-    type: 'primary' | 'secondary';
-    glyph?: 'pencil' | 'plus';
+    type: 'primary' | 'secondary' | 'pending';
+    glyph?: 'pencil' | 'plus' | 'check';
 }
 
 export default function PageTitle (
@@ -37,25 +37,33 @@ export default function PageTitle (
                     return (
                         <div className="mt-4 flex shrink-0 md:mt-0 md:ml-4">
                             {buttons.map((button) => {
-                                const classes = ['cursor-pointer ml-3 inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-xs'];
+                                const classes = ['ml-3 inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-xs'];
 
                                 if (button.type === 'primary') {
-                                    classes.push('bg-crimson text-white hover:bg-crimson-dark dark:bg-crimson/70 dark:shadow-none dark:hover:bg-crimson/80');
+                                    classes.push('cursor-pointer bg-crimson text-white hover:bg-crimson-dark dark:bg-crimson/70 dark:shadow-none dark:hover:bg-crimson/80');
+                                } else if (button.type === 'pending') {
+                                    classes.push('cursor-default bg-gray-300 text-gray-500');
                                 } else {
-                                    classes.push('bg-white text-gray-900 inset-ring inset-ring-gray-300 hover:bg-gray-50 dark:bg-white/10 dark:text-white dark:shadow-none dark:inset-ring-white/5 dark:hover:bg-white/20');
+                                    classes.push('cursor-pointer bg-white text-gray-900 inset-ring inset-ring-gray-300 hover:bg-gray-50 dark:bg-white/10 dark:text-white dark:shadow-none dark:inset-ring-white/5 dark:hover:bg-white/20');
                                 }
 
                                 if (button.glyph) {
                                     classes.push('pr-4');
                                 }
 
+                                const iconClasses = 'size-5 mr-1 -ml-0.5';
+
                                 const glyphRender = () => {
                                     if (button.glyph === 'pencil') {
-                                        return <PencilIcon className="size-3 mr-1" aria-hidden="true" />;
+                                        return <PencilIcon className={iconClasses} aria-hidden="true" />;
                                     }
 
                                     if (button.glyph === 'plus') {
-                                        return <PlusIcon className="size-5 mr-1" aria-hidden="true" />;
+                                        return <PlusIcon className={iconClasses} aria-hidden="true" />;
+                                    }
+
+                                    if (button.glyph === 'check') {
+                                        return <CheckIcon className={iconClasses} aria-hidden="true" />;
                                     }
 
                                     return null;

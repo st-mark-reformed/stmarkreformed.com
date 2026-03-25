@@ -1,19 +1,25 @@
 import React from 'react';
 import Link from 'next/link';
+import { useFormStatus } from 'react-dom';
+import { CheckIcon } from '@heroicons/react/16/solid';
 
 export default function FormButtons (
     {
         submitButtonContent = 'Submit',
+        submitButtonContentWhenPending = 'Submitting…',
         secondaryLinkContent = 'Cancel',
         secondaryLinkHref = undefined,
         location = 'bottom',
     }: {
         submitButtonContent?: string;
+        submitButtonContentWhenPending?: string;
         secondaryLinkContent?: string;
         secondaryLinkHref?: string;
         location?: 'top' | 'bottom';
     },
 ) {
+    const { pending } = useFormStatus();
+
     return (
         <div
             className={(() => {
@@ -44,9 +50,27 @@ export default function FormButtons (
             })()}
             <button
                 type="submit"
-                className="cursor-pointer rounded-md bg-crimson px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-crimson-dark dark:bg-crimson/70 dark:shadow-none dark:hover:bg-crimson/80"
+                disabled={pending}
+                className={(() => {
+                    const classes = ['inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-xs dark:shadow-none'];
+
+                    if (pending) {
+                        classes.push('cursor-default bg-gray-300 text-gray-500');
+                    } else {
+                        classes.push('cursor-pointer bg-crimson hover:bg-crimson-dark dark:bg-crimson/70 dark:hover:bg-crimson/80 text-white');
+                    }
+
+                    return classes.join(' ');
+                })()}
             >
-                {submitButtonContent}
+                <CheckIcon className="size-5 mr-1 -ml-1" aria-hidden="true" />
+                {(() => {
+                    if (pending) {
+                        return submitButtonContentWhenPending;
+                    }
+
+                    return submitButtonContent;
+                })()}
             </button>
         </div>
     );
