@@ -15,7 +15,7 @@ readonly class NewSeries
 
     public function __construct(
         public string $title = '',
-        public string $slug = '',
+        public SeriesSlug $slug = new SeriesSlug(),
     ) {
         $messages = [];
 
@@ -23,8 +23,8 @@ readonly class NewSeries
             $messages[] = 'Title is required';
         }
 
-        if ($slug === '') {
-            $messages[] = 'Slug is required';
+        if (! $slug->isValid) {
+            $messages[] = $slug->validationMessage;
         }
 
         $this->isValid = count($messages) < 1;
