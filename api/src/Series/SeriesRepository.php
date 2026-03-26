@@ -10,6 +10,7 @@ use App\Series\Persistence\CreateSeries;
 use App\Series\Persistence\DeleteSeries;
 use App\Series\Persistence\FindAll;
 use App\Series\Persistence\FindById;
+use App\Series\Persistence\FindBySlug;
 use App\Series\Persistence\Transformer;
 use Ramsey\Uuid\UuidInterface;
 
@@ -19,6 +20,7 @@ readonly class SeriesRepository
         private FindAll $findAll,
         private FindById $findById,
         private CreateUuid $createUuid,
+        private FindBySlug $findBySlug,
         private Transformer $transformer,
         private CreateSeries $createSeries,
         private DeleteSeries $deleteSeries,
@@ -54,6 +56,19 @@ readonly class SeriesRepository
         $record = $this->findById->find(
             id: $this->createUuid->fromStringOrInterface(id: $id),
         );
+
+        if ($record === null) {
+            return new SeriesResult();
+        }
+
+        $series = $this->transformer->toEntity(record: $record);
+
+        return new SeriesResult(series: $series);
+    }
+
+    public function findBySlug(string $slug): SeriesResult
+    {
+        $record = $this->findBySlug->find(slug: $slug);
 
         if ($record === null) {
             return new SeriesResult();
