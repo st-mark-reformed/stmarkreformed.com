@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace App\Series;
 
+use App\EmptyUuid;
 use Ramsey\Uuid\UuidInterface;
 
 readonly class Series
 {
     public function __construct(
-        public UuidInterface $id,
-        public string $title,
-        public SeriesSlug $slug,
+        public UuidInterface $id = new EmptyUuid(),
+        public string $title = '',
+        public SeriesSlug $slug = new SeriesSlug(),
     ) {
     }
 

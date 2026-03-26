@@ -49,10 +49,10 @@ readonly class ProfilesRepository
         );
 
         if ($record === null) {
-            return new ProfileResult(profile: null);
+            return new ProfileResult();
         }
 
-        $profile = $this->transformer->toEntity($record);
+        $profile = $this->transformer->toEntity(record: $record);
 
         return new ProfileResult(profile: $profile);
     }
