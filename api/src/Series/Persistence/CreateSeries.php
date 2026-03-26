@@ -18,6 +18,8 @@ readonly class CreateSeries
 {
     public function __construct(
         private ApiPdo $pdo,
+        private FindBySlug $findBySlug,
+        private FindByTitle $findByTitle,
         private UuidFactoryInterface $uuidFactory,
     ) {
     }
@@ -31,7 +33,11 @@ readonly class CreateSeries
             );
         }
 
-        // TODO: Validate unique title and slug
+        $uniqueCheck = $this->isUnique($series);
+
+        if (! $uniqueCheck->success) {
+            return $uniqueCheck;
+        }
 
         /** @phpstan-ignore-next-line */
         $id = $this->uuidFactory->uuid7();
@@ -56,6 +62,36 @@ readonly class CreateSeries
             return new Result(
                 success: false,
                 errors: ['An unexpected error occurred. Please try again later.'],
+            );
+        }
+
+        return new Result();
+    }
+
+    public function isUnique(NewSeries $series): Result
+    {
+        $slugMatch = $this->findBySlug->find(slug: $series->slug->toString());
+
+        $titleMatch = $this->findByTitle->find(title: $series->title);
+
+        if ($slugMatch !== null && $titleMatch !== null) {
+            return new Result(
+                success: false,
+                errors: ['Slug and title must be unique.'],
+            );
+        }
+
+        if ($slugMatch !== null) {
+            return new Result(
+                success: false,
+                errors: ['Slug must be unique.'],
+            );
+        }
+
+        if ($titleMatch !== null) {
+            return new Result(
+                success: false,
+                errors: ['Title must be unique.'],
             );
         }
 
