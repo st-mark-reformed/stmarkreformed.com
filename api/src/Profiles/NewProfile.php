@@ -28,11 +28,11 @@ readonly class NewProfile
             $messages['firstName'] = 'A first name is required.';
         }
 
-        if ($this->lastName === '') {
+        if ($lastName === '') {
             $messages['lastName'] = 'A last name is required.';
         }
 
-        if (! $this->email->isValid) {
+        if (! $email->isValid) {
             $messages['email'] = 'If an email address is provided, it must be valid.';
         }
 

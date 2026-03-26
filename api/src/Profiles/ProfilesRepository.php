@@ -27,7 +27,7 @@ readonly class ProfilesRepository
 
     public function create(NewProfile $newProfile): Result
     {
-        return $this->createProfile->create(newProfile: $newProfile);
+        return $this->createProfile->create(profile: $newProfile);
     }
 
     public function delete(string|UuidInterface $id): Result

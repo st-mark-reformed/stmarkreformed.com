@@ -22,12 +22,12 @@ readonly class CreateProfile
     ) {
     }
 
-    public function create(NewProfile $newProfile): Result
+    public function create(NewProfile $profile): Result
     {
-        if (! $newProfile->isValid) {
+        if (! $profile->isValid) {
             return new Result(
                 success: false,
-                errors: $newProfile->validationMessages,
+                errors: $profile->validationMessages,
             );
         }
 
@@ -37,13 +37,13 @@ readonly class CreateProfile
 
         $params = [
             'id' => $id->toString(),
-            'title_or_honorific' => $newProfile->titleOrHonorific,
-            'first_name' => $newProfile->firstName,
-            'last_name' => $newProfile->lastName,
-            'email' => $newProfile->email->toString(),
-            'leadership_position' => $newProfile->leadershipPosition->value(),
-            'bio' => $newProfile->bio,
-            'has_messages' => $newProfile->hasMessages ? '1' : '0',
+            'title_or_honorific' => $profile->titleOrHonorific,
+            'first_name' => $profile->firstName,
+            'last_name' => $profile->lastName,
+            'email' => $profile->email->toString(),
+            'leadership_position' => $profile->leadershipPosition->value(),
+            'bio' => $profile->bio,
+            'has_messages' => $profile->hasMessages ? '1' : '0',
         ];
 
         $columns = array_keys($params);
