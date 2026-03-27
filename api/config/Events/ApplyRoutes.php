@@ -8,7 +8,8 @@ use App\Contact\PostContactAction;
 use App\GetKeepAliveAction;
 use App\Healthcheck;
 use App\Messages\Admin\GetHasEditMessagesRoleAction;
-use App\Profiles\Admin\EditProfile\GetEditProfileAction;
+use App\Profiles\Admin\EditProfile\GetEditProfile\GetEditProfileAction;
+use App\Profiles\Admin\EditProfile\PostEditProfile\PostEditProfileAction;
 use App\Profiles\Admin\GetHasEditProfilesRoleAction;
 use App\Profiles\Admin\GetLeadershipPositionsAction;
 use App\Profiles\Admin\GetProfilesListAction;
@@ -33,6 +34,7 @@ readonly class ApplyRoutes
         PostNewProfileAction::applyRoute(routes: $routes);
         GetKeepAliveAction::applyRoute(routes: $routes);
         GetEditProfileAction::applyRoute(routes: $routes);
+        PostEditProfileAction::applyRoute(routes: $routes);
         GetHasEditMessagesRoleAction::applyRoute(routes: $routes);
 
         $config = $routes->getContainer()->get(RuntimeConfig::class);

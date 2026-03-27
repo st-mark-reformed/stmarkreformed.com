@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Profiles\Admin\EditProfile;
+namespace App\Profiles\Admin\EditProfile\GetEditProfile;
 
 use App\Profiles\Profile;
 use App\Responder;
