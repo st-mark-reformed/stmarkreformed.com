@@ -9,6 +9,18 @@ export default async function MessagesPage () {
             <PageTitle
                 buttons={[
                     {
+                        type: 'secondary',
+                        content: 'View All Series',
+                        glyph: 'eye',
+                        href: '/admin/messages/series',
+                    },
+                    {
+                        type: 'secondary',
+                        content: 'New Series',
+                        glyph: 'plus',
+                        href: '/admin/messages/series/new',
+                    },
+                    {
                         type: 'primary',
                         content: 'New Message',
                         glyph: 'plus',
