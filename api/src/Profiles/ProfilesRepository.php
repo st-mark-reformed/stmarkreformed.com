@@ -9,6 +9,7 @@ use App\Profiles\Persistence\CreateProfile;
 use App\Profiles\Persistence\DeleteProfile;
 use App\Profiles\Persistence\FindAll;
 use App\Profiles\Persistence\FindById;
+use App\Profiles\Persistence\PersistProfile;
 use App\Profiles\Persistence\Transformer;
 use App\Result\Result;
 use Ramsey\Uuid\UuidInterface;
@@ -22,12 +23,13 @@ readonly class ProfilesRepository
         private Transformer $transformer,
         private CreateProfile $createProfile,
         private DeleteProfile $deleteProfile,
+        private PersistProfile $persistProfile,
     ) {
     }
 
-    public function create(NewProfile $newProfile): Result
+    public function create(NewProfile $profile): Result
     {
-        return $this->createProfile->create(profile: $newProfile);
+        return $this->createProfile->create(profile: $profile);
     }
 
     public function delete(string|UuidInterface $id): Result
@@ -35,6 +37,11 @@ readonly class ProfilesRepository
         return $this->deleteProfile->delete(
             id: $this->createUuid->fromStringOrInterface(id: $id),
         );
+    }
+
+    public function persist(Profile $profile): Result
+    {
+        return $this->persistProfile->persist(profile: $profile);
     }
 
     public function findAll(): Profiles

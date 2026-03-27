@@ -37,7 +37,7 @@ readonly class PostNewProfileAction
         );
 
         $result = $this->profilesRepository->create(
-            newProfile: $newProfile,
+            profile: $newProfile,
         );
 
         return $this->responder->respond(result: $result);

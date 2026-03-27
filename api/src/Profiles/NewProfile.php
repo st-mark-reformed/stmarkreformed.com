@@ -22,19 +22,7 @@ readonly class NewProfile
         public string $bio = '',
         public bool $hasMessages = false,
     ) {
-        $messages = [];
-
-        if ($this->firstName === '') {
-            $messages['firstName'] = 'A first name is required.';
-        }
-
-        if ($lastName === '') {
-            $messages['lastName'] = 'A last name is required.';
-        }
-
-        if (! $email->isValid) {
-            $messages['email'] = 'If an email address is provided, it must be valid.';
-        }
+        $messages = ProfileValidation::validate($this);
 
         $this->isValid = count($messages) < 1;
 
