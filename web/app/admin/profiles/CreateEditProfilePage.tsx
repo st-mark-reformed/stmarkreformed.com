@@ -59,7 +59,7 @@ export default function CreateEditProfilePage (
         buttons.push({
             content: 'Submitting…',
             glyph: 'check',
-            href: 'title-submit-button',
+            href: 'submit-button',
             type: 'pending',
             onClick: () => {},
         });
@@ -67,7 +67,7 @@ export default function CreateEditProfilePage (
         buttons.push({
             content: 'Submit',
             glyph: 'check',
-            href: 'title-submit-button',
+            href: 'submit-button',
             type: 'primary',
             onClick: () => {
                 formRef.current?.requestSubmit();
