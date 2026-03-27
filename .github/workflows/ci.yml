@@ -1,135 +1,123 @@
 name: Build images and deploy to production
+
 on:
   workflow_dispatch:
   push:
     branches:
       - master
+
+env:
+  IMAGE_NAMESPACE: ghcr.io/st-mark-reformed
+
 jobs:
-  build:
-    name: Build images and push to registry
+  build-independent:
+    name: Build independent images
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: api
+            file: docker/api/Dockerfile
+            image: stmarkreformed.com-api
+            cache_from: ghcr.io/st-mark-reformed/stmarkreformed.com-api
+          - name: auth
+            file: docker/auth/Dockerfile
+            image: stmarkreformed.com-auth
+            cache_from: ghcr.io/st-mark-reformed/stmarkreformed.com-auth
+          - name: app
+            file: docker/application/Dockerfile
+            image: stmarkreformed.com-app
+            cache_from: ghcr.io/st-mark-reformed/stmarkreformed.com-app
+          - name: db
+            file: docker/db/Dockerfile
+            image: stmarkreformed.com-db
+            cache_from: ghcr.io/st-mark-reformed/stmarkreformed.com-db
+          - name: proxy
+            file: docker/proxy/Dockerfile
+            image: stmarkreformed.com-proxy
+            cache_from: ghcr.io/st-mark-reformed/stmarkreformed.com-proxy
+          - name: utility
+            file: docker/utility/Dockerfile
+            image: stmarkreformed.com-utility
+            cache_from: ghcr.io/st-mark-reformed/stmarkreformed.com-utility
+          - name: web
+            file: docker/web/Dockerfile
+            image: stmarkreformed.com-web
+            cache_from: ghcr.io/st-mark-reformed/stmarkreformed.com-web
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      - name: Create buildx context
-        run: docker buildx create --use
-      - name: Log in to registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
-      - name: Build api image
-        run: >
-          docker buildx build
-          --platform=linux/amd64
-          --file docker/api/Dockerfile
-          --cache-from ghcr.io/st-mark-reformed/stmarkreformed.com-api
-          --build-arg BUILDKIT_INLINE_CACHE=1
-          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-api
-          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-api:"$GITHUB_SHA"
-          --push
-          .
-      - name: Build auth image
-        run: >
-          docker buildx build
-          --platform=linux/amd64
-          --file docker/auth/Dockerfile
-          --cache-from ghcr.io/st-mark-reformed/stmarkreformed.com-auth
-          --build-arg BUILDKIT_INLINE_CACHE=1
-          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-auth
-          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-auth:"$GITHUB_SHA"
-          --push
-          .
-      - name: Build api-queue-consumer image
-        run: >
-          docker buildx build
-          --platform=linux/amd64
-          --file docker/api-queue-consumer/Dockerfile
-          --build-arg API_IMAGE=ghcr.io/st-mark-reformed/stmarkreformed.com-api:"$GITHUB_SHA"
-          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-api-queue-consumer
-          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-api-queue-consumer:"$GITHUB_SHA"
-          --push
-          .
-      - name: Build api-schedule-runner image
-        run: >
-          docker buildx build
-          --platform=linux/amd64
-          --file docker/api-schedule-runner/Dockerfile
-          --build-arg API_IMAGE=ghcr.io/st-mark-reformed/stmarkreformed.com-api:"$GITHUB_SHA"
-          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-api-schedule-runner
-          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-api-schedule-runner:"$GITHUB_SHA"
-          --push
-          .
-      - name: Build app image
-        run: >
-          docker buildx build
-          --platform=linux/amd64
-          --file docker/application/Dockerfile
-          --cache-from ghcr.io/st-mark-reformed/stmarkreformed.com-app
-          --build-arg BUILDKIT_INLINE_CACHE=1
-          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-app
-          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-app:"$GITHUB_SHA"
-          --push
-          .
-      - name: Build db image
-        run: >
-          docker buildx build
-          --platform=linux/amd64
-          --file docker/db/Dockerfile
-          --cache-from ghcr.io/st-mark-reformed/stmarkreformed.com-db
-          --build-arg BUILDKIT_INLINE_CACHE=1
-          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-db
-          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-db:"$GITHUB_SHA"
-          --push
-          .
-      - name: Build proxy image
-        run: >
-          docker buildx build
-          --platform=linux/amd64
-          --file docker/proxy/Dockerfile
-          --cache-from ghcr.io/st-mark-reformed/stmarkreformed.com-proxy
-          --build-arg BUILDKIT_INLINE_CACHE=1
-          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-proxy
-          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-proxy:"$GITHUB_SHA"
-          --push
-          .
-      - name: Build schedule-runner image
-        run: >
-          docker buildx build
-          --platform=linux/amd64
-          --file docker/schedule-runner/Dockerfile
-          --build-arg BUILDKIT_INLINE_CACHE=1
-          --build-arg APP_IMAGE=ghcr.io/st-mark-reformed/stmarkreformed.com-app:"$GITHUB_SHA"
-          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner
-          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner:"$GITHUB_SHA"
-          --push
-          .
-      - name: Build utility image
-        run: >
-          docker buildx build
-          --platform=linux/amd64
-          --file docker/utility/Dockerfile
-          --cache-from ghcr.io/st-mark-reformed/stmarkreformed.com-utility
-          --build-arg BUILDKIT_INLINE_CACHE=1
-          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-utility
-          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-utility:"$GITHUB_SHA"
-          --push
-          .
-      - name: Build web image
-        run: >
-          docker buildx build
-          --platform=linux/amd64
-          --file docker/web/Dockerfile
-          --cache-from ghcr.io/st-mark-reformed/stmarkreformed.com-web
-          --build-arg BUILDKIT_INLINE_CACHE=1
-          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-web
-          --tag ghcr.io/st-mark-reformed/stmarkreformed.com-web:"$GITHUB_SHA"
-          --push
-          .
+        uses: actions/checkout@v4
+
+      - name: Build and push
+        uses: ./.github/actions/docker-build-push
+        with:
+          file: ${{ matrix.file }}
+          cache-from: type=registry,ref=${{ matrix.cache_from }}
+          build-args: |
+            BUILDKIT_INLINE_CACHE=1
+          tags: |
+            ${{ env.IMAGE_NAMESPACE }}/${{ matrix.image }}
+            ${{ env.IMAGE_NAMESPACE }}/${{ matrix.image }}:${{ github.sha }}
+
+  build-api-dependents:
+    name: Build images depending on api
+    runs-on: ubuntu-latest
+    needs: build-independent
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: api-queue-consumer
+            file: docker/api-queue-consumer/Dockerfile
+            image: stmarkreformed.com-api-queue-consumer
+          - name: api-schedule-runner
+            file: docker/api-schedule-runner/Dockerfile
+            image: stmarkreformed.com-api-schedule-runner
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build and push
+        uses: ./.github/actions/docker-build-push
+        with:
+          file: ${{ matrix.file }}
+          build-args: |
+            API_IMAGE=${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-api:${{ github.sha }}
+          tags: |
+            ${{ env.IMAGE_NAMESPACE }}/${{ matrix.image }}
+            ${{ env.IMAGE_NAMESPACE }}/${{ matrix.image }}:${{ github.sha }}
+
+  build-app-dependent:
+    name: Build images depending on app
+    runs-on: ubuntu-latest
+    needs: build-independent
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build and push schedule-runner
+        uses: ./.github/actions/docker-build-push
+        with:
+          file: docker/schedule-runner/Dockerfile
+          build-args: |
+            BUILDKIT_INLINE_CACHE=1
+            APP_IMAGE=${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-app:${{ github.sha }}
+          tags: |
+            ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-app-schedule-runner
+            ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-app-schedule-runner:${{ github.sha }}
+
   deploy:
     name: Deploy to production
     runs-on: self-hosted
-    needs: build
+    needs:
+      - build-independent
+      - build-api-dependents
+      - build-app-dependent
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+
       - name: Copy files to prod server
         uses: appleboy/scp-action@master
         with:
@@ -138,6 +126,7 @@ jobs:
           key: ${{ secrets.PROD_DEPLOY_SSH_PRIVATE_KEY }}
           source: "docker/application/.env, docker/proxy/.env, docker/web/.env, docker/api/.env, docker/auth/.env, docker/docker-compose.prod.yml"
           target: "/root/stmarkreformed.com"
+
       - name: Log in to prod server, pull images, and deploy
         uses: appleboy/ssh-action@master
         with:
@@ -145,33 +134,31 @@ jobs:
           host: ${{ vars.PROD_DEPLOY_SSH_HOST }}
           key: ${{ secrets.PROD_DEPLOY_SSH_PRIVATE_KEY }}
           script: |
-            cd /root/stmarkreformed.com/docker;
+            set -e
 
-            # Log in to github docker registry
-            echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin;
+            cd /root/stmarkreformed.com/docker
 
-            # Pull Images
-            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-api;
-            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-auth;
-            docker pulll ghcr.io/st-mark-reformed/stmarkreformed.com-api-queue-consumer;
-            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-app;
-            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-db;
-            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-proxy;
-            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner;
-            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-utility;
-            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-web;
+            echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
 
-            # Docker can be weird about .env, make sure local is concat into .env
-            cat /root/stmarkreformed.com/docker/api/.env.local >> /root/stmarkreformed.com/docker/api/.env;
-            cat /root/stmarkreformed.com/docker/auth/.env.local >> /root/stmarkreformed.com/docker/auth/.env;
-            cat /root/stmarkreformed.com/docker/application/.env.local >> /root/stmarkreformed.com/docker/application/.env;
-            cat /root/stmarkreformed.com/docker/proxy/.env.local >> /root/stmarkreformed.com/docker/proxy/.env;
-            cat /root/stmarkreformed.com/docker/web/.env.local >> /root/stmarkreformed.com/docker/web/.env;
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-api
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-auth
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-api-queue-consumer
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-app
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-db
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-proxy
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-utility
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-web
 
-            # Deploy new images
+            cat /root/stmarkreformed.com/docker/api/.env.local >> /root/stmarkreformed.com/docker/api/.env
+            cat /root/stmarkreformed.com/docker/auth/.env.local >> /root/stmarkreformed.com/docker/auth/.env
+            cat /root/stmarkreformed.com/docker/application/.env.local >> /root/stmarkreformed.com/docker/application/.env
+            cat /root/stmarkreformed.com/docker/proxy/.env.local >> /root/stmarkreformed.com/docker/proxy/.env
+            cat /root/stmarkreformed.com/docker/web/.env.local >> /root/stmarkreformed.com/docker/web/.env
+
             docker stack deploy \
               --compose-file docker-compose.prod.yml \
               --prune \
               --with-registry-auth \
               --resolve-image always \
-              smrc;
+              smrc
