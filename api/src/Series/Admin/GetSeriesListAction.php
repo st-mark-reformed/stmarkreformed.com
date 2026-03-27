@@ -2,27 +2,27 @@
 
 declare(strict_types=1);
 
-namespace App\Profiles\Admin;
+namespace App\Series\Admin;
 
-use App\Auth\RequireEditProfilesRoleMiddleware;
-use App\Profiles\ProfilesRepository;
+use App\Auth\RequireEditMessagesRoleMiddleware;
+use App\Series\SeriesRepository;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use RxAnte\AppBootstrap\Http\ApplyRoutesEvent;
 
 use function json_encode;
 
-readonly class GetProfilesListAction
+readonly class GetSeriesListAction
 {
     public static function applyRoute(ApplyRoutesEvent $routes): void
     {
         $routes->get(
-            '/admin/profiles',
+            '/admin/messages/series',
             self::class,
-        )->add(RequireEditProfilesRoleMiddleware::class);
+        )->add(RequireEditMessagesRoleMiddleware::class);
     }
 
-    public function __construct(private ProfilesRepository $repository)
+    public function __construct(private SeriesRepository $repository)
     {
     }
 
@@ -30,10 +30,10 @@ readonly class GetProfilesListAction
         ServerRequestInterface $request,
         ResponseInterface $response,
     ): ResponseInterface {
-        $profiles = $this->repository->findAll();
+        $series = $this->repository->findAll();
 
         $response->getBody()->write((string) json_encode(
-            $profiles->asArray(),
+            $series->asArray(),
         ));
 
         return $response->withHeader('Content-type', 'application/json');

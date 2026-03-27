@@ -18,15 +18,17 @@ readonly class Series
 
     /**
      * @return array{
+     *     id: string,
      *     title: string,
-     *     slug: string
+     *     slug: string,
      * }
      */
     public function asArray(): array
     {
         return [
+            'id' => $this->id->toString(),
             'title' => $this->title,
-            'slug' => $this->slug->slug,
+            'slug' => $this->slug->toString(),
         ];
     }
 }

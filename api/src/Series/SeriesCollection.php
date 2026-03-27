@@ -24,7 +24,8 @@ readonly class SeriesCollection
     /**
      * @return array<array-key, array{
      *     id: string,
-     *     title: string
+     *     title: string,
+     *     slug: string,
      * }>
      */
     public function asArray(): array

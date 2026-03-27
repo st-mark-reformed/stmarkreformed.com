@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Series\Admin\NewSeries;
 
-use App\Auth\RequireEditProfilesRoleMiddleware;
+use App\Auth\RequireEditMessagesRoleMiddleware;
 use App\Result\ResultResponder;
 use App\Series\SeriesRepository;
 use Psr\Http\Message\ResponseInterface;
@@ -18,7 +18,7 @@ readonly class PostNewSeriesAction
         $routes->post(
             '/admin/messages/series/new',
             self::class,
-        )->add(RequireEditProfilesRoleMiddleware::class);
+        )->add(RequireEditMessagesRoleMiddleware::class);
     }
 
     public function __construct(
