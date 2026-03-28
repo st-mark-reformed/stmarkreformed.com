@@ -276,7 +276,7 @@ jobs:
               --resolve-image always \
               smrc;
 
-            docker run -it --rm \
+            docker run --rm \
               --network smrc_default \
               --env-file ./api/.env \
               --entrypoint "" \
@@ -284,7 +284,7 @@ jobs:
               ghcr.io/st-mark-reformed/stmarkreformed.com-api \
               bash -c "php cli migrate:up"
 
-            docker run -it --rm \
+            docker run --rm \
               --network smrc_default \
               --env-file ./auth/.env \
               --entrypoint "" \
