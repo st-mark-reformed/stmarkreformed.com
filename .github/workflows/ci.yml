@@ -9,42 +9,23 @@ on:
 env:
   IMAGE_NAMESPACE: ghcr.io/st-mark-reformed
 
+x-build-job: &build-job
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Build and push
+      uses: ./.github/actions/docker-build-push
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
-  build-independent:
-    name: Build independent images
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - name: api
-            file: docker/api/Dockerfile
-            image: stmarkreformed.com-api
-            cache_from: ghcr.io/st-mark-reformed/stmarkreformed.com-api
-          - name: auth
-            file: docker/auth/Dockerfile
-            image: stmarkreformed.com-auth
-            cache_from: ghcr.io/st-mark-reformed/stmarkreformed.com-auth
-          - name: app
-            file: docker/application/Dockerfile
-            image: stmarkreformed.com-app
-            cache_from: ghcr.io/st-mark-reformed/stmarkreformed.com-app
-          - name: db
-            file: docker/db/Dockerfile
-            image: stmarkreformed.com-db
-            cache_from: ghcr.io/st-mark-reformed/stmarkreformed.com-db
-          - name: proxy
-            file: docker/proxy/Dockerfile
-            image: stmarkreformed.com-proxy
-            cache_from: ghcr.io/st-mark-reformed/stmarkreformed.com-proxy
-          - name: utility
-            file: docker/utility/Dockerfile
-            image: stmarkreformed.com-utility
-            cache_from: ghcr.io/st-mark-reformed/stmarkreformed.com-utility
-          - name: web
-            file: docker/web/Dockerfile
-            image: stmarkreformed.com-web
-            cache_from: ghcr.io/st-mark-reformed/stmarkreformed.com-web
+  build-api:
+    <<: *build-job
+    name: Build api image
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -54,27 +35,145 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          file: ${{ matrix.file }}
-          cache-from: type=registry,ref=${{ matrix.cache_from }}
+          file: docker/api/Dockerfile
+          cache-from: type=registry,ref=ghcr.io/st-mark-reformed/stmarkreformed.com-api
           build-args: |
             BUILDKIT_INLINE_CACHE=1
           tags: |
-            ${{ env.IMAGE_NAMESPACE }}/${{ matrix.image }}
-            ${{ env.IMAGE_NAMESPACE }}/${{ matrix.image }}:${{ github.sha }}
+            ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-api
+            ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-api:${{ github.sha }}
+
+  build-auth:
+    <<: *build-job
+    name: Build auth image
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build and push
+        uses: ./.github/actions/docker-build-push
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          file: docker/auth/Dockerfile
+          cache-from: type=registry,ref=ghcr.io/st-mark-reformed/stmarkreformed.com-auth
+          build-args: |
+            BUILDKIT_INLINE_CACHE=1
+          tags: |
+            ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-auth
+            ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-auth:${{ github.sha }}
+
+  build-app:
+    <<: *build-job
+    name: Build app image
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build and push
+        uses: ./.github/actions/docker-build-push
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          file: docker/application/Dockerfile
+          cache-from: type=registry,ref=ghcr.io/st-mark-reformed/stmarkreformed.com-app
+          build-args: |
+            BUILDKIT_INLINE_CACHE=1
+          tags: |
+            ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-app
+            ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-app:${{ github.sha }}
+
+  build-db:
+    <<: *build-job
+    name: Build db image
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build and push
+        uses: ./.github/actions/docker-build-push
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          file: docker/db/Dockerfile
+          cache-from: type=registry,ref=ghcr.io/st-mark-reformed/stmarkreformed.com-db
+          build-args: |
+            BUILDKIT_INLINE_CACHE=1
+          tags: |
+            ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-db
+            ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-db:${{ github.sha }}
+
+  build-proxy:
+    <<: *build-job
+    name: Build proxy image
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build and push
+        uses: ./.github/actions/docker-build-push
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          file: docker/proxy/Dockerfile
+          cache-from: type=registry,ref=ghcr.io/st-mark-reformed/stmarkreformed.com-proxy
+          build-args: |
+            BUILDKIT_INLINE_CACHE=1
+          tags: |
+            ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-proxy
+            ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-proxy:${{ github.sha }}
+
+  build-utility:
+    <<: *build-job
+    name: Build utility image
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build and push
+        uses: ./.github/actions/docker-build-push
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          file: docker/utility/Dockerfile
+          cache-from: type=registry,ref=ghcr.io/st-mark-reformed/stmarkreformed.com-utility
+          build-args: |
+            BUILDKIT_INLINE_CACHE=1
+          tags: |
+            ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-utility
+            ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-utility:${{ github.sha }}
+
+  build-web:
+    <<: *build-job
+    name: Build web image
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build and push
+        uses: ./.github/actions/docker-build-push
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          file: docker/web/Dockerfile
+          cache-from: type=registry,ref=ghcr.io/st-mark-reformed/stmarkreformed.com-web
+          build-args: |
+            BUILDKIT_INLINE_CACHE=1
+          tags: |
+            ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-web
+            ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-web:${{ github.sha }}
 
   build-api-dependents:
-    name: Build images depending on api
+    name: Build API-dependent images
     runs-on: ubuntu-latest
-    needs: build-independent
+    needs: build-api
     strategy:
       fail-fast: false
       matrix:
         include:
-          - name: api-queue-consumer
-            file: docker/api-queue-consumer/Dockerfile
+          - file: docker/api-queue-consumer/Dockerfile
             image: stmarkreformed.com-api-queue-consumer
-          - name: api-schedule-runner
-            file: docker/api-schedule-runner/Dockerfile
+          - file: docker/api-schedule-runner/Dockerfile
             image: stmarkreformed.com-api-schedule-runner
     steps:
       - name: Checkout
@@ -93,14 +192,13 @@ jobs:
             ${{ env.IMAGE_NAMESPACE }}/${{ matrix.image }}:${{ github.sha }}
 
   build-app-dependent:
-    name: Build images depending on app
+    name: Build app-dependent image
     runs-on: ubuntu-latest
-    needs: build-independent
+    needs: build-app
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Build and push schedule-runner
+      - name: Build and push
         uses: ./.github/actions/docker-build-push
         with:
           registry: ghcr.io
@@ -118,7 +216,13 @@ jobs:
     name: Deploy to production
     runs-on: self-hosted
     needs:
-      - build-independent
+      - build-api
+      - build-auth
+      - build-app
+      - build-db
+      - build-proxy
+      - build-utility
+      - build-web
       - build-api-dependents
       - build-app-dependent
     steps:
