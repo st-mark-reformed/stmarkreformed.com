@@ -43,8 +43,10 @@ import ShroveTuesdayPancakeFeastAndTalentShowFebruary2018 from './ShroveTuesdayP
 import ShroveTuesdayPancakeFeastAndTalentShowFebruary2017 from './ShroveTuesdayPancakeFeastAndTalentShowFebruary2017';
 import ShroveTuesdayPancakeFeastAndTalentShowFebruary2016 from './ShroveTuesdayPancakeFeastAndTalentShowFebruary2016';
 import JaxonBaptism from './JaxonBaptism';
+import LambertBaptism from './LambertBaptism';
 
 const AllIndex: Array<GalleryEntry> = [
+    LambertBaptism,
     JaxonBaptism,
     BryantBaptism,
     GarnerBaptism,
