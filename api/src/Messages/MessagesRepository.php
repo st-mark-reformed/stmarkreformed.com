@@ -8,6 +8,7 @@ use App\Messages\Persistence\CreateMessage;
 use App\Messages\Persistence\DeleteMessage;
 use App\Messages\Persistence\FindAll;
 use App\Messages\Persistence\FindById;
+use App\Messages\Persistence\PersistMessage;
 use App\Messages\Persistence\Transformer;
 use App\Persistence\CreateUuid;
 use App\Result\Result;
@@ -22,6 +23,7 @@ readonly class MessagesRepository
         private Transformer $transformer,
         private CreateMessage $createMessage,
         private DeleteMessage $deleteMessage,
+        private PersistMessage $persistMessage,
     ) {
     }
 
@@ -35,6 +37,11 @@ readonly class MessagesRepository
         return $this->deleteMessage->delete(
             id: $this->createUuid->fromStringOrInterface(id: $id),
         );
+    }
+
+    public function persist(Message $message): Result
+    {
+        return $this->persistMessage->persist(message: $message);
     }
 
     public function findAll(): Messages

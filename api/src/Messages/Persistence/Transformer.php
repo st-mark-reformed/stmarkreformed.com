@@ -13,6 +13,7 @@ use App\Series\Series;
 use App\Series\SeriesCollection;
 use App\Series\SeriesRepository;
 use DateTimeImmutable;
+use Ramsey\Uuid\Uuid;
 use Throwable;
 
 // phpcs:disable Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
@@ -28,6 +29,7 @@ class Transformer
     public function toEntity(MessageRecord $record): Message
     {
         return new Message(
+            id: Uuid::fromString($record->id),
             isEnabled: $record->enabled,
             date: $this->createDate($record->date),
             title: $record->title,

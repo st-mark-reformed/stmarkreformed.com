@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Messages;
 
+use App\EmptyUuid;
 use App\Profiles\Profile;
 use App\Series\Series;
 use DateTimeImmutable;
 use DateTimeInterface;
+use Ramsey\Uuid\UuidInterface;
 
 use function count;
 
@@ -21,6 +23,7 @@ readonly class Message
     public string $slug;
 
     public function __construct(
+        public UuidInterface $id = new EmptyUuid(),
         public bool $isEnabled = true,
         public DateTimeInterface $date = new DateTimeImmutable(),
         public string $title = '',
@@ -46,7 +49,7 @@ readonly class Message
 
     /**
      * @return array{
-     *     isValid: bool,
+     *     isEnabled: bool,
      *     date: string,
      *     title: string,
      *     slug: string,
@@ -76,7 +79,8 @@ readonly class Message
     public function asArray(): array
     {
         return [
-            'isValid' => $this->isValid,
+            'id' => $this->id->toString(),
+            'isEnabled' => $this->isEnabled,
             'date' => $this->date->format('Y-m-d H:i:s'),
             'title' => $this->title,
             'slug' => $this->slug,
@@ -86,5 +90,149 @@ readonly class Message
             'series' => $this->series->asArray(),
             'description' => $this->description,
         ];
+    }
+
+    public function withEnabled(bool $value): self
+    {
+        return new self(
+            id: $this->id,
+            isEnabled: $value,
+            date: $this->date,
+            title: $this->title,
+            slug: $this->slug,
+            audioPath: $this->audioPath,
+            speaker: $this->speaker,
+            passage: $this->passage,
+            series: $this->series,
+            description: $this->description,
+        );
+    }
+
+    public function withSpeaker(Profile $value): self
+    {
+        return new self(
+            id: $this->id,
+            isEnabled: $this->isEnabled,
+            date: $this->date,
+            title: $this->title,
+            slug: $this->slug,
+            audioPath: $this->audioPath,
+            speaker: $value,
+            passage: $this->passage,
+            series: $this->series,
+            description: $this->description,
+        );
+    }
+
+    public function withDate(DateTimeImmutable $value): self
+    {
+        return new self(
+            id: $this->id,
+            isEnabled: $this->isEnabled,
+            date: $value,
+            title: $this->title,
+            slug: $this->slug,
+            audioPath: $this->audioPath,
+            speaker: $this->speaker,
+            passage: $this->passage,
+            series: $this->series,
+            description: $this->description,
+        );
+    }
+
+    public function withTitle(string $value): self
+    {
+        return new self(
+            id: $this->id,
+            isEnabled: $this->isEnabled,
+            date: $this->date,
+            title: $value,
+            slug: $this->slug,
+            audioPath: $this->audioPath,
+            speaker: $this->speaker,
+            passage: $this->passage,
+            series: $this->series,
+            description: $this->description,
+        );
+    }
+
+    public function withSlug(string $value): self
+    {
+        return new self(
+            id: $this->id,
+            isEnabled: $this->isEnabled,
+            date: $this->date,
+            title: $this->title,
+            slug: $value,
+            audioPath: $this->audioPath,
+            speaker: $this->speaker,
+            passage: $this->passage,
+            series: $this->series,
+            description: $this->description,
+        );
+    }
+
+    public function withAudioPath(string $value): self
+    {
+        return new self(
+            id: $this->id,
+            isEnabled: $this->isEnabled,
+            date: $this->date,
+            title: $this->title,
+            slug: $this->slug,
+            audioPath: $value,
+            speaker: $this->speaker,
+            passage: $this->passage,
+            series: $this->series,
+            description: $this->description,
+        );
+    }
+
+    public function withPassage(string $value): self
+    {
+        return new self(
+            id: $this->id,
+            isEnabled: $this->isEnabled,
+            date: $this->date,
+            title: $this->title,
+            slug: $this->slug,
+            audioPath: $this->audioPath,
+            speaker: $this->speaker,
+            passage: $value,
+            series: $this->series,
+            description: $this->description,
+        );
+    }
+
+    public function withSeries(Series $value): self
+    {
+        return new self(
+            id: $this->id,
+            isEnabled: $this->isEnabled,
+            date: $this->date,
+            title: $this->title,
+            slug: $this->slug,
+            audioPath: $this->audioPath,
+            speaker: $this->speaker,
+            passage: $this->passage,
+            series: $value,
+            description: $this->description,
+        );
+    }
+
+    public function withDescription(string $value): self
+    {
+        return new self(
+            id: $this->id,
+            isEnabled: $this->isEnabled,
+            date: $this->date,
+            title: $this->title,
+            slug: $this->slug,
+            audioPath: $this->audioPath,
+            speaker: $this->speaker,
+            passage: $this->passage,
+            series: $this->series,
+            description: $value,
+        );
     }
 }
