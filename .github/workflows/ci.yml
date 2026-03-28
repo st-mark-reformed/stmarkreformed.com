@@ -9,23 +9,10 @@ on:
 env:
   IMAGE_NAMESPACE: ghcr.io/st-mark-reformed
 
-x-build-job: &build-job
-  runs-on: ubuntu-latest
-  steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-
-    - name: Build and push
-      uses: ./.github/actions/docker-build-push
-      with:
-        registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-
 jobs:
   build-api:
-    <<: *build-job
     name: Build api image
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -44,11 +31,12 @@ jobs:
             ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-api:${{ github.sha }}
 
   build-auth:
-    <<: *build-job
     name: Build auth image
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Build and push
         uses: ./.github/actions/docker-build-push
         with:
@@ -64,8 +52,8 @@ jobs:
             ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-auth:${{ github.sha }}
 
   build-app:
-    <<: *build-job
     name: Build app image
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -84,8 +72,8 @@ jobs:
             ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-app:${{ github.sha }}
 
   build-db:
-    <<: *build-job
     name: Build db image
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -104,8 +92,8 @@ jobs:
             ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-db:${{ github.sha }}
 
   build-proxy:
-    <<: *build-job
     name: Build proxy image
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -124,8 +112,8 @@ jobs:
             ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-proxy:${{ github.sha }}
 
   build-utility:
-    <<: *build-job
     name: Build utility image
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -144,8 +132,8 @@ jobs:
             ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-utility:${{ github.sha }}
 
   build-web:
-    <<: *build-job
     name: Build web image
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -228,7 +216,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Copy files to prod server
         uses: appleboy/scp-action@master
         with:
@@ -237,7 +224,6 @@ jobs:
           key: ${{ secrets.PROD_DEPLOY_SSH_PRIVATE_KEY }}
           source: "docker/application/.env, docker/proxy/.env, docker/web/.env, docker/api/.env, docker/auth/.env, docker/docker-compose.prod.yml"
           target: "/root/stmarkreformed.com"
-
       - name: Log in to prod server, pull images, and deploy
         uses: appleboy/ssh-action@master
         with:
