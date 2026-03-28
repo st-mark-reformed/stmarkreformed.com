@@ -237,9 +237,10 @@ jobs:
           username: ${{ vars.PROD_DEPLOY_SSH_USER }}
           host: ${{ vars.PROD_DEPLOY_SSH_HOST }}
           key: ${{ secrets.PROD_DEPLOY_SSH_PRIVATE_KEY }}
-          source: "docker/application/.env, docker/proxy/.env, docker/web/.env, docker/api/.env, docker/auth/.env, docker/docker-compose.prod.yml"
+          source: "docker/application/.env, docker/proxy/.env, docker/web/.env, docker/api/.env, docker/auth/.env, docker/docker-compose.prod.yml, .github/workflows/migrate.sh"
           target: "/root/stmarkreformed.com"
-      - name: Log in to prod server, pull images, and deploy
+
+      - name: Log in to prod server, pull images, deploy, and migrate
         uses: appleboy/ssh-action@master
         with:
           username: ${{ vars.PROD_DEPLOY_SSH_USER }}
@@ -276,18 +277,7 @@ jobs:
               --resolve-image always \
               smrc;
 
-            docker run --rm \
-              --network smrc_default \
-              --env-file ./api/.env \
-              --entrypoint "" \
-              --name smrc_api-migrations \
-              ghcr.io/st-mark-reformed/stmarkreformed.com-api \
-              bash -c "php cli migrate:up"
-
-            docker run --rm \
-              --network smrc_default \
-              --env-file ./auth/.env \
-              --entrypoint "" \
-              --name smrc_auth-migrations \
-              ghcr.io/st-mark-reformed/stmarkreformed.com-auth \
-              bash -c "php cli migrate:up"
+            cd /root/stmarkreformed.com/.github/workflows;
+            chmod +x ./migrate.sh;
+            ./migrate.sh api;
+            ./migrate.sh auth;
