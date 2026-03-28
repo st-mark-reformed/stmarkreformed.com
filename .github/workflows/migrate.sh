@@ -14,8 +14,8 @@ TIMEOUT_SECONDS=600
 SLEEP_SECONDS=2
 
 ENV_FILES=(
-    "./${SERVICE}/.env"
-    "./${SERVICE}/.env.local"
+    "/root/stmarkreformed.com/docker/${SERVICE}/.env"
+    "/root/stmarkreformed.com/docker/${SERVICE}/.env.local"
 )
 
 COMMAND='php cli migrate:up'
