@@ -23,8 +23,8 @@ readonly class PostEditProfileAction
 
     public function __construct(
         private ResultResponder $responder,
+        private ProfileFactory $requestProfileFactory,
         private ProfilesRepository $profilesRepository,
-        private RequestProfileFactory $requestProfileFactory,
         private UpdatedProfileFactory $updatedProfileFactory,
     ) {
     }

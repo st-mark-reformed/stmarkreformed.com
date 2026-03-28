@@ -68,7 +68,7 @@ readonly class CreateSeries
         return new Result();
     }
 
-    public function isUnique(NewSeries $series): Result
+    private function isUnique(NewSeries $series): Result
     {
         $slugMatch = $this->findBySlug->find(slug: $series->slug->toString());
 

@@ -29,7 +29,7 @@ readonly class PersistProfile
             );
         }
 
-        $validIdResult = $this->idIsValid($profile);
+        $validIdResult = $this->idIsValid(profile: $profile);
 
         if (! $validIdResult->success) {
             return $validIdResult;

@@ -12,7 +12,7 @@ use Ramsey\Uuid\Uuid;
 use RxAnte\AppBootstrap\Request\ServerRequest;
 use Throwable;
 
-readonly class RequestProfileFactory
+readonly class ProfileFactory
 {
     public function createFromRequest(ServerRequest $request): Profile
     {

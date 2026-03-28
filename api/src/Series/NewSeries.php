@@ -17,15 +17,7 @@ readonly class NewSeries
         public string $title = '',
         public SeriesSlug $slug = new SeriesSlug(),
     ) {
-        $messages = [];
-
-        if ($title === '') {
-            $messages[] = 'Title is required';
-        }
-
-        if (! $slug->isValid) {
-            $messages[] = $slug->validationMessage;
-        }
+        $messages = SeriesValidation::validate($this);
 
         $this->isValid = count($messages) < 1;
 

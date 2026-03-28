@@ -18,11 +18,11 @@ readonly class UpdatedProfileFactory
         }
 
         return $persistentProfileResult->profile
-            ->withTitleOrHonorific($requestProfile->titleOrHonorific)
-            ->withFirstName($requestProfile->firstName)
-            ->withLastName($requestProfile->lastName)
-            ->withEmail($requestProfile->email)
-            ->withLeadershipPosition($requestProfile->leadershipPosition)
-            ->withBio($requestProfile->bio);
+            ->withTitleOrHonorific(value: $requestProfile->titleOrHonorific)
+            ->withFirstName(value: $requestProfile->firstName)
+            ->withLastName(value: $requestProfile->lastName)
+            ->withEmail(value: $requestProfile->email)
+            ->withLeadershipPosition(value: $requestProfile->leadershipPosition)
+            ->withBio(value: $requestProfile->bio);
     }
 }

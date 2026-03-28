@@ -12,6 +12,7 @@ use App\Series\Persistence\FindAll;
 use App\Series\Persistence\FindById;
 use App\Series\Persistence\FindBySlug;
 use App\Series\Persistence\FindByTitle;
+use App\Series\Persistence\PersistSeries;
 use App\Series\Persistence\Transformer;
 use Ramsey\Uuid\UuidInterface;
 
@@ -26,6 +27,7 @@ readonly class SeriesRepository
         private FindByTitle $findByTitle,
         private CreateSeries $createSeries,
         private DeleteSeries $deleteSeries,
+        private PersistSeries $persistSeries,
     ) {
     }
 
@@ -46,6 +48,11 @@ readonly class SeriesRepository
             id: $id,
             slug: $slug,
         );
+    }
+
+    public function persist(Series $series): Result
+    {
+        return $this->persistSeries->persist(series: $series);
     }
 
     public function findAll(): SeriesCollection
