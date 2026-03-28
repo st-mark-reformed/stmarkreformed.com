@@ -27,6 +27,7 @@ trap cleanup EXIT
 
 docker_args=(
     service create
+    --detach
     --name "$SERVICE_NAME"
     --network "$NETWORK"
     --with-registry-auth
