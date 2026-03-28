@@ -18,6 +18,7 @@ use App\Series\Admin\EditSeries\GetEditSeries\GetEditSeriesAction;
 use App\Series\Admin\EditSeries\PostEditSeries\PostEditSeriesAction;
 use App\Series\Admin\GetSeriesListAction;
 use App\Series\Admin\NewSeries\PostNewSeriesAction;
+use App\Tinker;
 use BuzzingPixel\Queue\Http\Routes\Route;
 use BuzzingPixel\Queue\Http\Routes\RoutesFactory as QueueRoutesFactory;
 use Config\RuntimeConfigOptions;
@@ -30,6 +31,13 @@ readonly class ApplyRoutes
 {
     public function onDispatch(ApplyRoutesEvent $routes): void
     {
+        $config = $routes->getContainer()->get(RuntimeConfig::class);
+        assert($config instanceof RuntimeConfig);
+
+        if ($config->getBoolean(RuntimeConfigOptions::DEV_MODE)) {
+            Tinker::applyRoute(routes: $routes);
+        }
+
         Healthcheck::applyRoute(routes: $routes);
         PostContactAction::applyRoute(routes: $routes);
         GetProfilesListAction::applyRoute(routes: $routes);
@@ -44,10 +52,6 @@ readonly class ApplyRoutes
         GetSeriesListAction::applyRoute(routes: $routes);
         GetEditSeriesAction::applyRoute(routes: $routes);
         PostEditSeriesAction::applyRoute(routes: $routes);
-
-        $config = $routes->getContainer()->get(RuntimeConfig::class);
-
-        assert($config instanceof RuntimeConfig);
 
         if (
             ! $config->getBoolean(
