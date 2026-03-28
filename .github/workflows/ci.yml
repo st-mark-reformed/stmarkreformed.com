@@ -225,9 +225,9 @@ jobs:
       - build-proxy
       - build-utility
       - build-web
-      - build-api-dependents-queue-consumer
-      - build-api-dependents-schedule-runner
-      - build-app-dependent
+      - build-api-dependent-queue-consumer
+      - build-api-dependent-schedule-runner
+      - build-app-dependent-schedule-runner
     steps:
       - name: Checkout
         uses: actions/checkout@v4
