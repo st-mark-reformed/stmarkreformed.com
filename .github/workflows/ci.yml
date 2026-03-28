@@ -248,30 +248,46 @@ jobs:
           script: |
             set -e
 
-            cd /root/stmarkreformed.com/docker
+            cd /root/stmarkreformed.com/docker;
 
-            echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+            echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin;
 
-            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-api
-            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-auth
-            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-api-queue-consumer
-            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-api-schedule-runner
-            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-app
-            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-db
-            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-proxy
-            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner
-            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-utility
-            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-web
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-api;
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-auth;
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-api-queue-consumer;
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-api-schedule-runner;
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-app;
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-db;
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-proxy;
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner;
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-utility;
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-web;
 
-            cat /root/stmarkreformed.com/docker/api/.env.local >> /root/stmarkreformed.com/docker/api/.env
-            cat /root/stmarkreformed.com/docker/auth/.env.local >> /root/stmarkreformed.com/docker/auth/.env
-            cat /root/stmarkreformed.com/docker/application/.env.local >> /root/stmarkreformed.com/docker/application/.env
-            cat /root/stmarkreformed.com/docker/proxy/.env.local >> /root/stmarkreformed.com/docker/proxy/.env
-            cat /root/stmarkreformed.com/docker/web/.env.local >> /root/stmarkreformed.com/docker/web/.env
+            cat /root/stmarkreformed.com/docker/api/.env.local >> /root/stmarkreformed.com/docker/api/.env;
+            cat /root/stmarkreformed.com/docker/auth/.env.local >> /root/stmarkreformed.com/docker/auth/.env;
+            cat /root/stmarkreformed.com/docker/application/.env.local >> /root/stmarkreformed.com/docker/application/.env;
+            cat /root/stmarkreformed.com/docker/proxy/.env.local >> /root/stmarkreformed.com/docker/proxy/.env;
+            cat /root/stmarkreformed.com/docker/web/.env.local >> /root/stmarkreformed.com/docker/web/.env;
 
             docker stack deploy \
               --compose-file docker-compose.prod.yml \
               --prune \
               --with-registry-auth \
               --resolve-image always \
-              smrc
+              smrc;
+
+            docker run -it --rm \
+              --network smrc_default \
+              --env-file ./api/.env \
+              --entrypoint "" \
+              --name smrc_api-migrations \
+              ghcr.io/st-mark-reformed/stmarkreformed.com-api \
+              bash -c "php cli migrate:up"
+
+            docker run -it --rm \
+              --network smrc_default \
+              --env-file ./auth/.env \
+              --entrypoint "" \
+              --name smrc_auth-migrations \
+              ghcr.io/st-mark-reformed/stmarkreformed.com-auth \
+              bash -c "php cli migrate:up"
