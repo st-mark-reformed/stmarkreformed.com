@@ -7,6 +7,7 @@ namespace App\Messages;
 use App\Profiles\Profile;
 use App\Series\Series;
 use DateTimeImmutable;
+use DateTimeInterface;
 
 use function count;
 
@@ -21,7 +22,7 @@ readonly class Message
 
     public function __construct(
         public bool $isEnabled = true,
-        public DateTimeImmutable $date = new DateTimeImmutable(),
+        public DateTimeInterface $date = new DateTimeImmutable(),
         public string $title = '',
         string|null $slug = null,
         public string $audioPath = '',

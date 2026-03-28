@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Profiles;
 
+use Ramsey\Uuid\UuidInterface;
+
+use function array_find;
 use function array_map;
 use function array_values;
 
@@ -40,6 +43,16 @@ readonly class Profiles
         return array_map(
             static fn (Profile $profile) => $profile->asArray(),
             $this->profiles,
+        );
+    }
+
+    public function findById(UuidInterface|string $id): Profile|null
+    {
+        $id = $id instanceof UuidInterface ? $id->toString() : $id;
+
+        return array_find(
+            $this->profiles,
+            static fn (Profile $profile) => $profile->id->toString() === $id,
         );
     }
 }

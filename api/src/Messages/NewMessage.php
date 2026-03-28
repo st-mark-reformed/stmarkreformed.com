@@ -6,6 +6,7 @@ namespace App\Messages;
 
 use App\EmptyUuid;
 use DateTimeImmutable;
+use DateTimeInterface;
 use Ramsey\Uuid\UuidInterface;
 
 use function count;
@@ -21,7 +22,7 @@ readonly class NewMessage
 
     public function __construct(
         public bool $isEnabled = true,
-        public DateTimeImmutable $date = new DateTimeImmutable(),
+        public DateTimeInterface $date = new DateTimeImmutable(),
         public string $title = '',
         public string $audioPath = '',
         public UuidInterface $speakerId = new EmptyUuid(),
