@@ -43,4 +43,48 @@ readonly class Message
 
         $this->validationMessages = $messages;
     }
+
+    /**
+     * @return array{
+     *     isValid: bool,
+     *     date: string,
+     *     title: string,
+     *     slug: string,
+     *     audioPath: string,
+     *     speaker: array{
+     *         id: string,
+     *         titleOrHonorific: string,
+     *         firstName: string,
+     *         lastName: string,
+     *         fullName: string,
+     *         fullNameWithHonorific: string,
+     *         email: string,
+     *         leadershipPosition: string,
+     *         leadershipPositionHumanReadable: string,
+     *         bio: string,
+     *         hasMessages: bool,
+     *     },
+     *     passage: string,
+     *     series: array{
+     *         id: string,
+     *         title: string,
+     *         slug: string,
+     *     },
+     *     description: string,
+     * }
+     */
+    public function asArray(): array
+    {
+        return [
+            'isValid' => $this->isValid,
+            'date' => $this->date->format('Y-m-d H:i:s'),
+            'title' => $this->title,
+            'slug' => $this->slug,
+            'audioPath' => $this->audioPath,
+            'speaker' => $this->speaker->asArray(),
+            'passage' => $this->passage,
+            'series' => $this->series->asArray(),
+            'description' => $this->description,
+        ];
+    }
 }

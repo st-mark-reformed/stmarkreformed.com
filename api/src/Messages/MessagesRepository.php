@@ -6,6 +6,7 @@ namespace App\Messages;
 
 use App\Messages\Persistence\CreateMessage;
 use App\Messages\Persistence\DeleteMessage;
+use App\Messages\Persistence\FindAll;
 use App\Messages\Persistence\FindById;
 use App\Messages\Persistence\Transformer;
 use App\Persistence\CreateUuid;
@@ -15,6 +16,7 @@ use Ramsey\Uuid\UuidInterface;
 readonly class MessagesRepository
 {
     public function __construct(
+        private FindAll $findAll,
         private FindById $findById,
         private CreateUuid $createUuid,
         private Transformer $transformer,
@@ -33,6 +35,11 @@ readonly class MessagesRepository
         return $this->deleteMessage->delete(
             id: $this->createUuid->fromStringOrInterface(id: $id),
         );
+    }
+
+    public function findAll(): Messages
+    {
+        return $this->transformer->toEntities(records: $this->findAll->find());
     }
 
     public function findById(string|UuidInterface $id): MessageResult

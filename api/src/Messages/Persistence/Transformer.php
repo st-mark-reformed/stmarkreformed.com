@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Messages\Persistence;
 
 use App\Messages\Message;
+use App\Messages\Messages;
 use App\Profiles\Profile;
 use App\Profiles\Profiles;
 use App\Profiles\ProfilesRepository;
@@ -36,6 +37,15 @@ class Transformer
             passage: $record->passage,
             series: $this->findSeries(seriesId: $record->series_id),
             description: $record->description,
+        );
+    }
+
+    public function toEntities(MessagesRecords $records): Messages
+    {
+        return new Messages(
+            items: $records->map(
+                callback: fn (MessageRecord $r) => $this->toEntity(record: $r),
+            ),
         );
     }
 

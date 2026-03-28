@@ -24,7 +24,7 @@ readonly class Transformer
     {
         return new SeriesCollection(
             items: $records->map(
-                callback: fn (SeriesRecord $r) => $this->toEntity($r),
+                callback: fn (SeriesRecord $r) => $this->toEntity(record: $r),
             ),
         );
     }
