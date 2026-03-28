@@ -254,6 +254,7 @@ jobs:
             docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-api
             docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-auth
             docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-api-queue-consumer
+            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-api-schedule-runner
             docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-app
             docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-db
             docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-proxy
