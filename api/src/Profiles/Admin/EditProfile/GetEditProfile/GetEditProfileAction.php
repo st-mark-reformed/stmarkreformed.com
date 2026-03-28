@@ -22,7 +22,7 @@ readonly class GetEditProfileAction
 
     public function __construct(
         private ProfilesRepository $profilesRepository,
-        private GetEditProfileResponderFactory $responderFactory,
+        private EditProfileResponderFactory $responderFactory,
     ) {
     }
 

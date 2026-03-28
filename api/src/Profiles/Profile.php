@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace App\Profiles;
 
 use App\EmptyUuid;
+use JsonSerializable;
 use Ramsey\Uuid\UuidInterface;
 
 use function count;
 use function trim;
 
-readonly class Profile
+// phpcs:disable SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingTraversableTypeHintSpecification
+
+readonly class Profile implements JsonSerializable
 {
     public bool $isValid;
 
@@ -42,6 +45,12 @@ readonly class Profile
         $this->isValid = count($messages) < 1;
 
         $this->validationMessages = $messages;
+    }
+
+    /** @phpstan-ignore-next-line */
+    public function jsonSerialize(): array
+    {
+        return $this->asArray();
     }
 
     /**

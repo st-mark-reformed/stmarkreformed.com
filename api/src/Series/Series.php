@@ -5,15 +5,24 @@ declare(strict_types=1);
 namespace App\Series;
 
 use App\EmptyUuid;
+use JsonSerializable;
 use Ramsey\Uuid\UuidInterface;
 
-readonly class Series
+// phpcs:disable SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingTraversableTypeHintSpecification
+
+readonly class Series implements JsonSerializable
 {
     public function __construct(
         public UuidInterface $id = new EmptyUuid(),
         public string $title = '',
         public SeriesSlug $slug = new SeriesSlug(),
     ) {
+    }
+
+    /** @phpstan-ignore-next-line */
+    public function jsonSerialize(): array
+    {
+        return $this->asArray();
     }
 
     /**

@@ -14,6 +14,7 @@ use App\Profiles\Admin\GetHasEditProfilesRoleAction;
 use App\Profiles\Admin\GetLeadershipPositionsAction;
 use App\Profiles\Admin\GetProfilesListAction;
 use App\Profiles\Admin\NewProfile\PostNewProfileAction;
+use App\Series\Admin\EditSeries\GetEditSeries\GetEditSeriesAction;
 use App\Series\Admin\GetSeriesListAction;
 use App\Series\Admin\NewSeries\PostNewSeriesAction;
 use BuzzingPixel\Queue\Http\Routes\Route;
@@ -40,6 +41,7 @@ readonly class ApplyRoutes
         GetHasEditMessagesRoleAction::applyRoute(routes: $routes);
         PostNewSeriesAction::applyRoute(routes: $routes);
         GetSeriesListAction::applyRoute(routes: $routes);
+        GetEditSeriesAction::applyRoute(routes: $routes);
 
         $config = $routes->getContainer()->get(RuntimeConfig::class);
 

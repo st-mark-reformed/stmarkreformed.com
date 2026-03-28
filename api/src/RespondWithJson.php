@@ -2,19 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Profiles\Admin\EditProfile\GetEditProfile;
+namespace App;
 
-use App\Profiles\Profile;
-use App\Responder;
+use JsonSerializable;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 
 use function json_encode;
 
-readonly class GetEditProfileRespondWithProfile implements Responder
+readonly class RespondWithJson implements Responder
 {
     public function __construct(
-        private Profile $profile,
+        private JsonSerializable $entity,
         private ResponseFactoryInterface $factory,
     ) {
     }
@@ -24,7 +23,7 @@ readonly class GetEditProfileRespondWithProfile implements Responder
         $response = $this->factory->createResponse();
 
         $response->getBody()->write((string) json_encode(
-            $this->profile->asArray(),
+            $this->entity->jsonSerialize(),
         ));
 
         return $response->withHeader('Content-type', 'application/json');

@@ -2,18 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\Profiles\Admin\EditProfile\GetEditProfile;
+namespace App;
 
-use App\Responder;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 
 use function json_encode;
 
-readonly class GetEditProfileRespondWithNotFound implements Responder
+readonly class RespondWithNotFound implements Responder
 {
-    public function __construct(private ResponseFactoryInterface $factory)
-    {
+    public function __construct(
+        private ResponseFactoryInterface $factory,
+        private string $message = 'Not found',
+    ) {
     }
 
     public function respond(): ResponseInterface
@@ -23,7 +24,7 @@ readonly class GetEditProfileRespondWithNotFound implements Responder
         $response->getBody()->write((string) json_encode([
             'success' => false,
             'status' => 'error',
-            'message' => 'Profile not found',
+            'message' => $this->message,
         ]));
 
         return $response->withHeader('Content-type', 'application/json');

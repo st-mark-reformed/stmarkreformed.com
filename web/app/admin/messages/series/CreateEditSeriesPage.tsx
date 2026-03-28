@@ -80,6 +80,10 @@ export default function CreateEditSeriesPage (
                             content: 'Messages',
                             href: '/admin/messages',
                         },
+                        {
+                            content: 'Series',
+                            href: '/admin/messages/series',
+                        },
                     ]
                 }
             />
@@ -121,7 +125,7 @@ export default function CreateEditSeriesPage (
                     defaultValue={state.values.slug}
                     error={state.ok ? undefined : state.errors.slug}
                 />
-                <FormButtons secondaryLinkHref="/admin/messages" />
+                <FormButtons secondaryLinkHref="/admin/messages/series" />
             </Form>
         </>
     );
