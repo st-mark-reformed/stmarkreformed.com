@@ -16,10 +16,15 @@ inputs:
     required: false
     description: cache-from value for buildx
     default: ""
-  push:
-    required: false
-    description: Whether to push the image
-    default: "true"
+  registry:
+    required: true
+    description: Container registry
+  username:
+    required: true
+    description: Registry username
+  password:
+    required: true
+    description: Registry password
 
 runs:
   using: composite
@@ -30,9 +35,9 @@ runs:
     - name: Log in to registry
       uses: docker/login-action@v3
       with:
-        registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: ${{ inputs.registry }}
+        username: ${{ inputs.username }}
+        password: ${{ inputs.password }}
 
     - name: Build and push
       uses: docker/build-push-action@v6
@@ -40,7 +45,7 @@ runs:
         context: .
         file: ${{ inputs.file }}
         platforms: linux/amd64
-        push: ${{ inputs.push }}
+        push: true
         tags: ${{ inputs.tags }}
         build-args: ${{ inputs.build-args }}
         cache-from: ${{ inputs.cache-from }}

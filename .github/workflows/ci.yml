@@ -48,10 +48,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Build and push
         uses: ./.github/actions/docker-build-push
         with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
           file: ${{ matrix.file }}
           cache-from: type=registry,ref=${{ matrix.cache_from }}
           build-args: |
@@ -77,10 +79,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Build and push
         uses: ./.github/actions/docker-build-push
         with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
           file: ${{ matrix.file }}
           build-args: |
             API_IMAGE=${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-api:${{ github.sha }}
@@ -99,6 +103,9 @@ jobs:
       - name: Build and push schedule-runner
         uses: ./.github/actions/docker-build-push
         with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
           file: docker/schedule-runner/Dockerfile
           build-args: |
             BUILDKIT_INLINE_CACHE=1
