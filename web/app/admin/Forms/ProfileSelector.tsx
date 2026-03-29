@@ -1,31 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import TableRadioButtons from '../../Forms/TableRadioButtons';
-import PartialPageLoading from '../../../PartialPageLoading';
-import { LeadershipPositionOption } from '../leadership-position-options/GetLeadershipPositionOptions';
+import SearchableDropdown, { Option } from './SearchableDropdown';
+import PartialPageLoading from '../../PartialPageLoading';
 
-export default function LeadershipPositionRadioButtons (
+export default function ProfileSelector (
     {
+        label,
+        name,
         defaultValue = undefined,
         error = undefined,
     }: {
+        label: string;
+        name: string;
         defaultValue?: string | undefined;
         error?: string | undefined;
     },
 ) {
     const [
-        positions,
-        setPositions,
-    ] = useState<LeadershipPositionOption[] | null>(null);
+        profiles,
+        setProfiles,
+    ] = useState<Option[] | null>(null);
 
     const [loadingError, setLoadingError] = useState<string | null>(null);
 
     useEffect(() => {
         let cancelled = false;
 
-        async function loadPositions () {
+        async function loadData () {
             try {
                 const response = await fetch(
-                    '/admin/profiles/leadership-position-options',
+                    '/admin/profiles/dropdown-list',
                     {
                         cache: 'no-store',
                     },
@@ -35,13 +38,13 @@ export default function LeadershipPositionRadioButtons (
                     throw new Error('Failed to load leadership positions');
                 }
 
-                const data = await response.json() as LeadershipPositionOption[];
+                const data = await response.json() as Option[];
 
                 if (cancelled) {
                     return;
                 }
 
-                setPositions(data);
+                setProfiles(data);
             } catch (error_) {
                 if (cancelled) {
                     return;
@@ -55,40 +58,28 @@ export default function LeadershipPositionRadioButtons (
             }
         }
 
-        loadPositions();
+        loadData();
 
         return () => {
             cancelled = true;
         };
-    }, []);
+    });
 
     if (loadingError) {
         return <p className="text-sm text-red-600">{loadingError}</p>;
     }
 
-    if (!positions) {
+    if (!profiles) {
         return <PartialPageLoading />;
     }
 
     return (
-        <TableRadioButtons
+        <SearchableDropdown
+            label={label}
+            name={name}
+            options={profiles}
+            defaultValue={defaultValue}
             error={error}
-            label="Leadership Position"
-            name="leadershipPosition"
-            options={positions.map((position, index) => {
-                let defaultChecked;
-
-                if (defaultValue) {
-                    defaultChecked = defaultValue === position.name;
-                } else {
-                    defaultChecked = index === 0;
-                }
-
-                return ({
-                    ...position,
-                    defaultChecked,
-                });
-            })}
         />
     );
 }

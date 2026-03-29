@@ -4,7 +4,7 @@ import React, {
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import InputWrapper from './InputWrapper';
 
-type Option = {
+export type Option = {
     value: string;
     label: string;
 };

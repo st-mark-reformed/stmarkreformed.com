@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Profiles;
 
+use App\DropdownList\DropdownListEntity;
+use App\DropdownList\DropdownListItems;
 use JsonSerializable;
 use Ramsey\Uuid\UuidInterface;
 
@@ -53,6 +55,33 @@ readonly class Profiles implements JsonSerializable
             static fn (Profile $profile) => $profile->asArray(),
             $this->profiles,
         );
+    }
+
+    /**
+     * @param callable(Profile): T $callback
+     *
+     * @return T[]
+     *
+     * @template T
+     */
+    public function map(callable $callback): array
+    {
+        return array_values(array_map(
+            $callback,
+            $this->profiles,
+        ));
+    }
+
+    public function asDropdownList(): DropdownListItems
+    {
+        return new DropdownListItems($this->map(
+            static function (Profile $profile): DropdownListEntity {
+                return new DropdownListEntity(
+                    $profile->id->toString(),
+                    $profile->fullNameWithHonorific,
+                );
+            },
+        ));
     }
 
     public function findById(UuidInterface|string $id): Profile|null

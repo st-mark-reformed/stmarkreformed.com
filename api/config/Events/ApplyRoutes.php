@@ -16,6 +16,7 @@ use App\Profiles\Admin\EditProfile\GetEditProfile\GetEditProfileAction;
 use App\Profiles\Admin\EditProfile\PostEditProfile\PostEditProfileAction;
 use App\Profiles\Admin\GetHasEditProfilesRoleAction;
 use App\Profiles\Admin\GetLeadershipPositionsAction;
+use App\Profiles\Admin\GetProfilesDropdownValues;
 use App\Profiles\Admin\GetProfilesListAction;
 use App\Profiles\Admin\NewProfile\PostNewProfileAction;
 use App\Series\Admin\EditSeries\GetEditSeries\GetEditSeriesAction;
@@ -60,6 +61,7 @@ readonly class ApplyRoutes
         GetMessagesListAction::applyRoute(routes: $routes);
         GetEditMessageAction::applyRoute(routes: $routes);
         PostEditMessageAction::applyRoute(routes: $routes);
+        GetProfilesDropdownValues::applyRoute(routes: $routes);
 
         if (
             ! $config->getBoolean(

@@ -11,6 +11,7 @@ import TextInput from '../Forms/TextInput';
 import Toggle from '../Forms/Toggle';
 import FormButtons from '../Forms/FormButtons';
 import SearchableDropdown from '../Forms/SearchableDropdown';
+import ProfileSelector from '../Forms/ProfileSelector';
 
 export default function CreateEditMessagePage (
     {
@@ -120,7 +121,6 @@ export default function CreateEditMessagePage (
                     defaultValue={state.values.title}
                     error={state.ok ? undefined : state.errors.title}
                 />
-                {/* TODO: Datetime field */}
                 <TextInput
                     label="Date"
                     name="date"
@@ -150,15 +150,9 @@ export default function CreateEditMessagePage (
                     error={state.ok ? undefined : state.errors.seriesId}
                 />
                 {/* TODO: Wrap the speaker dropdown to retrieve options */}
-                <SearchableDropdown
+                <ProfileSelector
                     label="Speaker"
                     name="speakerId"
-                    options={[
-                        { value: '019d22e9-38a3-71d3-a7cb-4c428325c4ad', label: 'Foo title Test Foo Bar bar last asdf' },
-                        { value: '019d22e9-da14-7394-a63a-6a1495e3dff2', label: 'Rev. Joe Thacker' },
-                        { value: '019d255f-4c4d-7060-8e2c-2bf57d0db33e', label: 'New Test Profile' },
-                        { value: '019d2d36-9e4e-714a-b080-da3e6a781bed', label: 'Bar Baz Foo' },
-                    ]}
                     defaultValue={state.values.speakerId}
                     error={state.ok ? undefined : state.errors.speakerId}
                 />
