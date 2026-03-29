@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace App\Messages;
 
+use JsonSerializable;
+
 use function array_map;
 use function array_values;
 
-readonly class Messages
+// phpcs:disable SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingTraversableTypeHintSpecification
+
+readonly class Messages implements JsonSerializable
 {
     /** @var Message[] */
     public array $items;
@@ -19,6 +23,12 @@ readonly class Messages
             static fn (Message $m) => $m,
             $items,
         ));
+    }
+
+    /** @phpstan-ignore-next-line */
+    public function jsonSerialize(): array
+    {
+        return $this->asArray();
     }
 
     /**

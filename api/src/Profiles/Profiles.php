@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace App\Profiles;
 
+use JsonSerializable;
 use Ramsey\Uuid\UuidInterface;
 
 use function array_find;
 use function array_map;
 use function array_values;
 
-readonly class Profiles
+// phpcs:disable SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingTraversableTypeHintSpecification
+
+readonly class Profiles implements JsonSerializable
 {
     /** @var Profile[] */
     public array $profiles;
@@ -22,6 +25,12 @@ readonly class Profiles
             static fn (Profile $profile) => $profile,
             $profiles,
         ));
+    }
+
+    /** @phpstan-ignore-next-line */
+    public function jsonSerialize(): array
+    {
+        return $this->asArray();
     }
 
     /**
