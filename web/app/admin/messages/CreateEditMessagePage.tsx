@@ -12,6 +12,7 @@ import Toggle from '../Forms/Toggle';
 import FormButtons from '../Forms/FormButtons';
 import SearchableDropdown from '../Forms/SearchableDropdown';
 import ProfileSelector from '../Forms/ProfileSelector';
+import SeriesSelector from '../Forms/SeriesSelector';
 
 export default function CreateEditMessagePage (
     {
@@ -134,22 +135,12 @@ export default function CreateEditMessagePage (
                     defaultValue={state.values.passage}
                     error={state.ok ? undefined : state.errors.passage}
                 />
-                {/* TODO: Wrap the series dropdown to retrieve options */}
-                <SearchableDropdown
+                <SeriesSelector
                     label="Series"
                     name="seriesId"
-                    options={[
-                        { value: '019d2aa5-c11d-7321-851d-59de5c202e15', label: 'ASDF' },
-                        { value: '019d2a96-c316-7079-9e55-69e57ce14672', label: 'Baz' },
-                        { value: '019d2a96-e847-7112-9917-874315c42430', label: 'Foo' },
-                        { value: '019d2d28-f3b0-70e2-aa30-46ce82031297', label: 'Thing' },
-                        { value: '019d2d5b-29c5-717d-ac71-bd3dec86fc95', label: 'Starfleet' },
-                        { value: '019d3256-8cdd-731d-9e53-f9c093ab44a5', label: 'QWERTY' },
-                    ]}
                     defaultValue={state.values.seriesId}
                     error={state.ok ? undefined : state.errors.seriesId}
                 />
-                {/* TODO: Wrap the speaker dropdown to retrieve options */}
                 <ProfileSelector
                     label="Speaker"
                     name="speakerId"

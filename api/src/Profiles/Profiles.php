@@ -74,11 +74,11 @@ readonly class Profiles implements JsonSerializable
 
     public function asDropdownList(): DropdownListItems
     {
-        return new DropdownListItems($this->map(
-            static function (Profile $profile): DropdownListEntity {
+        return new DropdownListItems(items: $this->map(
+            callback: static function (Profile $profile): DropdownListEntity {
                 return new DropdownListEntity(
-                    $profile->id->toString(),
-                    $profile->fullNameWithHonorific,
+                    value: $profile->id->toString(),
+                    label: $profile->fullNameWithHonorific,
                 );
             },
         ));

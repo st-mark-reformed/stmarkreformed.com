@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import SearchableDropdown, { Option } from './SearchableDropdown';
 import PartialPageLoading from '../../PartialPageLoading';
 
-export default function ProfileSelector (
+export default function SeriesSelector (
     {
         label,
         name,
@@ -16,8 +16,8 @@ export default function ProfileSelector (
     },
 ) {
     const [
-        profiles,
-        setProfiles,
+        seriesOptions,
+        setSeriesOptions,
     ] = useState<Option[] | null>(null);
 
     const [loadingError, setLoadingError] = useState<string | null>(null);
@@ -28,14 +28,14 @@ export default function ProfileSelector (
         async function loadData () {
             try {
                 const response = await fetch(
-                    '/admin/profiles/dropdown-list',
+                    '/admin/messages/series/dropdown-list',
                     {
                         cache: 'no-store',
                     },
                 );
 
                 if (!response.ok) {
-                    throw new Error('Failed to load profile positions');
+                    throw new Error('Failed to load series positions');
                 }
 
                 const data = await response.json() as Option[];
@@ -44,7 +44,7 @@ export default function ProfileSelector (
                     return;
                 }
 
-                setProfiles(data);
+                setSeriesOptions(data);
             } catch (error_) {
                 if (cancelled) {
                     return;
@@ -69,7 +69,7 @@ export default function ProfileSelector (
         return <p className="text-sm text-red-600">{loadingError}</p>;
     }
 
-    if (!profiles) {
+    if (!seriesOptions) {
         return <PartialPageLoading />;
     }
 
@@ -77,7 +77,7 @@ export default function ProfileSelector (
         <SearchableDropdown
             label={label}
             name={name}
-            options={profiles}
+            options={seriesOptions}
             defaultValue={defaultValue}
             error={error}
         />

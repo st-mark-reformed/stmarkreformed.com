@@ -21,6 +21,7 @@ use App\Profiles\Admin\GetProfilesListAction;
 use App\Profiles\Admin\NewProfile\PostNewProfileAction;
 use App\Series\Admin\EditSeries\GetEditSeries\GetEditSeriesAction;
 use App\Series\Admin\EditSeries\PostEditSeries\PostEditSeriesAction;
+use App\Series\Admin\GetSeriesDropdownAction;
 use App\Series\Admin\GetSeriesListAction;
 use App\Series\Admin\NewSeries\PostNewSeriesAction;
 use App\Tinker;
@@ -62,6 +63,7 @@ readonly class ApplyRoutes
         GetEditMessageAction::applyRoute(routes: $routes);
         PostEditMessageAction::applyRoute(routes: $routes);
         GetProfilesDropdownValues::applyRoute(routes: $routes);
+        GetSeriesDropdownAction::applyRoute(routes: $routes);
 
         if (
             ! $config->getBoolean(

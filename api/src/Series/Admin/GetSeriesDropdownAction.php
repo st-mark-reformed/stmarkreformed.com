@@ -2,37 +2,37 @@
 
 declare(strict_types=1);
 
-namespace App\Profiles\Admin;
+namespace App\Series\Admin;
 
-use App\Profiles\ProfilesRepository;
 use App\RespondWithJson;
+use App\Series\SeriesRepository;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use RxAnte\AppBootstrap\Http\ApplyRoutesEvent;
 
-readonly class GetProfilesDropdownValues
+readonly class GetSeriesDropdownAction
 {
     public static function applyRoute(ApplyRoutesEvent $routes): void
     {
         $routes->get(
-            '/admin/profiles/dropdown-list',
+            '/admin/series/dropdown-list',
             self::class,
         );
     }
 
     public function __construct(
-        private ProfilesRepository $repository,
+        private SeriesRepository $repository,
         private ResponseFactoryInterface $factory,
     ) {
     }
 
     public function __invoke(ServerRequestInterface $request): ResponseInterface
     {
-        $profiles = $this->repository->findAll();
+        $seriesCollection = $this->repository->findAll();
 
         return new RespondWithJson(
-            entity: $profiles->asDropdownList(),
+            entity: $seriesCollection->asDropdownList(),
             factory: $this->factory,
         )->respond();
     }

@@ -4,13 +4,18 @@ declare(strict_types=1);
 
 namespace App\Series;
 
+use App\DropdownList\DropdownListEntity;
+use App\DropdownList\DropdownListItems;
+use JsonSerializable;
 use Ramsey\Uuid\UuidInterface;
 
 use function array_find;
 use function array_map;
 use function array_values;
 
-readonly class SeriesCollection
+// phpcs:disable SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingTraversableTypeHintSpecification
+
+readonly class SeriesCollection implements JsonSerializable
 {
     /** @var Series[] */
     public array $items;
@@ -22,6 +27,12 @@ readonly class SeriesCollection
             static fn (Series $s) => $s,
             $items,
         ));
+    }
+
+    /** @phpstan-ignore-next-line */
+    public function jsonSerialize(): array
+    {
+        return $this->asArray();
     }
 
     /**
@@ -37,6 +48,33 @@ readonly class SeriesCollection
             static fn (Series $i) => $i->asArray(),
             $this->items,
         );
+    }
+
+    /**
+     * @param callable(Series): T $callback
+     *
+     * @return T[]
+     *
+     * @template T
+     */
+    public function map(callable $callback): array
+    {
+        return array_values(array_map(
+            $callback,
+            $this->items,
+        ));
+    }
+
+    public function asDropdownList(): DropdownListItems
+    {
+        return new DropdownListItems(items: $this->map(
+            callback: static function (Series $series): DropdownListEntity {
+                return new DropdownListEntity(
+                    value: $series->id->toString(),
+                    label: $series->title,
+                );
+            },
+        ));
     }
 
     public function findById(UuidInterface|string $id): Series|null
