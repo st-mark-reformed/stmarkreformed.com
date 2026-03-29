@@ -2,39 +2,39 @@
 
 declare(strict_types=1);
 
-namespace App\Profiles\Admin\NewProfile;
+namespace App\Messages\Admin\NewMessage;
 
-use App\Auth\RequireEditProfilesRoleMiddleware;
-use App\Profiles\ProfilesRepository;
+use App\Auth\RequireEditMessagesRoleMiddleware;
+use App\Messages\MessagesRepository;
 use App\Result\ResultResponder;
 use Psr\Http\Message\ResponseInterface;
 use RxAnte\AppBootstrap\Http\ApplyRoutesEvent;
 use RxAnte\AppBootstrap\Request\ServerRequest;
 
-readonly class PostNewProfileAction
+readonly class PostNewMessageAction
 {
     public static function applyRoute(ApplyRoutesEvent $routes): void
     {
         $routes->post(
-            '/admin/profiles/new',
+            '/admin/messages/new',
             self::class,
-        )->add(RequireEditProfilesRoleMiddleware::class);
+        )->add(RequireEditMessagesRoleMiddleware::class);
     }
 
     public function __construct(
         private ResultResponder $responder,
-        private NewProfileFactory $newProfileFactory,
-        private ProfilesRepository $profilesRepository,
+        private NewMessageFactory $newMessageFactory,
+        private MessagesRepository $messagesRepository,
     ) {
     }
 
     public function __invoke(ServerRequest $request): ResponseInterface
     {
-        $newProfile = $this->newProfileFactory->createFromRequest(
+        $newMessage = $this->newMessageFactory->createFromRequest(
             request: $request,
         );
 
-        $result = $this->profilesRepository->create(profile: $newProfile);
+        $result = $this->messagesRepository->create(message: $newMessage);
 
         return $this->responder->respond(result: $result);
     }

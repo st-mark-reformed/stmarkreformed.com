@@ -2,19 +2,19 @@
 
 import RequestMethods from 'rxante-oauth/dist/Request/RequestMethods';
 import { redirect } from 'next/navigation';
+import { CreateEditMessageSubmitActionState } from '../CreateEditMessageSubmitActionState';
+import CreateEditMessageParseFormData from '../CreateEditMessageParseFormData';
 import RequestFactory from '../../../api/request/RequestFactory';
-import { CreateEditProfileSubmitActionState } from '../CreateEditProfileSubmitActionState';
 import { ApiResponseJson } from '../../../api/request/ApiResponseJson';
-import CreateEditProfileParseFormData from '../CreateEditProfileParseFormData';
 
-export default async function CreateNewProfileSubmitFormAction (
-    prevState: CreateEditProfileSubmitActionState,
+export default async function CreateNewMessageSubmitFormAction (
+    prevState: CreateEditMessageSubmitActionState,
     formData: FormData,
-): Promise<CreateEditProfileSubmitActionState> {
-    const payload = CreateEditProfileParseFormData(formData);
+): Promise<CreateEditMessageSubmitActionState> {
+    const payload = CreateEditMessageParseFormData(formData);
 
     const response = await RequestFactory().makeWithToken({
-        uri: '/admin/profiles/new',
+        uri: '/admin/messages/new',
         method: RequestMethods.POST,
         cacheSeconds: 0,
         payload,
@@ -23,7 +23,7 @@ export default async function CreateNewProfileSubmitFormAction (
     const responseJson = response.json as unknown as ApiResponseJson;
 
     if (responseJson.success) {
-        redirect('/admin/profiles');
+        redirect('/admin/messages');
     }
 
     return {

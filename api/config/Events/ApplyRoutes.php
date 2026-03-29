@@ -8,6 +8,7 @@ use App\Contact\PostContactAction;
 use App\GetKeepAliveAction;
 use App\Healthcheck;
 use App\Messages\Admin\GetHasEditMessagesRoleAction;
+use App\Messages\Admin\NewMessage\PostNewMessageAction;
 use App\Profiles\Admin\EditProfile\GetEditProfile\GetEditProfileAction;
 use App\Profiles\Admin\EditProfile\PostEditProfile\PostEditProfileAction;
 use App\Profiles\Admin\GetHasEditProfilesRoleAction;
@@ -52,6 +53,7 @@ readonly class ApplyRoutes
         GetSeriesListAction::applyRoute(routes: $routes);
         GetEditSeriesAction::applyRoute(routes: $routes);
         PostEditSeriesAction::applyRoute(routes: $routes);
+        PostNewMessageAction::applyRoute(routes: $routes);
 
         if (
             ! $config->getBoolean(
