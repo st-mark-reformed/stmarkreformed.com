@@ -11,6 +11,7 @@ use App\Profiles\ProfilesRepository;
 use App\Series\Series;
 use App\Series\SeriesRepository;
 use DateTimeImmutable;
+use DateTimeZone;
 use Ramsey\Uuid\Uuid;
 use RxAnte\AppBootstrap\Request\ServerRequest;
 use Throwable;
@@ -53,15 +54,27 @@ readonly class MessageFactory
 
     private function getDate(string $date): DateTimeImmutable
     {
-        try {
-            /** @phpstan-ignore-next-line */
-            return DateTimeImmutable::createFromFormat(
-                'Y-m-d H:i:s',
+        $dateObj = DateTimeImmutable::createFromFormat(
+            'Y-m-d\TH:i:s',
+            $date,
+            new DateTimeZone('US/Central'),
+        );
+
+        if ($dateObj === false) {
+            $dateObj = DateTimeImmutable::createFromFormat(
+                'Y-m-d\TH:i',
                 $date,
+                new DateTimeZone('US/Central'),
             );
-        } catch (Throwable) {
-            return new DateTimeImmutable();
         }
+
+        if ($dateObj === false) {
+            $dateObj = new DateTimeImmutable()->setTimezone(
+                new DateTimeZone('US/Central'),
+            );
+        }
+
+        return $dateObj;
     }
 
     private function getSpeaker(string $profileId): Profile

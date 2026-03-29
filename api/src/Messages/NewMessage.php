@@ -7,6 +7,7 @@ namespace App\Messages;
 use App\EmptyUuid;
 use DateTimeImmutable;
 use DateTimeInterface;
+use DateTimeZone;
 use Ramsey\Uuid\UuidInterface;
 
 use function count;
@@ -20,9 +21,14 @@ readonly class NewMessage
 
     public string $slug;
 
+    public DateTimeInterface $date;
+
     public function __construct(
         public bool $isEnabled = true,
-        public DateTimeInterface $date = new DateTimeImmutable(),
+        DateTimeInterface $date = new DateTimeImmutable(
+            'now',
+            new DateTimeZone('US/Central'),
+        ),
         public string $title = '',
         public string $audioPath = '',
         public UuidInterface $speakerId = new EmptyUuid(),
@@ -30,6 +36,13 @@ readonly class NewMessage
         public UuidInterface $seriesId = new EmptyUuid(),
         public string $description = '',
     ) {
+        /** @phpstan-ignore-next-line */
+        $this->date = DateTimeImmutable::createFromFormat(
+            'Y-m-d\TH:i:s',
+            $date->format('Y-m-d\TH:i') . ':00',
+            new DateTimeZone('US/Central'),
+        );
+
         $this->slug = CreateMessageSlug::create($this);
 
         $messages = MessageValidation::validate(message: $this);

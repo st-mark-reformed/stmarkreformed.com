@@ -13,6 +13,7 @@ use App\Series\Series;
 use App\Series\SeriesCollection;
 use App\Series\SeriesRepository;
 use DateTimeImmutable;
+use DateTimeZone;
 use Ramsey\Uuid\Uuid;
 use Throwable;
 
@@ -58,12 +59,14 @@ class Transformer
             return DateTimeImmutable::createFromFormat(
                 'Y-m-d H:i:s',
                 $date,
+                new DateTimeZone('US/Central'),
             );
         } catch (Throwable) {
             /** @phpstan-ignore-next-line */
             return DateTimeImmutable::createFromFormat(
                 'Y-m-d',
                 '1900-01-01',
+                new DateTimeZone('US/Central'),
             );
         }
     }

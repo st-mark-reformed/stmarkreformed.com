@@ -9,6 +9,7 @@ use App\Profiles\Profile;
 use App\Series\Series;
 use DateTimeImmutable;
 use DateTimeInterface;
+use DateTimeZone;
 use JsonSerializable;
 use Ramsey\Uuid\UuidInterface;
 
@@ -25,10 +26,15 @@ readonly class Message implements JsonSerializable
 
     public string $slug;
 
+    public DateTimeInterface $date;
+
     public function __construct(
         public UuidInterface $id = new EmptyUuid(),
         public bool $isEnabled = true,
-        public DateTimeInterface $date = new DateTimeImmutable(),
+        DateTimeInterface $date = new DateTimeImmutable(
+            'now',
+            new DateTimeZone('US/Central'),
+        ),
         public string $title = '',
         string|null $slug = null,
         public string $audioPath = '',
@@ -37,6 +43,13 @@ readonly class Message implements JsonSerializable
         public Series $series = new Series(),
         public string $description = '',
     ) {
+        /** @phpstan-ignore-next-line */
+        $this->date = DateTimeImmutable::createFromFormat(
+            'Y-m-d\TH:i:s',
+            $date->format('Y-m-d\TH:i') . ':00',
+            new DateTimeZone('US/Central'),
+        );
+
         if ($slug === null) {
             $slug = CreateMessageSlug::create($this);
         }

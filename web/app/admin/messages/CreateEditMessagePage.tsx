@@ -123,6 +123,7 @@ export default function CreateEditMessagePage (
                 <TextInput
                     label="Date"
                     name="date"
+                    type="datetime-local"
                     defaultValue={state.values.date}
                     error={state.ok ? undefined : state.errors.date}
                 />

@@ -27,6 +27,7 @@ export default function TextInput (
                 name={name}
                 type={type}
                 autoComplete={autoComplete}
+                step={type === 'datetime-local' ? '60' : undefined}
                 className={(() => {
                     const classes = ['block w-full rounded-md px-3 py-1.5 text-base text-gray-900 appearance-none border-0 outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-crimson-dark/50 sm:text-sm/6 dark:text-white dark:ring-white/10 dark:placeholder:text-gray-500'];
 
