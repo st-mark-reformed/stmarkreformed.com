@@ -10,15 +10,19 @@ export default function FormButtons (
         secondaryLinkContent = 'Cancel',
         secondaryLinkHref = undefined,
         location = 'bottom',
+        isPending = undefined,
     }: {
         submitButtonContent?: string;
         submitButtonContentWhenPending?: string;
         secondaryLinkContent?: string;
         secondaryLinkHref?: string;
         location?: 'top' | 'bottom';
+        isPending?: boolean;
     },
 ) {
     const { pending } = useFormStatus();
+
+    const definitiveIsPending = isPending !== undefined ? isPending : pending;
 
     return (
         <div
@@ -50,11 +54,11 @@ export default function FormButtons (
             })()}
             <button
                 type="submit"
-                disabled={pending}
+                disabled={definitiveIsPending}
                 className={(() => {
                     const classes = ['inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-xs dark:shadow-none'];
 
-                    if (pending) {
+                    if (definitiveIsPending) {
                         classes.push('cursor-default bg-gray-300 text-gray-500');
                     } else {
                         classes.push('cursor-pointer bg-crimson hover:bg-crimson-dark dark:bg-crimson/70 dark:hover:bg-crimson/80 text-white');
@@ -65,7 +69,7 @@ export default function FormButtons (
             >
                 <CheckIcon className="size-5 mr-1 -ml-1" aria-hidden="true" />
                 {(() => {
-                    if (pending) {
+                    if (definitiveIsPending) {
                         return submitButtonContentWhenPending;
                     }
 

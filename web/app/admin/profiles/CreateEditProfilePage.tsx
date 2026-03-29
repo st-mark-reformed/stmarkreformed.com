@@ -150,7 +150,7 @@ export default function CreateEditProfilePage (
                     defaultValue={state.values.bio}
                     error={state.ok ? undefined : state.errors.bio}
                 />
-                <FormButtons secondaryLinkHref="/admin/profiles" />
+                <FormButtons secondaryLinkHref="/admin/profiles" isPending={isPending} />
             </Form>
         </>
     );

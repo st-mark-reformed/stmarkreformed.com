@@ -176,7 +176,7 @@ export default function CreateEditMessagePage (
                     defaultValue={state.values.audioPath}
                     error={state.ok ? undefined : state.errors.audioPath}
                 />
-                <FormButtons secondaryLinkHref="/admin/messages" />
+                <FormButtons secondaryLinkHref="/admin/messages" isPending={isPending} />
             </Form>
         </>
     );

@@ -125,7 +125,7 @@ export default function CreateEditSeriesPage (
                     defaultValue={state.values.slug}
                     error={state.ok ? undefined : state.errors.slug}
                 />
-                <FormButtons secondaryLinkHref="/admin/messages/series" />
+                <FormButtons secondaryLinkHref="/admin/messages/series" isPending={isPending} />
             </Form>
         </>
     );
