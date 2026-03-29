@@ -11,14 +11,7 @@ export default async function EditProfileSubmitFormAction (
     prevState: CreateEditProfileSubmitActionState,
     formData: FormData,
 ): Promise<CreateEditProfileSubmitActionState> {
-    const {
-        titleOrHonorific,
-        email,
-        firstName,
-        lastName,
-        leadershipPosition,
-        bio,
-    } = CreateEditProfileParseFormData(formData);
+    const payload = CreateEditProfileParseFormData(formData);
 
     const profileIdValue = formData.get('profileId');
     const profileId = typeof profileIdValue === 'string' ? profileIdValue : '';
@@ -27,14 +20,7 @@ export default async function EditProfileSubmitFormAction (
         uri: `/admin/profiles/edit/${profileId}`,
         method: RequestMethods.PATCH,
         cacheSeconds: 0,
-        payload: {
-            titleOrHonorific,
-            email,
-            firstName,
-            lastName,
-            leadershipPosition,
-            bio,
-        },
+        payload,
     });
 
     const responseJson = response.json as unknown as ApiResponseJson;
@@ -46,14 +32,7 @@ export default async function EditProfileSubmitFormAction (
     return {
         ok: responseJson.success,
         success: responseJson.success,
-        values: {
-            titleOrHonorific,
-            email,
-            firstName,
-            lastName,
-            leadershipPosition,
-            bio,
-        },
+        values: payload,
         errors: responseJson.errors || { error: 'An unknown error occurred' },
     };
 }
