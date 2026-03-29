@@ -8,6 +8,7 @@ use App\Contact\PostContactAction;
 use App\GetKeepAliveAction;
 use App\Healthcheck;
 use App\Messages\Admin\EditMessage\GetEditMessage\GetEditMessageAction;
+use App\Messages\Admin\EditMessage\PostEdtMessage\PostEditMessageAction;
 use App\Messages\Admin\GetHasEditMessagesRoleAction;
 use App\Messages\Admin\GetMessagesListAction;
 use App\Messages\Admin\NewMessage\PostNewMessageAction;
@@ -58,6 +59,7 @@ readonly class ApplyRoutes
         PostNewMessageAction::applyRoute(routes: $routes);
         GetMessagesListAction::applyRoute(routes: $routes);
         GetEditMessageAction::applyRoute(routes: $routes);
+        PostEditMessageAction::applyRoute(routes: $routes);
 
         if (
             ! $config->getBoolean(

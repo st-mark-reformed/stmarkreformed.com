@@ -23,19 +23,19 @@ readonly class PostEditProfileAction
 
     public function __construct(
         private ResultResponder $responder,
-        private ProfileFactory $requestProfileFactory,
-        private ProfilesRepository $profilesRepository,
+        private ProfilesRepository $repository,
+        private ProfileFactory $profileFactory,
         private UpdatedProfileFactory $updatedProfileFactory,
     ) {
     }
 
     public function __invoke(ServerRequest $request): ResponseInterface
     {
-        $requestProfile = $this->requestProfileFactory->createFromRequest(
+        $requestProfile = $this->profileFactory->createFromRequest(
             request: $request,
         );
 
-        $persistentProfileResult = $this->profilesRepository->findById(
+        $persistentProfileResult = $this->repository->findById(
             id: $requestProfile->id,
         );
 
@@ -44,7 +44,7 @@ readonly class PostEditProfileAction
             persistentProfileResult: $persistentProfileResult,
         );
 
-        $result = $this->profilesRepository->persist(profile: $updatedProfile);
+        $result = $this->repository->persist(profile: $updatedProfile);
 
         return $this->responder->respond(result: $result);
     }

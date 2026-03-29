@@ -133,7 +133,7 @@ readonly class Message implements JsonSerializable
         );
     }
 
-    public function withDate(DateTimeImmutable $value): self
+    public function withDate(DateTimeInterface $value): self
     {
         return new self(
             id: $this->id,
@@ -146,7 +146,7 @@ readonly class Message implements JsonSerializable
             passage: $this->passage,
             series: $this->series,
             description: $this->description,
-        );
+        )->withSlug(value: CreateMessageSlug::create($this));
     }
 
     public function withTitle(string $value): self
@@ -162,7 +162,7 @@ readonly class Message implements JsonSerializable
             passage: $this->passage,
             series: $this->series,
             description: $this->description,
-        );
+        )->withSlug(value: CreateMessageSlug::create($this));
     }
 
     public function withSlug(string $value): self
