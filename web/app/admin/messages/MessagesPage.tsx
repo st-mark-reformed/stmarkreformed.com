@@ -55,7 +55,7 @@ export default async function MessagesPage () {
                                 <div className="flex min-w-0 gap-x-4">
                                     <div className="min-w-0 flex-auto">
                                         <p className="text-sm/6 font-semibold text-gray-900 dark:text-white">
-                                            <a href={`/admin/profiles/edit/${message.id}`}>
+                                            <a href={`/admin/messages/edit/${message.id}`}>
                                                 <span className="absolute inset-x-0 -top-px bottom-0" />
                                                 {message.title}
                                                 <span className="text-xs font-light ml-2">(slug: {message.slug})</span>

@@ -1,11 +1,11 @@
+import { Message } from '../../Message';
 import RequestFactory from '../../../../api/request/RequestFactory';
-import { Profile } from '../../Profile';
 
-export default async function GetEditProfile (
-    profileId: string,
-): Promise<Profile | null> {
+export default async function GetEditMessage (
+    messageId: string,
+): Promise<Message | null> {
     const response = await RequestFactory().makeWithSignInRedirect({
-        uri: `/admin/profiles/edit/${profileId}`,
+        uri: `/admin/messages/edit/${messageId}`,
         cacheSeconds: 0,
     });
 
@@ -13,5 +13,5 @@ export default async function GetEditProfile (
         return null;
     }
 
-    return response.json as unknown as Profile;
+    return response.json as unknown as Message;
 }

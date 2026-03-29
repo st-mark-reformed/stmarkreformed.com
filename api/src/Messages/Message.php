@@ -9,11 +9,14 @@ use App\Profiles\Profile;
 use App\Series\Series;
 use DateTimeImmutable;
 use DateTimeInterface;
+use JsonSerializable;
 use Ramsey\Uuid\UuidInterface;
 
 use function count;
 
-readonly class Message
+// phpcs:disable SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingTraversableTypeHintSpecification
+
+readonly class Message implements JsonSerializable
 {
     public bool $isValid;
 
@@ -45,6 +48,12 @@ readonly class Message
         $this->isValid = count($messages) < 1;
 
         $this->validationMessages = $messages;
+    }
+
+    /** @phpstan-ignore-next-line */
+    public function jsonSerialize(): array
+    {
+        return $this->asArray();
     }
 
     /**
