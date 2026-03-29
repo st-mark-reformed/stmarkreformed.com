@@ -43,7 +43,7 @@ readonly class PersistMessage
             'audio_path' => $message->audioPath,
             'speaker_id' => $message->speaker->id->toString(),
             'passage' => $message->passage,
-            'series_id' => $message->speaker->id->toString(),
+            'series_id' => $message->series->id->toString(),
             'description' => $message->description,
         ];
 
