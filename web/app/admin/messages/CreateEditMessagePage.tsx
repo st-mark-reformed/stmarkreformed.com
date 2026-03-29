@@ -13,6 +13,7 @@ import FormButtons from '../Forms/FormButtons';
 import SearchableDropdown from '../Forms/SearchableDropdown';
 import ProfileSelector from '../Forms/ProfileSelector';
 import SeriesSelector from '../Forms/SeriesSelector';
+import SingleFileUploader from '../Forms/FileUploads/SingleFileUploader';
 
 export default function CreateEditMessagePage (
     {
@@ -153,11 +154,9 @@ export default function CreateEditMessagePage (
                     defaultValue={state.values.isEnabled}
                     error={state.ok ? undefined : state.errors.isEnabled}
                 />
-                {/* TODO: Audio upload */}
-                <TextInput
-                    label="Audio File"
+                <SingleFileUploader
+                    label="Audio"
                     name="audioPath"
-                    colSpan="full"
                     defaultValue={state.values.audioPath}
                     error={state.ok ? undefined : state.errors.audioPath}
                 />
