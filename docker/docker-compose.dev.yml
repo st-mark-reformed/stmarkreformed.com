@@ -38,6 +38,7 @@ services:
     environment:
       HOSTNAME: stmark-web
       NODE_ENV: development
+      NODE_OPTIONS: --inspect=0.0.0.0:9229
     healthcheck:
       disable: true
       test: '0'
@@ -45,6 +46,9 @@ services:
       - "npm"
       - "run"
       - "dev"
+    ports:
+      - "14826:9229"
+      - "14827:9230"
     volumes:
       - ./web/.bash_history:/root/.bash_history:delegated
       - ../web:/app:delegated
@@ -65,7 +69,7 @@ services:
     image: ghcr.io/st-mark-reformed/stmarkreformed.com-api
     container_name: stmark-api
     environment:
-      ENABLE_XDEBUG: 0
+      ENABLE_XDEBUG: 1
       ENABLE_PHP_DEV_CONFIG: 1
       HOSTNAME: stmark-api
     volumes:

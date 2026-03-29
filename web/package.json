@@ -2,7 +2,7 @@
     "name": "sermons_tjdraper_com",
     "private": true,
     "scripts": {
-        "dev": "NODE_OPTIONS='--inspect' next dev",
+        "dev": "next dev",
         "build": "next build",
         "start": "next start",
         "lint": "next lint"

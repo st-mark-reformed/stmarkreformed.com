@@ -1,0 +1,6 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Next Docker Debug" type="ChromiumRemoteDebugType" factoryName="Chromium Remote" port="14827" restartOnDisconnect="true">
+    <mapping url="/app" local-file="$PROJECT_DIR$" />
+    <method v="2" />
+  </configuration>
+</component>
