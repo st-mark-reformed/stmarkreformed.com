@@ -89,6 +89,7 @@ services:
     volumes:
       - files-above-webroot-volume:/app/filesAboveWebroot
       - web-public-images-galleries-volume:/app/public/images/galleries
+      - uploads-volume:/app/public/uploads
     networks:
       traefik:
       default:
@@ -128,6 +129,7 @@ services:
     volumes:
       - /root/certbot/var/www/letsencrypt:/var/www/letsencrypt
       - api-storage-volume:/var/www/storage
+      - uploads-volume:/var/www/public/uploads
     secrets:
       - RSA_PRIVATE_KEY
       - RSA_PUBLIC_KEY
@@ -152,6 +154,7 @@ services:
     volumes:
       - /root/certbot/var/www/letsencrypt:/var/www/letsencrypt
       - api-storage-volume:/var/www/storage
+      - uploads-volume:/var/www/public/uploads
     secrets:
       - RSA_PRIVATE_KEY
       - RSA_PUBLIC_KEY
@@ -171,6 +174,7 @@ services:
     volumes:
       - /root/certbot/var/www/letsencrypt:/var/www/letsencrypt
       - api-storage-volume:/var/www/storage
+      - uploads-volume:/var/www/public/uploads
     secrets:
       - RSA_PRIVATE_KEY
       - RSA_PUBLIC_KEY

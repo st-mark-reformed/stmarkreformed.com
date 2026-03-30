@@ -7,6 +7,11 @@ const buildDate = date.toUTCString();
  * @type {import('next').NextConfig}
  */
 module.exports = {
+    experimental: {
+        serverActions: {
+            bodySizeLimit: '100mb',
+        },
+    },
     allowedDevOrigins: ['*.localtest.me'],
     devIndicators: false,
     env: {

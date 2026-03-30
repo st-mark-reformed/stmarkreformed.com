@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Messages\Admin\EditMessage\PostEdtMessage;
+namespace App\Messages\Admin\EditMessage\PostEditMessage;
 
 use App\EmptyUuid;
 use App\Messages\Message;

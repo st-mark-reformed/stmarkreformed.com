@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Messages\Persistence;
+namespace App\Messages\Persistence\Persist;
 
 use App\Messages\Message;
 use App\Persistence\ApiPdo;
@@ -12,35 +12,20 @@ use function array_keys;
 use function array_map;
 use function implode;
 
-readonly class PersistMessage
+readonly class PersistMessageToPdo
 {
-    public function __construct(
-        private ApiPdo $pdo,
-        private FindById $findById,
-    ) {
+    public function __construct(private ApiPdo $pdo)
+    {
     }
 
     public function persist(Message $message): Result
     {
-        if (! $message->isValid) {
-            return new Result(
-                success: false,
-                errors: $message->validationMessages,
-            );
-        }
-
-        $validIdResult = $this->idIsValid(message: $message);
-
-        if (! $validIdResult->success) {
-            return $validIdResult;
-        }
-
         $params = [
             'enabled' => $message->isEnabled ? '1' : '0',
             'date' => $message->date->format('Y-m-d H:i:s'),
             'title' => $message->title,
             'slug' => $message->slug,
-            'audio_path' => $message->audioPath,
+            'audio_path' => $message->createAudioFileNameForPersistence(),
             'speaker_id' => $message->speaker->id->toString(),
             'passage' => $message->passage,
             'series_id' => $message->series->id->toString(),
@@ -69,20 +54,6 @@ readonly class PersistMessage
             return new Result(
                 success: false,
                 errors: ['An unexpected error occurred. Please try again later.'],
-            );
-        }
-
-        return new Result();
-    }
-
-    private function idIsValid(Message $message): Result
-    {
-        $record = $this->findById->find(id: $message->id);
-
-        if ($record === null) {
-            return new Result(
-                success: false,
-                errors: ['id' => 'Message with this ID does not exist'],
             );
         }
 

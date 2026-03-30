@@ -87,7 +87,6 @@ export default function SingleFileUploader (
                         handleFile(event.target.files?.[0]);
                     }}
                 />
-
                 <div
                     className={[
                         'text-gray-600 bg-white px-3 py-10 rounded-md border border-gray-300 dark:text-white dark:border-white/10 dark:bg-white/5 text-center text-sm transition-colors relative',
@@ -112,7 +111,18 @@ export default function SingleFileUploader (
                         event.preventDefault();
                         event.stopPropagation();
                         setIsDragging(false);
-                        handleFile(event.dataTransfer.files?.[0]);
+
+                        const file = event.dataTransfer.files?.[0];
+
+                        if (!file || !inputRef.current) {
+                            return;
+                        }
+
+                        const dataTransfer = new DataTransfer();
+                        dataTransfer.items.add(file);
+                        inputRef.current.files = dataTransfer.files;
+
+                        handleFile(file);
                     }}
                 >
                     {(() => {

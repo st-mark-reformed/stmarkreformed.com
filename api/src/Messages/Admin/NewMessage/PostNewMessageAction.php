@@ -30,6 +30,7 @@ readonly class PostNewMessageAction
 
     public function __invoke(ServerRequest $request): ResponseInterface
     {
+        // TODO: deal with file uploads
         $newMessage = $this->newMessageFactory->createFromRequest(
             request: $request,
         );

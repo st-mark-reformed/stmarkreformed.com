@@ -53,6 +53,7 @@ services:
       - ./web/.bash_history:/root/.bash_history:delegated
       - ../web:/app:delegated
       - ../craft-cms/filesAboveWebroot:/app/filesAboveWebroot
+      - ../craft-cms/public/uploads:/app/public/uploads
     expose:
       - 80
     networks:
@@ -75,6 +76,7 @@ services:
     volumes:
       - ./api/.bash_history:/root/.bash_history:delegated
       - ../api:/var/www:delegated
+      - ../craft-cms/public/uploads:/var/www/public/uploads
     networks:
       traefik:
       default:
@@ -108,6 +110,7 @@ services:
     volumes:
       - ./api/.bash_history:/root/.bash_history:delegated
       - ../api:/var/www:delegated
+      - ../craft-cms/public/uploads:/var/www/public/uploads
     secrets:
       - RSA_PRIVATE_KEY
       - RSA_PUBLIC_KEY
@@ -126,6 +129,7 @@ services:
     volumes:
       - ./api/.bash_history:/root/.bash_history:delegated
       - ../api:/var/www:delegated
+      - ../craft-cms/public/uploads:/var/www/public/uploads
     secrets:
       - RSA_PRIVATE_KEY
       - RSA_PUBLIC_KEY

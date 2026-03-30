@@ -8,7 +8,7 @@ use App\Messages\Persistence\CreateMessage;
 use App\Messages\Persistence\DeleteMessage;
 use App\Messages\Persistence\FindAll;
 use App\Messages\Persistence\FindById;
-use App\Messages\Persistence\PersistMessage;
+use App\Messages\Persistence\Persist\PersistMessage;
 use App\Messages\Persistence\Transformer;
 use App\Persistence\CreateUuid;
 use App\Result\Result;

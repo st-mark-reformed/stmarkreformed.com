@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Messages\Admin\EditMessage\PostEdtMessage;
+namespace App\Messages\Admin\EditMessage\PostEditMessage;
 
 use App\Auth\RequireEditMessagesRoleMiddleware;
-use App\Messages\Admin\EditMessage\GetEditMessage\UpdatedMessageFactory;
 use App\Messages\MessagesRepository;
 use App\Result\ResultResponder;
 use Psr\Http\Message\ResponseInterface;

@@ -8,7 +8,7 @@ use App\Contact\PostContactAction;
 use App\GetKeepAliveAction;
 use App\Healthcheck;
 use App\Messages\Admin\EditMessage\GetEditMessage\GetEditMessageAction;
-use App\Messages\Admin\EditMessage\PostEdtMessage\PostEditMessageAction;
+use App\Messages\Admin\EditMessage\PostEditMessage\PostEditMessageAction;
 use App\Messages\Admin\GetHasEditMessagesRoleAction;
 use App\Messages\Admin\GetMessagesListAction;
 use App\Messages\Admin\NewMessage\PostNewMessageAction;
