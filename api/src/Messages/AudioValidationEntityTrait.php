@@ -6,6 +6,7 @@ namespace App\Messages;
 
 use function base64_decode;
 use function ord;
+use function preg_match;
 use function str_starts_with;
 use function strlen;
 use function strpos;
@@ -15,6 +16,23 @@ use function substr;
 
 trait AudioValidationEntityTrait
 {
+    private function isCanonicalBase64(string $value): bool
+    {
+        if ($value === '') {
+            return false;
+        }
+
+        if (preg_match('/^[A-Za-z0-9+\/]+={0,2}$/', $value) !== 1) {
+            return false;
+        }
+
+        if (strlen($value) % 4 !== 0) {
+            return false;
+        }
+
+        return base64_decode($value, true) !== false;
+    }
+
     public function audioPathIsFileUpload(): bool
     {
         if ($this->audioPath === '') {
@@ -33,9 +51,7 @@ trait AudioValidationEntityTrait
             $audioPath = substr($audioPath, $commaPosition + 1);
         }
 
-        $decoded = base64_decode($audioPath, true);
-
-        return $decoded !== false && $decoded !== '';
+        return $this->isCanonicalBase64($audioPath);
     }
 
     public function audioPathIsValidFileUpload(): bool
