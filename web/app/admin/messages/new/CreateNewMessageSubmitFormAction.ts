@@ -14,12 +14,19 @@ export default async function CreateNewMessageSubmitFormAction (
 ): Promise<CreateEditMessageSubmitActionState> {
     const payload = CreateEditMessageParseFormData(formData);
 
-    const audioValue = formData.get('audioPath');
-    const audioFile = audioValue instanceof File && audioValue.size > 0
-        ? audioValue
+    const audioBase64Value = formData.get('audioPath');
+    const audioBase64 = typeof audioBase64Value === 'string'
+        ? audioBase64Value
+        : '';
+
+    const audioFileValue = formData.get('audioPathFile');
+    const audioFile = audioFileValue instanceof File && audioFileValue.size > 0
+        ? audioFileValue
         : null;
 
-    if (audioFile) {
+    if (audioBase64) {
+        payload.audioPath = audioBase64;
+    } else if (audioFile) {
         payload.audioPath = await FileToBase64(audioFile);
     }
 

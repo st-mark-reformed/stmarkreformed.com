@@ -10,7 +10,6 @@ import Alert from '../../Alert';
 import TextInput from '../Forms/TextInput';
 import Toggle from '../Forms/Toggle';
 import FormButtons from '../Forms/FormButtons';
-import SearchableDropdown from '../Forms/SearchableDropdown';
 import ProfileSelector from '../Forms/ProfileSelector';
 import SeriesSelector from '../Forms/SeriesSelector';
 import SingleFileUploader from '../Forms/FileUploads/SingleFileUploader';

@@ -18,6 +18,7 @@ export default function SingleFileUploader (
     },
 ) {
     const inputRef = React.useRef<HTMLInputElement>(null);
+    const hiddenValueRef = React.useRef<HTMLInputElement>(null);
 
     const [fileName, setFileName] = useState<string>(defaultValue);
     const [isDragging, setIsDragging] = useState(false);
@@ -32,7 +33,28 @@ export default function SingleFileUploader (
         return allowedExtensions.length === 0 || allowedExtensions.includes(extension);
     }
 
-    function handleFile (file: File | undefined) {
+    function fileToBase64 (file: File): Promise<string> {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+
+            reader.onload = () => {
+                const { result } = reader;
+
+                if (typeof result !== 'string') {
+                    reject(new Error('Failed to read file'));
+
+                    return;
+                }
+
+                resolve(result);
+            };
+
+            reader.onerror = () => reject(new Error('Failed to read file'));
+            reader.readAsDataURL(file);
+        });
+    }
+
+    async function handleFile (file: File | undefined) {
         setUploadError(undefined);
 
         if (!file) {
@@ -46,6 +68,12 @@ export default function SingleFileUploader (
         }
 
         setFileName(file.name);
+
+        const base64 = await fileToBase64(file);
+
+        if (hiddenValueRef.current) {
+            hiddenValueRef.current.value = base64;
+        }
     }
 
     if (error && uploadError) {
@@ -67,8 +95,14 @@ export default function SingleFileUploader (
                         className="absolute right-0 top-0 cursor-pointer rounded-sm bg-crimson-dark/10 dark:bg-crimson/50 px-2 py-1 text-xs font-semibold text-crimson dark:text-white/90 shadow-xs hover:bg-crimson-dark/20 dark:hover:bg-crimson/60"
                         onClick={() => {
                             setFileName('');
+                            setUploadError(undefined);
+
                             if (inputRef.current) {
                                 inputRef.current.value = '';
+                            }
+
+                            if (hiddenValueRef.current) {
+                                hiddenValueRef.current.value = '';
                             }
                         }}
                     >
@@ -78,13 +112,19 @@ export default function SingleFileUploader (
             })()}
             <InputWrapper label={label} name={name} colSpan="full" error={error}>
                 <input
+                    ref={hiddenValueRef}
+                    type="hidden"
+                    name={name}
+                    defaultValue={defaultValue}
+                />
+                <input
                     ref={inputRef}
                     type="file"
-                    name={name}
+                    name={`${name}File`}
                     accept={allowedExtensions.map((ext) => `.${ext}`).join(',')}
                     className="hidden"
                     onChange={(event) => {
-                        handleFile(event.target.files?.[0]);
+                        void handleFile(event.target.files?.[0]);
                     }}
                 />
                 <div
@@ -122,7 +162,7 @@ export default function SingleFileUploader (
                         dataTransfer.items.add(file);
                         inputRef.current.files = dataTransfer.files;
 
-                        handleFile(file);
+                        void handleFile(file);
                     }}
                 >
                     {(() => {
