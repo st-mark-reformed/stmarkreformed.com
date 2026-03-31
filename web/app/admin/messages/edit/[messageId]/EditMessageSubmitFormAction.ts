@@ -2,6 +2,7 @@
 
 import RequestMethods from 'rxante-oauth/dist/Request/RequestMethods';
 import { redirect } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 import { CreateEditMessageSubmitActionState } from '../../CreateEditMessageSubmitActionState';
 import CreateEditMessageParseFormData from '../../CreateEditMessageParseFormData';
 import RequestFactory from '../../../../api/request/RequestFactory';
@@ -43,6 +44,8 @@ export default async function EditMessageSubmitFormAction (
     const responseJson = response.json as unknown as ApiResponseJson;
 
     if (responseJson.success) {
+        revalidatePath('/admin/messages');
+
         redirect('/admin/messages');
     }
 
