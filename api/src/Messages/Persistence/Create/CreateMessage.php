@@ -2,25 +2,24 @@
 
 declare(strict_types=1);
 
-namespace App\Messages\Persistence\Persist;
+namespace App\Messages\Persistence\Create;
 
-use App\Messages\Message;
-use App\Messages\Persistence\FindById;
+use App\Messages\NewMessage;
+use App\Messages\Persistence\Persist\PersistMessageAudioFile;
 use App\Persistence\ApiPdo;
 use App\Result\Result;
 use Throwable;
 
-readonly class PersistMessage
+readonly class CreateMessage
 {
     public function __construct(
         private ApiPdo $pdo,
-        private FindById $findById,
-        private PersistMessageToPdo $persistMessageToPdo,
+        private CreateMessageInPdo $createMessageInPdo,
         private PersistMessageAudioFile $persistMessageAudioFile,
     ) {
     }
 
-    public function persist(Message $message): Result
+    public function create(NewMessage $message): Result
     {
         if (! $message->isValid) {
             return new Result(
@@ -29,16 +28,10 @@ readonly class PersistMessage
             );
         }
 
-        $validIdResult = $this->idIsValid(message: $message);
-
-        if (! $validIdResult->success) {
-            return $validIdResult;
-        }
-
         try {
             $this->pdo->beginTransaction();
 
-            $result = $this->persistMessageToPdo->persist(message: $message);
+            $result = $this->createMessageInPdo->create(message: $message);
 
             if (! $result->success) {
                 throw $result;
@@ -67,19 +60,5 @@ readonly class PersistMessage
                 errors: ['An unexpected error occurred. Please try again later.'],
             );
         }
-    }
-
-    private function idIsValid(Message $message): Result
-    {
-        $record = $this->findById->find(id: $message->id);
-
-        if ($record === null) {
-            return new Result(
-                success: false,
-                errors: ['id' => 'Message with this ID does not exist'],
-            );
-        }
-
-        return new Result();
     }
 }

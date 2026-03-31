@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Messages;
 
-use App\Messages\Persistence\CreateMessage;
+use App\Messages\Persistence\Create\CreateMessage;
 use App\Messages\Persistence\DeleteMessage;
 use App\Messages\Persistence\FindAll;
 use App\Messages\Persistence\FindById;

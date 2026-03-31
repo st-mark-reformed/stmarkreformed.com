@@ -6,12 +6,22 @@ import { CreateEditMessageSubmitActionState } from '../CreateEditMessageSubmitAc
 import CreateEditMessageParseFormData from '../CreateEditMessageParseFormData';
 import RequestFactory from '../../../api/request/RequestFactory';
 import { ApiResponseJson } from '../../../api/request/ApiResponseJson';
+import { FileToBase64 } from '../FileToBase64';
 
 export default async function CreateNewMessageSubmitFormAction (
     prevState: CreateEditMessageSubmitActionState,
     formData: FormData,
 ): Promise<CreateEditMessageSubmitActionState> {
     const payload = CreateEditMessageParseFormData(formData);
+
+    const audioValue = formData.get('audioPath');
+    const audioFile = audioValue instanceof File && audioValue.size > 0
+        ? audioValue
+        : null;
+
+    if (audioFile) {
+        payload.audioPath = await FileToBase64(audioFile);
+    }
 
     const response = await RequestFactory().makeWithToken({
         uri: '/admin/messages/new',

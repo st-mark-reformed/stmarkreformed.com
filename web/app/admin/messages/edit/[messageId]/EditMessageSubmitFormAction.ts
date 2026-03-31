@@ -6,13 +6,7 @@ import { CreateEditMessageSubmitActionState } from '../../CreateEditMessageSubmi
 import CreateEditMessageParseFormData from '../../CreateEditMessageParseFormData';
 import RequestFactory from '../../../../api/request/RequestFactory';
 import { ApiResponseJson } from '../../../../api/request/ApiResponseJson';
-
-async function fileToBase64 (file: File): Promise<string> {
-    const arrayBuffer = await file.arrayBuffer();
-    const buffer = Buffer.from(arrayBuffer);
-
-    return buffer.toString('base64');
-}
+import { FileToBase64 } from '../../FileToBase64';
 
 export default async function EditMessageSubmitFormAction (
     prevState: CreateEditMessageSubmitActionState,
@@ -29,7 +23,7 @@ export default async function EditMessageSubmitFormAction (
         : null;
 
     if (audioFile) {
-        payload.audioPath = await fileToBase64(audioFile);
+        payload.audioPath = await FileToBase64(audioFile);
     }
 
     const response = await RequestFactory().makeWithToken({

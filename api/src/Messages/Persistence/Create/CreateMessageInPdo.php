@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Messages\Persistence;
+namespace App\Messages\Persistence\Create;
 
 use App\Messages\NewMessage;
 use App\Persistence\ApiPdo;
@@ -14,7 +14,7 @@ use function array_keys;
 use function assert;
 use function implode;
 
-readonly class CreateMessage
+readonly class CreateMessageInPdo
 {
     public function __construct(
         private ApiPdo $pdo,
@@ -24,13 +24,6 @@ readonly class CreateMessage
 
     public function create(NewMessage $message): Result
     {
-        if (! $message->isValid) {
-            return new Result(
-                success: false,
-                errors: $message->validationMessages,
-            );
-        }
-
         /** @phpstan-ignore-next-line */
         $id = $this->uuidFactory->uuid7();
         assert($id instanceof UuidInterface);
@@ -41,7 +34,7 @@ readonly class CreateMessage
             'date' => $message->date->format('Y-m-d H:i:s'),
             'title' => $message->title,
             'slug' => $message->slug,
-            'audio_path' => $message->audioPath,
+            'audio_path' => $message->createAudioFileNameForPersistence(),
             'speaker_id' => $message->speakerId,
             'passage' => $message->passage,
             'series_id' => $message->seriesId,

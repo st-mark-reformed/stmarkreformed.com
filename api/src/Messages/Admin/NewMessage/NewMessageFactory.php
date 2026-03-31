@@ -17,7 +17,6 @@ readonly class NewMessageFactory
 {
     public function createFromRequest(ServerRequest $request): NewMessage
     {
-        // TODO: Deal with audio uploads
         return new NewMessage(
             isEnabled: $request->parsedBody->getBoolean(name: 'isEnabled'),
             date: $this->getDate(

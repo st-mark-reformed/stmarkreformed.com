@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Messages\Persistence\Persist;
 
 use App\Messages\Message;
+use App\Messages\NewMessage;
 use App\Result\Result;
 use Throwable;
 
@@ -17,7 +18,7 @@ readonly class PersistMessageAudioFile
     ) {
     }
 
-    public function persist(Message $message): Result
+    public function persist(Message|NewMessage $message): Result
     {
         if (! $message->audioPathIsValidFileUpload()) {
             if ($message->audioPathIsFileUpload()) {

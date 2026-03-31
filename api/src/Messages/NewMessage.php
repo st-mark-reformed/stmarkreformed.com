@@ -14,6 +14,8 @@ use function count;
 
 readonly class NewMessage
 {
+    use AudioValidationEntityTrait;
+
     public bool $isValid;
 
     /** @var string[] */
