@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import Link from 'next/link';
 import { PencilIcon } from '@heroicons/react/24/solid';
 import { CheckIcon, PlusIcon } from '@heroicons/react/16/solid';
-import { EyeIcon } from '@heroicons/react/24/outline';
+import { EyeIcon, TrashIcon } from '@heroicons/react/24/outline';
 
 export interface Button {
     content: string;
@@ -10,7 +10,7 @@ export interface Button {
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
     onClickButtonType?: 'submit' | 'reset' | 'button' | undefined;
     type: 'primary' | 'secondary' | 'pending';
-    glyph?: 'pencil' | 'plus' | 'check' | 'eye';
+    glyph?: 'pencil' | 'plus' | 'check' | 'eye' | 'trash';
 }
 
 export default function PageTitle (
@@ -69,6 +69,10 @@ export default function PageTitle (
 
                                     if (button.glyph === 'eye') {
                                         return <EyeIcon className={iconClasses} aria-hidden="true" />;
+                                    }
+
+                                    if (button.glyph === 'trash') {
+                                        return <TrashIcon className={iconClasses} aria-hidden="true" />;
                                     }
 
                                     return null;
