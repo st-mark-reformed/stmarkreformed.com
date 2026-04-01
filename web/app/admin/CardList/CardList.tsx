@@ -105,6 +105,10 @@ const CardList = forwardRef<HTMLFormElement, Props>((
                         className={(() => {
                             const classes = ['relative grid gap-x-6 px-4 py-5 grid-cols-1'];
 
+                            if (checkedIds.includes(item.id)) {
+                                classes.push('bg-crimson/10 dark:bg-gray-700/60');
+                            }
+
                             if (item.columns?.length === 2) {
                                 classes.push('sm:grid-cols-2');
                             } else if (item.columns?.length === 3) {
