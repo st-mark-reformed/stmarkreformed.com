@@ -118,8 +118,25 @@ const CardList = forwardRef<CardListHandle, Props>((
         <form ref={formRef} action={formAction}>
             <ul className="divide-y divide-gray-100 overflow-hidden bg-white shadow-xs outline-1 outline-gray-900/5 sm:rounded-xl dark:divide-white/5 dark:bg-gray-800/50 dark:shadow-none dark:outline-white/10 dark:sm:-outline-offset-1 relative">
                 {items.map((item) => (
+                    // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
                     <li
                         key={item.id}
+                        onClick={(event) => {
+                            if (!showCheckBoxes) {
+                                return;
+                            }
+
+                            const target = event.target as HTMLElement | null;
+
+                            if (
+                                target?.closest('a')
+                                || target?.closest('input[type="checkbox"]')
+                            ) {
+                                return;
+                            }
+
+                            handleCheckboxChange(item.id, !checkedIds.includes(item.id));
+                        }}
                         className={(() => {
                             const classes = ['relative grid gap-x-6 px-4 py-5 grid-cols-1'];
 
