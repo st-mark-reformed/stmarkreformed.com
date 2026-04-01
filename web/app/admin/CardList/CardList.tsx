@@ -286,7 +286,8 @@ const CardList = forwardRef<CardListHandle, Props>((
                             return (
                                 <div className="absolute right-4 top-1/2 -translate-y-1/2">
                                     <input
-                                        name="comments"
+                                        name="items[]"
+                                        value={item.id}
                                         type="checkbox"
                                         checked={checkedIds.includes(item.id)}
                                         onChange={(event) => {

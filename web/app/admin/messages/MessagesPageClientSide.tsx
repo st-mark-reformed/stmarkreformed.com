@@ -1,10 +1,14 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, {
+    useActionState, useEffect, useRef, useState,
+} from 'react';
 import PageTitle, { Button } from '../PageTitle';
 import Breadcrumbs from '../Breadcrumbs';
 import CardList, { CardListHandle } from '../CardList/CardList';
 import { Message } from './Message';
+import SubmitDeleteMessagesFormAction from './SubmitDeleteMessagesFormAction';
+import Alert from '../../Alert';
 
 export default function MessagesPageClientSide (
     {
@@ -17,7 +21,34 @@ export default function MessagesPageClientSide (
 
     const [hasChecked, setHasChecked] = useState(false);
 
+    const [state, formAction, isPending] = useActionState(
+        // I can't figure out why the types aren't matching. As far as I can tell they're exactly right
+        // @ts-expect-error TS2769
+        SubmitDeleteMessagesFormAction,
+        {
+            status: 'unsubmitted',
+            iteration: 0,
+            message: '',
+        },
+    );
+
+    useEffect(() => {
+        formRef.current?.clearCheckedItems();
+    }, [state]);
+
     const buttons: Button[] = (() => {
+        if (isPending) {
+            return [
+                {
+                    type: 'pending',
+                    content: 'Deleting…',
+                    glyph: 'trash',
+                    href: 'delete-button',
+                    onClick: () => {},
+                },
+            ];
+        }
+
         if (hasChecked) {
             return [
                 {
@@ -29,7 +60,6 @@ export default function MessagesPageClientSide (
                         formRef.current?.clearCheckedItems();
                     },
                 },
-                // TODO: if isPending
                 {
                     type: 'primary',
                     content: 'Delete Selected',
@@ -70,8 +100,23 @@ export default function MessagesPageClientSide (
             <PageTitle buttons={buttons}>
                 Messages
             </PageTitle>
+            {(() => {
+                if (state.status !== 'failure' || isPending) {
+                    return null;
+                }
+
+                return (
+                    <div className="mb-4">
+                        <Alert
+                            headline={state.message}
+                            type="error"
+                        />
+                    </div>
+                );
+            })()}
             <CardList
                 ref={formRef}
+                formAction={formAction}
                 noItemsFoundMessage="No messages found."
                 items={messages.map((message) => ({
                     id: message.id,
