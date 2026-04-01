@@ -211,7 +211,7 @@ const CardList = forwardRef<CardListHandle, Props>((
                                         className={wrapperClasses.join(' ')}
                                     >
                                         {column.map((button) => {
-                                            const classes = ['inline-flex items-center rounded-sm px-2 py-1 text-xs font-semibold text-gray-900 shadow-xs'];
+                                            const classes = ['inline-flex items-center rounded-sm px-2 py-1 text-xs font-semibold text-gray-900 shadow-xs select-none'];
 
                                             if (button.type === 'primary') {
                                                 classes.push('cursor-pointer bg-crimson text-white hover:bg-crimson-dark dark:bg-crimson/70 dark:shadow-none dark:hover:bg-crimson/80');

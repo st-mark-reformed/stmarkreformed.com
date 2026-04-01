@@ -56,7 +56,7 @@ export default function FormButtons (
                 type="submit"
                 disabled={definitiveIsPending}
                 className={(() => {
-                    const classes = ['inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-xs dark:shadow-none'];
+                    const classes = ['inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-xs dark:shadow-none select-none'];
 
                     if (definitiveIsPending) {
                         classes.push('cursor-default bg-gray-300 text-gray-500');

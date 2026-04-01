@@ -38,7 +38,7 @@ export default function PageTitle (
                     return (
                         <div className="mt-4 flex shrink-0 md:mt-0 md:ml-4">
                             {buttons.map((button) => {
-                                const classes = ['ml-3 inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-xs'];
+                                const classes = ['ml-3 inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-xs select-none'];
 
                                 if (button.type === 'primary') {
                                     classes.push('cursor-pointer bg-crimson text-white hover:bg-crimson-dark dark:bg-crimson/70 dark:shadow-none dark:hover:bg-crimson/80');
