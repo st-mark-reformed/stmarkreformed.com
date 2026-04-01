@@ -3,7 +3,7 @@
 import React, { useRef, useState } from 'react';
 import PageTitle, { Button } from '../PageTitle';
 import Breadcrumbs from '../Breadcrumbs';
-import CardList from '../CardList/CardList';
+import CardList, { CardListHandle } from '../CardList/CardList';
 import { Message } from './Message';
 
 export default function MessagesPageClientSide (
@@ -13,14 +13,23 @@ export default function MessagesPageClientSide (
         messages: Message[];
     },
 ) {
-    const formRef = useRef<HTMLFormElement>(null);
+    const formRef = useRef<CardListHandle>(null);
 
     const [hasChecked, setHasChecked] = useState(false);
 
     const buttons: Button[] = (() => {
         if (hasChecked) {
-            // TODO: if isPending
             return [
+                {
+                    type: 'secondary',
+                    content: 'Deselect All',
+                    glyph: 'x-mark',
+                    href: 'deselect-button',
+                    onClick: () => {
+                        formRef.current?.clearCheckedItems();
+                    },
+                },
+                // TODO: if isPending
                 {
                     type: 'primary',
                     content: 'Delete Selected',

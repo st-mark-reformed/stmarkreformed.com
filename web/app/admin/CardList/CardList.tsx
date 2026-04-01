@@ -5,6 +5,8 @@ import React, {
     forwardRef,
     ReactNode,
     useEffect,
+    useImperativeHandle,
+    useRef,
     useState,
 } from 'react';
 import Link from 'next/link';
@@ -62,7 +64,12 @@ function isCardButtons (
         ));
 }
 
-const CardList = forwardRef<HTMLFormElement, Props>((
+export interface CardListHandle {
+    clearCheckedItems: () => void;
+    requestSubmit: () => void;
+}
+
+const CardList = forwardRef<CardListHandle, Props>((
     {
         items = [],
         noItemsFoundMessage = 'No items found.',
@@ -72,7 +79,18 @@ const CardList = forwardRef<HTMLFormElement, Props>((
     },
     ref,
 ) => {
+    const formRef = useRef<HTMLFormElement>(null);
+
     const [checkedIds, setCheckedIds] = useState<string[]>([]);
+
+    useImperativeHandle(ref, () => ({
+        clearCheckedItems: () => {
+            setCheckedIds([]);
+        },
+        requestSubmit: () => {
+            formRef.current?.requestSubmit();
+        },
+    }), []);
 
     useEffect(() => {
         onCheckedChange?.(checkedIds.length > 0, checkedIds);
@@ -97,7 +115,7 @@ const CardList = forwardRef<HTMLFormElement, Props>((
     }
 
     return (
-        <form ref={ref} action={formAction}>
+        <form ref={formRef} action={formAction}>
             <ul className="divide-y divide-gray-100 overflow-hidden bg-white shadow-xs outline-1 outline-gray-900/5 sm:rounded-xl dark:divide-white/5 dark:bg-gray-800/50 dark:shadow-none dark:outline-white/10 dark:sm:-outline-offset-1 relative">
                 {items.map((item) => (
                     <li

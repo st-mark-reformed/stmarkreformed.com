@@ -4,7 +4,7 @@ import React, { useRef, useState } from 'react';
 import { Series } from './Series';
 import Breadcrumbs from '../../Breadcrumbs';
 import PageTitle, { Button } from '../../PageTitle';
-import CardList from '../../CardList/CardList';
+import CardList, { CardListHandle } from '../../CardList/CardList';
 
 export default function SeriesPageClientSide (
     {
@@ -13,14 +13,23 @@ export default function SeriesPageClientSide (
         series: Series[];
     },
 ) {
-    const formRef = useRef<HTMLFormElement>(null);
+    const formRef = useRef<CardListHandle>(null);
 
     const [hasChecked, setHasChecked] = useState(false);
 
     const buttons: Button[] = (() => {
         if (hasChecked) {
-            // TODO: if isPending
             return [
+                {
+                    type: 'secondary',
+                    content: 'Deselect All',
+                    glyph: 'x-mark',
+                    href: 'deselect-button',
+                    onClick: () => {
+                        formRef.current?.clearCheckedItems();
+                    },
+                },
+                // TODO: if isPending
                 {
                     type: 'primary',
                     content: 'Delete Selected',
