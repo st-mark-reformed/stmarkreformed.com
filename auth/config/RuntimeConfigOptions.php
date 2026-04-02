@@ -6,6 +6,8 @@ namespace Config;
 
 enum RuntimeConfigOptions
 {
+    case ENABLE_TEST_ROUTES;
+
     case USE_WHOOPS_ERROR_HANDLING;
     case USE_PRODUCTION_ERROR_MIDDLEWARE;
 
