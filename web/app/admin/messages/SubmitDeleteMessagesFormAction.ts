@@ -6,8 +6,8 @@ import { SubmitDeleteMessagesActionState } from './SubmitDeleteMessagesActionSta
 import RequestFactory from '../../api/request/RequestFactory';
 
 interface ApiResponseJson {
-    status: 'success' | 'failure';
-    message: string;
+    success: boolean;
+    errors: [string];
 }
 
 export default async function SubmitDeleteMessagesFormAction (
@@ -29,13 +29,19 @@ export default async function SubmitDeleteMessagesFormAction (
 
     return {
         status: (() => {
-            if (responseJson.status === 'success') {
+            if (responseJson.success) {
                 return 'success';
             }
 
             return 'failure';
         })(),
         iteration: prevState.iteration + 1,
-        message: responseJson.message || 'An unknown error occurred.',
+        message: (() => {
+            if (responseJson.errors.length > 0) {
+                return responseJson.errors.join(', ');
+            }
+
+            return 'An unknown error occurred.';
+        })(),
     };
 }

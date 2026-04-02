@@ -13,9 +13,8 @@ use function sprintf;
 
 readonly class PersistMessageAudioFile
 {
-    public function __construct(
-        private MessageAudioFileStorage $storage,
-    ) {
+    public function __construct(private MessageAudioFileStorage $storage)
+    {
     }
 
     public function persist(Message|NewMessage $message): Result

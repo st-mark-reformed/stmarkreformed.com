@@ -8,6 +8,7 @@ use RuntimeException;
 
 use function base64_decode;
 use function dirname;
+use function file_exists;
 use function file_put_contents;
 use function is_dir;
 use function mkdir;
@@ -16,9 +17,19 @@ use function str_starts_with;
 use function strlen;
 use function strpos;
 use function substr;
+use function unlink;
 
 readonly class MessageAudioFileStorage
 {
+    public function delete(string $absoluteFilePath): void
+    {
+        if (! file_exists($absoluteFilePath)) {
+            return;
+        }
+
+        unlink($absoluteFilePath);
+    }
+
     public function save(string $base64Audio, string $absoluteFilePath): void
     {
         $payload = $this->extractBase64Payload($base64Audio);

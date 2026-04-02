@@ -1,8 +1,12 @@
 'use client';
 
 import React, {
-    useActionState, useEffect, useRef, useState,
+    useActionState,
+    useEffect,
+    useRef,
+    useState,
 } from 'react';
+import { useRouter } from 'next/navigation';
 import PageTitle, { Button } from '../PageTitle';
 import Breadcrumbs from '../Breadcrumbs';
 import CardList, { CardListHandle } from '../CardList/CardList';
@@ -17,12 +21,17 @@ export default function MessagesPageClientSide (
         messages: Message[];
     },
 ) {
+    const router = useRouter();
+
     const formRef = useRef<CardListHandle>(null);
 
     const [hasChecked, setHasChecked] = useState(false);
 
     const [state, formAction, isPending] = useActionState(
-        // I can't figure out why the types aren't matching. As far as I can tell they're exactly right
+        /**
+         * I can't figure out why the types aren't matching. As far as I can
+         * tell, they're exactly right.
+         */
         // @ts-expect-error TS2769
         SubmitDeleteMessagesFormAction,
         {
@@ -34,6 +43,14 @@ export default function MessagesPageClientSide (
 
     useEffect(() => {
         formRef.current?.clearCheckedItems();
+    }, [state]);
+
+    useEffect(() => {
+        if (state.status !== 'success') {
+            return;
+        }
+
+        router.refresh();
     }, [state]);
 
     const buttons: Button[] = (() => {

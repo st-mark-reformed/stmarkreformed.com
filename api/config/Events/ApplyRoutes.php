@@ -12,6 +12,7 @@ use App\Messages\Admin\EditMessage\PostEditMessage\PostEditMessageAction;
 use App\Messages\Admin\GetHasEditMessagesRoleAction;
 use App\Messages\Admin\GetMessagesListAction;
 use App\Messages\Admin\NewMessage\PostNewMessageAction;
+use App\Messages\Admin\PostDeleteMessagesAction;
 use App\Profiles\Admin\EditProfile\GetEditProfile\GetEditProfileAction;
 use App\Profiles\Admin\EditProfile\PostEditProfile\PostEditProfileAction;
 use App\Profiles\Admin\GetHasEditProfilesRoleAction;
@@ -64,6 +65,7 @@ readonly class ApplyRoutes
         PostEditMessageAction::applyRoute(routes: $routes);
         GetProfilesDropdownValues::applyRoute(routes: $routes);
         GetSeriesDropdownAction::applyRoute(routes: $routes);
+        PostDeleteMessagesAction::applyRoute(routes: $routes);
 
         if (
             ! $config->getBoolean(

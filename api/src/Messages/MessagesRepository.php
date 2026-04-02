@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Messages;
 
 use App\Messages\Persistence\Create\CreateMessage;
-use App\Messages\Persistence\DeleteMessage;
+use App\Messages\Persistence\Delete\DeleteMessage;
 use App\Messages\Persistence\FindAll;
 use App\Messages\Persistence\FindById;
 use App\Messages\Persistence\Persist\PersistMessage;
@@ -34,9 +34,13 @@ readonly class MessagesRepository
 
     public function delete(string|UuidInterface $id): Result
     {
-        return $this->deleteMessage->delete(
-            id: $this->createUuid->fromStringOrInterface(id: $id),
-        );
+        $messageResult = $this->findById(id: $id);
+
+        if (! $messageResult->hasMessage) {
+            return new Result();
+        }
+
+        return $this->deleteMessage->delete(message: $messageResult->message);
     }
 
     public function persist(Message $message): Result
