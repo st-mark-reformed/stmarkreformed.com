@@ -31,7 +31,7 @@ readonly class AuthorizationServerFactory
         private AccessTokenRepositoryInterface $accessTokenRepository,
         private RefreshTokenRepositoryInterface $refreshTokenRepository,
     ) {
-        $this->refreshTokenTTL = new DateInterval('PT10M');
+        $this->refreshTokenTTL = new DateInterval('PT80M');
     }
 
     public function create(): AuthorizationServer
