@@ -82,7 +82,10 @@ readonly class AuthorizationServerFactory
 
         $grant->setRefreshTokenTTL($this->refreshTokenTTL);
 
-        $server->enableGrantType($grant);
+        $server->enableGrantType(
+            $grant,
+            new DateInterval('PT15M'),
+        );
     }
 
     private function enabledClientCredentialsGrant(
