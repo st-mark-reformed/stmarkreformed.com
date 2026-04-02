@@ -20,6 +20,7 @@ use App\Profiles\Admin\GetLeadershipPositionsAction;
 use App\Profiles\Admin\GetProfilesDropdownValues;
 use App\Profiles\Admin\GetProfilesListAction;
 use App\Profiles\Admin\NewProfile\PostNewProfileAction;
+use App\Profiles\Admin\PostDeleteProfilesAction;
 use App\Series\Admin\EditSeries\GetEditSeries\GetEditSeriesAction;
 use App\Series\Admin\EditSeries\PostEditSeries\PostEditSeriesAction;
 use App\Series\Admin\GetSeriesDropdownAction;
@@ -68,6 +69,7 @@ readonly class ApplyRoutes
         GetSeriesDropdownAction::applyRoute(routes: $routes);
         PostDeleteMessagesAction::applyRoute(routes: $routes);
         PostDeleteSeriesAction::applyRoute(routes: $routes);
+        PostDeleteProfilesAction::applyRoute(routes: $routes);
 
         if (
             ! $config->getBoolean(
