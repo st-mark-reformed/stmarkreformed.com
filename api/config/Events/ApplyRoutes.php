@@ -25,6 +25,7 @@ use App\Series\Admin\EditSeries\PostEditSeries\PostEditSeriesAction;
 use App\Series\Admin\GetSeriesDropdownAction;
 use App\Series\Admin\GetSeriesListAction;
 use App\Series\Admin\NewSeries\PostNewSeriesAction;
+use App\Series\Admin\PostDeleteSeriesAction;
 use App\Tinker;
 use BuzzingPixel\Queue\Http\Routes\Route;
 use BuzzingPixel\Queue\Http\Routes\RoutesFactory as QueueRoutesFactory;
@@ -66,6 +67,7 @@ readonly class ApplyRoutes
         GetProfilesDropdownValues::applyRoute(routes: $routes);
         GetSeriesDropdownAction::applyRoute(routes: $routes);
         PostDeleteMessagesAction::applyRoute(routes: $routes);
+        PostDeleteSeriesAction::applyRoute(routes: $routes);
 
         if (
             ! $config->getBoolean(

@@ -2,29 +2,29 @@
 
 declare(strict_types=1);
 
-namespace App\Messages\Admin;
+namespace App\Series\Admin;
 
 use App\Auth\RequireEditMessagesRoleMiddleware;
-use App\Messages\MessagesRepository;
 use App\Result\Result;
 use App\Result\ResultResponder;
+use App\Series\SeriesRepository;
 use Psr\Http\Message\ResponseInterface;
 use RxAnte\AppBootstrap\Http\ApplyRoutesEvent;
 use RxAnte\AppBootstrap\Request\ServerRequest;
 
-readonly class PostDeleteMessagesAction
+readonly class PostDeleteSeriesAction
 {
     public static function applyRoute(ApplyRoutesEvent $routes): void
     {
         $routes->delete(
-            '/admin/messages',
+            '/admin/messages/series',
             self::class,
         )->add(RequireEditMessagesRoleMiddleware::class);
     }
 
     public function __construct(
         private ResultResponder $responder,
-        private MessagesRepository $repository,
+        private SeriesRepository $repository,
     ) {
     }
 

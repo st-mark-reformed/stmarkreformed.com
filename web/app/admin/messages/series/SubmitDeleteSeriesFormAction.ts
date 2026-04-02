@@ -2,22 +2,22 @@
 
 import RequestMethods from 'rxante-oauth/dist/Request/RequestMethods';
 import { revalidatePath } from 'next/cache';
-import { SubmitDeleteMessagesActionState } from './SubmitDeleteMessagesActionState';
-import RequestFactory from '../../api/request/RequestFactory';
+import { SubmitDeleteSeriesActionState } from './SubmitDeleteSeriesActionState';
+import RequestFactory from '../../../api/request/RequestFactory';
 
 interface ApiResponseJson {
     success: boolean;
     errors: [string];
 }
 
-export default async function SubmitDeleteMessagesFormAction (
-    prevState: SubmitDeleteMessagesActionState,
+export default async function SubmitDeleteSeriesFormAction (
+    prevState: SubmitDeleteSeriesActionState,
     formData: FormData,
-): Promise<SubmitDeleteMessagesActionState> {
+): Promise<SubmitDeleteSeriesActionState> {
     const items = formData.getAll('items[]');
 
     const response = await RequestFactory().makeWithToken({
-        uri: '/admin/messages',
+        uri: '/admin/messages/series',
         method: RequestMethods.DELETE,
         cacheSeconds: 0,
         payload: { items },
@@ -25,7 +25,7 @@ export default async function SubmitDeleteMessagesFormAction (
 
     const responseJson = response.json as unknown as ApiResponseJson;
 
-    revalidatePath('/admin/messages');
+    revalidatePath('/admin/messages/series');
 
     return {
         status: (() => {

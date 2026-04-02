@@ -51,6 +51,7 @@ export default function MessagesPageClientSide (
         }
 
         router.refresh();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state]);
 
     const buttons: Button[] = (() => {
@@ -114,9 +115,7 @@ export default function MessagesPageClientSide (
     return (
         <>
             <Breadcrumbs />
-            <PageTitle buttons={buttons}>
-                Messages
-            </PageTitle>
+            <PageTitle buttons={buttons}>Messages</PageTitle>
             {(() => {
                 if (state.status !== 'failure' || isPending) {
                     return null;
