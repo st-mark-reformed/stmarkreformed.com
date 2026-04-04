@@ -39,7 +39,7 @@ export default function OperationRootsDown () {
 
                     <p>That congregation was particularized a year later, and God has been uncommonly gracious and kind over the years, pouring out blessing upon blessing as we have sought to faithfully &ldquo;serve Christ and the world through liturgy, mission, and community.&rdquo;</p>
 
-                    <p>While the Lord has faithfully provided many different locations for us to meet, He has not yet to blessed us with a place uniquely &ldquo;our own&rdquo; &mdash; a place where we might put down roots and establish a presence of worship and fellowship which we pray will grow and flourish for generations.</p>
+                    <p>While the Lord has faithfully provided many different locations for us to meet, He has not yet blessed us with a place uniquely &ldquo;our own&rdquo; &mdash; a place where we might put down roots and establish a presence of worship and fellowship which we pray will grow and flourish for generations.</p>
 
                     <p>A Building Fund was established a number of years ago which the Lord has blessed with steady growth. However, its value is still too small to make a &rdquo;respectable offer&ldquo; for acquiring a location. As opportunities arise, we now have an added sense of urgency to secure a location within the coming months as <strong>our current meeting location has been sold</strong>.</p>
 
