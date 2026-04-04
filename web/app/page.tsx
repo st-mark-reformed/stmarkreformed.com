@@ -70,6 +70,7 @@ export default async function Page () {
                 </div>
             </div>
             {/* End TODO */}
+            <div className="h-2 bg-goldenrod" />
             <ImageContentCta
                 image="/images/home/bfp-map-image.png"
                 preHeading="Join us for Covenant Renewal Worship"
@@ -97,6 +98,7 @@ export default async function Page () {
                     newWindow: true,
                 }}
             />
+            <div className="h-2 bg-bronze" />
             <UpcomingEvents />
             <LatestGalleries
                 heading="A picture is worth a thousand words"
