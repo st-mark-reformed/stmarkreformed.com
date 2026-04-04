@@ -8,9 +8,21 @@ export default function MenuMainMobile () {
             {MainMenu.map((menuItem) => (
                 <div key={menuItem.link}>
                     {(() => {
+                        const baseClasses = ['block px-3 py-2 rounded-md text-base'];
+
+                        if (menuItem.isEmphasized) {
+                            baseClasses.push('font-bold');
+                        } else {
+                            baseClasses.push('ont-medium');
+                        }
+
+                        const spanClasses = baseClasses.concat('text-gray-500 italic');
+
+                        const linkClasses = baseClasses.concat('text-gray-900 hover:bg-bronze hover:text-gray-200');
+
                         if (!menuItem.link) {
                             return (
-                                <span className="block px-3 py-2 rounded-md text-base font-medium text-gray-500 italic">
+                                <span className={spanClasses.join(' ')}>
                                     {menuItem.name}
                                 </span>
                             );
@@ -20,7 +32,7 @@ export default function MenuMainMobile () {
                             <Link
                                 key={menuItem.link}
                                 href={menuItem.link}
-                                className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-bronze hover:text-gray-200"
+                                className={linkClasses.join(' ')}
                             >
                                 {menuItem.name}
                             </Link>

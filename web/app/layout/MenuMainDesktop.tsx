@@ -15,6 +15,14 @@ export default function MenuMainDesktop () {
                 if (menuItem.children.length > 0) {
                     const isActive = activeSubMenu === menuItem.name;
 
+                    const classes = ['text-white group rounded-md inline-flex items-center text-base focus:outline-none cursor-pointer'];
+
+                    if (menuItem.isEmphasized) {
+                        classes.push('bg-crimson hover:bg-crimson-dark font-bold px-3');
+                    } else {
+                        classes.push('bg-transparent hover:text-goldenrod font-normal');
+                    }
+
                     return (
                         <div
                             key={menuItem.link}
@@ -25,7 +33,7 @@ export default function MenuMainDesktop () {
                             {/* x-bind:aria-expanded="subMenuIsActive" */}
                             <button
                                 type="button"
-                                className="text-white hover:text-goldenrod group bg-transparent rounded-md inline-flex items-center text-base font-normal focus:outline-none cursor-pointer"
+                                className={classes.join(' ')}
                                 onClick={() => setActiveSubMenu(
                                     isActive ? '' : menuItem.name,
                                 )}
@@ -77,11 +85,19 @@ export default function MenuMainDesktop () {
                     );
                 }
 
+                const classes = ['text-base text-white rounded-md'];
+
+                if (menuItem.isEmphasized) {
+                    classes.push('bg-crimson hover:bg-crimson-dark font-bold px-3');
+                } else {
+                    classes.push('bg-transparent hover:text-goldenrod font-normal');
+                }
+
                 return (
                     <Link
                         key={menuItem.link}
                         href={menuItem.link}
-                        className="text-base font-normal text-white hover:text-goldenrod"
+                        className={classes.join(' ')}
                     >
                         {menuItem.name}
                     </Link>

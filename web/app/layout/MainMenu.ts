@@ -2,7 +2,8 @@ export type MenuItemType = {
     name: string;
     link: string;
     footerLink?: string;
-    children: MenuItemType[];
+    isEmphasized?: boolean;
+    children: Omit<MenuItemType, 'isEmphasized'>[];
 };
 
 export type MenuItems = Array<MenuItemType>;

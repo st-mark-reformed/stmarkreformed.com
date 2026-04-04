@@ -29,7 +29,7 @@ export default function Nav () {
                             <Link href="/">
                                 <span className="sr-only">St. Mark Reformed Church</span>
                                 <img
-                                    className="h-8 w-auto sm:h-10"
+                                    className="h-8 w-auto sm:h-10 object-contain"
                                     src="/images/logo/logo-website-header.png"
                                     alt=""
                                 />
@@ -45,11 +45,11 @@ export default function Nav () {
                                 </button>
                             </div>
                         </div>
-                        <div className="hidden space-x-8 md:flex md:ml-10">
+                        <div className="hidden space-x-4 lg:space-x-8 md:flex md:ml-6 lg:ml-10">
                             <MenuMainDesktop />
                         </div>
                     </div>
-                    <div className="hidden md:flex md:items-center md:space-x-6">
+                    <div className="ml-8 hidden md:flex md:items-center md:space-x-6">
                         <MenuSecondaryDesktop />
                     </div>
                 </nav>

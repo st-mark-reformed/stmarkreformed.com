@@ -7,15 +7,27 @@ export default function MenuSecondaryMobile () {
         <>
             <div className="mt-6 px-5">
                 <p className="text-center text-base font-medium text-gray-500">
-                    {SecondaryMenu.map((menuItem) => (
-                        <Link
-                            key={menuItem.link}
-                            href={menuItem.link}
-                            className="text-gray-900 hover:underline"
-                        >
-                            {menuItem.name}
-                        </Link>
-                    ))}
+                    {SecondaryMenu.map((menuItem) => {
+                        const classes = ['inline-block mt-4 text-gray-50 py-2 px-4 rounded-md'];
+
+                        if (menuItem.isEmphasized) {
+                            classes.push('bg-crimson hover:bg-crimson-dark font-bold');
+                        } else {
+                            classes.push('bg-bronze-lightened-2 hover:bg-bronze');
+                        }
+
+                        return (
+                            <div>
+                                <Link
+                                    key={menuItem.link}
+                                    href={menuItem.link}
+                                    className={classes.join(' ')}
+                                >
+                                    {menuItem.name}
+                                </Link>
+                            </div>
+                        );
+                    })}
                 </p>
             </div>
         </>
