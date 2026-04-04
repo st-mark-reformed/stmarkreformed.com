@@ -20,7 +20,7 @@ export default function OperationRootsDown () {
                 heroParagraph: 'like a tree planted by rivers of water',
                 heroImage1x: '/images/operation-roots-down/tree-roots.jpg',
                 heroUpperCta: {
-                    linkText: 'Ways to give',
+                    linkText: 'Scroll to: Ways to give',
                     linkData: '#give',
                 },
             }}
