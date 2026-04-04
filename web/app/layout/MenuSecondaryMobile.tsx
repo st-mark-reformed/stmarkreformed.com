@@ -17,9 +17,8 @@ export default function MenuSecondaryMobile () {
                         }
 
                         return (
-                            <div>
+                            <div key={menuItem.link}>
                                 <Link
-                                    key={menuItem.link}
                                     href={menuItem.link}
                                     className={classes.join(' ')}
                                 >

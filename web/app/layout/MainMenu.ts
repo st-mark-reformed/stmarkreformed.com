@@ -91,6 +91,12 @@ export const MainMenu: MenuItems = [
 
 export const SecondaryMenu: MenuItems = [
     {
+        name: 'Operation Roots Down',
+        link: '/operation-roots-down',
+        isEmphasized: true,
+        children: [],
+    },
+    {
         name: 'Members',
         link: '/members',
         children: [],
