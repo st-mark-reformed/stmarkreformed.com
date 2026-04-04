@@ -1,7 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Layout from './layout/Layout';
-import ImageContentCta from './PageComponents/ImageContentCta';
+import ImageContentCta, {
+    ImageContentCtaBackgroundColor,
+    ImageContentDisposition,
+} from './PageComponents/ImageContentCta';
 import UpcomingEvents from './PageComponents/UpcomingEvents/UpcomingEvents';
 import LatestGalleries from './PageComponents/LatestGalleries';
 import LatestSermon from './PageComponents/LatestSermon';
@@ -34,6 +38,38 @@ export default async function Page () {
                     </h2>
                 </div>
             </div> */}
+            {/* TODO: componentize this */}
+            <div className="relative bg-gray-50 pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8 border-t-8 border-goldenrod">
+                <div className="absolute inset-0">
+                    <div className="bg-bronze h-full relative">
+                        <Image
+                            src="/images/operation-roots-down/tree-roots.jpg"
+                            alt="Operation Roots Down"
+                            fill
+                            className="object-cover opacity-40"
+                        />
+                    </div>
+                </div>
+                <div className="relative max-w-3xl mx-auto">
+                    <div className="text-center">
+                        <h2 className="text-3xl tracking-tight font-extrabold sm:text-4xl block bg-clip-text text-transparent bg-gradient-to-r from-teal-500 to-teal-300 pb-1">Operation Roots Down</h2>
+                        <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-100 sm:mt-2">like a tree planted by rivers of water</p>
+                    </div>
+                    <div className="prose max-w-none mt-8 text-gray-100">
+                        <p>The Lord has faithfully provided many different locations for us to meet, but He has not yet to blessed us with a place uniquely &ldquo;our own&rdquo; &mdash; a place where we might put down roots.</p>
+                        <p>The Session of SMRC is launching &ldquo;Operation Roots Down,&rdquo; a focused fundraising effort with the goal of <strong className="text-gray-100">raising $3 million</strong> within the next few months.</p>
+                    </div>
+                    <div className="text-center mt-16">
+                        <Link
+                            href="/operation-roots-down"
+                            className="shadow-lg inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-md text-white bg-goldenrod hover:bg-saddle-brown-lightened-2"
+                        >
+                            Learn More
+                        </Link>
+                    </div>
+                </div>
+            </div>
+            {/* End TODO */}
             <ImageContentCta
                 image="/images/home/bfp-map-image.png"
                 preHeading="Join us for Covenant Renewal Worship"
