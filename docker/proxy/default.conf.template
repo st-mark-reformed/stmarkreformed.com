@@ -29,6 +29,11 @@ server {
         break;
     }
 
+    location /transfer {
+        proxy_pass ${CRAFT_PROXY};
+        break;
+    }
+
     location /assets {
         proxy_pass ${CRAFT_PROXY};
         break;

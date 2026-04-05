@@ -21,6 +21,7 @@ use App\Http\Response\News\NewsList\PaginatedNewsListAction;
 use App\Http\Response\News\NewsList\PastorsPageListAction;
 use App\Http\Response\Publications\DisplayMenOfTheMarkListAction;
 use App\Http\Response\Publications\MenOfTheMarkFeedAction;
+use App\Transfer\GetTransferProfiles;
 use Config\Tinker;
 use Slim\App;
 
@@ -85,7 +86,9 @@ return static function (App $app): void {
 
     GetIcsAction::addRoute(routeCollector: $app);
 
-    DisplayMenOfTheMarkListAction::addRoute($app);
+    DisplayMenOfTheMarkListAction::addRoute(routeCollector: $app);
 
-    MenOfTheMarkFeedAction::addRoute($app);
+    MenOfTheMarkFeedAction::addRoute(routeCollector: $app);
+
+    GetTransferProfiles::addRoute(routeCollector: $app);
 };
