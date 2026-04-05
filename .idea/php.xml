@@ -549,6 +549,15 @@
       <path value="$PROJECT_DIR$/api/vendor/league/container" />
       <path value="$PROJECT_DIR$/api/vendor/psr/simple-cache" />
       <path value="$PROJECT_DIR$/api/vendor/robmorgan/phinx" />
+      <path value="$PROJECT_DIR$/api/vendor/symfony/polyfill-php82" />
+      <path value="$PROJECT_DIR$/api/vendor/elasticsearch/elasticsearch" />
+      <path value="$PROJECT_DIR$/api/vendor/elastic/transport" />
+      <path value="$PROJECT_DIR$/api/vendor/open-telemetry/context" />
+      <path value="$PROJECT_DIR$/api/vendor/open-telemetry/api" />
+      <path value="$PROJECT_DIR$/api/vendor/nyholm/psr7" />
+      <path value="$PROJECT_DIR$/api/vendor/php-http/discovery" />
+      <path value="$PROJECT_DIR$/api/vendor/php-http/promise" />
+      <path value="$PROJECT_DIR$/api/vendor/php-http/httplug" />
     </include_path>
   </component>
   <component name="PhpProjectServersManager">

@@ -10,6 +10,7 @@
         "buzzingpixel/php-scheduler": "^1.1",
         "buzzingpixel/php-template-engine": "^1.0",
         "cocur/slugify": "^4.7",
+        "elasticsearch/elasticsearch": "^9.3",
         "hyperf/guzzle": "^3.1",
         "johngrogg/ics-parser": "^3.4",
         "lcobucci/clock": "^3.3",
@@ -42,7 +43,8 @@
         "sort-packages": true,
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "pestphp/pest-plugin": true
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
         }
     }
 }
