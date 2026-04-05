@@ -52,9 +52,9 @@ readonly class ImportProfilesFromCraftCommand
          *     leadershipPosition: string,
          *     bio: string,
          *     hasMessages: bool,
-         * } $profilesJson
+         * } $json
          */
-        $profilesJson = json_decode(
+        $json = json_decode(
             $response->getBody()->getContents(),
             true,
         );
@@ -84,7 +84,7 @@ readonly class ImportProfilesFromCraftCommand
                     hasMessages: (bool) $profile['hasMessages'],
                 ));
             },
-            $profilesJson,
+            $json,
         );
 
         return 0;

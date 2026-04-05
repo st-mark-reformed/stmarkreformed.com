@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Series\Persistence;
 
+use App\EmptyUuid;
 use App\Persistence\ApiPdo;
 use App\Result\Result;
 use App\Series\NewSeries;
@@ -39,9 +40,13 @@ readonly class CreateSeries
             return $uniqueCheck;
         }
 
-        /** @phpstan-ignore-next-line */
-        $id = $this->uuidFactory->uuid7();
-        assert($id instanceof UuidInterface);
+        if ($series->id instanceof EmptyUuid) {
+            /** @phpstan-ignore-next-line */
+            $id = $this->uuidFactory->uuid7();
+            assert($id instanceof UuidInterface);
+        } else {
+            $id = $series->id;
+        }
 
         $params = [
             'id' => $id->toString(),

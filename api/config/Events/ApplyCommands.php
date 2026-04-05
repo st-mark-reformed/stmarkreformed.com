@@ -11,6 +11,7 @@ use App\Persistence\Migrations\MigrateDownCommand;
 use App\Persistence\Migrations\MigrateStatusCommand;
 use App\Persistence\Migrations\MigrateUpCommand;
 use App\Transfer\Profiles\ImportProfilesFromCraftCommand;
+use App\Transfer\Series\ImportSeriesFromCraftCommand;
 use BuzzingPixel\Queue\Framework\QueueConsumeNextSymfonyCommand;
 use BuzzingPixel\Scheduler\Framework\RunScheduleSymfonyCommand;
 use RxAnte\AppBootstrap\Cli\ApplyCliCommandsEvent;
@@ -28,6 +29,7 @@ readonly class ApplyCommands
 
         // Transfer
         ImportProfilesFromCraftCommand::register(commands: $commands);
+        ImportSeriesFromCraftCommand::register(commands: $commands);
 
         $commands->addSymfonyCommand(
             QueueConsumeNextSymfonyCommand::class,
