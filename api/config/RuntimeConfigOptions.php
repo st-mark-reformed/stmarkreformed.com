@@ -35,4 +35,7 @@ enum RuntimeConfigOptions
     case SMRC_API_DB_NAME;
     case SMRC_API_DB_USER;
     case SMRC_API_DB_PASSWORD;
+
+    // Transfer
+    case APP_API_URL;
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Profiles\Persistence;
 
+use App\EmptyUuid;
 use App\Persistence\ApiPdo;
 use App\Profiles\NewProfile;
 use App\Result\Result;
@@ -31,9 +32,13 @@ readonly class CreateProfile
             );
         }
 
-        /** @phpstan-ignore-next-line */
-        $id = $this->uuidFactory->uuid7();
-        assert($id instanceof UuidInterface);
+        if ($profile->id instanceof EmptyUuid) {
+            /** @phpstan-ignore-next-line */
+            $id = $this->uuidFactory->uuid7();
+            assert($id instanceof UuidInterface);
+        } else {
+            $id = $profile->id;
+        }
 
         $params = [
             'id' => $id->toString(),

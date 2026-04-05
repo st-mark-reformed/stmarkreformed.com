@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Profiles;
 
+use App\EmptyUuid;
+use Ramsey\Uuid\UuidInterface;
+
 use function count;
 
 readonly class NewProfile
@@ -21,6 +24,8 @@ readonly class NewProfile
         public ProfileLeadershipPosition $leadershipPosition = ProfileLeadershipPosition::none,
         public string $bio = '',
         public bool $hasMessages = false,
+        // Normally leave this empty, this is here for importing from CraftCMS
+        public UuidInterface $id = new EmptyUuid(),
     ) {
         $messages = ProfileValidation::validate($this);
 

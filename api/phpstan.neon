@@ -4,6 +4,8 @@ parameters:
         - config
         - src
         - cli
+    excludePaths:
+        - src/Transfer/*
 
 includes:
     - vendor/rxante/coding-standards/phpstan.neon
