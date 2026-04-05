@@ -125,7 +125,13 @@ export default function ProfilesPageClientSide (
                         {
                             id: `title-${profile.id}`,
                             line1: profile.fullNameWithHonorific,
-                            line2: profile.leadershipPositionHumanReadable,
+                            line2: (() => {
+                                if (profile.leadershipPositionHumanReadable === 'None') {
+                                    return '';
+                                }
+
+                                return profile.leadershipPositionHumanReadable;
+                            })(),
                         },
                         [
                             {
