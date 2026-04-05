@@ -22,6 +22,7 @@ use App\Http\Response\News\NewsList\PastorsPageListAction;
 use App\Http\Response\Publications\DisplayMenOfTheMarkListAction;
 use App\Http\Response\Publications\MenOfTheMarkFeedAction;
 use App\Transfer\GetTransferProfiles;
+use App\Transfer\GetTransferSeries;
 use Config\Tinker;
 use Slim\App;
 
@@ -91,4 +92,6 @@ return static function (App $app): void {
     MenOfTheMarkFeedAction::addRoute(routeCollector: $app);
 
     GetTransferProfiles::addRoute(routeCollector: $app);
+
+    GetTransferSeries::addRoute(routeCollector: $app);
 };
