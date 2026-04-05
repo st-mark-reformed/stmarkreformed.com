@@ -38,4 +38,7 @@ enum RuntimeConfigOptions
 
     // Transfer
     case APP_API_URL;
+
+    // Search
+    case ELASTIC_SEARCH_HOSTS;
 }
