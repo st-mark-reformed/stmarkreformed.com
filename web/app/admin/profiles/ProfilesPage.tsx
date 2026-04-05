@@ -1,5 +1,4 @@
 import React from 'react';
-
 import GetProfiles from './GetProfiles';
 import ProfilesPageClientSide from './ProfilesPageClientSide';
 

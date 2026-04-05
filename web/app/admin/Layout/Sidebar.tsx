@@ -10,7 +10,7 @@ export default async function Sidebar (
     {
         activeNav = null,
     }: {
-        activeNav: null | 'messages' | 'profiles';
+        activeNav: null | 'messages' | 'profiles' | 'queue' | 'schedule';
     },
 ) {
     const userinfo = await GetUserInfo();
@@ -34,6 +34,20 @@ export default async function Sidebar (
             current: activeNav === 'profiles',
         });
     }
+
+    navigation.push({
+        name: 'Schedule',
+        href: '/admin/schedule',
+        icon: 'Calendar',
+        current: activeNav === 'schedule',
+    });
+
+    navigation.push({
+        name: 'Queue',
+        href: '/admin/queue',
+        icon: 'QueueList',
+        current: activeNav === 'queue',
+    });
 
     return (
         <>

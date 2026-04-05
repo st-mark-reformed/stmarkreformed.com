@@ -5,7 +5,7 @@ import {
     FolderIcon,
     HomeIcon,
     UsersIcon,
-    MicrophoneIcon,
+    MicrophoneIcon, QueueListIcon,
 } from '@heroicons/react/24/outline';
 import React from 'react';
 import NavItem from './NavItem';
@@ -34,6 +34,8 @@ export default function NavItemIconRenderer (
             return <ChartPieIcon aria-hidden="true" className={classes.join(' ')} />;
         case 'Microphone':
             return <MicrophoneIcon aria-hidden="true" className={classes.join(' ')} />;
+        case 'QueueList':
+            return <QueueListIcon aria-hidden="true" className={classes.join(' ')} />;
         default:
             return <></>;
     }

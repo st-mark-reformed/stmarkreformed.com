@@ -21,6 +21,7 @@ use App\Profiles\Admin\GetProfilesDropdownValues;
 use App\Profiles\Admin\GetProfilesListAction;
 use App\Profiles\Admin\NewProfile\PostNewProfileAction;
 use App\Profiles\Admin\PostDeleteProfilesAction;
+use App\Schedule\Admin\GetAdminScheduleAction;
 use App\Series\Admin\EditSeries\GetEditSeries\GetEditSeriesAction;
 use App\Series\Admin\EditSeries\PostEditSeries\PostEditSeriesAction;
 use App\Series\Admin\GetSeriesDropdownAction;
@@ -70,6 +71,7 @@ readonly class ApplyRoutes
         PostDeleteMessagesAction::applyRoute(routes: $routes);
         PostDeleteSeriesAction::applyRoute(routes: $routes);
         PostDeleteProfilesAction::applyRoute(routes: $routes);
+        GetAdminScheduleAction::applyRoute(routes: $routes);
 
         if (
             ! $config->getBoolean(
