@@ -37,6 +37,8 @@ readonly class NewMessage
         public string $passage = '',
         public UuidInterface $seriesId = new EmptyUuid(),
         public string $description = '',
+        // Normally leave this empty, this is here for importing from CraftCMS
+        public UuidInterface $id = new EmptyUuid(),
     ) {
         /** @phpstan-ignore-next-line */
         $this->date = DateTimeImmutable::createFromFormat(

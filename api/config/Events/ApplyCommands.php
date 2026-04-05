@@ -10,6 +10,7 @@ use App\Persistence\Migrations\MigrateCreateCommand;
 use App\Persistence\Migrations\MigrateDownCommand;
 use App\Persistence\Migrations\MigrateStatusCommand;
 use App\Persistence\Migrations\MigrateUpCommand;
+use App\Transfer\Messages\ImportMessagesFromCraftCommand;
 use App\Transfer\Profiles\ImportProfilesFromCraftCommand;
 use App\Transfer\Series\ImportSeriesFromCraftCommand;
 use BuzzingPixel\Queue\Framework\QueueConsumeNextSymfonyCommand;
@@ -30,6 +31,7 @@ readonly class ApplyCommands
         // Transfer
         ImportProfilesFromCraftCommand::register(commands: $commands);
         ImportSeriesFromCraftCommand::register(commands: $commands);
+        ImportMessagesFromCraftCommand::register(commands: $commands);
 
         $commands->addSymfonyCommand(
             QueueConsumeNextSymfonyCommand::class,

@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Messages;
 
 use JsonSerializable;
+use Ramsey\Uuid\UuidInterface;
 
+use function array_find;
 use function array_map;
 use function array_values;
 
@@ -65,6 +67,16 @@ readonly class Messages implements JsonSerializable
         return array_map(
             static fn (Message $i) => $i->asArray(),
             $this->items,
+        );
+    }
+
+    public function findById(UuidInterface|string $id): Message|null
+    {
+        $id = $id instanceof UuidInterface ? $id->toString() : $id;
+
+        return array_find(
+            $this->items,
+            static fn (Message $message) => $message->id->toString() === $id,
         );
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Messages\Persistence\Create;
 
+use App\EmptyUuid;
 use App\Messages\NewMessage;
 use App\Persistence\ApiPdo;
 use App\Result\Result;
@@ -24,9 +25,13 @@ readonly class CreateMessageInPdo
 
     public function create(NewMessage $message): Result
     {
-        /** @phpstan-ignore-next-line */
-        $id = $this->uuidFactory->uuid7();
-        assert($id instanceof UuidInterface);
+        if ($message->id instanceof EmptyUuid) {
+            /** @phpstan-ignore-next-line */
+            $id = $this->uuidFactory->uuid7();
+            assert($id instanceof UuidInterface);
+        } else {
+            $id = $message->id;
+        }
 
         $params = [
             'id' => $id->toString(),
