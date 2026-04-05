@@ -11,7 +11,13 @@ export default async function QueuePage () {
         <>
             <AutoRefresh />
             <Breadcrumbs />
-            <PageTitle>
+            <PageTitle
+                buttons={[{
+                    content: 'View Failed',
+                    href: '/admin/queue/failed',
+                    type: 'secondary',
+                }]}
+            >
                 Queue <span className="text-sm font-normal">(refreshes every 5 seconds)</span>
             </PageTitle>
             <div className="p-4 bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
