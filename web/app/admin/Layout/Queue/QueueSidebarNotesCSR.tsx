@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { QueueStatus } from '../../queue/status/route';
+import { QueueStatus } from '../../queue/status/GetQueueStatus';
 
 export default function QueueSidebarNotesCSR (
     {
