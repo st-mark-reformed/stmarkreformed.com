@@ -21,6 +21,7 @@ use App\Http\Response\News\NewsList\PaginatedNewsListAction;
 use App\Http\Response\News\NewsList\PastorsPageListAction;
 use App\Http\Response\Publications\DisplayMenOfTheMarkListAction;
 use App\Http\Response\Publications\MenOfTheMarkFeedAction;
+use App\Transfer\GetTransferMessages;
 use App\Transfer\GetTransferProfiles;
 use App\Transfer\GetTransferSeries;
 use Config\Tinker;
@@ -94,4 +95,6 @@ return static function (App $app): void {
     GetTransferProfiles::addRoute(routeCollector: $app);
 
     GetTransferSeries::addRoute(routeCollector: $app);
+
+    GetTransferMessages::addRoute(routeCollector: $app);
 };
