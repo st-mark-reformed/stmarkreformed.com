@@ -5,6 +5,7 @@ import SidebarCSR from './SidebarCSR';
 import NavItem from './NavItem';
 import NavItemIconRenderer from './NavItemIconRenderer';
 import GetUserInfo from '../../api/auth/GetUserInfo';
+import QueueSidebarNotes from './Queue/QueueSidebarNotes';
 
 export default async function Sidebar (
     {
@@ -92,6 +93,15 @@ export default async function Sidebar (
                                                     >
                                                         <NavItemIconRenderer item={item} />
                                                         {item.name}
+                                                        {(() => {
+                                                            if (item.name !== 'Queue') {
+                                                                return null;
+                                                            }
+
+                                                            return (
+                                                                <QueueSidebarNotes />
+                                                            );
+                                                        })()}
                                                     </Link>
                                                 </li>
                                             ))}
