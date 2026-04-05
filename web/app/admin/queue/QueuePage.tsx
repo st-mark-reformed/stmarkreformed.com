@@ -14,9 +14,9 @@ export default async function QueuePage () {
             <PageTitle>
                 Queue <span className="text-sm font-normal">(refreshes every 5 seconds)</span>
             </PageTitle>
-            <div className="p-4 bg-white rounded-xl shadow-sm border border-gray-200">
+            <div className="p-4 bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
                 <div className="flow-root">
-                    <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div className="-mx-4 -my-2 overflow-x-auto">
                         <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                             <table className="relative min-w-full divide-y divide-gray-300 dark:divide-white/15">
                                 <thead>
