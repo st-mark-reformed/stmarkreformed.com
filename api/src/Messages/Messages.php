@@ -27,6 +27,21 @@ readonly class Messages implements JsonSerializable
         ));
     }
 
+    /**
+     * @param callable(Message): T $callback
+     *
+     * @return T[]
+     *
+     * @template T
+     */
+    public function map(callable $callback): array
+    {
+        return array_values(array_map(
+            $callback,
+            $this->items,
+        ));
+    }
+
     /** @phpstan-ignore-next-line */
     public function jsonSerialize(): array
     {
@@ -64,6 +79,7 @@ readonly class Messages implements JsonSerializable
      */
     public function asArray(): array
     {
+        /** @phpstan-ignore-next-line */
         return array_map(
             static fn (Message $i) => $i->asArray(),
             $this->items,
