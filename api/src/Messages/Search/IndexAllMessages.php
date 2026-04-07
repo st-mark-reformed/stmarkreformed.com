@@ -12,11 +12,12 @@ use Elastic\Elasticsearch\Response\Elasticsearch;
 use function array_map;
 use function assert;
 
-/**
- * TODO: Set up schedule and queuing
- */
 readonly class IndexAllMessages
 {
+    public const string JOB_HANDLE = 'index-all-messages';
+
+    public const string JOB_NAME = 'Index All Messages';
+
     public function __construct(
         private Client $client,
         private IndexMessage $indexMessage,

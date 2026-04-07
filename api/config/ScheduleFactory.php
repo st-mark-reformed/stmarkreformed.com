@@ -7,6 +7,7 @@ namespace Config;
 use App\Calendar\EnqueueCacheRemoteIcsFile;
 use App\Calendar\EnqueueGenerateCalendarPages;
 use App\Calendar\EnqueueGenerateUpcomingEvents;
+use App\Messages\Search\EnqueueIndexAllMessages;
 use BuzzingPixel\Scheduler\Frequency;
 use BuzzingPixel\Scheduler\ScheduleItem;
 use BuzzingPixel\Scheduler\ScheduleItemCollection;
@@ -15,18 +16,23 @@ readonly class ScheduleFactory implements \BuzzingPixel\Scheduler\ScheduleFactor
 {
     public function createSchedule(): ScheduleItemCollection
     {
-        return new ScheduleItemCollection([
+        return new ScheduleItemCollection(scheduleItems: [
             new ScheduleItem(
-                Frequency::FIVE_MINUTES,
-                EnqueueCacheRemoteIcsFile::class,
+                runEvery: Frequency::FIVE_MINUTES,
+                class: EnqueueCacheRemoteIcsFile::class,
             ),
             new ScheduleItem(
-                Frequency::FIVE_MINUTES,
-                EnqueueGenerateCalendarPages::class,
+                runEvery: Frequency::FIVE_MINUTES,
+                class: EnqueueGenerateCalendarPages::class,
             ),
             new ScheduleItem(
-                Frequency::FIVE_MINUTES,
-                EnqueueGenerateUpcomingEvents::class,
+                runEvery: Frequency::FIVE_MINUTES,
+                class: EnqueueGenerateUpcomingEvents::class,
+            ),
+            new ScheduleItem(
+                runEvery: Frequency::FIVE_MINUTES,
+                class: EnqueueIndexAllMessages::class,
+                method: 'enqueue',
             ),
         ]);
     }
