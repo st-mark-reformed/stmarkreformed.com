@@ -6,6 +6,7 @@ namespace App\Messages\Persistence\Persist;
 
 use App\Messages\Message;
 use App\Messages\Persistence\FindById;
+use App\Messages\Search\EnqueueIndexAllMessages;
 use App\Persistence\ApiPdo;
 use App\Result\Result;
 use Throwable;
@@ -16,6 +17,7 @@ readonly class PersistMessage
         private ApiPdo $pdo,
         private FindById $findById,
         private PersistMessageToPdo $persistMessageToPdo,
+        private EnqueueIndexAllMessages $enqueueIndexAllMessages,
         private PersistMessageAudioFile $persistMessageAudioFile,
     ) {
     }
@@ -53,6 +55,8 @@ readonly class PersistMessage
             }
 
             $this->pdo->commit();
+
+            $this->enqueueIndexAllMessages->enqueue();
 
             return new Result();
         } catch (Throwable $error) {

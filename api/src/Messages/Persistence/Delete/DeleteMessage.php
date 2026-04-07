@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Messages\Persistence\Delete;
 
 use App\Messages\Message;
+use App\Messages\Search\EnqueueIndexAllMessages;
 use App\Persistence\ApiPdo;
 use App\Result\Result;
 use Throwable;
@@ -14,6 +15,7 @@ readonly class DeleteMessage
     public function __construct(
         private ApiPdo $pdo,
         private DeleteMessageAudioFile $deleteMessageAudioFile,
+        private EnqueueIndexAllMessages $enqueueIndexAllMessages,
     ) {
     }
 
@@ -44,6 +46,8 @@ readonly class DeleteMessage
             }
 
             $this->pdo->commit();
+
+            $this->enqueueIndexAllMessages->enqueue();
 
             return new Result();
         } catch (Throwable $error) {

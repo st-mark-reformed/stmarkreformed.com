@@ -6,6 +6,7 @@ namespace App\Messages\Persistence\Create;
 
 use App\Messages\NewMessage;
 use App\Messages\Persistence\Persist\PersistMessageAudioFile;
+use App\Messages\Search\EnqueueIndexAllMessages;
 use App\Persistence\ApiPdo;
 use App\Result\Result;
 use Throwable;
@@ -15,6 +16,7 @@ readonly class CreateMessage
     public function __construct(
         private ApiPdo $pdo,
         private CreateMessageInPdo $createMessageInPdo,
+        private EnqueueIndexAllMessages $enqueueIndexAllMessages,
         private PersistMessageAudioFile $persistMessageAudioFile,
     ) {
     }
@@ -46,6 +48,8 @@ readonly class CreateMessage
             }
 
             $this->pdo->commit();
+
+            $this->enqueueIndexAllMessages->enqueue();
 
             return new Result();
         } catch (Throwable $error) {
