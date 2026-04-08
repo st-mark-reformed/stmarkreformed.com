@@ -11,6 +11,7 @@ use App\Persistence\Migrations\MigrateCreateCommand;
 use App\Persistence\Migrations\MigrateDownCommand;
 use App\Persistence\Migrations\MigrateStatusCommand;
 use App\Persistence\Migrations\MigrateUpCommand;
+use App\Profiles\ResaveAllProfilesCommand;
 use App\Transfer\Messages\ImportMessagesFromCraftCommand;
 use App\Transfer\Profiles\ImportProfilesFromCraftCommand;
 use App\Transfer\Series\ImportSeriesFromCraftCommand;
@@ -39,6 +40,9 @@ readonly class ApplyCommands
 
         // Messages
         SetUpIndicesCommand::register(commands: $commands);
+
+        // Profiles
+        ResaveAllProfilesCommand::register(commands: $commands);
 
         $commands->addSymfonyCommand(
             QueueConsumeNextSymfonyCommand::class,
