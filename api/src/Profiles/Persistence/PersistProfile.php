@@ -39,6 +39,7 @@ readonly class PersistProfile
             'title_or_honorific' => $profile->titleOrHonorific,
             'first_name' => $profile->firstName,
             'last_name' => $profile->lastName,
+            'slug' => $profile->slug,
             'email' => $profile->email->toString(),
             'leadership_position' => $profile->leadershipPosition->name,
             'bio' => $profile->bio,

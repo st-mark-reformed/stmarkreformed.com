@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Profiles;
 
 use App\EmptyUuid;
+use Cocur\Slugify\Slugify;
 use Ramsey\Uuid\UuidInterface;
 
 use function count;
@@ -15,6 +16,8 @@ readonly class NewProfile
 
     /** @var string[] */
     public array $validationMessages;
+
+    public string $slug;
 
     public function __construct(
         public string $titleOrHonorific = '',
@@ -32,5 +35,9 @@ readonly class NewProfile
         $this->isValid = count($messages) < 1;
 
         $this->validationMessages = $messages;
+
+        $this->slug = new Slugify()->slugify(
+            $firstName . ' ' . $lastName,
+        );
     }
 }

@@ -30,6 +30,8 @@ class ProfileRecord extends Record
 
     public string $last_name = '';
 
+    public string $slug = '';
+
     public string $email = '';
 
     public string $leadership_position = '';

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Profiles;
 
 use App\EmptyUuid;
+use Cocur\Slugify\Slugify;
 use JsonSerializable;
 use Ramsey\Uuid\UuidInterface;
 
@@ -23,6 +24,8 @@ readonly class Profile implements JsonSerializable
     public string $fullName;
 
     public string $fullNameWithHonorific;
+
+    public string $slug;
 
     public function __construct(
         public UuidInterface $id = new EmptyUuid(),
@@ -45,6 +48,10 @@ readonly class Profile implements JsonSerializable
         $this->isValid = count($messages) < 1;
 
         $this->validationMessages = $messages;
+
+        $this->slug = new Slugify()->slugify(
+            $firstName . ' ' . $lastName,
+        );
     }
 
     /** @phpstan-ignore-next-line */
