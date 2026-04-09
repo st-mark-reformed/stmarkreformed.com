@@ -216,7 +216,7 @@ jobs:
 
   deploy:
     name: Deploy to production
-    runs-on: self-hosted
+    runs-on: Ivy
     needs:
       - build-api
       - build-auth
