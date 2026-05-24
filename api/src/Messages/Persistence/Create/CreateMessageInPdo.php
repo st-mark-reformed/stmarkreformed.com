@@ -40,6 +40,7 @@ readonly class CreateMessageInPdo
             'title' => $message->title,
             'slug' => $message->slug,
             'audio_path' => $message->createAudioFileNameForPersistence(),
+            'audio_file_size' => $message->computeAudioFileSize(),
             'speaker_id' => $message->speakerId,
             'passage' => $message->passage,
             'series_id' => $message->seriesId,

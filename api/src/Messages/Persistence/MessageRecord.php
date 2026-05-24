@@ -34,6 +34,8 @@ class MessageRecord extends Record
 
     public string $audio_path = '';
 
+    public int $audio_file_size = 0;
+
     public string $speaker_id = '';
 
     public string $passage = '';

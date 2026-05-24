@@ -103,4 +103,31 @@ trait AudioValidationEntityTrait
     {
         return $this->slug . '.mp3';
     }
+
+    public function computeAudioFileSize(): int
+    {
+        if (! $this->audioPathIsFileUpload()) {
+            return $this->audioFileSize;
+        }
+
+        $audioPath = $this->audioPath;
+
+        if (str_starts_with($audioPath, 'data:')) {
+            $commaPosition = strpos($audioPath, ',');
+
+            if ($commaPosition === false) {
+                return 0;
+            }
+
+            $audioPath = substr($audioPath, $commaPosition + 1);
+        }
+
+        $decoded = base64_decode($audioPath, true);
+
+        if ($decoded === false) {
+            return 0;
+        }
+
+        return strlen($decoded);
+    }
 }

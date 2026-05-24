@@ -33,6 +33,7 @@ readonly class NewMessage
         ),
         public string $title = '',
         public string $audioPath = '',
+        public int $audioFileSize = 0,
         public UuidInterface $speakerId = new EmptyUuid(),
         public string $passage = '',
         public UuidInterface $seriesId = new EmptyUuid(),

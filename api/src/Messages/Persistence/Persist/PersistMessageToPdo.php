@@ -26,6 +26,7 @@ readonly class PersistMessageToPdo
             'title' => $message->title,
             'slug' => $message->slug,
             'audio_path' => $message->createAudioFileNameForPersistence(),
+            'audio_file_size' => $message->computeAudioFileSize(),
             'speaker_id' => $message->speaker->id->toString(),
             'passage' => $message->passage,
             'series_id' => $message->series->id->toString(),

@@ -36,6 +36,7 @@ class Transformer
             title: $record->title,
             slug: $record->slug,
             audioPath: $record->audio_path,
+            audioFileSize: $record->audio_file_size,
             speaker: $this->findSpeaker(speakerId: $record->speaker_id),
             passage: $record->passage,
             series: $this->findSeries(seriesId: $record->series_id),
