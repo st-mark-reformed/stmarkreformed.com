@@ -43,7 +43,7 @@ readonly class MessageEntryJsonFactory
     /** @return array{title: string, slug: string}|null */
     private function by(Profile $profile): array|null
     {
-        if ($profile->slug === '') {
+        if ($profile->isEmpty()) {
             return null;
         }
 
@@ -56,7 +56,7 @@ readonly class MessageEntryJsonFactory
     /** @return array{title: string, slug: string}|null */
     private function series(Series $series): array|null
     {
-        if ($series->slug->toString() === '') {
+        if ($series->isEmpty()) {
             return null;
         }
 

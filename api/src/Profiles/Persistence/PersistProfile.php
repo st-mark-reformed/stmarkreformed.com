@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Profiles\Persistence;
 
 use App\Persistence\ApiPdo;
-use App\Profiles\Profile;
+use App\Profiles\PopulatedProfile;
 use App\Result\Result;
 
 use function array_keys;
@@ -20,7 +20,7 @@ readonly class PersistProfile
     ) {
     }
 
-    public function persist(Profile $profile): Result
+    public function persist(PopulatedProfile $profile): Result
     {
         if (! $profile->isValid) {
             return new Result(
@@ -74,7 +74,7 @@ readonly class PersistProfile
         return new Result();
     }
 
-    public function idIsValid(Profile $profile): Result
+    public function idIsValid(PopulatedProfile $profile): Result
     {
         $record = $this->findById->find(id: $profile->id);
 

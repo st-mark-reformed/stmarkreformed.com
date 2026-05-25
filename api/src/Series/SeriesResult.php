@@ -8,11 +8,11 @@ readonly class SeriesResult
 {
     public bool $hasSeries;
 
-    public Series $series;
+    public PopulatedSeries $series;
 
-    public function __construct(Series|null $series = null)
+    public function __construct(PopulatedSeries|null $series = null)
     {
         $this->hasSeries = $series !== null;
-        $this->series    = $series ?? new Series();
+        $this->series    = $series ?? new PopulatedSeries();
     }
 }

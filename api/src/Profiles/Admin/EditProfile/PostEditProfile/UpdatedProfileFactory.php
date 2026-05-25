@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Profiles\Admin\EditProfile\PostEditProfile;
 
-use App\Profiles\Profile;
+use App\Profiles\PopulatedProfile;
 use App\Profiles\ProfileResult;
 
 readonly class UpdatedProfileFactory
 {
     public function create(
-        Profile $requestProfile,
+        PopulatedProfile $requestProfile,
         ProfileResult $persistentProfileResult,
-    ): Profile {
+    ): PopulatedProfile {
         if (! $persistentProfileResult->hasProfile) {
             return $persistentProfileResult->profile;
         }

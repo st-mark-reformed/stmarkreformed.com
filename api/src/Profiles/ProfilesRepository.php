@@ -39,7 +39,7 @@ readonly class ProfilesRepository
         );
     }
 
-    public function persist(Profile $profile): Result
+    public function persist(PopulatedProfile $profile): Result
     {
         return $this->persistProfile->persist(profile: $profile);
     }

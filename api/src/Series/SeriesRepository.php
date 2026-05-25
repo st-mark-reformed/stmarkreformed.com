@@ -50,7 +50,7 @@ readonly class SeriesRepository
         );
     }
 
-    public function persist(Series $series): Result
+    public function persist(PopulatedSeries $series): Result
     {
         return $this->persistSeries->persist(series: $series);
     }

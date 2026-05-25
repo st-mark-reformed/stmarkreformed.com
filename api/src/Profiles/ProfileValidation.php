@@ -7,7 +7,7 @@ namespace App\Profiles;
 readonly class ProfileValidation
 {
     /** @return string[] */
-    public static function validate(NewProfile|Profile $profile): array
+    public static function validate(NewProfile|PopulatedProfile $profile): array
     {
         $messages = [];
 

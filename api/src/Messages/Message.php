@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Messages;
 
 use App\EmptyUuid;
+use App\Profiles\EmptyProfile;
 use App\Profiles\Profile;
+use App\Series\EmptySeries;
 use App\Series\Series;
 use DateTimeImmutable;
 use DateTimeInterface;
@@ -41,9 +43,9 @@ readonly class Message implements JsonSerializable
         string|null $slug = null,
         public string $audioPath = '',
         public int $audioFileSize = 0,
-        public Profile $speaker = new Profile(),
+        public Profile $speaker = new EmptyProfile(),
         public string $passage = '',
-        public Series $series = new Series(),
+        public Series $series = new EmptySeries(),
         public string $description = '',
     ) {
         /** @phpstan-ignore-next-line */

@@ -6,8 +6,10 @@ namespace App\Messages\Admin\EditMessage\PostEditMessage;
 
 use App\EmptyUuid;
 use App\Messages\Message;
+use App\Profiles\EmptyProfile;
 use App\Profiles\Profile;
 use App\Profiles\ProfilesRepository;
+use App\Series\EmptySeries;
 use App\Series\Series;
 use App\Series\SeriesRepository;
 use DateTimeImmutable;
@@ -82,7 +84,7 @@ readonly class MessageFactory
         try {
             return $this->profilesRepository->findById(id: $profileId)->profile;
         } catch (Throwable) {
-            return new Profile();
+            return new EmptyProfile();
         }
     }
 
@@ -91,7 +93,7 @@ readonly class MessageFactory
         try {
             return $this->seriesRepository->findById(id: $seriesId)->series;
         } catch (Throwable) {
-            return new Series();
+            return new EmptySeries();
         }
     }
 }

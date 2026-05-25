@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Profiles\Admin\EditProfile\PostEditProfile;
 
 use App\EmptyUuid;
-use App\Profiles\Profile;
+use App\Profiles\PopulatedProfile;
 use App\Profiles\ProfileEmail;
 use App\Profiles\ProfileLeadershipPosition;
 use Ramsey\Uuid\Uuid;
@@ -14,7 +14,7 @@ use Throwable;
 
 readonly class ProfileFactory
 {
-    public function createFromRequest(ServerRequest $request): Profile
+    public function createFromRequest(ServerRequest $request): PopulatedProfile
     {
         try {
             $id = Uuid::fromString(
@@ -24,7 +24,7 @@ readonly class ProfileFactory
             $id = new EmptyUuid();
         }
 
-        return new Profile(
+        return new PopulatedProfile(
             id: $id,
             titleOrHonorific: $request->parsedBody->getString(
                 'titleOrHonorific',

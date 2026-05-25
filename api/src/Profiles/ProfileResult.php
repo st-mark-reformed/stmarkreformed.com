@@ -8,11 +8,11 @@ readonly class ProfileResult
 {
     public bool $hasProfile;
 
-    public Profile $profile;
+    public PopulatedProfile $profile;
 
-    public function __construct(Profile|null $profile = null)
+    public function __construct(PopulatedProfile|null $profile = null)
     {
         $this->hasProfile = $profile !== null;
-        $this->profile    = $profile ?? new Profile();
+        $this->profile    = $profile ?? new PopulatedProfile();
     }
 }

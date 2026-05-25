@@ -6,7 +6,7 @@ namespace App\Series\Persistence;
 
 use App\Persistence\ApiPdo;
 use App\Result\Result;
-use App\Series\Series;
+use App\Series\PopulatedSeries;
 
 use function array_keys;
 use function array_map;
@@ -20,7 +20,7 @@ readonly class PersistSeries
     ) {
     }
 
-    public function persist(Series $series): Result
+    public function persist(PopulatedSeries $series): Result
     {
         if (! $series->isValid) {
             return new Result(
@@ -74,7 +74,7 @@ readonly class PersistSeries
         return new Result();
     }
 
-    private function idIsValid(Series $series): Result
+    private function idIsValid(PopulatedSeries $series): Result
     {
         $record = $this->findById->find(id: $series->id);
 
@@ -88,7 +88,7 @@ readonly class PersistSeries
         return new Result();
     }
 
-    private function isUnique(Series $series): Result
+    private function isUnique(PopulatedSeries $series): Result
     {
         $slugMatch = $this->findByMatchingSlug(series: $series);
 
@@ -118,7 +118,7 @@ readonly class PersistSeries
         return new Result();
     }
 
-    private function findByMatchingSlug(Series $series): SeriesRecord|null
+    private function findByMatchingSlug(PopulatedSeries $series): SeriesRecord|null
     {
         $statement = $this->pdo->prepare(
             'SELECT * FROM series WHERE slug = :slug AND id != :id',
@@ -134,7 +134,7 @@ readonly class PersistSeries
         return $record instanceof SeriesRecord ? $record : null;
     }
 
-    private function findByMatchingTitle(Series $series): SeriesRecord|null
+    private function findByMatchingTitle(PopulatedSeries $series): SeriesRecord|null
     {
         $statement = $this->pdo->prepare(
             'SELECT * FROM series WHERE title = :title AND id != :id',

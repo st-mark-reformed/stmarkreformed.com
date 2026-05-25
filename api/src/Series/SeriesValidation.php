@@ -7,7 +7,7 @@ namespace App\Series;
 readonly class SeriesValidation
 {
     /** @return string[] */
-    public static function validate(NewSeries|Series $series): array
+    public static function validate(NewSeries|PopulatedSeries $series): array
     {
         $messages = [];
 

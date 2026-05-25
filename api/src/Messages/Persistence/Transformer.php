@@ -6,9 +6,11 @@ namespace App\Messages\Persistence;
 
 use App\Messages\Message;
 use App\Messages\Messages;
+use App\Profiles\EmptyProfile;
 use App\Profiles\Profile;
 use App\Profiles\Profiles;
 use App\Profiles\ProfilesRepository;
+use App\Series\EmptySeries;
 use App\Series\Series;
 use App\Series\SeriesCollection;
 use App\Series\SeriesRepository;
@@ -83,7 +85,7 @@ class Transformer
         $profile = $this->profiles->findById(id: $speakerId);
 
         if ($profile === null) {
-            return new Profile();
+            return new EmptyProfile();
         }
 
         return $profile;
@@ -100,7 +102,7 @@ class Transformer
         $series = $this->seriesCollection->findById(id: $seriesId);
 
         if ($series === null) {
-            return new Series();
+            return new EmptySeries();
         }
 
         return $series;

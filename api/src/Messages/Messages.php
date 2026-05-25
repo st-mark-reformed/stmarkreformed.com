@@ -125,9 +125,9 @@ readonly class Messages implements JsonSerializable
     }
 
     /**
-     * Speakers that appear on any message in this collection. Empty-slugged
-     * speakers (i.e. messages without an associated profile) are excluded.
-     * Order matches the first-occurrence order within the collection.
+     * Speakers that appear on any message in this collection. Empty speakers
+     * (i.e. messages without an associated profile) are excluded. Order
+     * matches the first-occurrence order within the collection.
      *
      * @return Profile[]
      */
@@ -136,7 +136,7 @@ readonly class Messages implements JsonSerializable
         $seen = [];
 
         foreach ($this->items as $message) {
-            if ($message->speaker->slug === '') {
+            if ($message->speaker->isEmpty()) {
                 continue;
             }
 
@@ -153,9 +153,9 @@ readonly class Messages implements JsonSerializable
     }
 
     /**
-     * Series that appear on any message in this collection. Empty-slugged
-     * series are excluded. Order matches the first-occurrence order within
-     * the collection.
+     * Series that appear on any message in this collection. Empty series are
+     * excluded. Order matches the first-occurrence order within the
+     * collection.
      *
      * @return Series[]
      */
@@ -164,7 +164,7 @@ readonly class Messages implements JsonSerializable
         $seen = [];
 
         foreach ($this->items as $message) {
-            if ($message->series->slug->toString() === '') {
+            if ($message->series->isEmpty()) {
                 continue;
             }
 

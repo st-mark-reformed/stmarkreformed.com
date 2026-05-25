@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Profiles\Persistence;
 
-use App\Profiles\Profile;
+use App\Profiles\PopulatedProfile;
 use App\Profiles\ProfileEmail;
 use App\Profiles\ProfileLeadershipPosition;
 use App\Profiles\Profiles;
@@ -14,9 +14,9 @@ use Ramsey\Uuid\Uuid;
 
 readonly class Transformer
 {
-    public function toEntity(ProfileRecord $record): Profile
+    public function toEntity(ProfileRecord $record): PopulatedProfile
     {
-        return new Profile(
+        return new PopulatedProfile(
             id: Uuid::fromString($record->id),
             titleOrHonorific: $record->title_or_honorific,
             firstName: $record->first_name,

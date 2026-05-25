@@ -24,6 +24,10 @@ readonly class ResaveAllProfilesCommand
     {
         $this->repository->findAll()->map(
             callback: function (Profile $profile): void {
+                if (! $profile instanceof PopulatedProfile) {
+                    return;
+                }
+
                 $this->repository->persist(profile: $profile);
             },
         );
