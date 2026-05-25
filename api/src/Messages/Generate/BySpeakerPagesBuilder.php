@@ -10,7 +10,7 @@ use App\Pagination\Pagination;
 use App\Profiles\Profile;
 use Redis;
 
-use function in_array;
+use function array_flip;
 use function json_encode;
 
 readonly class BySpeakerPagesBuilder
@@ -21,8 +21,12 @@ readonly class BySpeakerPagesBuilder
     ) {
     }
 
-    public function build(Profile $speaker, Messages $messages, int $perPage): void
-    {
+    public function build(
+        Profile $speaker,
+        Messages $messages,
+        int $perPage,
+        ExistingRedisKeys $existing,
+    ): void {
         $pagination = new Pagination()
             ->withPerPage(val: $perPage)
             ->withCurrentPage(val: 1)
@@ -40,7 +44,10 @@ readonly class BySpeakerPagesBuilder
             );
         }
 
-        $this->deleteOrphans(speaker: $speaker, keep: $pageKeys);
+        $this->deleteOrphans(
+            existing: $existing->bySpeaker($speaker->slug),
+            keep: $pageKeys,
+        );
     }
 
     private function buildPage(
@@ -85,15 +92,16 @@ readonly class BySpeakerPagesBuilder
         return $key;
     }
 
-    /** @param string[] $keep */
-    private function deleteOrphans(Profile $speaker, array $keep): void
+    /**
+     * @param string[] $existing
+     * @param string[] $keep
+     */
+    private function deleteOrphans(array $existing, array $keep): void
     {
-        $existing = $this->redis->keys(
-            MessagesRedisKey::bySpeakerPattern(speakerSlug: $speaker->slug),
-        );
+        $keepSet = array_flip($keep);
 
         foreach ($existing as $key) {
-            if (in_array($key, $keep, true)) {
+            if (isset($keepSet[$key])) {
                 continue;
             }
 

@@ -9,7 +9,6 @@ use App\DropdownList\DropdownListItems;
 use JsonSerializable;
 use Ramsey\Uuid\UuidInterface;
 
-use function array_find;
 use function array_map;
 use function array_values;
 
@@ -20,13 +19,25 @@ readonly class Profiles implements JsonSerializable
     /** @var Profile[] */
     public array $profiles;
 
+    /** @var array<string, Profile> */
+    private array $byId;
+
     /** @param Profile[] $profiles */
     public function __construct(array $profiles)
     {
-        $this->profiles = array_values(array_map(
+        $items = array_values(array_map(
             static fn (Profile $profile) => $profile,
             $profiles,
         ));
+
+        $byId = [];
+
+        foreach ($items as $profile) {
+            $byId[$profile->id->toString()] = $profile;
+        }
+
+        $this->profiles = $items;
+        $this->byId     = $byId;
     }
 
     /** @phpstan-ignore-next-line */
@@ -86,11 +97,8 @@ readonly class Profiles implements JsonSerializable
 
     public function findById(UuidInterface|string $id): Profile|null
     {
-        $id = $id instanceof UuidInterface ? $id->toString() : $id;
+        $idString = $id instanceof UuidInterface ? $id->toString() : $id;
 
-        return array_find(
-            $this->profiles,
-            static fn (Profile $profile) => $profile->id->toString() === $id,
-        );
+        return $this->byId[$idString] ?? null;
     }
 }

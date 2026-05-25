@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Messages;
 
-use App\Profiles\Profile;
-use App\Series\Series;
 use JsonSerializable;
 use Ramsey\Uuid\UuidInterface;
 
@@ -125,15 +123,17 @@ readonly class Messages implements JsonSerializable
     }
 
     /**
-     * Speakers that appear on any message in this collection. Empty speakers
-     * (i.e. messages without an associated profile) are excluded. Order
-     * matches the first-occurrence order within the collection.
+     * Group messages by their speaker in a single pass. Messages whose
+     * speaker is empty are excluded. Groups are returned in first-occurrence
+     * order of the speaker within the collection. Within each group, the
+     * messages preserve their original order.
      *
-     * @return Profile[]
+     * @return SpeakerMessages[]
      */
-    public function distinctSpeakers(): array
+    public function groupBySpeaker(): array
     {
-        $seen = [];
+        $speakers = [];
+        $bucket   = [];
 
         foreach ($this->items as $message) {
             if ($message->speaker->isEmpty()) {
@@ -142,26 +142,38 @@ readonly class Messages implements JsonSerializable
 
             $id = $message->speaker->id->toString();
 
-            if (isset($seen[$id])) {
-                continue;
+            if (! isset($bucket[$id])) {
+                $bucket[$id]   = [];
+                $speakers[$id] = $message->speaker;
             }
 
-            $seen[$id] = $message->speaker;
+            $bucket[$id][] = $message;
         }
 
-        return array_values($seen);
+        $result = [];
+
+        foreach ($bucket as $id => $items) {
+            $result[] = new SpeakerMessages(
+                speaker: $speakers[$id],
+                messages: new self(items: $items),
+            );
+        }
+
+        return $result;
     }
 
     /**
-     * Series that appear on any message in this collection. Empty series are
-     * excluded. Order matches the first-occurrence order within the
-     * collection.
+     * Group messages by their series in a single pass. Messages whose series
+     * is empty are excluded. Groups are returned in first-occurrence order of
+     * the series within the collection. Within each group, the messages
+     * preserve their original order.
      *
-     * @return Series[]
+     * @return SeriesMessages[]
      */
-    public function distinctSeries(): array
+    public function groupBySeries(): array
     {
-        $seen = [];
+        $seriesById = [];
+        $bucket     = [];
 
         foreach ($this->items as $message) {
             if ($message->series->isEmpty()) {
@@ -170,31 +182,23 @@ readonly class Messages implements JsonSerializable
 
             $id = $message->series->id->toString();
 
-            if (isset($seen[$id])) {
-                continue;
+            if (! isset($bucket[$id])) {
+                $bucket[$id]     = [];
+                $seriesById[$id] = $message->series;
             }
 
-            $seen[$id] = $message->series;
+            $bucket[$id][] = $message;
         }
 
-        return array_values($seen);
-    }
+        $result = [];
 
-    public function bySpeakerId(UuidInterface|string $id): Messages
-    {
-        $idString = $id instanceof UuidInterface ? $id->toString() : $id;
+        foreach ($bucket as $id => $items) {
+            $result[] = new SeriesMessages(
+                series: $seriesById[$id],
+                messages: new self(items: $items),
+            );
+        }
 
-        return $this->filter(
-            callback: static fn (Message $m): bool => $m->speaker->id->toString() === $idString,
-        );
-    }
-
-    public function bySeriesId(UuidInterface|string $id): Messages
-    {
-        $idString = $id instanceof UuidInterface ? $id->toString() : $id;
-
-        return $this->filter(
-            callback: static fn (Message $m): bool => $m->series->id->toString() === $idString,
-        );
+        return $result;
     }
 }

@@ -10,7 +10,7 @@ use App\Pagination\Pagination;
 use App\Series\Series;
 use Redis;
 
-use function in_array;
+use function array_flip;
 use function json_encode;
 
 readonly class BySeriesPagesBuilder
@@ -21,8 +21,12 @@ readonly class BySeriesPagesBuilder
     ) {
     }
 
-    public function build(Series $series, Messages $messages, int $perPage): void
-    {
+    public function build(
+        Series $series,
+        Messages $messages,
+        int $perPage,
+        ExistingRedisKeys $existing,
+    ): void {
         $pagination = new Pagination()
             ->withPerPage(val: $perPage)
             ->withCurrentPage(val: 1)
@@ -40,7 +44,10 @@ readonly class BySeriesPagesBuilder
             );
         }
 
-        $this->deleteOrphans(series: $series, keep: $pageKeys);
+        $this->deleteOrphans(
+            existing: $existing->bySeries($series->slug->toString()),
+            keep: $pageKeys,
+        );
     }
 
     private function buildPage(
@@ -87,15 +94,16 @@ readonly class BySeriesPagesBuilder
         return $key;
     }
 
-    /** @param string[] $keep */
-    private function deleteOrphans(Series $series, array $keep): void
+    /**
+     * @param string[] $existing
+     * @param string[] $keep
+     */
+    private function deleteOrphans(array $existing, array $keep): void
     {
-        $existing = $this->redis->keys(
-            MessagesRedisKey::bySeriesPattern(seriesSlug: $series->slug->toString()),
-        );
+        $keepSet = array_flip($keep);
 
         foreach ($existing as $key) {
-            if (in_array($key, $keep, true)) {
+            if (isset($keepSet[$key])) {
                 continue;
             }
 

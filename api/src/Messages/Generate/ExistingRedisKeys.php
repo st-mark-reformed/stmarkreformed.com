@@ -1,0 +1,72 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Messages\Generate;
+
+use function preg_match;
+
+readonly class ExistingRedisKeys
+{
+    /** @var string[] */
+    public array $pageKeys;
+
+    /** @var string[] */
+    public array $slugKeys;
+
+    /** @var array<string, string[]> indexed by speaker slug */
+    public array $bySpeakerKeysBySlug;
+
+    /** @var array<string, string[]> indexed by series slug */
+    public array $bySeriesKeysBySlug;
+
+    /** @param string[] $allKeys */
+    public function __construct(array $allKeys)
+    {
+        $pageKeys            = [];
+        $slugKeys            = [];
+        $bySpeakerKeysBySlug = [];
+        $bySeriesKeysBySlug  = [];
+
+        foreach ($allKeys as $key) {
+            if (MessagesRedisKey::isPageKey($key)) {
+                $pageKeys[] = $key;
+
+                continue;
+            }
+
+            if (MessagesRedisKey::isSlugKey($key)) {
+                $slugKeys[] = $key;
+
+                continue;
+            }
+
+            if (preg_match('/^api-messages:by:([^:]+):/', $key, $m) === 1) {
+                $bySpeakerKeysBySlug[$m[1]][] = $key;
+
+                continue;
+            }
+
+            if (preg_match('/^api-messages:series:([^:]+):/', $key, $m) === 1) {
+                $bySeriesKeysBySlug[$m[1]][] = $key;
+            }
+        }
+
+        $this->pageKeys            = $pageKeys;
+        $this->slugKeys            = $slugKeys;
+        $this->bySpeakerKeysBySlug = $bySpeakerKeysBySlug;
+        $this->bySeriesKeysBySlug  = $bySeriesKeysBySlug;
+    }
+
+    /** @return string[] */
+    public function bySpeaker(string $speakerSlug): array
+    {
+        return $this->bySpeakerKeysBySlug[$speakerSlug] ?? [];
+    }
+
+    /** @return string[] */
+    public function bySeries(string $seriesSlug): array
+    {
+        return $this->bySeriesKeysBySlug[$seriesSlug] ?? [];
+    }
+}

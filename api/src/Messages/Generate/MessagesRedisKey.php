@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Messages\Generate;
 
+use function str_starts_with;
+
 final class MessagesRedisKey
 {
     private const string NAMESPACE = 'api-messages:';
@@ -18,6 +20,11 @@ final class MessagesRedisKey
         return self::NAMESPACE . 'page:*';
     }
 
+    public static function isPageKey(string $key): bool
+    {
+        return str_starts_with($key, self::NAMESPACE . 'page:');
+    }
+
     public static function slug(string $messageSlug): string
     {
         return self::NAMESPACE . 'slug:' . $messageSlug;
@@ -26,6 +33,11 @@ final class MessagesRedisKey
     public static function slugPattern(): string
     {
         return self::NAMESPACE . 'slug:*';
+    }
+
+    public static function isSlugKey(string $key): bool
+    {
+        return str_starts_with($key, self::NAMESPACE . 'slug:');
     }
 
     public static function bySpeakerPage(string $speakerSlug, int $pageNum): string
@@ -38,6 +50,11 @@ final class MessagesRedisKey
         return self::NAMESPACE . 'by:' . $speakerSlug . ':*';
     }
 
+    public static function isBySpeakerKey(string $key, string $speakerSlug): bool
+    {
+        return str_starts_with($key, self::NAMESPACE . 'by:' . $speakerSlug . ':');
+    }
+
     public static function bySeriesPage(string $seriesSlug, int $pageNum): string
     {
         return self::NAMESPACE . 'series:' . $seriesSlug . ':' . $pageNum;
@@ -46,6 +63,11 @@ final class MessagesRedisKey
     public static function bySeriesPattern(string $seriesSlug): string
     {
         return self::NAMESPACE . 'series:' . $seriesSlug . ':*';
+    }
+
+    public static function isBySeriesKey(string $key, string $seriesSlug): bool
+    {
+        return str_starts_with($key, self::NAMESPACE . 'series:' . $seriesSlug . ':');
     }
 
     public static function mostRecentSeries(): string
@@ -61,5 +83,10 @@ final class MessagesRedisKey
     public static function bySeriesOptions(): string
     {
         return self::NAMESPACE . 'series_options';
+    }
+
+    public static function allPattern(): string
+    {
+        return self::NAMESPACE . '*';
     }
 }

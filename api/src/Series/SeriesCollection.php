@@ -9,7 +9,6 @@ use App\DropdownList\DropdownListItems;
 use JsonSerializable;
 use Ramsey\Uuid\UuidInterface;
 
-use function array_find;
 use function array_map;
 use function array_values;
 
@@ -20,13 +19,25 @@ readonly class SeriesCollection implements JsonSerializable
     /** @var Series[] */
     public array $items;
 
+    /** @var array<string, Series> */
+    private array $byId;
+
     /** @param Series[] $items */
     public function __construct(array $items)
     {
-        $this->items = array_values(array_map(
+        $deduped = array_values(array_map(
             static fn (Series $s) => $s,
             $items,
         ));
+
+        $byId = [];
+
+        foreach ($deduped as $series) {
+            $byId[$series->id->toString()] = $series;
+        }
+
+        $this->items = $deduped;
+        $this->byId  = $byId;
     }
 
     /** @phpstan-ignore-next-line */
@@ -79,11 +90,8 @@ readonly class SeriesCollection implements JsonSerializable
 
     public function findById(UuidInterface|string $id): Series|null
     {
-        $id = $id instanceof UuidInterface ? $id->toString() : $id;
+        $idString = $id instanceof UuidInterface ? $id->toString() : $id;
 
-        return array_find(
-            $this->items,
-            static fn (Series $series) => $series->id->toString() === $id,
-        );
+        return $this->byId[$idString] ?? null;
     }
 }

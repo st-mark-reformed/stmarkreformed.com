@@ -9,7 +9,7 @@ use App\Messages\Messages;
 use App\Pagination\Pagination;
 use Redis;
 
-use function in_array;
+use function array_flip;
 use function json_encode;
 
 readonly class MessagesPagesBuilder
@@ -20,8 +20,11 @@ readonly class MessagesPagesBuilder
     ) {
     }
 
-    public function build(Messages $messages, int $perPage): void
-    {
+    public function build(
+        Messages $messages,
+        int $perPage,
+        ExistingRedisKeys $existing,
+    ): void {
         $pagination = new Pagination()
             ->withPerPage(val: $perPage)
             ->withCurrentPage(val: 1)
@@ -35,24 +38,18 @@ readonly class MessagesPagesBuilder
         for ($pageNum = 1; $pageNum <= $totalPages; $pageNum++) {
             $pageKeys[] = MessagesRedisKey::page(pageNum: $pageNum);
 
-            $slugKeys = [
-                ...$slugKeys,
-                ...$this->buildPage(
+            foreach (
+                $this->buildPage(
                     pagination: $pagination->withCurrentPage(val: $pageNum),
                     messages: $messages,
-                ),
-            ];
+                ) as $slugKey
+            ) {
+                $slugKeys[] = $slugKey;
+            }
         }
 
-        $this->deleteOrphans(
-            pattern: MessagesRedisKey::pagePattern(),
-            keep: $pageKeys,
-        );
-
-        $this->deleteOrphans(
-            pattern: MessagesRedisKey::slugPattern(),
-            keep: $slugKeys,
-        );
+        $this->deleteOrphans(existing: $existing->pageKeys, keep: $pageKeys);
+        $this->deleteOrphans(existing: $existing->slugKeys, keep: $slugKeys);
     }
 
     /** @return string[] keys of slug entries written for this page */
@@ -100,13 +97,16 @@ readonly class MessagesPagesBuilder
         return $slugKeys;
     }
 
-    /** @param string[] $keep */
-    private function deleteOrphans(string $pattern, array $keep): void
+    /**
+     * @param string[] $existing
+     * @param string[] $keep
+     */
+    private function deleteOrphans(array $existing, array $keep): void
     {
-        $existing = $this->redis->keys($pattern);
+        $keepSet = array_flip($keep);
 
         foreach ($existing as $key) {
-            if (in_array($key, $keep, true)) {
+            if (isset($keepSet[$key])) {
                 continue;
             }
 
