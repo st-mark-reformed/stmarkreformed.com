@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Messages\Persistence\Create;
 
+use App\Messages\Generate\EnqueueGenerateMessagesPagesForRedis;
 use App\Messages\NewMessage;
 use App\Messages\Persistence\Persist\PersistMessageAudioFile;
 use App\Messages\Search\EnqueueIndexAllMessages;
@@ -17,6 +18,7 @@ readonly class CreateMessage
         private ApiPdo $pdo,
         private CreateMessageInPdo $createMessageInPdo,
         private EnqueueIndexAllMessages $enqueueIndexAllMessages,
+        private EnqueueGenerateMessagesPagesForRedis $enqueueGenerateMessagesPagesForRedis,
         private PersistMessageAudioFile $persistMessageAudioFile,
     ) {
     }
@@ -50,6 +52,7 @@ readonly class CreateMessage
             $this->pdo->commit();
 
             $this->enqueueIndexAllMessages->enqueue();
+            $this->enqueueGenerateMessagesPagesForRedis->enqueue();
 
             return new Result();
         } catch (Throwable $error) {

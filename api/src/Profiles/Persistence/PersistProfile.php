@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Profiles\Persistence;
 
+use App\Messages\Generate\EnqueueGenerateMessagesPagesForRedis;
 use App\Persistence\ApiPdo;
 use App\Profiles\PopulatedProfile;
 use App\Result\Result;
@@ -17,6 +18,7 @@ readonly class PersistProfile
     public function __construct(
         private ApiPdo $pdo,
         private FindById $findById,
+        private EnqueueGenerateMessagesPagesForRedis $enqueueGenerateMessagesPagesForRedis,
     ) {
     }
 
@@ -70,6 +72,8 @@ readonly class PersistProfile
                 errors: ['An unexpected error occurred. Please try again later.'],
             );
         }
+
+        $this->enqueueGenerateMessagesPagesForRedis->enqueue();
 
         return new Result();
     }

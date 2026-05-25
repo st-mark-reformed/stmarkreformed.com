@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Series\Persistence;
 
+use App\Messages\Generate\EnqueueGenerateMessagesPagesForRedis;
 use App\Persistence\ApiPdo;
 use App\Result\Result;
 use Ramsey\Uuid\UuidInterface;
@@ -12,8 +13,10 @@ use function implode;
 
 readonly class DeleteSeries
 {
-    public function __construct(private ApiPdo $pdo)
-    {
+    public function __construct(
+        private ApiPdo $pdo,
+        private EnqueueGenerateMessagesPagesForRedis $enqueueGenerateMessagesPagesForRedis,
+    ) {
     }
 
     public function delete(
@@ -45,8 +48,12 @@ readonly class DeleteSeries
             implode(' ', $query),
         );
 
-        return new Result(
-            success: $statement->execute($params),
-        );
+        $success = $statement->execute($params);
+
+        if ($success) {
+            $this->enqueueGenerateMessagesPagesForRedis->enqueue();
+        }
+
+        return new Result(success: $success);
     }
 }

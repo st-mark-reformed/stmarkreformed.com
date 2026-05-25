@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Profiles\Persistence;
 
 use App\EmptyUuid;
+use App\Messages\Generate\EnqueueGenerateMessagesPagesForRedis;
 use App\Persistence\ApiPdo;
 use App\Profiles\NewProfile;
 use App\Result\Result;
@@ -20,6 +21,7 @@ readonly class CreateProfile
     public function __construct(
         private ApiPdo $pdo,
         private UuidFactoryInterface $uuidFactory,
+        private EnqueueGenerateMessagesPagesForRedis $enqueueGenerateMessagesPagesForRedis,
     ) {
     }
 
@@ -67,6 +69,8 @@ readonly class CreateProfile
                 errors: ['An unexpected error occurred. Please try again later.'],
             );
         }
+
+        $this->enqueueGenerateMessagesPagesForRedis->enqueue();
 
         return new Result();
     }

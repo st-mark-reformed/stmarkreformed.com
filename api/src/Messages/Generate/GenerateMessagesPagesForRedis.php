@@ -15,6 +15,10 @@ use function array_map;
 
 readonly class GenerateMessagesPagesForRedis
 {
+    public const string JOB_HANDLE = 'generate-messages-redis-pages';
+
+    public const string JOB_NAME = 'Generate Messages Redis Pages';
+
     private const int PER_PAGE = 25;
 
     private const int MOST_RECENT_SERIES_LIMIT = 6;

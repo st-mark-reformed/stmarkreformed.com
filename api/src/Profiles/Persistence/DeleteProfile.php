@@ -4,14 +4,17 @@ declare(strict_types=1);
 
 namespace App\Profiles\Persistence;
 
+use App\Messages\Generate\EnqueueGenerateMessagesPagesForRedis;
 use App\Persistence\ApiPdo;
 use App\Result\Result;
 use Ramsey\Uuid\UuidInterface;
 
 readonly class DeleteProfile
 {
-    public function __construct(private ApiPdo $pdo)
-    {
+    public function __construct(
+        private ApiPdo $pdo,
+        private EnqueueGenerateMessagesPagesForRedis $enqueueGenerateMessagesPagesForRedis,
+    ) {
     }
 
     public function delete(UuidInterface $id): Result
@@ -20,8 +23,12 @@ readonly class DeleteProfile
             'DELETE FROM profiles WHERE id = :id',
         );
 
-        return new Result(
-            success: $statement->execute(['id' => $id->toString()]),
-        );
+        $success = $statement->execute(['id' => $id->toString()]);
+
+        if ($success) {
+            $this->enqueueGenerateMessagesPagesForRedis->enqueue();
+        }
+
+        return new Result(success: $success);
     }
 }

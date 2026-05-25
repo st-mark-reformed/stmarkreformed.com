@@ -47,9 +47,11 @@ readonly class ExistingRedisKeys
                 continue;
             }
 
-            if (preg_match('/^api-messages:series:([^:]+):/', $key, $m) === 1) {
-                $bySeriesKeysBySlug[$m[1]][] = $key;
+            if (preg_match('/^api-messages:series:([^:]+):/', $key, $m) !== 1) {
+                continue;
             }
+
+            $bySeriesKeysBySlug[$m[1]][] = $key;
         }
 
         $this->pageKeys            = $pageKeys;

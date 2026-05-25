@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Series\Persistence;
 
 use App\EmptyUuid;
+use App\Messages\Generate\EnqueueGenerateMessagesPagesForRedis;
 use App\Persistence\ApiPdo;
 use App\Result\Result;
 use App\Series\NewSeries;
@@ -22,6 +23,7 @@ readonly class CreateSeries
         private FindBySlug $findBySlug,
         private FindByTitle $findByTitle,
         private UuidFactoryInterface $uuidFactory,
+        private EnqueueGenerateMessagesPagesForRedis $enqueueGenerateMessagesPagesForRedis,
     ) {
     }
 
@@ -69,6 +71,8 @@ readonly class CreateSeries
                 errors: ['An unexpected error occurred. Please try again later.'],
             );
         }
+
+        $this->enqueueGenerateMessagesPagesForRedis->enqueue();
 
         return new Result();
     }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Messages\Persistence\Delete;
 
+use App\Messages\Generate\EnqueueGenerateMessagesPagesForRedis;
 use App\Messages\Message;
 use App\Messages\Search\EnqueueIndexAllMessages;
 use App\Persistence\ApiPdo;
@@ -16,6 +17,7 @@ readonly class DeleteMessage
         private ApiPdo $pdo,
         private DeleteMessageAudioFile $deleteMessageAudioFile,
         private EnqueueIndexAllMessages $enqueueIndexAllMessages,
+        private EnqueueGenerateMessagesPagesForRedis $enqueueGenerateMessagesPagesForRedis,
     ) {
     }
 
@@ -48,6 +50,7 @@ readonly class DeleteMessage
             $this->pdo->commit();
 
             $this->enqueueIndexAllMessages->enqueue();
+            $this->enqueueGenerateMessagesPagesForRedis->enqueue();
 
             return new Result();
         } catch (Throwable $error) {
