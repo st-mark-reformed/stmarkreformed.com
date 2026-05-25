@@ -13,8 +13,6 @@ use function ksort;
 
 readonly class BySpeakerOptionsBuilder
 {
-    private const string KEY = 'api-messages:by_options';
-
     public function __construct(private Redis $redis)
     {
     }
@@ -40,7 +38,7 @@ readonly class BySpeakerOptionsBuilder
         ksort($others);
 
         $this->redis->set(
-            self::KEY,
+            MessagesRedisKey::bySpeakerOptions(),
             json_encode([
                 'leadership' => $leadership,
                 'others' => $others,

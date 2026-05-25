@@ -14,9 +14,6 @@ use function json_encode;
 
 readonly class MessagesPagesBuilder
 {
-    private const string PAGE_KEY_PREFIX = 'api-messages:page:';
-    private const string SLUG_KEY_PREFIX = 'api-messages:slug:';
-
     public function __construct(
         private Redis $redis,
         private MessageEntryJsonFactory $entryFactory,
@@ -36,8 +33,7 @@ readonly class MessagesPagesBuilder
         $slugKeys = [];
 
         for ($pageNum = 1; $pageNum <= $totalPages; $pageNum++) {
-            $pageKey    = self::PAGE_KEY_PREFIX . $pageNum;
-            $pageKeys[] = $pageKey;
+            $pageKeys[] = MessagesRedisKey::page(pageNum: $pageNum);
 
             $slugKeys = [
                 ...$slugKeys,
@@ -49,12 +45,12 @@ readonly class MessagesPagesBuilder
         }
 
         $this->deleteOrphans(
-            pattern: self::PAGE_KEY_PREFIX . '*',
+            pattern: MessagesRedisKey::pagePattern(),
             keep: $pageKeys,
         );
 
         $this->deleteOrphans(
-            pattern: self::SLUG_KEY_PREFIX . '*',
+            pattern: MessagesRedisKey::slugPattern(),
             keep: $slugKeys,
         );
     }
@@ -76,7 +72,7 @@ readonly class MessagesPagesBuilder
         $slugKeys = [];
 
         foreach ($entries as $entry) {
-            $slugKey    = self::SLUG_KEY_PREFIX . $entry['slug'];
+            $slugKey    = MessagesRedisKey::slug(messageSlug: $entry['slug']);
             $slugKeys[] = $slugKey;
 
             $this->redis->set(
@@ -86,7 +82,7 @@ readonly class MessagesPagesBuilder
         }
 
         $this->redis->set(
-            self::PAGE_KEY_PREFIX . $pagination->currentPage(),
+            MessagesRedisKey::page(pageNum: $pagination->currentPage()),
             json_encode([
                 'currentPage' => $pagination->currentPage(),
                 'perPage' => $pagination->perPage(),

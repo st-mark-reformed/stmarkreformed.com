@@ -15,8 +15,6 @@ use function json_encode;
 
 readonly class BySpeakerPagesBuilder
 {
-    private const string KEY_PREFIX = 'api-messages:by:';
-
     public function __construct(
         private Redis $redis,
         private MessageEntryJsonFactory $entryFactory,
@@ -61,7 +59,10 @@ readonly class BySpeakerPagesBuilder
             ),
         );
 
-        $key = self::KEY_PREFIX . $speaker->slug . ':' . $pagination->currentPage();
+        $key = MessagesRedisKey::bySpeakerPage(
+            speakerSlug: $speaker->slug,
+            pageNum: $pagination->currentPage(),
+        );
 
         $this->redis->set(
             $key,
@@ -88,7 +89,7 @@ readonly class BySpeakerPagesBuilder
     private function deleteOrphans(Profile $speaker, array $keep): void
     {
         $existing = $this->redis->keys(
-            self::KEY_PREFIX . $speaker->slug . ':*',
+            MessagesRedisKey::bySpeakerPattern(speakerSlug: $speaker->slug),
         );
 
         foreach ($existing as $key) {

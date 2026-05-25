@@ -15,8 +15,6 @@ use function json_encode;
 
 readonly class BySeriesPagesBuilder
 {
-    private const string KEY_PREFIX = 'api-messages:series:';
-
     public function __construct(
         private Redis $redis,
         private MessageEntryJsonFactory $entryFactory,
@@ -63,7 +61,10 @@ readonly class BySeriesPagesBuilder
 
         $seriesSlug = $series->slug->toString();
 
-        $key = self::KEY_PREFIX . $seriesSlug . ':' . $pagination->currentPage();
+        $key = MessagesRedisKey::bySeriesPage(
+            seriesSlug: $seriesSlug,
+            pageNum: $pagination->currentPage(),
+        );
 
         $this->redis->set(
             $key,
@@ -90,7 +91,7 @@ readonly class BySeriesPagesBuilder
     private function deleteOrphans(Series $series, array $keep): void
     {
         $existing = $this->redis->keys(
-            self::KEY_PREFIX . $series->slug->toString() . ':*',
+            MessagesRedisKey::bySeriesPattern(seriesSlug: $series->slug->toString()),
         );
 
         foreach ($existing as $key) {

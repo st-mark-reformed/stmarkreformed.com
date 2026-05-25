@@ -12,8 +12,6 @@ use function ksort;
 
 readonly class BySeriesOptionsBuilder
 {
-    private const string KEY = 'api-messages:series_options';
-
     public function __construct(private Redis $redis)
     {
     }
@@ -29,6 +27,9 @@ readonly class BySeriesOptionsBuilder
 
         ksort($options);
 
-        $this->redis->set(self::KEY, json_encode($options));
+        $this->redis->set(
+            MessagesRedisKey::bySeriesOptions(),
+            json_encode($options),
+        );
     }
 }

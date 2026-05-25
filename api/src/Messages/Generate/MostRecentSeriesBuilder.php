@@ -13,8 +13,6 @@ use function json_encode;
 
 readonly class MostRecentSeriesBuilder
 {
-    private const string KEY = 'api-messages:most_recent_series';
-
     public function __construct(private Redis $redis)
     {
     }
@@ -32,6 +30,9 @@ readonly class MostRecentSeriesBuilder
             $top,
         );
 
-        $this->redis->set(self::KEY, json_encode($payload));
+        $this->redis->set(
+            MessagesRedisKey::mostRecentSeries(),
+            json_encode($payload),
+        );
     }
 }
