@@ -22,6 +22,7 @@ use App\Profiles\Admin\GetProfilesListAction;
 use App\Profiles\Admin\NewProfile\PostNewProfileAction;
 use App\Profiles\Admin\PostDeleteProfilesAction;
 use App\Queue\GetAdminQueueAction;
+use App\Queue\GetAdminQueueFailedAction;
 use App\Queue\GetAdminQueueStatusAction;
 use App\Schedule\Admin\GetAdminScheduleAction;
 use App\Series\Admin\EditSeries\GetEditSeries\GetEditSeriesAction;
@@ -75,6 +76,7 @@ readonly class ApplyRoutes
         PostDeleteProfilesAction::applyRoute(routes: $routes);
         GetAdminScheduleAction::applyRoute(routes: $routes);
         GetAdminQueueAction::applyRoute(routes: $routes);
+        GetAdminQueueFailedAction::applyRoute(routes: $routes);
         GetAdminQueueStatusAction::applyRoute(routes: $routes);
 
         if (
