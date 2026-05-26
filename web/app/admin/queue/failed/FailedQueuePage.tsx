@@ -3,6 +3,7 @@ import GetFailedQueue from './GetFailedQueue';
 import Breadcrumbs from '../../Breadcrumbs';
 import PageTitle from '../../PageTitle';
 import AutoRefresh from '../../../AutoRefresh';
+import RetryButton from './RetryButton';
 
 export default async function FailedQueuePage () {
     const failedItems = await GetFailedQueue();
@@ -13,16 +14,9 @@ export default async function FailedQueuePage () {
             <Breadcrumbs
                 crumbs={[
                     { content: 'Queue', href: '/admin/queue' },
-                    { content: 'Failed', href: '/admin/queue/failed' },
                 ]}
             />
-            <PageTitle
-                buttons={[{
-                    content: 'View Queue',
-                    href: '/admin/queue',
-                    type: 'secondary',
-                }]}
-            >
+            <PageTitle>
                 Failed Queue Items{' '}
                 <span className="text-sm font-normal">(refreshes every 5 seconds)</span>
             </PageTitle>
@@ -60,6 +54,7 @@ export default async function FailedQueuePage () {
                                         <span className="text-xs text-gray-400">
                                             {new Date(entry.date).toLocaleString()}
                                         </span>
+                                        <RetryButton itemKey={entry.key} />
                                     </div>
                                 </div>
                                 <div className="mb-3 rounded-md bg-red-50 p-3 text-sm text-red-700">

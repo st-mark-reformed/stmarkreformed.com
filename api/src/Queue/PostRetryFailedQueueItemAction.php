@@ -5,24 +5,21 @@ declare(strict_types=1);
 namespace App\Queue;
 
 use BuzzingPixel\Queue\QueueHandler;
-use BuzzingPixel\Queue\QueueItemFailed;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
 use RxAnte\AppBootstrap\Http\ApplyRoutesEvent;
+use RxAnte\AppBootstrap\Request\ServerRequest;
 use RxAnte\OAuth\RequireOauthTokenHeaderMiddleware;
 
-use function array_filter;
-use function count;
 use function json_encode;
 
 use const JSON_PRETTY_PRINT;
 
-readonly class GetAdminQueueStatusAction
+readonly class PostRetryFailedQueueItemAction
 {
     public static function applyRoute(ApplyRoutesEvent $routes): void
     {
-        $routes->get(
-            '/admin/queue/status',
+        $routes->post(
+            '/admin/queue/failed/retry',
             self::class,
         )->add(RequireOauthTokenHeaderMiddleware::class);
     }
@@ -32,17 +29,15 @@ readonly class GetAdminQueueStatusAction
     }
 
     public function __invoke(
-        ServerRequestInterface $request,
+        ServerRequest $request,
         ResponseInterface $response,
     ): ResponseInterface {
+        $key = $request->parsedBody->getString('key');
+
+        $result = $this->queueHandler->retryFailedItemByKey($key);
+
         $response->getBody()->write((string) json_encode(
-            [
-                'enqueued' => $this->queueHandler->getTotalItemsInQueue(),
-                'failed' => count(array_filter(
-                    $this->queueHandler->getFailedItems()->items,
-                    static fn (QueueItemFailed $item) => ! $item->retried,
-                )),
-            ],
+            $result->asArray(),
             JSON_PRETTY_PRINT,
         ));
 
