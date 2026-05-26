@@ -13,6 +13,7 @@ use App\Messages\Admin\GetHasEditMessagesRoleAction;
 use App\Messages\Admin\GetMessagesListAction;
 use App\Messages\Admin\NewMessage\PostNewMessageAction;
 use App\Messages\Admin\PostDeleteMessagesAction;
+use App\Messages\Search\GetMessagesSearchAction;
 use App\Profiles\Admin\EditProfile\GetEditProfile\GetEditProfileAction;
 use App\Profiles\Admin\EditProfile\PostEditProfile\PostEditProfileAction;
 use App\Profiles\Admin\GetHasEditProfilesRoleAction;
@@ -80,6 +81,7 @@ readonly class ApplyRoutes
         GetAdminQueueFailedAction::applyRoute(routes: $routes);
         PostRetryFailedQueueItemAction::applyRoute(routes: $routes);
         GetAdminQueueStatusAction::applyRoute(routes: $routes);
+        GetMessagesSearchAction::applyRoute(routes: $routes);
 
         if (
             ! $config->getBoolean(

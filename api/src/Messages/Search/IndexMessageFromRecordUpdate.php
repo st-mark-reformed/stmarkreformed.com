@@ -24,6 +24,7 @@ readonly class IndexMessageFromRecordUpdate implements IndexMessageFromRecord
                     'slug' => $message->slug,
                     'speakerName' => $message->speaker->fullName,
                     'speakerId' => $message->speaker->id->toString(),
+                    'speakerSlug' => $message->speaker->slug,
                     'passage' => $message->passage,
                     'messageSeries' => $message->series->title,
                     'messageSeriesSlug' => $message->series->slug->toString(),

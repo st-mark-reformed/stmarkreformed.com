@@ -8,6 +8,7 @@ use App\Calendar\GenerateCalendarPages;
 use App\Calendar\GenerateUpcomingEvents;
 use App\Messages\BackfillAudioFileSizesCommand;
 use App\Messages\Generate\GenerateMessagesPagesForRedisCommand;
+use App\Messages\Search\IndexAllMessagesCommand;
 use App\Messages\Search\SetUpIndicesCommand;
 use App\Persistence\Migrations\MigrateCreateCommand;
 use App\Persistence\Migrations\MigrateDownCommand;
@@ -42,6 +43,7 @@ readonly class ApplyCommands
 
         // Messages
         SetUpIndicesCommand::register(commands: $commands);
+        IndexAllMessagesCommand::register(commands: $commands);
         BackfillAudioFileSizesCommand::register(commands: $commands);
         GenerateMessagesPagesForRedisCommand::register(commands: $commands);
 
