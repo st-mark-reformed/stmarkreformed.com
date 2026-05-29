@@ -57,6 +57,13 @@ readonly class GetIndexAction
                     ]),
                     new ButtonRow(buttons: [
                         new ButtonConfig(
+                            content: 'Manage Password',
+                            href: $this->appUrlFactory->create('/manage-password')->asString(),
+                            glyph: Glyph::ArrowRight,
+                        ),
+                    ]),
+                    new ButtonRow(buttons: [
+                        new ButtonConfig(
                             content: 'Go to Admin',
                             href: $this->feUrlFactory->create(uri: '/admin')->asString(),
                             glyph: Glyph::ArrowRight,

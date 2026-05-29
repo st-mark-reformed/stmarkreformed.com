@@ -20,9 +20,11 @@ export default function SidebarCSR (
     {
         navigation,
         loggedInAs,
+        managePasswordUrl,
     }: {
         navigation: NavItem[];
         loggedInAs: string;
+        managePasswordUrl: string;
     },
 ) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -106,6 +108,12 @@ export default function SidebarCSR (
                 </button>
                 <span className="flex ml-auto items-center gap-x-2 pl-6 py-3 text-sm/6 text-gray-900 dark:text-white">
                     Logged in as <span className="font-semibold text-gray-700 dark:text-gray-100">{loggedInAs}</span>
+                    <a
+                        href={managePasswordUrl}
+                        className="rounded-sm bg-crimson/30 px-2 py-1 text-xs font-semibold text-black dark:text-gray-200 shadow-xs hover:bg-crimson/40 focus-visible:outline-2 focus-visible:outline-offset-2 dark:shadow-none cursor-pointer"
+                    >
+                        Manage Password
+                    </a>
                     <a
                         href="/api/auth/sign-out"
                         className="rounded-sm bg-crimson/30 px-2 py-1 text-xs font-semibold text-black dark:text-gray-200 shadow-xs hover:bg-crimson/40 focus-visible:outline-2 focus-visible:outline-offset-2 dark:shadow-none cursor-pointer"

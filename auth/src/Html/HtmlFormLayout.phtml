@@ -3,7 +3,9 @@
 use App\Html\HtmlFormInputConfig;
 use App\Html\HtmlPath;
 use App\Html\ButtonConfig;
+use App\Html\ButtonRows;
 use App\LogIn\LogInFlashErrorMessages;
+use App\ManagePassword\ManagePasswordFlashMessageCollection;
 use BuzzingPixel\Templating\TemplateEngine;
 use Psr\Container\ContainerInterface;
 
@@ -14,7 +16,14 @@ assert($di instanceof ContainerInterface);
 
 $this->extends(HtmlPath::HTML_LAYOUT);
 
-$errorMessages = $di->get(LogInFlashErrorMessages::class)->retrieveMessages();
+$errorMessages = $errorMessages ??
+    $di->get(LogInFlashErrorMessages::class)->retrieveMessages();
+
+/** @var ManagePasswordFlashMessageCollection|null $successMessages */
+$successMessages = $successMessages ?? null;
+
+/** @var ButtonRows|null $footerButtonRows */
+$footerButtonRows = $footerButtonRows ?? null;
 
 $errorHeadline = $errorHeadline ?? 'An error occurred';
 
@@ -43,6 +52,29 @@ $this->extends(HtmlPath::CENTERED_WRAPPER_LAYOUT);
 
 <div class="flex flex-col justify-center text-left">
     <div class="sm:mx-auto sm:w-full">
+        <?php if ($successMessages?->hasMessages()): ?>
+            <div class="flex justify-center mb-6">
+                <div class="inline-flex flex-col items-center gap-y-1 rounded-lg border border-green-600 bg-green-50 px-5 py-4 text-center text-sm font-medium text-green-800 shadow-md">
+                    <?php foreach ($successMessages->messages as $message): ?>
+                        <div class="flex items-center justify-center gap-x-2">
+                            <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5 shrink-0 text-green-600">
+                                <path d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" fill-rule="evenodd" />
+                            </svg>
+                            <span>
+                                <?php if ($message->body === ''): ?>
+                                    <?= $this->html($message->title) ?>
+                                <?php else: ?>
+                                    <span class="font-bold">
+                                        <?= $this->html($message->title) ?>
+                                    </span>
+                                    <?= $this->html($message->body) ?>
+                                <?php endif; ?>
+                            </span>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        <?php endif; ?>
         <?php if ($errorMessages->hasMessages()): ?>
             <div class="rounded-lg bg-red-50 p-4 mb-6">
                 <div class="flex">
@@ -143,6 +175,11 @@ $this->extends(HtmlPath::CENTERED_WRAPPER_LAYOUT);
                 </button>
             </div>
         </form>
+        <?php if ($footerButtonRows !== null): ?>
+            <?= $this->partial(HtmlPath::BUTTON_ROWS, [
+                'buttonRows' => $footerButtonRows,
+            ]) ?>
+        <?php endif; ?>
         <script>
             function htmlFormLayoutFormSetUp () {
                 /** @type {HTMLElement} */

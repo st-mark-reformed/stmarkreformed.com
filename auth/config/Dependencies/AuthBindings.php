@@ -13,6 +13,8 @@ use App\Oauth\OauthPrivateKey;
 use App\Oauth\OauthPublicKey;
 use App\Oauth\RefreshToken\RefreshTokenRepository;
 use App\Oauth\Scopes\ScopeRepository;
+use App\User\UserRepository;
+use App\User\UserUpdater;
 use Config\RuntimeConfigOptions;
 use League\OAuth2\Server\AuthorizationServer;
 use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
@@ -88,6 +90,11 @@ readonly class AuthBindings
         $bindings->addBinding(
             RefreshTokenRepositoryInterface::class,
             $bindings->resolveFromContainer(RefreshTokenRepository::class),
+        );
+
+        $bindings->addBinding(
+            UserUpdater::class,
+            $bindings->resolveFromContainer(UserRepository::class),
         );
 
         $bindings->addBinding(

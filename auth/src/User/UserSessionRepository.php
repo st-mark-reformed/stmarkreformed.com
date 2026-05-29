@@ -66,13 +66,7 @@ readonly class UserSessionRepository
             user: $user,
         );
 
-        $key = $this->getSessionKey($session->id->toString());
-
-        $success = $this->cachePool->save(
-            $this->cachePool->getItem($key)
-                ->set($session)
-                ->expiresAt($session->expires),
-        );
+        $this->storeSession($session);
 
         $this->cookies->save(new Cookie(
             name: CookieName::logged_in_session,
@@ -80,11 +74,37 @@ readonly class UserSessionRepository
             expire: $session->expires,
         ));
 
+        return $session;
+    }
+
+    public function refreshSessionUser(
+        UserSession $session,
+        User $user,
+    ): UserSession {
+        $refreshed = new UserSession(
+            id: $session->id,
+            expires: $session->expires,
+            user: $user,
+        );
+
+        $this->storeSession($refreshed);
+
+        return $refreshed;
+    }
+
+    private function storeSession(UserSession $session): void
+    {
+        $success = $this->cachePool->save(
+            $this->cachePool->getItem(
+                $this->getSessionKey($session->id->toString()),
+            )
+                ->set($session)
+                ->expiresAt($session->expires),
+        );
+
         if (! $success) {
             throw new UnableToSaveSession();
         }
-
-        return $session;
     }
 
     public function deleteSessionFromCookies(): void

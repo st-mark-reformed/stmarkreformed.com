@@ -10,6 +10,8 @@ use App\Healthcheck;
 use App\LogIn\PostLogInAction;
 use App\LogOut\GetLogOutLanding;
 use App\LogOut\LogOutAction;
+use App\ManagePassword\GetManagePasswordAction;
+use App\ManagePassword\PostManagePasswordAction;
 use App\Oauth\Authorize\GetAuthorizeAction;
 use App\Oauth\Authorize\GetAuthorizeTestAction;
 use App\Oauth\PostTokenAction;
@@ -25,6 +27,8 @@ class ApplyRoutesEventSubscriber
         PostLogInAction::applyRoute(routes: $routes);
         LogOutAction::applyRoute(routes: $routes);
         GetLogOutLanding::applyRoute(routes: $routes);
+        GetManagePasswordAction::applyRoute(routes: $routes);
+        PostManagePasswordAction::applyRoute(routes: $routes);
         GetWellKnownOpenIdConfiguration::applyRoute(routes: $routes);
         GetAuthorizeAction::applyRoute(routes: $routes);
         GetAuthorizeTestAction::applyRoute(routes: $routes);

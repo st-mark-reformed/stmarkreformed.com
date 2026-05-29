@@ -12,7 +12,7 @@ use App\User\Persistence\UserTransformer;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
-readonly class UserRepository
+readonly class UserRepository implements UserUpdater
 {
     public function __construct(
         private CreateUser $createUser,
