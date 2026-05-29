@@ -16,6 +16,7 @@ use Cli\Commands\Docker\Container\ContainerWebNodeCommand;
 use Cli\Commands\Docker\DownCommand;
 use Cli\Commands\Docker\Restart\RestartCommand;
 use Cli\Commands\Docker\Up\UpCommand;
+use Cli\Commands\SyncFromProd\SyncFromProdCommand;
 use Cli\PhpVersionHandler;
 use ReflectionClass;
 use RxAnte\AppBootstrap\Cli\ApplyCliCommandsEvent;
@@ -58,5 +59,8 @@ readonly class ApplyCliCommandsEventSubscriber
         ContainerWebCommand::applyCommand($commands);
         ContainerWebNodeCommand::applyCommand($commands);
         ContainerAuthCommand::applyCommand($commands);
+
+        // Sync from production
+        SyncFromProdCommand::applyCommand($commands);
     }
 }
