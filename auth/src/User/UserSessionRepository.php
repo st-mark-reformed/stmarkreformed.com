@@ -61,7 +61,7 @@ readonly class UserSessionRepository
         $session = new UserSession(
             id: $this->uuidFactory->uuid4(),
             expires: $this->clock->now()->add(
-                new DateInterval('P1Y'),
+                new DateInterval('P1M'),
             ),
             user: $user,
         );

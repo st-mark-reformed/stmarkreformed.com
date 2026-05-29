@@ -34,7 +34,10 @@ readonly class CacheBindings
         $bindings->addBinding(
             RedisAdapter::class,
             static function (ContainerInterface $container): RedisAdapter {
-                return new RedisAdapter($container->get(Redis::class));
+                return new RedisAdapter(
+                    $container->get(Redis::class),
+                    'stmark-auth',
+                );
             },
         );
 
