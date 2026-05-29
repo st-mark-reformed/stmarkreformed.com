@@ -18,19 +18,20 @@ What's already done on the API side:
 - Elasticsearch indexing: `IndexAllMessages` runs every 5 min via `ScheduleFactory`, and `CreateMessage` / update / delete call `EnqueueIndexAllMessages` so per-event re-indexing happens too.
 - Import-from-Craft transfer commands have been run, so the API DB is hydrated.
 
-Work in progress (uncommitted at the time of writing):
+**STATUS (updated 2026-05-28): all four workstreams below are COMPLETE,
+committed, and verified in dev.** The next phase is the front-end cutover —
+see "Front-end cutover — verified contract & step-by-step" near the end of this
+doc, which is the authoritative, code-verified handoff. The workstream
+descriptions that follow are kept for historical context.
 
-- `api/src/Messages/Generate/GenerateMessagesPagesForRedis.php` — half-done API-side port of Craft's [GenerateMessagesPagesForRedis.php](../../craft-cms/src/Http/Response/Media/Messages/GenerateMessagesPagesForRedis.php).
-- `api/src/Pagination/Pagination.php` + `QueryString.php` — copied over to support the generator.
-- `api/src/Messages/Messages.php` — adds `count`, `slice`, `sliceToPage`, `first`, `filter` to support paging.
-
-Known issues in the WIP generator:
-
-- Writes `api-messages:page:*` and `api-messages:slug:*` (correct: we want the prefix during dev to avoid colliding with Craft), but `generateByPage` writes `messages:by:*` without the prefix — bug.
-- Hard-coded `'TODO'` / `'slug-todo'` for `by.slug`, `bySlug`, and `audioFileSize = 0`.
-- Stray `dd()` debug calls left in `generate()` and `generateByPages()`.
-- Doesn't yet implement: series pages, `most_recent_series`, `by_options`, `series_options`.
-- Not wired into routes, the scheduler, or message CUD events.
+Generator is finished and lives as small role-based collaborators in
+`api/src/Messages/Generate/` (`GenerateMessagesPagesForRedis` composer plus
+`MessagesPagesBuilder`, `BySpeakerPagesBuilder`, `BySeriesPagesBuilder`,
+`MostRecentSeriesBuilder`, `BySpeakerOptionsBuilder`, `BySeriesOptionsBuilder`,
+`MessageEntryJsonFactory`, key shapes centralized in `MessagesRedisKey`). It is
+wired into a 5-minute schedule and message/series/profile CUD events, and the
+search endpoint lives in `api/src/Messages/Search/`. All keys use the
+`api-messages:` prefix.
 
 ## Design decisions (locked in)
 
@@ -115,18 +116,94 @@ For each workstream:
 
 No automated tests are mandatory for this WIP code because the existing project doesn't yet have generator tests, but consider unit-testing `MessageEntryJsonFactory` since multiple writers and the search action depend on its output shape.
 
-## High-level front-end cutover (out of scope; for later)
+## Front-end cutover — verified contract & step-by-step
 
-When the API side is verified and parked behind the `api-messages:` keys + `/api/media/messages/search` on `stmark-api`:
+API side (workstreams 1–4) is complete, committed, and verified in dev. This
+section is now **in scope for local-dev testing**. It was rewritten from the
+committed code (not memory) on 2026-05-28, so the file/line references and the
+JSON contract below are exact. Removing Craft (steps 4 and 6) stays deferred
+until the front-end is verified against the API in dev.
 
-1. New env var, e.g. `INTERNAL_API_URL=http://stmark-api`, added to `docker/web/.env` (and prod equivalent). Existing `APP_API_URL` stays (or is renamed) so nothing breaks during the swap.
-2. Update `web/app/media/messages/repository/FindAllMessagesByPage.ts` and siblings to read `api-messages:*` keys.
-3. Update `web/app/media/messages/repository/SearchMessagesByPage.ts` to call `${INTERNAL_API_URL}/api/media/messages/search`.
-4. Stop Craft's schedule entry for `EnqueueGenerateMessagesPagesForRedis` and its CUD event subscribers.
-5. Repoint `/uploads/` in `docker/proxy/default.conf.template` away from Craft. The shared volume already lives in both containers, so this is a proxy-only change.
-6. Delete the now-dead Craft messages code (`craft-cms/src/Http/Response/Media/Messages/*` except whatever still serves Craft's admin UI), drop `APP_API_URL` if nothing else uses it.
+### The integration contract (already satisfied by the API)
 
-That step is not authorized yet — listed only so we know where workstreams 1–4 are pointed.
+**JSON envelope** — the Redis page payloads (`MessagesPagesBuilder`,
+`BySpeakerPagesBuilder`, `BySeriesPagesBuilder`) and the search action
+(`GetMessagesSearchAction`) all serialize the *same* envelope, which already
+matches `web/app/audio/MessagesPageData.ts` exactly:
+
+```
+currentPage, perPage, totalResults, totalPages, pagesArray,
+prevPageLink, nextPageLink, firstPageLink, lastPageLink, entries[]
+```
+
+- By-speaker pages add top-level `byName` + `bySlug` → matches `ByReturnType` in `FindAllMessagesBySpeakerByPage.ts`.
+- By-series pages add top-level `seriesName` + `seriesSlug` → matches `series/[slug]` page usage.
+- Single-message slug keys wrap the entry as `{ "entry": { … } }`.
+
+**Entry shape** (`MessageEntryJsonFactory::create`, `web/app/audio/Entry.ts`):
+`uid, title, slug, postDate, postDateDisplay, by{title,slug}|null, text,
+series{title,slug}|null, audioFileName, audioFileSize`. `by` and `series` are
+`null` when the speaker/series is the empty sentinel.
+
+Conclusion: **no front-end type changes are required.** The cutover is a
+key-prefix swap plus one base-URL swap.
+
+### Redis key map (Craft prefix → API prefix)
+
+The API writes the `api-messages:` namespace (see `MessagesRedisKey`). Flip the
+prefix in each of these 7 repository files under
+`web/app/media/messages/repository/`:
+
+| File | Craft key | API key |
+|------|-----------|---------|
+| `FindAllMessagesByPage.ts` | `messages:page:{n}` | `api-messages:page:{n}` |
+| `FindMessageBySlug.ts` | `messages:slug:{slug}` | `api-messages:slug:{slug}` |
+| `FindAllMessagesBySpeakerByPage.ts` | `messages:by:{slug}:{n}` | `api-messages:by:{slug}:{n}` |
+| `FindAllMessagesBySeriesByPage.ts` | `messages:series:{slug}:{n}` | `api-messages:series:{slug}:{n}` |
+| `FindAllSeriesOptions.ts` | `messages:series_options` | `api-messages:series_options` |
+| `FindAllByOptions.ts` | `messages:by_options` | `api-messages:by_options` |
+| `FindRecentSeries.ts` | `messages:most_recent_series` | `api-messages:most_recent_series` |
+
+Cleanup while there: `FindAllMessagesBySpeakerByPage.ts` lines 16–18 hold a dead
+`const tmp = await redis.keys('messages:by:*')` — delete it.
+
+### Search endpoint cutover (1 file)
+
+`web/app/media/messages/repository/SearchMessagesByPage.ts` line 18 builds the
+URL from `ConfigOptions.APP_API_URL`. In `docker/web/.env`:
+
+- `APP_API_URL=http://stmark-app` → the **Craft** app (current search backend).
+- `API_URL=http://stmark-api` → the **new PHP API** (already present, already serves `/api/media/messages/search`).
+
+So the cutover is: change `ConfigOptions.APP_API_URL` → `ConfigOptions.API_URL`
+on that line. **No new env var** (the plan's earlier `INTERNAL_API_URL` idea is
+unnecessary). The query-param names already match `SearchMessagesParams`
+(`by[]`, `series[]`, `scripture_reference`, `title`, `date_range_start`,
+`date_range_end`, `page`).
+
+### Must-verify before trusting the cutover
+
+1. **Container identity** — confirm in `docker/docker-compose.dev.yml` that `stmark-api` is the new PHP API service and `stmark-app` is Craft. The whole search swap hinges on this.
+2. **`api-messages:*` is populated** — `redis-cli KEYS 'api-messages:*'` should be non-empty. If not, run the generator command (`messages:generate-redis-pages`, registered via `GenerateMessagesPagesForRedisCommand`) and/or confirm the 5-min schedule is firing.
+3. **Audio files — leave the proxy alone.** `docker/proxy/default.conf.template` line 62 routes `location /uploads` → `${CRAFT_PROXY}`, and it stays that way. Audio playback uses `audioFileName` under `/uploads/audio/…`; TJ is handling audio serving via Docker volume manipulation on the front-end side, so the cutover does **not** touch the proxy template and does not depend on the API serving `/uploads`. The page/search JSON works regardless of where the audio bytes come from.
+
+### Suggested cutover order (local dev)
+
+1. Verify items 1–2 above (container names + populated keys).
+2. Flip the 7 Redis-prefix files. Reload listing/by/series/slug pages; compare against current (Craft-served) pages — they should be byte-identical since both read the same envelope shape.
+3. Flip `SearchMessagesByPage.ts` to `API_URL`. Exercise every search filter combination and compare against Craft's search results.
+4. `tsc` + `eslint` clean.
+
+Do **not** touch `docker/proxy/default.conf.template` — audio serving is being
+handled separately via Docker volume manipulation (see must-verify item 3).
+
+### Still deferred (do NOT do during local-dev testing)
+
+- **Stop Craft's messages schedule + CUD subscribers** (so Craft stops writing the `messages:*` keys). Only after the front-end is verified on the API — keeping both running in parallel is what lets us compare.
+- **Delete dead Craft messages code** (`craft-cms/src/Http/Response/Media/Messages/*` except anything still serving Craft's admin UI) and drop `APP_API_URL` if nothing else uses it.
+- **Prod env / prod proxy changes.**
+
+These are listed so we know where the cutover is pointed; they require explicit authorization.
 
 ## Execution order
 
