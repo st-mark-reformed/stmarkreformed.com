@@ -61,7 +61,7 @@ class GetTransferMessages
                         'date' => $entry->postDate
                             ->setTimezone(new DateTimeZone('US/Central'))
                             ->format(
-                                'Y-m-d h:i:s'
+                                'Y-m-d H:i:s'
                             ),
                         'title' => $entry->title,
                         'audioPath' => $audioAsset?->filename ?? '',

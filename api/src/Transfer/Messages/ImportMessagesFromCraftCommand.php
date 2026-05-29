@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace App\Transfer\Messages;
 
 use App\EmptyUuid;
+use App\Messages\Message;
 use App\Messages\MessagesRepository;
 use App\Messages\NewMessage;
 use Config\RuntimeConfigOptions;
 use DateTimeImmutable;
+use DateTimeInterface;
 use DateTimeZone;
 use Hyperf\Guzzle\ClientFactory;
 use Ramsey\Uuid\Uuid;
@@ -67,9 +69,24 @@ readonly class ImportMessagesFromCraftCommand
             function (array $message) use ($existingMessages): void {
                 $id = Uuid::fromString(uuid: $message['id']);
 
+                $date = DateTimeImmutable::createFromFormat(
+                    'Y-m-d H:i:s',
+                    $message['date'],
+                    new DateTimeZone('US/Central'),
+                );
+
+                if ($date === false) {
+                    return;
+                }
+
                 $existing = $existingMessages->findById(id: $id);
 
                 if ($existing !== null) {
+                    $this->correctDateIfChanged(
+                        existing: $existing,
+                        date: $date,
+                    );
+
                     return;
                 }
 
@@ -91,11 +108,7 @@ readonly class ImportMessagesFromCraftCommand
 
                 $this->repository->create(new NewMessage(
                     id: $id,
-                    date: DateTimeImmutable::createFromFormat(
-                        'Y-m-d H:i:s',
-                        $message['date'],
-                        new DateTimeZone('US/Central'),
-                    ),
+                    date: $date,
                     title: $message['title'] ?? '',
                     audioPath: $message['audioPath'] ?? '',
                     speakerId: $speakerId,
@@ -108,5 +121,20 @@ readonly class ImportMessagesFromCraftCommand
         );
 
         return 0;
+    }
+
+    private function correctDateIfChanged(
+        Message $existing,
+        DateTimeInterface $date,
+    ): void {
+        $format = 'Y-m-d H:i:s';
+
+        if ($existing->date->format($format) === $date->format($format)) {
+            return;
+        }
+
+        $this->repository->persist(
+            message: $existing->withDate(value: $date),
+        );
     }
 }
