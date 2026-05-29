@@ -14,7 +14,7 @@ const FindAllMessagesBySeriesByPage = cache(async (
     const redis = getRedisClient();
 
     const redisPageData = await redis.get(
-        `messages:series:${slug}:${pageNum}`,
+        `api-messages:series:${slug}:${pageNum}`,
     );
 
     if (!redisPageData) {

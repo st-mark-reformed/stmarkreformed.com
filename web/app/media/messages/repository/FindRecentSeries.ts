@@ -7,7 +7,7 @@ const FindRecentSeries = cache(async (): Promise<Array<{
 }>> => {
     const redis = getRedisClient();
 
-    const redisPageData = await redis.get('messages:most_recent_series');
+    const redisPageData = await redis.get('api-messages:most_recent_series');
 
     if (!redisPageData) {
         return [];

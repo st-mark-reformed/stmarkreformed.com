@@ -8,7 +8,7 @@ export interface ByOptions {
 export default async function FindAllByOptions (): Promise<ByOptions> {
     const redis = getRedisClient();
 
-    const redisData = await redis.get('messages:by_options');
+    const redisData = await redis.get('api-messages:by_options');
 
     if (!redisData) {
         return {

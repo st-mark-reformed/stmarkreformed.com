@@ -13,12 +13,8 @@ const FindAllMessagesBySpeakerByPage = cache(async (
 ): Promise<null | ByReturnType> => {
     const redis = getRedisClient();
 
-    const tmp = await redis.keys(
-        'messages:by:*',
-    );
-
     const redisPageData = await redis.get(
-        `messages:by:${slug}:${pageNum}`,
+        `api-messages:by:${slug}:${pageNum}`,
     );
 
     if (!redisPageData) {

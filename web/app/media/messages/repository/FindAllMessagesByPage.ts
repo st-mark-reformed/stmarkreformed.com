@@ -8,7 +8,7 @@ const FindAllMessagesByPage = cache(async (
     const redis = getRedisClient();
 
     const redisPageData = await redis.get(
-        `messages:page:${pageNum}`,
+        `api-messages:page:${pageNum}`,
     );
 
     if (!redisPageData) {

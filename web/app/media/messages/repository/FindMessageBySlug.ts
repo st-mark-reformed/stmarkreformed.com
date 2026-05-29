@@ -11,7 +11,7 @@ const FindMessageBySlug = cache(async (
 ): Promise<null | ReturnType> => {
     const redis = getRedisClient();
 
-    const redisPageData = await redis.get(`messages:slug:${slug}`);
+    const redisPageData = await redis.get(`api-messages:slug:${slug}`);
 
     if (!redisPageData) {
         return null;

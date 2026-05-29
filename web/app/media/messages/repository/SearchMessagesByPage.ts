@@ -15,7 +15,7 @@ const SearchMessagesByPage = cache(async (
     const options = { headers } as RequestInit;
 
     const url = new URL(
-        `${getConfigString(ConfigOptions.APP_API_URL)}/api/media/messages/search`,
+        `${getConfigString(ConfigOptions.API_URL)}/api/media/messages/search`,
     );
 
     messagesSearchParams.params.by.forEach((byItem) => {
