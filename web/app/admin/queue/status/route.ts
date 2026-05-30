@@ -1,5 +1,7 @@
 import { GetQueueStatus } from './GetQueueStatus';
 
 export async function GET () {
-    return Response.json(await GetQueueStatus());
+    const { status, queueStatus } = await GetQueueStatus();
+
+    return Response.json(queueStatus, { status });
 }

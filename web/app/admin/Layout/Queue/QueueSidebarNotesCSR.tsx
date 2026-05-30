@@ -13,9 +13,29 @@ export default function QueueSidebarNotesCSR (
     const [status, setStatus] = useState<QueueStatus>(initialStatus);
 
     useEffect(() => {
+        let cancelled = false;
+
         const interval = setInterval(async () => {
             try {
                 const resp = await fetch('/admin/queue/status');
+
+                /**
+                 * The session has expired out from under us. Drop everything
+                 * and do a full-page navigation to the session-expired page,
+                 * mirroring `KeepAlive` — don't keep polling or render the
+                 * auth-error body as if it were a real queue status.
+                 */
+                if (resp.status === 401) {
+                    const returnTo = encodeURIComponent(window.location.href);
+
+                    window.location.href = `/admin/session-expired?returnTo=${returnTo}`;
+
+                    return;
+                }
+
+                if (cancelled || !resp.ok) {
+                    return;
+                }
 
                 const json = await resp.json() as unknown as QueueStatus;
 
@@ -23,7 +43,10 @@ export default function QueueSidebarNotesCSR (
             } catch (e) { /* empty */ }
         }, 5000);
 
-        return () => clearInterval(interval);
+        return () => {
+            cancelled = true;
+            clearInterval(interval);
+        };
     }, []);
 
     return (

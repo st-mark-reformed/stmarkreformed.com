@@ -15,7 +15,7 @@ readonly class GetKeepAliveAction
 {
     public static function applyRoute(ApplyRoutesEvent $routes): void
     {
-        $routes->post(
+        $routes->get(
             '/keep-alive',
             self::class,
         )->add(RequireOauthTokenHeaderMiddleware::class);

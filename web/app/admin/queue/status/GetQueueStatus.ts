@@ -5,11 +5,19 @@ export interface QueueStatus {
     failed: number;
 }
 
-export async function GetQueueStatus () {
+export interface QueueStatusResult {
+    status: number;
+    queueStatus: QueueStatus;
+}
+
+export async function GetQueueStatus (): Promise<QueueStatusResult> {
     const response = await RequestFactory().makeWithToken({
         uri: '/admin/queue/status',
         cacheSeconds: 0,
     });
 
-    return response.json as unknown as QueueStatus;
+    return {
+        status: response.status,
+        queueStatus: response.json as unknown as QueueStatus,
+    };
 }
