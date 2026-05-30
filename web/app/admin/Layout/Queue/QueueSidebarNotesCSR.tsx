@@ -14,8 +14,9 @@ export default function QueueSidebarNotesCSR (
 
     useEffect(() => {
         let cancelled = false;
+        let interval: ReturnType<typeof setInterval> | null = null;
 
-        const interval = setInterval(async () => {
+        const fetchStatus = async () => {
             try {
                 const resp = await fetch('/admin/queue/status');
 
@@ -41,11 +42,53 @@ export default function QueueSidebarNotesCSR (
 
                 setStatus(json);
             } catch (e) { /* empty */ }
-        }, 5000);
+        };
+
+        const startPolling = () => {
+            if (interval !== null) {
+                return;
+            }
+
+            interval = setInterval(fetchStatus, 5000);
+        };
+
+        const stopPolling = () => {
+            if (interval === null) {
+                return;
+            }
+
+            clearInterval(interval);
+            interval = null;
+        };
+
+        /**
+         * Only poll while the tab is visible. `setInterval` is heavily
+         * throttled in background tabs anyway, and an idle admin tab shouldn't
+         * keep hammering the status endpoint. On becoming visible we fetch once
+         * immediately so the count is fresh right away, then resume the
+         * interval.
+         */
+        const handleVisibilityChange = () => {
+            if (document.visibilityState === 'visible') {
+                fetchStatus();
+                startPolling();
+
+                return;
+            }
+
+            stopPolling();
+        };
+
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+
+        if (document.visibilityState === 'visible') {
+            startPolling();
+        }
 
         return () => {
             cancelled = true;
-            clearInterval(interval);
+            stopPolling();
+            document.removeEventListener('visibilitychange', handleVisibilityChange);
         };
     }, []);
 
