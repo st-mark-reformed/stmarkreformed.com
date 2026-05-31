@@ -330,7 +330,8 @@ services:
           - stmark-db
 
   redis:
-    image: redis:alpine3.14
+    image: valkey/valkey:9
+    command: valkey-server --appendonly yes --appendfsync everysec
     volumes:
       - redis-volume:/data
     networks:
