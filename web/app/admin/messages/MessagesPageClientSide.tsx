@@ -13,12 +13,17 @@ import CardList, { CardListHandle } from '../CardList/CardList';
 import { Message } from './Message';
 import SubmitDeleteMessagesFormAction from './SubmitDeleteMessagesFormAction';
 import Alert from '../../Alert';
+import Pagination from '../../Pagination/Pagination';
 
 export default function MessagesPageClientSide (
     {
         messages,
+        currentPage,
+        totalPages,
     }: {
         messages: Message[];
+        currentPage: number;
+        totalPages: number;
     },
 ) {
     const router = useRouter();
@@ -112,6 +117,15 @@ export default function MessagesPageClientSide (
         ];
     })();
 
+    const pagination = (
+        <Pagination
+            baseUrl="/admin/messages"
+            currentPage={currentPage}
+            totalPages={totalPages}
+            queryString=""
+        />
+    );
+
     return (
         <>
             <Breadcrumbs />
@@ -130,6 +144,7 @@ export default function MessagesPageClientSide (
                     </div>
                 );
             })()}
+            {pagination}
             <CardList
                 ref={formRef}
                 formAction={formAction}
@@ -187,6 +202,7 @@ export default function MessagesPageClientSide (
                 }}
                 showCheckBoxes
             />
+            <div className="pt-6">{pagination}</div>
         </>
     );
 }

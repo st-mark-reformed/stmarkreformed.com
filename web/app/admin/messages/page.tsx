@@ -16,7 +16,7 @@ export default async function Page () {
     return (
         <AdminLayout activeNav="messages">
             <HasEditMessagesRoleGuard>
-                <MessagesPage />
+                <MessagesPage pageNum={1} />
             </HasEditMessagesRoleGuard>
         </AdminLayout>
     );
