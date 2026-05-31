@@ -14,16 +14,19 @@ import { Message } from './Message';
 import SubmitDeleteMessagesFormAction from './SubmitDeleteMessagesFormAction';
 import Alert from '../../Alert';
 import Pagination from '../../Pagination/Pagination';
+import MessagesSearchForm from './MessagesSearchForm';
 
 export default function MessagesPageClientSide (
     {
         messages,
         currentPage,
         totalPages,
+        keyword,
     }: {
         messages: Message[];
         currentPage: number;
         totalPages: number;
+        keyword: string;
     },
 ) {
     const router = useRouter();
@@ -122,7 +125,7 @@ export default function MessagesPageClientSide (
             baseUrl="/admin/messages"
             currentPage={currentPage}
             totalPages={totalPages}
-            queryString=""
+            queryString={keyword === '' ? '' : `keyword=${encodeURIComponent(keyword)}`}
         />
     );
 
@@ -144,7 +147,12 @@ export default function MessagesPageClientSide (
                     </div>
                 );
             })()}
-            {pagination}
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                <div>{pagination}</div>
+                <div className="pb-3">
+                    <MessagesSearchForm defaultKeyword={keyword} />
+                </div>
+            </div>
             <CardList
                 ref={formRef}
                 formAction={formAction}

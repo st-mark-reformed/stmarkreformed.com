@@ -29,13 +29,19 @@ export async function generateMetadata (
 export default async function Page (
     {
         params,
+        searchParams,
     }: {
         params: Promise<{
             pageNum: string;
         }>;
+        searchParams: Promise<{
+            keyword?: string;
+        }>;
     },
 ) {
     const { pageNum } = await params;
+
+    const { keyword } = await searchParams;
 
     const isNumeric = /^\d+$/.test(pageNum);
 
@@ -52,7 +58,7 @@ export default async function Page (
     return (
         <AdminLayout activeNav="messages">
             <HasEditMessagesRoleGuard>
-                <MessagesPage pageNum={pageNumInt} />
+                <MessagesPage pageNum={pageNumInt} keyword={keyword ?? ''} />
             </HasEditMessagesRoleGuard>
         </AdminLayout>
     );

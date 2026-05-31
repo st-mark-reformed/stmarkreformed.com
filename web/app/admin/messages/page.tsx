@@ -12,11 +12,21 @@ export const metadata: Metadata = {
     ]),
 };
 
-export default async function Page () {
+export default async function Page (
+    {
+        searchParams,
+    }: {
+        searchParams: Promise<{
+            keyword?: string;
+        }>;
+    },
+) {
+    const { keyword } = await searchParams;
+
     return (
         <AdminLayout activeNav="messages">
             <HasEditMessagesRoleGuard>
-                <MessagesPage pageNum={1} />
+                <MessagesPage pageNum={1} keyword={keyword ?? ''} />
             </HasEditMessagesRoleGuard>
         </AdminLayout>
     );

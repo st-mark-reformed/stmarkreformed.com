@@ -16,6 +16,7 @@ use RxAnte\AppBootstrap\Http\ApplyRoutesEvent;
 use function is_int;
 use function is_string;
 use function max;
+use function trim;
 
 readonly class GetMessagesListAction
 {
@@ -31,13 +32,18 @@ readonly class GetMessagesListAction
 
     public function __construct(
         private MessagesRepository $repository,
+        private SearchMessagesByKeyword $search,
         private ResponseFactoryInterface $factory,
     ) {
     }
 
     public function __invoke(ServerRequestInterface $request): ResponseInterface
     {
-        $messages = $this->repository->findAll();
+        $keyword = $this->keywordFromRequest(request: $request);
+
+        $messages = $keyword === ''
+            ? $this->repository->findAll()
+            : $this->search->find(keyword: $keyword);
 
         $pagination = new Pagination()
             ->withPerPage(val: self::PER_PAGE)
@@ -71,5 +77,12 @@ readonly class GetMessagesListAction
         }
 
         return 1;
+    }
+
+    private function keywordFromRequest(ServerRequestInterface $request): string
+    {
+        $keyword = $request->getQueryParams()['keyword'] ?? null;
+
+        return is_string($keyword) ? trim($keyword) : '';
     }
 }
