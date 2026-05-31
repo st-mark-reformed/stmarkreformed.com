@@ -15,6 +15,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import NavItem from './NavItem';
 import NavItemIconRenderer from './NavItemIconRenderer';
+import SidebarUserFooter from './SidebarUserFooter';
 
 export default function SidebarCSR (
     {
@@ -89,7 +90,10 @@ export default function SidebarCSR (
                                             ))}
                                         </ul>
                                     </li>
-
+                                    <SidebarUserFooter
+                                        loggedInAs={loggedInAs}
+                                        managePasswordUrl={managePasswordUrl}
+                                    />
                                 </ul>
                             </nav>
                         </div>
@@ -106,20 +110,16 @@ export default function SidebarCSR (
                     <span className="sr-only">Open sidebar</span>
                     <Bars3Icon aria-hidden="true" className="size-6" />
                 </button>
-                <span className="flex ml-auto items-center gap-x-2 pl-6 py-3 text-sm/6 text-gray-900 dark:text-white">
-                    Logged in as <span className="font-semibold text-gray-700 dark:text-gray-100">{loggedInAs}</span>
-                    <a
-                        href={managePasswordUrl}
-                        className="rounded-sm bg-crimson/30 px-2 py-1 text-xs font-semibold text-black dark:text-gray-200 shadow-xs hover:bg-crimson/40 focus-visible:outline-2 focus-visible:outline-offset-2 dark:shadow-none cursor-pointer"
-                    >
-                        Manage Password
-                    </a>
-                    <a
-                        href="/api/auth/sign-out"
-                        className="rounded-sm bg-crimson/30 px-2 py-1 text-xs font-semibold text-black dark:text-gray-200 shadow-xs hover:bg-crimson/40 focus-visible:outline-2 focus-visible:outline-offset-2 dark:shadow-none cursor-pointer"
-                    >
-                        Log Out
-                    </a>
+                <span className="flex items-center">
+                    <Image
+                        alt="St. Mark Reformed Church"
+                        src="/images/logo/logo-website-header.png"
+                        width={35}
+                        height={32}
+                    />
+                    <span className="font-semibold ml-3 mt-1 text-gray-900 dark:text-gray-50">
+                        SMRC Admin
+                    </span>
                 </span>
             </div>
         </>
