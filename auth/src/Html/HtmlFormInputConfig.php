@@ -13,6 +13,7 @@ readonly class HtmlFormInputConfig
         public HtmlFormInputType $type = HtmlFormInputType::text,
         public ButtonConfig|null $rightSideButton = null,
         public bool $required = false,
+        public bool $checked = false,
     ) {
     }
 }

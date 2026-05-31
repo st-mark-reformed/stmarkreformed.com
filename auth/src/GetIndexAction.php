@@ -11,6 +11,7 @@ use App\Html\Glyphs\Glyph;
 use App\LogIn\GetLogInActionHandler;
 use App\Url\AppUrlFactory;
 use App\Url\FeUrlFactory;
+use App\User\UserRole;
 use App\User\UserSessionRepository;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -44,37 +45,54 @@ readonly class GetIndexAction
             );
         }
 
+        $rows = [
+            new ButtonRow(buttons: [
+                new ButtonConfig(
+                    content: 'Log Out',
+                    href: $this->appUrlFactory->create('/log-out')->asString(),
+                ),
+            ]),
+            new ButtonRow(buttons: [
+                new ButtonConfig(
+                    content: 'Manage Password',
+                    href: $this->appUrlFactory
+                        ->create('/manage-password')
+                        ->asString(),
+                    glyph: Glyph::ArrowRight,
+                ),
+            ]),
+        ];
+
+        if ($session->user->roles->has(UserRole::MANAGE_USERS)) {
+            $rows[] = new ButtonRow(buttons: [
+                new ButtonConfig(
+                    content: 'Manage Users',
+                    href: $this->appUrlFactory
+                        ->create('/manage-users')
+                        ->asString(),
+                    glyph: Glyph::ArrowRight,
+                ),
+            ]);
+        }
+
+        $rows[] = new ButtonRow(buttons: [
+            new ButtonConfig(
+                content: 'Go to Admin',
+                href: $this->feUrlFactory->create(uri: '/admin')->asString(),
+                glyph: Glyph::ArrowRight,
+            ),
+            new ButtonConfig(
+                content: 'Go to Site',
+                href: $this->feUrlFactory->create()->asString(),
+                glyph: Glyph::ArrowRight,
+            ),
+        ]);
+
         $response->getBody()->write(
             $this->templateEngineFactory->create()
                 ->templatePath(__DIR__ . '/Index.phtml')
                 ->addVar('userEmail', $session->user->email->toString())
-                ->addVar('buttonRows', new ButtonRows(rows: [
-                    new ButtonRow(buttons: [
-                        new ButtonConfig(
-                            content: 'Log Out',
-                            href: $this->appUrlFactory->create('/log-out')->asString(),
-                        ),
-                    ]),
-                    new ButtonRow(buttons: [
-                        new ButtonConfig(
-                            content: 'Manage Password',
-                            href: $this->appUrlFactory->create('/manage-password')->asString(),
-                            glyph: Glyph::ArrowRight,
-                        ),
-                    ]),
-                    new ButtonRow(buttons: [
-                        new ButtonConfig(
-                            content: 'Go to Admin',
-                            href: $this->feUrlFactory->create(uri: '/admin')->asString(),
-                            glyph: Glyph::ArrowRight,
-                        ),
-                        new ButtonConfig(
-                            content: 'Go to Site',
-                            href: $this->feUrlFactory->create()->asString(),
-                            glyph: Glyph::ArrowRight,
-                        ),
-                    ]),
-                ]))
+                ->addVar('buttonRows', new ButtonRows(rows: $rows))
                 ->render(),
         );
 

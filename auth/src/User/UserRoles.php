@@ -62,6 +62,13 @@ readonly class UserRoles
         return array_find($this->roles, $callback);
     }
 
+    public function has(UserRole $role): bool
+    {
+        return $this->find(
+            static fn (UserRole $existing): bool => $existing->name === $role->name,
+        ) !== null;
+    }
+
     public function filter(callable $callback): self
     {
         return new self(array_filter(

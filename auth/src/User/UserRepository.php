@@ -6,7 +6,9 @@ namespace App\User;
 
 use App\User\Persistence\CreateUser;
 use App\User\Persistence\DeleteUserById;
+use App\User\Persistence\FindAllUsers;
 use App\User\Persistence\FindUserByEmail;
+use App\User\Persistence\FindUserById;
 use App\User\Persistence\UpdateUser;
 use App\User\Persistence\UserTransformer;
 use Ramsey\Uuid\Uuid;
@@ -18,9 +20,16 @@ readonly class UserRepository implements UserUpdater
         private CreateUser $createUser,
         private UpdateUser $updateUser,
         private DeleteUserById $deleteUserById,
+        private FindAllUsers $findAllUsers,
         private FindUserByEmail $findUserByEmail,
+        private FindUserById $findUserById,
         private UserTransformer $userTransformer,
     ) {
+    }
+
+    public function all(): Users
+    {
+        return $this->findAllUsers->find();
     }
 
     public function createUser(NewUser $newUser): Result
@@ -37,6 +46,17 @@ readonly class UserRepository implements UserUpdater
     {
         return $this->userTransformer->fromRecord(
             $this->findUserByEmail->find($email),
+        );
+    }
+
+    public function findById(UuidInterface|string $id): User
+    {
+        if ($id instanceof UuidInterface) {
+            $id = $id->toString();
+        }
+
+        return $this->userTransformer->fromRecord(
+            $this->findUserById->find($id),
         );
     }
 

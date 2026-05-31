@@ -1,0 +1,32 @@
+<?php
+/** @noinspection PhpUndefinedVariableInspection */
+
+use App\Html\HtmlFormInputConfig;
+
+assert($input instanceof HtmlFormInputConfig);
+
+$inputId = str_replace(
+    ['[', ']'],
+    '',
+    $input->name . '_' . $input->value,
+);
+?>
+
+<div class="flex items-center gap-x-3">
+    <input
+        type="checkbox"
+        id="<?=$inputId?>"
+        name="<?=$input->name?>"
+        value="<?=$this->html($input->value)?>"
+        class="size-4 rounded border-gray-300 text-crimson focus:ring-crimson"
+        <?php if ($input->checked): ?>
+        checked
+        <?php endif; ?>
+    />
+    <label
+        for="<?=$inputId?>"
+        class="block text-sm/6 font-medium text-rx-gray-500"
+    >
+        <?=$this->html($input->label)?>
+    </label>
+</div>

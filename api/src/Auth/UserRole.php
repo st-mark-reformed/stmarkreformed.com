@@ -8,4 +8,5 @@ enum UserRole
 {
     case EDIT_MESSAGES;
     case EDIT_PROFILES;
+    case MANAGE_USERS;
 }

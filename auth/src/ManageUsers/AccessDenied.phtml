@@ -1,0 +1,31 @@
+<?php
+
+use App\Html\HtmlPath;
+use BuzzingPixel\Templating\TemplateEngine;
+
+assert($this instanceof TemplateEngine);
+
+/** @noinspection PhpUndefinedVariableInspection */
+$homeUrl = $homeUrl ?? '/';
+
+global $wrapperWidth;
+$wrapperWidth = 'max-w-xl';
+$this->extends(HtmlPath::CENTERED_WRAPPER_LAYOUT);
+?>
+
+<div class="sm:mx-auto sm:w-full sm:max-w-md">
+    <h2 class="text-center text-2xl font-bold tracking-tight text-bronze-lightened-1">
+        Access Denied
+    </h2>
+    <p class="mt-4 text-sm text-rx-gray-500">
+        You do not have permission to manage users.
+    </p>
+    <div class="flex flex-wrap items-center justify-center gap-x-3 mt-10">
+        <a
+            href="<?=$this->html($homeUrl)?>"
+            class="rounded-lg bg-crimson hover:bg-crimson-dark px-3.5 py-3 text-sm font-semibold text-white shadow-xs my-1"
+        >
+            Back to home
+        </a>
+    </div>
+</div>
