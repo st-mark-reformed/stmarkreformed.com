@@ -21,6 +21,8 @@ use App\Http\Response\News\NewsList\PaginatedNewsListAction;
 use App\Http\Response\News\NewsList\PastorsPageListAction;
 use App\Http\Response\Publications\DisplayMenOfTheMarkListAction;
 use App\Http\Response\Publications\MenOfTheMarkFeedAction;
+use App\Transfer\GetTransferInternalMessages;
+use App\Transfer\GetTransferInternalSeries;
 use App\Transfer\GetTransferMessages;
 use App\Transfer\GetTransferProfiles;
 use App\Transfer\GetTransferSeries;
@@ -97,4 +99,8 @@ return static function (App $app): void {
     GetTransferSeries::addRoute(routeCollector: $app);
 
     GetTransferMessages::addRoute(routeCollector: $app);
+
+    GetTransferInternalSeries::addRoute(routeCollector: $app);
+
+    GetTransferInternalMessages::addRoute(routeCollector: $app);
 };

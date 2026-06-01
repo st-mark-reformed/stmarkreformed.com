@@ -16,6 +16,8 @@ use App\Persistence\Migrations\MigrateDownCommand;
 use App\Persistence\Migrations\MigrateStatusCommand;
 use App\Persistence\Migrations\MigrateUpCommand;
 use App\Profiles\ResaveAllProfilesCommand;
+use App\Transfer\InternalMessages\ImportInternalMessagesFromCraftCommand;
+use App\Transfer\InternalSeries\ImportInternalSeriesFromCraftCommand;
 use App\Transfer\Messages\ImportMessagesFromCraftCommand;
 use App\Transfer\Profiles\ImportProfilesFromCraftCommand;
 use App\Transfer\Series\ImportSeriesFromCraftCommand;
@@ -41,6 +43,8 @@ readonly class ApplyCommands
         ImportProfilesFromCraftCommand::register(commands: $commands);
         ImportSeriesFromCraftCommand::register(commands: $commands);
         ImportMessagesFromCraftCommand::register(commands: $commands);
+        ImportInternalSeriesFromCraftCommand::register(commands: $commands);
+        ImportInternalMessagesFromCraftCommand::register(commands: $commands);
 
         // Messages
         SetUpIndicesCommand::register(commands: $commands);
