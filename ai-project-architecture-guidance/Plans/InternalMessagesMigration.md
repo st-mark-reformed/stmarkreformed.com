@@ -78,9 +78,11 @@ What does **not** exist yet: any internal-messages code in the API.
 - **Permissions:** reuse the existing `EDIT_MESSAGES` role /
   `RequireEditMessagesRoleMiddleware`. No new role in `UserRole` and no
   auth-service change. Whoever can edit public messages can edit internal ones.
-- **Search:** **no Elasticsearch.** The members area only browses Redis pages
-  with speaker/series filters (no search box), matching what Craft produces
-  today. Generate Redis pages + that's it.
+- **Search:** **no Elasticsearch, anywhere.** The members area only browses Redis
+  pages with speaker/series filters (no search box), matching what Craft produces
+  today. The **admin** list gets **pagination but no search** (the public
+  messages admin has both; internal omits the search half — see Workstream 3),
+  since there's no Elasticsearch index on the member side to back it.
 - **Series pool:** **separate** from public messages. New `internal_series`
   table; do not reuse the public `series` table.
 - **Speakers:** **shared** with public messages — `speaker_id` FK → existing
@@ -161,7 +163,7 @@ Locality: `api/src/InternalMessages/Admin/`.
 Mirror `api/src/Messages/Admin/`, all gated by the existing
 `RequireEditMessagesRoleMiddleware`:
 
-- `GET  /admin/internal-messages` — list
+- `GET  /admin/internal-messages` — **paginated** list (see below)
 - `GET  /admin/internal-messages/{id}` — edit form
 - `POST /admin/internal-messages/new`
 - `POST /admin/internal-messages/{id}` — update
@@ -170,10 +172,36 @@ Mirror `api/src/Messages/Admin/`, all gated by the existing
 
 Register all in `api/config/Events/ApplyRoutes.php`.
 
-**Web admin UI:** add an `web/app/admin/internal-messages/` area mirroring
-`web/app/admin/messages/`, and a sidebar link in `web/app/admin/Layout/Sidebar.tsx`
-shown under the same `EDIT_MESSAGES` role gate. (Front-end admin only — the
-member-facing pages are untouched.)
+**Admin list pagination (mirror public messages, omit search).** The public
+messages admin was recently given paginated + searchable list. Internal messages
+should match the **pagination** but **leave search off** (no Elasticsearch on the
+member side). The two are cleanly separable in the existing code:
+
+- `GetInternalMessagesListAction` (mirrors `GetMessagesListAction`): read `?page=N`
+  from the query, **always** call `repository->findAll()` (skip the
+  `keyword`/search branch entirely), build a `Pagination` value object
+  (`api/src/Pagination/Pagination.php`) with per-page = **100** (match the public
+  admin's `PER_PAGE`), and `sliceToPage()` the collection.
+- Response shape mirrors `PaginatedMessages` — a `PaginatedInternalMessages`
+  serializing `{ currentPage, totalPages, totalResults, entries }`.
+- The `InternalMessages` collection needs `sliceToPage(page, perPage)` and
+  `count()` (copied from `Messages`).
+
+**Web admin UI:** add a `web/app/admin/internal-messages/` area mirroring
+`web/app/admin/messages/`, including the pagination but **not** the search form:
+
+- Routes `/admin/internal-messages` (page 1) and
+  `/admin/internal-messages/page/[pageNum]`, matching the messages pattern.
+- `GetInternalMessages.ts` sends only `?page=N` (no `keyword`); response type
+  `{ currentPage, totalPages, totalResults, entries }`.
+- Reuse the shared `web/app/Pagination/Pagination.tsx` component with
+  `baseUrl="/admin/internal-messages"` and an empty `queryString` (no keyword to
+  preserve).
+- **Do not** copy `MessagesSearchForm.tsx` or wire a `keyword` param.
+- Add a sidebar link in `web/app/admin/Layout/Sidebar.tsx` under the same
+  `EDIT_MESSAGES` role gate.
+
+(Front-end admin only — the member-facing pages are untouched.)
 
 ### 4. Redis generation (the writer the web already expects)
 
