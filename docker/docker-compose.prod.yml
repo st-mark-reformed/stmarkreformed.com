@@ -130,6 +130,7 @@ services:
       - /root/certbot/var/www/letsencrypt:/var/www/letsencrypt
       - api-storage-volume:/var/www/storage
       - uploads-volume:/var/www/public/uploads
+      - files-above-webroot-volume:/var/www/filesAboveWebroot
     secrets:
       - RSA_PRIVATE_KEY
       - RSA_PUBLIC_KEY
@@ -155,6 +156,7 @@ services:
       - /root/certbot/var/www/letsencrypt:/var/www/letsencrypt
       - api-storage-volume:/var/www/storage
       - uploads-volume:/var/www/public/uploads
+      - files-above-webroot-volume:/var/www/filesAboveWebroot
     secrets:
       - RSA_PRIVATE_KEY
       - RSA_PUBLIC_KEY
@@ -175,6 +177,7 @@ services:
       - /root/certbot/var/www/letsencrypt:/var/www/letsencrypt
       - api-storage-volume:/var/www/storage
       - uploads-volume:/var/www/public/uploads
+      - files-above-webroot-volume:/var/www/filesAboveWebroot
     secrets:
       - RSA_PRIVATE_KEY
       - RSA_PUBLIC_KEY
