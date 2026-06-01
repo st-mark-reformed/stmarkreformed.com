@@ -7,6 +7,17 @@ namespace Config\Events;
 use App\Contact\PostContactAction;
 use App\GetKeepAliveAction;
 use App\Healthcheck;
+use App\InternalMessages\Admin\EditInternalMessage\GetEditInternalMessage\GetEditInternalMessageAction;
+use App\InternalMessages\Admin\EditInternalMessage\PostEditInternalMessage\PostEditInternalMessageAction;
+use App\InternalMessages\Admin\GetInternalMessagesListAction;
+use App\InternalMessages\Admin\NewInternalMessage\PostNewInternalMessageAction;
+use App\InternalMessages\Admin\PostDeleteInternalMessagesAction;
+use App\InternalSeries\Admin\EditInternalSeries\GetEditInternalSeries\GetEditInternalSeriesAction;
+use App\InternalSeries\Admin\EditInternalSeries\PostEditInternalSeries\PostEditInternalSeriesAction;
+use App\InternalSeries\Admin\GetInternalSeriesDropdownAction;
+use App\InternalSeries\Admin\GetInternalSeriesListAction;
+use App\InternalSeries\Admin\NewInternalSeries\PostNewInternalSeriesAction;
+use App\InternalSeries\Admin\PostDeleteInternalSeriesAction;
 use App\Messages\Admin\EditMessage\GetEditMessage\GetEditMessageAction;
 use App\Messages\Admin\EditMessage\PostEditMessage\PostEditMessageAction;
 use App\Messages\Admin\GetHasEditMessagesRoleAction;
@@ -82,6 +93,21 @@ readonly class ApplyRoutes
         PostRetryFailedQueueItemAction::applyRoute(routes: $routes);
         GetAdminQueueStatusAction::applyRoute(routes: $routes);
         GetMessagesSearchAction::applyRoute(routes: $routes);
+
+        // Internal Messages
+        PostNewInternalMessageAction::applyRoute(routes: $routes);
+        GetInternalMessagesListAction::applyRoute(routes: $routes);
+        GetEditInternalMessageAction::applyRoute(routes: $routes);
+        PostEditInternalMessageAction::applyRoute(routes: $routes);
+        PostDeleteInternalMessagesAction::applyRoute(routes: $routes);
+
+        // Internal Series
+        PostNewInternalSeriesAction::applyRoute(routes: $routes);
+        GetInternalSeriesListAction::applyRoute(routes: $routes);
+        GetEditInternalSeriesAction::applyRoute(routes: $routes);
+        PostEditInternalSeriesAction::applyRoute(routes: $routes);
+        GetInternalSeriesDropdownAction::applyRoute(routes: $routes);
+        PostDeleteInternalSeriesAction::applyRoute(routes: $routes);
 
         if (
             ! $config->getBoolean(
