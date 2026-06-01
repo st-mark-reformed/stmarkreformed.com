@@ -7,6 +7,7 @@ namespace Config;
 use App\Calendar\EnqueueCacheRemoteIcsFile;
 use App\Calendar\EnqueueGenerateCalendarPages;
 use App\Calendar\EnqueueGenerateUpcomingEvents;
+use App\InternalMessages\Generate\EnqueueGenerateInternalMediaPagesForRedis;
 use App\Messages\Generate\EnqueueGenerateMessagesPagesForRedis;
 use App\Messages\Search\EnqueueIndexAllMessages;
 use BuzzingPixel\Scheduler\Frequency;
@@ -38,6 +39,11 @@ readonly class ScheduleFactory implements \BuzzingPixel\Scheduler\ScheduleFactor
             new ScheduleItem(
                 runEvery: Frequency::FIVE_MINUTES,
                 class: EnqueueGenerateMessagesPagesForRedis::class,
+                method: 'enqueue',
+            ),
+            new ScheduleItem(
+                runEvery: Frequency::FIVE_MINUTES,
+                class: EnqueueGenerateInternalMediaPagesForRedis::class,
                 method: 'enqueue',
             ),
         ]);
