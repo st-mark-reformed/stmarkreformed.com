@@ -4,12 +4,16 @@ declare(strict_types=1);
 
 namespace App\InternalSeries;
 
+use App\InternalSeries\Persistence\CreateInternalSeries;
+use App\InternalSeries\Persistence\DeleteInternalSeries;
 use App\InternalSeries\Persistence\FindAll;
 use App\InternalSeries\Persistence\FindById;
 use App\InternalSeries\Persistence\FindBySlug;
 use App\InternalSeries\Persistence\FindByTitle;
+use App\InternalSeries\Persistence\PersistInternalSeries;
 use App\InternalSeries\Persistence\Transformer;
 use App\Persistence\CreateUuid;
+use App\Result\Result;
 use Ramsey\Uuid\UuidInterface;
 
 readonly class InternalSeriesRepository
@@ -21,7 +25,34 @@ readonly class InternalSeriesRepository
         private FindBySlug $findBySlug,
         private Transformer $transformer,
         private FindByTitle $findByTitle,
+        private CreateInternalSeries $createSeries,
+        private DeleteInternalSeries $deleteSeries,
+        private PersistInternalSeries $persistSeries,
     ) {
+    }
+
+    public function create(NewInternalSeries $series): Result
+    {
+        return $this->createSeries->create(series: $series);
+    }
+
+    public function delete(
+        string|UuidInterface|null $id = null,
+        string|null $slug = null,
+    ): Result {
+        if ($id !== null) {
+            $id = $this->createUuid->fromStringOrInterface(id: $id);
+        }
+
+        return $this->deleteSeries->delete(
+            id: $id,
+            slug: $slug,
+        );
+    }
+
+    public function persist(PopulatedInternalSeries $series): Result
+    {
+        return $this->persistSeries->persist(series: $series);
     }
 
     public function findAll(): InternalSeriesCollection
