@@ -2,134 +2,124 @@ description: ''
 handle: contentManager
 name: 'Content Manager'
 permissions:
-  - accessplugin-calendar
   - accesscp
-  - registerusers
-  - moderateusers
-  - assignuserpermissions
+  - accessplugin-calendar
+  - administrateusers
   - 'assignusergroup:b81c1b39-f913-4a26-95b9-a6bfe341deff'
   - 'assignusergroup:ee405175-77ba-4896-82e4-85669574f92a'
   - assignusergroups
-  - administrateusers
-  - editusers
-  - deleteusers
-  - 'createentries:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
-  - 'publishentries:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
-  - 'deleteentries:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
-  - 'publishpeerentries:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
-  - 'deletepeerentries:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
-  - 'editpeerentries:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
-  - 'publishpeerentrydrafts:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
-  - 'deletepeerentrydrafts:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
-  - 'editpeerentrydrafts:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
-  - 'editentries:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
-  - 'createentries:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
-  - 'publishentries:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
-  - 'deleteentries:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
-  - 'publishpeerentries:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
-  - 'deletepeerentries:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
-  - 'editpeerentries:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
-  - 'publishpeerentrydrafts:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
-  - 'deletepeerentrydrafts:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
-  - 'editpeerentrydrafts:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
-  - 'editentries:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
-  - 'createentries:fa85e855-64ff-434d-b40e-f4e6188f46dd' # Internal Messages
-  - 'publishentries:fa85e855-64ff-434d-b40e-f4e6188f46dd' # Internal Messages
-  - 'deleteentries:fa85e855-64ff-434d-b40e-f4e6188f46dd' # Internal Messages
-  - 'publishpeerentries:fa85e855-64ff-434d-b40e-f4e6188f46dd' # Internal Messages
-  - 'deletepeerentries:fa85e855-64ff-434d-b40e-f4e6188f46dd' # Internal Messages
-  - 'editpeerentries:fa85e855-64ff-434d-b40e-f4e6188f46dd' # Internal Messages
-  - 'publishpeerentrydrafts:fa85e855-64ff-434d-b40e-f4e6188f46dd' # Internal Messages
-  - 'deletepeerentrydrafts:fa85e855-64ff-434d-b40e-f4e6188f46dd' # Internal Messages
-  - 'editpeerentrydrafts:fa85e855-64ff-434d-b40e-f4e6188f46dd' # Internal Messages
-  - 'editentries:fa85e855-64ff-434d-b40e-f4e6188f46dd' # Internal Messages
-  - 'createentries:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242' # Messages
-  - 'publishentries:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242' # Messages
-  - 'deleteentries:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242' # Messages
-  - 'publishpeerentries:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242' # Messages
-  - 'deletepeerentries:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242' # Messages
-  - 'editpeerentries:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242' # Messages
-  - 'publishpeerentrydrafts:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242' # Messages
-  - 'deletepeerentrydrafts:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242' # Messages
-  - 'editpeerentrydrafts:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242' # Messages
-  - 'editentries:43a22c1a-0c67-4cd1-ba07-6ebfdf91d242' # Messages
-  - 'createentries:51c0f62a-b5a5-4135-bc90-471528d63f56' # News
-  - 'publishentries:51c0f62a-b5a5-4135-bc90-471528d63f56' # News
-  - 'deleteentries:51c0f62a-b5a5-4135-bc90-471528d63f56' # News
-  - 'publishpeerentries:51c0f62a-b5a5-4135-bc90-471528d63f56' # News
-  - 'deletepeerentries:51c0f62a-b5a5-4135-bc90-471528d63f56' # News
-  - 'editpeerentries:51c0f62a-b5a5-4135-bc90-471528d63f56' # News
-  - 'publishpeerentrydrafts:51c0f62a-b5a5-4135-bc90-471528d63f56' # News
-  - 'deletepeerentrydrafts:51c0f62a-b5a5-4135-bc90-471528d63f56' # News
-  - 'editpeerentrydrafts:51c0f62a-b5a5-4135-bc90-471528d63f56' # News
-  - 'editentries:51c0f62a-b5a5-4135-bc90-471528d63f56' # News
-  - 'createentries:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
-  - 'publishentries:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
-  - 'deleteentries:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
-  - 'publishpeerentries:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
-  - 'deletepeerentries:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
-  - 'editpeerentries:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
-  - 'publishpeerentrydrafts:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
-  - 'deletepeerentrydrafts:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
-  - 'editpeerentrydrafts:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
-  - 'editentries:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
-  - 'createentries:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
-  - 'publishentries:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
-  - 'deleteentries:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
-  - 'publishpeerentries:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
-  - 'deletepeerentries:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
-  - 'editpeerentries:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
-  - 'publishpeerentrydrafts:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
-  - 'deletepeerentrydrafts:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
-  - 'editpeerentrydrafts:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
-  - 'editentries:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
-  - 'editglobalset:84f0c3bc-62d3-4031-83c9-053e7a1fc6b2' # General
-  - 'editcategories:8944d860-7b65-43bb-b62e-9750d6416ebc' # Internal Message Series
-  - 'editcategories:3997eb97-922e-4368-8704-2c22cb7dcb1e' # Message Series
-  - 'saveassetinvolume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
-  - 'createfoldersinvolume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
-  - 'deletefilesandfoldersinvolume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
-  - 'replacefilesinvolume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
-  - 'editimagesinvolume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
-  - 'editpeerfilesinvolume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
-  - 'replacepeerfilesinvolume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
-  - 'deletepeerfilesinvolume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
-  - 'editpeerimagesinvolume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
-  - 'viewpeerfilesinvolume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
-  - 'viewvolume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
-  - 'saveassetinvolume:0aa43f99-132c-4f8a-b6a4-0e91a77604fb'
-  - 'createfoldersinvolume:0aa43f99-132c-4f8a-b6a4-0e91a77604fb'
-  - 'deletefilesandfoldersinvolume:0aa43f99-132c-4f8a-b6a4-0e91a77604fb'
-  - 'replacefilesinvolume:0aa43f99-132c-4f8a-b6a4-0e91a77604fb'
-  - 'editimagesinvolume:0aa43f99-132c-4f8a-b6a4-0e91a77604fb'
-  - 'editpeerfilesinvolume:0aa43f99-132c-4f8a-b6a4-0e91a77604fb'
-  - 'replacepeerfilesinvolume:0aa43f99-132c-4f8a-b6a4-0e91a77604fb'
-  - 'deletepeerfilesinvolume:0aa43f99-132c-4f8a-b6a4-0e91a77604fb'
-  - 'editpeerimagesinvolume:0aa43f99-132c-4f8a-b6a4-0e91a77604fb'
-  - 'viewpeerfilesinvolume:0aa43f99-132c-4f8a-b6a4-0e91a77604fb'
-  - 'viewvolume:0aa43f99-132c-4f8a-b6a4-0e91a77604fb'
-  - 'saveassetinvolume:1de9d950-2b2b-4b09-957e-cc2396093495' # Audio
-  - 'createfoldersinvolume:1de9d950-2b2b-4b09-957e-cc2396093495' # Audio
-  - 'deletefilesandfoldersinvolume:1de9d950-2b2b-4b09-957e-cc2396093495' # Audio
-  - 'replacefilesinvolume:1de9d950-2b2b-4b09-957e-cc2396093495' # Audio
-  - 'editimagesinvolume:1de9d950-2b2b-4b09-957e-cc2396093495' # Audio
-  - 'editpeerfilesinvolume:1de9d950-2b2b-4b09-957e-cc2396093495' # Audio
-  - 'replacepeerfilesinvolume:1de9d950-2b2b-4b09-957e-cc2396093495' # Audio
-  - 'deletepeerfilesinvolume:1de9d950-2b2b-4b09-957e-cc2396093495' # Audio
-  - 'editpeerimagesinvolume:1de9d950-2b2b-4b09-957e-cc2396093495' # Audio
-  - 'viewpeerfilesinvolume:1de9d950-2b2b-4b09-957e-cc2396093495' # Audio
-  - 'viewvolume:1de9d950-2b2b-4b09-957e-cc2396093495' # Audio
-  - 'saveassetinvolume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
-  - 'createfoldersinvolume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
-  - 'deletefilesandfoldersinvolume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
-  - 'replacefilesinvolume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
-  - 'editimagesinvolume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
-  - 'editpeerfilesinvolume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
-  - 'replacepeerfilesinvolume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
-  - 'deletepeerfilesinvolume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
-  - 'editpeerimagesinvolume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
-  - 'viewpeerfilesinvolume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
-  - 'viewvolume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
-  - 'calendar-manageeventsfor:all'
-  - 'calendar-manageeventsfor:237f9d52-9653-4a6e-8ffc-ab1b6fb27d28' # St. Mark Events
+  - assignuserpermissions
   - calendar-manageevents
+  - 'calendar-manageeventsfor:237f9d52-9653-4a6e-8ffc-ab1b6fb27d28' # St. Mark Events
+  - 'calendar-manageeventsfor:all'
+  - 'createentries:234d8474-d5c9-4357-90de-18d4526c68a3' # Profiles
+  - 'createentries:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
+  - 'createentries:51c0f62a-b5a5-4135-bc90-471528d63f56' # News
+  - 'createentries:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
+  - 'createentries:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
+  - 'createentries:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
+  - 'createfoldersinvolume:0aa43f99-132c-4f8a-b6a4-0e91a77604fb'
+  - 'createfoldersinvolume:1de9d950-2b2b-4b09-957e-cc2396093495' # Audio
+  - 'createfoldersinvolume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
+  - 'createfoldersinvolume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
+  - 'deleteentries:234d8474-d5c9-4357-90de-18d4526c68a3' # Profiles
+  - 'deleteentries:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
+  - 'deleteentries:51c0f62a-b5a5-4135-bc90-471528d63f56' # News
+  - 'deleteentries:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
+  - 'deleteentries:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
+  - 'deleteentries:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
+  - 'deletefilesandfoldersinvolume:0aa43f99-132c-4f8a-b6a4-0e91a77604fb'
+  - 'deletefilesandfoldersinvolume:1de9d950-2b2b-4b09-957e-cc2396093495' # Audio
+  - 'deletefilesandfoldersinvolume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
+  - 'deletefilesandfoldersinvolume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
+  - 'deletepeerentries:234d8474-d5c9-4357-90de-18d4526c68a3' # Profiles
+  - 'deletepeerentries:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
+  - 'deletepeerentries:51c0f62a-b5a5-4135-bc90-471528d63f56' # News
+  - 'deletepeerentries:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
+  - 'deletepeerentries:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
+  - 'deletepeerentries:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
+  - 'deletepeerentrydrafts:234d8474-d5c9-4357-90de-18d4526c68a3' # Profiles
+  - 'deletepeerentrydrafts:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
+  - 'deletepeerentrydrafts:51c0f62a-b5a5-4135-bc90-471528d63f56' # News
+  - 'deletepeerentrydrafts:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
+  - 'deletepeerentrydrafts:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
+  - 'deletepeerentrydrafts:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
+  - 'deletepeerfilesinvolume:0aa43f99-132c-4f8a-b6a4-0e91a77604fb'
+  - 'deletepeerfilesinvolume:1de9d950-2b2b-4b09-957e-cc2396093495' # Audio
+  - 'deletepeerfilesinvolume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
+  - 'deletepeerfilesinvolume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
+  - deleteusers
+  - 'editcategories:3997eb97-922e-4368-8704-2c22cb7dcb1e' # Message Series
+  - 'editcategories:8944d860-7b65-43bb-b62e-9750d6416ebc' # Internal Message Series
+  - 'editentries:234d8474-d5c9-4357-90de-18d4526c68a3' # Profiles
+  - 'editentries:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
+  - 'editentries:51c0f62a-b5a5-4135-bc90-471528d63f56' # News
+  - 'editentries:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
+  - 'editentries:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
+  - 'editentries:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
+  - 'editglobalset:84f0c3bc-62d3-4031-83c9-053e7a1fc6b2' # General
+  - 'editimagesinvolume:0aa43f99-132c-4f8a-b6a4-0e91a77604fb'
+  - 'editimagesinvolume:1de9d950-2b2b-4b09-957e-cc2396093495' # Audio
+  - 'editimagesinvolume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
+  - 'editimagesinvolume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
+  - 'editpeerentries:234d8474-d5c9-4357-90de-18d4526c68a3' # Profiles
+  - 'editpeerentries:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
+  - 'editpeerentries:51c0f62a-b5a5-4135-bc90-471528d63f56' # News
+  - 'editpeerentries:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
+  - 'editpeerentries:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
+  - 'editpeerentries:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
+  - 'editpeerentrydrafts:234d8474-d5c9-4357-90de-18d4526c68a3' # Profiles
+  - 'editpeerentrydrafts:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
+  - 'editpeerentrydrafts:51c0f62a-b5a5-4135-bc90-471528d63f56' # News
+  - 'editpeerentrydrafts:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
+  - 'editpeerentrydrafts:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
+  - 'editpeerentrydrafts:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
+  - 'editpeerfilesinvolume:0aa43f99-132c-4f8a-b6a4-0e91a77604fb'
+  - 'editpeerfilesinvolume:1de9d950-2b2b-4b09-957e-cc2396093495' # Audio
+  - 'editpeerfilesinvolume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
+  - 'editpeerfilesinvolume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
+  - 'editpeerimagesinvolume:0aa43f99-132c-4f8a-b6a4-0e91a77604fb'
+  - 'editpeerimagesinvolume:1de9d950-2b2b-4b09-957e-cc2396093495' # Audio
+  - 'editpeerimagesinvolume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
+  - 'editpeerimagesinvolume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
+  - editusers
+  - moderateusers
+  - 'publishentries:234d8474-d5c9-4357-90de-18d4526c68a3' # Profiles
+  - 'publishentries:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
+  - 'publishentries:51c0f62a-b5a5-4135-bc90-471528d63f56' # News
+  - 'publishentries:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
+  - 'publishentries:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
+  - 'publishentries:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
+  - 'publishpeerentries:234d8474-d5c9-4357-90de-18d4526c68a3' # Profiles
+  - 'publishpeerentries:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
+  - 'publishpeerentries:51c0f62a-b5a5-4135-bc90-471528d63f56' # News
+  - 'publishpeerentries:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
+  - 'publishpeerentries:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
+  - 'publishpeerentries:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
+  - 'publishpeerentrydrafts:234d8474-d5c9-4357-90de-18d4526c68a3' # Profiles
+  - 'publishpeerentrydrafts:261a469a-71d2-46af-8ca5-7b25e2a168f1' # Pages
+  - 'publishpeerentrydrafts:51c0f62a-b5a5-4135-bc90-471528d63f56' # News
+  - 'publishpeerentrydrafts:65087f98-610e-4026-a91b-70bdef20426f' # Galleries
+  - 'publishpeerentrydrafts:9c3eb649-30d1-4de9-8679-4495fe2a2923' # Resources
+  - 'publishpeerentrydrafts:b4830095-9974-475a-9af6-aac12c7e626d' # Hymns of the Month
+  - registerusers
+  - 'replacefilesinvolume:0aa43f99-132c-4f8a-b6a4-0e91a77604fb'
+  - 'replacefilesinvolume:1de9d950-2b2b-4b09-957e-cc2396093495' # Audio
+  - 'replacefilesinvolume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
+  - 'replacefilesinvolume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
+  - 'replacepeerfilesinvolume:0aa43f99-132c-4f8a-b6a4-0e91a77604fb'
+  - 'replacepeerfilesinvolume:1de9d950-2b2b-4b09-957e-cc2396093495' # Audio
+  - 'replacepeerfilesinvolume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
+  - 'replacepeerfilesinvolume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
+  - 'saveassetinvolume:0aa43f99-132c-4f8a-b6a4-0e91a77604fb'
+  - 'saveassetinvolume:1de9d950-2b2b-4b09-957e-cc2396093495' # Audio
+  - 'saveassetinvolume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
+  - 'saveassetinvolume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
+  - 'viewpeerfilesinvolume:0aa43f99-132c-4f8a-b6a4-0e91a77604fb'
+  - 'viewpeerfilesinvolume:1de9d950-2b2b-4b09-957e-cc2396093495' # Audio
+  - 'viewpeerfilesinvolume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
+  - 'viewpeerfilesinvolume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
+  - 'viewvolume:0aa43f99-132c-4f8a-b6a4-0e91a77604fb'
+  - 'viewvolume:1de9d950-2b2b-4b09-957e-cc2396093495' # Audio
+  - 'viewvolume:6baa0e06-2c61-4aa9-bb22-249b9b32da5c' # Files Above Webroot
+  - 'viewvolume:fe2952ce-382a-4470-8f04-a7bdd1b48f66' # General
