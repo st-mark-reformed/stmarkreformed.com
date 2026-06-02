@@ -10,7 +10,7 @@ const GetPageData = cache(async (slug: string): Promise<null | ReturnType> => {
     const redis = getRedisClient();
 
     const redisPageData = await redis.get(
-        `members:internal_media:slug:${slug}`,
+        `api-members:internal_media:slug:${slug}`,
     );
 
     if (!redisPageData) {

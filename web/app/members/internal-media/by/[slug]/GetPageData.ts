@@ -14,7 +14,7 @@ const GetPageData = cache(async (
     const redis = getRedisClient();
 
     const redisPageData = await redis.get(
-        `members:internal_media:by:${slug}:${pageNum}`,
+        `api-members:internal_media:by:${slug}:${pageNum}`,
     );
 
     if (!redisPageData) {

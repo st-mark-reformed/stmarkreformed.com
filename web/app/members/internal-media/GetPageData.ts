@@ -8,7 +8,7 @@ const GetPageData = cache(async (
     const redis = getRedisClient();
 
     const redisPageData = await redis.get(
-        `members:internal_media:page:${pageNum}`,
+        `api-members:internal_media:page:${pageNum}`,
     );
 
     if (!redisPageData) {
