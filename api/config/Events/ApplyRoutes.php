@@ -25,6 +25,12 @@ use App\Messages\Admin\GetMessagesListAction;
 use App\Messages\Admin\NewMessage\PostNewMessageAction;
 use App\Messages\Admin\PostDeleteMessagesAction;
 use App\Messages\Search\GetMessagesSearchAction;
+use App\News\Admin\EditNewsItem\GetEditNewsItem\GetEditNewsItemAction;
+use App\News\Admin\EditNewsItem\PostEditNewsItem\PostEditNewsItemAction;
+use App\News\Admin\GetHasEditNewsRoleAction;
+use App\News\Admin\GetNewsListAction;
+use App\News\Admin\NewNewsItem\PostNewNewsItemAction;
+use App\News\Admin\PostDeleteNewsItemsAction;
 use App\Profiles\Admin\EditProfile\GetEditProfile\GetEditProfileAction;
 use App\Profiles\Admin\EditProfile\PostEditProfile\PostEditProfileAction;
 use App\Profiles\Admin\GetHasEditProfilesRoleAction;
@@ -108,6 +114,14 @@ readonly class ApplyRoutes
         PostEditInternalSeriesAction::applyRoute(routes: $routes);
         GetInternalSeriesDropdownAction::applyRoute(routes: $routes);
         PostDeleteInternalSeriesAction::applyRoute(routes: $routes);
+
+        // News
+        GetHasEditNewsRoleAction::applyRoute(routes: $routes);
+        PostNewNewsItemAction::applyRoute(routes: $routes);
+        GetNewsListAction::applyRoute(routes: $routes);
+        GetEditNewsItemAction::applyRoute(routes: $routes);
+        PostEditNewsItemAction::applyRoute(routes: $routes);
+        PostDeleteNewsItemsAction::applyRoute(routes: $routes);
 
         if (
             ! $config->getBoolean(
