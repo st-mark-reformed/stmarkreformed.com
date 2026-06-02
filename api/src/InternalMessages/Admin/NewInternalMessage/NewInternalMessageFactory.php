@@ -31,7 +31,6 @@ readonly class NewInternalMessageFactory
             seriesId: $this->getId(
                 id: $request->parsedBody->getString(name: 'seriesId'),
             ),
-            description: $request->parsedBody->getString(name: 'description'),
         );
     }
 
