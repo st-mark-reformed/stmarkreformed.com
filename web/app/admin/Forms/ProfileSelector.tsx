@@ -63,7 +63,7 @@ export default function ProfileSelector (
         return () => {
             cancelled = true;
         };
-    });
+    }, []);
 
     if (loadingError) {
         return <p className="text-sm text-red-600">{loadingError}</p>;
