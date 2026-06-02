@@ -24,12 +24,6 @@ server {
          proxy_set_header Connection "upgrade";
      }
 
-    # Messages are now managed in the new admin; send the old Craft
-    # messages entries (index + edit/new pages) to the new admin UI.
-    location /cms/entries/messages {
-        return 302 https://$host/admin/messages;
-    }
-
     location /cms {
         proxy_pass ${CRAFT_PROXY};
         break;
