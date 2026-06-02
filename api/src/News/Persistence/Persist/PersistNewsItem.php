@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\News\Persistence\Persist;
 
+use App\News\Generate\EnqueueGenerateNewsPagesForRedis;
 use App\News\NewsItem;
 use App\News\Persistence\FindById;
 use App\Persistence\ApiPdo;
@@ -16,6 +17,7 @@ readonly class PersistNewsItem
         private ApiPdo $pdo,
         private FindById $findById,
         private PersistNewsItemToPdo $persistNewsItemToPdo,
+        private EnqueueGenerateNewsPagesForRedis $enqueueGenerateNewsPagesForRedis,
     ) {
     }
 
@@ -44,6 +46,8 @@ readonly class PersistNewsItem
             }
 
             $this->pdo->commit();
+
+            $this->enqueueGenerateNewsPagesForRedis->enqueue();
 
             return new Result();
         } catch (Throwable $error) {

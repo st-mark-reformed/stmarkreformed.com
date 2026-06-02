@@ -11,6 +11,7 @@ use App\Messages\BackfillAudioFileSizesCommand;
 use App\Messages\Generate\GenerateMessagesPagesForRedisCommand;
 use App\Messages\Search\IndexAllMessagesCommand;
 use App\Messages\Search\SetUpIndicesCommand;
+use App\News\Generate\GenerateNewsPagesForRedisCommand;
 use App\Persistence\Migrations\MigrateCreateCommand;
 use App\Persistence\Migrations\MigrateDownCommand;
 use App\Persistence\Migrations\MigrateStatusCommand;
@@ -54,6 +55,9 @@ readonly class ApplyCommands
 
         // Internal Messages
         GenerateInternalMediaPagesForRedisCommand::register(commands: $commands);
+
+        // News
+        GenerateNewsPagesForRedisCommand::register(commands: $commands);
 
         // Profiles
         ResaveAllProfilesCommand::register(commands: $commands);

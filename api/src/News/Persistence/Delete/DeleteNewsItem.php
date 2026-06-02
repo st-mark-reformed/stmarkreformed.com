@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\News\Persistence\Delete;
 
+use App\News\Generate\EnqueueGenerateNewsPagesForRedis;
 use App\News\NewsItem;
 use App\Persistence\ApiPdo;
 use App\Result\Result;
@@ -11,8 +12,10 @@ use Throwable;
 
 readonly class DeleteNewsItem
 {
-    public function __construct(private ApiPdo $pdo)
-    {
+    public function __construct(
+        private ApiPdo $pdo,
+        private EnqueueGenerateNewsPagesForRedis $enqueueGenerateNewsPagesForRedis,
+    ) {
     }
 
     public function delete(NewsItem $newsItem): Result
@@ -36,6 +39,8 @@ readonly class DeleteNewsItem
             }
 
             $this->pdo->commit();
+
+            $this->enqueueGenerateNewsPagesForRedis->enqueue();
 
             return new Result();
         } catch (Throwable $error) {

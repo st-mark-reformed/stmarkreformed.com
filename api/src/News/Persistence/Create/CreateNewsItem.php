@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\News\Persistence\Create;
 
+use App\News\Generate\EnqueueGenerateNewsPagesForRedis;
 use App\News\NewNewsItem;
 use App\Persistence\ApiPdo;
 use App\Result\Result;
@@ -14,6 +15,7 @@ readonly class CreateNewsItem
     public function __construct(
         private ApiPdo $pdo,
         private CreateNewsItemInPdo $createNewsItemInPdo,
+        private EnqueueGenerateNewsPagesForRedis $enqueueGenerateNewsPagesForRedis,
     ) {
     }
 
@@ -36,6 +38,8 @@ readonly class CreateNewsItem
             }
 
             $this->pdo->commit();
+
+            $this->enqueueGenerateNewsPagesForRedis->enqueue();
 
             return new Result();
         } catch (Throwable $error) {
