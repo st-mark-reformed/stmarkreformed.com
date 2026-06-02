@@ -13,7 +13,7 @@ export default async function Sidebar (
     {
         activeNav = null,
     }: {
-        activeNav: null | 'messages' | 'profiles' | 'queue' | 'schedule';
+        activeNav: null | 'messages' | 'internalMessages' | 'profiles' | 'queue' | 'schedule';
     },
 ) {
     const userinfo = await GetUserInfo();
@@ -28,6 +28,15 @@ export default async function Sidebar (
             href: '/admin/messages',
             icon: 'Microphone',
             current: activeNav === 'messages',
+        });
+    }
+
+    if (userinfo.roles.includes('EDIT_MESSAGES')) {
+        navigation.push({
+            name: 'Internal Messages',
+            href: '/admin/internal-messages',
+            icon: 'LockClosed',
+            current: activeNav === 'internalMessages',
         });
     }
 
