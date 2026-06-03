@@ -13,7 +13,7 @@ export default async function Sidebar (
     {
         activeNav = null,
     }: {
-        activeNav: null | 'messages' | 'internalMessages' | 'profiles' | 'queue' | 'schedule';
+        activeNav: null | 'messages' | 'internalMessages' | 'profiles' | 'news' | 'queue' | 'schedule';
     },
 ) {
     const userinfo = await GetUserInfo();
@@ -46,6 +46,15 @@ export default async function Sidebar (
             href: '/admin/profiles',
             icon: 'Users',
             current: activeNav === 'profiles',
+        });
+    }
+
+    if (userinfo.roles.includes('EDIT_NEWS')) {
+        navigation.push({
+            name: 'News',
+            href: '/admin/news',
+            icon: 'DocumentDuplicate',
+            current: activeNav === 'news',
         });
     }
 
