@@ -20,6 +20,7 @@ use App\Persistence\Migrations\MigrateUpCommand;
 use App\Profiles\ResaveAllProfilesCommand;
 use App\Transfer\InternalMessages\ImportInternalMessagesFromCraftCommand;
 use App\Transfer\InternalSeries\ImportInternalSeriesFromCraftCommand;
+use App\Transfer\MenOfTheMark\ImportMenOfTheMarkFromCraftCommand;
 use App\Transfer\Messages\ImportMessagesFromCraftCommand;
 use App\Transfer\News\ImportNewsFromCraftCommand;
 use App\Transfer\Profiles\ImportProfilesFromCraftCommand;
@@ -49,6 +50,7 @@ readonly class ApplyCommands
         ImportInternalSeriesFromCraftCommand::register(commands: $commands);
         ImportInternalMessagesFromCraftCommand::register(commands: $commands);
         ImportNewsFromCraftCommand::register(commands: $commands);
+        ImportMenOfTheMarkFromCraftCommand::register(commands: $commands);
 
         // Messages
         SetUpIndicesCommand::register(commands: $commands);

@@ -23,6 +23,7 @@ use App\Http\Response\Publications\DisplayMenOfTheMarkListAction;
 use App\Http\Response\Publications\MenOfTheMarkFeedAction;
 use App\Transfer\GetTransferInternalMessages;
 use App\Transfer\GetTransferInternalSeries;
+use App\Transfer\GetTransferMenOfTheMark;
 use App\Transfer\GetTransferMessages;
 use App\Transfer\GetTransferNews;
 use App\Transfer\GetTransferProfiles;
@@ -106,4 +107,6 @@ return static function (App $app): void {
     GetTransferInternalMessages::addRoute(routeCollector: $app);
 
     GetTransferNews::addRoute(routeCollector: $app);
+
+    GetTransferMenOfTheMark::addRoute(routeCollector: $app);
 };
