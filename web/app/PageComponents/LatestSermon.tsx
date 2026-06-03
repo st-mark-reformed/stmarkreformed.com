@@ -32,7 +32,7 @@ export default async function LatestSermon () {
                         Latest Sermon
                     </h2>
                     <p className="mt-3 max-w-3xl text-lg leading-6 text-gray-300">
-                        {entry.by?.title}, {entry.postDateDisplay}
+                        {[entry.by?.title, entry.postDateDisplay].filter(Boolean).join(', ')}
                     </p>
                     <a
                         href="/media/messages"
