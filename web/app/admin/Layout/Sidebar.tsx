@@ -13,7 +13,7 @@ export default async function Sidebar (
     {
         activeNav = null,
     }: {
-        activeNav: null | 'messages' | 'internalMessages' | 'profiles' | 'news' | 'queue' | 'schedule';
+        activeNav: null | 'messages' | 'internalMessages' | 'profiles' | 'news' | 'menOfTheMark' | 'queue' | 'schedule';
     },
 ) {
     const userinfo = await GetUserInfo();
@@ -55,6 +55,15 @@ export default async function Sidebar (
             href: '/admin/news',
             icon: 'DocumentDuplicate',
             current: activeNav === 'news',
+        });
+    }
+
+    if (userinfo.roles.includes('EDIT_MEN_OF_THE_MARK')) {
+        navigation.push({
+            name: 'Men of the Mark',
+            href: '/admin/men-of-the-mark',
+            icon: 'Newspaper',
+            current: activeNav === 'menOfTheMark',
         });
     }
 

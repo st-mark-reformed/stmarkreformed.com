@@ -10,7 +10,7 @@ export default async function AdminLayout (
         activeNav = null,
     }: {
         children: ReactNode;
-        activeNav: null | 'messages' | 'internalMessages' | 'profiles' | 'news' | 'queue' | 'schedule';
+        activeNav: null | 'messages' | 'internalMessages' | 'profiles' | 'news' | 'menOfTheMark' | 'queue' | 'schedule';
     },
 ) {
     await RequestFactory().makeWithSignInRedirect({
