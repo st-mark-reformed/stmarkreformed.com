@@ -18,6 +18,12 @@ use App\InternalSeries\Admin\GetInternalSeriesDropdownAction;
 use App\InternalSeries\Admin\GetInternalSeriesListAction;
 use App\InternalSeries\Admin\NewInternalSeries\PostNewInternalSeriesAction;
 use App\InternalSeries\Admin\PostDeleteInternalSeriesAction;
+use App\MenOfTheMark\Admin\EditMenOfTheMarkItem\GetEditMenOfTheMarkItem\GetEditMenOfTheMarkItemAction;
+use App\MenOfTheMark\Admin\EditMenOfTheMarkItem\PostEditMenOfTheMarkItem\PostEditMenOfTheMarkItemAction;
+use App\MenOfTheMark\Admin\GetHasEditMenOfTheMarkRoleAction;
+use App\MenOfTheMark\Admin\GetMenOfTheMarkListAction;
+use App\MenOfTheMark\Admin\NewMenOfTheMarkItem\PostNewMenOfTheMarkItemAction;
+use App\MenOfTheMark\Admin\PostDeleteMenOfTheMarkItemsAction;
 use App\Messages\Admin\EditMessage\GetEditMessage\GetEditMessageAction;
 use App\Messages\Admin\EditMessage\PostEditMessage\PostEditMessageAction;
 use App\Messages\Admin\GetHasEditMessagesRoleAction;
@@ -122,6 +128,14 @@ readonly class ApplyRoutes
         GetEditNewsItemAction::applyRoute(routes: $routes);
         PostEditNewsItemAction::applyRoute(routes: $routes);
         PostDeleteNewsItemsAction::applyRoute(routes: $routes);
+
+        // Men of the Mark
+        GetHasEditMenOfTheMarkRoleAction::applyRoute(routes: $routes);
+        PostNewMenOfTheMarkItemAction::applyRoute(routes: $routes);
+        GetMenOfTheMarkListAction::applyRoute(routes: $routes);
+        GetEditMenOfTheMarkItemAction::applyRoute(routes: $routes);
+        PostEditMenOfTheMarkItemAction::applyRoute(routes: $routes);
+        PostDeleteMenOfTheMarkItemsAction::applyRoute(routes: $routes);
 
         if (
             ! $config->getBoolean(
