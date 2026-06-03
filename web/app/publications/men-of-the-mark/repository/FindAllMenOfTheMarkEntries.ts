@@ -10,7 +10,7 @@ const FindAllMenOfTheMarkEntries = cache(async (): Promise<ReturnType> => {
     const redis = getRedisClient();
 
     const redisPageData = await redis.get(
-        'publications:men_of_the_mark:index',
+        'api-publications:men_of_the_mark:index',
     ) as string;
 
     return JSON.parse(redisPageData) ?? { entries: [] };

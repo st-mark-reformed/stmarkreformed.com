@@ -6,7 +6,7 @@ const FindMenOfTheMarkBySlug = cache(async (slug: string): Promise<PublicationEn
     const redis = getRedisClient();
 
     const redisData = (await redis.get(
-        `publications:men_of_the_mark:slug:${slug}`,
+        `api-publications:men_of_the_mark:slug:${slug}`,
     )) as string;
 
     const entryData = JSON.parse(redisData) as { entry: PublicationEntry } | null;
