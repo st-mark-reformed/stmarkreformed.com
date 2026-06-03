@@ -37,6 +37,12 @@ use App\News\Admin\GetHasEditNewsRoleAction;
 use App\News\Admin\GetNewsListAction;
 use App\News\Admin\NewNewsItem\PostNewNewsItemAction;
 use App\News\Admin\PostDeleteNewsItemsAction;
+use App\PastorsPage\Admin\EditPastorsPageItem\GetEditPastorsPageItem\GetEditPastorsPageItemAction;
+use App\PastorsPage\Admin\EditPastorsPageItem\PostEditPastorsPageItem\PostEditPastorsPageItemAction;
+use App\PastorsPage\Admin\GetHasEditPastorsPageRoleAction;
+use App\PastorsPage\Admin\GetPastorsPageListAction;
+use App\PastorsPage\Admin\NewPastorsPageItem\PostNewPastorsPageItemAction;
+use App\PastorsPage\Admin\PostDeletePastorsPageItemsAction;
 use App\Profiles\Admin\EditProfile\GetEditProfile\GetEditProfileAction;
 use App\Profiles\Admin\EditProfile\PostEditProfile\PostEditProfileAction;
 use App\Profiles\Admin\GetHasEditProfilesRoleAction;
@@ -136,6 +142,14 @@ readonly class ApplyRoutes
         GetEditMenOfTheMarkItemAction::applyRoute(routes: $routes);
         PostEditMenOfTheMarkItemAction::applyRoute(routes: $routes);
         PostDeleteMenOfTheMarkItemsAction::applyRoute(routes: $routes);
+
+        // Pastors Page
+        GetHasEditPastorsPageRoleAction::applyRoute(routes: $routes);
+        PostNewPastorsPageItemAction::applyRoute(routes: $routes);
+        GetPastorsPageListAction::applyRoute(routes: $routes);
+        GetEditPastorsPageItemAction::applyRoute(routes: $routes);
+        PostEditPastorsPageItemAction::applyRoute(routes: $routes);
+        PostDeletePastorsPageItemsAction::applyRoute(routes: $routes);
 
         if (
             ! $config->getBoolean(

@@ -10,5 +10,6 @@ enum UserRole
     case EDIT_PROFILES;
     case EDIT_NEWS;
     case EDIT_MEN_OF_THE_MARK;
+    case EDIT_PASTORS_PAGE;
     case MANAGE_USERS;
 }
