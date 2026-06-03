@@ -7,6 +7,7 @@ namespace Config\Events;
 use App\Calendar\GenerateCalendarPages;
 use App\Calendar\GenerateUpcomingEvents;
 use App\InternalMessages\Generate\GenerateInternalMediaPagesForRedisCommand;
+use App\MenOfTheMark\Generate\GenerateMenOfTheMarkPagesForRedisCommand;
 use App\Messages\BackfillAudioFileSizesCommand;
 use App\Messages\Generate\GenerateMessagesPagesForRedisCommand;
 use App\Messages\Search\IndexAllMessagesCommand;
@@ -60,6 +61,9 @@ readonly class ApplyCommands
 
         // News
         GenerateNewsPagesForRedisCommand::register(commands: $commands);
+
+        // Men of the Mark
+        GenerateMenOfTheMarkPagesForRedisCommand::register(commands: $commands);
 
         // Profiles
         ResaveAllProfilesCommand::register(commands: $commands);

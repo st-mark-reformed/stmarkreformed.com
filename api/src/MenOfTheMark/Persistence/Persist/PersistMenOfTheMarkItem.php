@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\MenOfTheMark\Persistence\Persist;
 
+use App\MenOfTheMark\Generate\EnqueueGenerateMenOfTheMarkPagesForRedis;
 use App\MenOfTheMark\MenOfTheMarkItem;
 use App\MenOfTheMark\Persistence\FindById;
 use App\Persistence\ApiPdo;
@@ -16,6 +17,7 @@ readonly class PersistMenOfTheMarkItem
         private ApiPdo $pdo,
         private FindById $findById,
         private MenOfTheMarkItemUpdater $menOfTheMarkItemUpdater,
+        private EnqueueGenerateMenOfTheMarkPagesForRedis $enqueueGenerate,
     ) {
     }
 
@@ -46,6 +48,8 @@ readonly class PersistMenOfTheMarkItem
             }
 
             $this->pdo->commit();
+
+            $this->enqueueGenerate->enqueue();
 
             return new Result();
         } catch (Throwable $error) {

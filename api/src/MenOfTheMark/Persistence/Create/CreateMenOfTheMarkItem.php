@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\MenOfTheMark\Persistence\Create;
 
+use App\MenOfTheMark\Generate\EnqueueGenerateMenOfTheMarkPagesForRedis;
 use App\MenOfTheMark\NewMenOfTheMarkItem;
 use App\Persistence\ApiPdo;
 use App\Result\Result;
@@ -14,6 +15,7 @@ readonly class CreateMenOfTheMarkItem
     public function __construct(
         private ApiPdo $pdo,
         private MenOfTheMarkItemInserter $menOfTheMarkItemInserter,
+        private EnqueueGenerateMenOfTheMarkPagesForRedis $enqueueGenerate,
     ) {
     }
 
@@ -38,6 +40,8 @@ readonly class CreateMenOfTheMarkItem
             }
 
             $this->pdo->commit();
+
+            $this->enqueueGenerate->enqueue();
 
             return new Result();
         } catch (Throwable $error) {

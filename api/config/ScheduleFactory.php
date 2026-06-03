@@ -8,6 +8,7 @@ use App\Calendar\EnqueueCacheRemoteIcsFile;
 use App\Calendar\EnqueueGenerateCalendarPages;
 use App\Calendar\EnqueueGenerateUpcomingEvents;
 use App\InternalMessages\Generate\EnqueueGenerateInternalMediaPagesForRedis;
+use App\MenOfTheMark\Generate\EnqueueGenerateMenOfTheMarkPagesForRedis;
 use App\Messages\Generate\EnqueueGenerateMessagesPagesForRedis;
 use App\Messages\Search\EnqueueIndexAllMessages;
 use App\News\Generate\EnqueueGenerateNewsPagesForRedis;
@@ -50,6 +51,11 @@ readonly class ScheduleFactory implements \BuzzingPixel\Scheduler\ScheduleFactor
             new ScheduleItem(
                 runEvery: Frequency::FIVE_MINUTES,
                 class: EnqueueGenerateNewsPagesForRedis::class,
+                method: 'enqueue',
+            ),
+            new ScheduleItem(
+                runEvery: Frequency::FIVE_MINUTES,
+                class: EnqueueGenerateMenOfTheMarkPagesForRedis::class,
                 method: 'enqueue',
             ),
         ]);

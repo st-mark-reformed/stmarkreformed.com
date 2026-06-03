@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\MenOfTheMark\Persistence\Delete;
 
+use App\MenOfTheMark\Generate\EnqueueGenerateMenOfTheMarkPagesForRedis;
 use App\MenOfTheMark\MenOfTheMarkItem;
 use App\Persistence\ApiPdo;
 use App\Result\Result;
@@ -11,8 +12,10 @@ use Throwable;
 
 readonly class DeleteMenOfTheMarkItem
 {
-    public function __construct(private ApiPdo $pdo)
-    {
+    public function __construct(
+        private ApiPdo $pdo,
+        private EnqueueGenerateMenOfTheMarkPagesForRedis $enqueueGenerate,
+    ) {
     }
 
     public function delete(MenOfTheMarkItem $menOfTheMarkItem): Result
@@ -36,6 +39,8 @@ readonly class DeleteMenOfTheMarkItem
             }
 
             $this->pdo->commit();
+
+            $this->enqueueGenerate->enqueue();
 
             return new Result();
         } catch (Throwable $error) {
