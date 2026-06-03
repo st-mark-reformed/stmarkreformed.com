@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default async function Page () {
     return (
         <NewsIndexPage
-            sectionHandle="news"
+            sectionHandle="api-news"
             baseUri="/news"
             heading="News"
             pageNum={1}

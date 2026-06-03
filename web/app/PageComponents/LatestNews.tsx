@@ -18,7 +18,7 @@ export default async function LatestNews (
     }: LatestNewsConfig,
 ) {
     const newsPageData = await FindNewsItemsByPage(
-        'news',
+        'api-news',
         1,
     );
 
