@@ -13,7 +13,7 @@ export default async function Sidebar (
     {
         activeNav = null,
     }: {
-        activeNav: null | 'messages' | 'internalMessages' | 'profiles' | 'news' | 'menOfTheMark' | 'queue' | 'schedule';
+        activeNav: null | 'messages' | 'internalMessages' | 'profiles' | 'news' | 'menOfTheMark' | 'pastorsPage' | 'queue' | 'schedule';
     },
 ) {
     const userinfo = await GetUserInfo();
@@ -64,6 +64,15 @@ export default async function Sidebar (
             href: '/admin/men-of-the-mark',
             icon: 'Newspaper',
             current: activeNav === 'menOfTheMark',
+        });
+    }
+
+    if (userinfo.roles.includes('EDIT_PASTORS_PAGE')) {
+        navigation.push({
+            name: "Pastor's Page",
+            href: '/admin/pastors-page',
+            icon: 'BookOpen',
+            current: activeNav === 'pastorsPage',
         });
     }
 

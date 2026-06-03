@@ -8,6 +8,7 @@ import {
     MicrophoneIcon, QueueListIcon,
     LockClosedIcon,
     NewspaperIcon,
+    BookOpenIcon,
 } from '@heroicons/react/24/outline';
 import React from 'react';
 import NavItem from './NavItem';
@@ -42,6 +43,8 @@ export default function NavItemIconRenderer (
             return <LockClosedIcon aria-hidden="true" className={classes.join(' ')} />;
         case 'Newspaper':
             return <NewspaperIcon aria-hidden="true" className={classes.join(' ')} />;
+        case 'BookOpen':
+            return <BookOpenIcon aria-hidden="true" className={classes.join(' ')} />;
         default:
             return <></>;
     }
