@@ -24,6 +24,7 @@ use App\Http\Response\Publications\MenOfTheMarkFeedAction;
 use App\Transfer\GetTransferInternalMessages;
 use App\Transfer\GetTransferInternalSeries;
 use App\Transfer\GetTransferMessages;
+use App\Transfer\GetTransferNews;
 use App\Transfer\GetTransferProfiles;
 use App\Transfer\GetTransferSeries;
 use Config\Tinker;
@@ -103,4 +104,6 @@ return static function (App $app): void {
     GetTransferInternalSeries::addRoute(routeCollector: $app);
 
     GetTransferInternalMessages::addRoute(routeCollector: $app);
+
+    GetTransferNews::addRoute(routeCollector: $app);
 };

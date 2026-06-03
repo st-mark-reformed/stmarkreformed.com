@@ -20,6 +20,7 @@ use App\Profiles\ResaveAllProfilesCommand;
 use App\Transfer\InternalMessages\ImportInternalMessagesFromCraftCommand;
 use App\Transfer\InternalSeries\ImportInternalSeriesFromCraftCommand;
 use App\Transfer\Messages\ImportMessagesFromCraftCommand;
+use App\Transfer\News\ImportNewsFromCraftCommand;
 use App\Transfer\Profiles\ImportProfilesFromCraftCommand;
 use App\Transfer\Series\ImportSeriesFromCraftCommand;
 use BuzzingPixel\Queue\Framework\QueueConsumeNextSymfonyCommand;
@@ -46,6 +47,7 @@ readonly class ApplyCommands
         ImportMessagesFromCraftCommand::register(commands: $commands);
         ImportInternalSeriesFromCraftCommand::register(commands: $commands);
         ImportInternalMessagesFromCraftCommand::register(commands: $commands);
+        ImportNewsFromCraftCommand::register(commands: $commands);
 
         // Messages
         SetUpIndicesCommand::register(commands: $commands);
