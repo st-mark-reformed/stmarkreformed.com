@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\PastorsPage\Persistence\Delete;
 
+use App\PastorsPage\Generate\EnqueueGeneratePastorsPageForRedis;
 use App\PastorsPage\PastorsPageItem;
 use App\Persistence\ApiPdo;
 use App\Result\Result;
@@ -11,8 +12,10 @@ use Throwable;
 
 readonly class DeletePastorsPageItem
 {
-    public function __construct(private ApiPdo $pdo)
-    {
+    public function __construct(
+        private ApiPdo $pdo,
+        private EnqueueGeneratePastorsPageForRedis $enqueueGeneratePastorsPageForRedis,
+    ) {
     }
 
     public function delete(PastorsPageItem $pastorsPageItem): Result
@@ -36,6 +39,8 @@ readonly class DeletePastorsPageItem
             }
 
             $this->pdo->commit();
+
+            $this->enqueueGeneratePastorsPageForRedis->enqueue();
 
             return new Result();
         } catch (Throwable $error) {

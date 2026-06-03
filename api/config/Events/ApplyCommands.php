@@ -13,6 +13,7 @@ use App\Messages\Generate\GenerateMessagesPagesForRedisCommand;
 use App\Messages\Search\IndexAllMessagesCommand;
 use App\Messages\Search\SetUpIndicesCommand;
 use App\News\Generate\GenerateNewsPagesForRedisCommand;
+use App\PastorsPage\Generate\GeneratePastorsPageForRedisCommand;
 use App\Persistence\Migrations\MigrateCreateCommand;
 use App\Persistence\Migrations\MigrateDownCommand;
 use App\Persistence\Migrations\MigrateStatusCommand;
@@ -66,6 +67,9 @@ readonly class ApplyCommands
 
         // Men of the Mark
         GenerateMenOfTheMarkPagesForRedisCommand::register(commands: $commands);
+
+        // Pastors Page
+        GeneratePastorsPageForRedisCommand::register(commands: $commands);
 
         // Profiles
         ResaveAllProfilesCommand::register(commands: $commands);

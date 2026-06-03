@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\PastorsPage\Persistence\Persist;
 
+use App\PastorsPage\Generate\EnqueueGeneratePastorsPageForRedis;
 use App\PastorsPage\PastorsPageItem;
 use App\PastorsPage\Persistence\FindById;
 use App\Persistence\ApiPdo;
@@ -16,6 +17,7 @@ readonly class PersistPastorsPageItem
         private ApiPdo $pdo,
         private FindById $findById,
         private PersistPastorsPageItemToPdo $persistPastorsPageItemToPdo,
+        private EnqueueGeneratePastorsPageForRedis $enqueueGeneratePastorsPageForRedis,
     ) {
     }
 
@@ -46,6 +48,8 @@ readonly class PersistPastorsPageItem
             }
 
             $this->pdo->commit();
+
+            $this->enqueueGeneratePastorsPageForRedis->enqueue();
 
             return new Result();
         } catch (Throwable $error) {

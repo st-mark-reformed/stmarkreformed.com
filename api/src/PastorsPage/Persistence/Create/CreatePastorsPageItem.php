@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\PastorsPage\Persistence\Create;
 
+use App\PastorsPage\Generate\EnqueueGeneratePastorsPageForRedis;
 use App\PastorsPage\NewPastorsPageItem;
 use App\Persistence\ApiPdo;
 use App\Result\Result;
@@ -14,6 +15,7 @@ readonly class CreatePastorsPageItem
     public function __construct(
         private ApiPdo $pdo,
         private CreatePastorsPageItemInPdo $createPastorsPageItemInPdo,
+        private EnqueueGeneratePastorsPageForRedis $enqueueGeneratePastorsPageForRedis,
     ) {
     }
 
@@ -38,6 +40,8 @@ readonly class CreatePastorsPageItem
             }
 
             $this->pdo->commit();
+
+            $this->enqueueGeneratePastorsPageForRedis->enqueue();
 
             return new Result();
         } catch (Throwable $error) {

@@ -12,6 +12,7 @@ use App\MenOfTheMark\Generate\EnqueueGenerateMenOfTheMarkPagesForRedis;
 use App\Messages\Generate\EnqueueGenerateMessagesPagesForRedis;
 use App\Messages\Search\EnqueueIndexAllMessages;
 use App\News\Generate\EnqueueGenerateNewsPagesForRedis;
+use App\PastorsPage\Generate\EnqueueGeneratePastorsPageForRedis;
 use BuzzingPixel\Scheduler\Frequency;
 use BuzzingPixel\Scheduler\ScheduleItem;
 use BuzzingPixel\Scheduler\ScheduleItemCollection;
@@ -56,6 +57,11 @@ readonly class ScheduleFactory implements \BuzzingPixel\Scheduler\ScheduleFactor
             new ScheduleItem(
                 runEvery: Frequency::FIVE_MINUTES,
                 class: EnqueueGenerateMenOfTheMarkPagesForRedis::class,
+                method: 'enqueue',
+            ),
+            new ScheduleItem(
+                runEvery: Frequency::FIVE_MINUTES,
+                class: EnqueueGeneratePastorsPageForRedis::class,
                 method: 'enqueue',
             ),
         ]);

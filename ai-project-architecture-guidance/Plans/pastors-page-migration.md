@@ -84,9 +84,9 @@ Copy `create_news_table`. Table `pastors_page`: `id` (uuid, PK), `enabled` (bool
 - `PastorsPageRedisKey`: prefix **`api-pastorsPage:`** with `page:{n}` and `slug:{slug}` keys, `isPageKey`/`isSlugKey`/`allPattern`.
 - `ComposePastorsPageContent`: build `content` HTML — Heading as `<h2>` + Subheading as `<h3>` (same markup/classes as `ComposeNewsContent`) followed by body HTML, so the public detail page renders unchanged.
 - `PastorsPageEntryJsonFactory`: produce the 8-field payload (`uid, title, slug, excerpt`[300-char word-boundary truncation], `content, bodyOnlyContent, readableDate`[`F jS, Y`], `postDate`[RFC2822]) — identical to `NewsEntryJsonFactory`.
-- `PastorsPageBuilder` (mirror `NewsPagesBuilder`): paginate live items **12/page**, write page keys + slug keys for live items, write slug-only keys for future-dated items, prune orphans via `ExistingRedisKeys`.
-- `GeneratePastorsPageForRedis` (`PER_PAGE = 12`): `findAll()` → filter enabled → split live (`date <= now`) / future → build inside a Redis pipeline.
-  - **slug keys**: all enabled items (any date) → permalink always live.
+- `PastorsPageBuilder` (mirror `NewsPagesBuilder`): paginate live items **12/page**, write page keys + slug keys for live items, prune orphans via `ExistingRedisKeys`. **Unlike News, do NOT write slug-only keys for future-dated items** — a Pastor's Page permalink must not exist before the entry's date.
+- `GeneratePastorsPageForRedis` (`PER_PAGE = 12`): `findAll()` → filter enabled → keep only live (`date <= now`) → build inside a Redis pipeline. Future-dated items get no key at all.
+  - **slug keys**: only `date <= now` (no permalink until the date arrives).
   - **page keys**: only `date <= now`, newest-first, 12/page.
 - `GeneratePastorsPageForRedisCommand` (CLI `pastors-page:generate-redis-pages`) + `EnqueueGeneratePastorsPageForRedis` (enqueue-with-dedup); enqueue on create/update/delete.
 
@@ -158,7 +158,7 @@ No automated tests (project has none). Verify via tooling + manual:
 1. **Static checks (zero warnings required):** API `phpcs` + `phpstan`; Craft `phpcs` + `phpstan` over the new transfer file; Web `eslint` + `tsc`.
 2. **Migration:** `docker exec stmark-api php cli migrate:up`; confirm `pastors_page` table.
 3. **Admin round-trip:** as a user with `EDIT_PASTORS_PAGE`, confirm the sidebar item appears and create/edit/delete works; a user without the role is blocked by the middleware. Confirm `api-pastorsPage:slug:<slug>` and `api-pastorsPage:page:1` exist (`docker exec stmark-redis redis-cli KEYS 'api-pastorsPage:*'`) with the expected JSON shape.
-4. **Date gating:** create an enabled future-dated entry → slug key present, absent from `page:1`; run `php cli schedule:run` (or wait a cycle) after its date and confirm it joins the listing.
+4. **Date gating:** create an enabled future-dated entry → **no** slug key and absent from `page:1` (unlike News, the permalink must not exist yet); run `php cli schedule:run` (or wait a cycle) after its date and confirm both the slug key and listing entry appear.
 5. **Import:** `docker exec stmark-api php cli transfer:import:pastors-page`; confirm rows land with Craft UUIDs/slugs preserved; spot-check several slugs match Craft and content renders correctly.
 6. **Cutover smoke test:** flip the `sectionHandle`, load `/pastors-page`, a permalink, and `/pastors-page/rss`; confirm identical rendering to today (Heading/Subheading above body).
 7. **Craft untouched:** confirm Craft still writes its old `pastorsPage:*` keys — old prefix can be cleaned up later.
