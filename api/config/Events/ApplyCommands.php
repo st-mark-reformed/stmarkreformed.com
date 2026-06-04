@@ -20,6 +20,7 @@ use App\Persistence\Migrations\MigrateDownCommand;
 use App\Persistence\Migrations\MigrateStatusCommand;
 use App\Persistence\Migrations\MigrateUpCommand;
 use App\Profiles\ResaveAllProfilesCommand;
+use App\Transfer\HymnsOfTheMonth\ImportHymnsOfTheMonthFromCraftCommand;
 use App\Transfer\InternalMessages\ImportInternalMessagesFromCraftCommand;
 use App\Transfer\InternalSeries\ImportInternalSeriesFromCraftCommand;
 use App\Transfer\MenOfTheMark\ImportMenOfTheMarkFromCraftCommand;
@@ -55,6 +56,7 @@ readonly class ApplyCommands
         ImportNewsFromCraftCommand::register(commands: $commands);
         ImportMenOfTheMarkFromCraftCommand::register(commands: $commands);
         ImportPastorsPageFromCraftCommand::register(commands: $commands);
+        ImportHymnsOfTheMonthFromCraftCommand::register(commands: $commands);
 
         // Messages
         SetUpIndicesCommand::register(commands: $commands);

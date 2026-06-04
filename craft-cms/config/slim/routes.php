@@ -21,6 +21,7 @@ use App\Http\Response\News\NewsList\PaginatedNewsListAction;
 use App\Http\Response\News\NewsList\PastorsPageListAction;
 use App\Http\Response\Publications\DisplayMenOfTheMarkListAction;
 use App\Http\Response\Publications\MenOfTheMarkFeedAction;
+use App\Transfer\GetTransferHymnsOfTheMonth;
 use App\Transfer\GetTransferInternalMessages;
 use App\Transfer\GetTransferInternalSeries;
 use App\Transfer\GetTransferMenOfTheMark;
@@ -112,4 +113,6 @@ return static function (App $app): void {
     GetTransferMenOfTheMark::addRoute(routeCollector: $app);
 
     GetTransferPastorsPage::addRoute(routeCollector: $app);
+
+    GetTransferHymnsOfTheMonth::addRoute(routeCollector: $app);
 };
