@@ -6,6 +6,7 @@ namespace App\HymnsOfTheMonth\Persistence\Delete;
 
 use App\HymnsOfTheMonth\Generate\EnqueueGenerateHymnsOfTheMonthForRedis;
 use App\HymnsOfTheMonth\HymnOfTheMonthItem;
+use App\HymnsOfTheMonth\Persistence\Persist\HymnFileStorage;
 use App\Persistence\ApiPdo;
 use App\Result\Result;
 use Throwable;
@@ -14,6 +15,7 @@ readonly class DeleteHymnOfTheMonthItem
 {
     public function __construct(
         private ApiPdo $pdo,
+        private HymnFileStorage $fileStorage,
         private EnqueueGenerateHymnsOfTheMonthForRedis $enqueueGenerateHymnsOfTheMonthForRedis,
     ) {
     }
@@ -39,6 +41,10 @@ readonly class DeleteHymnOfTheMonthItem
             }
 
             $this->pdo->commit();
+
+            // Remove the hymn's stored files after the row is gone. Best-effort
+            // and outside the transaction: the DB is the source of truth.
+            $this->fileStorage->deleteAllForSlug(slug: $hymnOfTheMonthItem->slug);
 
             $this->enqueueGenerateHymnsOfTheMonthForRedis->enqueue();
 

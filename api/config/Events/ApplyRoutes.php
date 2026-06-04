@@ -8,8 +8,10 @@ use App\Contact\PostContactAction;
 use App\GetKeepAliveAction;
 use App\Healthcheck;
 use App\HymnsOfTheMonth\Admin\EditHymnOfTheMonthItem\GetEditHymnOfTheMonthItem\GetEditHymnOfTheMonthItemAction;
+use App\HymnsOfTheMonth\Admin\EditHymnOfTheMonthItem\PostEditHymnOfTheMonthItem\PostEditHymnOfTheMonthItemAction;
 use App\HymnsOfTheMonth\Admin\GetHasEditHymnsOfTheMonthRoleAction;
 use App\HymnsOfTheMonth\Admin\GetHymnsOfTheMonthListAction;
+use App\HymnsOfTheMonth\Admin\NewHymnOfTheMonthItem\PostNewHymnOfTheMonthItemAction;
 use App\HymnsOfTheMonth\Admin\PostDeleteHymnsOfTheMonthItemsAction;
 use App\InternalMessages\Admin\EditInternalMessage\GetEditInternalMessage\GetEditInternalMessageAction;
 use App\InternalMessages\Admin\EditInternalMessage\PostEditInternalMessage\PostEditInternalMessageAction;
@@ -157,8 +159,10 @@ readonly class ApplyRoutes
 
         // Hymns of the Month
         GetHasEditHymnsOfTheMonthRoleAction::applyRoute(routes: $routes);
+        PostNewHymnOfTheMonthItemAction::applyRoute(routes: $routes);
         GetHymnsOfTheMonthListAction::applyRoute(routes: $routes);
         GetEditHymnOfTheMonthItemAction::applyRoute(routes: $routes);
+        PostEditHymnOfTheMonthItemAction::applyRoute(routes: $routes);
         PostDeleteHymnsOfTheMonthItemsAction::applyRoute(routes: $routes);
 
         if (
