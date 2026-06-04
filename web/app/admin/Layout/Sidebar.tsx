@@ -13,7 +13,7 @@ export default async function Sidebar (
     {
         activeNav = null,
     }: {
-        activeNav: null | 'messages' | 'internalMessages' | 'profiles' | 'news' | 'menOfTheMark' | 'pastorsPage' | 'queue' | 'schedule';
+        activeNav: null | 'messages' | 'internalMessages' | 'profiles' | 'news' | 'menOfTheMark' | 'pastorsPage' | 'hymnsOfTheMonth' | 'queue' | 'schedule';
     },
 ) {
     const userinfo = await GetUserInfo();
@@ -73,6 +73,15 @@ export default async function Sidebar (
             href: '/admin/pastors-page',
             icon: 'BookOpen',
             current: activeNav === 'pastorsPage',
+        });
+    }
+
+    if (userinfo.roles.includes('EDIT_HYMNS_OF_THE_MONTH')) {
+        navigation.push({
+            name: 'Hymns of the Month',
+            href: '/admin/hymns-of-the-month',
+            icon: 'MusicalNote',
+            current: activeNav === 'hymnsOfTheMonth',
         });
     }
 
