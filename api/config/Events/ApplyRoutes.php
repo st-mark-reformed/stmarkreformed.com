@@ -7,6 +7,10 @@ namespace Config\Events;
 use App\Contact\PostContactAction;
 use App\GetKeepAliveAction;
 use App\Healthcheck;
+use App\HymnsOfTheMonth\Admin\EditHymnOfTheMonthItem\GetEditHymnOfTheMonthItem\GetEditHymnOfTheMonthItemAction;
+use App\HymnsOfTheMonth\Admin\GetHasEditHymnsOfTheMonthRoleAction;
+use App\HymnsOfTheMonth\Admin\GetHymnsOfTheMonthListAction;
+use App\HymnsOfTheMonth\Admin\PostDeleteHymnsOfTheMonthItemsAction;
 use App\InternalMessages\Admin\EditInternalMessage\GetEditInternalMessage\GetEditInternalMessageAction;
 use App\InternalMessages\Admin\EditInternalMessage\PostEditInternalMessage\PostEditInternalMessageAction;
 use App\InternalMessages\Admin\GetInternalMessagesListAction;
@@ -150,6 +154,12 @@ readonly class ApplyRoutes
         GetEditPastorsPageItemAction::applyRoute(routes: $routes);
         PostEditPastorsPageItemAction::applyRoute(routes: $routes);
         PostDeletePastorsPageItemsAction::applyRoute(routes: $routes);
+
+        // Hymns of the Month
+        GetHasEditHymnsOfTheMonthRoleAction::applyRoute(routes: $routes);
+        GetHymnsOfTheMonthListAction::applyRoute(routes: $routes);
+        GetEditHymnOfTheMonthItemAction::applyRoute(routes: $routes);
+        PostDeleteHymnsOfTheMonthItemsAction::applyRoute(routes: $routes);
 
         if (
             ! $config->getBoolean(
