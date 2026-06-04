@@ -24,6 +24,7 @@ use App\Transfer\InternalSeries\ImportInternalSeriesFromCraftCommand;
 use App\Transfer\MenOfTheMark\ImportMenOfTheMarkFromCraftCommand;
 use App\Transfer\Messages\ImportMessagesFromCraftCommand;
 use App\Transfer\News\ImportNewsFromCraftCommand;
+use App\Transfer\PastorsPage\ImportPastorsPageFromCraftCommand;
 use App\Transfer\Profiles\ImportProfilesFromCraftCommand;
 use App\Transfer\Series\ImportSeriesFromCraftCommand;
 use BuzzingPixel\Queue\Framework\QueueConsumeNextSymfonyCommand;
@@ -52,6 +53,7 @@ readonly class ApplyCommands
         ImportInternalMessagesFromCraftCommand::register(commands: $commands);
         ImportNewsFromCraftCommand::register(commands: $commands);
         ImportMenOfTheMarkFromCraftCommand::register(commands: $commands);
+        ImportPastorsPageFromCraftCommand::register(commands: $commands);
 
         // Messages
         SetUpIndicesCommand::register(commands: $commands);

@@ -26,6 +26,7 @@ use App\Transfer\GetTransferInternalSeries;
 use App\Transfer\GetTransferMenOfTheMark;
 use App\Transfer\GetTransferMessages;
 use App\Transfer\GetTransferNews;
+use App\Transfer\GetTransferPastorsPage;
 use App\Transfer\GetTransferProfiles;
 use App\Transfer\GetTransferSeries;
 use Config\Tinker;
@@ -109,4 +110,6 @@ return static function (App $app): void {
     GetTransferNews::addRoute(routeCollector: $app);
 
     GetTransferMenOfTheMark::addRoute(routeCollector: $app);
+
+    GetTransferPastorsPage::addRoute(routeCollector: $app);
 };
