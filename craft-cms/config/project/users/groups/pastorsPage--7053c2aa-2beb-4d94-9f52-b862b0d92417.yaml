@@ -1,14 +1,5 @@
+description: ''
 handle: pastorsPage
 name: 'Pastor''s Page'
 permissions:
   - accesscp
-  - 'createentries:c9e7c52c-9526-4153-8f74-d00efe20d1d2' # Pastor's Page
-  - 'publishentries:c9e7c52c-9526-4153-8f74-d00efe20d1d2' # Pastor's Page
-  - 'deleteentries:c9e7c52c-9526-4153-8f74-d00efe20d1d2' # Pastor's Page
-  - 'publishpeerentries:c9e7c52c-9526-4153-8f74-d00efe20d1d2' # Pastor's Page
-  - 'deletepeerentries:c9e7c52c-9526-4153-8f74-d00efe20d1d2' # Pastor's Page
-  - 'editpeerentries:c9e7c52c-9526-4153-8f74-d00efe20d1d2' # Pastor's Page
-  - 'publishpeerentrydrafts:c9e7c52c-9526-4153-8f74-d00efe20d1d2' # Pastor's Page
-  - 'deletepeerentrydrafts:c9e7c52c-9526-4153-8f74-d00efe20d1d2' # Pastor's Page
-  - 'editpeerentrydrafts:c9e7c52c-9526-4153-8f74-d00efe20d1d2' # Pastor's Page
-  - 'editentries:c9e7c52c-9526-4153-8f74-d00efe20d1d2' # Pastor's Page
