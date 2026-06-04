@@ -55,7 +55,7 @@ export default async function Page (
 
     return (
         <NewsIndexPage
-            sectionHandle="pastorsPage"
+            sectionHandle="api-pastorsPage"
             baseUri="/pastors-page"
             heading="Pastor's Page"
             pageNum={pageNumInt}

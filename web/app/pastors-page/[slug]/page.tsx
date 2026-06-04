@@ -22,7 +22,7 @@ export async function generateMetadata (
 ): Promise<Metadata> {
     const { slug } = await params;
 
-    const entry = await FindNewsItemBySlug('pastorsPage', slug);
+    const entry = await FindNewsItemBySlug('api-pastorsPage', slug);
 
     if (!entry) {
         notFound();
@@ -52,7 +52,7 @@ export default async function Page (
 ) {
     const { slug } = await params;
 
-    const entry = await FindNewsItemBySlug('pastorsPage', slug);
+    const entry = await FindNewsItemBySlug('api-pastorsPage', slug);
 
     if (entry === null) {
         notFound();
