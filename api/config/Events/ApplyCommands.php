@@ -6,6 +6,7 @@ namespace Config\Events;
 
 use App\Calendar\GenerateCalendarPages;
 use App\Calendar\GenerateUpcomingEvents;
+use App\HymnsOfTheMonth\Generate\GenerateHymnsOfTheMonthForRedisCommand;
 use App\InternalMessages\Generate\GenerateInternalMediaPagesForRedisCommand;
 use App\MenOfTheMark\Generate\GenerateMenOfTheMarkPagesForRedisCommand;
 use App\Messages\BackfillAudioFileSizesCommand;
@@ -72,6 +73,9 @@ readonly class ApplyCommands
 
         // Pastors Page
         GeneratePastorsPageForRedisCommand::register(commands: $commands);
+
+        // Hymns of the Month
+        GenerateHymnsOfTheMonthForRedisCommand::register(commands: $commands);
 
         // Profiles
         ResaveAllProfilesCommand::register(commands: $commands);
