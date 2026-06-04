@@ -10,7 +10,7 @@ const GetPageData = cache(async (slug: string): Promise<null | ReturnType> => {
     const redis = getRedisClient();
 
     const redisPageData = await redis.get(
-        `members:hymns_of_the_month:slug:${slug}`,
+        `api-members:hymns_of_the_month:slug:${slug}`,
     );
 
     if (!redisPageData) {
