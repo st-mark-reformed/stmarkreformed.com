@@ -61,6 +61,12 @@ use App\Queue\GetAdminQueueAction;
 use App\Queue\GetAdminQueueFailedAction;
 use App\Queue\GetAdminQueueStatusAction;
 use App\Queue\PostRetryFailedQueueItemAction;
+use App\Resources\Admin\EditResourceItem\GetEditResourceItem\GetEditResourceItemAction;
+use App\Resources\Admin\EditResourceItem\PostEditResourceItem\PostEditResourceItemAction;
+use App\Resources\Admin\GetHasEditResourcesRoleAction;
+use App\Resources\Admin\GetResourcesListAction;
+use App\Resources\Admin\NewResourceItem\PostNewResourceItemAction;
+use App\Resources\Admin\PostDeleteResourceItemsAction;
 use App\Schedule\Admin\GetAdminScheduleAction;
 use App\Series\Admin\EditSeries\GetEditSeries\GetEditSeriesAction;
 use App\Series\Admin\EditSeries\PostEditSeries\PostEditSeriesAction;
@@ -164,6 +170,14 @@ readonly class ApplyRoutes
         GetEditHymnOfTheMonthItemAction::applyRoute(routes: $routes);
         PostEditHymnOfTheMonthItemAction::applyRoute(routes: $routes);
         PostDeleteHymnsOfTheMonthItemsAction::applyRoute(routes: $routes);
+
+        // Resources
+        GetHasEditResourcesRoleAction::applyRoute(routes: $routes);
+        PostNewResourceItemAction::applyRoute(routes: $routes);
+        GetResourcesListAction::applyRoute(routes: $routes);
+        GetEditResourceItemAction::applyRoute(routes: $routes);
+        PostEditResourceItemAction::applyRoute(routes: $routes);
+        PostDeleteResourceItemsAction::applyRoute(routes: $routes);
 
         if (
             ! $config->getBoolean(

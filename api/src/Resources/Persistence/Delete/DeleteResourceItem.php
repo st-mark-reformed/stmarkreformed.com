@@ -6,6 +6,7 @@ namespace App\Resources\Persistence\Delete;
 
 use App\Persistence\ApiPdo;
 use App\Resources\Generate\EnqueueGenerateResourcesPagesForRedis;
+use App\Resources\Persistence\Persist\ResourceFileStorage;
 use App\Resources\ResourceItem;
 use App\Result\Result;
 use Throwable;
@@ -14,6 +15,7 @@ readonly class DeleteResourceItem
 {
     public function __construct(
         private ApiPdo $pdo,
+        private ResourceFileStorage $fileStorage,
         private EnqueueGenerateResourcesPagesForRedis $enqueueGenerateResourcesPagesForRedis,
     ) {
     }
@@ -39,6 +41,11 @@ readonly class DeleteResourceItem
             }
 
             $this->pdo->commit();
+
+            // Remove the resource's stored files after the row is gone.
+            // Best-effort and outside the transaction: the DB is the source of
+            // truth.
+            $this->fileStorage->deleteAllForSlug(slug: $resourceItem->slug);
 
             $this->enqueueGenerateResourcesPagesForRedis->enqueue();
 
