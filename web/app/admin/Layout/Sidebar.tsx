@@ -13,7 +13,7 @@ export default async function Sidebar (
     {
         activeNav = null,
     }: {
-        activeNav: null | 'messages' | 'internalMessages' | 'profiles' | 'news' | 'menOfTheMark' | 'pastorsPage' | 'hymnsOfTheMonth' | 'resources' | 'queue' | 'schedule';
+        activeNav: null | 'messages' | 'internalMessages' | 'profiles' | 'news' | 'menOfTheMark' | 'pastorsPage' | 'hymnsOfTheMonth' | 'resources' | 'mailingLists' | 'queue' | 'schedule';
     },
 ) {
     const userinfo = await GetUserInfo();
@@ -91,6 +91,15 @@ export default async function Sidebar (
             href: '/admin/resources',
             icon: 'DocumentArrowDown',
             current: activeNav === 'resources',
+        });
+    }
+
+    if (userinfo.roles.includes('EDIT_MAILING_LISTS')) {
+        navigation.push({
+            name: 'Mailing Lists',
+            href: '/admin/mailing-lists',
+            icon: 'Envelope',
+            current: activeNav === 'mailingLists',
         });
     }
 

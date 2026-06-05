@@ -13,5 +13,6 @@ enum UserRole
     case EDIT_PASTORS_PAGE;
     case EDIT_HYMNS_OF_THE_MONTH;
     case EDIT_RESOURCES;
+    case EDIT_MAILING_LISTS;
     case MANAGE_USERS;
 }

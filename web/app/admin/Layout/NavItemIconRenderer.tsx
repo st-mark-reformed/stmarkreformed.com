@@ -11,6 +11,7 @@ import {
     BookOpenIcon,
     MusicalNoteIcon,
     DocumentArrowDownIcon,
+    EnvelopeIcon,
 } from '@heroicons/react/24/outline';
 import React from 'react';
 import NavItem from './NavItem';
@@ -51,6 +52,8 @@ export default function NavItemIconRenderer (
             return <MusicalNoteIcon aria-hidden="true" className={classes.join(' ')} />;
         case 'DocumentArrowDown':
             return <DocumentArrowDownIcon aria-hidden="true" className={classes.join(' ')} />;
+        case 'Envelope':
+            return <EnvelopeIcon aria-hidden="true" className={classes.join(' ')} />;
         default:
             return <></>;
     }
