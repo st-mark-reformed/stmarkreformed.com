@@ -20,6 +20,7 @@ use App\Persistence\Migrations\MigrateDownCommand;
 use App\Persistence\Migrations\MigrateStatusCommand;
 use App\Persistence\Migrations\MigrateUpCommand;
 use App\Profiles\ResaveAllProfilesCommand;
+use App\Resources\Generate\GenerateResourcesPagesForRedisCommand;
 use App\Transfer\HymnsOfTheMonth\ImportHymnsOfTheMonthFromCraftCommand;
 use App\Transfer\InternalMessages\ImportInternalMessagesFromCraftCommand;
 use App\Transfer\InternalSeries\ImportInternalSeriesFromCraftCommand;
@@ -78,6 +79,9 @@ readonly class ApplyCommands
 
         // Hymns of the Month
         GenerateHymnsOfTheMonthForRedisCommand::register(commands: $commands);
+
+        // Resources
+        GenerateResourcesPagesForRedisCommand::register(commands: $commands);
 
         // Profiles
         ResaveAllProfilesCommand::register(commands: $commands);

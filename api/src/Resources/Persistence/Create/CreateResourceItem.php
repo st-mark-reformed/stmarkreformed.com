@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Resources\Persistence\Create;
 
 use App\Persistence\ApiPdo;
+use App\Resources\Generate\EnqueueGenerateResourcesPagesForRedis;
 use App\Resources\NewResourceItem;
 use App\Result\Result;
 use Throwable;
@@ -14,6 +15,7 @@ readonly class CreateResourceItem
     public function __construct(
         private ApiPdo $pdo,
         private CreateResourceItemInPdo $createResourceItemInPdo,
+        private EnqueueGenerateResourcesPagesForRedis $enqueueGenerateResourcesPagesForRedis,
     ) {
     }
 
@@ -39,7 +41,7 @@ readonly class CreateResourceItem
 
             $this->pdo->commit();
 
-            // Redis generation is enqueued here once the generation slice lands.
+            $this->enqueueGenerateResourcesPagesForRedis->enqueue();
 
             return new Result();
         } catch (Throwable $error) {

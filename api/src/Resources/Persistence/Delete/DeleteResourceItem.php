@@ -5,14 +5,17 @@ declare(strict_types=1);
 namespace App\Resources\Persistence\Delete;
 
 use App\Persistence\ApiPdo;
+use App\Resources\Generate\EnqueueGenerateResourcesPagesForRedis;
 use App\Resources\ResourceItem;
 use App\Result\Result;
 use Throwable;
 
 readonly class DeleteResourceItem
 {
-    public function __construct(private ApiPdo $pdo)
-    {
+    public function __construct(
+        private ApiPdo $pdo,
+        private EnqueueGenerateResourcesPagesForRedis $enqueueGenerateResourcesPagesForRedis,
+    ) {
     }
 
     public function delete(ResourceItem $resourceItem): Result
@@ -37,7 +40,7 @@ readonly class DeleteResourceItem
 
             $this->pdo->commit();
 
-            // Redis generation is enqueued here once the generation slice lands.
+            $this->enqueueGenerateResourcesPagesForRedis->enqueue();
 
             return new Result();
         } catch (Throwable $error) {

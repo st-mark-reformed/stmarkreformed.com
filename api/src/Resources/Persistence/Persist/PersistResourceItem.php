@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Resources\Persistence\Persist;
 
 use App\Persistence\ApiPdo;
+use App\Resources\Generate\EnqueueGenerateResourcesPagesForRedis;
 use App\Resources\Persistence\FindById;
 use App\Resources\ResourceItem;
 use App\Result\Result;
@@ -16,6 +17,7 @@ readonly class PersistResourceItem
         private ApiPdo $pdo,
         private FindById $findById,
         private PersistResourceItemToPdo $persistResourceItemToPdo,
+        private EnqueueGenerateResourcesPagesForRedis $enqueueGenerateResourcesPagesForRedis,
     ) {
     }
 
@@ -47,7 +49,7 @@ readonly class PersistResourceItem
 
             $this->pdo->commit();
 
-            // Redis generation is enqueued here once the generation slice lands.
+            $this->enqueueGenerateResourcesPagesForRedis->enqueue();
 
             return new Result();
         } catch (Throwable $error) {
