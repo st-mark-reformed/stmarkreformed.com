@@ -137,7 +137,7 @@ export default function HymnPracticeTracksField (
                                         handleFile(row.id, event.target.files?.[0])
                                             .catch(() => {});
                                     }}
-                                    className="mt-1 block w-full text-sm text-gray-600 file:mr-3 file:rounded-md file:border-0 file:bg-crimson/10 file:px-3 file:py-1.5 file:text-sm file:font-semibold file:text-crimson hover:file:bg-crimson/20 dark:text-gray-300"
+                                    className="mt-1 block w-full text-sm text-gray-600 cursor-pointer file:mr-3 file:cursor-pointer file:rounded-md file:border-0 file:bg-crimson/10 file:px-3 file:py-1.5 file:text-sm file:font-semibold file:text-crimson hover:file:bg-crimson/20 dark:text-gray-300"
                                 />
                                 {(() => {
                                     if (row.fileLabel === '') {
@@ -155,7 +155,7 @@ export default function HymnPracticeTracksField (
                                 type="button"
                                 aria-label="Remove track"
                                 onClick={() => removeRow(row.id)}
-                                className="inline-flex shrink-0 items-center justify-center rounded-md bg-crimson/10 px-3 py-2 text-sm font-semibold text-crimson hover:bg-crimson/20 dark:bg-crimson/40 dark:text-white"
+                                className="inline-flex shrink-0 cursor-pointer items-center justify-center rounded-md bg-crimson/10 px-3 py-2 text-sm font-semibold text-crimson hover:bg-crimson/20 dark:bg-crimson/40 dark:text-white"
                             >
                                 <TrashIcon className="size-5" aria-hidden="true" />
                             </button>
@@ -166,7 +166,7 @@ export default function HymnPracticeTracksField (
             <button
                 type="button"
                 onClick={addRow}
-                className="mt-3 inline-flex items-center rounded-md bg-crimson px-3 py-2 text-sm font-semibold text-white hover:bg-crimson-dark dark:bg-crimson/70 dark:hover:bg-crimson/80"
+                className="mt-3 inline-flex cursor-pointer items-center rounded-md bg-crimson px-3 py-2 text-sm font-semibold text-white hover:bg-crimson-dark dark:bg-crimson/70 dark:hover:bg-crimson/80"
             >
                 Add Practice Track
             </button>
