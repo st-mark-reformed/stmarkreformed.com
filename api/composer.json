@@ -22,7 +22,8 @@
         "soundasleep/html2text": "^2.1",
         "spatie/php-cloneable": "^1.0",
         "symfony/cache": "^7.2",
-        "symfony/mailer": "^7.2"
+        "symfony/mailer": "^7.2",
+        "webklex/php-imap": "^6.2"
     },
     "require-dev": {
         "buzzingpixel/symfony-var-dumper-decorator": "^1.0",
