@@ -29,6 +29,7 @@ use App\Transfer\Messages\ImportMessagesFromCraftCommand;
 use App\Transfer\News\ImportNewsFromCraftCommand;
 use App\Transfer\PastorsPage\ImportPastorsPageFromCraftCommand;
 use App\Transfer\Profiles\ImportProfilesFromCraftCommand;
+use App\Transfer\Resources\ImportResourcesFromCraftCommand;
 use App\Transfer\Series\ImportSeriesFromCraftCommand;
 use BuzzingPixel\Queue\Framework\QueueConsumeNextSymfonyCommand;
 use BuzzingPixel\Scheduler\Framework\RunScheduleSymfonyCommand;
@@ -58,6 +59,7 @@ readonly class ApplyCommands
         ImportMenOfTheMarkFromCraftCommand::register(commands: $commands);
         ImportPastorsPageFromCraftCommand::register(commands: $commands);
         ImportHymnsOfTheMonthFromCraftCommand::register(commands: $commands);
+        ImportResourcesFromCraftCommand::register(commands: $commands);
 
         // Messages
         SetUpIndicesCommand::register(commands: $commands);
