@@ -29,6 +29,7 @@ use App\Transfer\GetTransferMessages;
 use App\Transfer\GetTransferNews;
 use App\Transfer\GetTransferPastorsPage;
 use App\Transfer\GetTransferProfiles;
+use App\Transfer\GetTransferResources;
 use App\Transfer\GetTransferSeries;
 use Config\Tinker;
 use Slim\App;
@@ -115,4 +116,6 @@ return static function (App $app): void {
     GetTransferPastorsPage::addRoute(routeCollector: $app);
 
     GetTransferHymnsOfTheMonth::addRoute(routeCollector: $app);
+
+    GetTransferResources::addRoute(routeCollector: $app);
 };
