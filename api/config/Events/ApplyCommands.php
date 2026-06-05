@@ -8,6 +8,7 @@ use App\Calendar\GenerateCalendarPages;
 use App\Calendar\GenerateUpcomingEvents;
 use App\HymnsOfTheMonth\Generate\GenerateHymnsOfTheMonthForRedisCommand;
 use App\InternalMessages\Generate\GenerateInternalMediaPagesForRedisCommand;
+use App\MailingLists\Schedule\CheckMailingListsCommand;
 use App\MenOfTheMark\Generate\GenerateMenOfTheMarkPagesForRedisCommand;
 use App\Messages\BackfillAudioFileSizesCommand;
 use App\Messages\Generate\GenerateMessagesPagesForRedisCommand;
@@ -84,6 +85,9 @@ readonly class ApplyCommands
 
         // Resources
         GenerateResourcesPagesForRedisCommand::register(commands: $commands);
+
+        // Mailing Lists
+        CheckMailingListsCommand::register(commands: $commands);
 
         // Profiles
         ResaveAllProfilesCommand::register(commands: $commands);
