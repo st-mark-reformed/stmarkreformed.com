@@ -7,7 +7,7 @@ const FindResourceItemsByPage = cache(async (
 ): Promise<null | ResourcesItemsReturn> => {
     const redis = getRedisClient();
 
-    const redisPageData = await redis.get(`resources:page:${pageNum}`);
+    const redisPageData = await redis.get(`api-resources:page:${pageNum}`);
 
     if (!redisPageData) {
         return null;
