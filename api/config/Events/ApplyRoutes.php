@@ -24,6 +24,12 @@ use App\InternalSeries\Admin\GetInternalSeriesDropdownAction;
 use App\InternalSeries\Admin\GetInternalSeriesListAction;
 use App\InternalSeries\Admin\NewInternalSeries\PostNewInternalSeriesAction;
 use App\InternalSeries\Admin\PostDeleteInternalSeriesAction;
+use App\MailingLists\Admin\EditMailingList\GetEditMailingList\GetEditMailingListAction;
+use App\MailingLists\Admin\EditMailingList\PostEditMailingList\PostEditMailingListAction;
+use App\MailingLists\Admin\GetHasEditMailingListsRoleAction;
+use App\MailingLists\Admin\GetMailingListsListAction;
+use App\MailingLists\Admin\NewMailingList\PostNewMailingListAction;
+use App\MailingLists\Admin\PostDeleteMailingListsAction;
 use App\MenOfTheMark\Admin\EditMenOfTheMarkItem\GetEditMenOfTheMarkItem\GetEditMenOfTheMarkItemAction;
 use App\MenOfTheMark\Admin\EditMenOfTheMarkItem\PostEditMenOfTheMarkItem\PostEditMenOfTheMarkItemAction;
 use App\MenOfTheMark\Admin\GetHasEditMenOfTheMarkRoleAction;
@@ -178,6 +184,14 @@ readonly class ApplyRoutes
         GetEditResourceItemAction::applyRoute(routes: $routes);
         PostEditResourceItemAction::applyRoute(routes: $routes);
         PostDeleteResourceItemsAction::applyRoute(routes: $routes);
+
+        // Mailing Lists
+        GetHasEditMailingListsRoleAction::applyRoute(routes: $routes);
+        PostNewMailingListAction::applyRoute(routes: $routes);
+        GetMailingListsListAction::applyRoute(routes: $routes);
+        GetEditMailingListAction::applyRoute(routes: $routes);
+        PostEditMailingListAction::applyRoute(routes: $routes);
+        PostDeleteMailingListsAction::applyRoute(routes: $routes);
 
         if (
             ! $config->getBoolean(
