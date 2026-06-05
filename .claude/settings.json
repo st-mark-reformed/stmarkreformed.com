@@ -1,0 +1,12 @@
+{
+    "permissions": {
+        "allow": [
+            "Bash(./vendor/bin/phpstan:*)",
+            "Bash(vendor/bin/phpstan:*)",
+            "Bash(./vendor/bin/phpcs:*)",
+            "Bash(vendor/bin/phpcs:*)",
+            "Bash(node_modules/.bin/tsc --noEmit *)",
+            "Bash(node_modules/.bin/eslint:*)"
+        ]
+    }
+}
