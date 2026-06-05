@@ -37,8 +37,11 @@ readonly class CaseConversion
     {
         $finalStr = '';
 
-        /** @var array<int, string> $stringArray */
         $stringArray = preg_split('/\s+/', $string);
+
+        if ($stringArray === false) {
+            $stringArray = [];
+        }
 
         foreach ($stringArray as $item) {
             $finalStr .= ucfirst($item);

@@ -168,9 +168,10 @@ readonly class EmptyUuid implements UuidInterface
         return $this->uuid->__serialize();
     }
 
-    /** @phpstan-ignore-next-line */
+    /** @param array<array-key, mixed> $data */
     public function __unserialize(array $data): void
     {
+        /** @phpstan-ignore-next-line */
         $this->uuid->__unserialize($data);
     }
 }
