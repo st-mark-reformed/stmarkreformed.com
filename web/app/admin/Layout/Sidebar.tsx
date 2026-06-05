@@ -13,7 +13,7 @@ export default async function Sidebar (
     {
         activeNav = null,
     }: {
-        activeNav: null | 'messages' | 'internalMessages' | 'profiles' | 'news' | 'menOfTheMark' | 'pastorsPage' | 'hymnsOfTheMonth' | 'queue' | 'schedule';
+        activeNav: null | 'messages' | 'internalMessages' | 'profiles' | 'news' | 'menOfTheMark' | 'pastorsPage' | 'hymnsOfTheMonth' | 'resources' | 'queue' | 'schedule';
     },
 ) {
     const userinfo = await GetUserInfo();
@@ -82,6 +82,15 @@ export default async function Sidebar (
             href: '/admin/hymns-of-the-month',
             icon: 'MusicalNote',
             current: activeNav === 'hymnsOfTheMonth',
+        });
+    }
+
+    if (userinfo.roles.includes('EDIT_RESOURCES')) {
+        navigation.push({
+            name: 'Resources',
+            href: '/admin/resources',
+            icon: 'DocumentArrowDown',
+            current: activeNav === 'resources',
         });
     }
 
