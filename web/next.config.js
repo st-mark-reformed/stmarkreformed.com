@@ -7,8 +7,8 @@ const buildDate = date.toUTCString();
  * @type {import('next').NextConfig}
  */
 module.exports = {
-    middlewareClientMaxBodySize: '100mb',
     experimental: {
+        middlewareClientMaxBodySize: '100mb',
         serverActions: {
             bodySizeLimit: '100mb',
         },
