@@ -26,7 +26,7 @@ readonly class Stdout implements HandlerFactory
 
         return new FilterHandler(
             $handler,
-            Level::Debug,
+            Level::Info,
             Level::Warning,
         );
     }

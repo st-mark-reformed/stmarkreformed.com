@@ -35,7 +35,16 @@ readonly class CheckMailingList
         }
 
         try {
-            $mailbox->incomingMail()->map(function (
+            $incoming = $mailbox->incomingMail();
+
+            // TEMPORARY diagnostic — confirms whether messages are being
+            // fetched. Remove once the IMAP forwarding is verified.
+            $this->logger->info('Mailing list check ran', [
+                'list' => $mailingList->listAddress,
+                'fetched' => $incoming->count(),
+            ]);
+
+            $incoming->map(function (
                 IncomingMail $incomingMail,
             ) use (
                 $mailbox,
