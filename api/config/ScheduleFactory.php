@@ -9,7 +9,6 @@ use App\Calendar\EnqueueGenerateCalendarPages;
 use App\Calendar\EnqueueGenerateUpcomingEvents;
 use App\HymnsOfTheMonth\Generate\EnqueueGenerateHymnsOfTheMonthForRedis;
 use App\InternalMessages\Generate\EnqueueGenerateInternalMediaPagesForRedis;
-use App\MailingLists\Schedule\EnqueueCheckMailingLists;
 use App\MenOfTheMark\Generate\EnqueueGenerateMenOfTheMarkPagesForRedis;
 use App\Messages\Generate\EnqueueGenerateMessagesPagesForRedis;
 use App\Messages\Search\EnqueueIndexAllMessages;
@@ -86,13 +85,13 @@ readonly class ScheduleFactory implements \BuzzingPixel\Scheduler\ScheduleFactor
 
         // The mailing list check connects to live IMAP mailboxes and forwards
         // real mail, so it must never run in local development.
-        if (! $this->runtimeConfig->getBoolean(RuntimeConfigOptions::DEV_MODE)) {
-            $scheduleItems[] = new ScheduleItem(
-                runEvery: Frequency::ALWAYS,
-                class: EnqueueCheckMailingLists::class,
-                method: 'enqueue',
-            );
-        }
+        // if (! $this->runtimeConfig->getBoolean(RuntimeConfigOptions::DEV_MODE)) {
+        //     $scheduleItems[] = new ScheduleItem(
+        //         runEvery: Frequency::ALWAYS,
+        //         class: EnqueueCheckMailingLists::class,
+        //         method: 'enqueue',
+        //     );
+        // }
 
         return new ScheduleItemCollection(scheduleItems: $scheduleItems);
     }
