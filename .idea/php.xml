@@ -558,6 +558,25 @@
       <path value="$PROJECT_DIR$/api/vendor/php-http/discovery" />
       <path value="$PROJECT_DIR$/api/vendor/php-http/promise" />
       <path value="$PROJECT_DIR$/api/vendor/php-http/httplug" />
+      <path value="$PROJECT_DIR$/api/vendor/carbonphp/carbon-doctrine-types" />
+      <path value="$PROJECT_DIR$/api/vendor/voku/portable-ascii" />
+      <path value="$PROJECT_DIR$/api/vendor/nesbot/carbon" />
+      <path value="$PROJECT_DIR$/api/vendor/webklex/php-imap" />
+      <path value="$PROJECT_DIR$/api/vendor/illuminate/pagination" />
+      <path value="$PROJECT_DIR$/api/vendor/illuminate/contracts" />
+      <path value="$PROJECT_DIR$/api/vendor/illuminate/conditionable" />
+      <path value="$PROJECT_DIR$/api/vendor/illuminate/support" />
+      <path value="$PROJECT_DIR$/api/vendor/illuminate/macroable" />
+      <path value="$PROJECT_DIR$/api/vendor/illuminate/collections" />
+      <path value="$PROJECT_DIR$/api/vendor/illuminate/reflection" />
+      <path value="$PROJECT_DIR$/api/vendor/symfony/clock" />
+      <path value="$PROJECT_DIR$/api/vendor/symfony/polyfill-php84" />
+      <path value="$PROJECT_DIR$/api/vendor/symfony/polyfill-php86" />
+      <path value="$PROJECT_DIR$/api/vendor/symfony/polyfill-php85" />
+      <path value="$PROJECT_DIR$/api/vendor/symfony/http-foundation" />
+      <path value="$PROJECT_DIR$/api/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/api/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/api/vendor/doctrine/inflector" />
     </include_path>
   </component>
   <component name="PhpProjectServersManager">
