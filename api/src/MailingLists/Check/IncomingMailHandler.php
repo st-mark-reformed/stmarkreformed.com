@@ -6,6 +6,7 @@ namespace App\MailingLists\Check;
 
 use App\MailingLists\MailingList;
 use Config\SystemFromAddress;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
@@ -33,6 +34,7 @@ readonly class IncomingMailHandler
     public function __construct(
         private MailerInterface $mailer,
         private SystemFromAddress $systemFromAddress,
+        private LoggerInterface $logger,
     ) {
     }
 
@@ -94,12 +96,33 @@ readonly class IncomingMailHandler
         try {
             $this->mailer->send($email);
         } catch (Throwable $error) {
-            $mailbox->moveToDrafts(incomingMail: $incomingMail);
+            // Surface the real send failure before touching the mailbox, so a
+            // secondary move failure can't mask the underlying cause.
+            $this->logger->error('Failed to forward list message', [
+                'subject' => $incomingMail->subject,
+                'from' => $incomingMail->fromAddress,
+                'message' => $error->getMessage(),
+            ]);
+
+            $this->moveToDrafts(mailbox: $mailbox, incomingMail: $incomingMail);
 
             throw $error;
         }
 
         $mailbox->delete(incomingMail: $incomingMail);
+    }
+
+    private function moveToDrafts(
+        ImapMailbox $mailbox,
+        IncomingMail $incomingMail,
+    ): void {
+        try {
+            $mailbox->moveToDrafts(incomingMail: $incomingMail);
+        } catch (Throwable $moveError) {
+            $this->logger->error('Failed to move undelivered message to Drafts', [
+                'message' => $moveError->getMessage(),
+            ]);
+        }
     }
 
     private function replyToAddress(
