@@ -7,6 +7,7 @@ namespace App\MailingLists\Check;
 use App\MailingLists\MailingList;
 use Config\SystemFromAddress;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Mailer\Envelope;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
@@ -25,9 +26,9 @@ use function trim;
 /**
  * Forwards a single incoming list message to the list's subscribers, applying
  * the same rules as the legacy Craft mailing list: the list's system address
- * sends on behalf of the original sender, subscribers are bcc'd (minus anyone
- * already addressed), and the reply-to depends on whether the sender is on the
- * list.
+ * sends on behalf of the original sender, the message is delivered only to the
+ * subscribers (minus anyone already addressed) via an explicit envelope, and
+ * the reply-to depends on whether the sender is on the list.
  */
 readonly class IncomingMailHandler
 {
@@ -43,6 +44,11 @@ readonly class IncomingMailHandler
         MailingList $mailingList,
         IncomingMail $incomingMail,
     ): void {
+        $recipients = $this->recipientAddresses(
+            mailingList: $mailingList,
+            incomingMail: $incomingMail,
+        );
+
         $email = new Email();
 
         // Send from the system address but preserve the sender's display name.
@@ -51,20 +57,11 @@ readonly class IncomingMailHandler
             $incomingMail->fromName,
         ));
 
-        // The list address in the To header is decorative; real recipients are
-        // bcc'd below.
+        // Decorative only — actual delivery is controlled by the envelope in
+        // send(), so the list address itself is never a recipient.
         $email->to($mailingList->listAddress);
 
         $email->subject($incomingMail->subject);
-
-        $bcc = $this->bccAddresses(
-            mailingList: $mailingList,
-            incomingMail: $incomingMail,
-        );
-
-        if ($bcc !== []) {
-            $email->bcc(...$bcc);
-        }
 
         $email->replyTo($this->replyToAddress(
             mailingList: $mailingList,
@@ -85,16 +82,33 @@ readonly class IncomingMailHandler
             mailbox: $mailbox,
             incomingMail: $incomingMail,
             email: $email,
+            recipients: $recipients,
         );
     }
 
+    /** @param Address[] $recipients */
     private function send(
         ImapMailbox $mailbox,
         IncomingMail $incomingMail,
         Email $email,
+        array $recipients,
     ): void {
+        // Nothing to forward (e.g. the only subscriber is the sender). Treat it
+        // as handled so it doesn't get reprocessed on every cycle.
+        if ($recipients === []) {
+            $mailbox->delete(incomingMail: $incomingMail);
+
+            return;
+        }
+
         try {
-            $this->mailer->send($email);
+            // Deliver only to the subscribers via an explicit envelope. The To
+            // header (the list address) is decorative, so the list never
+            // receives its own mail and can't trigger a forwarding loop.
+            $this->mailer->send($email, new Envelope(
+                $this->systemFromAddress->address,
+                $recipients,
+            ));
         } catch (Throwable $error) {
             // Surface the real send failure before touching the mailbox, so a
             // secondary move failure can't mask the underlying cause.
@@ -144,8 +158,13 @@ readonly class IncomingMailHandler
         return new Address($incomingMail->fromAddress, $incomingMail->fromName);
     }
 
-    /** @return Address[] */
-    private function bccAddresses(
+    /**
+     * The subscribers who should receive this message: everyone on the list
+     * except the sender and anyone already in the original To/Cc.
+     *
+     * @return Address[]
+     */
+    private function recipientAddresses(
         MailingList $mailingList,
         IncomingMail $incomingMail,
     ): array {
