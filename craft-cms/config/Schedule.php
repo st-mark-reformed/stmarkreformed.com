@@ -46,6 +46,9 @@ class Schedule
 
     public function retrieve(RetrieveScheduleEvent $e): void
     {
+        // Disable all scheduled items in Craft
+        return;
+
         $schedule = $e->scheduleConfigItems();
 
         EnqueueIndexAllMessages::addSchedule($schedule);
