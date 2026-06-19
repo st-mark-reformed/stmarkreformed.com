@@ -1,5 +1,12 @@
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
 services:
   utility:
+    logging: *default-logging
     deploy:
       rollback_config:
         order: start-first
@@ -20,6 +27,7 @@ services:
       - uploads-volume:/uploads-volume
 
   proxy:
+    logging: *default-logging
     deploy:
       rollback_config:
         order: start-first
@@ -74,6 +82,7 @@ services:
       default:
 
   web:
+    logging: *default-logging
     deploy:
       rollback_config:
         order: start-first
@@ -95,6 +104,7 @@ services:
       default:
 
   api:
+    logging: *default-logging
     deploy:
       rollback_config:
         order: start-first
@@ -141,6 +151,7 @@ services:
           - stmark-api
 
   api-queue-consumer-1:
+    logging: *default-logging
     deploy:
       rollback_config:
         order: start-first
@@ -162,6 +173,7 @@ services:
       - RSA_PUBLIC_KEY
 
   api-schedule-runner:
+    logging: *default-logging
     deploy:
       rollback_config:
         order: start-first
@@ -183,6 +195,7 @@ services:
       - RSA_PUBLIC_KEY
 
   auth:
+    logging: *default-logging
     deploy:
       rollback_config:
         order: start-first
@@ -226,6 +239,7 @@ services:
           - stmark-auth
 
   app:
+    logging: *default-logging
     deploy:
       rollback_config:
         order: start-first
@@ -252,6 +266,7 @@ services:
       default:
 
   app-scheduled-task-runner:
+    logging: *default-logging
     deploy:
       rollback_config:
         order: start-first
@@ -277,6 +292,7 @@ services:
       disable: true
 
   app-queue-consumer-1:
+    logging: *default-logging
     deploy:
       rollback_config:
         order: start-first
@@ -307,6 +323,7 @@ services:
       && /runner.sh"
 
   db:
+    logging: *default-logging
     deploy:
       rollback_config:
         order: start-first
@@ -333,6 +350,7 @@ services:
           - stmark-db
 
   redis:
+    logging: *default-logging
     image: valkey/valkey:9
     command: valkey-server --appendonly yes --appendfsync everysec
     volumes:
@@ -343,6 +361,7 @@ services:
           - stmark-redis
 
   elasticsearch:
+    logging: *default-logging
     image: docker.elastic.co/elasticsearch/elasticsearch:7.14.0
     environment:
       - cluster.name=es-docker-cluster
