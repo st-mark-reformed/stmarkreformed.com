@@ -83,7 +83,7 @@ export default function SidebarCSR (
                                                             return classes.join(' ');
                                                         })()}
                                                     >
-                                                        <NavItemIconRenderer item={item} />
+                                                        <NavItemIconRenderer icon={item.icon} />
                                                         {item.name}
                                                     </Link>
                                                 </li>

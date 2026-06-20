@@ -3,6 +3,7 @@ import Sidebar from './Sidebar';
 import PartialPageLoading from '../../PartialPageLoading';
 import RequestFactory from '../../api/request/RequestFactory';
 import KeepAlive from '../../KeepAlive';
+import { AdminAreaKey } from '../adminAreas';
 
 export default async function AdminLayout (
     {
@@ -10,7 +11,7 @@ export default async function AdminLayout (
         activeNav = null,
     }: {
         children: ReactNode;
-        activeNav: null | 'messages' | 'internalMessages' | 'profiles' | 'news' | 'menOfTheMark' | 'pastorsPage' | 'hymnsOfTheMonth' | 'resources' | 'mailingLists' | 'queue' | 'schedule';
+        activeNav: AdminAreaKey | 'dashboard' | null;
     },
 ) {
     await RequestFactory().makeWithSignInRedirect({

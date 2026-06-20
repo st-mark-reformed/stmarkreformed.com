@@ -18,14 +18,14 @@ import NavItem from './NavItem';
 
 export default function NavItemIconRenderer (
     {
-        item,
+        icon,
     }: {
-        item: NavItem;
+        icon: NavItem['icon'];
     },
 ) {
     const classes = ['size-6 shrink-0'];
 
-    switch (item.icon) {
+    switch (icon) {
         case 'Home':
             return <HomeIcon aria-hidden="true" className={classes.join(' ')} />;
         case 'Users':

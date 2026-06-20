@@ -8,114 +8,33 @@ import SidebarUserFooter from './SidebarUserFooter';
 import GetUserInfo from '../../api/auth/GetUserInfo';
 import QueueSidebarNotes from './Queue/QueueSidebarNotes';
 import { authUrl } from '../../authUrl';
+import { AdminAreaKey, accessibleAreas } from '../adminAreas';
 
 export default async function Sidebar (
     {
         activeNav = null,
     }: {
-        activeNav: null | 'messages' | 'internalMessages' | 'profiles' | 'news' | 'menOfTheMark' | 'pastorsPage' | 'hymnsOfTheMonth' | 'resources' | 'mailingLists' | 'queue' | 'schedule';
+        activeNav: AdminAreaKey | 'dashboard' | null;
     },
 ) {
     const userinfo = await GetUserInfo();
 
     const managePasswordUrl = authUrl('/manage-password');
 
-    const navigation: NavItem[] = [];
-
-    if (userinfo.roles.includes('EDIT_MESSAGES')) {
-        navigation.push({
-            name: 'Messages',
-            href: '/admin/messages',
-            icon: 'Microphone',
-            current: activeNav === 'messages',
-        });
-    }
-
-    if (userinfo.roles.includes('EDIT_MESSAGES')) {
-        navigation.push({
-            name: 'Internal Messages',
-            href: '/admin/internal-messages',
-            icon: 'LockClosed',
-            current: activeNav === 'internalMessages',
-        });
-    }
-
-    if (userinfo.roles.includes('EDIT_PROFILES')) {
-        navigation.push({
-            name: 'Profiles',
-            href: '/admin/profiles',
-            icon: 'Users',
-            current: activeNav === 'profiles',
-        });
-    }
-
-    if (userinfo.roles.includes('EDIT_NEWS')) {
-        navigation.push({
-            name: 'News',
-            href: '/admin/news',
-            icon: 'DocumentDuplicate',
-            current: activeNav === 'news',
-        });
-    }
-
-    if (userinfo.roles.includes('EDIT_MEN_OF_THE_MARK')) {
-        navigation.push({
-            name: 'Men of the Mark',
-            href: '/admin/men-of-the-mark',
-            icon: 'Newspaper',
-            current: activeNav === 'menOfTheMark',
-        });
-    }
-
-    if (userinfo.roles.includes('EDIT_PASTORS_PAGE')) {
-        navigation.push({
-            name: "Pastor's Page",
-            href: '/admin/pastors-page',
-            icon: 'BookOpen',
-            current: activeNav === 'pastorsPage',
-        });
-    }
-
-    if (userinfo.roles.includes('EDIT_HYMNS_OF_THE_MONTH')) {
-        navigation.push({
-            name: 'Hymns of the Month',
-            href: '/admin/hymns-of-the-month',
-            icon: 'MusicalNote',
-            current: activeNav === 'hymnsOfTheMonth',
-        });
-    }
-
-    if (userinfo.roles.includes('EDIT_RESOURCES')) {
-        navigation.push({
-            name: 'Resources',
-            href: '/admin/resources',
-            icon: 'DocumentArrowDown',
-            current: activeNav === 'resources',
-        });
-    }
-
-    if (userinfo.roles.includes('EDIT_MAILING_LISTS')) {
-        navigation.push({
-            name: 'Mailing Lists',
-            href: '/admin/mailing-lists',
-            icon: 'Envelope',
-            current: activeNav === 'mailingLists',
-        });
-    }
-
-    navigation.push({
-        name: 'Schedule',
-        href: '/admin/schedule',
-        icon: 'Calendar',
-        current: activeNav === 'schedule',
-    });
-
-    navigation.push({
-        name: 'Queue',
-        href: '/admin/queue',
-        icon: 'QueueList',
-        current: activeNav === 'queue',
-    });
+    const navigation: NavItem[] = [
+        {
+            name: 'Dashboard',
+            href: '/admin',
+            icon: 'Home',
+            current: activeNav === 'dashboard',
+        },
+        ...accessibleAreas(userinfo.roles).map((area) => ({
+            name: area.name,
+            href: area.href,
+            icon: area.icon,
+            current: activeNav === area.key,
+        })),
+    ];
 
     return (
         <>
@@ -159,7 +78,7 @@ export default async function Sidebar (
                                                             return classes.join(' ');
                                                         })()}
                                                     >
-                                                        <NavItemIconRenderer item={item} />
+                                                        <NavItemIconRenderer icon={item.icon} />
                                                         {item.name}
                                                         {(() => {
                                                             if (item.name !== 'Queue') {
