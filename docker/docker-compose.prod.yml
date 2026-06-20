@@ -26,7 +26,7 @@ services:
       - storage-volume:/storage-volume
       - uploads-volume:/uploads-volume
 
-  proxy:
+  web:
     logging: *default-logging
     deploy:
       rollback_config:
@@ -69,25 +69,6 @@ services:
         - traefik.http.middlewares.stmark_x_content_type.headers.contentTypeNosniff=true
         ## Set the middlewares for HSTS and X-Content-Type-Options
         - traefik.http.routers.stmark_prod_secure.middlewares=stmark_hsts,stmark_x_content_type
-    env_file:
-      - ./proxy/.env
-      - ./proxy/.env.local
-    image: ghcr.io/st-mark-reformed/stmarkreformed.com-proxy
-    environment:
-      HOSTNAME: stmark-proxy
-    volumes:
-      - /root/certbot/var/www/letsencrypt:/var/www/letsencrypt
-    networks:
-      traefik:
-      default:
-
-  web:
-    logging: *default-logging
-    deploy:
-      rollback_config:
-        order: start-first
-      update_config:
-        order: start-first
     env_file:
       - ./web/.env
       - ./web/.env.local

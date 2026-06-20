@@ -85,6 +85,7 @@ readonly class UpCommand
             '-p',
             'stmark',
             'up',
+            '--remove-orphans',
         ];
 
         if ($config->inPlace) {

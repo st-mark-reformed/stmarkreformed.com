@@ -48,6 +48,7 @@ readonly class DownCommand
                 '-p',
                 'stmark',
                 'down',
+                '--remove-orphans',
             ],
             $this->cliSrcPath->projectRoot(),
         );

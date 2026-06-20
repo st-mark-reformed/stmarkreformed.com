@@ -1,33 +1,4 @@
 services:
-  proxy:
-    restart: always
-    depends_on:
-      - web
-      - app
-    env_file:
-      - ./proxy/.env
-      - ./proxy/.env.local
-    image: ghcr.io/st-mark-reformed/stmarkreformed.com-proxy
-    container_name: stmark-proxy
-    environment:
-      HOSTNAME: stmark-proxy
-    expose:
-      - 80
-    networks:
-      traefik:
-      default:
-    labels:
-      - traefik.enable=true
-      - traefik.docker.network=traefik-dev_default
-      - traefik.http.routers.stmark_local.entrypoints=web
-      - traefik.http.routers.stmark_local.rule=Host(`stmark.localtest.me`)
-      - traefik.http.routers.stmark_local.middlewares=https-redirect
-      - traefik.http.routers.stmark_local-secure.entrypoints=websecure
-      - traefik.http.routers.stmark_local-secure.tls=true
-      - traefik.http.routers.stmark_local-secure.rule=Host(`stmark.localtest.me`)
-    volumes:
-      - ./proxy/default.conf.template:/etc/nginx/conf.d/default.conf.template
-
   web:
     stdin_open: true
     env_file:
@@ -60,8 +31,18 @@ services:
     networks:
       traefik:
       default:
-        aliases:
-          - internal_web_container
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-dev_default
+      - traefik.http.services.stmark_local.loadbalancer.server.port=80
+      - traefik.http.routers.stmark_local.entrypoints=web
+      - traefik.http.routers.stmark_local.rule=Host(`stmark.localtest.me`)
+      - traefik.http.routers.stmark_local.middlewares=https-redirect
+      - traefik.http.routers.stmark_local.service=stmark_local
+      - traefik.http.routers.stmark_local-secure.entrypoints=websecure
+      - traefik.http.routers.stmark_local-secure.tls=true
+      - traefik.http.routers.stmark_local-secure.rule=Host(`stmark.localtest.me`)
+      - traefik.http.routers.stmark_local-secure.service=stmark_local
 
   api:
     restart: always
