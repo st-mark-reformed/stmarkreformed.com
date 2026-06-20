@@ -99,6 +99,7 @@ services:
       - files-above-webroot-volume:/app/filesAboveWebroot
       - web-public-images-galleries-volume:/app/public/images/galleries
       - uploads-volume:/app/public/uploads
+      - files-volume:/app/public/files
     networks:
       traefik:
       default:

@@ -54,6 +54,7 @@ services:
       - ../web:/app:delegated
       - ../craft-cms/filesAboveWebroot:/app/filesAboveWebroot
       - ../craft-cms/public/uploads:/app/public/uploads
+      - ../craft-cms/public/files:/app/public/files
     expose:
       - 80
     networks:
