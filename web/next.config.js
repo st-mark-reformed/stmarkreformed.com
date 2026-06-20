@@ -31,6 +31,11 @@ module.exports = {
     async redirects () {
         return [
             {
+                source: '/cms/:path*',
+                destination: '/admin',
+                permanent: true,
+            },
+            {
                 source: '/talent-show',
                 destination: 'https://docs.google.com/spreadsheets/d/14vULuTl1ikyzzz4mtK6Hb9j3flG7X_hsCHKil-CAIMg/edit?usp=sharing',
                 permanent: true,

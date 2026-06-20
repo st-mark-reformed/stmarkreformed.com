@@ -25,8 +25,7 @@ server {
      }
 
     location /cms {
-        proxy_pass ${CRAFT_PROXY};
-        break;
+        return 301 /admin;
     }
 
     location /transfer {
