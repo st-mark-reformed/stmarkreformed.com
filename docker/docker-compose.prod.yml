@@ -96,6 +96,7 @@ services:
       HOSTNAME: stmark-web
       NODE_ENV: prod
     volumes:
+      - /root/certbot/var/www/letsencrypt:/var/www/letsencrypt
       - files-above-webroot-volume:/app/filesAboveWebroot
       - web-public-images-galleries-volume:/app/public/images/galleries
       - uploads-volume:/app/public/uploads

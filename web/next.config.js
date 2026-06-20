@@ -72,4 +72,15 @@ module.exports = {
             },
         ];
     },
+    async rewrites () {
+        return [
+            // Serve Let's Encrypt HTTP-01 challenges from the certbot webroot
+            // via a route handler (see app/acme-challenge/route.ts) so cert
+            // renewals keep working once the nginx proxy is removed.
+            {
+                source: '/.well-known/acme-challenge/:token',
+                destination: '/acme-challenge/:token',
+            },
+        ];
+    },
 };
