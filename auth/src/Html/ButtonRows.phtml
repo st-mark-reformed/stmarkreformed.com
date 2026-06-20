@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Html\ButtonRows;
+use App\Html\Glyphs\GlyphPosition;
 use BuzzingPixel\Templating\TemplateEngine;
 
 assert($this instanceof TemplateEngine);
@@ -28,8 +29,15 @@ $buttonRows = $buttonRows ?? new ButtonRows();
                 href="<?= $button->href ?>"
                 class="rounded-lg bg-crimson hover:bg-crimson-dark px-3.5 py-3 text-sm font-semibold text-white shadow-xs my-1"
             >
+                <?php if ($button->glyph !== null && $button->glyphPosition === GlyphPosition::Left): ?>
+                    <span class="inline-block align-middle mr-1" style="margin-top: -5px">
+                        <?=$this->partial($button->glyph->value, [
+                            'class' => 'size-4 inline-block align-middle',
+                        ])?>
+                    </span>
+                <?php endif; ?>
                 <?= $this->html($button->content) ?>
-                <?php if ($button->glyph !== null): ?>
+                <?php if ($button->glyph !== null && $button->glyphPosition === GlyphPosition::Right): ?>
                     <span class="inline-block align-middle ml-1" style="margin-top: -5px">
                         <?=$this->partial($button->glyph->value, [
                             'class' => 'size-4 inline-block align-middle',

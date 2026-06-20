@@ -7,4 +7,5 @@ namespace App\Html\Glyphs;
 enum Glyph: string
 {
     case ArrowRight = __DIR__ . '/ArrowRight.phtml';
+    case ArrowLeft  = __DIR__ . '/ArrowLeft.phtml';
 }
