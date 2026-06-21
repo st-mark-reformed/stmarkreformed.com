@@ -183,7 +183,6 @@ services:
         aliases:
           - stmark-redis
 
-  ## TODO: Try to get this working on dev again sometime
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.14.0
     container_name: stmark-elasticsearch
