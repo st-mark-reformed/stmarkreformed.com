@@ -1,6 +1,0 @@
-./dev container-app
-./vendor/bin/var-dump-server --format=html > tmp/dump.html
-
-# Outside container
-cd tmp
-yarn dump-browser
