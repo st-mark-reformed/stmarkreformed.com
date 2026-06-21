@@ -23,9 +23,9 @@ services:
     volumes:
       - ./web/.bash_history:/root/.bash_history:delegated
       - ../web:/app:delegated
-      - ../craft-cms/filesAboveWebroot:/app/filesAboveWebroot
-      - ../craft-cms/public/uploads:/app/public/uploads
-      - ../craft-cms/public/files:/app/public/files
+      - ../shared-files/filesAboveWebroot:/app/filesAboveWebroot
+      - ../shared-files/uploads:/app/public/uploads
+      - ../shared-files/files:/app/public/files
     expose:
       - 80
     networks:
@@ -58,8 +58,8 @@ services:
     volumes:
       - ./api/.bash_history:/root/.bash_history:delegated
       - ../api:/var/www:delegated
-      - ../craft-cms/public/uploads:/var/www/public/uploads
-      - ../craft-cms/filesAboveWebroot:/var/www/filesAboveWebroot
+      - ../shared-files/uploads:/var/www/public/uploads
+      - ../shared-files/filesAboveWebroot:/var/www/filesAboveWebroot
     networks:
       traefik:
       default:
@@ -93,8 +93,8 @@ services:
     volumes:
       - ./api/.bash_history:/root/.bash_history:delegated
       - ../api:/var/www:delegated
-      - ../craft-cms/public/uploads:/var/www/public/uploads
-      - ../craft-cms/filesAboveWebroot:/var/www/filesAboveWebroot
+      - ../shared-files/uploads:/var/www/public/uploads
+      - ../shared-files/filesAboveWebroot:/var/www/filesAboveWebroot
     secrets:
       - RSA_PRIVATE_KEY
       - RSA_PUBLIC_KEY
@@ -113,8 +113,8 @@ services:
     volumes:
       - ./api/.bash_history:/root/.bash_history:delegated
       - ../api:/var/www:delegated
-      - ../craft-cms/public/uploads:/var/www/public/uploads
-      - ../craft-cms/filesAboveWebroot:/var/www/filesAboveWebroot
+      - ../shared-files/uploads:/var/www/public/uploads
+      - ../shared-files/filesAboveWebroot:/var/www/filesAboveWebroot
     secrets:
       - RSA_PRIVATE_KEY
       - RSA_PUBLIC_KEY

@@ -25,15 +25,15 @@ readonly class FilesSync
         $this->mappings = [
             new FilesDirectoryMapping(
                 sourceSubPath: 'files',
-                localDestRelativeToProjectRoot: 'craft-cms/public/files',
+                localDestRelativeToProjectRoot: 'shared-files/files',
             ),
             new FilesDirectoryMapping(
                 sourceSubPath: 'filesAboveWebroot',
-                localDestRelativeToProjectRoot: 'craft-cms/filesAboveWebroot',
+                localDestRelativeToProjectRoot: 'shared-files/filesAboveWebroot',
             ),
             new FilesDirectoryMapping(
                 sourceSubPath: 'uploads',
-                localDestRelativeToProjectRoot: 'craft-cms/public/uploads',
+                localDestRelativeToProjectRoot: 'shared-files/uploads',
             ),
             // Only the galleries sub-tree exists in the prod backup
             // (per the `web-public-images-galleries-volume` prod mount),

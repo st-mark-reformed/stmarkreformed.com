@@ -32,10 +32,6 @@ readonly class DatabaseSync
     ) {
         $this->mappings = [
             new DatabaseDumpMapping(
-                sourceFile: 'stmarkreformed.sql',
-                targetDatabase: 'site',
-            ),
-            new DatabaseDumpMapping(
                 sourceFile: 'smrc_api.sql',
                 targetDatabase: 'smrc_api',
             ),
