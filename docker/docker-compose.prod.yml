@@ -12,9 +12,6 @@ services:
         order: start-first
       update_config:
         order: start-first
-    env_file:
-      - application/.env
-      - application/.env.local
     image: ghcr.io/st-mark-reformed/stmarkreformed.com-utility
     volumes:
       - .:/var/www
@@ -225,8 +222,8 @@ services:
       update_config:
         order: start-first
     env_file:
-      - application/.env
-      - application/.env.local
+      - db/.env
+      - db/.env.local
     image: ghcr.io/st-mark-reformed/stmarkreformed.com-db
     environment:
       HOSTNAME: stmark-db

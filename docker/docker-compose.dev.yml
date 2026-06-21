@@ -155,8 +155,8 @@ services:
   db:
     restart: always
     env_file:
-      - application/.env
-      - application/.env.local
+      - db/.env
+      - db/.env.local
     image: ghcr.io/st-mark-reformed/stmarkreformed.com-db
     container_name: stmark-db
     environment:

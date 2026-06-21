@@ -32,9 +32,9 @@ readonly class EnsureDevEnvFiles
             'docker/auth/.env.local',
         ));
 
-        // App
+        // Db
         touch($this->path->pathFromProjectRoot(
-            'docker/application/.env.local',
+            'docker/db/.env.local',
         ));
 
         // Web
