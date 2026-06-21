@@ -91,26 +91,6 @@ jobs:
             ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-db
             ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-db:${{ github.sha }}
 
-  build-proxy:
-    name: Build proxy image
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Build and push
-        uses: ./.github/actions/docker-build-push
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          file: docker/proxy/Dockerfile
-          cache-from: type=registry,ref=ghcr.io/st-mark-reformed/stmarkreformed.com-proxy
-          build-args: |
-            BUILDKIT_INLINE_CACHE=1
-          tags: |
-            ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-proxy
-            ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-proxy:${{ github.sha }}
-
   build-utility:
     name: Build utility image
     runs-on: ubuntu-latest
@@ -222,7 +202,6 @@ jobs:
       - build-auth
       - build-app
       - build-db
-      - build-proxy
       - build-utility
       - build-web
       - build-api-dependent-queue-consumer
@@ -237,7 +216,7 @@ jobs:
           username: ${{ vars.PROD_DEPLOY_SSH_USER }}
           host: ${{ vars.PROD_DEPLOY_SSH_HOST }}
           key: ${{ secrets.PROD_DEPLOY_SSH_PRIVATE_KEY }}
-          source: "docker/application/.env, docker/proxy/.env, docker/web/.env, docker/api/.env, docker/auth/.env, docker/docker-compose.prod.yml, .github/workflows/migrate.sh"
+          source: "docker/application/.env, docker/web/.env, docker/api/.env, docker/auth/.env, docker/docker-compose.prod.yml, .github/workflows/migrate.sh"
           target: "/root/stmarkreformed.com"
 
       - name: Log in to prod server, pull images, deploy, and migrate
@@ -259,7 +238,6 @@ jobs:
             docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-api-schedule-runner;
             docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-app;
             docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-db;
-            docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-proxy;
             docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner;
             docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-utility;
             docker pull ghcr.io/st-mark-reformed/stmarkreformed.com-web;
@@ -267,7 +245,6 @@ jobs:
             cat /root/stmarkreformed.com/docker/api/.env.local >> /root/stmarkreformed.com/docker/api/.env;
             cat /root/stmarkreformed.com/docker/auth/.env.local >> /root/stmarkreformed.com/docker/auth/.env;
             cat /root/stmarkreformed.com/docker/application/.env.local >> /root/stmarkreformed.com/docker/application/.env;
-            cat /root/stmarkreformed.com/docker/proxy/.env.local >> /root/stmarkreformed.com/docker/proxy/.env;
             cat /root/stmarkreformed.com/docker/web/.env.local >> /root/stmarkreformed.com/docker/web/.env;
 
             docker stack deploy \

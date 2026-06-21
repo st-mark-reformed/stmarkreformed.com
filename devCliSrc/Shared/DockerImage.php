@@ -20,7 +20,6 @@ enum DockerImage
     case app;
     case appScheduleRunner;
     case db;
-    case proxy;
     case utility;
     case web;
     case auth;

@@ -37,11 +37,6 @@ readonly class EnsureDevEnvFiles
             'docker/application/.env.local',
         ));
 
-        // Proxy
-        touch($this->path->pathFromProjectRoot(
-            'docker/proxy/.env.local',
-        ));
-
         // Web
         touch($this->path->pathFromProjectRoot(
             'docker/web/.bash_history',
