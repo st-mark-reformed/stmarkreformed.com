@@ -17,8 +17,6 @@ enum DockerImage
     case api;
     case apiQueueConsumer;
     case apiScheduleRunner;
-    case app;
-    case appScheduleRunner;
     case db;
     case utility;
     case web;
@@ -60,7 +58,6 @@ enum DockerImage
         return match ($this->name) {
             'apiQueueConsumer' => 'api-queue-consumer',
             'apiScheduleRunner' => 'api-schedule-runner',
-            'appScheduleRunner' => 'app-schedule-runner',
             default => $this->name,
         };
     }
@@ -75,16 +72,9 @@ enum DockerImage
 
     public function dockerfilePath(): string
     {
-        /** @phpstan-ignore-next-line */
-        $dir = match ($this->name) {
-            'app' => 'application',
-            'appScheduleRunner' => 'schedule-runner',
-            default => $this->getDashCaseName(),
-        };
-
         return implode('/', [
             'docker',
-            $dir,
+            $this->getDashCaseName(),
             'Dockerfile',
         ]);
     }

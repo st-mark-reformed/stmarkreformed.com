@@ -8,7 +8,6 @@ use Cli\Commands\Docker\Build\BuildCommand;
 use Cli\Commands\Docker\Container\ContainerApiCommand;
 use Cli\Commands\Docker\Container\ContainerApiQueueConsumerCommand;
 use Cli\Commands\Docker\Container\ContainerApiScheduleRunnerCommand;
-use Cli\Commands\Docker\Container\ContainerAppCommand;
 use Cli\Commands\Docker\Container\ContainerAuthCommand;
 use Cli\Commands\Docker\Container\ContainerDbCommand;
 use Cli\Commands\Docker\Container\ContainerWebCommand;
@@ -54,7 +53,6 @@ readonly class ApplyCliCommandsEventSubscriber
         ContainerApiCommand::applyCommand($commands);
         ContainerApiQueueConsumerCommand::applyCommand($commands);
         ContainerApiScheduleRunnerCommand::applyCommand($commands);
-        ContainerAppCommand::applyCommand($commands);
         ContainerDbCommand::applyCommand($commands);
         ContainerWebCommand::applyCommand($commands);
         ContainerWebNodeCommand::applyCommand($commands);
