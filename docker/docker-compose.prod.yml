@@ -18,12 +18,8 @@ services:
     image: ghcr.io/st-mark-reformed/stmarkreformed.com-utility
     volumes:
       - .:/var/www
-      - cp-resources-volume:/cp-resources-volume
       - files-volume:/files-volume
       - files-above-webroot-volume:/files-above-webroot-volume
-      - image-cache-volume:/image-cache-volume
-      - public-cache-volume:/public-cache-volume
-      - storage-volume:/storage-volume
       - uploads-volume:/uploads-volume
 
   web:
@@ -285,15 +281,11 @@ networks:
     external: true
 
 volumes:
-  cp-resources-volume:
   db-volume:
   elasticsearch-data-volume:
   files-volume:
   files-above-webroot-volume:
-  image-cache-volume:
-  public-cache-volume:
   redis-volume:
-  storage-volume:
   uploads-volume:
   api-storage-volume:
   web-public-images-galleries-volume:
