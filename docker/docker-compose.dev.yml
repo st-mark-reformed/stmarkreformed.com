@@ -152,66 +152,6 @@ services:
       disable: true
       test: "1"
 
-  app:
-    cap_add:
-      - SYS_PTRACE
-    restart: always
-    env_file:
-      - application/.env
-      - application/.env.local
-    image: ghcr.io/st-mark-reformed/stmarkreformed.com-app
-    container_name: stmark-app
-    environment:
-      ENABLE_PHP_DEV_CONFIG: 1
-      HOSTNAME: stmark-app
-      ENABLE_XDEBUG: 0
-    ports:
-      - "44232:80"
-    volumes:
-      - ../craft-cms:/var/www:delegated
-    networks:
-      traefik:
-      default:
-        aliases:
-          - internal_craft_container
-
-  app-scheduled-task-runner:
-    restart: always
-    env_file:
-      - application/.env
-      - application/.env.local
-    image: ghcr.io/st-mark-reformed/stmarkreformed.com-app-schedule-runner
-    container_name: stmark-app-scheduled-task-runner
-    environment:
-      - ENABLE_PHP_DEV_CONFIG=1
-      - HOSTNAME=app-scheduled-task-runner
-    volumes:
-      - ../craft-cms:/var/www:delegated
-    healthcheck:
-      disable: true
-      test: "1"
-
-  app-queue-consumer-1:
-    restart: always
-    env_file:
-      - application/.env
-      - application/.env.local
-    image: ghcr.io/st-mark-reformed/stmarkreformed.com-app
-    container_name: stmark-app-queue-consumer-1
-    environment:
-      - ENABLE_PHP_DEV_CONFIG=1
-      - HOSTNAME=app-queue-consumer-1
-    volumes:
-      - ../craft-cms:/var/www:delegated
-    healthcheck:
-      disable: true
-      test: "1"
-    entrypoint: >-
-      /bin/bash -c
-      "echo 'while /usr/local/bin/php /var/www/craft queue/run --interactive=0 2>&1; do sleep 0.2; done' > /runner.sh
-      && chmod +x /runner.sh
-      && /runner.sh"
-
   db:
     restart: always
     env_file:
