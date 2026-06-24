@@ -18,6 +18,7 @@ services:
       - files-volume:/files-volume
       - files-above-webroot-volume:/files-above-webroot-volume
       - uploads-volume:/uploads-volume
+      - api-storage-volume:/api-storage-volume
 
   web:
     logging: *default-logging
