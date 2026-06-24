@@ -25,10 +25,12 @@ readonly class UpdatedInternalMessageFactory
             ->withPassage(value: $requestMessage->passage)
             ->withSeries(value: $requestMessage->series);
 
-        if ($requestMessage->audioPath !== '') {
-            $message = $message->withAudioPath(
-                value: $requestMessage->audioPath,
-            );
+        // Only override the stored audio when a new file was actually uploaded;
+        // an unchanged edit resubmits the existing path and must keep its size.
+        if ($requestMessage->audioPathIsFileUpload()) {
+            $message = $message
+                ->withAudioPath(value: $requestMessage->audioPath)
+                ->withAudioFileSize(value: $requestMessage->audioFileSize);
         }
 
         return $message;

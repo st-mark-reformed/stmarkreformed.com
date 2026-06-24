@@ -7,34 +7,20 @@ import { CreateEditInternalMessageSubmitActionState } from '../../CreateEditInte
 import CreateEditInternalMessageParseFormData from '../../CreateEditInternalMessageParseFormData';
 import RequestFactory from '../../../../api/request/RequestFactory';
 import { ApiResponseJson } from '../../../../api/request/ApiResponseJson';
-import { FileToBase64 } from '../../FileToBase64';
 
 export default async function EditInternalMessageSubmitFormAction (
     prevState: CreateEditInternalMessageSubmitActionState,
     formData: FormData,
 ): Promise<CreateEditInternalMessageSubmitActionState> {
+    // `audioPath` carries either an `upload:{id}` handle (a freshly uploaded
+    // file) or the unchanged stored path; the chunked uploader already streamed
+    // the bytes out of band.
     const payload = CreateEditInternalMessageParseFormData(formData);
 
     const internalMessageIdValue = formData.get('internalMessageId');
     const internalMessageId = typeof internalMessageIdValue === 'string'
         ? internalMessageIdValue
         : '';
-
-    const audioBase64Value = formData.get('audioPath');
-    const audioBase64 = typeof audioBase64Value === 'string'
-        ? audioBase64Value
-        : '';
-
-    const audioFileValue = formData.get('audioPathFile');
-    const audioFile = audioFileValue instanceof File && audioFileValue.size > 0
-        ? audioFileValue
-        : null;
-
-    if (audioBase64) {
-        payload.audioPath = audioBase64;
-    } else if (audioFile) {
-        payload.audioPath = await FileToBase64(audioFile);
-    }
 
     const response = await RequestFactory().makeWithToken({
         uri: `/admin/internal-messages/edit/${internalMessageId}`,

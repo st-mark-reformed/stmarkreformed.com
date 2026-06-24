@@ -6,6 +6,7 @@ namespace App\InternalMessages\Admin\NewInternalMessage;
 
 use App\EmptyUuid;
 use App\InternalMessages\NewInternalMessage;
+use App\Uploads\UploadHandleSize;
 use DateTimeImmutable;
 use DateTimeZone;
 use Ramsey\Uuid\Uuid;
@@ -15,15 +16,22 @@ use Throwable;
 
 readonly class NewInternalMessageFactory
 {
+    public function __construct(private UploadHandleSize $uploadHandleSize)
+    {
+    }
+
     public function createFromRequest(ServerRequest $request): NewInternalMessage
     {
+        $audioPath = $request->parsedBody->getString(name: 'audioPath');
+
         return new NewInternalMessage(
             isEnabled: $request->parsedBody->getBoolean(name: 'isEnabled'),
             date: $this->getDate(
                 date: $request->parsedBody->getString(name: 'date'),
             ),
             title: $request->parsedBody->getString(name: 'title'),
-            audioPath: $request->parsedBody->getString(name: 'audioPath'),
+            audioPath: $audioPath,
+            audioFileSize: $this->uploadHandleSize->forValue($audioPath),
             speakerId: $this->getId(
                 id: $request->parsedBody->getString(name: 'speakerId'),
             ),

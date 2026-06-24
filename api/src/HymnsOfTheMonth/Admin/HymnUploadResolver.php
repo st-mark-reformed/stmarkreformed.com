@@ -7,23 +7,24 @@ namespace App\HymnsOfTheMonth\Admin;
 use App\HymnsOfTheMonth\HymnPracticeTrack;
 use App\HymnsOfTheMonth\HymnPracticeTracks;
 use App\HymnsOfTheMonth\Persistence\Persist\HymnFileStorage;
+use App\Uploads\UploadHandle;
 use Cocur\Slugify\Slugify;
 use RxAnte\AppBootstrap\Request\ServerRequest;
 
 use function is_array;
 use function is_string;
-use function str_starts_with;
 
 /**
  * Turns the admin create/edit request into resolved, on-disk file paths.
  *
- * Each upload field is either a new file (a base64 data URI, which gets written
- * to disk) or an already-stored relative path that is kept as-is. New files are
- * detected by the "data:" prefix; stored paths never start with it. Files are
- * written here, in the admin layer, so the domain entity only ever holds real
- * relative paths — the same shape the importer and Redis generator rely on. A
- * failed DB write afterward could orphan a freshly written file under the hymn's
- * own {slug} folder; it is harmless and overwritten on the next save.
+ * Each upload field is either a new file (an "upload:{id}" handle for a resumably
+ * uploaded file, which gets claimed onto disk) or an already-stored relative path
+ * that is kept as-is. New files are detected by the "upload:" prefix; stored paths
+ * never start with it. Files are claimed here, in the admin layer, so the domain
+ * entity only ever holds real relative paths — the same shape the importer and
+ * Redis generator rely on. A failed DB write afterward could orphan a freshly
+ * written file under the hymn's own {slug} folder; it is harmless and overwritten
+ * on the next save.
  */
 readonly class HymnUploadResolver
 {
@@ -41,11 +42,14 @@ readonly class HymnUploadResolver
             return '';
         }
 
-        if (! $this->isUpload(value: $value)) {
+        if (! UploadHandle::isHandle($value)) {
             return $value;
         }
 
-        return $this->storage->saveSheet(dataUri: $value, slug: $slug);
+        return $this->storage->saveSheet(
+            uploadId: UploadHandle::fromValue($value)->uploadId,
+            slug: $slug,
+        );
     }
 
     public function resolvePracticeTracks(
@@ -93,9 +97,9 @@ readonly class HymnUploadResolver
         $title = $this->stringValue(value: $rawTrack['title'] ?? null);
         $file  = $this->stringValue(value: $rawTrack['file'] ?? null);
 
-        $path = $this->isUpload(value: $file)
+        $path = UploadHandle::isHandle($file)
             ? $this->storage->saveTrack(
-                dataUri: $file,
+                uploadId: UploadHandle::fromValue($file)->uploadId,
                 slug: $slug,
                 fileNameBase: $this->trackFileNameBase(title: $title, index: $index),
             )
@@ -113,11 +117,6 @@ readonly class HymnUploadResolver
         $base = new Slugify()->slugify($title);
 
         return $base === '' ? 'track-' . $index : $base;
-    }
-
-    private function isUpload(string $value): bool
-    {
-        return str_starts_with($value, 'data:');
     }
 
     private function stringValue(mixed $value): string

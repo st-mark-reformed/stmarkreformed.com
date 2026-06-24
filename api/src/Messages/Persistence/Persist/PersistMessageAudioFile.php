@@ -7,26 +7,20 @@ namespace App\Messages\Persistence\Persist;
 use App\Messages\Message;
 use App\Messages\NewMessage;
 use App\Result\Result;
-use Throwable;
+use App\Uploads\UploadClaim;
 
 use function sprintf;
 
 readonly class PersistMessageAudioFile
 {
-    public function __construct(private MessageAudioFileStorage $storage)
+    public function __construct(private UploadClaim $uploadClaim)
     {
     }
 
     public function persist(Message|NewMessage $message): Result
     {
-        if (! $message->audioPathIsValidFileUpload()) {
-            if ($message->audioPathIsFileUpload()) {
-                return new Result(
-                    success: false,
-                    errors: ['audioPath' => 'Audio file is not a valid MP3.'],
-                );
-            }
-
+        // No new upload: an unchanged stored path (or empty) needs no file work.
+        if (! $message->audioPathIsFileUpload()) {
             return new Result();
         }
 
@@ -35,18 +29,9 @@ readonly class PersistMessageAudioFile
             $message->getAudioFileName(),
         );
 
-        try {
-            $this->storage->save(
-                base64Audio: $message->audioPath,
-                absoluteFilePath: $absoluteFilePath,
-            );
-        } catch (Throwable $error) {
-            return new Result(
-                success: false,
-                errors: ['audioPath' => $error->getMessage()],
-            );
-        }
-
-        return new Result();
+        return $this->uploadClaim->claimTo(
+            uploadId: $message->audioUploadId(),
+            absoluteDestPath: $absoluteFilePath,
+        );
     }
 }

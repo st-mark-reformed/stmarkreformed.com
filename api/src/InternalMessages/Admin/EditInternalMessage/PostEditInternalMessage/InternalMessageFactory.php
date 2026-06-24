@@ -12,6 +12,7 @@ use App\InternalSeries\InternalSeriesRepository;
 use App\Profiles\EmptyProfile;
 use App\Profiles\Profile;
 use App\Profiles\ProfilesRepository;
+use App\Uploads\UploadHandleSize;
 use DateTimeImmutable;
 use DateTimeZone;
 use Ramsey\Uuid\Uuid;
@@ -23,6 +24,7 @@ readonly class InternalMessageFactory
     public function __construct(
         private InternalSeriesRepository $seriesRepository,
         private ProfilesRepository $profilesRepository,
+        private UploadHandleSize $uploadHandleSize,
     ) {
     }
 
@@ -36,6 +38,8 @@ readonly class InternalMessageFactory
             $id = new EmptyUuid();
         }
 
+        $audioPath = $request->parsedBody->getString(name: 'audioPath');
+
         return new InternalMessage(
             id: $id,
             isEnabled: $request->parsedBody->getBoolean(name: 'isEnabled'),
@@ -43,7 +47,8 @@ readonly class InternalMessageFactory
                 date: $request->parsedBody->getString(name: 'date'),
             ),
             title: $request->parsedBody->getString(name: 'title'),
-            audioPath: $request->parsedBody->getString(name: 'audioPath'),
+            audioPath: $audioPath,
+            audioFileSize: $this->uploadHandleSize->forValue($audioPath),
             speaker: $this->getSpeaker(
                 profileId: $request->parsedBody->getString(name: 'speakerId'),
             ),

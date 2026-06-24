@@ -1,4 +1,4 @@
-import React, { useActionState, useRef } from 'react';
+import React, { useActionState, useRef, useState } from 'react';
 import { CreateEditMessageValues } from './CreateEditMessageValues';
 import { CreateEditMessageSubmitActionState } from './CreateEditMessageSubmitActionState';
 import EditMessageSubmitFormAction from './edit/[messageId]/EditMessageSubmitFormAction';
@@ -12,7 +12,7 @@ import Toggle from '../Forms/Toggle';
 import FormButtons from '../Forms/FormButtons';
 import ProfileSelector from '../Forms/ProfileSelector';
 import SeriesSelector from '../Forms/SeriesSelector';
-import SingleFileUploader from '../Forms/FileUploads/SingleFileUploader';
+import ChunkedFileUploader from '../Forms/FileUploads/ChunkedFileUploader';
 
 export default function CreateEditMessagePage (
     {
@@ -50,6 +50,10 @@ export default function CreateEditMessagePage (
 
     const formRef = useRef<HTMLFormElement>(null);
 
+    const [isUploadingAudio, setIsUploadingAudio] = useState(false);
+
+    const isBusy = isPending || isUploadingAudio;
+
     const buttons: Button[] = [
         {
             content: 'Cancel',
@@ -58,9 +62,9 @@ export default function CreateEditMessagePage (
         },
     ];
 
-    if (isPending) {
+    if (isBusy) {
         buttons.push({
-            content: 'Submitting…',
+            content: isUploadingAudio ? 'Uploading…' : 'Submitting…',
             glyph: 'check',
             href: 'submit-button',
             type: 'pending',
@@ -153,13 +157,20 @@ export default function CreateEditMessagePage (
                     defaultValue={state.values.isEnabled}
                     error={state.ok ? undefined : state.errors.isEnabled}
                 />
-                <SingleFileUploader
+                <ChunkedFileUploader
                     label="Audio"
                     name="audioPath"
+                    fileTypes={['MP3']}
+                    acceptType="mp3"
                     defaultValue={state.values.audioPath}
                     error={state.ok ? undefined : state.errors.audioPath}
+                    onUploadingChange={setIsUploadingAudio}
                 />
-                <FormButtons secondaryLinkHref="/admin/messages" isPending={isPending} />
+                <FormButtons
+                    secondaryLinkHref="/admin/messages"
+                    isPending={isBusy}
+                    submitButtonContentWhenPending={isUploadingAudio ? 'Uploading…' : 'Submitting…'}
+                />
             </Form>
         </>
     );

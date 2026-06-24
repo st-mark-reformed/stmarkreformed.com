@@ -81,6 +81,10 @@ use App\Series\Admin\GetSeriesListAction;
 use App\Series\Admin\NewSeries\PostNewSeriesAction;
 use App\Series\Admin\PostDeleteSeriesAction;
 use App\Tinker;
+use App\Uploads\Http\GetUploadStatusAction;
+use App\Uploads\Http\PostCompleteUploadAction;
+use App\Uploads\Http\PostInitiateUploadAction;
+use App\Uploads\Http\PutUploadChunkAction;
 use BuzzingPixel\Queue\Http\Routes\Route;
 use BuzzingPixel\Queue\Http\Routes\RoutesFactory as QueueRoutesFactory;
 use Config\RuntimeConfigOptions;
@@ -184,6 +188,12 @@ readonly class ApplyRoutes
         GetEditResourceItemAction::applyRoute(routes: $routes);
         PostEditResourceItemAction::applyRoute(routes: $routes);
         PostDeleteResourceItemsAction::applyRoute(routes: $routes);
+
+        // Uploads (shared resumable chunked upload endpoints)
+        PostInitiateUploadAction::applyRoute(routes: $routes);
+        PutUploadChunkAction::applyRoute(routes: $routes);
+        GetUploadStatusAction::applyRoute(routes: $routes);
+        PostCompleteUploadAction::applyRoute(routes: $routes);
 
         // Mailing Lists
         GetHasEditMailingListsRoleAction::applyRoute(routes: $routes);

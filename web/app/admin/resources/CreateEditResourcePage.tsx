@@ -1,4 +1,4 @@
-import React, { useActionState, useRef } from 'react';
+import React, { useActionState, useRef, useState } from 'react';
 import { CreateEditResourceValues } from './CreateEditResourceValues';
 import { CreateEditResourceSubmitActionState } from './CreateEditResourceSubmitActionState';
 import EditResourceSubmitFormAction from './edit/[resourceId]/EditResourceSubmitFormAction';
@@ -49,6 +49,10 @@ export default function CreateEditResourcePage (
 
     const formRef = useRef<HTMLFormElement>(null);
 
+    const [isUploadingDownloads, setIsUploadingDownloads] = useState(false);
+
+    const isBusy = isPending || isUploadingDownloads;
+
     const buttons: Button[] = [
         {
             content: 'Cancel',
@@ -57,9 +61,9 @@ export default function CreateEditResourcePage (
         },
     ];
 
-    if (isPending) {
+    if (isBusy) {
         buttons.push({
-            content: 'Submitting…',
+            content: isUploadingDownloads ? 'Uploading…' : 'Submitting…',
             glyph: 'check',
             href: 'submit-button',
             type: 'pending',
@@ -141,8 +145,15 @@ export default function CreateEditResourcePage (
                     defaultValue={state.values.body}
                     error={state.ok ? undefined : state.errors.body}
                 />
-                <ResourceDownloadsField initialDownloads={state.values.downloads} />
-                <FormButtons secondaryLinkHref="/admin/resources" isPending={isPending} />
+                <ResourceDownloadsField
+                    initialDownloads={state.values.downloads}
+                    onUploadingChange={setIsUploadingDownloads}
+                />
+                <FormButtons
+                    secondaryLinkHref="/admin/resources"
+                    isPending={isBusy}
+                    submitButtonContentWhenPending={isUploadingDownloads ? 'Uploading…' : 'Submitting…'}
+                />
             </Form>
         </>
     );

@@ -7,40 +7,32 @@ namespace App\InternalMessages\Persistence\Persist;
 use App\InternalMessages\InternalMessage;
 use App\InternalMessages\NewInternalMessage;
 use App\Result\Result;
-use Throwable;
+use App\Uploads\UploadClaim;
+
+use function sprintf;
 
 readonly class PersistInternalMessageAudioFile
 {
-    public function __construct(private InternalMessageAudioFileStorage $storage)
+    public function __construct(private UploadClaim $uploadClaim)
     {
     }
 
     public function persist(InternalMessage|NewInternalMessage $message): Result
     {
-        if (! $message->audioPathIsValidFileUpload()) {
-            if ($message->audioPathIsFileUpload()) {
-                return new Result(
-                    success: false,
-                    errors: ['audioPath' => 'Audio file is not a valid MP3.'],
-                );
-            }
-
+        // No new upload: an unchanged stored path (or empty) needs no file work.
+        if (! $message->audioPathIsFileUpload()) {
             return new Result();
         }
 
-        try {
-            $this->storage->save(
-                base64Audio: $message->audioPath,
-                slug: $message->slug,
-                fileName: $message->getAudioFileName(),
-            );
-        } catch (Throwable $error) {
-            return new Result(
-                success: false,
-                errors: ['audioPath' => $error->getMessage()],
-            );
-        }
+        $absoluteFilePath = sprintf(
+            '/var/www/filesAboveWebroot/internal-audio/%s/%s',
+            $message->slug,
+            $message->getAudioFileName(),
+        );
 
-        return new Result();
+        return $this->uploadClaim->claimTo(
+            uploadId: $message->audioUploadId(),
+            absoluteDestPath: $absoluteFilePath,
+        );
     }
 }

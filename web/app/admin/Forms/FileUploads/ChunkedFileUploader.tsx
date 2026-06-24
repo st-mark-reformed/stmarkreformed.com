@@ -1,28 +1,38 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { DocumentIcon } from '@heroicons/react/24/outline';
 import InputWrapper from '../InputWrapper';
+import { UploadAcceptType, uploadFileResumably } from './chunkedUpload';
 
-export default function SingleFileUploader (
+export default function ChunkedFileUploader (
     {
         label,
         name,
         fileTypes = ['MP3'],
+        acceptType = 'any',
         defaultValue = '',
         error = undefined,
+        onUploadingChange = undefined,
     }: {
         label: string;
         name: string;
         fileTypes?: Array<string>;
+        acceptType?: UploadAcceptType;
         defaultValue?: string;
         error?: string | undefined;
+        onUploadingChange?: ((isUploading: boolean) => void) | undefined;
     },
 ) {
-    const inputRef = React.useRef<HTMLInputElement>(null);
-    const hiddenValueRef = React.useRef<HTMLInputElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
+    const abortRef = useRef<AbortController | null>(null);
 
+    // Controlled so the submitted value survives the re-render triggered by
+    // onUploadingChange; an uncontrolled ref-set value gets dropped on reconcile.
+    const [handleValue, setHandleValue] = useState<string>(defaultValue);
     const [fileName, setFileName] = useState<string>(defaultValue);
     const [isDragging, setIsDragging] = useState(false);
     const [uploadError, setUploadError] = useState<string | undefined>(undefined);
+    const [isUploading, setIsUploading] = useState(false);
+    const [progress, setProgress] = useState(0);
 
     const allowedExtensions = fileTypes.map((type) => type.toLowerCase());
     const fileExtension = fileName ? fileName.split('.').pop() : null;
@@ -31,27 +41,6 @@ export default function SingleFileUploader (
         const extension = file.name.split('.').pop()?.toLowerCase() ?? '';
 
         return allowedExtensions.length === 0 || allowedExtensions.includes(extension);
-    }
-
-    function fileToBase64 (file: File): Promise<string> {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-
-            reader.onload = () => {
-                const { result } = reader;
-
-                if (typeof result !== 'string') {
-                    reject(new Error('Failed to read file'));
-
-                    return;
-                }
-
-                resolve(result);
-            };
-
-            reader.onerror = () => reject(new Error('Failed to read file'));
-            reader.readAsDataURL(file);
-        });
     }
 
     async function handleFile (file: File | undefined) {
@@ -67,12 +56,57 @@ export default function SingleFileUploader (
             return;
         }
 
+        abortRef.current?.abort();
+        const controller = new AbortController();
+        abortRef.current = controller;
+
         setFileName(file.name);
+        setProgress(0);
+        setIsUploading(true);
+        setHandleValue('');
+        onUploadingChange?.(true);
 
-        const base64 = await fileToBase64(file);
+        try {
+            const uploadId = await uploadFileResumably(file, {
+                acceptType,
+                resumeKey: `${name}:${file.name}:${file.size}`,
+                onProgress: setProgress,
+                signal: controller.signal,
+            });
 
-        if (hiddenValueRef.current) {
-            hiddenValueRef.current.value = base64;
+            setHandleValue(`upload:${uploadId}`);
+        } catch (uploadException) {
+            if (controller.signal.aborted) {
+                return;
+            }
+
+            setUploadError(
+                uploadException instanceof Error
+                    ? uploadException.message
+                    : 'The upload failed. Please try again.',
+            );
+            setFileName('');
+        } finally {
+            if (!controller.signal.aborted) {
+                setIsUploading(false);
+                onUploadingChange?.(false);
+            }
+        }
+    }
+
+    function clearFile () {
+        abortRef.current?.abort();
+        abortRef.current = null;
+
+        setFileName('');
+        setUploadError(undefined);
+        setIsUploading(false);
+        setProgress(0);
+        setHandleValue('');
+        onUploadingChange?.(false);
+
+        if (inputRef.current) {
+            inputRef.current.value = '';
         }
     }
 
@@ -93,18 +127,7 @@ export default function SingleFileUploader (
                     <button
                         type="button"
                         className="absolute right-0 top-0 cursor-pointer rounded-sm bg-crimson-dark/10 dark:bg-crimson/50 px-2 py-1 text-xs font-semibold text-crimson dark:text-white/90 shadow-xs hover:bg-crimson-dark/20 dark:hover:bg-crimson/60"
-                        onClick={() => {
-                            setFileName('');
-                            setUploadError(undefined);
-
-                            if (inputRef.current) {
-                                inputRef.current.value = '';
-                            }
-
-                            if (hiddenValueRef.current) {
-                                hiddenValueRef.current.value = '';
-                            }
-                        }}
+                        onClick={clearFile}
                     >
                         Remove File
                     </button>
@@ -112,15 +135,14 @@ export default function SingleFileUploader (
             })()}
             <InputWrapper label={label} name={name} colSpan="full" error={error}>
                 <input
-                    ref={hiddenValueRef}
                     type="hidden"
                     name={name}
-                    defaultValue={defaultValue}
+                    value={handleValue}
+                    readOnly
                 />
                 <input
                     ref={inputRef}
                     type="file"
-                    name={`${name}File`}
                     accept={allowedExtensions.map((ext) => `.${ext}`).join(',')}
                     className="hidden"
                     onChange={(event) => {
@@ -203,6 +225,27 @@ export default function SingleFileUploader (
                             );
                         })()}
                     </div>
+
+                    {(() => {
+                        if (!isUploading) {
+                            return null;
+                        }
+
+                        return (
+                            <div className="mt-3">
+                                <div className="h-2 w-full overflow-hidden rounded-full bg-gray-200 dark:bg-white/10">
+                                    <div
+                                        className="h-full bg-crimson transition-all"
+                                        style={{ width: `${Math.round(progress * 100)}%` }}
+                                    />
+                                </div>
+                                <div className="mt-1 text-xs italic">
+                                    Uploading… {Math.round(progress * 100)}%
+                                </div>
+                            </div>
+                        );
+                    })()}
+
                     <div className="mt-1">
                         Drag and Drop a {fileName ? 'new' : null} file here
                     </div>

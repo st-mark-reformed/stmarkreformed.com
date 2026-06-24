@@ -12,6 +12,7 @@ use App\Profiles\ProfilesRepository;
 use App\Series\EmptySeries;
 use App\Series\Series;
 use App\Series\SeriesRepository;
+use App\Uploads\UploadHandleSize;
 use DateTimeImmutable;
 use DateTimeZone;
 use Ramsey\Uuid\Uuid;
@@ -23,6 +24,7 @@ readonly class MessageFactory
     public function __construct(
         private SeriesRepository $seriesRepository,
         private ProfilesRepository $profilesRepository,
+        private UploadHandleSize $uploadHandleSize,
     ) {
     }
 
@@ -36,6 +38,8 @@ readonly class MessageFactory
             $id = new EmptyUuid();
         }
 
+        $audioPath = $request->parsedBody->getString(name: 'audioPath');
+
         return new Message(
             id: $id,
             isEnabled: $request->parsedBody->getBoolean(name: 'isEnabled'),
@@ -43,7 +47,8 @@ readonly class MessageFactory
                 date: $request->parsedBody->getString(name: 'date'),
             ),
             title: $request->parsedBody->getString(name: 'title'),
-            audioPath: $request->parsedBody->getString(name: 'audioPath'),
+            audioPath: $audioPath,
+            audioFileSize: $this->uploadHandleSize->forValue($audioPath),
             speaker: $this->getSpeaker(
                 profileId: $request->parsedBody->getString(name: 'speakerId'),
             ),

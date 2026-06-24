@@ -6,6 +6,7 @@ namespace App\Messages\Admin\NewMessage;
 
 use App\EmptyUuid;
 use App\Messages\NewMessage;
+use App\Uploads\UploadHandleSize;
 use DateTimeImmutable;
 use DateTimeZone;
 use Ramsey\Uuid\Uuid;
@@ -15,14 +16,22 @@ use Throwable;
 
 readonly class NewMessageFactory
 {
+    public function __construct(private UploadHandleSize $uploadHandleSize)
+    {
+    }
+
     public function createFromRequest(ServerRequest $request): NewMessage
     {
+        $audioPath = $request->parsedBody->getString(name: 'audioPath');
+
         return new NewMessage(
             isEnabled: $request->parsedBody->getBoolean(name: 'isEnabled'),
             date: $this->getDate(
                 date: $request->parsedBody->getString(name: 'date'),
             ),
             title: $request->parsedBody->getString(name: 'title'),
+            audioPath: $audioPath,
+            audioFileSize: $this->uploadHandleSize->forValue($audioPath),
             speakerId: $this->getId(
                 id: $request->parsedBody->getString(name: 'speakerId'),
             ),
@@ -30,7 +39,6 @@ readonly class NewMessageFactory
             seriesId: $this->getId(
                 id: $request->parsedBody->getString(name: 'seriesId'),
             ),
-            audioPath: $request->parsedBody->getString(name: 'audioPath'),
         );
     }
 

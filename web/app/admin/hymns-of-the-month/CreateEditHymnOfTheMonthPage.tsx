@@ -1,4 +1,4 @@
-import React, { useActionState, useRef } from 'react';
+import React, { useActionState, useRef, useState } from 'react';
 import { CreateEditHymnOfTheMonthValues } from './CreateEditHymnOfTheMonthValues';
 import { CreateEditHymnOfTheMonthSubmitActionState } from './CreateEditHymnOfTheMonthSubmitActionState';
 import EditHymnOfTheMonthSubmitFormAction from './edit/[hymnOfTheMonthId]/EditHymnOfTheMonthSubmitFormAction';
@@ -11,7 +11,7 @@ import Alert from '../../Alert';
 import TextInput from '../Forms/TextInput';
 import Toggle from '../Forms/Toggle';
 import FormButtons from '../Forms/FormButtons';
-import SingleFileUploader from '../Forms/FileUploads/SingleFileUploader';
+import ChunkedFileUploader from '../Forms/FileUploads/ChunkedFileUploader';
 
 export default function CreateEditHymnOfTheMonthPage (
     {
@@ -47,6 +47,12 @@ export default function CreateEditHymnOfTheMonthPage (
 
     const formRef = useRef<HTMLFormElement>(null);
 
+    const [isUploadingSheet, setIsUploadingSheet] = useState(false);
+    const [isUploadingTracks, setIsUploadingTracks] = useState(false);
+
+    const isUploading = isUploadingSheet || isUploadingTracks;
+    const isBusy = isPending || isUploading;
+
     const buttons: Button[] = [
         {
             content: 'Cancel',
@@ -55,9 +61,9 @@ export default function CreateEditHymnOfTheMonthPage (
         },
     ];
 
-    if (isPending) {
+    if (isBusy) {
         buttons.push({
-            content: 'Submitting…',
+            content: isUploading ? 'Uploading…' : 'Submitting…',
             glyph: 'check',
             href: 'submit-button',
             type: 'pending',
@@ -133,15 +139,24 @@ export default function CreateEditHymnOfTheMonthPage (
                     defaultValue={state.values.hymnPsalmName}
                     error={state.ok ? undefined : state.errors.hymnPsalmName}
                 />
-                <SingleFileUploader
+                <ChunkedFileUploader
                     label="Music Sheet"
                     name="musicSheet"
                     fileTypes={['PDF']}
+                    acceptType="any"
                     defaultValue={state.values.musicSheet}
                     error={state.ok ? undefined : state.errors.musicSheet}
+                    onUploadingChange={setIsUploadingSheet}
                 />
-                <HymnPracticeTracksField initialTracks={state.values.practiceTracks} />
-                <FormButtons secondaryLinkHref="/admin/hymns-of-the-month" isPending={isPending} />
+                <HymnPracticeTracksField
+                    initialTracks={state.values.practiceTracks}
+                    onUploadingChange={setIsUploadingTracks}
+                />
+                <FormButtons
+                    secondaryLinkHref="/admin/hymns-of-the-month"
+                    isPending={isBusy}
+                    submitButtonContentWhenPending={isUploading ? 'Uploading…' : 'Submitting…'}
+                />
             </Form>
         </>
     );
