@@ -3,6 +3,7 @@ import Sidebar from './Sidebar';
 import PartialPageLoading from '../../PartialPageLoading';
 import RequestFactory from '../../api/request/RequestFactory';
 import KeepAlive from '../../KeepAlive';
+import RefreshOnMount from '../RefreshOnMount';
 import { AdminAreaKey } from '../adminAreas';
 
 export default async function AdminLayout (
@@ -32,6 +33,7 @@ export default async function AdminLayout (
                 </main>
             </div>
             <KeepAlive />
+            <RefreshOnMount />
         </>
     );
 }
