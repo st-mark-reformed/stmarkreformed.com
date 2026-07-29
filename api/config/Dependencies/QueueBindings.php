@@ -6,6 +6,7 @@ namespace Config\Dependencies;
 
 use BuzzingPixel\Queue\Framework\QueueConsumeNextSymfonyCommand;
 use BuzzingPixel\Queue\Http\Routes\RoutesFactory;
+use BuzzingPixel\Queue\QueueConfig;
 use BuzzingPixel\Queue\QueueHandler;
 use BuzzingPixel\Queue\RedisDriver\RedisQueueHandler;
 use RxAnte\AppBootstrap\Dependencies\Bindings;
@@ -17,6 +18,12 @@ readonly class QueueBindings
         $bindings->addBinding(
             QueueHandler::class,
             $bindings->resolveFromContainer(RedisQueueHandler::class),
+        );
+
+        $bindings->addBinding(
+            QueueConfig::class,
+            $bindings->autowire(QueueConfig::class)
+                ->constructorParameter('jobsExpiresAfterSeconds', 900),
         );
 
         $bindings->addBinding(
