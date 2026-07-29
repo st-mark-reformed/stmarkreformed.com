@@ -40,7 +40,11 @@ readonly class CacheBindings
                     $container->get(RuntimeConfig::class)->getString(
                         RuntimeConfigOptions::REDIS_HOST,
                     ),
+                    6379,
+                    5.0,
                 );
+
+                $redis->setOption(Redis::OPT_READ_TIMEOUT, 5.0);
 
                 return $redis;
             },

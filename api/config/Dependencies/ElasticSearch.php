@@ -7,6 +7,7 @@ namespace Config\Dependencies;
 use Config\RuntimeConfigOptions;
 use Elastic\Elasticsearch\Client;
 use Elastic\Elasticsearch\ClientBuilder;
+use Hyperf\Guzzle\ClientFactory;
 use Psr\Container\ContainerInterface;
 use RxAnte\AppBootstrap\Dependencies\Bindings;
 use RxAnte\AppBootstrap\RuntimeConfig;
@@ -26,8 +27,14 @@ readonly class ElasticSearch
                     RuntimeConfigOptions::ELASTIC_SEARCH_HOSTS,
                 );
 
+                $clientFactory = $di->get(ClientFactory::class);
+
                 return ClientBuilder::create()
                     ->setHosts(explode(',', $hosts))
+                    ->setHttpClient($clientFactory->create([
+                        'connect_timeout' => 5,
+                        'timeout' => 30,
+                    ]))
                     ->build();
             },
         );

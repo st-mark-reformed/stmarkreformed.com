@@ -50,7 +50,10 @@ readonly class CacheRemoteIcsFile
 
     public function cache(): void
     {
-        $requestResponse = $this->guzzleClientFactory->create()->get(
+        $requestResponse = $this->guzzleClientFactory->create([
+            'connect_timeout' => 5,
+            'timeout' => 30,
+        ])->get(
             self::ICS_SOURCE,
         );
 
