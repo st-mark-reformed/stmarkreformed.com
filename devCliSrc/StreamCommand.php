@@ -7,6 +7,9 @@ namespace Cli;
 use Symfony\Component\Process\Process;
 
 use function is_string;
+use function stream_isatty;
+
+use const STDIN;
 
 readonly class StreamCommand
 {
@@ -44,10 +47,11 @@ readonly class StreamCommand
             );
         }
 
-        $existStatus = $process->setTty(Process::isTtySupported())
-            ->run(static function ($type, $buffer): void {
-                echo $buffer;
-            });
+        $existStatus = $process->setTty(
+            Process::isTtySupported() && stream_isatty(STDIN),
+        )->run(static function ($type, $buffer): void {
+            echo $buffer;
+        });
 
         if (! $exitOnError || $existStatus === 0) {
             return $existStatus;

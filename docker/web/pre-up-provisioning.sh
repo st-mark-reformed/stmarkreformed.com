@@ -19,7 +19,10 @@ docker run --rm \
 if [ ! -d "${NEXT_DIR}" ]; then
     echo "Running local next build...";
 
-    docker run -it --rm \
+    TTY_FLAGS="";
+    [ -t 0 ] && TTY_FLAGS="-it";
+
+    docker run $TTY_FLAGS --rm \
         --entrypoint "" \
         --name web_provision \
         --mount type=bind,source="${WEB_DIR}",target=/app \

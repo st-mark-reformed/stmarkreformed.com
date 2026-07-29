@@ -7,7 +7,10 @@ DOCKER_DIR=$(dirname "${SCRIPT_DIR}");
 PROJ_DIR=$(dirname "${DOCKER_DIR}");
 AUTH_DIR="${PROJ_DIR}/auth";
 
-docker run -it --rm \
+TTY_FLAGS="";
+[ -t 0 ] && TTY_FLAGS="-it";
+
+docker run $TTY_FLAGS --rm \
     --entrypoint "" \
     --name api-provision \
     -v "${AUTH_DIR}:/var/www" \

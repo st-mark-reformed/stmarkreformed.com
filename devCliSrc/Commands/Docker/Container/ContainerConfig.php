@@ -4,11 +4,16 @@ declare(strict_types=1);
 
 namespace Cli\Commands\Docker\Container;
 
+use Symfony\Component\Process\Process;
+
 use function array_filter;
 use function array_values;
 use function explode;
 use function implode;
+use function stream_isatty;
 use function trim;
+
+use const STDIN;
 
 readonly class ContainerConfig
 {
@@ -52,10 +57,14 @@ readonly class ContainerConfig
         $command = [
             'docker',
             'exec',
-            '-it',
-            'stmark-' . $container,
-            'bash',
         ];
+
+        if ($this->isTtyAvailable()) {
+            $command[] = '-it';
+        }
+
+        $command[] = 'stmark-' . $container;
+        $command[] = 'bash';
 
         if (! $this->hasCommand()) {
             return $command;
@@ -84,13 +93,17 @@ readonly class ContainerConfig
         $command = [
             'docker',
             'run',
-            '-it',
-            '--rm',
-            '--entrypoint',
-            '',
-            '--name',
-            $containerName,
         ];
+
+        if ($this->isTtyAvailable()) {
+            $command[] = '-it';
+        }
+
+        $command[] = '--rm';
+        $command[] = '--entrypoint';
+        $command[] = '';
+        $command[] = '--name';
+        $command[] = $containerName;
 
         foreach ($containerEnv as $envKey => $envVal) {
             $command[] = '--env';
@@ -120,5 +133,10 @@ readonly class ContainerConfig
         $command[] = $this->command;
 
         return $command;
+    }
+
+    private function isTtyAvailable(): bool
+    {
+        return Process::isTtySupported() && stream_isatty(STDIN);
     }
 }
