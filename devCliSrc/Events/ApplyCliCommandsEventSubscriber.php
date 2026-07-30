@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Cli\Events;
 
+use Cli\Commands\CaptureMapImage\CaptureMapImageCommand;
 use Cli\Commands\Docker\Build\BuildCommand;
 use Cli\Commands\Docker\Container\ContainerApiCommand;
 use Cli\Commands\Docker\Container\ContainerApiQueueConsumerCommand;
@@ -60,5 +61,8 @@ readonly class ApplyCliCommandsEventSubscriber
 
         // Sync from production
         SyncFromProdCommand::applyCommand($commands);
+
+        // Home page map image
+        CaptureMapImageCommand::applyCommand($commands);
     }
 }
