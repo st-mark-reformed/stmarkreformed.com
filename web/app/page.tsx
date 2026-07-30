@@ -3,13 +3,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Layout from './layout/Layout';
 import ImageContentCta, {
-    ImageContentCtaBackgroundColor,
-    ImageContentDisposition,
+    // ImageContentCtaBackgroundColor,
+    // ImageContentDisposition,
 } from './PageComponents/ImageContentCta';
 import UpcomingEvents from './PageComponents/UpcomingEvents/UpcomingEvents';
 import LatestGalleries from './PageComponents/LatestGalleries';
 import LatestSermon from './PageComponents/LatestSermon';
 import LatestNews from './PageComponents/LatestNews';
+import { InformationCircleIcon } from '@heroicons/react/24/solid';
 
 export const dynamic = 'force-dynamic';
 
@@ -28,7 +29,7 @@ export default async function Page () {
                 }
             }
         >
-            {/* <div className="bg-crimson-lightened-4 text-center border-b-4 border-t-4 border-crimson-dark">
+            {/*<div className="bg-crimson-lightened-4 text-center border-b-8 border-t-8 border-crimson-dark">
                 <div className="mx-auto max-w-5xl px-6 py-20">
                     <div className="shrink-0 inline-block mx-auto">
                         <InformationCircleIcon aria-hidden="true" className="size-8 text-crimson-dark" />
@@ -37,7 +38,22 @@ export default async function Page () {
                         Services canceled for 1/25/2026 due to inclement weather and dangerous road conditions
                     </h2>
                 </div>
-            </div> */}
+            </div>*/}
+            <div className="bg-amber-50 text-center text-xl md:text-2xl border-t-8 border-teal-600">
+                <div className="mx-auto max-w-5xl px-6 py-14">
+                    <div className="shrink-0 inline-block mx-auto">
+                        <InformationCircleIcon aria-hidden="true" className="size-8 text-teal-600" />
+                    </div>
+                    <h2 className="text-balance text-2xl md:text-4xl text-saddle-brown font-bold">
+                        Sunday Meeting Location Update!
+                    </h2>
+                    <p className="text-balance text-black mt-4">
+                        Beginning 9/6/26, we will be meeting in <span className="font-semibold">Miller Hall</span> at<br />
+                        <span className="font-semibold">Franklin Classical School</span> in Cool Springs<br />
+                    </p>
+                    <p className="mt-4 underline text-teal-600 hover:text-teal-500"><a href="https://maps.app.goo.gl/1aDHpuC64cbRCA5R7">1021 Windcross Ct, Franklin, TN 37067</a></p>
+                </div>
+            </div>
             {/* TODO: componentize this */}
             <div className="relative bg-gray-50 pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8 border-t-8 border-goldenrod">
                 <div className="absolute inset-0">
