@@ -14,7 +14,15 @@ import { InformationCircleIcon } from '@heroicons/react/24/solid';
 
 export const dynamic = 'force-dynamic';
 
+const NEW_MEETING_LOCATION_START_DATE = new Date('2026-08-31T01:00:00-05:00');
+
+function isMeetingAtNewLocation (): boolean {
+    return new Date() >= NEW_MEETING_LOCATION_START_DATE;
+}
+
 export default async function Page () {
+    const atNewLocation = isMeetingAtNewLocation();
+
     return (
         <Layout
             hero={
@@ -88,16 +96,30 @@ export default async function Page () {
             {/* End TODO */}
             <div className="h-2 bg-goldenrod" />
             <ImageContentCta
-                image="/images/home/bfp-map-image.png"
+                image={atNewLocation ? '/images/home/fcs-map-image.png' : '/images/home/bfp-map-image.png'}
                 preHeading="Join us for Covenant Renewal Worship"
                 heading="Sundays at 11:00 am"
                 content={(
                     <>
-                        <p>
-                            Brentwood First Presbyterian&nbsp;Church<br />
-                            1301&nbsp;Franklin&nbsp;Rd.<br />
-                            Brentwood,&nbsp;TN&nbsp;37027<br />
-                        </p>
+                        {(() => {
+                            if (atNewLocation) {
+                                return (
+                                    <p>
+                                        Franklin Classical School, Miller&nbsp;Hall<br />
+                                        1021&nbsp;Windcross&nbsp;Ct.<br />
+                                        Franklin,&nbsp;TN&nbsp;37067<br />
+                                    </p>
+                                );
+                            }
+
+                            return (
+                                <p>
+                                    Brentwood First Presbyterian&nbsp;Church<br />
+                                    1301&nbsp;Franklin&nbsp;Rd.<br />
+                                    Brentwood,&nbsp;TN&nbsp;37027<br />
+                                </p>
+                            );
+                        })()}
                         <p>We also normally have Sunday School at 10:00 AM. See our <Link href="/calendar">calendar</Link> for an up-to-date&nbsp;schedule.</p>
                         <p>You can also call for more info at (615)&nbsp;438-3109</p>
                         <p>Please note if you need to send something to us, our mailing address is different from our meeting address. For mailing purposes only, please use the&nbsp;following:</p>
@@ -110,7 +132,9 @@ export default async function Page () {
                 )}
                 cta={{
                     linkText: 'Get Directions on Google Maps',
-                    linkData: 'https://maps.app.goo.gl/y44VamLxKE1EgLyn6',
+                    linkData: atNewLocation
+                        ? 'https://maps.app.goo.gl/1aDHpuC64cbRCA5R7'
+                        : 'https://maps.app.goo.gl/y44VamLxKE1EgLyn6',
                     newWindow: true,
                 }}
             />
