@@ -7,7 +7,7 @@ import ImageContentCta, {
     // ImageContentDisposition,
 } from './PageComponents/ImageContentCta';
 import UpcomingEvents from './PageComponents/UpcomingEvents/UpcomingEvents';
-import LatestGalleries from './PageComponents/LatestGalleries';
+// import LatestGalleries from './PageComponents/LatestGalleries';
 import LatestSermon from './PageComponents/LatestSermon';
 import LatestNews from './PageComponents/LatestNews';
 import { InformationCircleIcon } from '@heroicons/react/24/solid';
@@ -140,10 +140,10 @@ export default async function Page () {
             />
             <div className="h-2 bg-bronze" />
             <UpcomingEvents />
-            <LatestGalleries
+            {/*<LatestGalleries
                 heading="A picture is worth a thousand words"
                 subHeading="Take a look at the life of St. Mark through a few of our smiling faces and latest events"
-            />
+            />*/}
             <LatestSermon />
             <LatestNews />
         </Layout>

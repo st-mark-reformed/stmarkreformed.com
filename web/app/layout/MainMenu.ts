@@ -60,11 +60,11 @@ export const MainMenu: MenuItems = [
                 link: '/media/messages',
                 children: [],
             },
-            {
+            /*{
                 name: 'Galleries',
                 link: '/media/galleries',
                 children: [],
-            },
+            },*/
             {
                 name: 'Resources',
                 link: '/resources',

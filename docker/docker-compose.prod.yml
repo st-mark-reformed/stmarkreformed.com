@@ -72,7 +72,7 @@ services:
     volumes:
       - /root/certbot/var/www/letsencrypt:/var/www/letsencrypt
       - files-above-webroot-volume:/app/filesAboveWebroot
-      - web-public-images-galleries-volume:/app/public/images/galleries
+#      - web-public-images-galleries-volume:/app/public/images/galleries
       - uploads-volume:/app/public/uploads
       - files-volume:/app/public/files
     networks:
