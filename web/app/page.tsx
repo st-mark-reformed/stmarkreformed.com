@@ -56,7 +56,7 @@ export default async function Page () {
                         Sunday Meeting Location Update!
                     </h2>
                     <p className="text-balance text-black mt-4">
-                        Beginning 9/6/26, we will be meeting in <span className="font-semibold">Miller Hall</span> at<br />
+                        We are now meeting in <span className="font-semibold">Miller Hall</span> at<br />
                         <span className="font-semibold">Franklin Classical School</span> in Cool Springs<br />
                     </p>
                     <p className="mt-4 underline text-teal-600 hover:text-teal-500"><a href="https://maps.app.goo.gl/1aDHpuC64cbRCA5R7">1021 Windcross Ct, Franklin, TN 37067</a></p>
