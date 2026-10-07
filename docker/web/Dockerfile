@@ -1,4 +1,4 @@
-FROM node:22 AS base
+FROM node:22-slim AS base
 ENV NODE_ENV=production
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
@@ -29,22 +29,15 @@ RUN pnpm build
 ####################
 FROM base AS runner
 
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends curl \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/app ./app
-COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/.eslintrc ./.eslintrc
-COPY --from=builder /app/app.d.ts ./app.d.ts
-COPY --from=builder /app/middleware.ts ./middleware.ts
-COPY --from=builder /app/next.config.js ./next.config.js
-COPY --from=builder /app/next-env.d.ts ./next-env.d.ts
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/pnpm-lock.yaml ./pnpm-lock.yaml
-COPY --from=builder /app/tsconfig.json ./tsconfig.json
-
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
 
 EXPOSE 80
 
@@ -61,4 +54,6 @@ COPY ./docker/.profile /root/.bashrc
 
 HEALTHCHECK --interval=5s --timeout=5s --start-period=10s --retries=10 CMD curl --fail http://localhost/healthcheck/659f0fa1b69e5 || exit 1
 
-CMD ["npm", "run", "start"]
+# The standalone server listens on $HOSTNAME, and the compose files set that to
+# the container name, so force it to listen on all interfaces.
+CMD ["env", "HOSTNAME=0.0.0.0", "node", "server.js"]

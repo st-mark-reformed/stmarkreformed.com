@@ -26,6 +26,7 @@ module.exports = {
     eslint: {
         ignoreDuringBuilds: true,
     },
+    output: 'standalone',
     poweredByHeader: false,
     reactStrictMode: true,
     async redirects () {

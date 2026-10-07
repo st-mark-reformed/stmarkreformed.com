@@ -10,12 +10,75 @@ env:
   IMAGE_NAMESPACE: ghcr.io/st-mark-reformed
 
 jobs:
+  changes:
+    name: Detect changed images
+    runs-on: ubuntu-latest
+    outputs:
+      api: ${{ steps.filter.outputs.api }}
+      auth: ${{ steps.filter.outputs.auth }}
+      db: ${{ steps.filter.outputs.db }}
+      utility: ${{ steps.filter.outputs.utility }}
+      web: ${{ steps.filter.outputs.web }}
+      queueConsumer: ${{ steps.filter.outputs.queueConsumer }}
+      scheduleRunner: ${{ steps.filter.outputs.scheduleRunner }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github
+      - name: Filter paths
+        id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            shared: &shared
+              - .dockerignore
+              - docker/.profile
+              - .github/**
+            api:
+              - *shared
+              - api/**
+              - docker/api/**
+            auth:
+              - *shared
+              - auth/**
+              - docker/auth/**
+            db:
+              - *shared
+              - docker/db/**
+            utility:
+              - *shared
+              - docker/utility/**
+            web:
+              - *shared
+              - web/**
+              - docker/web/**
+            # The queue consumer and schedule runner are built on top of the
+            # api image, so they rebuild whenever the api does
+            queueConsumer:
+              - *shared
+              - api/**
+              - docker/api/**
+              - docker/api-queue-consumer/**
+            scheduleRunner:
+              - *shared
+              - api/**
+              - docker/api/**
+              - docker/api-schedule-runner/**
+
   build-api:
     name: Build api image
+    needs: changes
+    if: github.event_name == 'workflow_dispatch' || needs.changes.outputs.api == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            api
+            docker
+            .github
       - name: Build and push
         uses: ./.github/actions/docker-build-push
         with:
@@ -32,11 +95,17 @@ jobs:
 
   build-auth:
     name: Build auth image
+    needs: changes
+    if: github.event_name == 'workflow_dispatch' || needs.changes.outputs.auth == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
+        with:
+          sparse-checkout: |
+            auth
+            docker
+            .github
       - name: Build and push
         uses: ./.github/actions/docker-build-push
         with:
@@ -53,10 +122,16 @@ jobs:
 
   build-db:
     name: Build db image
+    needs: changes
+    if: github.event_name == 'workflow_dispatch' || needs.changes.outputs.db == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            docker
+            .github
       - name: Build and push
         uses: ./.github/actions/docker-build-push
         with:
@@ -73,10 +148,16 @@ jobs:
 
   build-utility:
     name: Build utility image
+    needs: changes
+    if: github.event_name == 'workflow_dispatch' || needs.changes.outputs.utility == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            docker
+            .github
       - name: Build and push
         uses: ./.github/actions/docker-build-push
         with:
@@ -93,10 +174,17 @@ jobs:
 
   build-web:
     name: Build web image
+    needs: changes
+    if: github.event_name == 'workflow_dispatch' || needs.changes.outputs.web == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            web
+            docker
+            .github
       - name: Build and push
         uses: ./.github/actions/docker-build-push
         with:
@@ -113,12 +201,18 @@ jobs:
 
   build-api-dependent-queue-consumer:
     name: Build api-queue-consumer image
+    needs:
+      - changes
+      - build-api
+    if: ${{ !cancelled() && needs.build-api.result != 'failure' && (github.event_name == 'workflow_dispatch' || needs.changes.outputs.queueConsumer == 'true') }}
     runs-on: ubuntu-latest
-    needs: build-api
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
+        with:
+          sparse-checkout: |
+            docker
+            .github
       - name: Build and push
         uses: ./.github/actions/docker-build-push
         with:
@@ -127,19 +221,25 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           file: docker/api-queue-consumer/Dockerfile
           build-args: |
-            API_IMAGE=${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-api:${{ github.sha }}
+            API_IMAGE=${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-api:${{ needs.build-api.result == 'success' && github.sha || 'latest' }}
           tags: |
             ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-api-queue-consumer
             ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-api-queue-consumer:${{ github.sha }}
 
   build-api-dependent-schedule-runner:
     name: Build api-schedule-runner image
+    needs:
+      - changes
+      - build-api
+    if: ${{ !cancelled() && needs.build-api.result != 'failure' && (github.event_name == 'workflow_dispatch' || needs.changes.outputs.scheduleRunner == 'true') }}
     runs-on: ubuntu-latest
-    needs: build-api
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
+        with:
+          sparse-checkout: |
+            docker
+            .github
       - name: Build and push
         uses: ./.github/actions/docker-build-push
         with:
@@ -148,7 +248,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           file: docker/api-schedule-runner/Dockerfile
           build-args: |
-            API_IMAGE=${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-api:${{ github.sha }}
+            API_IMAGE=${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-api:${{ needs.build-api.result == 'success' && github.sha || 'latest' }}
           tags: |
             ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-api-schedule-runner
             ${{ env.IMAGE_NAMESPACE }}/stmarkreformed.com-api-schedule-runner:${{ github.sha }}
@@ -156,7 +256,11 @@ jobs:
   deploy:
     name: Deploy to production
     runs-on: Ivy
+    # Images without changes skip their build and keep their current image, so
+    # deploy whenever nothing failed rather than requiring every build to run.
+    if: ${{ !cancelled() && !contains(needs.*.result, 'failure') }}
     needs:
+      - changes
       - build-api
       - build-auth
       - build-db
@@ -167,6 +271,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            docker
+            .github
       - name: Copy files to prod server
         uses: appleboy/scp-action@master
         with:

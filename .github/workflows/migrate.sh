@@ -12,6 +12,8 @@ IMAGE="ghcr.io/st-mark-reformed/stmarkreformed.com-${SERVICE}"
 NETWORK="smrc_default"
 TIMEOUT_SECONDS=600
 SLEEP_SECONDS=2
+MAX_ATTEMPTS=5
+RETRY_DELAY_SECONDS=10
 
 ENV_FILES=(
     "/root/stmarkreformed.com/docker/${SERVICE}/.env"
@@ -45,23 +47,34 @@ docker_args+=(
     bash -c "$COMMAND"
 )
 
-docker "${docker_args[@]}"
+# docker stack deploy returns before services finish restarting, so Redis or
+# the database can briefly refuse connections while the migration boots. Retry
+# a few times before treating the migration as failed.
+run_migration() {
+    docker "${docker_args[@]}" || return 1
 
-start_time=$(date +%s)
+    local start_time
+    start_time=$(date +%s)
 
-while true; do
-    now=$(date +%s)
-    elapsed=$((now - start_time))
+    while true; do
+        local now elapsed task_id state message
+        now=$(date +%s)
+        elapsed=$((now - start_time))
 
-    if [ "$elapsed" -ge "$TIMEOUT_SECONDS" ]; then
-        echo "Timed out after ${TIMEOUT_SECONDS}s waiting for migration service."
-        docker service logs "$SERVICE_NAME" || true
-        exit 1
-    fi
+        if [ "$elapsed" -ge "$TIMEOUT_SECONDS" ]; then
+            echo "Timed out after ${TIMEOUT_SECONDS}s waiting for migration service."
+            docker service logs "$SERVICE_NAME" || true
+            exit 1
+        fi
 
-    task_id="$(docker service ps --quiet "$SERVICE_NAME" | head -n 1 || true)"
+        task_id="$(docker service ps --quiet "$SERVICE_NAME" | head -n 1 || true)"
 
-    if [ -n "$task_id" ]; then
+        if [ -z "$task_id" ]; then
+            echo "Waiting for task to start..."
+            sleep "$SLEEP_SECONDS"
+            continue
+        fi
+
         state="$(docker inspect "$task_id" --format '{{.Status.State}}' 2>/dev/null || true)"
         message="$(docker inspect "$task_id" --format '{{.Status.Err}}' 2>/dev/null || true)"
 
@@ -69,18 +82,33 @@ while true; do
 
         case "$state" in
             complete)
-                echo "Migration completed successfully."
-                exit 0
+                return 0
                 ;;
             failed|rejected|shutdown)
-                echo "Migration did not complete successfully."
                 docker service logs "$SERVICE_NAME" || true
-                exit 1
+                return 1
                 ;;
         esac
-    else
-        echo "Waiting for task to start..."
+
+        sleep "$SLEEP_SECONDS"
+    done
+}
+
+attempt=1
+
+while true; do
+    if run_migration; then
+        echo "Migration completed successfully."
+        exit 0
     fi
 
-    sleep "$SLEEP_SECONDS"
+    if [ "$attempt" -ge "$MAX_ATTEMPTS" ]; then
+        echo "Migration did not complete successfully after ${MAX_ATTEMPTS} attempts."
+        exit 1
+    fi
+
+    echo "Migration attempt ${attempt} of ${MAX_ATTEMPTS} failed. Retrying in ${RETRY_DELAY_SECONDS}s..."
+    cleanup
+    attempt=$((attempt + 1))
+    sleep "$RETRY_DELAY_SECONDS"
 done
