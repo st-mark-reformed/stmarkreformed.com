@@ -6,6 +6,7 @@ namespace App\Url;
 
 use Stringable;
 
+use function array_combine;
 use function array_keys;
 use function array_map;
 use function count;
@@ -14,20 +15,24 @@ use function implode;
 
 readonly class Url implements Stringable
 {
+    /** @var array<string, string> */
+    private array $query;
+
     /** @param array<string, string> $query */
     public function __construct(
         private string $url,
         private string $uri,
-        private array $query,
+        array $query,
     ) {
-        array_map(
-            static fn (string $key) => $key,
-            array_keys($query),
-        );
-
-        array_map(
-            static fn (string $val) => $val,
-            $query,
+        $this->query = array_combine(
+            array_map(
+                static fn (string $key) => $key,
+                array_keys($query),
+            ),
+            array_map(
+                static fn (string $val) => $val,
+                $query,
+            ),
         );
     }
 

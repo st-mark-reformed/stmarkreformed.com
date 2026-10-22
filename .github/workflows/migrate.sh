@@ -20,13 +20,15 @@ ENV_FILES=(
     "/root/stmarkreformed.com/docker/${SERVICE}/.env.local"
 )
 
-COMMAND='php cli migrate:up'
-
 cleanup() {
     docker service rm "$SERVICE_NAME" >/dev/null 2>&1 || true
 }
 trap cleanup EXIT
 
+# php is the entrypoint so the image's s6 init doesn't run: it would start
+# nginx and php-fpm, and it runs the command without the container's
+# environment. An empty --entrypoint doesn't help, since docker service create
+# treats it as unset.
 docker_args=(
     service create
     --detach
@@ -35,7 +37,7 @@ docker_args=(
     --with-registry-auth
     --restart-condition none
     --constraint 'node.role == manager'
-    --entrypoint ""
+    --entrypoint php
 )
 
 for env_file in "${ENV_FILES[@]}"; do
@@ -44,7 +46,7 @@ done
 
 docker_args+=(
     "$IMAGE"
-    bash -c "$COMMAND"
+    cli migrate:up
 )
 
 # docker stack deploy returns before services finish restarting, so Redis or

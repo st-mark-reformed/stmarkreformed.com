@@ -18,6 +18,9 @@ class ClientEntity implements ClientEntityInterface
     use EntityTrait;
     use ClientTrait;
 
+    /** @var string[] */
+    protected array $supportedGrantTypes;
+
     /**
      * @param non-empty-string $identifier
      * @param string|string[]  $redirectUri
@@ -28,7 +31,7 @@ class ClientEntity implements ClientEntityInterface
         string $name,
         string|array $redirectUri,
         bool $isConfidential,
-        protected array $supportedGrantTypes,
+        array $supportedGrantTypes,
         protected string $clientSecret,
         protected DateInterval $accessTokenExpiration,
     ) {
@@ -38,16 +41,16 @@ class ClientEntity implements ClientEntityInterface
 
         $this->redirectUri = $redirectUri;
 
-        $this->isConfidential = $isConfidential;
-
         if (is_array($redirectUri)) {
-            array_map(
+            $this->redirectUri = array_map(
                 static fn (string $uri) => $uri,
                 $redirectUri,
             );
         }
 
-        array_map(
+        $this->isConfidential = $isConfidential;
+
+        $this->supportedGrantTypes = array_map(
             static fn (string $grant) => $grant,
             $supportedGrantTypes,
         );

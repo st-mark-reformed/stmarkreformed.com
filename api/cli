@@ -5,15 +5,20 @@ declare(strict_types=1);
 
 use Config\BootCliConfigFactory;
 use Config\BootConfigFactory;
+use Config\LaggingPackageDeprecationFilter;
 use Config\Paths;
 use RxAnte\AppBootstrap\Boot;
 
 require __DIR__ . '/vendor/autoload.php';
 
-new Boot()
-    ->start(config: new BootConfigFactory()->create(true))
+$bootContainer = new Boot()
+    ->start(config: new BootConfigFactory()->create(true));
+
+new LaggingPackageDeprecationFilter()->register();
+
+$bootContainer
     ->buildContainer(register: Paths::DEPENDENCIES)
     ->registerEventSubscribers(register: Paths::EVENTS)
     ->buildCliApplication(new BootCliConfigFactory()->create())
     ->applyCommands()
-    ->runApplication();
+    ->runApplication(exitWithStatusCode: true);

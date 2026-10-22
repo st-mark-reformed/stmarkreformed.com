@@ -8,13 +8,19 @@ use function array_map;
 
 readonly class Result
 {
+    /** @var string[] */
+    public array $errors;
+
     /** @param string[] $errors */
     public function __construct(
         public bool $success,
         public string $message,
-        public array $errors,
+        array $errors,
     ) {
-        array_map(static fn (string $error) => $error, $errors);
+        $this->errors = array_map(
+            static fn (string $error) => $error,
+            $errors,
+        );
     }
 
     /** @return array<scalar | array<scalar>> */

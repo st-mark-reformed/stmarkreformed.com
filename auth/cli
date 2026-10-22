@@ -15,4 +15,4 @@ new Boot()
     ->registerEventSubscribers(register: ConfigPath::EVENTS)
     ->buildCliApplication()
     ->applyCommands()
-    ->runApplication();
+    ->runApplication(exitWithStatusCode: true);

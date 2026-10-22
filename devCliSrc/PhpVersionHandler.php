@@ -49,7 +49,7 @@ readonly class PhpVersionHandler
 
         $this->output->writeln('');
 
-        $this->output->writeln('<fg=cyan>    brew unlink php@8.2 && brew link --force --overwrite shivammathur/php/php@8.4</>');
+        $this->output->writeln('<fg=cyan>    brew unlink php@8.4 && brew link --force --overwrite shivammathur/php/php@8.5</>');
 
         $this->output->writeln('');
 

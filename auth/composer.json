@@ -3,7 +3,7 @@
     "version": "dev-stmarkreformed_auth",
     "license": "proprietary",
     "require": {
-        "php": "^8.4",
+        "php": "^8.5",
         "ext-pdo": "*",
         "ext-redis": "*",
         "ext-sodium": "*",
@@ -16,7 +16,7 @@
         "psr/log": "^3.0",
         "robmorgan/phinx": "^0.16.11",
         "rxante/oauth": "^1.6",
-        "rxante/php-app-bootstrap": "^1.0",
+        "rxante/php-app-bootstrap": "^1.4",
         "slim/csrf": "^1.5",
         "slim/flash": "^0.4.0",
         "symfony/cache": "^7.0"
@@ -24,7 +24,7 @@
     "require-dev": {
         "buzzingpixel/symfony-var-dumper-decorator": "^1.0",
         "filp/whoops": "^2.18.0",
-        "rxante/coding-standards": "^2.0",
+        "rxante/coding-standards": "^3",
         "symfony/var-dumper": "^6.4.18"
     },
     "autoload": {

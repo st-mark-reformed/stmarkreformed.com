@@ -26,12 +26,15 @@ readonly class ContactFormRecipients
         )));
     }
 
+    /** @var Address[] */
+    public array $recipients;
+
     /** @param Address[] $recipients */
-    public function __construct(public array $recipients)
+    public function __construct(array $recipients)
     {
-        array_map(
+        $this->recipients = array_map(
             static fn (Address $a) => $a,
-            $this->recipients,
+            $recipients,
         );
     }
 }

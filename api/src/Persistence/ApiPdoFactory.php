@@ -9,6 +9,7 @@ use PDO;
 use RxAnte\AppBootstrap\RuntimeConfig;
 
 use function implode;
+use function ini_set;
 
 readonly class ApiPdoFactory
 {
@@ -18,6 +19,11 @@ readonly class ApiPdoFactory
 
     public function create(): ApiPdo
     {
+        // Bound how long a read waits on MySQL (PHP's default is a day), so a
+        // stuck query can't hang a request, a queue job, or a scheduled run.
+        // mysqlnd reads this when it connects, so it has to be set first.
+        ini_set('mysqlnd.net_read_timeout', '60');
+
         return new ApiPdo(
             implode(';', [
                 'mysql:host=' . $this->config->getString(

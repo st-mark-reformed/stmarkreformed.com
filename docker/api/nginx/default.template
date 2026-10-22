@@ -1,17 +1,17 @@
 server {
     server_name _;
+
     listen 80 default_server;
+    listen [::]:80 default_server;
 
     port_in_redirect on;
     absolute_redirect on;
 
-    # Let certbot work
-    location ~ \.well-known\/.+ {
+    # certbot's HTTP-01 challenges, from the webroot mounted in
+    # docker-compose.prod.yml
+    location ^~ /.well-known/acme-challenge/ {
         root /var/www/letsencrypt;
         try_files $uri =404;
-        satisfy any;
-        allow all;
-        break;
     }
 
     root /var/www/public;
@@ -30,24 +30,7 @@ server {
         rewrite ^/(.*)/$ /$1 permanent;
     }
 
-    # Allow large file uploads
-    client_max_body_size 500m;
-
-    # Enable Gzip
-    gzip on;
-    gzip_vary on;
-    gzip_proxied any;
-    gzip_types text/plain text/css application/json application/javascript application/x-javascript text/xml application/xml application/xml+rss text/javascript image/svg+xml;
-
     location / {
-        # We don't need the rest of these rules if the file or directory exists
-        if (-f $request_filename) {
-            break;
-        }
-        if (-d $request_filename) {
-            break;
-        }
-
         # Remove index.php from URL
         rewrite ^(/index\.php)(.*) $2 permanent;
 
@@ -60,8 +43,8 @@ server {
 
     error_page 404 /index.php;
 
-    access_log /var/log/nginx/access.log main;
-    error_log  /var/log/nginx/error.log warn;
+    access_log ${NGINX_ACCESS_LOG} main;
+    error_log  ${NGINX_ERROR_LOG} warn;
 
     location ~ \.php$ {
         try_files $uri =404;
