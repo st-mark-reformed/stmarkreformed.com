@@ -66,6 +66,9 @@ use App\Profiles\Admin\PostDeleteProfilesAction;
 use App\Queue\GetAdminQueueAction;
 use App\Queue\GetAdminQueueFailedAction;
 use App\Queue\GetAdminQueueStatusAction;
+use App\Queue\PostClearAllFailedQueueItemsAction;
+use App\Queue\PostClearFailedQueueItemAction;
+use App\Queue\PostRetryAllFailedQueueItemsAction;
 use App\Queue\PostRetryFailedQueueItemAction;
 use App\Resources\Admin\EditResourceItem\GetEditResourceItem\GetEditResourceItemAction;
 use App\Resources\Admin\EditResourceItem\PostEditResourceItem\PostEditResourceItemAction;
@@ -131,6 +134,9 @@ readonly class ApplyRoutes
         GetAdminQueueAction::applyRoute(routes: $routes);
         GetAdminQueueFailedAction::applyRoute(routes: $routes);
         PostRetryFailedQueueItemAction::applyRoute(routes: $routes);
+        PostRetryAllFailedQueueItemsAction::applyRoute(routes: $routes);
+        PostClearFailedQueueItemAction::applyRoute(routes: $routes);
+        PostClearAllFailedQueueItemsAction::applyRoute(routes: $routes);
         GetAdminQueueStatusAction::applyRoute(routes: $routes);
         GetMessagesSearchAction::applyRoute(routes: $routes);
 
