@@ -20,7 +20,7 @@ export default async function QueuePage () {
             >
                 Queue <span className="text-sm font-normal">(refreshes every 5 seconds)</span>
             </PageTitle>
-            <div className="p-4 bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+            <div className="p-4 bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden dark:bg-gray-900 dark:border-white/10 dark:shadow-none">
                 <div className="flow-root">
                     <div className="-mx-4 -my-2 overflow-x-auto">
                         <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
