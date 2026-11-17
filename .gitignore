@@ -27,3 +27,6 @@ Homestead.yaml
 *.vagrant
 
 !.gitkeep
+
+# Machine-specific Docker overrides (e.g. Ivy dev hostnames)
+/docker/docker-compose.local.yml

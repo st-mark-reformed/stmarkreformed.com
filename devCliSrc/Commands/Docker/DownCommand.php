@@ -23,6 +23,7 @@ readonly class DownCommand
         private StreamCommand $streamCommand,
         private ConsoleOutputInterface $output,
         private EnsureDevEnvFiles $ensureDevEnvFiles,
+        private ComposeCommandBuilder $composeCommandBuilder,
     ) {
     }
 
@@ -40,16 +41,7 @@ readonly class DownCommand
         );
 
         $this->streamCommand->stream(
-            [
-                'docker',
-                'compose',
-                '-f',
-                'docker/docker-compose.dev.yml',
-                '-p',
-                'stmark',
-                'down',
-                '--remove-orphans',
-            ],
+            $this->composeCommandBuilder->build('down', '--remove-orphans'),
             $this->cliSrcPath->projectRoot(),
         );
 

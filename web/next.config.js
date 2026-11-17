@@ -13,7 +13,7 @@ module.exports = {
             bodySizeLimit: '100mb',
         },
     },
-    allowedDevOrigins: ['*.localtest.me'],
+    allowedDevOrigins: ['*.localtest.me', '*.ivy.buzzingpixel.com'],
     devIndicators: false,
     env: {
         BUILD_YEAR: date.getFullYear().toString(),

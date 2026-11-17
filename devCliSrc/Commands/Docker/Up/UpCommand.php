@@ -7,6 +7,7 @@ namespace Cli\Commands\Docker\Up;
 use Cli\CliSrcPath;
 use Cli\Commands\Docker\Build\BuildCommand;
 use Cli\Commands\Docker\Build\BuildIfNeeded;
+use Cli\Commands\Docker\ComposeCommandBuilder;
 use Cli\Shared\EnsureDevEnvFiles;
 use Cli\StreamCommand;
 use RxAnte\AppBootstrap\Cli\ApplyCliCommandsEvent;
@@ -44,6 +45,7 @@ readonly class UpCommand
         private ConsoleOutputInterface $output,
         private UpPreUpProvision $upPreUpProvision,
         private EnsureDevEnvFiles $ensureDevEnvFiles,
+        private ComposeCommandBuilder $composeCommandBuilder,
     ) {
     }
 
@@ -77,16 +79,7 @@ readonly class UpCommand
             '<fg=cyan>Bringing the Docker environment online…</>',
         );
 
-        $cmd = [
-            'docker',
-            'compose',
-            '-f',
-            'docker/docker-compose.dev.yml',
-            '-p',
-            'stmark',
-            'up',
-            '--remove-orphans',
-        ];
+        $cmd = $this->composeCommandBuilder->build('up', '--remove-orphans');
 
         if ($config->inPlace) {
             $this->streamCommand->stream(
