@@ -80,7 +80,7 @@ readonly class FilesSync
             'rsync',
             '-avh',
             '--delete',
-            rtrim($backup->sshSourceFor($mapping->sourceSubPath), '/') . '/',
+            rtrim($backup->sourceFor($mapping->sourceSubPath), '/') . '/',
             rtrim($localDest, '/') . '/',
         ]);
 

@@ -29,15 +29,22 @@ readonly class DatabaseSync
         private CliSrcPath $cliSrcPath,
         private StreamCommand $streamCommand,
         private ConsoleOutputInterface $output,
+        private DatabaseUserProvisioner $databaseUserProvisioner,
     ) {
         $this->mappings = [
             new DatabaseDumpMapping(
                 sourceFile: 'smrc_api.sql',
                 targetDatabase: 'smrc_api',
+                appContainer: 'stmark-api',
+                userEnvVar: 'SMRC_API_DB_USER',
+                passwordEnvVar: 'SMRC_API_DB_PASSWORD',
             ),
             new DatabaseDumpMapping(
                 sourceFile: 'smrc_auth.sql',
                 targetDatabase: 'smrc_auth',
+                appContainer: 'stmark-auth',
+                userEnvVar: 'SMRC_AUTH_DB_USER',
+                passwordEnvVar: 'SMRC_AUTH_DB_PASSWORD',
             ),
         ];
     }
@@ -83,7 +90,7 @@ readonly class DatabaseSync
 
         $this->streamCommand->stream([
             'scp',
-            $backup->sshSourceFor($mapping->sourceFile),
+            $backup->sourceFor($mapping->sourceFile),
             $localDumpPath,
         ]);
 
@@ -100,6 +107,13 @@ readonly class DatabaseSync
         );
 
         $this->resetDatabase($mapping->targetDatabase);
+
+        $this->databaseUserProvisioner->ensureUser(
+            mapping: $mapping,
+            dbContainer: self::LOCAL_DB_CONTAINER,
+            rootUser: self::DB_ROOT_USER,
+            rootPassword: self::DB_ROOT_PASSWORD,
+        );
 
         $this->importDump(
             mapping: $mapping,
