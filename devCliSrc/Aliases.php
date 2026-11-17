@@ -13,11 +13,13 @@ use function array_map;
 use function array_slice;
 use function array_splice;
 use function array_values;
+use function assert;
 use function call_user_func_array;
 use function count;
 use function explode;
 use function implode;
 use function is_callable;
+use function is_string;
 
 readonly class Aliases
 {
@@ -52,10 +54,10 @@ readonly class Aliases
                 [$event],
             );
 
-            $expression = explode(
-                ' ',
-                $event->expression->expression,
-            )[0];
+            $fullExpression = $event->expression->expression;
+            assert(is_string($fullExpression));
+
+            $expression = explode(' ', $fullExpression)[0];
 
             return new Alias($expression);
         } catch (Throwable) {
@@ -76,6 +78,7 @@ readonly class Aliases
 
     private function mapItem(Alias $alias): bool
     {
+        /** @var list<string> $args */
         $args = $_SERVER['argv'];
 
         $relevantArgs = array_slice(

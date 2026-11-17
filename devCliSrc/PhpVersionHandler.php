@@ -73,8 +73,9 @@ readonly class PhpVersionHandler
 
     private function getAppPhpVersion(): VersionParser
     {
+        /** @var array{require: array{php: string}} $composerJson */
         $composerJson = json_decode(
-            file_get_contents(__DIR__ . '/composer.json'),
+            (string) file_get_contents(__DIR__ . '/composer.json'),
             true,
         );
 
