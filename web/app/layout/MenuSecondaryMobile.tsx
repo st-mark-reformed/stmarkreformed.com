@@ -6,7 +6,7 @@ export default function MenuSecondaryMobile () {
     return (
         <>
             <div className="mt-6 px-5">
-                <p className="text-center text-base font-medium text-gray-500">
+                <div className="text-center text-base font-medium text-gray-500">
                     {SecondaryMenu.map((menuItem) => {
                         const classes = ['inline-block mt-4 text-gray-50 py-2 px-4 rounded-md'];
 
@@ -27,7 +27,7 @@ export default function MenuSecondaryMobile () {
                             </div>
                         );
                     })}
-                </p>
+                </div>
             </div>
         </>
     );
