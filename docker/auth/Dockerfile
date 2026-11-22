@@ -10,7 +10,7 @@ COPY ./auth /var/www
 
 RUN pnpm install && npx @tailwindcss/cli -i ./assets/style.css -o ./public/assets/style.css
 
-FROM rxantesystems/php-nginx:8.5.12-fpm-trixie-r1 AS application
+FROM rxantesystems/php-nginx:8.5.13-fpm-trixie-r1 AS application
 
 # No Datadog agent runs on this host. The DD_* switches cover the processes
 # that skip the image's init (migrations), since init is what applies
