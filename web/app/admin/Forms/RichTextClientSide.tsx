@@ -18,6 +18,7 @@ import {
 } from 'ckeditor5';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import 'ckeditor5/ckeditor5.css';
+import './RichTextClientSide.css';
 
 export default function RichTextClientSide (
     {
@@ -31,7 +32,7 @@ export default function RichTextClientSide (
     const [value, setValue] = useState(defaultValue);
 
     return (
-        <div className="prose max-w-none">
+        <div className="prose max-w-none dark:prose-invert">
             <input
                 type="hidden"
                 name={name}

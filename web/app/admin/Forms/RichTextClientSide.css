@@ -1,0 +1,84 @@
+/*
+ * CKEditor theme overrides. CKEditor renders its dropdowns and link balloon
+ * outside the editor (in a wrapper appended to <body>), so the variables are
+ * set on :root. They only affect CKEditor's own elements.
+ */
+
+:root {
+    --ck-content-font-family: 'Open Sans', sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Text */
+        --ck-color-text: #f3f4f6;
+        --ck-color-base-text: #f3f4f6;
+        --ck-content-font-color: #f3f4f6;
+        --ck-color-engine-placeholder-text: #99a1af;
+        --ck-color-link-default: #ee908f;
+
+        /* Surfaces and borders */
+        --ck-color-base-background: #1c2433;
+        --ck-color-base-foreground: #1e2939;
+        --ck-color-base-border: #364153;
+        --ck-color-toolbar-background: #1e2939;
+        --ck-color-toolbar-border: #364153;
+        --ck-color-panel-background: #1e2939;
+        --ck-color-panel-border: #364153;
+        --ck-color-dropdown-panel-background: #1e2939;
+        --ck-color-dropdown-panel-border: #364153;
+        --ck-color-dialog-background: #1e2939;
+        --ck-color-labeled-field-label-background: #1e2939;
+        --ck-color-shadow-drop: rgba(0, 0, 0, 0.4);
+        --ck-color-shadow-drop-active: rgba(0, 0, 0, 0.5);
+        --ck-color-shadow-inner: rgba(0, 0, 0, 0.3);
+
+        /* Buttons */
+        --ck-color-button-default-background: transparent;
+        --ck-color-button-default-hover-background: #364153;
+        --ck-color-button-default-active-background: #4a5565;
+        --ck-color-button-default-disabled-background: transparent;
+        --ck-color-button-on-background: #364153;
+        --ck-color-button-on-hover-background: #4a5565;
+        --ck-color-button-on-active-background: #4a5565;
+        --ck-color-button-on-disabled-background: #1e2939;
+        --ck-color-button-on-color: #fff;
+        --ck-color-split-button-hover-background: #364153;
+        --ck-color-split-button-hover-border: #4a5565;
+
+        /* Inputs (link URL field) */
+        --ck-color-input-background: #101828;
+        --ck-color-input-border: #4a5565;
+        --ck-color-input-text: #f3f4f6;
+        --ck-color-input-disabled-background: #1e2939;
+        --ck-color-input-disabled-border: #364153;
+        --ck-color-input-disabled-text: #99a1af;
+
+        /* Lists in dropdowns */
+        --ck-color-list-background: #1e2939;
+        --ck-color-list-button-hover-background: #364153;
+        --ck-color-list-button-on-background: #4a5565;
+        --ck-color-list-button-on-background-focus: #4a5565;
+        --ck-color-list-button-on-text: #fff;
+    }
+
+    /* The source view textarea has no CKEditor color of its own */
+    .ck-source-editing-area textarea {
+        background-color: var(--ck-color-base-background);
+        color: var(--ck-color-text);
+    }
+
+    /* CKEditor hard-codes a light gray horizontal rule */
+    .ck.ck-content hr {
+        background: #4a5565;
+    }
+
+    /* The site's crimson link color is too dark to read on the dark editor */
+    .ck.ck-content a:not(.not-prose) {
+        color: var(--color-lighter-red);
+    }
+
+    .ck.ck-content a:not(.not-prose):hover {
+        color: var(--color-lightest-red);
+    }
+}
