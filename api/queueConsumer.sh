@@ -3,6 +3,13 @@
 HEARTBEAT_FILE=/tmp/queue-consumer-heartbeat
 JOB_TIMEOUT="${QUEUE_JOB_TIMEOUT_SECONDS:-300}"
 
+# Redis may still be starting or loading its data when this container starts
+# (swarm ignores depends_on), so wait until it is ready before consuming
+until /usr/local/bin/php /var/www/cli queue:redis-ready-check > /dev/null 2>&1; do
+    echo "queue-consumer: waiting for Redis to be ready…"
+    sleep 1
+done
+
 echo "Entering Queue Consume loop… (job timeout ${JOB_TIMEOUT}s)";
 
 while true; do

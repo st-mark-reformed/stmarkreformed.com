@@ -21,6 +21,7 @@ use App\Persistence\Migrations\MigrateDownCommand;
 use App\Persistence\Migrations\MigrateStatusCommand;
 use App\Persistence\Migrations\MigrateUpCommand;
 use App\Profiles\ResaveAllProfilesCommand;
+use App\Queue\RedisReadyCheckCommand;
 use App\Resources\Generate\GenerateResourcesPagesForRedisCommand;
 use App\Transfer\HymnsOfTheMonth\ImportHymnsOfTheMonthFromCraftCommand;
 use App\Transfer\InternalMessages\ImportInternalMessagesFromCraftCommand;
@@ -91,6 +92,9 @@ readonly class ApplyCommands
 
         // Profiles
         ResaveAllProfilesCommand::register(commands: $commands);
+
+        // Queue
+        RedisReadyCheckCommand::register(commands: $commands);
 
         $commands->addSymfonyCommand(
             QueueConsumeNextSymfonyCommand::class,
