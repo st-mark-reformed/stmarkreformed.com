@@ -137,7 +137,7 @@ readonly class DatabaseSync
             'docker',
             'exec',
             self::LOCAL_DB_CONTAINER,
-            'mysql',
+            'mariadb',
             '-u' . self::DB_ROOT_USER,
             '-p' . self::DB_ROOT_PASSWORD,
             '-e',
@@ -149,12 +149,12 @@ readonly class DatabaseSync
         DatabaseDumpMapping $mapping,
         string $localDumpPath,
     ): void {
-        // Pipe the dump file into `docker exec -i mysql` via the shell
-        // so MySQL reads the script from stdin in the container.
+        // Pipe the dump file into `docker exec -i mariadb` via the shell
+        // so MariaDB reads the script from stdin in the container.
         $command = implode(' ', [
             'docker exec -i',
             self::LOCAL_DB_CONTAINER,
-            'mysql',
+            'mariadb',
             '-u' . self::DB_ROOT_USER,
             '-p' . self::DB_ROOT_PASSWORD,
             $mapping->targetDatabase,

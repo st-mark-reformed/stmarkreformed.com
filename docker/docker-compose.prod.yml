@@ -230,6 +230,7 @@ services:
     environment:
       HOSTNAME: stmark-db
       MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+      MARIADB_AUTO_UPGRADE: "1"
     volumes:
       - db-volume:/var/lib/mysql
     ports:
@@ -245,7 +246,7 @@ services:
 
   redis:
     logging: *default-logging
-    image: valkey/valkey:9
+    image: valkey/valkey:9.1.4
     command: valkey-server --appendonly yes --appendfsync everysec
     volumes:
       - redis-volume:/data
@@ -256,19 +257,20 @@ services:
 
   elasticsearch:
     logging: *default-logging
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.14.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:9.5.6
     environment:
       - cluster.name=es-docker-cluster
       - node.name=stmark-elasticsearch
       - cluster.initial_master_nodes=stmark-elasticsearch
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
     ulimits:
       memlock:
         soft: -1
         hard: -1
     volumes:
-      - elasticsearch-data-volume:/usr/share/elasticsearch/data
+      - elasticsearch-9-data-volume:/usr/share/elasticsearch/data
     networks:
       default:
         aliases:
@@ -281,7 +283,7 @@ networks:
 
 volumes:
   db-volume:
-  elasticsearch-data-volume:
+  elasticsearch-9-data-volume:
   files-volume:
   files-above-webroot-volume:
   redis-volume:

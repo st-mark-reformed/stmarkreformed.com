@@ -52,7 +52,7 @@ readonly class DatabaseUserProvisioner
             'docker',
             'exec',
             $dbContainer,
-            'mysql',
+            'mariadb',
             '-u' . $rootUser,
             '-p' . $rootPassword,
             '-e',

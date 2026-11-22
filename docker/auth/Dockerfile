@@ -1,4 +1,4 @@
-FROM node:22 AS frontend-builder
+FROM node:22.23.5-slim AS frontend-builder
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN npm install -g corepack@latest && corepack enable
