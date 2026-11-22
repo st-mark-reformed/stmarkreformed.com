@@ -27,7 +27,7 @@ export default function Profile (
                 loading="lazy"
             />
             <h3
-                className="text-lg font-semibold tracking-wider text-gray-900 mb-2"
+                className="text-lg font-semibold tracking-wider text-gray-900 mb-2 dark:text-stone-200"
                 dangerouslySetInnerHTML={{
                     __html: typography(name),
                 }}

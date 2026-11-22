@@ -30,7 +30,7 @@ export default function Page () {
                 <sup>3</sup> Romans 14:8, 10, 12, 14, 23; <em>Westminster Confession of Faith</em> XX.II.<br />
                 <br />
             </p>
-            <p className="text-right text-xs text-gray-500">Revised 06/27/21</p>
+            <p className="text-right text-xs text-gray-500 dark:text-stone-400">Revised 06/27/21</p>
             <div className="mt-8 text-left">
                 <div>
                     <div className="inline-flex rounded-md shadow">

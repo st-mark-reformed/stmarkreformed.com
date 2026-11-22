@@ -65,7 +65,7 @@ export default function Nav () {
                 show={mobileMenuIsActive}
             >
                 <div className="absolute top-0 inset-x-0 p-2 transition transform origin-top md:hidden z-50 select-none">
-                    <div className="rounded-lg shadow-md bg-white overflow-hidden">
+                    <div className="rounded-lg shadow-md bg-white overflow-hidden dark:bg-stone-800 dark:ring-1 dark:ring-white/10">
                         <div className="px-5 pt-4 flex items-center justify-between">
                             <div>
                                 <img className="h-8 w-auto" src="/images/logo/logo-website-header.png" alt="" />
@@ -73,7 +73,7 @@ export default function Nav () {
                             <div className="-mr-2">
                                 <button
                                     type="button"
-                                    className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-600"
+                                    className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-200 dark:bg-stone-800 dark:text-stone-400 dark:hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-600"
                                 >
                                     <span className="sr-only">Close menu</span>
                                     <XMarkIcon className="h-6 w-6" />

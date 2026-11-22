@@ -94,7 +94,7 @@ export default async function Page (
                                     <Link
                                         key={download.filename}
                                         href={`/uploads/general/resources/${entry.slug}/${download.filename}`}
-                                        className="text-black hover:text-crimson inline-block mx-3"
+                                        className="text-black hover:text-crimson inline-block mx-3 dark:text-stone-200 dark:hover:text-lighter-red"
                                         download
                                     >
                                         <span className="block w-20 h-20 mx-auto mb-4">

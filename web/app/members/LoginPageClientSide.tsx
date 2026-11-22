@@ -86,7 +86,7 @@ export default function LoginPageClientSide () {
         >
             {error}
             <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-stone-300">
                     Email address
                 </label>
                 <div className="mt-1">
@@ -95,7 +95,7 @@ export default function LoginPageClientSide () {
                         name="email"
                         type="email"
                         autoComplete="email"
-                        className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-crimson focus:border-crimson sm:text-sm"
+                        className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-crimson focus:border-crimson sm:text-sm dark:border-stone-600 dark:placeholder-stone-500 dark:bg-stone-900 dark:text-stone-200"
                         value={formValues.email}
                         onChange={(e) => setFormValue(e, 'email')}
                         required
@@ -103,7 +103,7 @@ export default function LoginPageClientSide () {
                 </div>
             </div>
             <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-stone-300">
                     Password
                 </label>
                 <div className="mt-1">
@@ -112,7 +112,7 @@ export default function LoginPageClientSide () {
                         name="password"
                         type="password"
                         autoComplete="current-password"
-                        className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-crimson focus:border-crimson sm:text-sm"
+                        className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-crimson focus:border-crimson sm:text-sm dark:border-stone-600 dark:placeholder-stone-500 dark:bg-stone-900 dark:text-stone-200"
                         value={formValues.password}
                         onChange={(e) => setFormValue(e, 'password')}
                         required
@@ -140,7 +140,7 @@ export default function LoginPageClientSide () {
                         ];
 
                         if (isPending) {
-                            classes.push('bg-gray-400');
+                            classes.push('bg-gray-400 dark:bg-stone-600');
                         } else {
                             classes.push(
                                 'bg-crimson',

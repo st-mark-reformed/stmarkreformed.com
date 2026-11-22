@@ -37,33 +37,33 @@ export default async function Page () {
                 }
             }
         >
-            {/*<div className="bg-crimson-lightened-4 text-center border-b-8 border-t-8 border-crimson-dark">
+            {/*<div className="bg-crimson-lightened-4 text-center border-b-8 border-t-8 border-crimson-dark dark:bg-red/40">
                 <div className="mx-auto max-w-5xl px-6 py-20">
                     <div className="shrink-0 inline-block mx-auto">
-                        <InformationCircleIcon aria-hidden="true" className="size-8 text-crimson-dark" />
+                        <InformationCircleIcon aria-hidden="true" className="size-8 text-crimson-dark dark:text-lighter-red" />
                     </div>
-                    <h2 className="font-semibold tracking-tight text-balance text-crimson-dark text-4xl leading-snug">
+                    <h2 className="font-semibold tracking-tight text-balance text-crimson-dark text-4xl leading-snug dark:text-lighter-red">
                         Services canceled for 1/25/2026 due to inclement weather and dangerous road conditions
                     </h2>
                 </div>
             </div>*/}
-            <div className="bg-amber-50 text-center text-xl md:text-2xl border-t-8 border-teal-600">
+            <div className="bg-amber-50 text-center text-xl md:text-2xl border-t-8 border-teal-600 dark:bg-amber-950/40 dark:border-teal-700">
                 <div className="mx-auto max-w-5xl px-6 py-14">
                     <div className="shrink-0 inline-block mx-auto">
-                        <InformationCircleIcon aria-hidden="true" className="size-8 text-teal-600" />
+                        <InformationCircleIcon aria-hidden="true" className="size-8 text-teal-600 dark:text-teal-400" />
                     </div>
-                    <h2 className="text-balance text-2xl md:text-4xl text-saddle-brown font-bold">
+                    <h2 className="text-balance text-2xl md:text-4xl text-saddle-brown font-bold dark:text-goldenrod">
                         Sunday Meeting Location Update!
                     </h2>
-                    <p className="text-balance text-black mt-4">
+                    <p className="text-balance text-black mt-4 dark:text-stone-200">
                         We are now meeting in <span className="font-semibold">Miller Hall</span> at<br />
                         <span className="font-semibold">Franklin Classical School</span> in Cool Springs<br />
                     </p>
-                    <p className="mt-4 underline text-teal-600 hover:text-teal-500"><a href="https://maps.app.goo.gl/1aDHpuC64cbRCA5R7">1021 Windcross Ct, Franklin, TN 37067</a></p>
+                    <p className="mt-4 underline text-teal-600 hover:text-teal-500 dark:text-teal-400 dark:hover:text-teal-300"><a href="https://maps.app.goo.gl/1aDHpuC64cbRCA5R7">1021 Windcross Ct, Franklin, TN 37067</a></p>
                 </div>
             </div>
             {/* TODO: componentize this */}
-            <div className="relative bg-gray-50 pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8 border-t-8 border-goldenrod">
+            <div className="relative bg-gray-50 dark:bg-stone-900 pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8 border-t-8 border-goldenrod">
                 <div className="absolute inset-0">
                     <div className="bg-bronze h-full relative">
                         <Image

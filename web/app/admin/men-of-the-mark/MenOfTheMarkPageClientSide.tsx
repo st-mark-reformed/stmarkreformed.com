@@ -110,7 +110,6 @@ export default function MenOfTheMarkPageClientSide (
 
     const pagination = (
         <Pagination
-            darkModeAware
             baseUrl="/admin/men-of-the-mark"
             currentPage={currentPage}
             totalPages={totalPages}

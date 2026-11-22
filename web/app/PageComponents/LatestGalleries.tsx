@@ -24,9 +24,9 @@ export default function LatestGalleries (
     }
 
     return (
-        <div className="relative bg-gray-50 pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
+        <div className="relative bg-gray-50 dark:bg-stone-800 pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
             <div className="absolute inset-0">
-                <div className="bg-white h-1/3 sm:h-1/2" />
+                <div className="bg-white h-1/3 sm:h-1/2 dark:bg-stone-800" />
             </div>
             <div className="relative max-w-7xl mx-auto">
                 {(() => {
@@ -43,7 +43,7 @@ export default function LatestGalleries (
 
                                 return (
                                     <h2
-                                        className="text-3xl tracking-tight font-extrabold sm:text-4xl block bg-clip-text text-transparent bg-gradient-to-r from-teal-700 to-teal-400 pb-1"
+                                        className="text-3xl tracking-tight font-extrabold sm:text-4xl block bg-clip-text text-transparent bg-gradient-to-r from-teal-700 to-teal-400 dark:from-teal-500 dark:to-teal-300 pb-1"
                                         dangerouslySetInnerHTML={{
                                             __html: typography(heading),
                                         }}
@@ -57,7 +57,7 @@ export default function LatestGalleries (
 
                                 return (
                                     <p
-                                        className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-2"
+                                        className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-2 dark:text-stone-400"
                                         dangerouslySetInnerHTML={{
                                             __html: typography(subHeading),
                                         }}

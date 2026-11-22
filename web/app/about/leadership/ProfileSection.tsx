@@ -17,7 +17,7 @@ export default function ProfileSection (
     return (
         <>
             <h2
-                className="mt-2 text-black text-3xl font-extrabold tracking-tight sm:text-4xl"
+                className="mt-2 text-black text-3xl font-extrabold tracking-tight sm:text-4xl dark:text-stone-200"
                 dangerouslySetInnerHTML={{
                     __html: typography(headline),
                 }}
@@ -28,7 +28,7 @@ export default function ProfileSection (
                     return null;
                 }
 
-                return <hr className="w-full border border-gray-300 my-10" />;
+                return <hr className="w-full border border-gray-300 my-10 dark:border-stone-600" />;
             })()}
         </>
     );

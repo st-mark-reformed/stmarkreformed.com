@@ -18,24 +18,24 @@ export default function Alert ({
     // Switch case for different alert types
     switch (type) {
         case 'success':
-            wrapperBackgroundClass = 'bg-green-50';
-            headlineClass = 'text-green-800';
-            contentClass = 'text-green-700';
+            wrapperBackgroundClass = 'bg-green-50 dark:bg-green-900/30';
+            headlineClass = 'text-green-800 dark:text-green-200';
+            contentClass = 'text-green-700 dark:text-green-300';
             break;
         case 'caution':
-            wrapperBackgroundClass = 'bg-yellow-50';
-            headlineClass = 'text-yellow-800';
-            contentClass = 'text-yellow-700';
+            wrapperBackgroundClass = 'bg-yellow-50 dark:bg-yellow-900/30';
+            headlineClass = 'text-yellow-800 dark:text-yellow-200';
+            contentClass = 'text-yellow-700 dark:text-yellow-300';
             break;
         case 'error':
-            wrapperBackgroundClass = 'bg-lightest-red';
-            headlineClass = 'text-dark-red';
-            contentClass = 'text-red';
+            wrapperBackgroundClass = 'bg-lightest-red dark:bg-red/40';
+            headlineClass = 'text-dark-red dark:text-lightest-red';
+            contentClass = 'text-red dark:text-lighter-red';
             break;
         default:
-            wrapperBackgroundClass = 'bg-blue-50';
-            headlineClass = 'text-blue-800';
-            contentClass = 'text-blue-700';
+            wrapperBackgroundClass = 'bg-blue-50 dark:bg-blue-900/30';
+            headlineClass = 'text-blue-800 dark:text-blue-200';
+            contentClass = 'text-blue-700 dark:text-blue-300';
             break;
     }
 

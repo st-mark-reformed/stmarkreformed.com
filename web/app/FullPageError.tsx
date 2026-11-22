@@ -13,18 +13,18 @@ export default function FullPageError (
     },
 ) {
     return (
-        <div className="bg-white min-h-full px-4 py-16 sm:px-6 sm:py-24 md:py-32 lg:py-48 md:grid md:place-items-center lg:px-8">
+        <div className="bg-white min-h-full px-4 py-16 sm:px-6 sm:py-24 md:py-32 lg:py-48 md:grid md:place-items-center lg:px-8 dark:bg-stone-800">
             <div className="max-w-max mx-auto">
                 <main className="sm:flex">
-                    <p className="text-4xl font-extrabold text-crimson sm:text-5xl">
+                    <p className="text-4xl font-extrabold text-crimson sm:text-5xl dark:text-lighter-red">
                         {statusCode}
                     </p>
                     <div className="sm:ml-6">
-                        <div className="sm:border-l sm:border-gray-200 sm:pl-6">
-                            <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">
+                        <div className="sm:border-l sm:border-gray-200 sm:pl-6 dark:sm:border-stone-700">
+                            <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl dark:text-stone-200">
                                 {heading}
                             </h1>
-                            <p className="mt-1 text-base text-gray-500">
+                            <p className="mt-1 text-base text-gray-500 dark:text-stone-400">
                                 {errorMessage}
                             </p>
                         </div>
@@ -37,7 +37,7 @@ export default function FullPageError (
                             </Link>
                             <Link
                                 href="/contact"
-                                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-crimson bg-lightest-red hover:bg-lighter-red focus:outline-none"
+                                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-crimson bg-lightest-red hover:bg-lighter-red focus:outline-none dark:text-lightest-red dark:bg-red/50 dark:hover:bg-red/70"
                             >
                                 Contact us
                             </Link>

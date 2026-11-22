@@ -31,7 +31,7 @@ export default function ToggleWithLabel (
         >
             <Field className="flex items-center justify-between gap-x-3">
                 <span className="flex grow flex-col">
-                    <Label as="span" passive className="text-sm/6 font-bold text-gray-700">
+                    <Label as="span" passive className="text-sm/6 font-bold text-gray-700 dark:text-stone-300">
                         {(() => {
                             if (typeof label === 'string') {
                                 return (
@@ -52,7 +52,7 @@ export default function ToggleWithLabel (
                         }
 
                         return (
-                            <Description as="span" className="text-sm text-gray-500">
+                            <Description as="span" className="text-sm text-gray-500 dark:text-stone-400">
                                 <span
                                     dangerouslySetInnerHTML={{
                                         __html: typography(description),
@@ -65,11 +65,11 @@ export default function ToggleWithLabel (
                 <Switch
                     checked={enabled}
                     onChange={setEnabled}
-                    className="group relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-gray-200 transition-colors duration-200 ease-in-out data-checked:bg-crimson"
+                    className="group relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-gray-200 transition-colors duration-200 ease-in-out data-checked:bg-crimson dark:bg-stone-600 dark:data-checked:bg-crimson"
                 >
                     <span
                         aria-hidden="true"
-                        className="pointer-events-none inline-block size-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out group-data-checked:translate-x-5"
+                        className="pointer-events-none inline-block size-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out group-data-checked:translate-x-5 dark:bg-stone-200"
                     />
                 </Switch>
             </Field>

@@ -14,7 +14,7 @@ export default function ContactThanksPage () {
     return (
         <Layout hero={{ heroHeading: title }}>
             <div className="relative mx-auto px-4 py-12 sm:max-w-5xl sm:px-14 sm:py-20 md:py-28 lg:py-32 text-center">
-                <div className="mt-3 text-lg text-gray-600 prose max-w-none">
+                <div className="mt-3 text-lg text-gray-600 prose max-w-none dark:text-stone-300 dark:prose-invert">
                     <p>Thank you for contacting us! Your message is on its way to our inboxes and we’ll be in touch with you as soon as we&nbsp;can.</p>
                     <p>Have a blessed&nbsp;day!</p>
                 </div>

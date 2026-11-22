@@ -66,6 +66,21 @@
     color: var(--color-crimson-dark);
 }
 
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
+    }
+
+    /* Crimson is too dark to read on dark backgrounds */
+    .prose a:not(.not-prose) {
+        color: var(--color-lighter-red);
+    }
+
+    .prose a:not(.not-prose):hover {
+        color: var(--color-lightest-red);
+    }
+}
+
 .prose-over-dark a:not(.not-prose) {
     color: #fff;
 }
@@ -96,6 +111,37 @@
     border: none !important;
     box-shadow: none !important;
     outline: none !important;
+}
+
+/* react-select theme colors (see SearchFormData); light values are react-select's defaults */
+:root {
+    --react-select-neutral0: hsl(0, 0%, 100%);
+    --react-select-neutral5: hsl(0, 0%, 95%);
+    --react-select-neutral10: hsl(0, 0%, 90%);
+    --react-select-neutral20: hsl(0, 0%, 80%);
+    --react-select-neutral30: hsl(0, 0%, 70%);
+    --react-select-neutral40: hsl(0, 0%, 60%);
+    --react-select-neutral50: hsl(0, 0%, 50%);
+    --react-select-neutral60: hsl(0, 0%, 40%);
+    --react-select-neutral80: hsl(0, 0%, 20%);
+    --react-select-primary25: #deebff;
+    --react-select-primary50: #b2d4ff;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --react-select-neutral0: #1c1917;
+        --react-select-neutral5: #292524;
+        --react-select-neutral10: #44403b;
+        --react-select-neutral20: #57534d;
+        --react-select-neutral30: #79716b;
+        --react-select-neutral40: #a8a29e;
+        --react-select-neutral50: #79716b;
+        --react-select-neutral60: #a8a29e;
+        --react-select-neutral80: #e7e5e4;
+        --react-select-primary25: #44403b;
+        --react-select-primary50: #57534d;
+    }
 }
 
 .text-xxs {

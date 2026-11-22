@@ -27,14 +27,14 @@ export default function GalleryListingItem (
                     </div>
                 </Link>
             </div>
-            <div className="flex-1 bg-white p-6 flex flex-col justify-between">
+            <div className="flex-1 bg-white p-6 flex flex-col justify-between dark:bg-stone-800">
                 <div className="flex-1">
                     <Link
                         href={entry.href}
                         className="block mt-2"
                     >
                         <p
-                            className="text-xl font-semibold text-gray-900"
+                            className="text-xl font-semibold text-gray-900 dark:text-stone-200"
                             dangerouslySetInnerHTML={{
                                 __html: typography(entry.title),
                             }}

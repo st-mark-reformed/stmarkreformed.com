@@ -72,9 +72,9 @@ export default async function Page (
                 }]}
                 currentBreadcrumb={{ value: entry.title }}
             />
-            <div className="relative bg-white overflow-hidden">
+            <div className="relative bg-white overflow-hidden dark:bg-stone-800">
                 <div
-                    className="text-lg text-gray-600 prose max-w-none -mt-4 -mb-4 sm:-mt-8 sm:-mb-8 md:-mt-12 md:-mb-12"
+                    className="text-lg text-gray-600 prose max-w-none dark:text-stone-300 dark:prose-invert -mt-4 -mb-4 sm:-mt-8 sm:-mb-8 md:-mt-12 md:-mb-12"
                     dangerouslySetInnerHTML={{
                         __html: typography(entry.content),
                     }}

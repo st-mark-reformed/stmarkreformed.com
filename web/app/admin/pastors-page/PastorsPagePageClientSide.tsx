@@ -110,7 +110,6 @@ export default function PastorsPagePageClientSide (
 
     const pagination = (
         <Pagination
-            darkModeAware
             baseUrl="/admin/pastors-page"
             currentPage={currentPage}
             totalPages={totalPages}

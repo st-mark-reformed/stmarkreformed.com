@@ -25,9 +25,9 @@ export default function CalendarPageHeader (
 ) {
     return (
         <header
-            className="relative z-50 sm:flex items-center justify-between border-b border-gray-200 py-4 lg:flex-none"
+            className="relative z-50 sm:flex items-center justify-between border-b border-gray-200 py-4 lg:flex-none dark:border-stone-700"
         >
-            <h1 className="mb-4 sm:mb-0 text-lg font-semibold text-gray-900">
+            <h1 className="mb-4 sm:mb-0 text-lg font-semibold text-gray-900 dark:text-stone-200">
                 <time
                     dateTime={monthString}
                     dangerouslySetInnerHTML={{
@@ -42,7 +42,7 @@ export default function CalendarPageHeader (
                         <Link
                             href={icsUrl}
                             type="button"
-                            className="flex items-center rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 select-none"
+                            className="flex items-center rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 select-none dark:border-stone-600 dark:bg-stone-800 dark:text-stone-300 dark:hover:bg-stone-700"
                             id="menu-button"
                             title="Copy and paste link into the subscribe action of your calendar"
                         >
@@ -59,8 +59,8 @@ export default function CalendarPageHeader (
                                 className={(() => {
                                     const classes = [
                                         'flex items-center',
-                                        'rounded-md border border-gray-300',
-                                        'bg-white',
+                                        'rounded-md border border-gray-300 dark:border-stone-600',
+                                        'bg-white dark:bg-stone-800',
                                         'py-2 px-3',
                                         'text-sm font-medium',
                                         'shadow-sm',
@@ -73,9 +73,9 @@ export default function CalendarPageHeader (
                                         );
                                     } else {
                                         classes.push(
-                                            'text-gray-700',
-                                            'hover:text-gray-900',
-                                            'md:hover:bg-gray-50',
+                                            'text-gray-700 dark:text-stone-300',
+                                            'hover:text-gray-900 dark:hover:text-stone-100',
+                                            'md:hover:bg-gray-50 dark:md:hover:bg-stone-700',
                                         );
                                     }
 
@@ -95,8 +95,8 @@ export default function CalendarPageHeader (
                         className={(() => {
                             const classes = [
                                 'flex items-center justify-center',
-                                'rounded-l-md border border-r-0 border-gray-300',
-                                'bg-white',
+                                'rounded-l-md border border-r-0 border-gray-300 dark:border-stone-600',
+                                'bg-white dark:bg-stone-800',
                                 'py-2 pl-3 pr-4',
                                 'focus:relative',
                                 'md:w-9 md:px-2',
@@ -109,9 +109,9 @@ export default function CalendarPageHeader (
                                 );
                             } else {
                                 classes.push(
-                                    'text-gray-700',
-                                    'hover:text-gray-900',
-                                    'md:hover:bg-gray-50',
+                                    'text-gray-700 dark:text-stone-300',
+                                    'hover:text-gray-900 dark:hover:text-stone-100',
+                                    'md:hover:bg-gray-50 dark:md:hover:bg-stone-700',
                                 );
                             }
 
@@ -128,8 +128,8 @@ export default function CalendarPageHeader (
                             const classes = [
                                 'flex items-center justify-center',
                                 'rounded-r-md',
-                                'border border-gray-300',
-                                'bg-white',
+                                'border border-gray-300 dark:border-stone-600',
+                                'bg-white dark:bg-stone-800',
                                 'py-2 pl-4 pr-3',
                                 'focus:relative',
                                 'md:w-9 md:px-2',
@@ -142,9 +142,9 @@ export default function CalendarPageHeader (
                                 );
                             } else {
                                 classes.push(
-                                    'text-gray-700',
-                                    'hover:text-gray-900',
-                                    'md:hover:bg-gray-50',
+                                    'text-gray-700 dark:text-stone-300',
+                                    'hover:text-gray-900 dark:hover:text-stone-100',
+                                    'md:hover:bg-gray-50 dark:md:hover:bg-stone-700',
                                 );
                             }
 

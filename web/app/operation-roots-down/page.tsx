@@ -32,8 +32,8 @@ export default function OperationRootsDown () {
                     width={1280}
                     height={720}
                 />
-                <div className="mt-3 text-lg text-gray-600 prose max-w-none">
-                    <p className="text-bronze-lightened-2 pb-2 pt-6 text-xl font-semibold">
+                <div className="mt-3 text-lg text-gray-600 prose max-w-none dark:text-stone-300 dark:prose-invert">
+                    <p className="text-bronze-lightened-2 dark:text-goldenrod pb-2 pt-6 text-xl font-semibold">
                         In 2006, a group of Nashville-area families met together to establish a congregation in the CREC.
                     </p>
 
@@ -43,7 +43,7 @@ export default function OperationRootsDown () {
 
                     <p>A Building Fund was established a number of years ago which the Lord has blessed with steady growth. However, its value is still too small to make a &rdquo;respectable offer&ldquo; for acquiring a location. As opportunities arise, we now have an added sense of urgency to secure a location within the coming months as <strong>our current meeting location has been sold</strong>.</p>
 
-                    <p className="text-bronze-lightened-2 pb-2 pt-2 text-xl font-semibold">
+                    <p className="text-bronze-lightened-2 dark:text-goldenrod pb-2 pt-2 text-xl font-semibold">
                         With these things in mind, the Session of SMRC is launching &ldquo;Operation Roots Down,&rdquo; a focused fundraising effort with the goal of <strong>raising $3 million</strong> within the next few months.
                     </p>
 

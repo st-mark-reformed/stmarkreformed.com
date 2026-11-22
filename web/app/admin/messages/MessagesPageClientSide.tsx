@@ -122,7 +122,6 @@ export default function MessagesPageClientSide (
 
     const pagination = (
         <Pagination
-            darkModeAware
             baseUrl="/admin/messages"
             currentPage={currentPage}
             totalPages={totalPages}

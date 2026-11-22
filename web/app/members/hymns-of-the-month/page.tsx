@@ -27,16 +27,16 @@ export default async function Page () {
             activeNavHref="/members/hymns-of-the-month"
         >
             <div className="shadow max-w-3xl mx-auto xl:ml-20 2xl:ml-24">
-                <ul className="mt-2 divide-y divide-gray-200 overflow-hidden shadow not-prose">
+                <ul className="mt-2 divide-y divide-gray-200 overflow-hidden shadow not-prose dark:divide-stone-700">
                     {pageData.entries.map((hymnItem) => (
                         <li key={hymnItem.slug} className="not-prose">
                             <Link
                                 href={`/members/hymns-of-the-month/${hymnItem.slug}`}
-                                className="block px-4 py-4 bg-white hover:bg-gray-50 not-prose"
+                                className="block px-4 py-4 bg-white hover:bg-gray-50 not-prose dark:bg-stone-800 dark:hover:bg-stone-700"
                             >
                                 <span className="flex items-center space-x-4">
                                     <span className="flex-1 flex space-x-2">
-                                        <span className="flex flex-col text-gray-500 text-sm ">
+                                        <span className="flex flex-col text-gray-500 text-sm  dark:text-stone-400">
                                             <span className=" font-bold">
                                                 {hymnItem.title}
                                             </span>
@@ -46,7 +46,7 @@ export default async function Page () {
                                             />
                                         </span>
                                     </span>
-                                    <ChevronRightIcon className="flex-shrink-0 h-5 w-5 text-gray-400" />
+                                    <ChevronRightIcon className="flex-shrink-0 h-5 w-5 text-gray-400 dark:text-stone-500" />
                                 </span>
                             </Link>
                         </li>

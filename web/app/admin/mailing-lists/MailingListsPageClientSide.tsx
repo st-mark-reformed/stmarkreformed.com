@@ -110,7 +110,6 @@ export default function MailingListsPageClientSide (
 
     const pagination = (
         <Pagination
-            darkModeAware
             baseUrl="/admin/mailing-lists"
             currentPage={currentPage}
             totalPages={totalPages}

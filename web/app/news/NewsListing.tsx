@@ -17,14 +17,14 @@ export default function NewsListing (
     const href = `${baseUri}/${entry.slug}`;
 
     return (
-        <article className="flex flex-col items-start justify-between border border-gray-200 p-3 sm:p-6 shadow-md rounded-lg bg-white">
+        <article className="flex flex-col items-start justify-between border border-gray-200 p-3 sm:p-6 shadow-md rounded-lg bg-white dark:border-stone-700 dark:bg-stone-700/40">
             <div className="flex items-center gap-x-4 text-xs">
-                <div className="text-gray-500">
+                <div className="text-gray-500 dark:text-stone-400">
                     {entry.readableDate}
                 </div>
             </div>
             <div className="group relative mb-3">
-                <h3 className="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
+                <h3 className="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600 dark:text-stone-200 dark:group-hover:text-stone-400">
                     <Link
                         href={href}
                         dangerouslySetInnerHTML={{
@@ -33,7 +33,7 @@ export default function NewsListing (
                     />
                 </h3>
                 <div
-                    className="mt-5 line-clamp-6 text-sm/6 text-gray-600 listing-hide-elements"
+                    className="mt-5 line-clamp-6 text-sm/6 text-gray-600 listing-hide-elements dark:text-stone-300"
                     dangerouslySetInnerHTML={{
                         __html: typography(entry.bodyOnlyContent),
                     }}

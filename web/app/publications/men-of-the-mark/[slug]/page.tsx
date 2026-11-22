@@ -73,7 +73,7 @@ export default async function Page (
                     className="relative mx-auto px-4 pt-4 pb-12 sm:max-w-5xl sm:px-14 sm:pt-6 sm:pb-14 md:pt-10 md:pb-24"
                 >
                     <div
-                        className="mt-3 text-lg text-gray-600 prose max-w-none"
+                        className="mt-3 text-lg text-gray-600 prose max-w-none dark:text-stone-300 dark:prose-invert"
                         dangerouslySetInnerHTML={{
                             __html: typography(entry.bodyHtml),
                         }}

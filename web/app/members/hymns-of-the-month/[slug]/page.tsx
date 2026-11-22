@@ -71,18 +71,18 @@ export default async function Page (
         >
             <div className="max-w-2xl">
                 <h2
-                    className="text-base font-semibold tracking-wide uppercase bg-clip-text text-transparent bg-gradient-to-r from-teal-700 to-teal-400"
+                    className="text-base font-semibold tracking-wide uppercase bg-clip-text text-transparent bg-gradient-to-r from-teal-700 to-teal-400 dark:from-teal-500 dark:to-teal-300"
                     dangerouslySetInnerHTML={{
                         __html: typography(`Hymn of the Month for ${pageData.entry.title}`),
                     }}
                 />
                 <p
-                    className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl"
+                    className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl dark:text-stone-200"
                     dangerouslySetInnerHTML={{
                         __html: typography(pageData.entry.hymnPsalmName),
                     }}
                 />
-                <p className="text-lg text-gray-500">
+                <p className="text-lg text-gray-500 dark:text-stone-400">
                     The following tools and resources are provided to you as members, attendees, or friends of St. Mark to help you learn and sing the hymns and psalms we learn every month at our Monthly hymn sing. We hope they are a blessing to you.
                 </p>
                 {(() => {
@@ -91,10 +91,10 @@ export default async function Page (
                     }
 
                     return (
-                        <div className="text-lg text-gray-500">
+                        <div className="text-lg text-gray-500 dark:text-stone-400">
                             <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
                                 <div className="relative z-10">
-                                    <div className="prose prose-indigo text-gray-500 mx-auto lg:max-w-none">
+                                    <div className="prose prose-indigo text-gray-500 mx-auto lg:max-w-none dark:text-stone-400">
                                         <h3>Music sheet download:</h3>
                                     </div>
                                     <div className="mt-3 flex text-base max-w-prose mx-auto lg:max-w-none">
@@ -121,7 +121,7 @@ export default async function Page (
                     return (
                         <div className="lg:max-w-3xl mt-6">
                             <div className="relative z-10">
-                                <div className="prose prose-indigo text-gray-500 mx-auto lg:max-w-none">
+                                <div className="prose prose-indigo text-gray-500 mx-auto lg:max-w-none dark:text-stone-400">
                                     <h3>Practice Tracks:</h3>
                                     <p>The following practice tracks of the full song mix and the various parts will aid you in learning and strengthening your singing of this piece.</p>
                                 </div>

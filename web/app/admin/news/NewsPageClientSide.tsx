@@ -110,7 +110,6 @@ export default function NewsPageClientSide (
 
     const pagination = (
         <Pagination
-            darkModeAware
             baseUrl="/admin/news"
             currentPage={currentPage}
             totalPages={totalPages}

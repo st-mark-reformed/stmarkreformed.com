@@ -161,7 +161,7 @@ export default async function CalendarYearMonthPage (
                     />
                     <div className="hidden shadow-md lg:flex lg:flex-auto lg:flex-col">
                         <CalendarDayHeading />
-                        <div className="flex bg-gray-200 text-xs leading-6 text-gray-700 lg:flex-auto">
+                        <div className="flex bg-gray-200 text-xs leading-6 text-gray-700 lg:flex-auto dark:bg-stone-700 dark:text-stone-300">
                             <div className={`hidden w-full lg:grid grid-cols-7 gap-px ${gridRowsClass}`}>
                                 {monthDays.map((day) => (
                                     <div
@@ -169,13 +169,13 @@ export default async function CalendarYearMonthPage (
                                         className={(() => {
                                             if (day.isActiveMonth) {
                                                 if (day.isInPast) {
-                                                    return 'relative bg-gray-100 py-2 px-3';
+                                                    return 'relative bg-gray-100 py-2 px-3 dark:bg-[#221f1d]';
                                                 }
 
-                                                return 'relative bg-gray-50 py-2 px-3';
+                                                return 'relative bg-gray-50 py-2 px-3 dark:bg-stone-800';
                                             }
 
-                                            return 'relative bg-gray-200 text-gray-400 py-2 px-3';
+                                            return 'relative bg-gray-200 text-gray-400 py-2 px-3 dark:bg-stone-900 dark:text-stone-600';
                                         })()}
                                     >
                                         <time
@@ -197,7 +197,7 @@ export default async function CalendarYearMonthPage (
                                                 {day.day}
                                                 {(() => {
                                                     if (day.isInPast) {
-                                                        return <span className="text-gray-400 text-xxs italic"> (past)</span>;
+                                                        return <span className="text-gray-400 text-xxs italic dark:text-stone-500"> (past)</span>;
                                                     }
 
                                                     return null;
@@ -209,7 +209,7 @@ export default async function CalendarYearMonthPage (
                                                 }
 
                                                 return (
-                                                    <span className="block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-lightest-red h-7 w-7 z-10 rounded-full" />
+                                                    <span className="block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-lightest-red h-7 w-7 z-10 rounded-full dark:bg-red" />
                                                 );
                                             })()}
                                         </time>
@@ -246,7 +246,7 @@ export default async function CalendarYearMonthPage (
                                                                         if (day.isActiveMonth) {
                                                                             classes.push('bg-crimson');
                                                                         } else {
-                                                                            classes.push('bg-lighter-red');
+                                                                            classes.push('bg-lighter-red dark:bg-red/40');
                                                                         }
                                                                     }
 
@@ -262,14 +262,14 @@ export default async function CalendarYearMonthPage (
                                                                                     return 'font-medium text-white leading-tight';
                                                                                 }
 
-                                                                                return 'font-medium text-gray-900 leading-tight';
+                                                                                return 'font-medium text-gray-900 leading-tight dark:text-stone-200';
                                                                             }
 
                                                                             if (event.isAllDay) {
                                                                                 return 'font-medium text-gray-300 leading-tight';
                                                                             }
 
-                                                                            return 'font-medium text-gray-400 leading-tight';
+                                                                            return 'font-medium text-gray-400 leading-tight dark:text-stone-500';
                                                                         })()}
                                                                     >
                                                                         {(() => {
@@ -287,9 +287,9 @@ export default async function CalendarYearMonthPage (
                                                                                         ];
 
                                                                                         if (day.isActiveMonth) {
-                                                                                            classes.push('text-teal-800');
+                                                                                            classes.push('text-teal-800 dark:text-teal-400');
                                                                                         } else {
-                                                                                            classes.push('text-gray-400');
+                                                                                            classes.push('text-gray-400 dark:text-stone-500');
                                                                                         }
 
                                                                                         return classes.join(' ');
@@ -335,7 +335,7 @@ export default async function CalendarYearMonthPage (
 
                         return (
                             <div className="py-10 sm:px-6 lg:hidden">
-                                <ol className="divide-y divide-gray-100 overflow-hidden rounded-lg bg-white text-sm shadow">
+                                <ol className="divide-y divide-gray-100 overflow-hidden rounded-lg bg-white text-sm shadow dark:divide-stone-700 dark:bg-stone-700/40">
                                     {monthEventsList.map((event) => {
                                         const startDate = new Date(event.startDate);
 
@@ -385,7 +385,7 @@ export default async function CalendarYearMonthPage (
                                                     ];
 
                                                     if (event.isInPast) {
-                                                        classes.push('bg-gray-100');
+                                                        classes.push('bg-gray-100 dark:bg-stone-900/50');
                                                     }
 
                                                     return classes.join(' ');
@@ -397,9 +397,9 @@ export default async function CalendarYearMonthPage (
                                                             const classes = ['font-semibold'];
 
                                                             if (event.isInPast) {
-                                                                classes.push('text-gray-400');
+                                                                classes.push('text-gray-400 dark:text-stone-500');
                                                             } else {
-                                                                classes.push('text-teal-600');
+                                                                classes.push('text-teal-600 dark:text-teal-400');
                                                             }
 
                                                             return classes.join(' ');
@@ -415,7 +415,7 @@ export default async function CalendarYearMonthPage (
                                                             }
 
                                                             return (
-                                                                <span className="text-gray-400 text-xxs italic font-normal">
+                                                                <span className="text-gray-400 text-xxs italic font-normal dark:text-stone-500">
                                                                     {' (past)'}
                                                                 </span>
                                                             );
@@ -426,9 +426,9 @@ export default async function CalendarYearMonthPage (
                                                             const classes = [];
 
                                                             if (event.isInPast) {
-                                                                classes.push('text-gray-400');
+                                                                classes.push('text-gray-400 dark:text-stone-500');
                                                             } else {
-                                                                classes.push('text-gray-900');
+                                                                classes.push('text-gray-900 dark:text-stone-200');
                                                             }
 
                                                             return classes.join(' ');
@@ -453,15 +453,15 @@ export default async function CalendarYearMonthPage (
                                                             ];
 
                                                             if (event.isInPast) {
-                                                                classes.push('text-gray-400');
+                                                                classes.push('text-gray-400 dark:text-stone-500');
                                                             } else {
-                                                                classes.push('text-gray-700');
+                                                                classes.push('text-gray-700 dark:text-stone-300');
                                                             }
 
                                                             return classes.join(' ');
                                                         })()}
                                                     >
-                                                        <ClockIcon className="mr-2 h-5 w-5 text-gray-400" aria-hidden="true" />
+                                                        <ClockIcon className="mr-2 h-5 w-5 text-gray-400 dark:text-stone-500" aria-hidden="true" />
                                                         {dayName}
                                                         ,
                                                         {' '}

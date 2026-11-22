@@ -52,8 +52,8 @@ export default function MenuMainDesktop () {
                                 show={isActive}
                             >
                                 <div className="absolute -ml-4 mt-3 transform w-screen max-w-xs -translate-x-1/2 left-1/2 rounded-lg shadow-lg z-50">
-                                    <div className="rounded-lg shadow-lg ring-1 ring-gray-300 ring-opacity-5 overflow-hidden">
-                                        <div className="relative grid gap-6 bg-white p-6">
+                                    <div className="rounded-lg shadow-lg ring-1 ring-gray-300 ring-opacity-5 overflow-hidden dark:ring-white/10">
+                                        <div className="relative grid gap-6 bg-white p-6 dark:bg-stone-800">
                                             {(() => {
                                                 let subMenuItems = [] as MenuItems;
 
@@ -69,7 +69,7 @@ export default function MenuMainDesktop () {
                                                             <Link
                                                                 key={subMenuItem.link}
                                                                 href={subMenuItem.link}
-                                                                className="-m-3 p-3 flex items-start rounded-lg text-base font-medium text-gray-900 hover:bg-bronze hover:text-gray-200"
+                                                                className="-m-3 p-3 flex items-start rounded-lg text-base font-medium text-gray-900 hover:bg-bronze hover:text-gray-200 dark:text-stone-200"
                                                             >
                                                                 {subMenuItem.name}
                                                             </Link>

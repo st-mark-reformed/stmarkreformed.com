@@ -37,7 +37,7 @@ export default async function NewsIndexPage (
 
     return (
         <Layout hero={{ heroHeading: heading }}>
-            <div className="bg-white py-12">
+            <div className="bg-white py-12 dark:bg-stone-800">
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
                     {pagination}
                     <div className="mx-auto grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-3 py-12">

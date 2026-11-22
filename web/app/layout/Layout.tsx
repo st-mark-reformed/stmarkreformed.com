@@ -52,7 +52,7 @@ export default async function Layout (
                 );
             })()}
             <div className="h-full bg-bronze">
-                <div className="bg-white">
+                <div className="bg-white dark:bg-stone-800">
                     <div className="relative overflow-hidden">
                         <div className="hero-background-image bg-bronze bg-cover bg-no-repeat bg-center relative z-50">
                             {(() => {

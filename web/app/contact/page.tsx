@@ -13,9 +13,9 @@ export default function ContactPage () {
     return (
         <Layout hero={{ heroHeading: 'Get in touch' }}>
             <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
-                <div className="relative bg-gray-100 border border-gray-200 shadow-xl">
+                <div className="relative bg-gray-100 border border-gray-200 shadow-xl dark:border-stone-700 dark:bg-stone-700/40">
                     <div className="grid grid-cols-1 lg:grid-cols-3">
-                        <div className="relative overflow-hidden py-10 px-6 bg-crimson sm:px-10 xl:p-12">
+                        <div className="relative overflow-hidden py-10 px-6 bg-crimson sm:px-10 xl:p-12 dark:bg-red">
                             <div className="prose text-gray-100 prose-over-dark">
                                 <p>Need to get in touch with us? Need information? Want to find out more? Fill out the form and Pastor Thacker or one of the officers will get in touch with you.</p>
                                 <p>For written correspondence, please send mail to:</p>

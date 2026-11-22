@@ -8,11 +8,30 @@ import React, {
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import { XMarkIcon } from '@heroicons/react/16/solid';
 import { useRouter } from 'next/navigation';
-import Select from 'react-select';
+import Select, { Theme } from 'react-select';
 import useMessagesSearchParams from './useMessagesSearchParams';
 import { ByOptions } from '../repository/FindAllByOptions';
 import { MessagesSearchParams } from './MessagesSearchParams';
 import RenderOnMount from '../../../RenderOnMount';
+
+// Colors come from CSS variables in style.css so they follow the OS light/dark setting
+const selectTheme = (theme: Theme): Theme => ({
+    ...theme,
+    colors: {
+        ...theme.colors,
+        neutral0: 'var(--react-select-neutral0)',
+        neutral5: 'var(--react-select-neutral5)',
+        neutral10: 'var(--react-select-neutral10)',
+        neutral20: 'var(--react-select-neutral20)',
+        neutral30: 'var(--react-select-neutral30)',
+        neutral40: 'var(--react-select-neutral40)',
+        neutral50: 'var(--react-select-neutral50)',
+        neutral60: 'var(--react-select-neutral60)',
+        neutral80: 'var(--react-select-neutral80)',
+        primary25: 'var(--react-select-primary25)',
+        primary50: 'var(--react-select-primary50)',
+    },
+});
 
 export default function SearchFormData (
     {
@@ -99,7 +118,7 @@ export default function SearchFormData (
             <div className="my-6 grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6">
                 {/* By */}
                 <div className="sm:col-span-2">
-                    <label htmlFor="by" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="by" className="block text-sm font-medium text-gray-700 dark:text-stone-300">
                         By
                     </label>
                     <div className="mt-1">
@@ -108,6 +127,7 @@ export default function SearchFormData (
                                 classNames={{
                                     container: () => ('react-select-control shadow-sm'),
                                 }}
+                                theme={selectTheme}
                                 options={[
                                     {
                                         label: 'St. Mark Leadership',
@@ -159,7 +179,7 @@ export default function SearchFormData (
                 </div>
                 {/* Series */}
                 <div className="sm:col-span-2">
-                    <label htmlFor="by" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="by" className="block text-sm font-medium text-gray-700 dark:text-stone-300">
                         Series
                     </label>
                     <div className="mt-1">
@@ -168,6 +188,7 @@ export default function SearchFormData (
                                 classNames={{
                                     container: () => ('react-select-control shadow-sm'),
                                 }}
+                                theme={selectTheme}
                                 options={Object.entries(seriesOptions).map(([slug, name]) => ({
                                     value: slug,
                                     label: name,
@@ -205,7 +226,7 @@ export default function SearchFormData (
                 </div>
                 {/* Scripture Reference */}
                 <div className="sm:col-span-2">
-                    <label htmlFor="by" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="by" className="block text-sm font-medium text-gray-700 dark:text-stone-300">
                         Scripture Reference
                     </label>
                     <div className="mt-1">
@@ -213,7 +234,7 @@ export default function SearchFormData (
                             type="text"
                             id="scripture_reference"
                             name="scripture_reference"
-                            className="shadow-sm focus:ring-crimson focus:border-crimson block w-full sm:text-sm border-gray-300 rounded-md"
+                            className="shadow-sm focus:ring-crimson focus:border-crimson block w-full sm:text-sm border-gray-300 rounded-md dark:border-stone-600 dark:bg-stone-900"
                             value={formInputs.scripture_reference}
                             onChange={(e) => {
                                 setFormInputs({
@@ -226,7 +247,7 @@ export default function SearchFormData (
                 </div>
                 {/* Title */}
                 <div className="sm:col-span-2">
-                    <label htmlFor="by" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="by" className="block text-sm font-medium text-gray-700 dark:text-stone-300">
                         Title
                     </label>
                     <div className="mt-1">
@@ -234,7 +255,7 @@ export default function SearchFormData (
                             type="text"
                             id="title"
                             name="title"
-                            className="shadow-sm focus:ring-crimson focus:border-crimson block w-full sm:text-sm border-gray-300 rounded-md"
+                            className="shadow-sm focus:ring-crimson focus:border-crimson block w-full sm:text-sm border-gray-300 rounded-md dark:border-stone-600 dark:bg-stone-900"
                             value={formInputs.title}
                             onChange={(e) => {
                                 setFormInputs({
@@ -247,7 +268,7 @@ export default function SearchFormData (
                 </div>
                 {/* Date Range Start */}
                 <div className="sm:col-span-2">
-                    <label htmlFor="by" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="by" className="block text-sm font-medium text-gray-700 dark:text-stone-300">
                         Date Range Start
                     </label>
                     <div className="mt-1">
@@ -255,7 +276,7 @@ export default function SearchFormData (
                             type="date"
                             id="date_range_start"
                             name="date_range_start"
-                            className="shadow-sm focus:ring-crimson focus:border-crimson block w-full sm:text-sm border-gray-300 rounded-md"
+                            className="shadow-sm focus:ring-crimson focus:border-crimson block w-full sm:text-sm border-gray-300 rounded-md dark:border-stone-600 dark:bg-stone-900"
                             value={formInputs.date_range_start}
                             onChange={(e) => {
                                 setFormInputs({
@@ -268,7 +289,7 @@ export default function SearchFormData (
                 </div>
                 {/* Date Range End */}
                 <div className="sm:col-span-2">
-                    <label htmlFor="by" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="by" className="block text-sm font-medium text-gray-700 dark:text-stone-300">
                         Date Range End
                     </label>
                     <div className="mt-1">
@@ -276,7 +297,7 @@ export default function SearchFormData (
                             type="date"
                             id="date_range_end"
                             name="date_range_end"
-                            className="shadow-sm focus:ring-crimson focus:border-crimson block w-full sm:text-sm border-gray-300 rounded-md"
+                            className="shadow-sm focus:ring-crimson focus:border-crimson block w-full sm:text-sm border-gray-300 rounded-md dark:border-stone-600 dark:bg-stone-900"
                             value={formInputs.date_range_end}
                             onChange={(e) => {
                                 setFormInputs({
@@ -297,7 +318,7 @@ export default function SearchFormData (
                     return (
                         <button
                             type="button"
-                            className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-crimson cursor-pointer"
+                            className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-crimson cursor-pointer dark:bg-stone-800 dark:border-stone-600 dark:text-stone-300 dark:hover:bg-stone-700"
                             onClick={() => {
                                 setFormIsShown(false);
 
@@ -330,7 +351,7 @@ export default function SearchFormData (
                         ];
 
                         if (applyButtonDisabled) {
-                            classes.push('bg-gray-300');
+                            classes.push('bg-gray-300 dark:bg-stone-600');
                         } else {
                             classes.push('text-white bg-crimson hover:bg-crimson-dark cursor-pointer');
                         }

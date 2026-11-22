@@ -37,6 +37,7 @@ export default function AudioListing (
         'px-8',
         'py-14',
         'border-gray-200',
+        'dark:border-stone-700',
     ];
 
     if (showBorder) {
@@ -60,7 +61,7 @@ export default function AudioListing (
                     return (
                         <Link
                             href={permalink}
-                            className="text-crimson hover:text-crimson-dark inline-block align-middle not-prose"
+                            className="text-crimson hover:text-crimson-dark dark:text-lighter-red dark:hover:text-lightest-red inline-block align-middle not-prose"
                             dangerouslySetInnerHTML={{
                                 __html: smartypants(title),
                             }}
@@ -68,7 +69,7 @@ export default function AudioListing (
                     );
                 })()}
             </h1>
-            <div className="prose max-w-none">
+            <div className="prose max-w-none dark:prose-invert">
                 {(() => {
                     if (!date) {
                         return null;
@@ -98,7 +99,7 @@ export default function AudioListing (
                             <strong>By</strong>:
                             {' '}
                             <Link
-                                className="text-crimson hover:text-crimson-dark underline"
+                                className="text-crimson hover:text-crimson-dark dark:text-lighter-red dark:hover:text-lightest-red underline"
                                 href={byUrl}
                             >
                                 {by}
@@ -124,7 +125,7 @@ export default function AudioListing (
                             <strong>Series</strong>:
                             {' '}
                             <Link
-                                className="text-crimson hover:text-crimson-dark underline"
+                                className="text-crimson hover:text-crimson-dark dark:text-lighter-red dark:hover:text-lightest-red underline"
                                 href={seriesUrl}
                             >
                                 {series}
@@ -178,7 +179,7 @@ export default function AudioListing (
                 return (
                     <div className="text-center mt-2">
                         <Link
-                            className="text-crimson hover:text-crimson-dark underline"
+                            className="text-crimson hover:text-crimson-dark dark:text-lighter-red dark:hover:text-lightest-red underline"
                             href={permalink}
                         >
                             Permalink ›

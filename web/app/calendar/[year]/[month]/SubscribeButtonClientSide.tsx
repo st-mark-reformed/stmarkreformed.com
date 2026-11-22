@@ -57,7 +57,7 @@ export default function SubscribeButtonClientSide (
         <div className="relative" ref={containerRef}>
             <button
                 type="button"
-                className="flex items-center rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 select-none cursor-pointer"
+                className="flex items-center rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 select-none cursor-pointer dark:border-stone-600 dark:bg-stone-800 dark:text-stone-300 dark:hover:bg-stone-700"
                 id="menu-button"
                 title={instructions}
                 onClick={() => {
@@ -75,9 +75,9 @@ export default function SubscribeButtonClientSide (
                         'left-0',
                         'top-12',
                         'p-4',
-                        'bg-white',
+                        'bg-white dark:bg-stone-800',
                         'shadow border',
-                        'border-gray-100',
+                        'border-gray-100 dark:border-stone-700',
                         'rounded-2xl',
                         'sm:-left-50',
                     ];
@@ -89,7 +89,7 @@ export default function SubscribeButtonClientSide (
                     return classes.join(' ');
                 })()}
             >
-                <div className="text-gray-600 text-sm mb-2">
+                <div className="text-gray-600 text-sm mb-2 dark:text-stone-300">
                     {instructions}
                 </div>
                 <input
@@ -97,7 +97,7 @@ export default function SubscribeButtonClientSide (
                     name="url"
                     type="text"
                     ref={inputRef}
-                    className="min-w-0 flex-auto rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 sm:text-sm/6 mb-2 max-w-md"
+                    className="min-w-0 flex-auto rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 sm:text-sm/6 mb-2 max-w-md dark:bg-stone-800 dark:text-stone-200 dark:outline-stone-600 dark:placeholder:text-stone-500"
                     style={{
                         width: 'calc(100vw - 80px)',
                     }}

@@ -110,7 +110,6 @@ export default function ResourcesPageClientSide (
 
     const pagination = (
         <Pagination
-            darkModeAware
             baseUrl="/admin/resources"
             currentPage={currentPage}
             totalPages={totalPages}

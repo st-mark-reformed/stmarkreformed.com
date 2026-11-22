@@ -16,9 +16,9 @@ export default function MenuMainMobile () {
                             baseClasses.push('ont-medium');
                         }
 
-                        const spanClasses = baseClasses.concat('text-gray-500 italic');
+                        const spanClasses = baseClasses.concat('text-gray-500 italic dark:text-stone-400');
 
-                        const linkClasses = baseClasses.concat('text-gray-900 hover:bg-bronze hover:text-gray-200');
+                        const linkClasses = baseClasses.concat('text-gray-900 hover:bg-bronze hover:text-gray-200 dark:text-stone-200');
 
                         if (!menuItem.link) {
                             return (
@@ -42,7 +42,7 @@ export default function MenuMainMobile () {
                         <Link
                             key={subMenuItem.link}
                             href={subMenuItem.link}
-                            className="block pl-12 pr-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-bronze hover:text-gray-200"
+                            className="block pl-12 pr-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-bronze hover:text-gray-200 dark:text-stone-200"
                         >
                             {subMenuItem.name}
                         </Link>

@@ -36,13 +36,13 @@ export default async function LatestSermon () {
                     </p>
                     <a
                         href="/media/messages"
-                        className="mt-6 shadow-lg inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50"
+                        className="mt-6 shadow-lg inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50 dark:text-stone-900 dark:bg-stone-200 dark:hover:bg-stone-300"
                     >
                         See all sermons <ChevronDoubleRightIcon className="ml-2 mt-0.5 w-5 h-5 text-gray-600" />
                     </a>
                 </div>
                 <div className="mt-8 lg:w-1/2 lg:mt-0 lg:ml-8">
-                    <div className="bg-gray-50 shadow-lg rounded-lg w-full">
+                    <div className="bg-gray-50 shadow-lg rounded-lg w-full dark:bg-stone-800">
                         <EntryDisplay
                             baseUri="/media/messages"
                             entry={entry}

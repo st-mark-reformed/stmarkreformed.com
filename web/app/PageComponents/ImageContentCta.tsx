@@ -59,7 +59,7 @@ export default function ImageContentCta (
                         break;
                     case ImageContentCtaBackgroundColor.crimson:
                     default:
-                        classes.push('bg-crimson-dark');
+                        classes.push('bg-crimson-dark dark:bg-red');
                         break;
                 }
 
@@ -77,7 +77,7 @@ export default function ImageContentCta (
                 })()}
             >
                 <Image
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover dark:brightness-[0.8]"
                     src={image}
                     alt=""
                     width={3641}
@@ -193,7 +193,7 @@ export default function ImageContentCta (
                                 <div className="inline-flex rounded-md shadow">
                                     <Link
                                         href={cta.linkData}
-                                        className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50"
+                                        className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50 dark:text-stone-900 dark:bg-stone-200 dark:hover:bg-stone-300"
                                         {...cta.newWindow ? { target: '_blank' } : {}}
                                     >
                                         <span

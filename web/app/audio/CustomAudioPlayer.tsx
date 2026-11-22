@@ -33,10 +33,10 @@ export default function CustomAudioPlayer (
                     forward: 30000,
                 }}
                 customIcons={{
-                    play: <PlayIcon className="text-crimson hover:text-crimson-dark" />,
-                    pause: <PauseIcon className="text-crimson hover:text-crimson-dark" />,
+                    play: <PlayIcon className="text-crimson hover:text-crimson-dark dark:text-lighter-red dark:hover:text-lightest-red" />,
+                    pause: <PauseIcon className="text-crimson hover:text-crimson-dark dark:text-lighter-red dark:hover:text-lightest-red" />,
                     forward: (
-                        <span className="block text-left text-crimson hover:text-crimson-dark">
+                        <span className="block text-left text-crimson hover:text-crimson-dark dark:text-lighter-red dark:hover:text-lightest-red">
                             <ForwardIcon className="h-5 w-5 inline-block align-middle" />
                             <span className="ml-0.5 inline-block align-middle text-xxs">
                                 30s
@@ -44,7 +44,7 @@ export default function CustomAudioPlayer (
                         </span>
                     ),
                     rewind: (
-                        <span className="block text-right text-crimson hover:text-crimson-dark">
+                        <span className="block text-right text-crimson hover:text-crimson-dark dark:text-lighter-red dark:hover:text-lightest-red">
                             <span className="mr-0.5 inline-block align-middle text-xxs">
                                 30s
                             </span>

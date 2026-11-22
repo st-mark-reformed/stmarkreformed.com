@@ -24,12 +24,12 @@ readonly class ComposeNewsContent
         // heading is present, as both live inside the same heading wrapper.
         if ($newsItem->heading !== '') {
             $inner .= '<div class="mb-8">';
-            $inner .= '<h2 class="mt-2 text-black text-3xl font-extrabold tracking-tight sm:text-4xl">'
+            $inner .= '<h2 class="mt-2 text-black text-3xl font-extrabold tracking-tight sm:text-4xl dark:text-stone-200">'
                 . $newsItem->heading
                 . '</h2>';
 
             if ($newsItem->subheading !== '') {
-                $inner .= '<h3 class="text-base font-semibold uppercase tracking-wider text-gray-600">'
+                $inner .= '<h3 class="text-base font-semibold uppercase tracking-wider text-gray-600 dark:text-stone-400">'
                     . $newsItem->subheading
                     . '</h3>';
             }
@@ -38,7 +38,7 @@ readonly class ComposeNewsContent
         }
 
         if ($newsItem->body !== '') {
-            $inner .= '<div class="mt-3 text-lg text-gray-600 prose max-w-none">'
+            $inner .= '<div class="mt-3 text-lg text-gray-600 prose max-w-none dark:text-stone-300 dark:prose-invert">'
                 . $newsItem->body
                 . '</div>';
         }

@@ -11,24 +11,17 @@ export default function Pagination (
         pad = 2,
         className = '',
         queryString = '',
-        darkModeAware = false,
     }: PaginationParams,
 ) {
     if (totalPages < 2) {
         return null;
     }
 
-    const darkClasses = darkModeAware
-        ? {
-            pageCount: 'dark:text-gray-400',
-            link: 'dark:border-white/10 dark:bg-white/10 dark:text-gray-200 dark:hover:bg-white/20 dark:hover:text-white',
-            current: 'dark:border-white/10 dark:bg-transparent dark:text-gray-500',
-        }
-        : {
-            pageCount: '',
-            link: '',
-            current: '',
-        };
+    const darkClasses = {
+        pageCount: 'dark:text-gray-400',
+        link: 'dark:border-white/10 dark:bg-white/10 dark:text-gray-200 dark:hover:bg-white/20 dark:hover:text-white',
+        current: 'dark:border-white/10 dark:bg-transparent dark:text-gray-500',
+    };
 
     if (queryString && !queryString.startsWith('?')) {
         queryString = `?${queryString}`;

@@ -98,39 +98,39 @@ export default function ContactFormClientSide () {
                     onChange={(e) => setFormValue(e, 'yourCompany')}
                 />
                 <div>
-                    <label htmlFor="your_name" className="block text-sm font-medium text-gray-900">Your name</label>
+                    <label htmlFor="your_name" className="block text-sm font-medium text-gray-900 dark:text-stone-200">Your name</label>
                     <div className="mt-1">
                         <input
                             type="text"
                             name="name"
                             id="name"
-                            className="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-crimson focus:border-crimson border-gray-300 rounded-md"
+                            className="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-crimson focus:border-crimson border-gray-300 rounded-md dark:text-stone-200 dark:border-stone-600 dark:bg-stone-900"
                             value={formValues.name}
                             onChange={(e) => setFormValue(e, 'name')}
                         />
                     </div>
                 </div>
                 <div>
-                    <label htmlFor="your_email" className="block text-sm font-medium text-gray-900">Your Email Address</label>
+                    <label htmlFor="your_email" className="block text-sm font-medium text-gray-900 dark:text-stone-200">Your Email Address</label>
                     <div className="mt-1">
                         <input
                             type="text"
                             name="emailAddress"
                             id="emailAddress"
-                            className="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-crimson focus:border-crimson border-gray-300 rounded-md"
+                            className="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-crimson focus:border-crimson border-gray-300 rounded-md dark:text-stone-200 dark:border-stone-600 dark:bg-stone-900"
                             value={formValues.emailAddress}
                             onChange={(e) => setFormValue(e, 'emailAddress')}
                         />
                     </div>
                 </div>
                 <div className="sm:col-span-2">
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-900">Message</label>
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-900 dark:text-stone-200">Message</label>
                     <div className="mt-1">
                         <textarea
                             id="message"
                             name="message"
                             rows={4}
-                            className="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-crimson focus:border-crimson border border-gray-300 rounded-md"
+                            className="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-crimson focus:border-crimson border border-gray-300 rounded-md dark:text-stone-200 dark:border-stone-600 dark:bg-stone-900"
                             value={formValues.message}
                             onChange={(e) => setFormValue(e, 'message')}
                         />
@@ -163,7 +163,7 @@ export default function ContactFormClientSide () {
                             ];
 
                             if (isPending) {
-                                classes.push('bg-gray-400');
+                                classes.push('bg-gray-400 dark:bg-stone-600');
                             } else {
                                 classes.push(
                                     'bg-crimson',

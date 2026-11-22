@@ -46,7 +46,7 @@ export default function SidebarInnerLayout (
         <div className="min-h-screen-minus-header-and-footer">
             <div className="min-h-screen-minus-header-and-footer overflow-hidden md:flex">
                 {/* Sidebar */}
-                <div className="md:flex md:flex-shrink-0 bg-crimson">
+                <div className="md:flex md:flex-shrink-0 bg-crimson dark:bg-red">
                     <div className="mx-auto w-64 flex flex-col">
                         <div className="pt-5 pb-4 flex flex-col flex-grow overflow-y-auto">
                             <div>
@@ -65,9 +65,9 @@ export default function SidebarInnerLayout (
                 <div className="flex-1 flex flex-col">
                     <div>
                         {topOfBodyContent}
-                        <div className="relative bg-white">
+                        <div className="relative bg-white dark:bg-stone-800">
                             <div className={contentWrapperClasses.join(' ')}>
-                                <div className="mt-3 text-lg text-gray-600 prose max-w-none">
+                                <div className="mt-3 text-lg text-gray-600 prose max-w-none dark:text-stone-300 dark:prose-invert">
                                     {children}
                                 </div>
                             </div>

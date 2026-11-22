@@ -12,7 +12,7 @@ export default function HeadingH2 (
 ) {
     return (
         <h2
-            className="mt-2 text-black text-3xl font-extrabold tracking-tight sm:text-4xl"
+            className="mt-2 text-black text-3xl font-extrabold tracking-tight sm:text-4xl dark:text-stone-200"
             dangerouslySetInnerHTML={{
                 __html: typography(content),
             }}

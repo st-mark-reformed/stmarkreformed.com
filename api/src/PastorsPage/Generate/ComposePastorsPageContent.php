@@ -24,12 +24,12 @@ readonly class ComposePastorsPageContent
         // heading is present, as both live inside the same heading wrapper.
         if ($pastorsPageItem->heading !== '') {
             $inner .= '<div class="mb-8">';
-            $inner .= '<h2 class="mt-2 text-black text-3xl font-extrabold tracking-tight sm:text-4xl">'
+            $inner .= '<h2 class="mt-2 text-black text-3xl font-extrabold tracking-tight sm:text-4xl dark:text-stone-200">'
                 . $pastorsPageItem->heading
                 . '</h2>';
 
             if ($pastorsPageItem->subheading !== '') {
-                $inner .= '<h3 class="text-base font-semibold uppercase tracking-wider text-gray-600">'
+                $inner .= '<h3 class="text-base font-semibold uppercase tracking-wider text-gray-600 dark:text-stone-400">'
                     . $pastorsPageItem->subheading
                     . '</h3>';
             }
@@ -38,7 +38,7 @@ readonly class ComposePastorsPageContent
         }
 
         if ($pastorsPageItem->body !== '') {
-            $inner .= '<div class="mt-3 text-lg text-gray-600 prose max-w-none">'
+            $inner .= '<div class="mt-3 text-lg text-gray-600 prose max-w-none dark:text-stone-300 dark:prose-invert">'
                 . $pastorsPageItem->body
                 . '</div>';
         }

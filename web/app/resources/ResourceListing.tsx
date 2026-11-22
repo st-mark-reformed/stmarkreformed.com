@@ -16,9 +16,9 @@ export default function ResourceListing (
     const href = `/resources/${entry.slug}`;
 
     return (
-        <article className="flex flex-col items-start justify-between border border-gray-200 p-3 sm:p-6 shadow-md rounded-lg">
+        <article className="flex flex-col items-start justify-between border border-gray-200 p-3 sm:p-6 shadow-md rounded-lg dark:border-stone-700 dark:bg-stone-700/40">
             <div className="group relative mb-3">
-                <h3 className="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
+                <h3 className="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600 dark:text-stone-200 dark:group-hover:text-stone-400">
                     <Link
                         href={href}
                         dangerouslySetInnerHTML={{

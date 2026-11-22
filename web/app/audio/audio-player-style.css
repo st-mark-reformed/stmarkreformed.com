@@ -65,3 +65,36 @@
 .rhap_time {
     font-size: 12px;
 }
+
+@media (prefers-color-scheme: dark) {
+    .rhap_container {
+        background-color: #36322e;
+        box-shadow: 2px 2px 6px 1px rgba(0, 0, 0, 0.3);
+    }
+
+    .rhap_time {
+        color: #a8a29e;
+    }
+
+    .rhap_progress-bar {
+        background-color: #57534d;
+    }
+
+    .rhap_main-controls-button,
+    .rhap_repeat-button,
+    .rhap_volume-button {
+        color: var(--color-lighter-red);
+    }
+
+    .rhap_download-progress,
+    .rhap_volume-bar {
+        background-color: #79716b;
+    }
+
+    .rhap_progress-indicator,
+    .rhap_progress-filled,
+    .rhap_volume-indicator,
+    .rhap_volume-filled {
+        background-color: var(--color-crimson-lightened-1);
+    }
+}
