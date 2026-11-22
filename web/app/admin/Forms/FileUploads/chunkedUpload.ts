@@ -127,6 +127,7 @@ async function putChunk (
 
     for (;;) {
         try {
+            // eslint-disable-next-line no-await-in-loop -- each retry waits on the previous attempt
             const response = await fetch(
                 `${UPLOADS_BASE}/${encodeURIComponent(uploadId)}/chunk/${index}`,
                 {
@@ -156,6 +157,7 @@ async function putChunk (
             );
         }
 
+        // eslint-disable-next-line no-await-in-loop -- backoff between retries
         await wait(RETRY_BASE_DELAY_MS * (2 ** (attempt - 1)), signal);
     }
 }
@@ -215,11 +217,12 @@ export async function uploadFileResumably (
     const status = await fetchStatus(uploadId, options.signal);
     const received = new Set<number>(status?.receivedChunks ?? []);
 
-    for (let index = 0; index < totalChunks; index++) {
+    for (let index = 0; index < totalChunks; index += 1) {
         if (!received.has(index)) {
             const start = index * CHUNK_SIZE;
             const blob = file.slice(start, Math.min(start + CHUNK_SIZE, file.size));
 
+            // eslint-disable-next-line no-await-in-loop -- chunks upload one at a time, in order
             await putChunk(uploadId, index, blob, options.signal);
         }
 

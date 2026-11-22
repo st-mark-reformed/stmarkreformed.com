@@ -1,16 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { InformationCircleIcon } from '@heroicons/react/24/solid';
 import Layout from './layout/Layout';
-import ImageContentCta, {
-    // ImageContentCtaBackgroundColor,
-    // ImageContentDisposition,
-} from './PageComponents/ImageContentCta';
+// import { ImageContentCtaBackgroundColor, ImageContentDisposition } from './PageComponents/ImageContentCta';
+import ImageContentCta from './PageComponents/ImageContentCta';
 import UpcomingEvents from './PageComponents/UpcomingEvents/UpcomingEvents';
 // import LatestGalleries from './PageComponents/LatestGalleries';
 import LatestSermon from './PageComponents/LatestSermon';
 import LatestNews from './PageComponents/LatestNews';
-import { InformationCircleIcon } from '@heroicons/react/24/solid';
 
 export const dynamic = 'force-dynamic';
 
@@ -22,6 +20,22 @@ function isMeetingAtNewLocation (): boolean {
 
 export default async function Page () {
     const atNewLocation = isMeetingAtNewLocation();
+
+    const meetingAddress = atNewLocation
+        ? (
+            <p>
+                Franklin Classical School, Miller&nbsp;Hall<br />
+                1021&nbsp;Windcross&nbsp;Ct.<br />
+                Franklin,&nbsp;TN&nbsp;37067<br />
+            </p>
+        )
+        : (
+            <p>
+                Brentwood First Presbyterian&nbsp;Church<br />
+                1301&nbsp;Franklin&nbsp;Rd.<br />
+                Brentwood,&nbsp;TN&nbsp;37027<br />
+            </p>
+        );
 
     return (
         <Layout
@@ -37,7 +51,7 @@ export default async function Page () {
                 }
             }
         >
-            {/*<div className="bg-crimson-lightened-4 text-center border-b-8 border-t-8 border-crimson-dark dark:bg-red/40">
+            {/* <div className="bg-crimson-lightened-4 text-center border-b-8 border-t-8 border-crimson-dark dark:bg-red/40">
                 <div className="mx-auto max-w-5xl px-6 py-20">
                     <div className="shrink-0 inline-block mx-auto">
                         <InformationCircleIcon aria-hidden="true" className="size-8 text-crimson-dark dark:text-lighter-red" />
@@ -46,7 +60,7 @@ export default async function Page () {
                         Services canceled for 1/25/2026 due to inclement weather and dangerous road conditions
                     </h2>
                 </div>
-            </div>*/}
+            </div> */}
             <div className="bg-amber-50 text-center text-xl md:text-2xl border-t-8 border-teal-600 dark:bg-amber-950/40 dark:border-teal-700">
                 <div className="mx-auto max-w-5xl px-6 py-14">
                     <div className="shrink-0 inline-block mx-auto">
@@ -101,25 +115,7 @@ export default async function Page () {
                 heading="Sundays at 11:00 am"
                 content={(
                     <>
-                        {(() => {
-                            if (atNewLocation) {
-                                return (
-                                    <p>
-                                        Franklin Classical School, Miller&nbsp;Hall<br />
-                                        1021&nbsp;Windcross&nbsp;Ct.<br />
-                                        Franklin,&nbsp;TN&nbsp;37067<br />
-                                    </p>
-                                );
-                            }
-
-                            return (
-                                <p>
-                                    Brentwood First Presbyterian&nbsp;Church<br />
-                                    1301&nbsp;Franklin&nbsp;Rd.<br />
-                                    Brentwood,&nbsp;TN&nbsp;37027<br />
-                                </p>
-                            );
-                        })()}
+                        {meetingAddress}
                         <p>We also normally have Sunday School at 10:00 AM. See our <Link href="/calendar">calendar</Link> for an up-to-date&nbsp;schedule.</p>
                         <p>You can also call for more info at (615)&nbsp;438-3109</p>
                         <p>Please note if you need to send something to us, our mailing address is different from our meeting address. For mailing purposes only, please use the&nbsp;following:</p>
@@ -140,10 +136,10 @@ export default async function Page () {
             />
             <div className="h-2 bg-bronze" />
             <UpcomingEvents />
-            {/*<LatestGalleries
+            {/* <LatestGalleries
                 heading="A picture is worth a thousand words"
                 subHeading="Take a look at the life of St. Mark through a few of our smiling faces and latest events"
-            />*/}
+            /> */}
             <LatestSermon />
             <LatestNews />
         </Layout>

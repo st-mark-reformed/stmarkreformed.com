@@ -146,7 +146,7 @@ export default function ChunkedFileUploader (
                     accept={allowedExtensions.map((ext) => `.${ext}`).join(',')}
                     className="hidden"
                     onChange={(event) => {
-                        void handleFile(event.target.files?.[0]);
+                        handleFile(event.target.files?.[0]);
                     }}
                 />
                 <div
@@ -184,7 +184,7 @@ export default function ChunkedFileUploader (
                         dataTransfer.items.add(file);
                         inputRef.current.files = dataTransfer.files;
 
-                        void handleFile(file);
+                        handleFile(file);
                     }}
                 >
                     {(() => {

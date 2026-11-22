@@ -1,3 +1,12 @@
 {
-    "extends": ["rxante-coding-standards"]
+    "extends": ["rxante-coding-standards"],
+    "overrides": [
+        {
+            "files": ["mapImageCapture/**"],
+            "rules": {
+                "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+                "no-console": "off"
+            }
+        }
+    ]
 }

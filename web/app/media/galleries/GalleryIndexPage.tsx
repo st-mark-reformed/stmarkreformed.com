@@ -1,12 +1,9 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable react/no-danger */
-import Link from 'next/link';
-import Image from 'next/image';
 import React from 'react';
 import FindAllGalleryEntriesByPage from './repository/FindAllGalleryEntriesByPage';
 import Pagination from '../../Pagination/Pagination';
 import Layout from '../../layout/Layout';
-import typography from '../../typography/typography';
 import GalleryListingItem from './GalleryListingItem';
 
 export default function GalleryIndexPage (

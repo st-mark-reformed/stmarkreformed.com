@@ -16,7 +16,7 @@ const DEFAULT_VIEWPORT_HEIGHT = 960;
 const DEFAULT_DEVICE_SCALE_FACTOR = 2;
 const DEFAULT_TILE_SETTLE_DELAY_MS = 5000;
 
-function parseArgs(): CaptureMapImageOptions {
+function parseArgs (): CaptureMapImageOptions {
     const args = new Map<string, string>();
 
     for (let index = 2; index < process.argv.length; index += 2) {
@@ -55,7 +55,7 @@ function parseArgs(): CaptureMapImageOptions {
 // querySelector from outside the frame can't reach it. elementFromPoint
 // does a hit-test against the rendered tree instead, which pierces closed
 // shadow roots and hands back a real node we can hide.
-async function removeInfoCard(mapFrame: Frame): Promise<boolean> {
+async function removeInfoCard (mapFrame: Frame): Promise<boolean> {
     return mapFrame.evaluate(() => {
         let target = document.elementFromPoint(20, 20);
 
@@ -73,7 +73,7 @@ async function removeInfoCard(mapFrame: Frame): Promise<boolean> {
     });
 }
 
-async function captureMapImage(options: CaptureMapImageOptions): Promise<void> {
+async function captureMapImage (options: CaptureMapImageOptions): Promise<void> {
     const browser = await chromium.launch();
     const context = await browser.newContext({
         viewport: { width: options.viewportWidth, height: options.viewportHeight },
