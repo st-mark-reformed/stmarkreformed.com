@@ -218,11 +218,13 @@ services:
 
   db:
     logging: *default-logging
+    # stop-first: two MariaDB servers can't share the data directory, and the
+    # new one may run mariadb-upgrade on start
     deploy:
       rollback_config:
-        order: start-first
+        order: stop-first
       update_config:
-        order: start-first
+        order: stop-first
     env_file:
       - db/.env
       - db/.env.local
