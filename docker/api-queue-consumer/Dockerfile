@@ -6,4 +6,5 @@ HEALTHCHECK --interval=60s --timeout=5s --start-period=30s --retries=3 \
 
 ENTRYPOINT []
 
-CMD printenv | grep -v "no_proxy" >> /etc/environment && /var/www/queueConsumer.sh
+# exec makes queueConsumer.sh PID 1 so it receives SIGTERM directly
+CMD printenv | grep -v "no_proxy" >> /etc/environment && exec /var/www/queueConsumer.sh

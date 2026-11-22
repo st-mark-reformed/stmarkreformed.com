@@ -101,6 +101,8 @@ services:
       - RSA_PUBLIC_KEY
 
   api-schedule-runner:
+    # tini as PID 1 so SIGTERM stops cron promptly
+    init: true
     restart: always
     env_file:
       - ./api/.env
