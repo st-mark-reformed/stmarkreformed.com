@@ -62,6 +62,15 @@ enum DockerImage
         };
     }
 
+    /** The local image this one is built FROM, if any */
+    public function parent(): self|null
+    {
+        return match ($this) {
+            self::apiQueueConsumer, self::apiScheduleRunner => self::api,
+            default => null,
+        };
+    }
+
     public function tag(): string
     {
         return implode('', [

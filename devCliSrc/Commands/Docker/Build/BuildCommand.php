@@ -62,7 +62,7 @@ readonly class BuildCommand
     public function run(
         BuildCommandConfig $config = new BuildCommandConfig(),
     ): void {
-        $config->walkImages(function (DockerImage $image): void {
+        $config->withDependents()->walkImages(function (DockerImage $image): void {
             $this->output->writeln(
                 '<fg=cyan>Building Docker image: ' . $image->name . ' </>',
             );
