@@ -11,11 +11,24 @@ export default function Pagination (
         pad = 2,
         className = '',
         queryString = '',
+        darkModeAware = false,
     }: PaginationParams,
 ) {
     if (totalPages < 2) {
         return null;
     }
+
+    const darkClasses = darkModeAware
+        ? {
+            pageCount: 'dark:text-gray-400',
+            link: 'dark:border-white/10 dark:bg-white/10 dark:text-gray-200 dark:hover:bg-white/20 dark:hover:text-white',
+            current: 'dark:border-white/10 dark:bg-transparent dark:text-gray-500',
+        }
+        : {
+            pageCount: '',
+            link: '',
+            current: '',
+        };
 
     if (queryString && !queryString.startsWith('?')) {
         queryString = `?${queryString}`;
@@ -60,7 +73,7 @@ export default function Pagination (
     return (
         <div className={`${className} not-prose`}>
             <div>
-                <p className="text-sm text-gray-700">
+                <p className={`text-sm text-gray-700 ${darkClasses.pageCount}`}>
                     Page
                     {' '}
                     {currentPage}
@@ -80,7 +93,7 @@ export default function Pagination (
                         return (
                             <Link
                                 href={prevPageLink}
-                                className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 not-prose"
+                                className={`relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 not-prose ${darkClasses.link}`}
                             >
                                 Previous
                             </Link>
@@ -94,7 +107,7 @@ export default function Pagination (
                         return (
                             <Link
                                 href={nextPageLink}
-                                className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 not-prose"
+                                className={`ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 not-prose ${darkClasses.link}`}
                             >
                                 Next
                             </Link>
@@ -112,7 +125,7 @@ export default function Pagination (
                                 return (
                                     <Link
                                         href={firstPageLink}
-                                        className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 not-prose"
+                                        className={`relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 not-prose ${darkClasses.link}`}
                                     >
                                         <span className="sr-only">First</span>
                                         <svg
@@ -167,6 +180,7 @@ export default function Pagination (
                                                 'text-gray-500',
                                                 'hover:bg-gray-50',
                                                 'not-prose',
+                                                darkClasses.link,
                                             ];
 
                                             if (!firstPageLink) {
@@ -219,6 +233,7 @@ export default function Pagination (
                                                     'text-sm',
                                                     'font-medium',
                                                     'text-gray-400',
+                                                    darkClasses.current,
                                                 ];
 
                                                 if (isFirst && !firstPageLink && !prevPageLink) {
@@ -256,6 +271,7 @@ export default function Pagination (
                                                 'text-gray-700',
                                                 'hover:bg-gray-50',
                                                 'not-prose',
+                                                darkClasses.link,
                                             ];
 
                                             if (isFirst && !firstPageLink && !prevPageLink) {
@@ -295,6 +311,7 @@ export default function Pagination (
                                                 'text-gray-500',
                                                 'hover:bg-gray-50',
                                                 'not-prose',
+                                                darkClasses.link,
                                             ];
 
                                             if (!lastPageLink) {
@@ -329,7 +346,7 @@ export default function Pagination (
                                 return (
                                     <Link
                                         href={lastPageLink}
-                                        className="relative inline-flex items-center px-2 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 rounded-r-md not-prose"
+                                        className={`relative inline-flex items-center px-2 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 rounded-r-md not-prose ${darkClasses.link}`}
                                     >
                                         <span className="sr-only">Next</span>
                                         <svg

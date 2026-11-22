@@ -110,6 +110,7 @@ export default function HymnsOfTheMonthPageClientSide (
 
     const pagination = (
         <Pagination
+            darkModeAware
             baseUrl="/admin/hymns-of-the-month"
             currentPage={currentPage}
             totalPages={totalPages}
